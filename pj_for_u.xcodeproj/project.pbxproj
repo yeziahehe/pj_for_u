@@ -110,6 +110,7 @@
 		2CF607D31B5F66180022E8E7 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF607D11B5F66180022E8E7 /* UserInfoViewController.m */; };
 		2CF607D41B5F66180022E8E7 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF607D21B5F66180022E8E7 /* UserInfoViewController.xib */; };
 		2CF607D71B5F66450022E8E7 /* UserInfoSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF607D61B5F66450022E8E7 /* UserInfoSubView.m */; };
+		2CF607DA1B5F67590022E8E7 /* YFCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF607D91B5F67590022E8E7 /* YFCycleScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -292,6 +293,8 @@
 		2CF607D21B5F66180022E8E7 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserInfoViewController.xib; path = "Controller/个人中心/UserInfoViewController.xib"; sourceTree = "<group>"; };
 		2CF607D51B5F66450022E8E7 /* UserInfoSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoSubView.h; path = "Controller/个人中心/UserInfoSubView.h"; sourceTree = "<group>"; };
 		2CF607D61B5F66450022E8E7 /* UserInfoSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoSubView.m; path = "Controller/个人中心/UserInfoSubView.m"; sourceTree = "<group>"; };
+		2CF607D81B5F67590022E8E7 /* YFCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YFCycleScrollView.h; path = Utilities/YFUtilities/YFCycleScrollView.h; sourceTree = "<group>"; };
+		2CF607D91B5F67590022E8E7 /* YFCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YFCycleScrollView.m; path = Utilities/YFUtilities/YFCycleScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -554,6 +557,8 @@
 		2C2528DE1B5E3A9500ADDEFB /* YFUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				2CF607D81B5F67590022E8E7 /* YFCycleScrollView.h */,
+				2CF607D91B5F67590022E8E7 /* YFCycleScrollView.m */,
 				2CF6077B1B5EA5DB0022E8E7 /* UITableView+YFAdditions.h */,
 				2CF6077C1B5EA5DB0022E8E7 /* UITableView+YFAdditions.m */,
 				2CF6077D1B5EA5DB0022E8E7 /* UITableViewCell+YFAdditions.h */,
@@ -818,6 +823,7 @@
 				2C2529041B5E3AA900ADDEFB /* YFCommonMethods.m in Sources */,
 				2CF6079B1B5EC5FE0022E8E7 /* HomeSubView.m in Sources */,
 				2C25289A1B5E38B100ADDEFB /* ResetPwdViewController.m in Sources */,
+				2CF607DA1B5F67590022E8E7 /* YFCycleScrollView.m in Sources */,
 				2C2528FD1B5E3AA900ADDEFB /* NSDate+YFAdditions.m in Sources */,
 				2C2528DA1B5E39EF00ADDEFB /* SBJsonBase.m in Sources */,
 				2C2528831B5E2C9D00ADDEFB /* RootTabBarViewController.m in Sources */,
