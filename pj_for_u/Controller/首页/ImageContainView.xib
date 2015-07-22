@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -9,8 +10,37 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ImageContainView">
             <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="H9w-QZ-dqp">
+                    <rect key="frame" x="240" y="132" width="80" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="0oK-So-JWF"/>
+                        <constraint firstAttribute="height" constant="37" id="JJx-66-091"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="TNb-ig-Cdc"/>
+                    </constraints>
+                </pageControl>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUw-L6-ybF" customClass="YFCycleScrollView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="aUw-L6-ybF" secondAttribute="height" multiplier="2:1" id="MGj-HF-2jj"/>
+                    </constraints>
+                </scrollView>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="aUw-L6-ybF" secondAttribute="trailing" id="4j8-K9-TUm"/>
+                <constraint firstItem="aUw-L6-ybF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9fy-RU-EpW"/>
+                <constraint firstAttribute="bottom" secondItem="aUw-L6-ybF" secondAttribute="bottom" id="DaP-AX-GR1"/>
+                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="H9w-QZ-dqp" secondAttribute="bottom" constant="-9" id="War-dm-LSf"/>
+                <constraint firstItem="aUw-L6-ybF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cxT-nb-oL1"/>
+                <constraint firstAttribute="bottom" secondItem="H9w-QZ-dqp" secondAttribute="bottom" constant="-9" id="q8b-37-x9G"/>
+                <constraint firstItem="aUw-L6-ybF" firstAttribute="trailing" secondItem="H9w-QZ-dqp" secondAttribute="trailing" id="yiV-6Q-AbZ"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cycleScrollView" destination="aUw-L6-ybF" id="18Q-H1-2bd"/>
+                <outlet property="pageControl" destination="H9w-QZ-dqp" id="HbS-Cf-PGG"/>
+            </connections>
             <point key="canvasLocation" x="220" y="133"/>
         </view>
     </objects>
