@@ -9,29 +9,49 @@
 #import "UserInfoViewController.h"
 
 @interface UserInfoViewController ()
+@property (strong, nonatomic) IBOutlet UIView *logView;
+@property (strong, nonatomic) IBOutlet UIImageView *headPhoto;
 
 @end
 
 @implementation UserInfoViewController
 
+- (UIImage *)createImageWithColor:(UIColor *)color
+{
+    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    UIGraphicsBeginImageContext(rect.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, rect);
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+//    [self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setShadowImage:[self createImageWithColor:[UIColor clearColor]]];
+//    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+    
+//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+
+    CALayer *layer = [self.headPhoto layer];
+    layer.borderColor = [[UIColor whiteColor] CGColor];
+    layer.borderWidth = 2.7f;
+    self.headPhoto.layer.masksToBounds = YES;
+    self.headPhoto.layer.cornerRadius = (self.headPhoto.bounds.size.width) / 2.f;
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.logView.backgroundColor = kMainProjColor;
+
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
