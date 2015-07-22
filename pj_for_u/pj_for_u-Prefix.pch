@@ -16,8 +16,10 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import "Constant.h"
+    #import "MemberDataManager.h"
     #import "YFUtils.h"
     #import "Reachability.h"
     #import "JSON.h"
     #import "MJRefresh.h"
+
 #endif

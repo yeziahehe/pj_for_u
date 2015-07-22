@@ -15,7 +15,7 @@
 @end
 
 @implementation LoginViewController
-@synthesize usernameTextField,passwordTextField;
+@synthesize usernameTextField,passwordTextField,scrollView;
 
 #pragma mark - Private methods
 - (NSString *)checkFieldValid
@@ -92,6 +92,7 @@
     // Do any additional setup after loading the view from its nib.
     [self setNaviTitle:@"登录"];
     [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_cancel.png"];
+    
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginRespnseWithNotification:) name:kLoginResponseNotification object:nil];;
 }
 
