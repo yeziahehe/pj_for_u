@@ -36,7 +36,7 @@
 //    [self.navigationController.navigationBar setShadowImage:[self createImageWithColor:[UIColor clearColor]]];
 //    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
 
     CALayer *layer = [self.headPhoto layer];
     layer.borderColor = [[UIColor whiteColor] CGColor];
