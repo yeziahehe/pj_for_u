@@ -117,6 +117,8 @@
 		4A6C15841B5F877F00C9A9D2 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15811B5F877F00C9A9D2 /* UserInfoViewController.m */; };
 		4A6C15851B5F877F00C9A9D2 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15821B5F877F00C9A9D2 /* UserInfoViewController.xib */; };
 		4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15871B5F9C2900C9A9D2 /* YFCycleScrollView.m */; };
+		4A6C158A1B5FF22F00C9A9D2 /* icon_register_nickname@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15891B5FF22F00C9A9D2 /* icon_register_nickname@2x.png */; };
+		4A6C158C1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C158B1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -309,6 +311,8 @@
 		4A6C15821B5F877F00C9A9D2 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
 		4A6C15861B5F9C2900C9A9D2 /* YFCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YFCycleScrollView.h; path = Utilities/YFUtilities/YFCycleScrollView.h; sourceTree = "<group>"; };
 		4A6C15871B5F9C2900C9A9D2 /* YFCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YFCycleScrollView.m; path = Utilities/YFUtilities/YFCycleScrollView.m; sourceTree = "<group>"; };
+		4A6C15891B5FF22F00C9A9D2 /* icon_register_nickname@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_register_nickname@2x.png"; path = "Resource/icon_register_nickname@2x.png"; sourceTree = "<group>"; };
+		4A6C158B1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_yanzheng@2x.png"; path = "Resource/icon_yanzheng@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -680,6 +684,8 @@
 		4A6C157A1B5F7D5800C9A9D2 /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
+				4A6C158B1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png */,
+				4A6C15891B5FF22F00C9A9D2 /* icon_register_nickname@2x.png */,
 				4A6C157B1B5F808D00C9A9D2 /* btn_login@2x.png */,
 				4A6C15761B5F7D5300C9A9D2 /* icon_login_phone@2x.png */,
 				4A6C15771B5F7D5300C9A9D2 /* icon_login_secret@2x.png */,
@@ -790,6 +796,7 @@
 				2CF607851B5EA9150022E8E7 /* SchoolSelectTableView.xib in Resources */,
 				2CF607661B5E9D100022E8E7 /* LocationViewController.xib in Resources */,
 				2CF6077A1B5EA3FF0022E8E7 /* CitySelectTableView.xib in Resources */,
+				4A6C158C1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png in Resources */,
 				4A6C15851B5F877F00C9A9D2 /* UserInfoViewController.xib in Resources */,
 				4A6C15791B5F7D5300C9A9D2 /* icon_login_secret@2x.png in Resources */,
 				2CF607C01B5EC88C0022E8E7 /* icon_breakfest@2x.png in Resources */,
@@ -801,6 +808,7 @@
 				2CF607A51B5EC6B60022E8E7 /* HomeContainView.xib in Resources */,
 				2CF607961B5EBDA10022E8E7 /* line_hon_1px_up.png in Resources */,
 				4A6C157C1B5F808D00C9A9D2 /* btn_login@2x.png in Resources */,
+				4A6C158A1B5FF22F00C9A9D2 /* icon_register_nickname@2x.png in Resources */,
 				2C25285B1B5E108A00ADDEFB /* Images.xcassets in Resources */,
 				2CF607B21B5EC7DD0022E8E7 /* icon_header_back@2x.png in Resources */,
 				2CF607CC1B5EC9E90022E8E7 /* HomeActivityTableView.xib in Resources */,

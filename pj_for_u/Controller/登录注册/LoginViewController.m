@@ -79,6 +79,11 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)rightItemTapped{
+    [self resignAllField];
+    RegisterViewController *rvc = [[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
+    [self.navigationController pushViewController:rvc animated:YES];
+}
 #pragma mark - UIViewController Methods
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -92,7 +97,7 @@
     // Do any additional setup after loading the view from its nib.
     [self setNaviTitle:@"登录"];
     [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_cancel.png"];
-    
+    [self setRightNaviItemWithTitle:nil imageName:@"icon_login_phone.png"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginRespnseWithNotification:) name:kLoginResponseNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
