@@ -420,6 +420,8 @@
 				2C25287D1B5E2C9D00ADDEFB /* RootTabBarViewController.h */,
 				2C25287E1B5E2C9D00ADDEFB /* RootTabBarViewController.m */,
 				2C25287F1B5E2C9D00ADDEFB /* RootTabBarViewController.xib */,
+				2CF607DB1B5F6DCE0022E8E7 /* 商品 */,
+				2CF607CF1B5F65EE0022E8E7 /* 个人中心 */,
 				2C25288B1B5E2E5B00ADDEFB /* 首页 */,
 				2C2528851B5E2E0900ADDEFB /* 登录注册 */,
 			);
@@ -563,6 +565,8 @@
 		2C2528DE1B5E3A9500ADDEFB /* YFUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				2CF607D81B5F67590022E8E7 /* YFCycleScrollView.h */,
+				2CF607D91B5F67590022E8E7 /* YFCycleScrollView.m */,
 				2CF6077B1B5EA5DB0022E8E7 /* UITableView+YFAdditions.h */,
 				2CF6077C1B5EA5DB0022E8E7 /* UITableView+YFAdditions.m */,
 				2CF6077D1B5EA5DB0022E8E7 /* UITableViewCell+YFAdditions.h */,
@@ -756,6 +760,7 @@
 			files = (
 				2C2528A31B5E38BB00ADDEFB /* ConfirmViewController.xib in Resources */,
 				2CF607C71B5EC88C0022E8E7 /* icon_recommend@2x.png in Resources */,
+				2CF607D41B5F66180022E8E7 /* UserInfoViewController.xib in Resources */,
 				2CF6076E1B5EA0EF0022E8E7 /* btn_category@2x.png in Resources */,
 				2CF607981B5EBDA10022E8E7 /* line_ver_1px_right.png in Resources */,
 				2CF607CE1B5F16950022E8E7 /* icon_new@2x.png in Resources */,
@@ -813,6 +818,7 @@
 				2C2528FF1B5E3AA900ADDEFB /* UIImage+YFAdditions.m in Sources */,
 				2CF607831B5EA8F60022E8E7 /* SchoolSelectTableView.m in Sources */,
 				2CF607801B5EA5DB0022E8E7 /* UITableViewCell+YFAdditions.m in Sources */,
+				2CF607D71B5F66450022E8E7 /* UserInfoSubView.m in Sources */,
 				2C2528D31B5E39EF00ADDEFB /* UIScrollView+MJExtension.m in Sources */,
 				2CF607901B5EB6360022E8E7 /* CampusMoel.m in Sources */,
 				2C2528D11B5E39EF00ADDEFB /* MJRefreshFooterView.m in Sources */,
@@ -829,6 +835,7 @@
 				2C2529041B5E3AA900ADDEFB /* YFCommonMethods.m in Sources */,
 				2CF6079B1B5EC5FE0022E8E7 /* HomeSubView.m in Sources */,
 				2C25289A1B5E38B100ADDEFB /* ResetPwdViewController.m in Sources */,
+				2CF607DA1B5F67590022E8E7 /* YFCycleScrollView.m in Sources */,
 				2C2528FD1B5E3AA900ADDEFB /* NSDate+YFAdditions.m in Sources */,
 				2C2528DA1B5E39EF00ADDEFB /* SBJsonBase.m in Sources */,
 				2C2528831B5E2C9D00ADDEFB /* RootTabBarViewController.m in Sources */,
@@ -839,6 +846,7 @@
 				2C2528981B5E38B100ADDEFB /* RegisterViewController.m in Sources */,
 				4A6C156C1B5F6D1100C9A9D2 /* Member.m in Sources */,
 				2C2529011B5E3AA900ADDEFB /* UIView+YFUtilities.m in Sources */,
+				2CF607D31B5F66180022E8E7 /* UserInfoViewController.m in Sources */,
 				2C2528D61B5E39EF00ADDEFB /* Reachability.m in Sources */,
 				2CF607781B5EA3E60022E8E7 /* CitySelectTableView.m in Sources */,
 				2C2529031B5E3AA900ADDEFB /* YFAsynImageView.m in Sources */,
@@ -849,6 +857,7 @@
 				2C2528531B5E108900ADDEFB /* AppDelegate.m in Sources */,
 				2C2528DB1B5E39EF00ADDEFB /* SBJsonParser.m in Sources */,
 				2C2529071B5E3AA900ADDEFB /* YFImageDownloader.m in Sources */,
+				2CF607DF1B5F78BB0022E8E7 /* ProductViewController.m in Sources */,
 				2C2528CE1B5E39EF00ADDEFB /* MBProgressHUD.m in Sources */,
 				4A6C156F1B5F724C00C9A9D2 /* MemberDataManager.m in Sources */,
 				2CF6078D1B5EB5BB0022E8E7 /* BaseModel.m in Sources */,

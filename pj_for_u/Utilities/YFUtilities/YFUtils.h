@@ -48,6 +48,7 @@
 #import "UIImage+YFAdditions.h"
 #import "UITableView+YFAdditions.h"
 #import "UITableViewCell+YFAdditions.h"
+#import "YFCycleScrollView.h"
 
 #endif
 
