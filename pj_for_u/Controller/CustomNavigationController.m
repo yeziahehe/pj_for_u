@@ -8,7 +8,7 @@
 
 #import "CustomNavigationController.h"
 #import "HomeViewController.h"
-#import "UserInfoSubView.h"
+#import "UserInfoViewController.h"
 
 @interface CustomNavigationController ()
 
@@ -50,14 +50,6 @@
 {
     if ([viewController isKindOfClass:[HomeViewController class]])
     {
-        self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-        self.navigationBar.barTintColor = kMainProjColor;//导航条的颜色
-        self.navigationBar.tintColor = [UIColor whiteColor];//左侧返回按钮，文字的颜色
-        self.navigationBar.barStyle = UIStatusBarStyleLightContent;
-    }
-    
-    else if([viewController isKindOfClass:[UserInfoSubView class]])
-    {
         [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
         self.navigationBar.shadowImage = nil;
         self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
@@ -65,8 +57,16 @@
         self.navigationBar.tintColor = [UIColor whiteColor];//左侧返回按钮，文字的颜色
         self.navigationBar.barStyle = UIStatusBarStyleLightContent;
     }
+    
+    else if([viewController isKindOfClass:[UserInfoViewController class]])
+    {
+        [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        self.navigationBar.shadowImage = [UIImage new];
+    }
     else
     {
+        [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+        self.navigationBar.shadowImage = nil;
         self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: kMainBlackColor};
         self.navigationBar.barTintColor = [UIColor whiteColor];//导航条的颜色
         self.navigationBar.tintColor = kMainProjColor;//左侧返回按钮，文字的颜色
