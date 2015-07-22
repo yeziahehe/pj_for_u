@@ -22,6 +22,7 @@
 
 @property (nonatomic, strong) Member *loginMember;
 
++ (MemberDataManager *)sharedManager;
 /**
  *  判断用户是否登录
  *
