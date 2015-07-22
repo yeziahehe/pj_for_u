@@ -1,19 +1,67 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserInfoViewController">
             <connections>
+                <outlet property="headPhoto" destination="TT5-AO-RG0" id="UY7-Jn-v5w"/>
+                <outlet property="logView" destination="g4a-vI-sVW" id="quY-GO-A34"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4a-vI-sVW" userLabel="LogView">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_select_city.png" translatesAutoresizingMaskIntoConstraints="NO" id="TT5-AO-RG0">
+                            <rect key="frame" x="110" y="84" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="yQp-Zy-B42"/>
+                                <constraint firstAttribute="width" constant="100" id="yUF-WT-cLE"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乌龙茶多酚" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEO-aH-9wd">
+                            <rect key="frame" x="70.5" y="199" width="180" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="25" id="BFV-vt-CdD"/>
+                                <constraint firstAttribute="width" constant="180" id="f3I-q0-LvY"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="250" id="5hs-tJ-iSG"/>
+                        <constraint firstAttribute="centerX" secondItem="TT5-AO-RG0" secondAttribute="centerX" id="AVb-w7-Pxg"/>
+                        <constraint firstItem="TT5-AO-RG0" firstAttribute="top" secondItem="g4a-vI-sVW" secondAttribute="top" constant="84" id="CmG-l4-DN7"/>
+                        <constraint firstItem="zEO-aH-9wd" firstAttribute="top" secondItem="TT5-AO-RG0" secondAttribute="bottom" constant="15" id="ImZ-4g-u6u"/>
+                        <constraint firstAttribute="centerX" secondItem="zEO-aH-9wd" secondAttribute="centerX" id="pIE-bi-iuO"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstItem="g4a-vI-sVW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MPN-g1-L0P"/>
+                <constraint firstAttribute="trailing" secondItem="g4a-vI-sVW" secondAttribute="trailing" id="gAn-Gn-Kiu"/>
+                <constraint firstItem="g4a-vI-sVW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ptE-kY-GYA"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <point key="canvasLocation" x="243" y="285"/>
         </view>
     </objects>
+    <resources>
+        <image name="bg_select_city.png" width="100" height="44"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -46,8 +46,8 @@
                         </viewController>
                     </viewControllers>
                 </navigationController>
-                <navigationController definesPresentationContext="YES" id="8mh-ca-kl7" userLabel="我的" customClass="CustomNavigationController">
-                    <tabBarItem key="tabBarItem" title="我的" image="btn_user.png" id="IIy-ar-FDw" userLabel="我的">
+                <navigationController definesPresentationContext="YES" id="8mh-ca-kl7" userLabel="个人中心" customClass="CustomNavigationController">
+                    <tabBarItem key="tabBarItem" title="个人中心" image="btn_user.png" id="IIy-ar-FDw" userLabel="个人中心">
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="btn_user_selected.png"/>
                         </userDefinedRuntimeAttributes>
@@ -58,7 +58,7 @@
                     </navigationBar>
                     <viewControllers>
                         <viewController id="zVB-87-Loo" userLabel="Root View Controller" customClass="UserInfoViewController">
-                            <navigationItem key="navigationItem" title="我的" id="LWf-70-bmI"/>
+                            <navigationItem key="navigationItem" title="个人中心" id="LWf-70-bmI"/>
                         </viewController>
                     </viewControllers>
                 </navigationController>
