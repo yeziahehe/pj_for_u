@@ -71,6 +71,7 @@
 - (void)leftItemTapped
 {
     //跳转到商品分类页面
+    [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
 }
 
 - (void)rightItemTapped
