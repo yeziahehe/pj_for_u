@@ -8,6 +8,7 @@
 
 #import "CustomNavigationController.h"
 #import "HomeViewController.h"
+#import "UserInfoSubView.h"
 
 @interface CustomNavigationController ()
 
@@ -55,7 +56,7 @@
         self.navigationBar.barStyle = UIStatusBarStyleLightContent;
     }
     
-    else if([viewController isKindOfClass:[HomeViewController class]])
+    else if([viewController isKindOfClass:[UserInfoSubView class]])
     {
         [self.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
         self.navigationBar.shadowImage = nil;

@@ -110,6 +110,9 @@
 		2CF607D31B5F66180022E8E7 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF607D11B5F66180022E8E7 /* UserInfoViewController.m */; };
 		2CF607D41B5F66180022E8E7 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF607D21B5F66180022E8E7 /* UserInfoViewController.xib */; };
 		2CF607D71B5F66450022E8E7 /* UserInfoSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF607D61B5F66450022E8E7 /* UserInfoSubView.m */; };
+		2CF607DA1B5F67590022E8E7 /* YFCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF607D91B5F67590022E8E7 /* YFCycleScrollView.m */; };
+		2CF607DF1B5F78BB0022E8E7 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF607DD1B5F78BB0022E8E7 /* ProductViewController.m */; };
+		2CF607E01B5F78BB0022E8E7 /* ProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF607DE1B5F78BB0022E8E7 /* ProductViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -292,6 +295,11 @@
 		2CF607D21B5F66180022E8E7 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserInfoViewController.xib; path = "Controller/个人中心/UserInfoViewController.xib"; sourceTree = "<group>"; };
 		2CF607D51B5F66450022E8E7 /* UserInfoSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoSubView.h; path = "Controller/个人中心/UserInfoSubView.h"; sourceTree = "<group>"; };
 		2CF607D61B5F66450022E8E7 /* UserInfoSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoSubView.m; path = "Controller/个人中心/UserInfoSubView.m"; sourceTree = "<group>"; };
+		2CF607D81B5F67590022E8E7 /* YFCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YFCycleScrollView.h; path = Utilities/YFUtilities/YFCycleScrollView.h; sourceTree = "<group>"; };
+		2CF607D91B5F67590022E8E7 /* YFCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YFCycleScrollView.m; path = Utilities/YFUtilities/YFCycleScrollView.m; sourceTree = "<group>"; };
+		2CF607DC1B5F78BB0022E8E7 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductViewController.h; path = "Controller/商品/ProductViewController.h"; sourceTree = "<group>"; };
+		2CF607DD1B5F78BB0022E8E7 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductViewController.m; path = "Controller/商品/ProductViewController.m"; sourceTree = "<group>"; };
+		2CF607DE1B5F78BB0022E8E7 /* ProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductViewController.xib; path = "Controller/商品/ProductViewController.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -410,6 +418,7 @@
 				2C25287D1B5E2C9D00ADDEFB /* RootTabBarViewController.h */,
 				2C25287E1B5E2C9D00ADDEFB /* RootTabBarViewController.m */,
 				2C25287F1B5E2C9D00ADDEFB /* RootTabBarViewController.xib */,
+				2CF607DB1B5F6DCE0022E8E7 /* 商品 */,
 				2CF607CF1B5F65EE0022E8E7 /* 个人中心 */,
 				2C25288B1B5E2E5B00ADDEFB /* 首页 */,
 				2C2528851B5E2E0900ADDEFB /* 登录注册 */,
@@ -554,6 +563,8 @@
 		2C2528DE1B5E3A9500ADDEFB /* YFUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				2CF607D81B5F67590022E8E7 /* YFCycleScrollView.h */,
+				2CF607D91B5F67590022E8E7 /* YFCycleScrollView.m */,
 				2CF6077B1B5EA5DB0022E8E7 /* UITableView+YFAdditions.h */,
 				2CF6077C1B5EA5DB0022E8E7 /* UITableView+YFAdditions.m */,
 				2CF6077D1B5EA5DB0022E8E7 /* UITableViewCell+YFAdditions.h */,
@@ -665,6 +676,16 @@
 			name = "个人中心";
 			sourceTree = "<group>";
 		};
+		2CF607DB1B5F6DCE0022E8E7 /* 商品 */ = {
+			isa = PBXGroup;
+			children = (
+				2CF607DC1B5F78BB0022E8E7 /* ProductViewController.h */,
+				2CF607DD1B5F78BB0022E8E7 /* ProductViewController.m */,
+				2CF607DE1B5F78BB0022E8E7 /* ProductViewController.xib */,
+			);
+			name = "商品";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -755,6 +776,7 @@
 				2CF607851B5EA9150022E8E7 /* SchoolSelectTableView.xib in Resources */,
 				2CF607661B5E9D100022E8E7 /* LocationViewController.xib in Resources */,
 				2CF6077A1B5EA3FF0022E8E7 /* CitySelectTableView.xib in Resources */,
+				2CF607E01B5F78BB0022E8E7 /* ProductViewController.xib in Resources */,
 				2CF607C01B5EC88C0022E8E7 /* icon_breakfest@2x.png in Resources */,
 				2CF607971B5EBDA10022E8E7 /* line_ver_1px_left.png in Resources */,
 				2CF607871B5EABA60022E8E7 /* bg_select_city@2x.png in Resources */,
@@ -818,6 +840,7 @@
 				2C2529041B5E3AA900ADDEFB /* YFCommonMethods.m in Sources */,
 				2CF6079B1B5EC5FE0022E8E7 /* HomeSubView.m in Sources */,
 				2C25289A1B5E38B100ADDEFB /* ResetPwdViewController.m in Sources */,
+				2CF607DA1B5F67590022E8E7 /* YFCycleScrollView.m in Sources */,
 				2C2528FD1B5E3AA900ADDEFB /* NSDate+YFAdditions.m in Sources */,
 				2C2528DA1B5E39EF00ADDEFB /* SBJsonBase.m in Sources */,
 				2C2528831B5E2C9D00ADDEFB /* RootTabBarViewController.m in Sources */,
@@ -838,6 +861,7 @@
 				2C2528531B5E108900ADDEFB /* AppDelegate.m in Sources */,
 				2C2528DB1B5E39EF00ADDEFB /* SBJsonParser.m in Sources */,
 				2C2529071B5E3AA900ADDEFB /* YFImageDownloader.m in Sources */,
+				2CF607DF1B5F78BB0022E8E7 /* ProductViewController.m in Sources */,
 				2C2528CE1B5E39EF00ADDEFB /* MBProgressHUD.m in Sources */,
 				2CF6078D1B5EB5BB0022E8E7 /* BaseModel.m in Sources */,
 				2C2529081B5E3AA900ADDEFB /* YFMediaPicker.m in Sources */,
