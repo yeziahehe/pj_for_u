@@ -46,9 +46,20 @@
                         <constraint firstAttribute="centerX" secondItem="zEO-aH-9wd" secondAttribute="centerX" id="pIE-bi-iuO"/>
                     </constraints>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HVX-oj-Oh5">
+                    <rect key="frame" x="0.0" y="250" width="320" height="116"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="116" id="EuN-On-HjP"/>
+                    </constraints>
+                </view>
             </subviews>
+            <color key="backgroundColor" red="0.97953344666946585" green="0.97829060216019625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="g4a-vI-sVW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MPN-g1-L0P"/>
+                <constraint firstItem="HVX-oj-Oh5" firstAttribute="top" secondItem="g4a-vI-sVW" secondAttribute="bottom" id="OSy-zI-2Vw"/>
+                <constraint firstItem="HVX-oj-Oh5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="RnT-d8-fmW"/>
+                <constraint firstAttribute="trailing" secondItem="HVX-oj-Oh5" secondAttribute="trailing" id="Yfh-Tl-lzy"/>
                 <constraint firstAttribute="trailing" secondItem="g4a-vI-sVW" secondAttribute="trailing" id="gAn-Gn-Kiu"/>
                 <constraint firstItem="g4a-vI-sVW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ptE-kY-GYA"/>
             </constraints>
