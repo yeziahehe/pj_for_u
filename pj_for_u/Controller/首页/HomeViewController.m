@@ -45,6 +45,8 @@
         rect.origin.x = 0.0f;
         if ([homeSubView isKindOfClass:[ImageContainView class]]) {
             ImageContainView *icv = (ImageContainView *)homeSubView;
+//            rect.size.height = icv.frame.size.height/320 * ScreenWidth-20;
+            rect.origin.y = 0.0f;
         }
         else if ([homeSubView isKindOfClass:[HomeContainView class]]) {
             HomeContainView *hcv = (HomeContainView *)homeSubView;
