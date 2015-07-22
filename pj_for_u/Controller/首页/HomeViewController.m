@@ -48,6 +48,8 @@
         }
         else if ([homeSubView isKindOfClass:[HomeContainView class]]) {
             HomeContainView *hcv = (HomeContainView *)homeSubView;
+            rect.size.width = ScreenWidth;
+            rect.size.height = ScreenWidth / 2.0;
         }
         homeSubView.frame = rect;
         [self.contentScrollView addSubview:homeSubView];
