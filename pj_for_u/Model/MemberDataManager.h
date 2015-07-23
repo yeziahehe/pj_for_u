@@ -18,14 +18,15 @@
 #define kCheckUserExistDownloaderKey    @"CheckUserExistDownloaderKey"
 #define kResetPwdDownloaderKey          @"ResetPwdDownloaderKey"
 
+
 #define kLoginResponseNotification              @"LoginResponseNotification"
 #define kRegisterResponseNotification           @"RegisterResponseNotification"
 #define kCheckUserExistResponseNotification     @"CheckUserExistResponseNotification"
 #define kResetPwdResponseNotification           @"ResetPwdResponseNotification"
-#define kUserInfoResponseNotification           @"UserInfoResponseNotification"
 @interface MemberDataManager : NSObject
 
 @property (nonatomic, strong) Member *loginMember;
+
 
 + (MemberDataManager *)sharedManager;
 /**
@@ -65,4 +66,13 @@
 - (void)registerWithPhone:(NSString *)phone
                  password:(NSString *)password
                  nickName:(NSString *)nickName;
+/**
+ * 通过手机号找回密码
+ *
+ * @param phone       手机号
+ * @param newPassword 新密码
+ */
+- (void)resetPwdWithPhone:(NSString *)phone newPassword:(NSString *)newPassword;
+
+
 @end

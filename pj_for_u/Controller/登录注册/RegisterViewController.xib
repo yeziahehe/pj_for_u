@@ -7,12 +7,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController">
             <connections>
+                <outlet property="identifyButton" destination="jEU-AS-TdF" id="jWT-Mo-gzt"/>
                 <outlet property="identifyCodeTextField" destination="Rbr-9T-Epq" id="rM5-BW-UPN"/>
                 <outlet property="nextButton" destination="jEU-AS-TdF" id="UFN-b6-IJ3"/>
                 <outlet property="nickNameTextField" destination="ySQ-2B-oKU" id="7fL-xH-jtg"/>
                 <outlet property="passwordTextField" destination="t78-Zf-2pZ" id="jUB-da-tgq"/>
+                <outlet property="phoneLabel" destination="zUZ-io-P3m" id="404-xR-VI5"/>
                 <outlet property="phoneNumTextField" destination="YZD-CR-zJw" id="N36-zE-oma"/>
                 <outlet property="rePasswordTextField" destination="VFs-ES-AcO" id="tb5-gc-AZR"/>
+                <outlet property="registButton" destination="fkf-8t-FZr" id="bgV-4a-vq5"/>
                 <outlet property="scrollView" destination="U3V-qr-Uqw" id="Uh8-eG-7xL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -237,6 +240,13 @@
                                         <action selector="registButtonClicked:" destination="-1" eventType="touchUpInside" id="s4N-L3-d7J"/>
                                     </connections>
                                 </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zUZ-io-P3m">
+                                    <rect key="frame" x="54" y="372" width="251" height="21"/>
+                                    <color key="backgroundColor" red="0.64250668470000005" green="1" blue="0.62143096850000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -284,7 +294,7 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="268.5" y="270.5"/>
+            <point key="canvasLocation" x="166.5" y="276.5"/>
         </view>
     </objects>
     <resources>

@@ -17,6 +17,8 @@
 @property (strong, nonatomic) IBOutlet UITextField *nickNameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
 @property (strong, nonatomic) IBOutlet UITextField *rePasswordTextField;
+@property (strong, nonatomic) IBOutlet UIButton *identifyButton;
+@property (strong, nonatomic) IBOutlet UIButton *registButton;
 
 - (IBAction)registButtonClicked:(id)sender;
 - (IBAction)nextButtonClicked:(id)sender;

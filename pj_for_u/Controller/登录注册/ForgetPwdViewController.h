@@ -12,10 +12,11 @@
 
 @property (strong, nonatomic) IBOutlet UITextField *phoneTextField;
 @property (strong, nonatomic) IBOutlet UITextField *identifyCodeTextField;
-@property (strong, nonatomic) IBOutlet UIButton *resendButton;
-@property (strong, nonatomic) IBOutlet UIButton *nextButton;
+@property (strong, nonatomic) IBOutlet UITextField *pwdTextField;
+@property (strong, nonatomic) IBOutlet UITextField *rePwdTextField;
+@property (strong, nonatomic) IBOutlet UIButton *identifyButton;
 
-- (IBAction)resendButtonClicked:(id)sender;
-- (IBAction)nextButtonClicked:(id)sender;
+- (IBAction)identifyButtonClicked:(id)sender;
+- (IBAction)resetPwdButtonClicked:(id)sender;
 
 @end
