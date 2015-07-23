@@ -9,5 +9,6 @@
 #import "BaseViewController.h"
 
 @interface SettingViewController : BaseViewController
+@property (strong, nonatomic) IBOutlet UITableView *settingTableView;
 
 @end
