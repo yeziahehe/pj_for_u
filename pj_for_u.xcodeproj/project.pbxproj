@@ -117,6 +117,8 @@
 		4A6C15841B5F877F00C9A9D2 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15811B5F877F00C9A9D2 /* UserInfoViewController.m */; };
 		4A6C15851B5F877F00C9A9D2 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15821B5F877F00C9A9D2 /* UserInfoViewController.xib */; };
 		4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15871B5F9C2900C9A9D2 /* YFCycleScrollView.m */; };
+		6D8AD3EC1B6097C70099A0D8 /* IndividualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD3EA1B6097C70099A0D8 /* IndividualViewController.m */; };
+		6D8AD3ED1B6097C70099A0D8 /* IndividualViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3EB1B6097C70099A0D8 /* IndividualViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -309,6 +311,9 @@
 		4A6C15821B5F877F00C9A9D2 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
 		4A6C15861B5F9C2900C9A9D2 /* YFCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YFCycleScrollView.h; path = Utilities/YFUtilities/YFCycleScrollView.h; sourceTree = "<group>"; };
 		4A6C15871B5F9C2900C9A9D2 /* YFCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YFCycleScrollView.m; path = Utilities/YFUtilities/YFCycleScrollView.m; sourceTree = "<group>"; };
+		6D8AD3E91B6097C70099A0D8 /* IndividualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualViewController.h; sourceTree = "<group>"; };
+		6D8AD3EA1B6097C70099A0D8 /* IndividualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualViewController.m; sourceTree = "<group>"; };
+		6D8AD3EB1B6097C70099A0D8 /* IndividualViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -422,7 +427,6 @@
 		2C2528761B5E2C3400ADDEFB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4A6C157D1B5F877F00C9A9D2 /* 个人中心 */,
 				2C2528771B5E2C9D00ADDEFB /* BaseMenuViewController.h */,
 				2C2528781B5E2C9D00ADDEFB /* BaseMenuViewController.m */,
 				2C2528791B5E2C9D00ADDEFB /* BaseViewController.h */,
@@ -434,6 +438,7 @@
 				2C25287F1B5E2C9D00ADDEFB /* RootTabBarViewController.xib */,
 				2C25288B1B5E2E5B00ADDEFB /* 首页 */,
 				2C2528851B5E2E0900ADDEFB /* 登录注册 */,
+				4A6C157D1B5F877F00C9A9D2 /* 个人中心 */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -696,9 +701,44 @@
 				4A6C15801B5F877F00C9A9D2 /* UserInfoViewController.h */,
 				4A6C15811B5F877F00C9A9D2 /* UserInfoViewController.m */,
 				4A6C15821B5F877F00C9A9D2 /* UserInfoViewController.xib */,
+				6D8AD3E51B608D080099A0D8 /* 地址管理 */,
+				6D8AD3E61B608D100099A0D8 /* 我的订单 */,
+				6D8AD3E71B608D1A0099A0D8 /* 个人信息 */,
+				6D8AD3E81B608D220099A0D8 /* 设置 */,
 			);
 			name = "个人中心";
 			path = "Controller/个人中心";
+			sourceTree = "<group>";
+		};
+		6D8AD3E51B608D080099A0D8 /* 地址管理 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "地址管理";
+			sourceTree = "<group>";
+		};
+		6D8AD3E61B608D100099A0D8 /* 我的订单 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "我的订单";
+			sourceTree = "<group>";
+		};
+		6D8AD3E71B608D1A0099A0D8 /* 个人信息 */ = {
+			isa = PBXGroup;
+			children = (
+				6D8AD3E91B6097C70099A0D8 /* IndividualViewController.h */,
+				6D8AD3EA1B6097C70099A0D8 /* IndividualViewController.m */,
+				6D8AD3EB1B6097C70099A0D8 /* IndividualViewController.xib */,
+			);
+			name = "个人信息";
+			sourceTree = "<group>";
+		};
+		6D8AD3E81B608D220099A0D8 /* 设置 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "设置";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -810,6 +850,7 @@
 				2CF607C31B5EC88C0022E8E7 /* icon_house@2x.png in Resources */,
 				2C2528A51B5E38BB00ADDEFB /* ForgetPwdViewController.xib in Resources */,
 				4A6C15781B5F7D5300C9A9D2 /* icon_login_phone@2x.png in Resources */,
+				6D8AD3ED1B6097C70099A0D8 /* IndividualViewController.xib in Resources */,
 				2CF607A01B5EC6460022E8E7 /* ImageContainView.xib in Resources */,
 				2CF607681B5E9D100022E8E7 /* SearchHistoryViewController.xib in Resources */,
 				2C25289B1B5E38B100ADDEFB /* ResetPwdViewController.xib in Resources */,
@@ -876,6 +917,7 @@
 				2C2528D41B5E39EF00ADDEFB /* UIScrollView+MJRefresh.m in Sources */,
 				2C2528D51B5E39EF00ADDEFB /* UIView+MJExtension.m in Sources */,
 				2C2528891B5E2E1E00ADDEFB /* LoginViewController.m in Sources */,
+				6D8AD3EC1B6097C70099A0D8 /* IndividualViewController.m in Sources */,
 				2C2529001B5E3AA900ADDEFB /* UIImage+YFUtilities.m in Sources */,
 				2C2528531B5E108900ADDEFB /* AppDelegate.m in Sources */,
 				2C2528DB1B5E39EF00ADDEFB /* SBJsonParser.m in Sources */,
