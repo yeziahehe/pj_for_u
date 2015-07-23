@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		2C10D6A81B609335008C3DE0 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */; };
+		2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6A91B60B1F7008C3DE0 /* icon_home_shopping@2x.png */; };
+		2C10D6AD1B60B1F7008C3DE0 /* icon_home_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6AA1B60B1F7008C3DE0 /* icon_home_user@2x.png */; };
+		2C10D6AE1B60B1F7008C3DE0 /* icon_home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6AB1B60B1F7008C3DE0 /* icon_home@2x.png */; };
+		2C10D6B21B60B551008C3DE0 /* icon_home_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6AF1B60B551008C3DE0 /* icon_home_selected@2x.png */; };
+		2C10D6B31B60B551008C3DE0 /* icon_home_shopping_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6B01B60B551008C3DE0 /* icon_home_shopping_selected@2x.png */; };
+		2C10D6B41B60B551008C3DE0 /* icon_home_user_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6B11B60B551008C3DE0 /* icon_home_user_selected@2x.png */; };
 		2C2528501B5E108900ADDEFB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C25284F1B5E108900ADDEFB /* main.m */; };
 		2C2528531B5E108900ADDEFB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2528521B5E108900ADDEFB /* AppDelegate.m */; };
 		2C25285B1B5E108A00ADDEFB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C25285A1B5E108A00ADDEFB /* Images.xcassets */; };
@@ -133,6 +139,12 @@
 /* Begin PBXFileReference section */
 		2C10D6A61B609335008C3DE0 /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTimer+Addition.h"; path = "Utilities/YFUtilities/NSTimer+Addition.h"; sourceTree = "<group>"; };
 		2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTimer+Addition.m"; path = "Utilities/YFUtilities/NSTimer+Addition.m"; sourceTree = "<group>"; };
+		2C10D6A91B60B1F7008C3DE0 /* icon_home_shopping@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_home_shopping@2x.png"; path = "Resource/icon_home_shopping@2x.png"; sourceTree = "<group>"; };
+		2C10D6AA1B60B1F7008C3DE0 /* icon_home_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_home_user@2x.png"; path = "Resource/icon_home_user@2x.png"; sourceTree = "<group>"; };
+		2C10D6AB1B60B1F7008C3DE0 /* icon_home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_home@2x.png"; path = "Resource/icon_home@2x.png"; sourceTree = "<group>"; };
+		2C10D6AF1B60B551008C3DE0 /* icon_home_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_home_selected@2x.png"; path = "Resource/icon_home_selected@2x.png"; sourceTree = "<group>"; };
+		2C10D6B01B60B551008C3DE0 /* icon_home_shopping_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_home_shopping_selected@2x.png"; path = "Resource/icon_home_shopping_selected@2x.png"; sourceTree = "<group>"; };
+		2C10D6B11B60B551008C3DE0 /* icon_home_user_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_home_user_selected@2x.png"; path = "Resource/icon_home_user_selected@2x.png"; sourceTree = "<group>"; };
 		2C25284A1B5E108900ADDEFB /* pj_for_u.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pj_for_u.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C25284E1B5E108900ADDEFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C25284F1B5E108900ADDEFB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -425,7 +437,6 @@
 		2C2528761B5E2C3400ADDEFB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				4A6C157D1B5F877F00C9A9D2 /* 个人中心 */,
 				2C2528771B5E2C9D00ADDEFB /* BaseMenuViewController.h */,
 				2C2528781B5E2C9D00ADDEFB /* BaseMenuViewController.m */,
 				2C2528791B5E2C9D00ADDEFB /* BaseViewController.h */,
@@ -435,6 +446,7 @@
 				2C25287D1B5E2C9D00ADDEFB /* RootTabBarViewController.h */,
 				2C25287E1B5E2C9D00ADDEFB /* RootTabBarViewController.m */,
 				2C25287F1B5E2C9D00ADDEFB /* RootTabBarViewController.xib */,
+				4A6C157D1B5F877F00C9A9D2 /* 个人中心 */,
 				2C25288B1B5E2E5B00ADDEFB /* 首页 */,
 				2C2528851B5E2E0900ADDEFB /* 登录注册 */,
 			);
@@ -645,6 +657,12 @@
 				2CF607CD1B5F16950022E8E7 /* icon_new@2x.png */,
 				2CF607BE1B5EC88C0022E8E7 /* icon_preference@2x.png */,
 				2CF607BF1B5EC88C0022E8E7 /* icon_recommend@2x.png */,
+				2C10D6A91B60B1F7008C3DE0 /* icon_home_shopping@2x.png */,
+				2C10D6AA1B60B1F7008C3DE0 /* icon_home_user@2x.png */,
+				2C10D6AB1B60B1F7008C3DE0 /* icon_home@2x.png */,
+				2C10D6AF1B60B551008C3DE0 /* icon_home_selected@2x.png */,
+				2C10D6B01B60B551008C3DE0 /* icon_home_shopping_selected@2x.png */,
+				2C10D6B11B60B551008C3DE0 /* icon_home_user_selected@2x.png */,
 			);
 			name = "首页";
 			sourceTree = "<group>";
@@ -788,10 +806,12 @@
 			files = (
 				2C2528A31B5E38BB00ADDEFB /* ConfirmViewController.xib in Resources */,
 				2CF607C71B5EC88C0022E8E7 /* icon_recommend@2x.png in Resources */,
+				2C10D6AE1B60B1F7008C3DE0 /* icon_home@2x.png in Resources */,
 				2CF6076E1B5EA0EF0022E8E7 /* btn_category@2x.png in Resources */,
 				2CF607981B5EBDA10022E8E7 /* line_ver_1px_right.png in Resources */,
 				2CF607CE1B5F16950022E8E7 /* icon_new@2x.png in Resources */,
 				2C2528841B5E2C9D00ADDEFB /* RootTabBarViewController.xib in Resources */,
+				2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */,
 				2CF607851B5EA9150022E8E7 /* SchoolSelectTableView.xib in Resources */,
 				2CF607661B5E9D100022E8E7 /* LocationViewController.xib in Resources */,
 				2CF6077A1B5EA3FF0022E8E7 /* CitySelectTableView.xib in Resources */,
@@ -802,10 +822,12 @@
 				2CF607871B5EABA60022E8E7 /* bg_select_city@2x.png in Resources */,
 				2CF607951B5EBDA10022E8E7 /* line_hon_1px_down.png in Resources */,
 				2CF6076A1B5E9D270022E8E7 /* icon_header_back@2x.png in Resources */,
+				2C10D6B21B60B551008C3DE0 /* icon_home_selected@2x.png in Resources */,
 				2C2528991B5E38B100ADDEFB /* RegisterViewController.xib in Resources */,
 				2CF607A51B5EC6B60022E8E7 /* HomeContainView.xib in Resources */,
 				2CF607961B5EBDA10022E8E7 /* line_hon_1px_up.png in Resources */,
 				4A6C157C1B5F808D00C9A9D2 /* btn_login@2x.png in Resources */,
+				2C10D6AD1B60B1F7008C3DE0 /* icon_home_user@2x.png in Resources */,
 				2C25285B1B5E108A00ADDEFB /* Images.xcassets in Resources */,
 				2CF607B21B5EC7DD0022E8E7 /* icon_header_back@2x.png in Resources */,
 				2CF607CC1B5EC9E90022E8E7 /* HomeActivityTableView.xib in Resources */,
@@ -816,11 +838,13 @@
 				2C2528A51B5E38BB00ADDEFB /* ForgetPwdViewController.xib in Resources */,
 				4A6C15781B5F7D5300C9A9D2 /* icon_login_phone@2x.png in Resources */,
 				2CF607A01B5EC6460022E8E7 /* ImageContainView.xib in Resources */,
+				2C10D6B41B60B551008C3DE0 /* icon_home_user_selected@2x.png in Resources */,
 				2CF607681B5E9D100022E8E7 /* SearchHistoryViewController.xib in Resources */,
 				2C25289B1B5E38B100ADDEFB /* ResetPwdViewController.xib in Resources */,
 				2CF607C61B5EC88C0022E8E7 /* icon_preference@2x.png in Resources */,
 				2C2528901B5E2E9400ADDEFB /* HomeViewController.xib in Resources */,
 				4A6C15751B5F7B1000C9A9D2 /* bg_login@2x.png in Resources */,
+				2C10D6B31B60B551008C3DE0 /* icon_home_shopping_selected@2x.png in Resources */,
 				2CF607C21B5EC88C0022E8E7 /* icon_fruit@2x.png in Resources */,
 				2CF607521B5E4E390022E8E7 /* StartViewController.xib in Resources */,
 				2CF6075B1B5E77560022E8E7 /* btn_search@2x.png in Resources */,
