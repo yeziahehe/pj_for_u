@@ -31,17 +31,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
-    
-//    [self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:[UIColor redColor]] forBarMetrics:UIBarMetricsDefault];
-//    [self.navigationController.navigationBar setShadowImage:[self createImageWithColor:[UIColor greenColor]]];
-//    [self.navigationController.navigationBar setTintColor:[UIColor blueColor]];
-//
-//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-//    [self.navigationController.navigationBar setBackIndicatorTransitionMaskImage:[self createImageWithColor:[UIColor clearColor]]];
-//    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
-    
-    
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    self.logView.backgroundColor = kMainProjColor;
 }
 
 @end

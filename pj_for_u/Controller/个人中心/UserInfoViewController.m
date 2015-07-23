@@ -9,6 +9,7 @@
 #import "UserInfoViewController.h"
 #import "IndividualViewController.h"
 #import "SettingViewController.h"
+#import "AddressManageViewController.h"
 
 @interface UserInfoViewController ()
 @property (strong, nonatomic) IBOutlet UIView *logView;
@@ -43,7 +44,8 @@
 
 - (IBAction)addressManage:(UIButton *)sender
 {
-    
+    AddressManageViewController *addressManageViewController = [[AddressManageViewController alloc] init];
+    [self.navigationController pushViewController:addressManageViewController animated:YES];
 }
 
 - (IBAction)myOrder:(id)sender

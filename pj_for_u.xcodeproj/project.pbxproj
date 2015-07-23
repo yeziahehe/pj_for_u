@@ -130,6 +130,8 @@
 		4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15871B5F9C2900C9A9D2 /* YFCycleScrollView.m */; };
 		6D8AD3EC1B6097C70099A0D8 /* IndividualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD3EA1B6097C70099A0D8 /* IndividualViewController.m */; };
 		6D8AD3ED1B6097C70099A0D8 /* IndividualViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3EB1B6097C70099A0D8 /* IndividualViewController.xib */; };
+		6D8AD3F31B60BD250099A0D8 /* AddressManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD3F11B60BD250099A0D8 /* AddressManageViewController.m */; };
+		6D8AD3F41B60BD250099A0D8 /* AddressManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3F21B60BD250099A0D8 /* AddressManageViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -339,6 +341,9 @@
 		6D8AD3E91B6097C70099A0D8 /* IndividualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualViewController.h; sourceTree = "<group>"; };
 		6D8AD3EA1B6097C70099A0D8 /* IndividualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualViewController.m; sourceTree = "<group>"; };
 		6D8AD3EB1B6097C70099A0D8 /* IndividualViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualViewController.xib; sourceTree = "<group>"; };
+		6D8AD3F01B60BD250099A0D8 /* AddressManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressManageViewController.h; sourceTree = "<group>"; };
+		6D8AD3F11B60BD250099A0D8 /* AddressManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressManageViewController.m; sourceTree = "<group>"; };
+		6D8AD3F21B60BD250099A0D8 /* AddressManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressManageViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -482,7 +487,6 @@
 				2C25287E1B5E2C9D00ADDEFB /* RootTabBarViewController.m */,
 				2C25287F1B5E2C9D00ADDEFB /* RootTabBarViewController.xib */,
 				2C10D6BB1B60B951008C3DE0 /* 设置 */,
-				4A6C157D1B5F877F00C9A9D2 /* 个人中心 */,
 				2C10D6B51B60B7E1008C3DE0 /* 商品 */,
 				2C25288B1B5E2E5B00ADDEFB /* 首页 */,
 				2C2528851B5E2E0900ADDEFB /* 登录注册 */,
@@ -760,7 +764,6 @@
 				6D8AD3E51B608D080099A0D8 /* 地址管理 */,
 				6D8AD3E61B608D100099A0D8 /* 我的订单 */,
 				6D8AD3E71B608D1A0099A0D8 /* 个人信息 */,
-				6D8AD3E81B608D220099A0D8 /* 设置 */,
 			);
 			name = "个人中心";
 			path = "Controller/个人中心";
@@ -769,6 +772,9 @@
 		6D8AD3E51B608D080099A0D8 /* 地址管理 */ = {
 			isa = PBXGroup;
 			children = (
+				6D8AD3F01B60BD250099A0D8 /* AddressManageViewController.h */,
+				6D8AD3F11B60BD250099A0D8 /* AddressManageViewController.m */,
+				6D8AD3F21B60BD250099A0D8 /* AddressManageViewController.xib */,
 			);
 			name = "地址管理";
 			sourceTree = "<group>";
@@ -788,13 +794,6 @@
 				6D8AD3EB1B6097C70099A0D8 /* IndividualViewController.xib */,
 			);
 			name = "个人信息";
-			sourceTree = "<group>";
-		};
-		6D8AD3E81B608D220099A0D8 /* 设置 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "设置";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -885,6 +884,7 @@
 				2CF607CE1B5F16950022E8E7 /* icon_new@2x.png in Resources */,
 				2C2528841B5E2C9D00ADDEFB /* RootTabBarViewController.xib in Resources */,
 				2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */,
+				6D8AD3F41B60BD250099A0D8 /* AddressManageViewController.xib in Resources */,
 				2CF607851B5EA9150022E8E7 /* SchoolSelectTableView.xib in Resources */,
 				2CF607661B5E9D100022E8E7 /* LocationViewController.xib in Resources */,
 				2CF6077A1B5EA3FF0022E8E7 /* CitySelectTableView.xib in Resources */,
@@ -968,6 +968,7 @@
 				2C2528FD1B5E3AA900ADDEFB /* NSDate+YFAdditions.m in Sources */,
 				4A6C15831B5F877F00C9A9D2 /* UserInfoSubView.m in Sources */,
 				2C2528DA1B5E39EF00ADDEFB /* SBJsonBase.m in Sources */,
+				6D8AD3F31B60BD250099A0D8 /* AddressManageViewController.m in Sources */,
 				2C2528831B5E2C9D00ADDEFB /* RootTabBarViewController.m in Sources */,
 				2C2528D81B5E39EF00ADDEFB /* NSString+SBJSON.m in Sources */,
 				2CF6079E1B5EC6360022E8E7 /* ImageContainView.m in Sources */,

@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IndividualViewController">
             <connections>
+                <outlet property="logView" destination="7ix-RM-fMB" id="aQ3-34-ntC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -64,7 +65,7 @@
                 <constraint firstAttribute="trailing" secondItem="7ix-RM-fMB" secondAttribute="trailing" id="yx7-Qw-Egb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="309.5" y="266.5"/>
+            <point key="canvasLocation" x="355.5" y="220.5"/>
         </view>
     </objects>
     <resources>
