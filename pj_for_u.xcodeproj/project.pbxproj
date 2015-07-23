@@ -132,6 +132,8 @@
 		6D8AD3ED1B6097C70099A0D8 /* IndividualViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3EB1B6097C70099A0D8 /* IndividualViewController.xib */; };
 		6D8AD3F31B60BD250099A0D8 /* AddressManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD3F11B60BD250099A0D8 /* AddressManageViewController.m */; };
 		6D8AD3F41B60BD250099A0D8 /* AddressManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3F21B60BD250099A0D8 /* AddressManageViewController.xib */; };
+		6D8AD3F81B60C2AF0099A0D8 /* IndividualTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD3F61B60C2AF0099A0D8 /* IndividualTableViewCell.m */; };
+		6D8AD3F91B60C2AF0099A0D8 /* IndividualTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3F71B60C2AF0099A0D8 /* IndividualTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -344,6 +346,9 @@
 		6D8AD3F01B60BD250099A0D8 /* AddressManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressManageViewController.h; sourceTree = "<group>"; };
 		6D8AD3F11B60BD250099A0D8 /* AddressManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressManageViewController.m; sourceTree = "<group>"; };
 		6D8AD3F21B60BD250099A0D8 /* AddressManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressManageViewController.xib; sourceTree = "<group>"; };
+		6D8AD3F51B60C2AF0099A0D8 /* IndividualTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualTableViewCell.h; sourceTree = "<group>"; };
+		6D8AD3F61B60C2AF0099A0D8 /* IndividualTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualTableViewCell.m; sourceTree = "<group>"; };
+		6D8AD3F71B60C2AF0099A0D8 /* IndividualTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -792,6 +797,9 @@
 				6D8AD3E91B6097C70099A0D8 /* IndividualViewController.h */,
 				6D8AD3EA1B6097C70099A0D8 /* IndividualViewController.m */,
 				6D8AD3EB1B6097C70099A0D8 /* IndividualViewController.xib */,
+				6D8AD3F51B60C2AF0099A0D8 /* IndividualTableViewCell.h */,
+				6D8AD3F61B60C2AF0099A0D8 /* IndividualTableViewCell.m */,
+				6D8AD3F71B60C2AF0099A0D8 /* IndividualTableViewCell.xib */,
 			);
 			name = "个人信息";
 			sourceTree = "<group>";
@@ -920,6 +928,7 @@
 				2CF607C61B5EC88C0022E8E7 /* icon_preference@2x.png in Resources */,
 				2C2528901B5E2E9400ADDEFB /* HomeViewController.xib in Resources */,
 				4A6C15751B5F7B1000C9A9D2 /* bg_login@2x.png in Resources */,
+				6D8AD3F91B60C2AF0099A0D8 /* IndividualTableViewCell.xib in Resources */,
 				2C10D6B31B60B551008C3DE0 /* icon_home_shopping_selected@2x.png in Resources */,
 				2CF607C21B5EC88C0022E8E7 /* icon_fruit@2x.png in Resources */,
 				2CF607521B5E4E390022E8E7 /* StartViewController.xib in Resources */,
@@ -993,6 +1002,7 @@
 				2C2528CE1B5E39EF00ADDEFB /* MBProgressHUD.m in Sources */,
 				4A6C156F1B5F724C00C9A9D2 /* MemberDataManager.m in Sources */,
 				2CF6078D1B5EB5BB0022E8E7 /* BaseModel.m in Sources */,
+				6D8AD3F81B60C2AF0099A0D8 /* IndividualTableViewCell.m in Sources */,
 				2C2529081B5E3AA900ADDEFB /* YFMediaPicker.m in Sources */,
 				2C2528D71B5E39EF00ADDEFB /* NSObject+SBJSON.m in Sources */,
 				2CF607CA1B5EC9DE0022E8E7 /* HomeActivityTableView.m in Sources */,

@@ -6,7 +6,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IndividualViewController">
             <connections>
+                <outlet property="headPhoto" destination="ts2-SG-kkx" id="TCB-Pf-MME"/>
                 <outlet property="logView" destination="7ix-RM-fMB" id="aQ3-34-ntC"/>
+                <outlet property="nameLabel" destination="XHw-R4-hMu" id="P0p-Lj-7Wp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -35,32 +37,35 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXw-Tc-hWu" userLabel="nameButton">
-                            <rect key="frame" x="97" y="199" width="180" height="25"/>
-                            <state key="normal">
-                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </state>
-                        </button>
                     </subviews>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="XHw-R4-hMu" firstAttribute="bottom" secondItem="HXw-Tc-hWu" secondAttribute="bottom" id="8RQ-wk-QIC"/>
                         <constraint firstAttribute="centerX" secondItem="XHw-R4-hMu" secondAttribute="centerX" id="G9w-No-KQA"/>
                         <constraint firstAttribute="height" constant="250" id="I5F-YP-Hcr"/>
                         <constraint firstAttribute="centerX" secondItem="ts2-SG-kkx" secondAttribute="centerX" id="JxG-mA-eHw"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="250" id="MTL-Tc-Ooz"/>
                         <constraint firstItem="XHw-R4-hMu" firstAttribute="top" secondItem="ts2-SG-kkx" secondAttribute="bottom" constant="15" id="PZB-nF-ful"/>
                         <constraint firstItem="ts2-SG-kkx" firstAttribute="top" secondItem="7ix-RM-fMB" secondAttribute="top" constant="84" id="aim-nb-saa"/>
-                        <constraint firstItem="XHw-R4-hMu" firstAttribute="top" secondItem="HXw-Tc-hWu" secondAttribute="top" id="sac-1h-mep"/>
-                        <constraint firstItem="XHw-R4-hMu" firstAttribute="leading" secondItem="HXw-Tc-hWu" secondAttribute="leading" id="uvT-sK-kVt"/>
-                        <constraint firstItem="XHw-R4-hMu" firstAttribute="trailing" secondItem="HXw-Tc-hWu" secondAttribute="trailing" id="wx6-9l-xfU"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="nVZ-lQ-QzJ">
+                    <rect key="frame" x="0.0" y="250" width="375" height="370"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="370" id="VGz-ZF-r99"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="tnW-0P-VND"/>
+                        <outlet property="delegate" destination="-1" id="t5h-z8-iUO"/>
+                    </connections>
+                </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="nVZ-lQ-QzJ" firstAttribute="top" secondItem="7ix-RM-fMB" secondAttribute="bottom" id="66p-01-BQw"/>
+                <constraint firstAttribute="trailing" secondItem="nVZ-lQ-QzJ" secondAttribute="trailing" id="Rc1-5P-XIr"/>
                 <constraint firstItem="7ix-RM-fMB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Z7V-DT-zGo"/>
+                <constraint firstItem="nVZ-lQ-QzJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fXZ-JB-ZPz"/>
                 <constraint firstItem="7ix-RM-fMB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uzI-iB-sAb"/>
                 <constraint firstAttribute="trailing" secondItem="7ix-RM-fMB" secondAttribute="trailing" id="yx7-Qw-Egb"/>
             </constraints>

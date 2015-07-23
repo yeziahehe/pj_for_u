@@ -7,6 +7,7 @@
 //
 
 #import "IndividualViewController.h"
+#import "IndividualTableViewCell.h"
 
 @interface IndividualViewController ()
 
@@ -16,22 +17,31 @@
 
 @implementation IndividualViewController
 
-- (UIImage *)createImageWithColor:(UIColor *)color
+- (void)addImageBorder
 {
-    CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
+    CALayer *layer = [self.headPhoto layer];
+    layer.borderColor = [[UIColor whiteColor] CGColor];
+    layer.borderWidth = 2.7f;
+    self.headPhoto.layer.masksToBounds = YES;
+    self.headPhoto.layer.cornerRadius = (self.headPhoto.bounds.size.width) / 2.f;
 }
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    IndividualTableViewCell *cell;
+    return cell;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-
+    [self addImageBorder];
 }
 
 - (void)viewWillAppear:(BOOL)animated
