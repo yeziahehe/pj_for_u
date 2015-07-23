@@ -60,6 +60,13 @@
     [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, originY)];
 }
 
+#pragma mark - NSNotification Methods
+- (void)campusNameNotification:(NSNotification *)notification
+{
+    if (notification.object)
+        [self setNaviTitle:[NSString stringWithFormat:@"%@ > ",notification.object]];
+}
+
 #pragma mark - BaseViewController Methods
 - (void)extraItemTapped
 {
@@ -86,10 +93,21 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self setNaviTitle:@"未选择校区 > "];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:kCampusNameKey]) {
+        [self setNaviTitle:[NSString stringWithFormat:@"%@ > ",[[NSUserDefaults standardUserDefaults] objectForKey:kCampusNameKey]]];
+    } else {
+        [self setNaviTitle:@"未选择校区 > "];
+    }
     [self setLeftNaviItemWithTitle:nil imageName:@"btn_category.png"];
     [self setRightNaviItemWithTitle:nil imageName:@"btn_search.png"];
     [self loadSubViews];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(campusNameNotification:) name:kCampusNameNotification object:nil];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

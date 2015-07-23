@@ -7,14 +7,28 @@
 //
 
 #import "UserInfoViewController.h"
+#import "IndividualViewController.h"
+#import "SettingViewController.h"
+#import "AddressManageViewController.h"
 
 @interface UserInfoViewController ()
 @property (strong, nonatomic) IBOutlet UIView *logView;
 @property (strong, nonatomic) IBOutlet UIImageView *headPhoto;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end
 
 @implementation UserInfoViewController
+
+- (void)addImageBorder
+{
+    CALayer *layer = [self.headPhoto layer];
+    layer.borderColor = [[UIColor whiteColor] CGColor];
+    layer.borderWidth = 2.7f;
+    self.headPhoto.layer.masksToBounds = YES;
+    self.headPhoto.layer.cornerRadius = (self.headPhoto.bounds.size.width) / 2.f;
+}
+
 
 - (UIImage *)createImageWithColor:(UIColor *)color
 {
@@ -28,6 +42,29 @@
     return image;
 }
 
+- (IBAction)addressManage:(UIButton *)sender
+{
+    AddressManageViewController *addressManageViewController = [[AddressManageViewController alloc] init];
+    [self.navigationController pushViewController:addressManageViewController animated:YES];
+}
+
+- (IBAction)myOrder:(id)sender
+{
+    
+}
+
+- (IBAction)individualInfo:(UIButton *)sender
+{
+    IndividualViewController *individualViewController = [[IndividualViewController alloc] init];
+    [self.navigationController pushViewController:individualViewController animated:YES];
+}
+
+- (IBAction)setting:(UIButton *)sender
+{
+    SettingViewController *settingViewController = [[SettingViewController alloc] init];
+    [self.navigationController pushViewController:settingViewController animated:YES];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,12 +74,7 @@
 //    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
     
 //    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
-
-    CALayer *layer = [self.headPhoto layer];
-    layer.borderColor = [[UIColor whiteColor] CGColor];
-    layer.borderWidth = 2.7f;
-    self.headPhoto.layer.masksToBounds = YES;
-    self.headPhoto.layer.cornerRadius = (self.headPhoto.bounds.size.width) / 2.f;
+    [self addImageBorder];
 }
 
 - (void)viewWillAppear:(BOOL)animated

@@ -49,6 +49,7 @@
 #import "UITableView+YFAdditions.h"
 #import "UITableViewCell+YFAdditions.h"
 #import "YFCycleScrollView.h"
+#import "NSTimer+Addition.h"
 
 #endif
 

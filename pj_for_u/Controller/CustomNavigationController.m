@@ -9,6 +9,7 @@
 #import "CustomNavigationController.h"
 #import "HomeViewController.h"
 #import "UserInfoViewController.h"
+#import "IndividualViewController.h"
 
 @interface CustomNavigationController ()
 
@@ -58,10 +59,13 @@
         self.navigationBar.barStyle = UIStatusBarStyleLightContent;
     }
     
-    else if([viewController isKindOfClass:[UserInfoViewController class]])
+    else if([viewController isKindOfClass:[UserInfoViewController class]] || [viewController isKindOfClass:[IndividualViewController class]])
     {
         [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         self.navigationBar.shadowImage = [UIImage new];
+        self.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+        self.navigationBar.tintColor = [UIColor whiteColor];//左侧返回按钮，文字的颜色
+        self.navigationBar.barStyle = UIStatusBarStyleLightContent;
     }
     else
     {
