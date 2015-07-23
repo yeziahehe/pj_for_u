@@ -9,6 +9,7 @@
 #import "CustomNavigationController.h"
 #import "HomeViewController.h"
 #import "UserInfoViewController.h"
+#import "IndividualViewController.h"
 
 @interface CustomNavigationController ()
 
@@ -58,7 +59,7 @@
         self.navigationBar.barStyle = UIStatusBarStyleLightContent;
     }
     
-    else if([viewController isKindOfClass:[UserInfoViewController class]])
+    else if([viewController isKindOfClass:[UserInfoViewController class]] || [viewController isKindOfClass:[IndividualViewController class])
     {
         [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         self.navigationBar.shadowImage = [UIImage new];

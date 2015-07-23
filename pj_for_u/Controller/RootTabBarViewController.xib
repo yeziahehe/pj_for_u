@@ -15,9 +15,9 @@
             </tabBar>
             <viewControllers>
                 <navigationController definesPresentationContext="YES" id="ApY-LZ-J8t" userLabel="首页" customClass="CustomNavigationController">
-                    <tabBarItem key="tabBarItem" title="首页" image="btn_home.png" id="m0S-cV-HGi" userLabel="首页">
+                    <tabBarItem key="tabBarItem" title="首页" image="icon_home.png" id="m0S-cV-HGi" userLabel="首页">
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="btn_home_selected.png"/>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="icon_home_selected.png"/>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VJL-qP-fp2">
@@ -31,9 +31,9 @@
                     </viewControllers>
                 </navigationController>
                 <navigationController definesPresentationContext="YES" id="Cvn-Lx-B7O" userLabel="购物车" customClass="CustomNavigationController">
-                    <tabBarItem key="tabBarItem" title="购物车" image="btn_shopping.png" id="gmA-aF-PkS">
+                    <tabBarItem key="tabBarItem" title="购物车" image="icon_home_shopping.png" id="gmA-aF-PkS">
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="btn_shopping_selected.png"/>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="icon_home_shopping_selected.png"/>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="TYQ-Ne-uZl">
@@ -47,9 +47,9 @@
                     </viewControllers>
                 </navigationController>
                 <navigationController definesPresentationContext="YES" id="8mh-ca-kl7" userLabel="个人中心" customClass="CustomNavigationController">
-                    <tabBarItem key="tabBarItem" title="个人中心" image="btn_user.png" id="IIy-ar-FDw" userLabel="个人中心">
+                    <tabBarItem key="tabBarItem" title="个人中心" image="icon_home_user.png" id="IIy-ar-FDw" userLabel="个人中心">
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="btn_user_selected.png"/>
+                            <userDefinedRuntimeAttribute type="image" keyPath="selectedImage" value="icon_home_user_selected.png"/>
                         </userDefinedRuntimeAttributes>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Tre-8Y-lAp">
