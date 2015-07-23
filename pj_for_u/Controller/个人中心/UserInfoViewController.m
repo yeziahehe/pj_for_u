@@ -28,6 +28,25 @@
     return image;
 }
 
+- (IBAction)addressManage:(UIButton *)sender
+{
+    
+}
+
+- (IBAction)myOrder:(id)sender
+{
+    
+}
+
+- (IBAction)individualInfo:(UIButton *)sender
+{
+    
+}
+
+- (IBAction)setting:(UIButton *)sender
+{
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
