@@ -8,6 +8,7 @@
 
 #import "UserInfoViewController.h"
 #import "IndividualViewController.h"
+#import "SettingViewController.h"
 
 @interface UserInfoViewController ()
 @property (strong, nonatomic) IBOutlet UIView *logView;
@@ -58,7 +59,8 @@
 
 - (IBAction)setting:(UIButton *)sender
 {
-    
+    SettingViewController *settingViewController = [[SettingViewController alloc] init];
+    [self.navigationController pushViewController:settingViewController animated:YES];
 }
 
 

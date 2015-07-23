@@ -59,7 +59,7 @@
         self.navigationBar.barStyle = UIStatusBarStyleLightContent;
     }
     
-    else if([viewController isKindOfClass:[UserInfoViewController class]] || [viewController isKindOfClass:[IndividualViewController class])
+    else if([viewController isKindOfClass:[UserInfoViewController class]] || [viewController isKindOfClass:[IndividualViewController class]])
     {
         [self.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
         self.navigationBar.shadowImage = [UIImage new];
