@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -22,11 +22,14 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4a-vI-sVW" userLabel="LogView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_select_city.png" translatesAutoresizingMaskIntoConstraints="NO" id="TT5-AO-RG0">
-                            <rect key="frame" x="137" y="84" width="100" height="100"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_user_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="kbb-it-eQT">
+                            <rect key="frame" x="0.0" y="0.0" width="380" height="250"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_user_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="TT5-AO-RG0">
+                            <rect key="frame" x="137" y="84" width="98" height="98"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="100" id="A5s-ly-CaC"/>
-                                <constraint firstAttribute="height" constant="100" id="AwW-Or-CF7"/>
+                                <constraint firstAttribute="width" constant="98" id="A5s-ly-CaC"/>
+                                <constraint firstAttribute="height" constant="98" id="AwW-Or-CF7"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乌龙茶多酚" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEO-aH-9wd">
@@ -41,6 +44,7 @@
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hsN-YR-crn" userLabel="nameButton">
                             <rect key="frame" x="97" y="199" width="180" height="25"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                             <state key="normal">
                                 <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -50,30 +54,32 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="centerX" secondItem="TT5-AO-RG0" secondAttribute="centerX" id="94g-f0-TFX"/>
+                        <constraint firstAttribute="centerX" secondItem="TT5-AO-RG0" secondAttribute="centerX" constant="1.5" id="94g-f0-TFX"/>
                         <constraint firstItem="zEO-aH-9wd" firstAttribute="bottom" secondItem="hsN-YR-crn" secondAttribute="bottom" id="Eo4-JL-Dnq"/>
                         <constraint firstItem="zEO-aH-9wd" firstAttribute="trailing" secondItem="hsN-YR-crn" secondAttribute="trailing" id="QMw-Y3-rMc"/>
                         <constraint firstAttribute="centerX" secondItem="zEO-aH-9wd" secondAttribute="centerX" id="W12-0P-AmY"/>
                         <constraint firstItem="TT5-AO-RG0" firstAttribute="top" secondItem="g4a-vI-sVW" secondAttribute="top" constant="84" id="X3i-or-ACd"/>
                         <constraint firstAttribute="height" constant="250" id="YFc-tY-pgM"/>
                         <constraint firstItem="zEO-aH-9wd" firstAttribute="top" secondItem="hsN-YR-crn" secondAttribute="top" id="ljh-oV-ib5"/>
-                        <constraint firstItem="zEO-aH-9wd" firstAttribute="top" secondItem="TT5-AO-RG0" secondAttribute="bottom" constant="15" id="v1l-mY-V9e"/>
+                        <constraint firstItem="zEO-aH-9wd" firstAttribute="top" secondItem="TT5-AO-RG0" secondAttribute="bottom" constant="17" id="v1l-mY-V9e"/>
                         <constraint firstItem="zEO-aH-9wd" firstAttribute="leading" secondItem="hsN-YR-crn" secondAttribute="leading" id="wd2-oc-YAZ"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HVX-oj-Oh5">
                     <rect key="frame" x="0.0" y="250" width="375" height="116"/>
                     <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_user_module.png" translatesAutoresizingMaskIntoConstraints="NO" id="qDh-mX-c6Q">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
+                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FjA-OB-BiX">
-                            <rect key="frame" x="39" y="29" width="40" height="40"/>
+                            <rect key="frame" x="39" y="29" width="38" height="38"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="5bI-8M-cZa"/>
+                                <constraint firstAttribute="height" constant="38" id="5bI-8M-cZa"/>
                                 <constraint firstAttribute="width" secondItem="FjA-OB-BiX" secondAttribute="height" multiplier="1:1" id="Hd1-XH-aqv"/>
-                                <constraint firstAttribute="width" constant="40" id="rmb-LR-ibm"/>
+                                <constraint firstAttribute="width" constant="38" id="rmb-LR-ibm"/>
                             </constraints>
-                            <state key="normal" image="bg_select_city.png">
+                            <state key="normal" image="icon_address.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -81,13 +87,13 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lIk-OM-ZGo">
-                            <rect key="frame" x="124" y="29" width="40" height="40"/>
+                            <rect key="frame" x="124" y="29" width="38" height="38"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="Ig2-Bb-qve"/>
+                                <constraint firstAttribute="width" constant="38" id="Ig2-Bb-qve"/>
                                 <constraint firstAttribute="width" secondItem="lIk-OM-ZGo" secondAttribute="height" multiplier="1:1" id="Njl-aF-1YF"/>
-                                <constraint firstAttribute="height" constant="40" id="iAS-Dz-VLU"/>
+                                <constraint firstAttribute="height" constant="38" id="iAS-Dz-VLU"/>
                             </constraints>
-                            <state key="normal" image="bg_select_city.png">
+                            <state key="normal" image="icon_order.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -95,13 +101,13 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ovF-1c-BOT">
-                            <rect key="frame" x="210" y="29" width="40" height="40"/>
+                            <rect key="frame" x="210" y="29" width="38" height="38"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="Bqx-gx-848"/>
+                                <constraint firstAttribute="width" constant="38" id="Bqx-gx-848"/>
                                 <constraint firstAttribute="width" secondItem="ovF-1c-BOT" secondAttribute="height" multiplier="1:1" id="Lbw-1K-hCa"/>
-                                <constraint firstAttribute="height" constant="40" id="Tgc-iC-gmr"/>
+                                <constraint firstAttribute="height" constant="38" id="Tgc-iC-gmr"/>
                             </constraints>
-                            <state key="normal" image="bg_select_city.png">
+                            <state key="normal" image="icon_userinfo.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -109,13 +115,13 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XjP-5P-tpI">
-                            <rect key="frame" x="296" y="29" width="40" height="40"/>
+                            <rect key="frame" x="296" y="29" width="38" height="38"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="40" id="9Pg-Ri-Lna"/>
+                                <constraint firstAttribute="width" constant="38" id="9Pg-Ri-Lna"/>
                                 <constraint firstAttribute="width" secondItem="XjP-5P-tpI" secondAttribute="height" multiplier="1:1" id="RDj-ab-NFV"/>
-                                <constraint firstAttribute="height" constant="40" id="Xtd-nz-g3Z"/>
+                                <constraint firstAttribute="height" constant="38" id="Xtd-nz-g3Z"/>
                             </constraints>
-                            <state key="normal" image="bg_select_city.png">
+                            <state key="normal" image="icon_setting.png">
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
@@ -163,25 +169,28 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="bOs-eL-caL" firstAttribute="top" secondItem="lIk-OM-ZGo" secondAttribute="bottom" constant="5" id="9cQ-XO-jIo"/>
-                        <constraint firstItem="OKe-yA-g6v" firstAttribute="top" secondItem="XjP-5P-tpI" secondAttribute="bottom" constant="5" id="A2I-Bl-gUX"/>
-                        <constraint firstItem="XjP-5P-tpI" firstAttribute="centerX" secondItem="OKe-yA-g6v" secondAttribute="centerX" id="LjI-Qy-HuW"/>
+                        <constraint firstItem="bOs-eL-caL" firstAttribute="top" secondItem="lIk-OM-ZGo" secondAttribute="bottom" constant="7" id="9cQ-XO-jIo"/>
+                        <constraint firstItem="OKe-yA-g6v" firstAttribute="top" secondItem="XjP-5P-tpI" secondAttribute="bottom" constant="7" id="A2I-Bl-gUX"/>
+                        <constraint firstAttribute="bottom" secondItem="qDh-mX-c6Q" secondAttribute="bottom" id="EL0-51-hpP"/>
+                        <constraint firstItem="XjP-5P-tpI" firstAttribute="centerX" secondItem="OKe-yA-g6v" secondAttribute="centerX" constant="-1" id="LjI-Qy-HuW"/>
                         <constraint firstAttribute="centerX" secondItem="XjP-5P-tpI" secondAttribute="centerX" multiplier="7:12" constant="3" id="Pl7-Iy-xLv"/>
                         <constraint firstAttribute="centerX" secondItem="ovF-1c-BOT" secondAttribute="centerX" multiplier="5:6" constant="-4" id="QXo-JC-9Uc"/>
-                        <constraint firstItem="aOl-ev-9K6" firstAttribute="centerX" secondItem="FjA-OB-BiX" secondAttribute="centerX" id="UJC-0h-VcQ"/>
+                        <constraint firstItem="aOl-ev-9K6" firstAttribute="centerX" secondItem="FjA-OB-BiX" secondAttribute="centerX" constant="1" id="UJC-0h-VcQ"/>
                         <constraint firstItem="FjA-OB-BiX" firstAttribute="top" secondItem="HVX-oj-Oh5" secondAttribute="top" constant="29" id="V1M-7i-D7P"/>
-                        <constraint firstItem="Sif-hr-77u" firstAttribute="top" secondItem="ovF-1c-BOT" secondAttribute="bottom" constant="5" id="YkY-dm-ye4"/>
+                        <constraint firstItem="qDh-mX-c6Q" firstAttribute="top" secondItem="HVX-oj-Oh5" secondAttribute="top" id="VBH-en-YxR"/>
+                        <constraint firstItem="Sif-hr-77u" firstAttribute="top" secondItem="ovF-1c-BOT" secondAttribute="bottom" constant="7" id="YkY-dm-ye4"/>
                         <constraint firstItem="ovF-1c-BOT" firstAttribute="top" secondItem="HVX-oj-Oh5" secondAttribute="top" constant="29" id="bmp-CX-xD4"/>
                         <constraint firstAttribute="height" constant="116" id="ebK-zh-0Ud"/>
-                        <constraint firstItem="aOl-ev-9K6" firstAttribute="top" secondItem="FjA-OB-BiX" secondAttribute="bottom" constant="5" id="f6G-VA-Qoz"/>
-                        <constraint firstItem="Sif-hr-77u" firstAttribute="centerX" secondItem="ovF-1c-BOT" secondAttribute="centerX" id="jJW-c1-2aO"/>
+                        <constraint firstItem="aOl-ev-9K6" firstAttribute="top" secondItem="FjA-OB-BiX" secondAttribute="bottom" constant="7" id="f6G-VA-Qoz"/>
+                        <constraint firstItem="Sif-hr-77u" firstAttribute="centerX" secondItem="ovF-1c-BOT" secondAttribute="centerX" constant="1" id="jJW-c1-2aO"/>
+                        <constraint firstAttribute="trailing" secondItem="qDh-mX-c6Q" secondAttribute="trailing" id="jOu-mU-EIC"/>
                         <constraint firstItem="XjP-5P-tpI" firstAttribute="top" secondItem="HVX-oj-Oh5" secondAttribute="top" constant="29" id="jSe-eR-g3S"/>
-                        <constraint firstAttribute="centerX" secondItem="lIk-OM-ZGo" secondAttribute="centerX" multiplier="4:3" constant="-5" id="jav-bX-JC2"/>
-                        <constraint firstItem="lIk-OM-ZGo" firstAttribute="centerX" secondItem="bOs-eL-caL" secondAttribute="centerX" id="kTS-rh-EZh"/>
+                        <constraint firstAttribute="centerX" secondItem="lIk-OM-ZGo" secondAttribute="centerX" multiplier="4:3" constant="-3.1666666666666572" id="jav-bX-JC2"/>
+                        <constraint firstItem="lIk-OM-ZGo" firstAttribute="centerX" secondItem="bOs-eL-caL" secondAttribute="centerX" constant="-1" id="kTS-rh-EZh"/>
                         <constraint firstItem="lIk-OM-ZGo" firstAttribute="top" secondItem="HVX-oj-Oh5" secondAttribute="top" constant="29" id="tCx-zS-tz9"/>
-                        <constraint firstAttribute="centerX" secondItem="FjA-OB-BiX" secondAttribute="centerX" multiplier="3:1" constant="9" id="yCd-J6-jlH"/>
+                        <constraint firstItem="qDh-mX-c6Q" firstAttribute="leading" secondItem="HVX-oj-Oh5" secondAttribute="leading" id="uDD-Of-z3H"/>
+                        <constraint firstAttribute="centerX" secondItem="FjA-OB-BiX" secondAttribute="centerX" multiplier="3:1" constant="13.5" id="yCd-J6-jlH"/>
                     </constraints>
                 </view>
             </subviews>
@@ -200,7 +209,13 @@
         </view>
     </objects>
     <resources>
-        <image name="bg_select_city.png" width="100" height="44"/>
+        <image name="bg_user_img.png" width="376" height="229"/>
+        <image name="bg_user_module.png" width="376" height="113"/>
+        <image name="icon_address.png" width="38" height="38"/>
+        <image name="icon_order.png" width="38" height="38"/>
+        <image name="icon_setting.png" width="38" height="38"/>
+        <image name="icon_user_default.png" width="98" height="97"/>
+        <image name="icon_userinfo.png" width="38" height="38"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
