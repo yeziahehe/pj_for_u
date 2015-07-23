@@ -17,6 +17,7 @@
 
 @synthesize cycleArray,cycleDelegate;
 
+#pragma mark - Private Methods
 -(void)asyncImageViewTappedWithGesture:(UITapGestureRecognizer *)gesture
 {
     YFAsynImageView *asynImgView = (YFAsynImageView *)(gesture.view);
@@ -56,16 +57,13 @@
             //设置frame
             YFAsynImageView *asynImgView = [[YFAsynImageView alloc] init];
             CGRect rect = self.bounds;
-            rect.size.width = ScreenWidth;
-            rect.origin.x = index*ScreenWidth;
-            rect.size.height = 150.f*ScreenWidth/320.f;
+            rect.size.width = self.frame.size.width;
+            rect.origin.x = index*self.frame.size.width;
             asynImgView.frame = rect;
             asynImgView.contentMode = UIViewContentModeScaleAspectFill;
             //加载图片
             asynImgView.cacheDir = cacheDir;
             [asynImgView aysnLoadImageWithUrl:str placeHolder:placeHolder];
-            //改变图片的大小
-            asynImgView.image = [self OriginImage:asynImgView.image scaleToSize:rect.size];
             //加载手势
             asynImgView.userInteractionEnabled = YES;
             UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(asyncImageViewTappedWithGesture:)];
@@ -75,8 +73,8 @@
             [self addSubview:asynImgView];
             index++;
         }
-        [self setContentSize:CGSizeMake(ScreenWidth*self.cycleArray.count, 0)];
-        [self setContentOffset:CGPointMake(ScreenWidth, 0)];
+        [self setContentSize:CGSizeMake(self.frame.size.width*self.cycleArray.count, self.frame.size.height)];
+        [self setContentOffset:CGPointMake(self.frame.size.width, 0)];
     }
     else
     {
@@ -84,15 +82,6 @@
         [self setContentOffset:CGPointZero];
         NSLog(@"CycyleScrollView 的元素为0.");
     }
-}
-
-//实现图片根据imageView的大小实现缩放
-- (UIImage *)OriginImage:(UIImage *)image scaleToSize:(CGSize)size{
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
-    [image drawInRect:CGRectMake(0,0,size.width,size.height-20)];
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
 }
 
 #pragma mark - UIView methods

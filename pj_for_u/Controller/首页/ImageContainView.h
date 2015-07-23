@@ -9,12 +9,9 @@
 #import "HomeSubView.h"
 #import "YFCycleScrollView.h"
 
-
 @interface ImageContainView : HomeSubView<YFCycleScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet YFCycleScrollView *cycleScrollView;
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 @property (strong, nonatomic) NSMutableArray *productAdArray;
-
-- (void)reloadWithProductAds:(NSMutableArray *)productAds;
 
 @end

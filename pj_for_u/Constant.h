@@ -60,6 +60,7 @@
 #define kSuccessCode        @"success"
 #define kFailureCode        @"failure"
 #define kUserIconCacheDir   @"UserIconCacheDir"
+#define kImageCacheDir      @"ImageCacheDir"
 
 //Notification Keys
 #define kShowPannelViewNotification         @"ShowPannelViewNotification"

@@ -13,7 +13,7 @@
 @interface YFCycleScrollView : UIScrollView<UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *cycleArray;
-@property (nonatomic, strong) id<YFCycleScrollViewDelegate> cycleDelegate;
+@property (nonatomic, assign) id<YFCycleScrollViewDelegate> cycleDelegate;
 
 /**
 	首尾相连滚动异步加载头条图
@@ -30,7 +30,6 @@
 @end
 
 @protocol YFCycleScrollViewDelegate <UIScrollViewDelegate>
-
 - (void)didCycleScrollViewTappedWithIndex:(NSInteger)index;
 
 @end
