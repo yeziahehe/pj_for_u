@@ -11,7 +11,7 @@
 #import "ForgetPwdViewController.h"
 
 @interface LoginViewController ()
-
+@property BOOL ifchecked;
 @end
 
 @implementation LoginViewController
@@ -44,16 +44,32 @@
     }
 }
 
-- (IBAction)registerButtonClicked:(id)sender {
-    RegisterViewController *registerViewController = [[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
-    [self.navigationController pushViewController:registerViewController animated:YES];
-}
 
 - (IBAction)forgetPasswordButtonClicked:(id)sender {
     ForgetPwdViewController *forgetPwdViewController = [[ForgetPwdViewController alloc]initWithNibName:@"ForgetPwdViewController" bundle:nil];
     [self.navigationController pushViewController:forgetPwdViewController animated:YES];
 }
 
+- (IBAction)checkBoxButtonClicked:(id)sender {
+    if (self.ifchecked) {
+        [self.checkBoxButton setImage:[UIImage imageNamed:@"icon_disagree.png"] forState:UIControlStateNormal];
+        self.loginButton.enabled = NO;
+    }
+    else {
+        [self.checkBoxButton setImage:[UIImage imageNamed:@"icon_agree.png"] forState:UIControlStateNormal];
+        self.loginButton.enabled = YES;
+    }
+    self.ifchecked = !self.ifchecked;
+}
+
+- (IBAction)showForUAbout:(id)sender {
+    //点击 《For 优用户服务协议》
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"Mickeyabout" ofType:@"html"];
+//    YFWebViewController *yfwvc = [[YFWebViewController alloc] init];
+//    yfwvc.htmlTitle = @"服务条款";
+//    yfwvc.htmlPath = path;
+//    [self.navigationController pushViewController:yfwvc animated:YES];
+}
 #pragma mark - Notification methods
 - (void)loginRespnseWithNotification:(NSNotification *)notification
 {
@@ -79,6 +95,11 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(void)rightItemTapped{
+    [self resignAllField];
+    RegisterViewController *rvc = [[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
+    [self.navigationController pushViewController:rvc animated:YES];
+}
 #pragma mark - UIViewController Methods
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -91,8 +112,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setNaviTitle:@"登录"];
-    [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_cancel.png"];
-    
+    [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_back.png"];
+    [self setRightNaviItemWithTitle:@"注册" imageName:nil];
+    self.loginButton.enabled = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginRespnseWithNotification:) name:kLoginResponseNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
@@ -100,7 +122,7 @@
     //加入点击空白区域隐藏键盘处理
     UITapGestureRecognizer *tapGesuture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignAllField)];
     [self.scrollView addGestureRecognizer:tapGesuture];
-    CGFloat contentHeight = self.registerButton.frame.origin.y+self.registerButton.frame.size.height+10.f;
+    CGFloat contentHeight = self.loginButton.frame.origin.y+self.loginButton.frame.size.height+10.f;
     [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];
 }
 

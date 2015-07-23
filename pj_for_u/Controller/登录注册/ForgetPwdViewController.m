@@ -8,8 +8,8 @@
 
 #import "ForgetPwdViewController.h"
 #import "ResetPwdViewController.h"
-//#import "SMS_SDK/SMS_SDK.h"
-//#import "SMS_SDK/CountryAndAreaCode.h"
+#import "SMS_SDK/SMS_SDK.h"
+#import "SMS_SDK/CountryAndAreaCode.h"
 
 #define kResendTimeCount 60
 
@@ -21,7 +21,7 @@
 @end
 
 @implementation ForgetPwdViewController
-@synthesize phoneTextField,identifyCodeTextField,resendButton,nextButton;
+@synthesize phoneTextField,identifyCodeTextField,identifyButton;
 @synthesize resendSecond,resendTimer;
 
 #pragma mark - Private Methods
@@ -34,16 +34,9 @@
 
 - (void)resendTimerChange
 {
-    self.resendSecond--;
-    [self.resendButton setTitle:[NSString stringWithFormat:@"%ld",(long)self.resendSecond] forState:UIControlStateDisabled];
-    if(self.resendSecond <= 0)
-    {
-        [self.resendButton setTitle:@"重新获取" forState:UIControlStateNormal];
-        [self.resendButton setTitle:@"重新获取" forState:UIControlStateDisabled];
-        self.resendButton.enabled = YES;
-        [self.resendTimer invalidate];
-        self.resendTimer = nil;
-    }
+
+    
+    
 }
 
 - (void)getVerifyCode
@@ -68,7 +61,7 @@
 }
 
 #pragma mark - IBAction Methods
-- (IBAction)resendButtonClicked:(id)sender {
+- (IBAction)identifyButtonClicked:(id)sender {
     [self resignAllField];
     NSString *validString = [self checkFieldValid];
     if(validString)
@@ -77,15 +70,15 @@
     }
     else
     {
-        self.resendButton.enabled = NO;
-        self.resendSecond = kResendTimeCount;
-        self.resendTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(resendTimerChange) userInfo:nil repeats:YES];
-        [[YFProgressHUD sharedProgressHUD]startedNetWorkActivityWithText:@"正在发送验证码..."];
-        [self getVerifyCode];
+//        self.identifyButton.enabled = NO;
+//        self.resendSecond = kResendTimeCount;
+//        self.resendTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(resendTimerChange) userInfo:nil repeats:YES];
+//        [[YFProgressHUD sharedProgressHUD]startedNetWorkActivityWithText:@"正在发送验证码..."];
+//        [self getVerifyCode];
     }
 }
 
-- (IBAction)nextButtonClicked:(id)sender {
+- (IBAction)resetPwdButtonClicked:(id)sender {
     [self resignAllField];
     NSString *validString = [self checkFieldValid];
     if(validString)
@@ -95,20 +88,22 @@
     else
     {
         //提交验证码
-//        [SMS_SDK commitVerifyCode:self.identifyCodeTextField.text result:^(enum SMS_ResponseState state) {
-//            if (1 == state) {
-//                //验证成功后的改密码操作
-//                ResetPwdViewController *resetPwdViewController = [[ResetPwdViewController alloc]initWithNibName:@"ResetPwdViewController" bundle:nil];
-//                resetPwdViewController.phone = self.phoneTextField.text;
-//                [self.navigationController pushViewController:resetPwdViewController animated:YES];
-//            }
-//            else if(0 == state)
-//            {
-//                [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"验证码填写错误" hideDelay:2.f];
-//            }
-//        }];
+                [SMS_SDK commitVerifyCode:self.identifyCodeTextField.text result:^(enum SMS_ResponseState state) {
+                    if (1 == state) {
+                        //验证成功后的改密码操作
+                        ResetPwdViewController *resetPwdViewController = [[ResetPwdViewController alloc]initWithNibName:@"ResetPwdViewController" bundle:nil];
+                        resetPwdViewController.phone = self.phoneTextField.text;
+                        [self.navigationController pushViewController:resetPwdViewController animated:YES];
+                    }
+                    else if(0 == state)
+                    {
+                        [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"验证码填写错误" hideDelay:2.f];
+                    }
+                }];
     }
+
 }
+
 
 #pragma mark - UIViewController Methods
 - (void)viewDidDisappear:(BOOL)animated
@@ -120,8 +115,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self setNaviTitle:@"找回密码"];
-    self.nextButton.enabled = NO;
+    [self setNaviTitle:@"忘记密码"];
+    self.identifyButton.enabled = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:nil];
 }
 
@@ -144,10 +139,10 @@
 - (void)textFieldChange:(NSNotification *)notification
 {
     if (self.phoneTextField.text.length != 0 && self.identifyCodeTextField.text.length != 0) {
-        self.nextButton.enabled = YES;
+        self.identifyButton.enabled = YES;
     }
     else{
-        self.nextButton.enabled = NO;
+        self.identifyButton.enabled = NO;
     }
 }
 
@@ -160,7 +155,7 @@
     }
     else if(textField == self.identifyCodeTextField)
     {
-        [self nextButtonClicked:nil];
+        [self identifyButtonClicked:nil];
     }
     return YES;
 }
