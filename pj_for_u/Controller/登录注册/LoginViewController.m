@@ -53,15 +53,23 @@
 - (IBAction)checkBoxButtonClicked:(id)sender {
     if (self.ifchecked) {
         [self.checkBoxButton setImage:[UIImage imageNamed:@"icon_disagree.png"] forState:UIControlStateNormal];
-        NSLog(@"shit");
+        self.loginButton.enabled = NO;
     }
     else {
         [self.checkBoxButton setImage:[UIImage imageNamed:@"icon_agree.png"] forState:UIControlStateNormal];
-        NSLog(@"fuck");
+        self.loginButton.enabled = YES;
     }
     self.ifchecked = !self.ifchecked;
 }
 
+- (IBAction)showForUAbout:(id)sender {
+    //点击 《For 优用户服务协议》
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"Mickeyabout" ofType:@"html"];
+//    YFWebViewController *yfwvc = [[YFWebViewController alloc] init];
+//    yfwvc.htmlTitle = @"服务条款";
+//    yfwvc.htmlPath = path;
+//    [self.navigationController pushViewController:yfwvc animated:YES];
+}
 #pragma mark - Notification methods
 - (void)loginRespnseWithNotification:(NSNotification *)notification
 {
@@ -104,8 +112,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setNaviTitle:@"登录"];
-    [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_cancel.png"];
-    [self setRightNaviItemWithTitle:nil imageName:@"icon_login_phone.png"];
+    [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_back.png"];
+    [self setRightNaviItemWithTitle:@"注册" imageName:nil];
+    self.loginButton.enabled = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginRespnseWithNotification:) name:kLoginResponseNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];

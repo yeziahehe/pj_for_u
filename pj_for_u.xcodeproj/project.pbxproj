@@ -24,8 +24,6 @@
 		2C2528991B5E38B100ADDEFB /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C2528941B5E38B100ADDEFB /* RegisterViewController.xib */; };
 		2C25289A1B5E38B100ADDEFB /* ResetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2528961B5E38B100ADDEFB /* ResetPwdViewController.m */; };
 		2C25289B1B5E38B100ADDEFB /* ResetPwdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C2528971B5E38B100ADDEFB /* ResetPwdViewController.xib */; };
-		2C2528A21B5E38BB00ADDEFB /* ConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C25289D1B5E38BB00ADDEFB /* ConfirmViewController.m */; };
-		2C2528A31B5E38BB00ADDEFB /* ConfirmViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C25289E1B5E38BB00ADDEFB /* ConfirmViewController.xib */; };
 		2C2528A41B5E38BB00ADDEFB /* ForgetPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2528A01B5E38BB00ADDEFB /* ForgetPwdViewController.m */; };
 		2C2528A51B5E38BB00ADDEFB /* ForgetPwdViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C2528A11B5E38BB00ADDEFB /* ForgetPwdViewController.xib */; };
 		2C2528CE1B5E39EF00ADDEFB /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2528AB1B5E39EF00ADDEFB /* MBProgressHUD.m */; };
@@ -43,7 +41,6 @@
 		2C2528DA1B5E39EF00ADDEFB /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2528C81B5E39EF00ADDEFB /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2C2528DB1B5E39EF00ADDEFB /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2528CA1B5E39EF00ADDEFB /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		2C2528DC1B5E39EF00ADDEFB /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2528CC1B5E39EF00ADDEFB /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		2C2528DD1B5E39EF00ADDEFB /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2528CD1B5E39EF00ADDEFB /* SMS_SDK.framework */; };
 		2C2528FD1B5E3AA900ADDEFB /* NSDate+YFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2528E01B5E3AA900ADDEFB /* NSDate+YFAdditions.m */; };
 		2C2528FE1B5E3AA900ADDEFB /* NSString+ParamString.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2528E21B5E3AA900ADDEFB /* NSString+ParamString.m */; };
 		2C2528FF1B5E3AA900ADDEFB /* UIImage+YFAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2528E41B5E3AA900ADDEFB /* UIImage+YFAdditions.m */; };
@@ -121,6 +118,7 @@
 		4A6C158C1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C158B1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png */; };
 		4A6C15931B60915500C9A9D2 /* icon_agree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15911B60915500C9A9D2 /* icon_agree@2x.png */; };
 		4A6C15941B60915500C9A9D2 /* icon_disagree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15921B60915500C9A9D2 /* icon_disagree@2x.png */; };
+		4A6C15961B60B4B700C9A9D2 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6C15951B60B4B600C9A9D2 /* SMS_SDK.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,9 +164,6 @@
 		2C2528951B5E38B100ADDEFB /* ResetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResetPwdViewController.h; path = "Controller/登录注册/ResetPwdViewController.h"; sourceTree = "<group>"; };
 		2C2528961B5E38B100ADDEFB /* ResetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResetPwdViewController.m; path = "Controller/登录注册/ResetPwdViewController.m"; sourceTree = "<group>"; };
 		2C2528971B5E38B100ADDEFB /* ResetPwdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ResetPwdViewController.xib; path = "Controller/登录注册/ResetPwdViewController.xib"; sourceTree = "<group>"; };
-		2C25289C1B5E38BB00ADDEFB /* ConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfirmViewController.h; path = "Controller/登录注册/ConfirmViewController.h"; sourceTree = "<group>"; };
-		2C25289D1B5E38BB00ADDEFB /* ConfirmViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfirmViewController.m; path = "Controller/登录注册/ConfirmViewController.m"; sourceTree = "<group>"; };
-		2C25289E1B5E38BB00ADDEFB /* ConfirmViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConfirmViewController.xib; path = "Controller/登录注册/ConfirmViewController.xib"; sourceTree = "<group>"; };
 		2C25289F1B5E38BB00ADDEFB /* ForgetPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForgetPwdViewController.h; path = "Controller/登录注册/ForgetPwdViewController.h"; sourceTree = "<group>"; };
 		2C2528A01B5E38BB00ADDEFB /* ForgetPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgetPwdViewController.m; path = "Controller/登录注册/ForgetPwdViewController.m"; sourceTree = "<group>"; };
 		2C2528A11B5E38BB00ADDEFB /* ForgetPwdViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ForgetPwdViewController.xib; path = "Controller/登录注册/ForgetPwdViewController.xib"; sourceTree = "<group>"; };
@@ -204,7 +199,6 @@
 		2C2528CA1B5E39EF00ADDEFB /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		2C2528CB1B5E39EF00ADDEFB /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		2C2528CC1B5E39EF00ADDEFB /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
-		2C2528CD1B5E39EF00ADDEFB /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
 		2C2528DF1B5E3AA900ADDEFB /* NSDate+YFAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDate+YFAdditions.h"; path = "Utilities/YFUtilities/NSDate+YFAdditions.h"; sourceTree = "<group>"; };
 		2C2528E01B5E3AA900ADDEFB /* NSDate+YFAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDate+YFAdditions.m"; path = "Utilities/YFUtilities/NSDate+YFAdditions.m"; sourceTree = "<group>"; };
 		2C2528E11B5E3AA900ADDEFB /* NSString+ParamString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+ParamString.h"; path = "Utilities/YFUtilities/NSString+ParamString.h"; sourceTree = "<group>"; };
@@ -317,6 +311,7 @@
 		4A6C158B1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_yanzheng@2x.png"; path = "Resource/icon_yanzheng@2x.png"; sourceTree = "<group>"; };
 		4A6C15911B60915500C9A9D2 /* icon_agree@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_agree@2x.png"; path = "Resource/icon_agree@2x.png"; sourceTree = "<group>"; };
 		4A6C15921B60915500C9A9D2 /* icon_disagree@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_disagree@2x.png"; path = "Resource/icon_disagree@2x.png"; sourceTree = "<group>"; };
+		4A6C15951B60B4B600C9A9D2 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,12 +322,12 @@
 				2C25291B1B5E3FA300ADDEFB /* libz.1.2.5.dylib in Frameworks */,
 				2C2529191B5E3F8500ADDEFB /* CoreFoundation.framework in Frameworks */,
 				2C2529171B5E3F7400ADDEFB /* Foundation.framework in Frameworks */,
+				4A6C15961B60B4B700C9A9D2 /* SMS_SDK.framework in Frameworks */,
 				2C2529151B5E3F6400ADDEFB /* UIKit.framework in Frameworks */,
 				2C2529131B5E3F5400ADDEFB /* libicucore.dylib in Frameworks */,
 				2C2529111B5E3F1D00ADDEFB /* libz.dylib in Frameworks */,
 				2C25290F1B5E3EAB00ADDEFB /* CoreGraphics.framework in Frameworks */,
 				2C25290D1B5E3E9000ADDEFB /* MessageUI.framework in Frameworks */,
-				2C2528DD1B5E39EF00ADDEFB /* SMS_SDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,9 +453,6 @@
 				2C2528951B5E38B100ADDEFB /* ResetPwdViewController.h */,
 				2C2528961B5E38B100ADDEFB /* ResetPwdViewController.m */,
 				2C2528971B5E38B100ADDEFB /* ResetPwdViewController.xib */,
-				2C25289C1B5E38BB00ADDEFB /* ConfirmViewController.h */,
-				2C25289D1B5E38BB00ADDEFB /* ConfirmViewController.m */,
-				2C25289E1B5E38BB00ADDEFB /* ConfirmViewController.xib */,
 				2C25289F1B5E38BB00ADDEFB /* ForgetPwdViewController.h */,
 				2C2528A01B5E38BB00ADDEFB /* ForgetPwdViewController.m */,
 				2C2528A11B5E38BB00ADDEFB /* ForgetPwdViewController.xib */,
@@ -502,6 +494,7 @@
 		2C2528A81B5E39EF00ADDEFB /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				4A6C15951B60B4B600C9A9D2 /* SMS_SDK.framework */,
 				2C25291A1B5E3FA300ADDEFB /* libz.1.2.5.dylib */,
 				2C2529181B5E3F8500ADDEFB /* CoreFoundation.framework */,
 				2C2529161B5E3F7400ADDEFB /* Foundation.framework */,
@@ -514,7 +507,6 @@
 				2C2528AC1B5E39EF00ADDEFB /* MJRefresh */,
 				2C2528BC1B5E39EF00ADDEFB /* Reachability */,
 				2C2528BF1B5E39EF00ADDEFB /* SBJSON */,
-				2C2528CD1B5E39EF00ADDEFB /* SMS_SDK.framework */,
 			);
 			name = 3rd;
 			path = Utilities/3rd;
@@ -793,7 +785,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2C2528A31B5E38BB00ADDEFB /* ConfirmViewController.xib in Resources */,
 				2CF607C71B5EC88C0022E8E7 /* icon_recommend@2x.png in Resources */,
 				2CF6076E1B5EA0EF0022E8E7 /* btn_category@2x.png in Resources */,
 				2CF607981B5EBDA10022E8E7 /* line_ver_1px_right.png in Resources */,
@@ -864,7 +855,6 @@
 				2CF6078A1B5EB4770022E8E7 /* LocationModel.m in Sources */,
 				2CF607A31B5EC6A50022E8E7 /* HomeContainView.m in Sources */,
 				2CF607511B5E4E390022E8E7 /* StartViewController.m in Sources */,
-				2C2528A21B5E38BB00ADDEFB /* ConfirmViewController.m in Sources */,
 				2C2528D21B5E39EF00ADDEFB /* MJRefreshHeaderView.m in Sources */,
 				2CF6077F1B5EA5DB0022E8E7 /* UITableView+YFAdditions.m in Sources */,
 				2C2528801B5E2C9D00ADDEFB /* BaseMenuViewController.m in Sources */,

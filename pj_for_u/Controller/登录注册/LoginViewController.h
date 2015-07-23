@@ -17,7 +17,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *checkBoxButton;
 
 - (IBAction)loginButtonClicked:(id)sender;
-
 - (IBAction)forgetPasswordButtonClicked:(id)sender;
 - (IBAction)checkBoxButtonClicked:(id)sender;
 
