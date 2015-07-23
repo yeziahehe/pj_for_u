@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0AE093021B60D02D0095D639 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093001B60D02D0095D639 /* SettingTableViewCell.m */; };
+		0AE093031B60D02D0095D639 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093011B60D02D0095D639 /* SettingTableViewCell.xib */; };
+		0AE093071B60D2EC0095D639 /* AboutAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093051B60D2EC0095D639 /* AboutAppViewController.m */; };
+		0AE093081B60D2EC0095D639 /* AboutAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */; };
 		2C10D6A81B609335008C3DE0 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */; };
 		2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6A91B60B1F7008C3DE0 /* icon_home_shopping@2x.png */; };
 		2C10D6AD1B60B1F7008C3DE0 /* icon_home_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6AA1B60B1F7008C3DE0 /* icon_home_user@2x.png */; };
@@ -148,6 +152,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AE092FF1B60D02D0095D639 /* SettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingTableViewCell.h; path = "Controller/设置/SettingTableViewCell.h"; sourceTree = "<group>"; };
+		0AE093001B60D02D0095D639 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingTableViewCell.m; path = "Controller/设置/SettingTableViewCell.m"; sourceTree = "<group>"; };
+		0AE093011B60D02D0095D639 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingTableViewCell.xib; path = "Controller/设置/SettingTableViewCell.xib"; sourceTree = "<group>"; };
+		0AE093041B60D2EC0095D639 /* AboutAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutAppViewController.h; path = "Controller/设置/AboutAppViewController.h"; sourceTree = "<group>"; };
+		0AE093051B60D2EC0095D639 /* AboutAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutAppViewController.m; path = "Controller/设置/AboutAppViewController.m"; sourceTree = "<group>"; };
+		0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutAppViewController.xib; path = "Controller/设置/AboutAppViewController.xib"; sourceTree = "<group>"; };
 		2C10D6A61B609335008C3DE0 /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTimer+Addition.h"; path = "Utilities/YFUtilities/NSTimer+Addition.h"; sourceTree = "<group>"; };
 		2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTimer+Addition.m"; path = "Utilities/YFUtilities/NSTimer+Addition.m"; sourceTree = "<group>"; };
 		2C10D6A91B60B1F7008C3DE0 /* icon_home_shopping@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_home_shopping@2x.png"; path = "Resource/icon_home_shopping@2x.png"; sourceTree = "<group>"; };
@@ -394,6 +404,12 @@
 				2C10D6BC1B60B970008C3DE0 /* SettingViewController.h */,
 				2C10D6BD1B60B970008C3DE0 /* SettingViewController.m */,
 				2C10D6BE1B60B970008C3DE0 /* SettingViewController.xib */,
+				0AE092FF1B60D02D0095D639 /* SettingTableViewCell.h */,
+				0AE093001B60D02D0095D639 /* SettingTableViewCell.m */,
+				0AE093011B60D02D0095D639 /* SettingTableViewCell.xib */,
+				0AE093041B60D2EC0095D639 /* AboutAppViewController.h */,
+				0AE093051B60D2EC0095D639 /* AboutAppViewController.m */,
+				0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */,
 			);
 			name = "设置";
 			sourceTree = "<group>";
@@ -895,6 +911,7 @@
 				2C10D6AE1B60B1F7008C3DE0 /* icon_home@2x.png in Resources */,
 				2CF6076E1B5EA0EF0022E8E7 /* btn_category@2x.png in Resources */,
 				2CF607981B5EBDA10022E8E7 /* line_ver_1px_right.png in Resources */,
+				0AE093031B60D02D0095D639 /* SettingTableViewCell.xib in Resources */,
 				2CF607CE1B5F16950022E8E7 /* icon_new@2x.png in Resources */,
 				2C2528841B5E2C9D00ADDEFB /* RootTabBarViewController.xib in Resources */,
 				2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */,
@@ -921,6 +938,7 @@
 				4A6C158A1B5FF22F00C9A9D2 /* icon_register_nickname@2x.png in Resources */,
 				2C10D6AD1B60B1F7008C3DE0 /* icon_home_user@2x.png in Resources */,
 				2C25285B1B5E108A00ADDEFB /* Images.xcassets in Resources */,
+				0AE093081B60D2EC0095D639 /* AboutAppViewController.xib in Resources */,
 				2CF607B21B5EC7DD0022E8E7 /* icon_header_back@2x.png in Resources */,
 				4A6C15931B60915500C9A9D2 /* icon_agree@2x.png in Resources */,
 				2CF607CC1B5EC9E90022E8E7 /* HomeActivityTableView.xib in Resources */,
@@ -990,6 +1008,7 @@
 				2C2528831B5E2C9D00ADDEFB /* RootTabBarViewController.m in Sources */,
 				2C2528D81B5E39EF00ADDEFB /* NSString+SBJSON.m in Sources */,
 				2CF6079E1B5EC6360022E8E7 /* ImageContainView.m in Sources */,
+				0AE093071B60D2EC0095D639 /* AboutAppViewController.m in Sources */,
 				4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */,
 				2C2528811B5E2C9D00ADDEFB /* BaseViewController.m in Sources */,
 				2CF607651B5E9D100022E8E7 /* LocationViewController.m in Sources */,
@@ -1013,6 +1032,7 @@
 				2CF6078D1B5EB5BB0022E8E7 /* BaseModel.m in Sources */,
 				2C2529081B5E3AA900ADDEFB /* YFMediaPicker.m in Sources */,
 				2C2528D71B5E39EF00ADDEFB /* NSObject+SBJSON.m in Sources */,
+				0AE093021B60D02D0095D639 /* SettingTableViewCell.m in Sources */,
 				2CF607CA1B5EC9DE0022E8E7 /* HomeActivityTableView.m in Sources */,
 				2C2528D91B5E39EF00ADDEFB /* SBJSON.m in Sources */,
 				2C2528FE1B5E3AA900ADDEFB /* NSString+ParamString.m in Sources */,
