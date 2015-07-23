@@ -58,6 +58,7 @@
 
 - (void)requestForLocationInfo
 {
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载校区信息"];
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kLocationUrl];
     [[YFDownloaderManager sharedManager] requestDataByGetWithURLString:url
                                                               delegate:self
@@ -89,7 +90,26 @@
     [self.view addSubview:sstv];
 }
 
+- (void)schoolSelectedNotification:(NSNotification *)notification
+{
+    NSNumber *number = [notification object];
+    NSInteger index = [number integerValue];
+    CampusMoel *cm = [self.schoolArray objectAtIndex:index];
+    [[NSUserDefaults standardUserDefaults] setObject:cm.campusId forKey:kLocationInfoKey];
+    [[NSUserDefaults standardUserDefaults] setObject:cm.campusName forKey:kCampusNameKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    NSString *campusString = cm.campusName;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCampusNameNotification object:campusString];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark - UIViewController Methods
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -98,6 +118,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self requestForLocationInfo];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(citySelectNotification:) name:kCitySelectedNotificaition object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(schoolSelectedNotification:) name:kSchoolSelectedNotificaition object:nil];
 }
 
 - (void)dealloc

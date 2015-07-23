@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C10D6A81B609335008C3DE0 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */; };
 		2C2528501B5E108900ADDEFB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C25284F1B5E108900ADDEFB /* main.m */; };
 		2C2528531B5E108900ADDEFB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2528521B5E108900ADDEFB /* AppDelegate.m */; };
 		2C25285B1B5E108A00ADDEFB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C25285A1B5E108A00ADDEFB /* Images.xcassets */; };
@@ -132,6 +133,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C10D6A61B609335008C3DE0 /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTimer+Addition.h"; path = "Utilities/YFUtilities/NSTimer+Addition.h"; sourceTree = "<group>"; };
+		2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTimer+Addition.m"; path = "Utilities/YFUtilities/NSTimer+Addition.m"; sourceTree = "<group>"; };
 		2C25284A1B5E108900ADDEFB /* pj_for_u.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pj_for_u.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C25284E1B5E108900ADDEFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C25284F1B5E108900ADDEFB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -580,6 +583,8 @@
 		2C2528DE1B5E3A9500ADDEFB /* YFUtilities */ = {
 			isa = PBXGroup;
 			children = (
+				2C10D6A61B609335008C3DE0 /* NSTimer+Addition.h */,
+				2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */,
 				2CF6077B1B5EA5DB0022E8E7 /* UITableView+YFAdditions.h */,
 				2CF6077C1B5EA5DB0022E8E7 /* UITableView+YFAdditions.m */,
 				2CF6077D1B5EA5DB0022E8E7 /* UITableViewCell+YFAdditions.h */,
@@ -908,6 +913,7 @@
 				4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */,
 				2C2528811B5E2C9D00ADDEFB /* BaseViewController.m in Sources */,
 				2CF607651B5E9D100022E8E7 /* LocationViewController.m in Sources */,
+				2C10D6A81B609335008C3DE0 /* NSTimer+Addition.m in Sources */,
 				2C2528981B5E38B100ADDEFB /* RegisterViewController.m in Sources */,
 				4A6C156C1B5F6D1100C9A9D2 /* Member.m in Sources */,
 				2C2529011B5E3AA900ADDEFB /* UIView+YFUtilities.m in Sources */,

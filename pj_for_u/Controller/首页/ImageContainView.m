@@ -8,21 +8,18 @@
 
 #import "ImageContainView.h"
 
-#define kGetImagesDownloaderKey  @"GetImagesDownloaderKey"
-#define kImageCacheDir   @"ImageCacheDir"
+#define kGetImagesDownloaderKey     @"GetImagesDownloaderKey"
 
 @interface ImageContainView ()
-@property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) NSMutableArray *imageUrlArray;
-
+@property (nonatomic, strong) NSTimer *scrollTimer;
 @end
 
 @implementation ImageContainView
 @synthesize cycleScrollView,pageControl;
 @synthesize productAdArray;
-@synthesize timer;
 
-#pragma mark - Public methods
+#pragma mark - Private methods
 - (void)reloadWithProductAds:(NSMutableArray *)productAds
 {
     self.productAdArray = productAds;
@@ -40,8 +37,30 @@
     if (self.pageControl.numberOfPages == 1) {
         self.cycleScrollView.scrollEnabled = NO;
     }
-    else
+    else {
         self.cycleScrollView.scrollEnabled = YES;
+        self.scrollTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+    }
+}
+
+- (void)onTimer
+{
+    NSInteger papersCount = [self.productAdArray count];
+    //设置pagecontrol
+    if (self.cycleScrollView.contentOffset.x/self.cycleScrollView.frame.size.width == papersCount) {
+        self.pageControl.currentPage = 0;
+    } else {
+        self.pageControl.currentPage = self.cycleScrollView.contentOffset.x/self.cycleScrollView.frame.size.width;
+    }
+    //设置自动滑动
+    if (self.cycleScrollView.contentOffset.x == (self.cycleScrollView.frame.size.width * papersCount))
+    {
+        [self.cycleScrollView scrollRectToVisible:CGRectMake(self.cycleScrollView.frame.size.width , 0, self.cycleScrollView.frame.size.width, self.cycleScrollView.frame.size.height) animated:YES];
+    }
+    else
+    {
+        [self.cycleScrollView setContentOffset:CGPointMake(self.cycleScrollView.contentOffset.x + self.cycleScrollView.frame.size.width, self.cycleScrollView.contentOffset.y) animated:YES];
+    }
 }
 
 - (void)requestForImages
@@ -52,10 +71,7 @@
                                                                purpose:kGetImagesDownloaderKey];
 }
 
-- (void)didCycleScrollViewTappedWithIndex:(NSInteger)index
-{
 
-}
 #pragma mark - UIView methods
 - (void)awakeFromNib
 {
@@ -63,19 +79,13 @@
     [self requestForImages];
     self.cycleScrollView.cycleDelegate = self;
     self.cycleScrollView.delegate = self.cycleScrollView.cycleDelegate;
-    CGFloat contentW = 2*self.cycleScrollView.frame.size.width;
-    //不允许在垂直方向上进行滚动
-    self.cycleScrollView.contentSize = CGSizeMake(contentW, 0);
-    
-    //3.设置分页
-    self.cycleScrollView.pagingEnabled = YES;
-    
-    //4.监听scrollview的滚动
-    self.cycleScrollView.delegate = self;
-    [self addTimer];
-    
 }
 
+#pragma mark - RYCycleScrollViewDelegate methods
+- (void)didCycleScrollViewTappedWithIndex:(NSInteger)index
+{
+    //点击事件
+}
 
 - (void)scrollViewDidEndDecelerating:(YFCycleScrollView *)scrollView
 {
@@ -94,53 +104,6 @@
     {
         self.pageControl.currentPage = page-1;
     }
-}
-- (void)nextImage
-{
-    int pagecount = (int)self.pageControl.currentPage;
-    if (pagecount == 1) {
-        //[self.cycleScrollView setContentOffset:CGPointMake((2)*self.cycleScrollView.frame.size.width, 0)];
-        [self.cycleScrollView setContentOffset:CGPointMake(0, 0)];
-        
-    }
-    else if (pageControl == 0){
-        [self.cycleScrollView setContentOffset:CGPointMake(2*self.cycleScrollView.frame.size.width, 0)];
-    }
-    else
-    {
-        [self.cycleScrollView setContentOffset:CGPointMake(self.cycleScrollView.frame.size.width, 0)];
-        
-    }
-}
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    //    计算页码
-    //    页码 = (contentoffset.x + scrollView一半宽度)/scrollView宽度
-    NSInteger page = floor((scrollView.contentOffset.x - scrollView.frame.size.width / 2) / scrollView.frame.size.width) + 1;
-    self.pageControl.currentPage = page;
-}
-// 开始拖拽的时候调用
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    [self removeTimer];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-    //    开启定时器
-    //[self addTimer];
-    
-}
-
-- (void)addTimer
-{
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:6 target:self selector:@selector(nextImage) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
-}
-
-- (void)removeTimer
-{
-    [self.timer invalidate];
 }
 
 #pragma mark - YFDownloaderDelegate Methods

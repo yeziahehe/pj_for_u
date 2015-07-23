@@ -11,30 +11,31 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="H9w-QZ-dqp">
-                    <rect key="frame" x="240" y="132" width="80" height="37"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="80" id="0oK-So-JWF"/>
-                        <constraint firstAttribute="height" constant="37" id="JJx-66-091"/>
-                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="80" id="TNb-ig-Cdc"/>
-                    </constraints>
-                </pageControl>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aUw-L6-ybF" customClass="YFCycleScrollView">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUw-L6-ybF" customClass="YFCycleScrollView">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="aUw-L6-ybF" secondAttribute="height" multiplier="2:1" id="MGj-HF-2jj"/>
                     </constraints>
                 </scrollView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H9w-QZ-dqp">
+                    <rect key="frame" x="0.0" y="132" width="320" height="37"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="c6G-m1-2ro"/>
+                    </constraints>
+                    <color key="pageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="currentPageIndicatorTintColor" red="0.14117647059999999" green="0.91372549020000005" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
+                </pageControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="aUw-L6-ybF" secondAttribute="trailing" id="4j8-K9-TUm"/>
                 <constraint firstItem="aUw-L6-ybF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9fy-RU-EpW"/>
                 <constraint firstAttribute="bottom" secondItem="aUw-L6-ybF" secondAttribute="bottom" id="DaP-AX-GR1"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="H9w-QZ-dqp" secondAttribute="bottom" constant="-9" id="War-dm-LSf"/>
+                <constraint firstAttribute="bottom" secondItem="H9w-QZ-dqp" secondAttribute="bottom" constant="-9" id="MD5-0a-fWP"/>
                 <constraint firstItem="aUw-L6-ybF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cxT-nb-oL1"/>
-                <constraint firstAttribute="bottom" secondItem="H9w-QZ-dqp" secondAttribute="bottom" constant="-9" id="q8b-37-x9G"/>
-                <constraint firstItem="aUw-L6-ybF" firstAttribute="trailing" secondItem="H9w-QZ-dqp" secondAttribute="trailing" id="yiV-6Q-AbZ"/>
+                <constraint firstItem="H9w-QZ-dqp" firstAttribute="trailing" secondItem="aUw-L6-ybF" secondAttribute="trailing" id="myk-9o-LV4"/>
+                <constraint firstItem="H9w-QZ-dqp" firstAttribute="leading" secondItem="aUw-L6-ybF" secondAttribute="leading" id="qX5-qj-1EM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
