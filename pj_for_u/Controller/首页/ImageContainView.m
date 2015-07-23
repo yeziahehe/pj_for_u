@@ -98,14 +98,13 @@
 - (void)nextImage
 {
     int pagecount = (int)self.pageControl.currentPage;
-    NSLog(@"%ld",(long)self.pageControl.currentPage);
     if (pagecount == 1) {
         //[self.cycleScrollView setContentOffset:CGPointMake((2)*self.cycleScrollView.frame.size.width, 0)];
         [self.cycleScrollView setContentOffset:CGPointMake(0, 0)];
         
     }
     else if (pageControl == 0){
-        [self.cycleScrollView setContentOffset:CGPointMake(4*self.cycleScrollView.frame.size.width, 0)];
+        [self.cycleScrollView setContentOffset:CGPointMake(2*self.cycleScrollView.frame.size.width, 0)];
     }
     else
     {
@@ -124,14 +123,12 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self removeTimer];
-    NSLog(@"移除定时器");
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
     //    开启定时器
     //[self addTimer];
-    NSLog(@"开启定时器");
     
 }
 

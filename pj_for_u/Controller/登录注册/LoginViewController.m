@@ -15,7 +15,7 @@
 @end
 
 @implementation LoginViewController
-@synthesize usernameTextField,passwordTextField;
+@synthesize usernameTextField,passwordTextField,scrollView;
 
 #pragma mark - Private methods
 - (NSString *)checkFieldValid
@@ -37,10 +37,10 @@
         [[YFProgressHUD sharedProgressHUD] showWithMessage:checkString customView:nil hideDelay:2.f];
     }
     else {
-//        [MemberDataManager sharedManager].loginMember.phone = self.usernameTextField.text;
-//        [MemberDataManager sharedManager].loginMember.password = self.passwordTextField.text;
-//        [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"登录中..."];
-//        [[MemberDataManager sharedManager] loginWithAccountName:self.usernameTextField.text password:self.passwordTextField.text];
+        [MemberDataManager sharedManager].loginMember.phone = self.usernameTextField.text;
+        [MemberDataManager sharedManager].loginMember.password = self.passwordTextField.text;
+        [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"登录中..."];
+        [[MemberDataManager sharedManager] loginWithAccountName:self.usernameTextField.text password:self.passwordTextField.text];
     }
 }
 
@@ -60,9 +60,9 @@
     if(notification.object)
     {
         //登录失败
-//        [MemberDataManager sharedManager].loginMember.phone = nil;
-//        [MemberDataManager sharedManager].loginMember.password = nil;
-//        [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:notification.object hideDelay:2.f];
+        [MemberDataManager sharedManager].loginMember.phone = nil;
+        [MemberDataManager sharedManager].loginMember.password = nil;
+        [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:notification.object hideDelay:2.f];
     }
     else
     {
@@ -83,7 +83,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    //self.usernameTextField.text = [MemberDataManager sharedManager].loginMember.phone;
+    self.usernameTextField.text = [MemberDataManager sharedManager].loginMember.phone;
     self.passwordTextField.text = nil;
 }
 
@@ -92,12 +92,22 @@
     // Do any additional setup after loading the view from its nib.
     [self setNaviTitle:@"登录"];
     [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_cancel.png"];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginRespnseWithNotification:) name:kLoginResponseNotification object:nil];;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginRespnseWithNotification:) name:kLoginResponseNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    //加入点击空白区域隐藏键盘处理
+    UITapGestureRecognizer *tapGesuture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignAllField)];
+    [self.scrollView addGestureRecognizer:tapGesuture];
+    CGFloat contentHeight = self.registerButton.frame.origin.y+self.registerButton.frame.size.height+10.f;
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];
 }
 
 - (void)dealloc
 {
-    //[[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:[MemberDataManager sharedManager] purpose:kLoginDownloaderKey];
+    [self resignAllField];
+    [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:[MemberDataManager sharedManager] purpose:kLoginDownloaderKey];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -125,6 +135,22 @@
         [self loginButtonClicked:nil];
     }
     return YES;
+}
+
+#pragma mark - Keyboard Notification methords
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGPoint contentOffset = scrollView.contentOffset;
+    [self.scrollView setContentOffset:CGPointMake(contentOffset.x, contentOffset.y + keyboardSize.height-64.f) animated:YES];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    CGPoint contentOffset = scrollView.contentOffset;
+    [self.scrollView setContentOffset:CGPointMake(contentOffset.x, contentOffset.y - keyboardSize.height+64.f) animated:YES];
 }
 
 @end

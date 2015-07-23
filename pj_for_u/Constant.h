@@ -73,10 +73,13 @@
 #define kSearchButtonNotification           @"SearchButtonNotification"
 #define kCitySelectedNotificaition          @"CitySelectedNotificaition"
 #define kSchoolSelectedNotificaition        @"SchoolSelectedNotificaition"
+#define kLoginResponseNotification          @"LoginResponseNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
 #define kLocationUrl            @"campus/getCampusAndCity.do"
+#define kLoginUrl               @"user/toLogin.do"
 #define kImageUrl               @"news/getMainImage.do?campusId=1"
+
 
 #endif
