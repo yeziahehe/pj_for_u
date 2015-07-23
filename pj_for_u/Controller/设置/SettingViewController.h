@@ -10,5 +10,7 @@
 
 @interface SettingViewController : BaseViewController
 @property (strong, nonatomic) IBOutlet UITableView *settingTableView;
+@property (strong, nonatomic) IBOutlet UIView *logoutView;
+- (IBAction)logoutButtonClicked:(UIButton *)sender;
 
 @end

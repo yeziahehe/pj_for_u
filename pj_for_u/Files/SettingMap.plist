@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<array>
+	<array>
+		<string>联系客服</string>
+	</array>
+	<array>
+		<string>关于我们</string>
+	</array>
+	<array>
+		<string>给我评分</string>
+		<string>修改密码</string>
+		<string>清除缓存</string>
+	</array>
+	<array>
+		<string>是否推送</string>
+	</array>
+</array>
 </plist>
