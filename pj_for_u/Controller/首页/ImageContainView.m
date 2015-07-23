@@ -32,7 +32,7 @@
         [images addObject:productAd];
     }
     
-    [self.cycleScrollView reloadWithImages:images placeHolder:@"icon_house@2x.png" cacheDir:kImageCacheDir];
+    [self.cycleScrollView reloadWithImages:images placeHolder:@"home_image_default.png" cacheDir:kImageCacheDir];
     
     if (self.pageControl.numberOfPages == 1) {
         self.cycleScrollView.scrollEnabled = NO;
