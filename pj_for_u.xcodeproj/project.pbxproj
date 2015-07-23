@@ -18,6 +18,7 @@
 		2C10D6BA1B60B7F2008C3DE0 /* ProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6B81B60B7F2008C3DE0 /* ProductViewController.xib */; };
 		2C10D6BF1B60B970008C3DE0 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10D6BD1B60B970008C3DE0 /* SettingViewController.m */; };
 		2C10D6C01B60B970008C3DE0 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6BE1B60B970008C3DE0 /* SettingViewController.xib */; };
+		2C10D6C31B60C30D008C3DE0 /* SettingMap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6C21B60C30D008C3DE0 /* SettingMap.plist */; };
 		2C2528501B5E108900ADDEFB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C25284F1B5E108900ADDEFB /* main.m */; };
 		2C2528531B5E108900ADDEFB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C2528521B5E108900ADDEFB /* AppDelegate.m */; };
 		2C25285B1B5E108A00ADDEFB /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C25285A1B5E108A00ADDEFB /* Images.xcassets */; };
@@ -159,6 +160,7 @@
 		2C10D6BC1B60B970008C3DE0 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingViewController.h; path = "Controller/设置/SettingViewController.h"; sourceTree = "<group>"; };
 		2C10D6BD1B60B970008C3DE0 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingViewController.m; path = "Controller/设置/SettingViewController.m"; sourceTree = "<group>"; };
 		2C10D6BE1B60B970008C3DE0 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingViewController.xib; path = "Controller/设置/SettingViewController.xib"; sourceTree = "<group>"; };
+		2C10D6C21B60C30D008C3DE0 /* SettingMap.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = SettingMap.plist; sourceTree = "<group>"; };
 		2C25284A1B5E108900ADDEFB /* pj_for_u.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = pj_for_u.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C25284E1B5E108900ADDEFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C25284F1B5E108900ADDEFB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -396,6 +398,7 @@
 		2C10D6C11B60C17E008C3DE0 /* Files */ = {
 			isa = PBXGroup;
 			children = (
+				2C10D6C21B60C30D008C3DE0 /* SettingMap.plist */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -904,6 +907,7 @@
 				2C10D6BA1B60B7F2008C3DE0 /* ProductViewController.xib in Resources */,
 				2CF607951B5EBDA10022E8E7 /* line_hon_1px_down.png in Resources */,
 				2CF6076A1B5E9D270022E8E7 /* icon_header_back@2x.png in Resources */,
+				2C10D6C31B60C30D008C3DE0 /* SettingMap.plist in Resources */,
 				2C10D6B21B60B551008C3DE0 /* icon_home_selected@2x.png in Resources */,
 				2C10D6C01B60B970008C3DE0 /* SettingViewController.xib in Resources */,
 				2C2528991B5E38B100ADDEFB /* RegisterViewController.xib in Resources */,
