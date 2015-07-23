@@ -107,12 +107,16 @@
 		2CF607CA1B5EC9DE0022E8E7 /* HomeActivityTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF607C91B5EC9DE0022E8E7 /* HomeActivityTableView.m */; };
 		2CF607CC1B5EC9E90022E8E7 /* HomeActivityTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF607CB1B5EC9E90022E8E7 /* HomeActivityTableView.xib */; };
 		2CF607CE1B5F16950022E8E7 /* icon_new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF607CD1B5F16950022E8E7 /* icon_new@2x.png */; };
-		2CF607D31B5F66180022E8E7 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF607D11B5F66180022E8E7 /* UserInfoViewController.m */; };
-		2CF607D41B5F66180022E8E7 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF607D21B5F66180022E8E7 /* UserInfoViewController.xib */; };
-		2CF607D71B5F66450022E8E7 /* UserInfoSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF607D61B5F66450022E8E7 /* UserInfoSubView.m */; };
-		2CF607DA1B5F67590022E8E7 /* YFCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF607D91B5F67590022E8E7 /* YFCycleScrollView.m */; };
-		2CF607DF1B5F78BB0022E8E7 /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF607DD1B5F78BB0022E8E7 /* ProductViewController.m */; };
-		2CF607E01B5F78BB0022E8E7 /* ProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF607DE1B5F78BB0022E8E7 /* ProductViewController.xib */; };
+		4A6C156C1B5F6D1100C9A9D2 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C156B1B5F6D1100C9A9D2 /* Member.m */; };
+		4A6C156F1B5F724C00C9A9D2 /* MemberDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C156E1B5F724C00C9A9D2 /* MemberDataManager.m */; };
+		4A6C15751B5F7B1000C9A9D2 /* bg_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15741B5F7B1000C9A9D2 /* bg_login@2x.png */; };
+		4A6C15781B5F7D5300C9A9D2 /* icon_login_phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15761B5F7D5300C9A9D2 /* icon_login_phone@2x.png */; };
+		4A6C15791B5F7D5300C9A9D2 /* icon_login_secret@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15771B5F7D5300C9A9D2 /* icon_login_secret@2x.png */; };
+		4A6C157C1B5F808D00C9A9D2 /* btn_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C157B1B5F808D00C9A9D2 /* btn_login@2x.png */; };
+		4A6C15831B5F877F00C9A9D2 /* UserInfoSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C157F1B5F877F00C9A9D2 /* UserInfoSubView.m */; };
+		4A6C15841B5F877F00C9A9D2 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15811B5F877F00C9A9D2 /* UserInfoViewController.m */; };
+		4A6C15851B5F877F00C9A9D2 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15821B5F877F00C9A9D2 /* UserInfoViewController.xib */; };
+		4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15871B5F9C2900C9A9D2 /* YFCycleScrollView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -290,16 +294,21 @@
 		2CF607C91B5EC9DE0022E8E7 /* HomeActivityTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeActivityTableView.m; path = "Controller/首页/HomeActivityTableView.m"; sourceTree = "<group>"; };
 		2CF607CB1B5EC9E90022E8E7 /* HomeActivityTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeActivityTableView.xib; path = "Controller/首页/HomeActivityTableView.xib"; sourceTree = "<group>"; };
 		2CF607CD1B5F16950022E8E7 /* icon_new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_new@2x.png"; path = "Resource/icon_new@2x.png"; sourceTree = "<group>"; };
-		2CF607D01B5F66180022E8E7 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoViewController.h; path = "Controller/个人中心/UserInfoViewController.h"; sourceTree = "<group>"; };
-		2CF607D11B5F66180022E8E7 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoViewController.m; path = "Controller/个人中心/UserInfoViewController.m"; sourceTree = "<group>"; };
-		2CF607D21B5F66180022E8E7 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UserInfoViewController.xib; path = "Controller/个人中心/UserInfoViewController.xib"; sourceTree = "<group>"; };
-		2CF607D51B5F66450022E8E7 /* UserInfoSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfoSubView.h; path = "Controller/个人中心/UserInfoSubView.h"; sourceTree = "<group>"; };
-		2CF607D61B5F66450022E8E7 /* UserInfoSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfoSubView.m; path = "Controller/个人中心/UserInfoSubView.m"; sourceTree = "<group>"; };
-		2CF607D81B5F67590022E8E7 /* YFCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YFCycleScrollView.h; path = Utilities/YFUtilities/YFCycleScrollView.h; sourceTree = "<group>"; };
-		2CF607D91B5F67590022E8E7 /* YFCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YFCycleScrollView.m; path = Utilities/YFUtilities/YFCycleScrollView.m; sourceTree = "<group>"; };
-		2CF607DC1B5F78BB0022E8E7 /* ProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductViewController.h; path = "Controller/商品/ProductViewController.h"; sourceTree = "<group>"; };
-		2CF607DD1B5F78BB0022E8E7 /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductViewController.m; path = "Controller/商品/ProductViewController.m"; sourceTree = "<group>"; };
-		2CF607DE1B5F78BB0022E8E7 /* ProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductViewController.xib; path = "Controller/商品/ProductViewController.xib"; sourceTree = "<group>"; };
+		4A6C156A1B5F6D1100C9A9D2 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Member.h; path = Model/Member.h; sourceTree = "<group>"; };
+		4A6C156B1B5F6D1100C9A9D2 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Member.m; path = Model/Member.m; sourceTree = "<group>"; };
+		4A6C156D1B5F724C00C9A9D2 /* MemberDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MemberDataManager.h; path = Model/MemberDataManager.h; sourceTree = "<group>"; };
+		4A6C156E1B5F724C00C9A9D2 /* MemberDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MemberDataManager.m; path = Model/MemberDataManager.m; sourceTree = "<group>"; };
+		4A6C15741B5F7B1000C9A9D2 /* bg_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg_login@2x.png"; path = "Resource/bg_login@2x.png"; sourceTree = "<group>"; };
+		4A6C15761B5F7D5300C9A9D2 /* icon_login_phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_login_phone@2x.png"; path = "Resource/icon_login_phone@2x.png"; sourceTree = "<group>"; };
+		4A6C15771B5F7D5300C9A9D2 /* icon_login_secret@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_login_secret@2x.png"; path = "Resource/icon_login_secret@2x.png"; sourceTree = "<group>"; };
+		4A6C157B1B5F808D00C9A9D2 /* btn_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_login@2x.png"; path = "Resource/btn_login@2x.png"; sourceTree = "<group>"; };
+		4A6C157E1B5F877F00C9A9D2 /* UserInfoSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoSubView.h; sourceTree = "<group>"; };
+		4A6C157F1B5F877F00C9A9D2 /* UserInfoSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoSubView.m; sourceTree = "<group>"; };
+		4A6C15801B5F877F00C9A9D2 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
+		4A6C15811B5F877F00C9A9D2 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
+		4A6C15821B5F877F00C9A9D2 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
+		4A6C15861B5F9C2900C9A9D2 /* YFCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YFCycleScrollView.h; path = Utilities/YFUtilities/YFCycleScrollView.h; sourceTree = "<group>"; };
+		4A6C15871B5F9C2900C9A9D2 /* YFCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YFCycleScrollView.m; path = Utilities/YFUtilities/YFCycleScrollView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,6 +411,10 @@
 				2CF607891B5EB4770022E8E7 /* LocationModel.m */,
 				2CF6078E1B5EB6360022E8E7 /* CampusMoel.h */,
 				2CF6078F1B5EB6360022E8E7 /* CampusMoel.m */,
+				4A6C156A1B5F6D1100C9A9D2 /* Member.h */,
+				4A6C156B1B5F6D1100C9A9D2 /* Member.m */,
+				4A6C156D1B5F724C00C9A9D2 /* MemberDataManager.h */,
+				4A6C156E1B5F724C00C9A9D2 /* MemberDataManager.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -409,6 +422,7 @@
 		2C2528761B5E2C3400ADDEFB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				4A6C157D1B5F877F00C9A9D2 /* 个人中心 */,
 				2C2528771B5E2C9D00ADDEFB /* BaseMenuViewController.h */,
 				2C2528781B5E2C9D00ADDEFB /* BaseMenuViewController.m */,
 				2C2528791B5E2C9D00ADDEFB /* BaseViewController.h */,
@@ -418,8 +432,6 @@
 				2C25287D1B5E2C9D00ADDEFB /* RootTabBarViewController.h */,
 				2C25287E1B5E2C9D00ADDEFB /* RootTabBarViewController.m */,
 				2C25287F1B5E2C9D00ADDEFB /* RootTabBarViewController.xib */,
-				2CF607DB1B5F6DCE0022E8E7 /* 商品 */,
-				2CF607CF1B5F65EE0022E8E7 /* 个人中心 */,
 				2C25288B1B5E2E5B00ADDEFB /* 首页 */,
 				2C2528851B5E2E0900ADDEFB /* 登录注册 */,
 			);
@@ -563,8 +575,6 @@
 		2C2528DE1B5E3A9500ADDEFB /* YFUtilities */ = {
 			isa = PBXGroup;
 			children = (
-				2CF607D81B5F67590022E8E7 /* YFCycleScrollView.h */,
-				2CF607D91B5F67590022E8E7 /* YFCycleScrollView.m */,
 				2CF6077B1B5EA5DB0022E8E7 /* UITableView+YFAdditions.h */,
 				2CF6077C1B5EA5DB0022E8E7 /* UITableView+YFAdditions.m */,
 				2CF6077D1B5EA5DB0022E8E7 /* UITableViewCell+YFAdditions.h */,
@@ -585,6 +595,8 @@
 				2C2528EC1B5E3AA900ADDEFB /* YFAsynImageView.m */,
 				2C2528ED1B5E3AA900ADDEFB /* YFCommonMethods.h */,
 				2C2528EE1B5E3AA900ADDEFB /* YFCommonMethods.m */,
+				4A6C15861B5F9C2900C9A9D2 /* YFCycleScrollView.h */,
+				4A6C15871B5F9C2900C9A9D2 /* YFCycleScrollView.m */,
 				2C2528EF1B5E3AA900ADDEFB /* YFDownloader.h */,
 				2C2528F01B5E3AA900ADDEFB /* YFDownloader.m */,
 				2C2528F11B5E3AA900ADDEFB /* YFDownloaderManager.h */,
@@ -615,6 +627,7 @@
 		2CF607591B5E773A0022E8E7 /* 首页 */ = {
 			isa = PBXGroup;
 			children = (
+				4A6C157A1B5F7D5800C9A9D2 /* 登录注册 */,
 				2CF607861B5EABA60022E8E7 /* bg_select_city@2x.png */,
 				2CF6075A1B5E77560022E8E7 /* btn_search@2x.png */,
 				2CF6076D1B5EA0EF0022E8E7 /* btn_category@2x.png */,
@@ -664,26 +677,28 @@
 			name = "首页面子页面";
 			sourceTree = "<group>";
 		};
-		2CF607CF1B5F65EE0022E8E7 /* 个人中心 */ = {
+		4A6C157A1B5F7D5800C9A9D2 /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
-				2CF607D01B5F66180022E8E7 /* UserInfoViewController.h */,
-				2CF607D11B5F66180022E8E7 /* UserInfoViewController.m */,
-				2CF607D21B5F66180022E8E7 /* UserInfoViewController.xib */,
-				2CF607D51B5F66450022E8E7 /* UserInfoSubView.h */,
-				2CF607D61B5F66450022E8E7 /* UserInfoSubView.m */,
+				4A6C157B1B5F808D00C9A9D2 /* btn_login@2x.png */,
+				4A6C15761B5F7D5300C9A9D2 /* icon_login_phone@2x.png */,
+				4A6C15771B5F7D5300C9A9D2 /* icon_login_secret@2x.png */,
+				4A6C15741B5F7B1000C9A9D2 /* bg_login@2x.png */,
 			);
-			name = "个人中心";
+			name = "登录注册";
 			sourceTree = "<group>";
 		};
-		2CF607DB1B5F6DCE0022E8E7 /* 商品 */ = {
+		4A6C157D1B5F877F00C9A9D2 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
-				2CF607DC1B5F78BB0022E8E7 /* ProductViewController.h */,
-				2CF607DD1B5F78BB0022E8E7 /* ProductViewController.m */,
-				2CF607DE1B5F78BB0022E8E7 /* ProductViewController.xib */,
+				4A6C157E1B5F877F00C9A9D2 /* UserInfoSubView.h */,
+				4A6C157F1B5F877F00C9A9D2 /* UserInfoSubView.m */,
+				4A6C15801B5F877F00C9A9D2 /* UserInfoViewController.h */,
+				4A6C15811B5F877F00C9A9D2 /* UserInfoViewController.m */,
+				4A6C15821B5F877F00C9A9D2 /* UserInfoViewController.xib */,
 			);
-			name = "商品";
+			name = "个人中心";
+			path = "Controller/个人中心";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -768,7 +783,6 @@
 			files = (
 				2C2528A31B5E38BB00ADDEFB /* ConfirmViewController.xib in Resources */,
 				2CF607C71B5EC88C0022E8E7 /* icon_recommend@2x.png in Resources */,
-				2CF607D41B5F66180022E8E7 /* UserInfoViewController.xib in Resources */,
 				2CF6076E1B5EA0EF0022E8E7 /* btn_category@2x.png in Resources */,
 				2CF607981B5EBDA10022E8E7 /* line_ver_1px_right.png in Resources */,
 				2CF607CE1B5F16950022E8E7 /* icon_new@2x.png in Resources */,
@@ -776,7 +790,8 @@
 				2CF607851B5EA9150022E8E7 /* SchoolSelectTableView.xib in Resources */,
 				2CF607661B5E9D100022E8E7 /* LocationViewController.xib in Resources */,
 				2CF6077A1B5EA3FF0022E8E7 /* CitySelectTableView.xib in Resources */,
-				2CF607E01B5F78BB0022E8E7 /* ProductViewController.xib in Resources */,
+				4A6C15851B5F877F00C9A9D2 /* UserInfoViewController.xib in Resources */,
+				4A6C15791B5F7D5300C9A9D2 /* icon_login_secret@2x.png in Resources */,
 				2CF607C01B5EC88C0022E8E7 /* icon_breakfest@2x.png in Resources */,
 				2CF607971B5EBDA10022E8E7 /* line_ver_1px_left.png in Resources */,
 				2CF607871B5EABA60022E8E7 /* bg_select_city@2x.png in Resources */,
@@ -785,6 +800,7 @@
 				2C2528991B5E38B100ADDEFB /* RegisterViewController.xib in Resources */,
 				2CF607A51B5EC6B60022E8E7 /* HomeContainView.xib in Resources */,
 				2CF607961B5EBDA10022E8E7 /* line_hon_1px_up.png in Resources */,
+				4A6C157C1B5F808D00C9A9D2 /* btn_login@2x.png in Resources */,
 				2C25285B1B5E108A00ADDEFB /* Images.xcassets in Resources */,
 				2CF607B21B5EC7DD0022E8E7 /* icon_header_back@2x.png in Resources */,
 				2CF607CC1B5EC9E90022E8E7 /* HomeActivityTableView.xib in Resources */,
@@ -793,11 +809,13 @@
 				2C2529091B5E3AA900ADDEFB /* YFProgressHUD.bundle in Resources */,
 				2CF607C31B5EC88C0022E8E7 /* icon_house@2x.png in Resources */,
 				2C2528A51B5E38BB00ADDEFB /* ForgetPwdViewController.xib in Resources */,
+				4A6C15781B5F7D5300C9A9D2 /* icon_login_phone@2x.png in Resources */,
 				2CF607A01B5EC6460022E8E7 /* ImageContainView.xib in Resources */,
 				2CF607681B5E9D100022E8E7 /* SearchHistoryViewController.xib in Resources */,
 				2C25289B1B5E38B100ADDEFB /* ResetPwdViewController.xib in Resources */,
 				2CF607C61B5EC88C0022E8E7 /* icon_preference@2x.png in Resources */,
 				2C2528901B5E2E9400ADDEFB /* HomeViewController.xib in Resources */,
+				4A6C15751B5F7B1000C9A9D2 /* bg_login@2x.png in Resources */,
 				2CF607C21B5EC88C0022E8E7 /* icon_fruit@2x.png in Resources */,
 				2CF607521B5E4E390022E8E7 /* StartViewController.xib in Resources */,
 				2CF6075B1B5E77560022E8E7 /* btn_search@2x.png in Resources */,
@@ -823,8 +841,8 @@
 				2C2528FF1B5E3AA900ADDEFB /* UIImage+YFAdditions.m in Sources */,
 				2CF607831B5EA8F60022E8E7 /* SchoolSelectTableView.m in Sources */,
 				2CF607801B5EA5DB0022E8E7 /* UITableViewCell+YFAdditions.m in Sources */,
-				2CF607D71B5F66450022E8E7 /* UserInfoSubView.m in Sources */,
 				2C2528D31B5E39EF00ADDEFB /* UIScrollView+MJExtension.m in Sources */,
+				4A6C15841B5F877F00C9A9D2 /* UserInfoViewController.m in Sources */,
 				2CF607901B5EB6360022E8E7 /* CampusMoel.m in Sources */,
 				2C2528D11B5E39EF00ADDEFB /* MJRefreshFooterView.m in Sources */,
 				2CF6078A1B5EB4770022E8E7 /* LocationModel.m in Sources */,
@@ -840,17 +858,18 @@
 				2C2529041B5E3AA900ADDEFB /* YFCommonMethods.m in Sources */,
 				2CF6079B1B5EC5FE0022E8E7 /* HomeSubView.m in Sources */,
 				2C25289A1B5E38B100ADDEFB /* ResetPwdViewController.m in Sources */,
-				2CF607DA1B5F67590022E8E7 /* YFCycleScrollView.m in Sources */,
 				2C2528FD1B5E3AA900ADDEFB /* NSDate+YFAdditions.m in Sources */,
+				4A6C15831B5F877F00C9A9D2 /* UserInfoSubView.m in Sources */,
 				2C2528DA1B5E39EF00ADDEFB /* SBJsonBase.m in Sources */,
 				2C2528831B5E2C9D00ADDEFB /* RootTabBarViewController.m in Sources */,
 				2C2528D81B5E39EF00ADDEFB /* NSString+SBJSON.m in Sources */,
 				2CF6079E1B5EC6360022E8E7 /* ImageContainView.m in Sources */,
+				4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */,
 				2C2528811B5E2C9D00ADDEFB /* BaseViewController.m in Sources */,
 				2CF607651B5E9D100022E8E7 /* LocationViewController.m in Sources */,
 				2C2528981B5E38B100ADDEFB /* RegisterViewController.m in Sources */,
+				4A6C156C1B5F6D1100C9A9D2 /* Member.m in Sources */,
 				2C2529011B5E3AA900ADDEFB /* UIView+YFUtilities.m in Sources */,
-				2CF607D31B5F66180022E8E7 /* UserInfoViewController.m in Sources */,
 				2C2528D61B5E39EF00ADDEFB /* Reachability.m in Sources */,
 				2CF607781B5EA3E60022E8E7 /* CitySelectTableView.m in Sources */,
 				2C2529031B5E3AA900ADDEFB /* YFAsynImageView.m in Sources */,
@@ -861,8 +880,8 @@
 				2C2528531B5E108900ADDEFB /* AppDelegate.m in Sources */,
 				2C2528DB1B5E39EF00ADDEFB /* SBJsonParser.m in Sources */,
 				2C2529071B5E3AA900ADDEFB /* YFImageDownloader.m in Sources */,
-				2CF607DF1B5F78BB0022E8E7 /* ProductViewController.m in Sources */,
 				2C2528CE1B5E39EF00ADDEFB /* MBProgressHUD.m in Sources */,
+				4A6C156F1B5F724C00C9A9D2 /* MemberDataManager.m in Sources */,
 				2CF6078D1B5EB5BB0022E8E7 /* BaseModel.m in Sources */,
 				2C2529081B5E3AA900ADDEFB /* YFMediaPicker.m in Sources */,
 				2C2528D71B5E39EF00ADDEFB /* NSObject+SBJSON.m in Sources */,
