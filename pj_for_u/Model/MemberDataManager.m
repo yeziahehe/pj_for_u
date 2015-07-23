@@ -56,6 +56,42 @@
                                                                 purpose:kLoginDownloaderKey];
 }
 
+- (void)checkUserExistWithPhone:(NSString *)phone
+{
+    if(nil == phone)
+        phone = @"";
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kCheckUserExistUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:phone forKey:@"phone"];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kCheckUserExistDownloaderKey];
+}
+
+- (void)registerWithPhone:(NSString *)phone
+                 password:(NSString *)password
+                 nickName:(NSString *)nickName
+{
+    if (nil == phone)
+        phone = @"";
+    if (nil == password)
+        password = @"";
+    if (nil == nickName)
+        nickName = @"";
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kRegisterUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:phone forKey:@"phone"];
+    [dict setObject:password forKey:@"password"];
+    [dict setObject:nickName forKey:@"nickname"];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kRegisterDownloaderKey];
+}
+
 #pragma mark - Singleton methods
 - (id)init
 {
@@ -111,6 +147,46 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:kLoginResponseNotification object:message];
         }
     }
+    else if ([downloader.purpose isEqualToString:kCheckUserExistDownloaderKey])
+    {
+        NSDictionary *dict = [str JSONValue];
+        if ([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kCheckUserExistResponseNotification object:nil];
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"该手机号码已经注册";
+            [[NSNotificationCenter defaultCenter] postNotificationName:kCheckUserExistResponseNotification object:message];
+        }
+    }
+    else if ([downloader.purpose isEqualToString:kRegisterDownloaderKey])
+    {
+        NSDictionary *dict = [str JSONValue];
+        if ([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRegisterResponseNotification object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kUserChangeNotification object:nil];
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"注册失败";
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRegisterResponseNotification object:message];
+        }
+    }
+
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message

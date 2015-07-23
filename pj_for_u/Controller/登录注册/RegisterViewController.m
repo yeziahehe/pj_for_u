@@ -36,7 +36,7 @@
     }
     else
     {
-        //[[MemberDataManager sharedManager] checkUserExistWithPhone:self.phoneNumTextField.text];
+        [[MemberDataManager sharedManager] checkUserExistWithPhone:self.phoneNumTextField.text];
     }
 }
 
@@ -65,7 +65,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     [self setNaviTitle:@"注册"];
     self.nextButton.enabled = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:nil];

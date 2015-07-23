@@ -80,6 +80,9 @@
 #define kLocationUrl            @"campus/getCampusAndCity.do"
 #define kLoginUrl               @"user/toLogin.do"
 #define kImageUrl               @"news/getMainImage.do?campusId=1"
+#define kCheckUserExistUrl      @"user/checkUserIsExist.do"
+#define kRegisterUrl            @"user/registerIn.do"
+
 
 
 #endif
