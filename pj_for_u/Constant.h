@@ -54,6 +54,7 @@
 #define kNetWorkErrorString @"当前网络不给力"
 #define kIsWelcomeShown     @"IsWelcomeShown"
 #define kLocationInfoKey    @"LocationInfoKey"
+#define kCampusNameKey      @"CampusNameKey"
 #define kLoginUserDataFile  @"LoginUserDataFile"
 #define kCodeKey            @"status"
 #define kMessageKey         @"message"
@@ -75,6 +76,7 @@
 #define kCitySelectedNotificaition          @"CitySelectedNotificaition"
 #define kSchoolSelectedNotificaition        @"SchoolSelectedNotificaition"
 #define kLoginResponseNotification          @"LoginResponseNotification"
+#define kCampusNameNotification             @"CampusNameNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
