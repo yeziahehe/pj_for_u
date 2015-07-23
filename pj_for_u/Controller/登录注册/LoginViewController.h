@@ -13,10 +13,13 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITextField *usernameTextField;
 @property (strong, nonatomic) IBOutlet UITextField *passwordTextField;
-@property (strong, nonatomic) IBOutlet UIButton *registerButton;
+@property (strong, nonatomic) IBOutlet UIButton *loginButton;
+@property (strong, nonatomic) IBOutlet UIButton *checkBoxButton;
 
 - (IBAction)loginButtonClicked:(id)sender;
-- (IBAction)registerButtonClicked:(id)sender;
+
 - (IBAction)forgetPasswordButtonClicked:(id)sender;
+- (IBAction)checkBoxButtonClicked:(id)sender;
+
 
 @end

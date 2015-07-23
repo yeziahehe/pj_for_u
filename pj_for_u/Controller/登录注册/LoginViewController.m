@@ -11,7 +11,7 @@
 #import "ForgetPwdViewController.h"
 
 @interface LoginViewController ()
-
+@property BOOL ifchecked;
 @end
 
 @implementation LoginViewController
@@ -44,14 +44,22 @@
     }
 }
 
-- (IBAction)registerButtonClicked:(id)sender {
-    RegisterViewController *registerViewController = [[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
-    [self.navigationController pushViewController:registerViewController animated:YES];
-}
 
 - (IBAction)forgetPasswordButtonClicked:(id)sender {
     ForgetPwdViewController *forgetPwdViewController = [[ForgetPwdViewController alloc]initWithNibName:@"ForgetPwdViewController" bundle:nil];
     [self.navigationController pushViewController:forgetPwdViewController animated:YES];
+}
+
+- (IBAction)checkBoxButtonClicked:(id)sender {
+    if (self.ifchecked) {
+        [self.checkBoxButton setImage:[UIImage imageNamed:@"icon_disagree.png"] forState:UIControlStateNormal];
+        NSLog(@"shit");
+    }
+    else {
+        [self.checkBoxButton setImage:[UIImage imageNamed:@"icon_agree.png"] forState:UIControlStateNormal];
+        NSLog(@"fuck");
+    }
+    self.ifchecked = !self.ifchecked;
 }
 
 #pragma mark - Notification methods
@@ -105,7 +113,7 @@
     //加入点击空白区域隐藏键盘处理
     UITapGestureRecognizer *tapGesuture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignAllField)];
     [self.scrollView addGestureRecognizer:tapGesuture];
-    CGFloat contentHeight = self.registerButton.frame.origin.y+self.registerButton.frame.size.height+10.f;
+    CGFloat contentHeight = self.loginButton.frame.origin.y+self.loginButton.frame.size.height+10.f;
     [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];
 }
 

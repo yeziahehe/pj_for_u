@@ -119,6 +119,8 @@
 		4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15871B5F9C2900C9A9D2 /* YFCycleScrollView.m */; };
 		4A6C158A1B5FF22F00C9A9D2 /* icon_register_nickname@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15891B5FF22F00C9A9D2 /* icon_register_nickname@2x.png */; };
 		4A6C158C1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C158B1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png */; };
+		4A6C15931B60915500C9A9D2 /* icon_agree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15911B60915500C9A9D2 /* icon_agree@2x.png */; };
+		4A6C15941B60915500C9A9D2 /* icon_disagree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15921B60915500C9A9D2 /* icon_disagree@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -313,6 +315,8 @@
 		4A6C15871B5F9C2900C9A9D2 /* YFCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YFCycleScrollView.m; path = Utilities/YFUtilities/YFCycleScrollView.m; sourceTree = "<group>"; };
 		4A6C15891B5FF22F00C9A9D2 /* icon_register_nickname@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_register_nickname@2x.png"; path = "Resource/icon_register_nickname@2x.png"; sourceTree = "<group>"; };
 		4A6C158B1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_yanzheng@2x.png"; path = "Resource/icon_yanzheng@2x.png"; sourceTree = "<group>"; };
+		4A6C15911B60915500C9A9D2 /* icon_agree@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_agree@2x.png"; path = "Resource/icon_agree@2x.png"; sourceTree = "<group>"; };
+		4A6C15921B60915500C9A9D2 /* icon_disagree@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_disagree@2x.png"; path = "Resource/icon_disagree@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -684,6 +688,8 @@
 		4A6C157A1B5F7D5800C9A9D2 /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
+				4A6C15911B60915500C9A9D2 /* icon_agree@2x.png */,
+				4A6C15921B60915500C9A9D2 /* icon_disagree@2x.png */,
 				4A6C158B1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png */,
 				4A6C15891B5FF22F00C9A9D2 /* icon_register_nickname@2x.png */,
 				4A6C157B1B5F808D00C9A9D2 /* btn_login@2x.png */,
@@ -811,8 +817,10 @@
 				4A6C158A1B5FF22F00C9A9D2 /* icon_register_nickname@2x.png in Resources */,
 				2C25285B1B5E108A00ADDEFB /* Images.xcassets in Resources */,
 				2CF607B21B5EC7DD0022E8E7 /* icon_header_back@2x.png in Resources */,
+				4A6C15931B60915500C9A9D2 /* icon_agree@2x.png in Resources */,
 				2CF607CC1B5EC9E90022E8E7 /* HomeActivityTableView.xib in Resources */,
 				2C25288A1B5E2E1E00ADDEFB /* LoginViewController.xib in Resources */,
+				4A6C15941B60915500C9A9D2 /* icon_disagree@2x.png in Resources */,
 				2CF607C41B5EC88C0022E8E7 /* icon_more@2x.png in Resources */,
 				2C2529091B5E3AA900ADDEFB /* YFProgressHUD.bundle in Resources */,
 				2CF607C31B5EC88C0022E8E7 /* icon_house@2x.png in Resources */,
