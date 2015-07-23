@@ -10,6 +10,8 @@
 
 @interface IndividualViewController ()
 
+@property (strong, nonatomic) UIView *navBackView;
+
 @end
 
 @implementation IndividualViewController
@@ -28,13 +30,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    [self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:[UIColor clearColor]] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[self createImageWithColor:[UIColor clearColor]]];
-    [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
-
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    
+    
+//    [self.navigationController.navigationBar setBackgroundImage:[self createImageWithColor:[UIColor redColor]] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setShadowImage:[self createImageWithColor:[UIColor greenColor]]];
+//    [self.navigationController.navigationBar setTintColor:[UIColor blueColor]];
+//
+//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+//    [self.navigationController.navigationBar setBackIndicatorTransitionMaskImage:[self createImageWithColor:[UIColor clearColor]]];
+//    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+    
+    
 }
-
 
 @end

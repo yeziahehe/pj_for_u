@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IndividualViewController">
@@ -11,9 +11,68 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ix-RM-fMB" userLabel="LogView">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_select_city.png" translatesAutoresizingMaskIntoConstraints="NO" id="ts2-SG-kkx">
+                            <rect key="frame" x="137" y="84" width="100" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="7Fh-IY-kU5"/>
+                                <constraint firstAttribute="height" constant="100" id="NfY-am-rfM"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乌龙茶多酚" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XHw-R4-hMu">
+                            <rect key="frame" x="97" y="199" width="180" height="25"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="180" id="pDD-dR-YTm"/>
+                                <constraint firstAttribute="height" constant="25" id="qdF-2o-d4l"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HXw-Tc-hWu" userLabel="nameButton">
+                            <rect key="frame" x="97" y="199" width="180" height="25"/>
+                            <state key="normal">
+                                <color key="titleColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="XHw-R4-hMu" firstAttribute="bottom" secondItem="HXw-Tc-hWu" secondAttribute="bottom" id="8RQ-wk-QIC"/>
+                        <constraint firstAttribute="centerX" secondItem="XHw-R4-hMu" secondAttribute="centerX" id="G9w-No-KQA"/>
+                        <constraint firstAttribute="height" constant="250" id="I5F-YP-Hcr"/>
+                        <constraint firstAttribute="centerX" secondItem="ts2-SG-kkx" secondAttribute="centerX" id="JxG-mA-eHw"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="250" id="MTL-Tc-Ooz"/>
+                        <constraint firstItem="XHw-R4-hMu" firstAttribute="top" secondItem="ts2-SG-kkx" secondAttribute="bottom" constant="15" id="PZB-nF-ful"/>
+                        <constraint firstItem="ts2-SG-kkx" firstAttribute="top" secondItem="7ix-RM-fMB" secondAttribute="top" constant="84" id="aim-nb-saa"/>
+                        <constraint firstItem="XHw-R4-hMu" firstAttribute="top" secondItem="HXw-Tc-hWu" secondAttribute="top" id="sac-1h-mep"/>
+                        <constraint firstItem="XHw-R4-hMu" firstAttribute="leading" secondItem="HXw-Tc-hWu" secondAttribute="leading" id="uvT-sK-kVt"/>
+                        <constraint firstItem="XHw-R4-hMu" firstAttribute="trailing" secondItem="HXw-Tc-hWu" secondAttribute="trailing" id="wx6-9l-xfU"/>
+                    </constraints>
+                </view>
+            </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="7ix-RM-fMB" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Z7V-DT-zGo"/>
+                <constraint firstItem="7ix-RM-fMB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uzI-iB-sAb"/>
+                <constraint firstAttribute="trailing" secondItem="7ix-RM-fMB" secondAttribute="trailing" id="yx7-Qw-Egb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="309.5" y="266.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="bg_select_city.png" width="100" height="44"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
 </document>
