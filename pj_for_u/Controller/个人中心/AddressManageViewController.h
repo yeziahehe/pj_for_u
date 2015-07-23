@@ -1,5 +1,5 @@
 //
-//  IndividualViewController.h
+//  AddressManageViewController.h
 //  pj_for_u
 //
 //  Created by MiY on 15/7/23.
@@ -8,7 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface IndividualViewController : BaseViewController
-@property (strong, nonatomic) IBOutlet UIView *logView;
+@interface AddressManageViewController : BaseViewController
 
 @end
