@@ -20,7 +20,7 @@
 @end
 
 @implementation RegisterViewController
-@synthesize nextButton,phoneNumTextField;
+@synthesize identifyButton,phoneNumTextField;
 
 #pragma mark - Private methods
 - (NSString *)checkFieldValid
@@ -34,7 +34,9 @@
 
 - (NSString *)checkPasswordValid
 {
-    if(self.identifyCodeTextField.text.length == 0)
+    if (self.phoneNumTextField.text.length <11)
+        return @"请输入正确的手机号";
+    else if(self.identifyCodeTextField.text.length == 0)
         return @"请输入验证码";
     else if(self.nickNameTextField.text.length == 0)
         return @"请输入昵称";
@@ -88,8 +90,6 @@
     self.identifyButton.enabled = NO;
     self.resendSecond = kResendTimeCount;
     self.resendTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(resendTimerChange) userInfo:nil repeats:YES];
-    
-    self.registButton.enabled = NO;
     self.phoneLabel.text = @"验证码正在发送中，请稍等";
     [self getVerifyCode];
 }
@@ -148,7 +148,7 @@
     else
     {
         [MemberDataManager sharedManager].loginMember.phone = self.phoneNumTextField.text;
-        [self getVerifyCode];
+        [self initViewController];
         
     }
 }
@@ -178,7 +178,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNaviTitle:@"注册"];
-    self.nextButton.enabled = NO;
+    self.identifyButton.enabled = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(checkUserExistResponseNotification:) name:kCheckUserExistResponseNotification object:nil];
@@ -211,10 +211,10 @@
 - (void)textFieldChange:(NSNotification *)notification
 {
     if (self.phoneNumTextField.text.length != 0) {
-        self.nextButton.enabled = YES;
+        self.identifyButton.enabled = YES;
     }
     else{
-        self.nextButton.enabled = NO;
+        self.identifyButton.enabled = NO;
     }
 }
 
