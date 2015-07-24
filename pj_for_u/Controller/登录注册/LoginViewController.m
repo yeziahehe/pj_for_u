@@ -110,7 +110,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
-    //在该方法中设置contentsize大小 
+    //在该方法中设置contentsize大小
     [super viewDidAppear:YES];
     CGFloat contentHeight = self.loginButton.frame.origin.y+self.loginButton.frame.size.height+10.f;
     [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];

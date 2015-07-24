@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UITextField *pwdTextField;
 @property (strong, nonatomic) IBOutlet UITextField *rePwdTextField;
 @property (strong, nonatomic) IBOutlet UIButton *identifyButton;
+@property (strong, nonatomic) IBOutlet UIButton *resetPwdButton;
 
 - (IBAction)identifyButtonClicked:(id)sender;
 - (IBAction)resetPwdButtonClicked:(id)sender;
