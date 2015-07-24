@@ -70,7 +70,7 @@
 
 - (void)requestForImages
 {
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kImageUrl];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetMainImageUrl];
     [[YFDownloaderManager sharedManager] requestDataByGetWithURLString:url
                                                               delegate:self
                                                                purpose:kGetImagesDownloaderKey];

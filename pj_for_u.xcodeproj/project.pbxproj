@@ -98,6 +98,7 @@
 		2C7953B41B614BD800511EB7 /* UIColor+RGBA.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953AD1B614BD800511EB7 /* UIColor+RGBA.m */; };
 		2C7953B51B614BD800511EB7 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953AF1B614BD800511EB7 /* UIView+Extension.m */; };
 		2C7953B81B61F64B00511EB7 /* FirstClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953B71B61F64B00511EB7 /* FirstClassModel.m */; };
+		2C7953BB1B623B3F00511EB7 /* HomeModuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953BA1B623B3F00511EB7 /* HomeModuleModel.m */; };
 		2CF607511B5E4E390022E8E7 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6074F1B5E4E390022E8E7 /* StartViewController.m */; };
 		2CF607521B5E4E390022E8E7 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF607501B5E4E390022E8E7 /* StartViewController.xib */; };
 		2CF6075B1B5E77560022E8E7 /* btn_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6075A1B5E77560022E8E7 /* btn_search@2x.png */; };
@@ -320,6 +321,8 @@
 		2C7953AF1B614BD800511EB7 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		2C7953B61B61F64B00511EB7 /* FirstClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstClassModel.h; path = Model/FirstClassModel.h; sourceTree = "<group>"; };
 		2C7953B71B61F64B00511EB7 /* FirstClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstClassModel.m; path = Model/FirstClassModel.m; sourceTree = "<group>"; };
+		2C7953B91B623B3F00511EB7 /* HomeModuleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeModuleModel.h; path = Model/HomeModuleModel.h; sourceTree = "<group>"; };
+		2C7953BA1B623B3F00511EB7 /* HomeModuleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeModuleModel.m; path = Model/HomeModuleModel.m; sourceTree = "<group>"; };
 		2CF6074E1B5E4E390022E8E7 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		2CF6074F1B5E4E390022E8E7 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		2CF607501B5E4E390022E8E7 /* StartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
@@ -545,6 +548,8 @@
 				4A6C156E1B5F724C00C9A9D2 /* MemberDataManager.m */,
 				2C7953B61B61F64B00511EB7 /* FirstClassModel.h */,
 				2C7953B71B61F64B00511EB7 /* FirstClassModel.m */,
+				2C7953B91B623B3F00511EB7 /* HomeModuleModel.h */,
+				2C7953BA1B623B3F00511EB7 /* HomeModuleModel.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1143,6 +1148,7 @@
 				2C2528501B5E108900ADDEFB /* main.m in Sources */,
 				2C25288F1B5E2E9400ADDEFB /* HomeViewController.m in Sources */,
 				2C25290B1B5E3AA900ADDEFB /* YFRootBlurViewManager.m in Sources */,
+				2C7953BB1B623B3F00511EB7 /* HomeModuleModel.m in Sources */,
 				2C2529021B5E3AA900ADDEFB /* YFAppBackgroudConfiger.m in Sources */,
 				2C2528D01B5E39EF00ADDEFB /* MJRefreshConst.m in Sources */,
 			);
