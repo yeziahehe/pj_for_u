@@ -37,11 +37,8 @@
 {
     [textField resignFirstResponder];
     
-    NSMutableArray *array = [[NSMutableArray alloc] initWithCapacity:2];
-    [array addObject:self.textField.text];
-    [array addObject:self.indexPath];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"IndividualSubViewNotification"
-                                                        object:array];
+    
+    
     [self.navigationController popViewControllerAnimated:YES];
     
     return YES;
@@ -50,11 +47,9 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-//    [self textFieldShouldReturn:self.textField];
     [self.view endEditing:YES];
-    self.cellArray[self.indexPath.section][2] = self.textField.text;
     
-    NSLog(@"======5=====%@", self.cellArray[self.indexPath.section][2]);
+    
 }
 
 - (void)dealloc

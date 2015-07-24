@@ -17,6 +17,8 @@
 @property (strong, nonatomic) NSString *qq;
 @property (strong, nonatomic) NSString *weixin;
 
+
+
 - (instancetype)initWithimgUrl:(NSString *)imgUrl
                       nickname:(NSString *)nickname
                            sex:(NSInteger)sex

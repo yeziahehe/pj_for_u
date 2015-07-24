@@ -7,12 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "IndividualInfo.h"
 
 @interface IndividualTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UILabel *firstLabel;
 @property (strong, nonatomic) IBOutlet UILabel *secondLabel;
-@property (strong, nonatomic) IndividualInfo *individualInfo;
 
 @end
