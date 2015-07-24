@@ -45,17 +45,22 @@
 
 - (void)onTimer
 {
-    NSInteger papersCount = [self.productAdArray count];
+    //添加收尾各一张图实现循环滑动
+    NSInteger papersCount = [self.productAdArray count]+2;
     //设置pagecontrol
-    if (self.cycleScrollView.contentOffset.x/self.cycleScrollView.frame.size.width == papersCount) {
+    if (self.cycleScrollView.contentOffset.x/self.cycleScrollView.frame.size.width >= papersCount-2) {
         self.pageControl.currentPage = 0;
     } else {
         self.pageControl.currentPage = self.cycleScrollView.contentOffset.x/self.cycleScrollView.frame.size.width;
     }
     //设置自动滑动
-    if (self.cycleScrollView.contentOffset.x == (self.cycleScrollView.frame.size.width * papersCount))
+    if (self.cycleScrollView.contentOffset.x == 0)
     {
-        [self.cycleScrollView scrollRectToVisible:CGRectMake(self.cycleScrollView.frame.size.width , 0, self.cycleScrollView.frame.size.width, self.cycleScrollView.frame.size.height) animated:YES];
+        [self.cycleScrollView scrollRectToVisible:CGRectMake(self.cycleScrollView.frame.size.width * papersCount ,0,self.cycleScrollView.frame.size.width, self.cycleScrollView.frame.size.height) animated:NO];
+    }
+    else if (self.cycleScrollView.contentOffset.x == (self.cycleScrollView.frame.size.width * (papersCount-1)))
+    {
+        [self.cycleScrollView scrollRectToVisible:CGRectMake(self.cycleScrollView.frame.size.width , 0, self.cycleScrollView.frame.size.width, self.cycleScrollView.frame.size.height) animated:NO];
     }
     else
     {
