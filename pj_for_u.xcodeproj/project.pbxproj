@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3B67091B61DCAB0067C709 /* CallNumAndMessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B67081B61DCAB0067C709 /* CallNumAndMessViewController.m */; };
 		0AE093021B60D02D0095D639 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093001B60D02D0095D639 /* SettingTableViewCell.m */; };
 		0AE093071B60D2EC0095D639 /* AboutAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093051B60D2EC0095D639 /* AboutAppViewController.m */; };
 		0AE093081B60D2EC0095D639 /* AboutAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */; };
@@ -164,6 +165,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0A3B67071B61DCAB0067C709 /* CallNumAndMessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CallNumAndMessViewController.h; path = "Controller/设置/CallNumAndMessViewController.h"; sourceTree = "<group>"; };
+		0A3B67081B61DCAB0067C709 /* CallNumAndMessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CallNumAndMessViewController.m; path = "Controller/设置/CallNumAndMessViewController.m"; sourceTree = "<group>"; };
 		0AE092FF1B60D02D0095D639 /* SettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingTableViewCell.h; path = "Controller/设置/SettingTableViewCell.h"; sourceTree = "<group>"; };
 		0AE093001B60D02D0095D639 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingTableViewCell.m; path = "Controller/设置/SettingTableViewCell.m"; sourceTree = "<group>"; };
 		0AE093011B60D02D0095D639 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingTableViewCell.xib; path = "Controller/设置/SettingTableViewCell.xib"; sourceTree = "<group>"; };
@@ -440,6 +443,8 @@
 				0AE093041B60D2EC0095D639 /* AboutAppViewController.h */,
 				0AE093051B60D2EC0095D639 /* AboutAppViewController.m */,
 				0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */,
+				0A3B67071B61DCAB0067C709 /* CallNumAndMessViewController.h */,
+				0A3B67081B61DCAB0067C709 /* CallNumAndMessViewController.m */,
 			);
 			name = "设置";
 			sourceTree = "<group>";
@@ -932,6 +937,7 @@
 				TargetAttributes = {
 					2C2528491B5E108900ADDEFB = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 3WTM5PLDUE;
 					};
 					2C2528621B5E108A00ADDEFB = {
 						CreatedOnToolsVersion = 6.4;
@@ -1080,6 +1086,7 @@
 				2CF607651B5E9D100022E8E7 /* LocationViewController.m in Sources */,
 				2C10D6A81B609335008C3DE0 /* NSTimer+Addition.m in Sources */,
 				2C2528981B5E38B100ADDEFB /* RegisterViewController.m in Sources */,
+				0A3B67091B61DCAB0067C709 /* CallNumAndMessViewController.m in Sources */,
 				4A6C156C1B5F6D1100C9A9D2 /* Member.m in Sources */,
 				2C2529011B5E3AA900ADDEFB /* UIView+YFUtilities.m in Sources */,
 				2C2528D61B5E39EF00ADDEFB /* Reachability.m in Sources */,
@@ -1221,6 +1228,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd",
@@ -1230,6 +1238,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1238,6 +1247,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd",
@@ -1247,6 +1257,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
