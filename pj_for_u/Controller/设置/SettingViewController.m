@@ -44,9 +44,35 @@
 
 - (IBAction)logoutButtonClicked:(UIButton *)sender
 {
-   
+    [[MemberDataManager sharedManager] logout];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 
+    
 }
+
+#pragma mark - AlertViewDelegate methods
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+//    if (alertView.tag == 1) {
+//        if (buttonIndex == 1)
+//        {
+//            [[MemberDataManager sharedManager] logout];
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kUserChangeNotification object:nil];
+//            [self.tabBarController setSelectedIndex:0];
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+//        }
+//    }
+//    else
+    if (alertView.tag == 2)
+    {
+        if (buttonIndex == 1)
+        {
+            [[YFProgressHUD sharedProgressHUD] showMixedWithLoading:@"清除缓存..." end:@"清理完成"];
+            [YFAppBackgroudConfiger clearAllCachesWhenBiggerThanSize:0];
+        }
+    }
+}
+
 #pragma mark - UITableViewDataSource methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
