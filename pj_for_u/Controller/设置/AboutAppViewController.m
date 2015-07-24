@@ -9,6 +9,7 @@
 #import "AboutAppViewController.h"
 
 @interface AboutAppViewController ()
+@property (strong, nonatomic) IBOutlet UITextView *aboutTextView;
 
 @end
 
@@ -16,7 +17,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    [self setNaviTitle:@"关于我们"];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.aboutTextView.text = [NSString stringWithFormat:@"%@",@" For优是由苏州英爵伟信息科技服务有限公司于2015年创建，致力于打造最优校园生活平台。紧跟潮流，运行互联网技术为大学生提供更优质便捷的生活，用户至上。\n  “为你 为更好的生活”，是我们始终奉行的服务理念"];
+ 
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +28,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
