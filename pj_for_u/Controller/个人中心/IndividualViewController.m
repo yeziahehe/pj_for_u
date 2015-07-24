@@ -30,7 +30,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_back_light.png"];
 
 }
 
