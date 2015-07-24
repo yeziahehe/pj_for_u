@@ -8,7 +8,6 @@
 
 #import "CallNumAndMessViewController.h"
 
-#define IsIos8              [[UIDevice currentDevice].systemVersion floatValue]>=8.0?YES:NO
 
 @interface CallNumAndMessViewController ()
 

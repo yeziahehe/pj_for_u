@@ -7,6 +7,7 @@
 //
 
 #import "BaseViewController.h"
+#import "HACursor.h"
 
 @interface ProductViewController : BaseViewController
 
