@@ -74,8 +74,10 @@
 {
     self.resendSecond--;
     [self.identifyButton setTitle:[NSString stringWithFormat:@"%ld",(long)self.resendSecond] forState:UIControlStateDisabled];
+    self.phoneNumTextField.enabled = NO;
     if(self.resendSecond <= 0)
     {
+        self.phoneNumTextField.enabled =YES;
         [self.identifyButton setTitle:@"重新获取" forState:UIControlStateNormal];
         [self.identifyButton setTitle:@"重新获取" forState:UIControlStateDisabled];
         self.identifyButton.enabled = YES;
@@ -90,7 +92,7 @@
     self.identifyButton.enabled = NO;
     self.resendSecond = kResendTimeCount;
     self.resendTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(resendTimerChange) userInfo:nil repeats:YES];
-    self.phoneLabel.text = @"验证码正在发送中，请稍等";
+    [[YFProgressHUD sharedProgressHUD]showWithMessage:@"验证码发送中，请稍等……" customView:nil hideDelay:2.f];
     [self getVerifyCode];
 }
 
@@ -163,7 +165,7 @@
     else
     {
         //注册成功
-        [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"您已注册成功，正在自动登录" hideDelay:2.f];
+        [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"您已注册成功，请重新登录" hideDelay:2.f];
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }

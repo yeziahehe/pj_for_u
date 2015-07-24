@@ -52,8 +52,11 @@
 {
     self.resendSecond--;
     [self.identifyButton setTitle:[NSString stringWithFormat:@"%ld",(long)self.resendSecond] forState:UIControlStateDisabled];
+    self.phoneTextField.enabled =NO;
+
     if(self.resendSecond <= 0)
     {
+        self.phoneTextField.enabled =YES;
         [self.identifyButton setTitle:@"重新获取" forState:UIControlStateNormal];
         [self.identifyButton setTitle:@"重新获取" forState:UIControlStateDisabled];
         self.identifyButton.enabled = YES;

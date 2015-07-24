@@ -148,8 +148,8 @@
         NSDictionary *dict = [str JSONValue];
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
-            NSLog(@"test %@",self.loginMember);
-            self.loginMember = [Member memberWithDict:dict];
+            self.loginMember.type = [NSString stringWithFormat:@"%@",[dict objectForKey:@"type"]];
+            //self.loginMember = [Member memberWithDict:dict];
             [[MemberDataManager sharedManager] saveLoginMemberData];
             [[NSNotificationCenter defaultCenter] postNotificationName:kLoginResponseNotification object:nil];
             [[NSNotificationCenter defaultCenter] postNotificationName:kUserChangeNotification object:nil];
