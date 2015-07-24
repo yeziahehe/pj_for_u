@@ -46,8 +46,8 @@
 
 
 - (IBAction)forgetPasswordButtonClicked:(id)sender {
-    ForgetPwdViewController *forgetPwdViewController = [[ForgetPwdViewController alloc]initWithNibName:@"ForgetPwdViewController" bundle:nil];
-    [self.navigationController pushViewController:forgetPwdViewController animated:YES];
+    ForgetPwdViewController *fpvc = [[ForgetPwdViewController alloc]initWithNibName:@"ForgetPwdViewController" bundle:nil];
+    [self.navigationController pushViewController:fpvc animated:YES];
 }
 
 - (IBAction)checkBoxButtonClicked:(id)sender {

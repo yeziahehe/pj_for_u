@@ -15,8 +15,10 @@
 
 @interface ForgetPwdViewController ()
 
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, assign) NSInteger resendSecond;
 @property (nonatomic, strong) NSTimer *resendTimer;
+@property (strong, nonatomic) IBOutlet UILabel *phoneLabel;
 
 @end
 
@@ -32,9 +34,32 @@
     return nil;
 }
 
+- (NSString *)checkPasswordValid
+{
+    if (self.phoneTextField.text.length <11)
+        return @"请输入正确的手机号";
+    else if(self.identifyCodeTextField.text.length == 0)
+        return @"请输入验证码";
+    else if(self.pwdTextField.text.length < 6 || self.pwdTextField.text.length > 20)
+        return @"请输入6-20位密码";
+    else if(![self.pwdTextField.text isEqualToString:self.rePwdTextField.text])
+        return @"两次密码不相同，请重新输入";
+    else
+        return nil;
+}
+
 - (void)resendTimerChange
 {
-
+    self.resendSecond--;
+    [self.identifyButton setTitle:[NSString stringWithFormat:@"%ld",(long)self.resendSecond] forState:UIControlStateDisabled];
+    if(self.resendSecond <= 0)
+    {
+        [self.identifyButton setTitle:@"重新获取" forState:UIControlStateNormal];
+        [self.identifyButton setTitle:@"重新获取" forState:UIControlStateDisabled];
+        self.identifyButton.enabled = YES;
+        [self.resendTimer invalidate];
+        self.resendTimer = nil;
+    }
     
     
 }
@@ -42,22 +67,24 @@
 - (void)getVerifyCode
 {
     //验证码获取
-//    [SMS_SDK getVerifyCodeByPhoneNumber:self.phoneTextField.text AndZone:@"86" result:^(enum SMS_GetVerifyCodeResponseState state) {
-//        if (1 == state) {
-//            [[YFProgressHUD sharedProgressHUD]showSuccessViewWithMessage:@"验证码发送成功，请稍等" hideDelay:2.f];
-//        }
-//        else if (0 == state) {
-//            [[YFProgressHUD sharedProgressHUD]showFailureViewWithMessage:@"验证码发送失败，请稍后重试" hideDelay:2.f];
-//        }
-//        else if (SMS_ResponseStateMaxVerifyCode==state)
-//        {
-//            [[YFProgressHUD sharedProgressHUD]showFailureViewWithMessage:@"请求验证码超上限，请稍后重试" hideDelay:2.f];
-//        }
-//        else if(SMS_ResponseStateGetVerifyCodeTooOften==state)
-//        {
-//            [[YFProgressHUD sharedProgressHUD]showFailureViewWithMessage:@"客户端请求发送短信验证过于频繁" hideDelay:2.f];
-//        }
-//    }];
+    [SMS_SDK getVerificationCodeBySMSWithPhone:self.phoneTextField.text zone:@"86" result:^(SMS_SDKError *error){
+        [[YFProgressHUD sharedProgressHUD]stoppedNetWorkActivity];
+        if (error == nil) {
+            self.phoneLabel.attributedText = [self codeStatusLabel:@"验证码已发往%@，请稍等"];
+        }
+        else{
+            self.phoneLabel.text = @"验证码发送失败，请稍后重试";
+            [[YFProgressHUD sharedProgressHUD]showFailureViewWithMessage:@"验证码发送失败，请稍后重试" hideDelay:2.f];
+        }
+    }];
+}
+
+- (NSMutableAttributedString *)codeStatusLabel:(NSString *)status
+{
+    NSString *phoneString = [NSString stringWithFormat:status,[MemberDataManager sharedManager].loginMember.phone];
+    NSMutableAttributedString *attriString = [[NSMutableAttributedString alloc] initWithString:phoneString];
+    [attriString addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithRed:255.f/255 green:124.f/255 blue:106.f/255 alpha:1.f] range:NSMakeRange(6, [MemberDataManager sharedManager].loginMember.phone.length)];
+    return attriString;
 }
 
 #pragma mark - IBAction Methods
@@ -70,17 +97,17 @@
     }
     else
     {
-//        self.identifyButton.enabled = NO;
-//        self.resendSecond = kResendTimeCount;
-//        self.resendTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(resendTimerChange) userInfo:nil repeats:YES];
-//        [[YFProgressHUD sharedProgressHUD]startedNetWorkActivityWithText:@"正在发送验证码..."];
-//        [self getVerifyCode];
+        self.identifyButton.enabled = NO;
+        self.resendSecond = kResendTimeCount;
+        self.resendTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(resendTimerChange) userInfo:nil repeats:YES];
+        [[YFProgressHUD sharedProgressHUD]startedNetWorkActivityWithText:@"正在发送验证码..."];
+        [self getVerifyCode];
     }
 }
 
 - (IBAction)resetPwdButtonClicked:(id)sender {
     [self resignAllField];
-    NSString *validString = [self checkFieldValid];
+    NSString *validString = [self checkPasswordValid];
     if(validString)
     {
         [[YFProgressHUD sharedProgressHUD] showWithMessage:validString customView:nil hideDelay:2.f];
@@ -91,9 +118,10 @@
                 [SMS_SDK commitVerifyCode:self.identifyCodeTextField.text result:^(enum SMS_ResponseState state) {
                     if (1 == state) {
                         //验证成功后的改密码操作
-                        ResetPwdViewController *resetPwdViewController = [[ResetPwdViewController alloc]initWithNibName:@"ResetPwdViewController" bundle:nil];
-                        resetPwdViewController.phone = self.phoneTextField.text;
-                        [self.navigationController pushViewController:resetPwdViewController animated:YES];
+                        [MemberDataManager sharedManager].loginMember.password = self.phoneTextField.text;
+                        //重置密码
+                        [[MemberDataManager sharedManager] resetPwdWithPhone:self.phoneTextField.text newPassword:self.pwdTextField.text];
+
                     }
                     else if(0 == state)
                     {
@@ -101,23 +129,39 @@
                     }
                 }];
     }
-
 }
 
+#pragma mark - Notification Methods
+- (void)resetPwdResponseNotification:(NSNotification *)notification
+{
+    if(notification.object)
+    {
+        //重置密码失败
+        [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:notification.object hideDelay:2.f];
+    }
+    else
+    {
+        //重置密码成功
+        [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"重置密码成功，正在自动登录" hideDelay:2.f];
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }
+}
 
 #pragma mark - UIViewController Methods
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [self resignAllField];
     [super viewDidDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     [self setNaviTitle:@"忘记密码"];
     self.identifyButton.enabled = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPwdResponseNotification:) name:kResetPwdResponseNotification object:nil];
 }
 
 - (void)dealloc
@@ -138,7 +182,7 @@
 
 - (void)textFieldChange:(NSNotification *)notification
 {
-    if (self.phoneTextField.text.length != 0 && self.identifyCodeTextField.text.length != 0) {
+    if (self.phoneTextField.text.length != 0) {
         self.identifyButton.enabled = YES;
     }
     else{
