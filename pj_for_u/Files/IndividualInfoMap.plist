@@ -5,27 +5,27 @@
 	<array>
 		<string>昵称</string>
 		<string>nickname</string>
-		<string>a</string>
+		<string></string>
 	</array>
 	<array>
 		<string>性别</string>
 		<string>sex</string>
-		<string>b</string>
+		<string></string>
 	</array>
 	<array>
 		<string>学院</string>
 		<string>academy</string>
-		<string>c</string>
+		<string></string>
 	</array>
 	<array>
 		<string>QQ号</string>
 		<string>qq</string>
-		<string>d</string>
+		<string></string>
 	</array>
 	<array>
 		<string>微信号</string>
 		<string>weixin</string>
-		<string>e</string>
+		<string></string>
 	</array>
 </array>
 </plist>

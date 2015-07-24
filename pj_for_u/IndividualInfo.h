@@ -8,22 +8,28 @@
 
 #import <Foundation/Foundation.h>
 
+#define kIndividualInfo    @"IndividualInfo"
+
+
 @interface IndividualInfo : NSObject
 
 @property (strong, nonatomic) NSString *imgUrl;
 @property (strong, nonatomic) NSString *nickname;
-@property NSInteger sex;
+@property (strong, nonatomic) NSString *sex;
 @property (strong, nonatomic) NSString *academy;
 @property (strong, nonatomic) NSString *qq;
 @property (strong, nonatomic) NSString *weixin;
 
+@property (strong, nonatomic) NSMutableArray *infos;
 
 
 - (instancetype)initWithimgUrl:(NSString *)imgUrl
                       nickname:(NSString *)nickname
-                           sex:(NSInteger)sex
+                           sex:(NSString *)sex
                        academy:(NSString *)academy
                             qq:(NSString *)qq
                         weixin:(NSString *)weixin;
+
+- (void)requestForIndividualInfo:(NSString *)phone;
 
 @end

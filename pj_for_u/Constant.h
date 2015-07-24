@@ -86,6 +86,7 @@
 #define kCheckUserExistUrl      @"user/checkUserIsExist.do"
 #define kRegisterUrl            @"user/registerIn.do"
 #define kResetPwdUrl            @"user/resetPassword.do"
+#define kIndividualInfoUrl      @"user/mineInfo.do?"
        
 
 

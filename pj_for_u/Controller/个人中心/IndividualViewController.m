@@ -26,7 +26,14 @@
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"IndividualInfoMap" ofType:@"plist"];
     self.cellArray = [NSMutableArray arrayWithContentsOfFile:path];
-    [self.tableView reloadData];
+}
+
+- (IndividualInfo *)individualInfo
+{
+    if (!_individualInfo) {
+        _individualInfo = [[IndividualInfo alloc] init];
+    }
+    return _individualInfo;
 }
 
 - (void)addImageBorder
@@ -37,6 +44,16 @@
     self.headPhoto.layer.masksToBounds = YES;
     self.headPhoto.layer.cornerRadius = (self.headPhoto.bounds.size.width) / 2.f;
 }
+
+
+- (void)loadIndividual:(NSNotification *)notification
+{
+    for (int i = 0; i < self.cellArray.count; i++) {
+        self.cellArray[i][2] = self.individualInfo.infos[i + 1];
+    }
+    [self.tableView reloadData];
+}
+
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -97,10 +114,12 @@
     [self addImageBorder];
     [self loadFile];
     
+    [self.individualInfo requestForIndividualInfo:[MemberDataManager sharedManager].loginMember.phone];
+    
     [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_back_light.png"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadIndividual:) name:@"loadIndividual" object:nil];
 }
-
-
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -109,7 +128,7 @@
     self.logView.backgroundColor = kMainProjColor;
     
     [self.tableView reloadData];
-    [self.tableView reloadData];
 }
+
 
 @end
