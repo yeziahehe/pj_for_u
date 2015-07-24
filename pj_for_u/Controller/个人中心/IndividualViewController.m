@@ -10,13 +10,14 @@
 #import "IndividualTableViewCell.h"
 #import "IndividualSubViewController.h"
 
+#import "IndividualInfo.h"
+
 @interface IndividualViewController ()
 
 @property (strong, nonatomic) UIView *navBackView;
 @property (strong, nonatomic) NSMutableArray *cellArray;
 @property (strong, nonatomic) UITableView *tableView;
-
-@property (strong, nonatomic) NSMutableString *bcd;
+@property (strong, nonatomic) IndividualInfo *individualInfo;
 
 @end
 
@@ -27,7 +28,6 @@
     self.cellArray = [NSMutableArray arrayWithContentsOfFile:path];
     [self.tableView reloadData];
 }
-
 
 - (void)addImageBorder
 {
@@ -96,6 +96,8 @@
     [super viewDidLoad];
     [self addImageBorder];
     [self loadFile];
+    
+    [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_back_light.png"];
 }
 
 
