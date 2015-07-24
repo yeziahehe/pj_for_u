@@ -25,6 +25,7 @@
     [self.citySelectTableView reloadData];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.citySelectTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionBottom];
+    [self.citySelectTableView cellForRowAtIndexPath:indexPath].textLabel.textColor = [UIColor whiteColor];
 }
 
 #pragma mark - UIView Methods
@@ -45,19 +46,15 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentity];
     if (nil == cell)
     {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentity];
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentity];
         UIImageView *selectedView = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"bg_select_city.png"]];
         cell.selectedBackgroundView = selectedView;
-    }
-
-    if (cell.selected) {
-        cell.textLabel.textColor = [UIColor whiteColor];
-    } else {
-        cell.textLabel.textColor = kMainBlackColor;
     }
     
     LocationModel *lm = [self.citySelectArray objectAtIndex:indexPath.row];
     cell.textLabel.text = lm.cityName;
+    cell.textLabel.textColor = kMainBlackColor;
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     return cell;
 }
 
@@ -69,7 +66,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView cellForRowAtIndexPath:indexPath].textLabel.textColor = [UIColor whiteColor];
     [[NSNotificationCenter defaultCenter] postNotificationName:kCitySelectedNotificaition object:[NSNumber numberWithInteger:indexPath.row]];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView cellForRowAtIndexPath:indexPath].textLabel.textColor = kMainBlackColor;
 }
 
 @end
