@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface IndividualViewController : BaseViewController //<UITableViewDataSource, UITableViewDelegate>
+@interface IndividualViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *logView;
 @property (strong, nonatomic) IBOutlet UIImageView *headPhoto;
