@@ -50,6 +50,7 @@
 
     CampusMoel *cm = [self.schoolSelectArray objectAtIndex:indexPath.row];
     cell.textLabel.textColor = kLightTextColor;
+    cell.textLabel.font = [UIFont systemFontOfSize:12.f];
     cell.textLabel.text = cm.campusName;
     return cell;
 }

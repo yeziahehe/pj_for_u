@@ -2,16 +2,15 @@
 //  UserInfo.h
 //  SMS_SDKDemo
 //
-//  Created by admin on 14-6-19.
-//  Copyright (c) 2014年 admin. All rights reserved.
+//  Created by 掌淘科技 on 14-6-19.
+//  Copyright (c) 2014年 掌淘科技. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 /**
- * @brief SMS_AddressBook类 为用户信息
+ * @brief SMS_UserInfo 用户信息
  */
-
 @interface SMS_UserInfo : NSObject
 
 /**
