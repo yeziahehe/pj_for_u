@@ -14,8 +14,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *rePwdTextField;
 @property (strong, nonatomic) IBOutlet UIButton *commitButton;
 
-@property (strong, nonatomic) NSString *phone;
-
 - (IBAction)commitButtonClicked:(id)sender;
 
 

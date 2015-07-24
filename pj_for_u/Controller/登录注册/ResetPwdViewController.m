@@ -14,7 +14,6 @@
 
 @implementation ResetPwdViewController
 @synthesize pwdTextField,rePwdTextField,commitButton;
-@synthesize phone;
 
 #pragma mark - Private methods
 - (NSString *)checkPasswordValid

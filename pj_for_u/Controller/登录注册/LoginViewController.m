@@ -108,6 +108,14 @@
     self.passwordTextField.text = nil;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    //在该方法中设置contentsize大小 
+    [super viewDidAppear:YES];
+    CGFloat contentHeight = self.loginButton.frame.origin.y+self.loginButton.frame.size.height+10.f;
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -162,17 +170,13 @@
 #pragma mark - Keyboard Notification methords
 - (void)keyboardWillShow:(NSNotification *)notification
 {
-
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    CGPoint contentOffset = scrollView.contentOffset;
-    [self.scrollView setContentOffset:CGPointMake(contentOffset.x, contentOffset.y + keyboardSize.height-64.f) animated:YES];
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    CGPoint contentOffset = scrollView.contentOffset;
-    [self.scrollView setContentOffset:CGPointMake(contentOffset.x, contentOffset.y - keyboardSize.height+64.f) animated:YES];
+    self.scrollView.contentInset = UIEdgeInsetsZero;
 }
 
 @end
