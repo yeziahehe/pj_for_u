@@ -9,12 +9,14 @@
 #import "SettingViewController.h"
 #import "SettingTableViewCell.h"
 #import "AboutAppViewController.h"
+#import "CallNumAndMessViewController.h"
 
 #define kSettingMapFileName         @"SettingMap"
 
 @interface SettingViewController ()
 @property (nonatomic, strong) NSArray *menuArray;
 @property (nonatomic, strong) UISwitch *pushSwitch;
+@property (nonatomic, strong) NSString *phoneNum;
 
 @end
 
@@ -32,6 +34,7 @@
     [super viewDidLoad];
     [self setNaviTitle:@"设置"];
     [self loadSubViews];
+    self.phoneNum = @"18013646790";
 }
 
 - (void)didReceiveMemoryWarning {
@@ -135,7 +138,11 @@
     }
     else if ([titleString isEqualToString:@"联系客服"])
     {
-
+        NSString *phoneNum = @"18013646790";
+        CallNumAndMessViewController *callNum = [[CallNumAndMessViewController alloc]init];
+        callNum.phoneNum = phoneNum;
+        callNum.useViewController = self;
+        [callNum clickPhone];
     }
     
     else if ([titleString isEqualToString:@"关于我们"])
