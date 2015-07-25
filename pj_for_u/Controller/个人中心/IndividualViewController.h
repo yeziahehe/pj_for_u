@@ -7,8 +7,10 @@
 //
 
 #import "BaseViewController.h"
+#import "IndividualInfo.h"
 
-@interface IndividualViewController : BaseViewController
-@property (strong, nonatomic) IBOutlet UIView *logView;
+@interface IndividualViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+
+@property (strong, nonatomic) IndividualInfo *individualInfo;
 
 @end

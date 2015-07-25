@@ -9,12 +9,12 @@
 #import "ResetPwdViewController.h"
 
 @interface ResetPwdViewController ()
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
 @implementation ResetPwdViewController
 @synthesize pwdTextField,rePwdTextField,commitButton;
-@synthesize phone;
 
 #pragma mark - Private methods
 - (NSString *)checkPasswordValid
@@ -38,7 +38,7 @@
     else
     {
         //重置密码
-        //[[MemberDataManager sharedManager] resetPwdWithPhone:self.phone newPassword:self.pwdTextField.text];
+        [[MemberDataManager sharedManager] resetPwdWithPhone:[MemberDataManager sharedManager].loginMember.phone newPassword:self.pwdTextField.text];
     }
 }
 
@@ -65,13 +65,23 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    //在该方法中设置contentsize大小
+    [super viewDidAppear:YES];
+    CGFloat contentHeight = self.commitButton.frame.origin.y+self.commitButton.frame.size.height+20.f;
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
     [self setNaviTitle:@"重置密码"];
     self.commitButton.enabled = NO;
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPwdResponseNotification:) name:kResetPwdResponseNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)dealloc
@@ -109,4 +119,16 @@
     return YES;
 }
 
+#pragma mark - Keyboard Notification methords
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    self.scrollView.contentInset = UIEdgeInsetsZero;
+
+}
 @end

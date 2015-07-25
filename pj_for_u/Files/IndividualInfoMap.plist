@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<array>
+		<string>昵称</string>
+		<string>nickname</string>
+		<string></string>
+	</array>
+	<array>
+		<string>性别</string>
+		<string>sex</string>
+		<string></string>
+	</array>
+	<array>
+		<string>学院</string>
+		<string>academy</string>
+		<string></string>
+	</array>
+	<array>
+		<string>QQ号</string>
+		<string>qq</string>
+		<string></string>
+	</array>
+	<array>
+		<string>微信号</string>
+		<string>weixin</string>
+		<string></string>
+	</array>
+</array>
+</plist>
