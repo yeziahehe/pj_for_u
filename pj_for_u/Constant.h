@@ -50,6 +50,7 @@
  */
 #define kTimestamp          [NSDate dateToStringByFormat:@"yyyyMMddHHmmss" date:[NSDate date]]
 #define kCommonParamsDict   [NSMutableDictionary dictionaryWithObjectsAndKeys:kTimestamp, @"_date", @"1235", @"_sign", nil]
+#define kCampusId           [[NSUserDefaults standardUserDefaults] objectForKey:kLocationInfoKey]
 
 #define kNetWorkErrorString @"当前网络不给力"
 #define kIsWelcomeShown     @"IsWelcomeShown"

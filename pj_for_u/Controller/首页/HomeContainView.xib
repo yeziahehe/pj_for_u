@@ -244,6 +244,16 @@
                 <constraint firstItem="txz-DN-WtH" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="-2" id="yLA-8U-cnk"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outletCollection property="homeModuleButtons" destination="txz-DN-WtH" id="SQi-Bf-9ML"/>
+                <outletCollection property="homeModuleButtons" destination="Zng-im-LPY" id="K74-4b-1pk"/>
+                <outletCollection property="homeModuleButtons" destination="OCh-gD-b5e" id="cGG-ov-mup"/>
+                <outletCollection property="homeModuleButtons" destination="Dae-ur-X8p" id="rcm-k8-Jet"/>
+                <outletCollection property="homeModuleButtons" destination="hbO-AX-K8Z" id="gEN-QK-yYf"/>
+                <outletCollection property="homeModuleButtons" destination="JgF-Pa-Kou" id="hAk-Bc-Atm"/>
+                <outletCollection property="homeModuleButtons" destination="MyC-6K-5fs" id="uqN-DU-YF2"/>
+                <outletCollection property="homeModuleButtons" destination="Jta-Ni-Uyo" id="5Nc-1J-aU2"/>
+            </connections>
             <point key="canvasLocation" x="204" y="195"/>
         </view>
     </objects>

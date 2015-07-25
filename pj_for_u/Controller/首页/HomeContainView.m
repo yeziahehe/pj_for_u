@@ -12,21 +12,44 @@
 
 @interface HomeContainView ()
 @property (nonatomic, strong) NSMutableArray *homeModuleArray;
+@property (nonatomic, strong) HomeModuleModel *homeModuleModel;
 @end
 
 @implementation HomeContainView
-@synthesize homeModuleArray;
+@synthesize homeModuleArray,homeModuleButtons,homeModuleModel;
 
 #pragma mark - Private Methods
+- (void)loadHomeModuleIsOpen
+{
+    int i = 0;
+    for (UIButton *button in self.homeModuleButtons) {
+        self.homeModuleModel = [self.homeModuleArray objectAtIndex:i];
+        if ([self.homeModuleModel.isOpen isEqualToString:@"1"]) {
+            
+        } else {
+            [button addTarget:self action:@selector(noOpenButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        }
+        i++;
+    }
+}
+
 - (void)requestForHomeModule
 {
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetModuleTypeUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
+    NSLog(@"%@",kCampusId);
+    [dict setObject:kCampusId forKey:@"campusId"];
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict
                                                             contentType:@"application/x-www-form-urlencoded"
                                                                delegate:self
-                                                                purpose:kGetModuleTypeUrl];
+                                                                purpose:kGetModuleTypeDownloaderKey];
+}
+
+#pragma mark - IBAction Methods
+- (void)noOpenButtonClicked
+{
+    [[YFProgressHUD sharedProgressHUD] showWithMessage:@"该模块尚未开通，敬请期待..." customView:nil hideDelay:3.f];
 }
 
 #pragma mark - UIView methods
@@ -52,6 +75,8 @@
                 HomeModuleModel *hmm = [[HomeModuleModel alloc]initWithDict:valueDict];
                 [self.homeModuleArray addObject:hmm];
             }
+            //设置首页模块的开通属性
+            [self loadHomeModuleIsOpen];
         }
         else
         {

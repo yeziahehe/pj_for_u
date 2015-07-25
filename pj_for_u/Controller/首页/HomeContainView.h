@@ -9,5 +9,6 @@
 #import "HomeSubView.h"
 
 @interface HomeContainView : HomeSubView
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *homeModuleButtons;
 
 @end

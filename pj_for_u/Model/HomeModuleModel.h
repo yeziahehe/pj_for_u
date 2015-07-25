@@ -16,5 +16,5 @@
 
 @interface HomeModuleModel : BaseModel
 @property (nonatomic, copy) NSString *categoryId;//分类id
-@property (nonatomic, copy) NSString *isOpen;//是否开通
+@property (nonatomic, copy) NSString *isOpen;//是否开通 0-未启用 1-启用
 @end

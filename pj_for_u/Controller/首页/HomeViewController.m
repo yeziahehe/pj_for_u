@@ -60,6 +60,7 @@
 {
     if (notification.object)
         [self setNaviTitle:[NSString stringWithFormat:@"%@ > ",notification.object]];
+    [self loadSubViews];
 }
 
 #pragma mark - BaseViewController Methods

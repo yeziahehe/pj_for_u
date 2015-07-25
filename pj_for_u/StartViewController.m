@@ -80,7 +80,7 @@
     else
     {
         //首次打开app时候未定位
-        [[NSUserDefaults standardUserDefaults] setObject:@"-1" forKey:kLocationInfoKey];
+        [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:kLocationInfoKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
 //        self.startScrollView.hidden = NO;
 //        self.pageControl.hidden = NO;

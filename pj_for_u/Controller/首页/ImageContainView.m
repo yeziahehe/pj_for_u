@@ -71,9 +71,13 @@
 - (void)requestForImages
 {
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetMainImageUrl];
-    [[YFDownloaderManager sharedManager] requestDataByGetWithURLString:url
-                                                              delegate:self
-                                                               purpose:kGetImagesDownloaderKey];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:kCampusId forKey:@"campusId"];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kGetImagesDownloaderKey];
 }
 
 
