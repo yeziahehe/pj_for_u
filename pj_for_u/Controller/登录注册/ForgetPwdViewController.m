@@ -145,7 +145,7 @@
     else
     {
         //重置密码成功
-        [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"重置密码成功，正在自动登录" hideDelay:2.f];
+        [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"重置密码成功，请重新登录" hideDelay:2.f];
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }
