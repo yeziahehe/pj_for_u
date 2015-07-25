@@ -82,6 +82,8 @@
 		2C2529171B5E3F7400ADDEFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2529161B5E3F7400ADDEFB /* Foundation.framework */; };
 		2C2529191B5E3F8500ADDEFB /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2529181B5E3F8500ADDEFB /* CoreFoundation.framework */; };
 		2C25291B1B5E3FA300ADDEFB /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C25291A1B5E3FA300ADDEFB /* libz.1.2.5.dylib */; };
+		2C5C08451B6342CC0004286C /* HomeModuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C08441B6342CC0004286C /* HomeModuleModel.m */; };
+		2C5C08481B63433D0004286C /* FirstClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C08471B63433D0004286C /* FirstClassModel.m */; };
 		2C7953901B61321B00511EB7 /* home_image_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C79538F1B61321B00511EB7 /* home_image_default@2x.png */; };
 		2C7953921B6134B400511EB7 /* icon_new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7953911B6134B400511EB7 /* icon_new@2x.png */; };
 		2C7953981B613F4800511EB7 /* icon_address@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7953941B613F4800511EB7 /* icon_address@2x.png */; };
@@ -96,9 +98,6 @@
 		2C7953B21B614BD800511EB7 /* HAScrollNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953AA1B614BD800511EB7 /* HAScrollNavBar.m */; };
 		2C7953B31B614BD800511EB7 /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C7953AB1B614BD800511EB7 /* icons.bundle */; };
 		2C7953B41B614BD800511EB7 /* UIColor+RGBA.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953AD1B614BD800511EB7 /* UIColor+RGBA.m */; };
-		2C7953B51B614BD800511EB7 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953AF1B614BD800511EB7 /* UIView+Extension.m */; };
-		2C7953B81B61F64B00511EB7 /* FirstClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953B71B61F64B00511EB7 /* FirstClassModel.m */; };
-		2C7953BB1B623B3F00511EB7 /* HomeModuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953BA1B623B3F00511EB7 /* HomeModuleModel.m */; };
 		2CF607511B5E4E390022E8E7 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6074F1B5E4E390022E8E7 /* StartViewController.m */; };
 		2CF607521B5E4E390022E8E7 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF607501B5E4E390022E8E7 /* StartViewController.xib */; };
 		2CF6075B1B5E77560022E8E7 /* btn_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6075A1B5E77560022E8E7 /* btn_search@2x.png */; };
@@ -304,6 +303,10 @@
 		2C2529161B5E3F7400ADDEFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C2529181B5E3F8500ADDEFB /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		2C25291A1B5E3FA300ADDEFB /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		2C5C08431B6342CC0004286C /* HomeModuleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeModuleModel.h; path = Model/HomeModuleModel.h; sourceTree = "<group>"; };
+		2C5C08441B6342CC0004286C /* HomeModuleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeModuleModel.m; path = Model/HomeModuleModel.m; sourceTree = "<group>"; };
+		2C5C08461B63433D0004286C /* FirstClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstClassModel.h; path = Model/FirstClassModel.h; sourceTree = "<group>"; };
+		2C5C08471B63433D0004286C /* FirstClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstClassModel.m; path = Model/FirstClassModel.m; sourceTree = "<group>"; };
 		2C79538F1B61321B00511EB7 /* home_image_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home_image_default@2x.png"; path = "Resource/home_image_default@2x.png"; sourceTree = "<group>"; };
 		2C7953911B6134B400511EB7 /* icon_new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_new@2x.png"; path = "Resource/icon_new@2x.png"; sourceTree = "<group>"; };
 		2C7953941B613F4800511EB7 /* icon_address@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_address@2x.png"; path = "Resource/icon_address@2x.png"; sourceTree = "<group>"; };
@@ -325,10 +328,6 @@
 		2C7953AD1B614BD800511EB7 /* UIColor+RGBA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGBA.m"; sourceTree = "<group>"; };
 		2C7953AE1B614BD800511EB7 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		2C7953AF1B614BD800511EB7 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
-		2C7953B61B61F64B00511EB7 /* FirstClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstClassModel.h; path = Model/FirstClassModel.h; sourceTree = "<group>"; };
-		2C7953B71B61F64B00511EB7 /* FirstClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstClassModel.m; path = Model/FirstClassModel.m; sourceTree = "<group>"; };
-		2C7953B91B623B3F00511EB7 /* HomeModuleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeModuleModel.h; path = Model/HomeModuleModel.h; sourceTree = "<group>"; };
-		2C7953BA1B623B3F00511EB7 /* HomeModuleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeModuleModel.m; path = Model/HomeModuleModel.m; sourceTree = "<group>"; };
 		2CF6074E1B5E4E390022E8E7 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		2CF6074F1B5E4E390022E8E7 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		2CF607501B5E4E390022E8E7 /* StartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
@@ -562,6 +561,10 @@
 				4A6C156B1B5F6D1100C9A9D2 /* Member.m */,
 				4A6C156D1B5F724C00C9A9D2 /* MemberDataManager.h */,
 				4A6C156E1B5F724C00C9A9D2 /* MemberDataManager.m */,
+				2C5C08461B63433D0004286C /* FirstClassModel.h */,
+				2C5C08471B63433D0004286C /* FirstClassModel.m */,
+				2C5C08431B6342CC0004286C /* HomeModuleModel.h */,
+				2C5C08441B6342CC0004286C /* HomeModuleModel.m */,
 				6D10BE6C1B61FA3700D3638C /* IndividualInfo.h */,
 				6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */,
 			);
@@ -1117,7 +1120,6 @@
 				2C7953B11B614BD800511EB7 /* HAItemManager.m in Sources */,
 				2C2528D21B5E39EF00ADDEFB /* MJRefreshHeaderView.m in Sources */,
 				2CF6077F1B5EA5DB0022E8E7 /* UITableView+YFAdditions.m in Sources */,
-				2C7953B81B61F64B00511EB7 /* FirstClassModel.m in Sources */,
 				2C10D6BF1B60B970008C3DE0 /* SettingViewController.m in Sources */,
 				2C2528801B5E2C9D00ADDEFB /* BaseMenuViewController.m in Sources */,
 				2C2528821B5E2C9D00ADDEFB /* CustomNavigationController.m in Sources */,
@@ -1173,9 +1175,10 @@
 				2C2528501B5E108900ADDEFB /* main.m in Sources */,
 				2C25288F1B5E2E9400ADDEFB /* HomeViewController.m in Sources */,
 				2C25290B1B5E3AA900ADDEFB /* YFRootBlurViewManager.m in Sources */,
-				2C7953BB1B623B3F00511EB7 /* HomeModuleModel.m in Sources */,
 				2C2529021B5E3AA900ADDEFB /* YFAppBackgroudConfiger.m in Sources */,
 				2C2528D01B5E39EF00ADDEFB /* MJRefreshConst.m in Sources */,
+				2C5C08481B63433D0004286C /* FirstClassModel.m in Sources */,
+				2C5C08451B6342CC0004286C /* HomeModuleModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
