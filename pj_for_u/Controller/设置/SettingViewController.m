@@ -10,6 +10,8 @@
 #import "SettingTableViewCell.h"
 #import "AboutAppViewController.h"
 #import "CallNumAndMessViewController.h"
+#import "ResetPwdViewController.h"
+#import "ForgetPwdViewController.h"
 
 #define kSettingMapFileName         @"SettingMap"
 
@@ -183,7 +185,14 @@
     }
     else if ([titleString isEqualToString:@"修改密码"])
     {
-        
+        if ([MemberDataManager sharedManager].loginMember.phone) {
+            ResetPwdViewController *rpvc = [[ResetPwdViewController alloc]initWithNibName:@"ResetPwdViewController" bundle:nil];
+            [self.navigationController pushViewController:rpvc animated:YES];
+        }
+        else{
+            ForgetPwdViewController *fpvc = [[ForgetPwdViewController alloc]initWithNibName:@"ForgetPwdViewController" bundle:nil];
+            [self.navigationController pushViewController:fpvc animated:YES];
+        }
     }
     else if ([titleString isEqualToString:@"是否推送"])
     {

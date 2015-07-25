@@ -91,6 +91,14 @@
 		2C79539D1B61402D00511EB7 /* bg_user_module@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C79539C1B61402D00511EB7 /* bg_user_module@2x.png */; };
 		2C7953A11B61414200511EB7 /* icon_header_back_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7953A01B61414200511EB7 /* icon_header_back_light@2x.png */; };
 		2C7953A31B61432500511EB7 /* bg_user_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7953A21B61432500511EB7 /* bg_user_img@2x.png */; };
+		2C7953B01B614BD800511EB7 /* HACursor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953A61B614BD800511EB7 /* HACursor.m */; };
+		2C7953B11B614BD800511EB7 /* HAItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953A81B614BD800511EB7 /* HAItemManager.m */; };
+		2C7953B21B614BD800511EB7 /* HAScrollNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953AA1B614BD800511EB7 /* HAScrollNavBar.m */; };
+		2C7953B31B614BD800511EB7 /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C7953AB1B614BD800511EB7 /* icons.bundle */; };
+		2C7953B41B614BD800511EB7 /* UIColor+RGBA.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953AD1B614BD800511EB7 /* UIColor+RGBA.m */; };
+		2C7953B51B614BD800511EB7 /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953AF1B614BD800511EB7 /* UIView+Extension.m */; };
+		2C7953B81B61F64B00511EB7 /* FirstClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953B71B61F64B00511EB7 /* FirstClassModel.m */; };
+		2C7953BB1B623B3F00511EB7 /* HomeModuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953BA1B623B3F00511EB7 /* HomeModuleModel.m */; };
 		2CF607511B5E4E390022E8E7 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6074F1B5E4E390022E8E7 /* StartViewController.m */; };
 		2CF607521B5E4E390022E8E7 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF607501B5E4E390022E8E7 /* StartViewController.xib */; };
 		2CF6075B1B5E77560022E8E7 /* btn_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6075A1B5E77560022E8E7 /* btn_search@2x.png */; };
@@ -306,6 +314,21 @@
 		2C79539E1B6140D800511EB7 /* icon_user_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_user_default@2x.png"; path = "Resource/icon_user_default@2x.png"; sourceTree = "<group>"; };
 		2C7953A01B61414200511EB7 /* icon_header_back_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_header_back_light@2x.png"; path = "Resource/icon_header_back_light@2x.png"; sourceTree = "<group>"; };
 		2C7953A21B61432500511EB7 /* bg_user_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg_user_img@2x.png"; path = "Resource/bg_user_img@2x.png"; sourceTree = "<group>"; };
+		2C7953A51B614BD800511EB7 /* HACursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HACursor.h; sourceTree = "<group>"; };
+		2C7953A61B614BD800511EB7 /* HACursor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HACursor.m; sourceTree = "<group>"; };
+		2C7953A71B614BD800511EB7 /* HAItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAItemManager.h; sourceTree = "<group>"; };
+		2C7953A81B614BD800511EB7 /* HAItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAItemManager.m; sourceTree = "<group>"; };
+		2C7953A91B614BD800511EB7 /* HAScrollNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HAScrollNavBar.h; sourceTree = "<group>"; };
+		2C7953AA1B614BD800511EB7 /* HAScrollNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HAScrollNavBar.m; sourceTree = "<group>"; };
+		2C7953AB1B614BD800511EB7 /* icons.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = icons.bundle; sourceTree = "<group>"; };
+		2C7953AC1B614BD800511EB7 /* UIColor+RGBA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+RGBA.h"; sourceTree = "<group>"; };
+		2C7953AD1B614BD800511EB7 /* UIColor+RGBA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGBA.m"; sourceTree = "<group>"; };
+		2C7953AE1B614BD800511EB7 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
+		2C7953AF1B614BD800511EB7 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		2C7953B61B61F64B00511EB7 /* FirstClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstClassModel.h; path = Model/FirstClassModel.h; sourceTree = "<group>"; };
+		2C7953B71B61F64B00511EB7 /* FirstClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstClassModel.m; path = Model/FirstClassModel.m; sourceTree = "<group>"; };
+		2C7953B91B623B3F00511EB7 /* HomeModuleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeModuleModel.h; path = Model/HomeModuleModel.h; sourceTree = "<group>"; };
+		2C7953BA1B623B3F00511EB7 /* HomeModuleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeModuleModel.m; path = Model/HomeModuleModel.m; sourceTree = "<group>"; };
 		2CF6074E1B5E4E390022E8E7 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		2CF6074F1B5E4E390022E8E7 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		2CF607501B5E4E390022E8E7 /* StartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
@@ -619,6 +642,7 @@
 		2C2528A81B5E39EF00ADDEFB /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				2C7953A41B614BD800511EB7 /* HACursor */,
 				4A6C15951B60B4B600C9A9D2 /* SMS_SDK.framework */,
 				2C25291A1B5E3FA300ADDEFB /* libz.1.2.5.dylib */,
 				2C2529181B5E3F8500ADDEFB /* CoreFoundation.framework */,
@@ -755,6 +779,24 @@
 				2C7953971B613F4800511EB7 /* icon_userinfo@2x.png */,
 			);
 			name = "个人中心";
+			sourceTree = "<group>";
+		};
+		2C7953A41B614BD800511EB7 /* HACursor */ = {
+			isa = PBXGroup;
+			children = (
+				2C7953A51B614BD800511EB7 /* HACursor.h */,
+				2C7953A61B614BD800511EB7 /* HACursor.m */,
+				2C7953A71B614BD800511EB7 /* HAItemManager.h */,
+				2C7953A81B614BD800511EB7 /* HAItemManager.m */,
+				2C7953A91B614BD800511EB7 /* HAScrollNavBar.h */,
+				2C7953AA1B614BD800511EB7 /* HAScrollNavBar.m */,
+				2C7953AB1B614BD800511EB7 /* icons.bundle */,
+				2C7953AC1B614BD800511EB7 /* UIColor+RGBA.h */,
+				2C7953AD1B614BD800511EB7 /* UIColor+RGBA.m */,
+				2C7953AE1B614BD800511EB7 /* UIView+Extension.h */,
+				2C7953AF1B614BD800511EB7 /* UIView+Extension.m */,
+			);
+			path = HACursor;
 			sourceTree = "<group>";
 		};
 		2CF607581B5E772B0022E8E7 /* Resource */ = {
@@ -989,6 +1031,7 @@
 				2CF607C01B5EC88C0022E8E7 /* icon_breakfest@2x.png in Resources */,
 				2CF607971B5EBDA10022E8E7 /* line_ver_1px_left.png in Resources */,
 				2C79539B1B613F4800511EB7 /* icon_userinfo@2x.png in Resources */,
+				2C7953B31B614BD800511EB7 /* icons.bundle in Resources */,
 				2CF607871B5EABA60022E8E7 /* bg_select_city@2x.png in Resources */,
 				2C10D6BA1B60B7F2008C3DE0 /* ProductViewController.xib in Resources */,
 				2CF607951B5EBDA10022E8E7 /* line_hon_1px_down.png in Resources */,
@@ -1065,12 +1108,16 @@
 				0A3B670D1B6203BC0067C709 /* SettingTableViewCell.m in Sources */,
 				2C10D6B91B60B7F2008C3DE0 /* ProductViewController.m in Sources */,
 				2CF607901B5EB6360022E8E7 /* CampusMoel.m in Sources */,
+				2C7953B01B614BD800511EB7 /* HACursor.m in Sources */,
+				2C7953B21B614BD800511EB7 /* HAScrollNavBar.m in Sources */,
 				2C2528D11B5E39EF00ADDEFB /* MJRefreshFooterView.m in Sources */,
 				2CF6078A1B5EB4770022E8E7 /* LocationModel.m in Sources */,
 				2CF607A31B5EC6A50022E8E7 /* HomeContainView.m in Sources */,
 				2CF607511B5E4E390022E8E7 /* StartViewController.m in Sources */,
+				2C7953B11B614BD800511EB7 /* HAItemManager.m in Sources */,
 				2C2528D21B5E39EF00ADDEFB /* MJRefreshHeaderView.m in Sources */,
 				2CF6077F1B5EA5DB0022E8E7 /* UITableView+YFAdditions.m in Sources */,
+				2C7953B81B61F64B00511EB7 /* FirstClassModel.m in Sources */,
 				2C10D6BF1B60B970008C3DE0 /* SettingViewController.m in Sources */,
 				2C2528801B5E2C9D00ADDEFB /* BaseMenuViewController.m in Sources */,
 				2C2528821B5E2C9D00ADDEFB /* CustomNavigationController.m in Sources */,
@@ -1118,6 +1165,7 @@
 				2C2528D91B5E39EF00ADDEFB /* SBJSON.m in Sources */,
 				2C2528FE1B5E3AA900ADDEFB /* NSString+ParamString.m in Sources */,
 				2C2528CF1B5E39EF00ADDEFB /* MJRefreshBaseView.m in Sources */,
+				2C7953B41B614BD800511EB7 /* UIColor+RGBA.m in Sources */,
 				2CF607671B5E9D100022E8E7 /* SearchHistoryViewController.m in Sources */,
 				2C2528DC1B5E39EF00ADDEFB /* SBJsonWriter.m in Sources */,
 				2C2529061B5E3AA900ADDEFB /* YFDownloaderManager.m in Sources */,
@@ -1125,6 +1173,7 @@
 				2C2528501B5E108900ADDEFB /* main.m in Sources */,
 				2C25288F1B5E2E9400ADDEFB /* HomeViewController.m in Sources */,
 				2C25290B1B5E3AA900ADDEFB /* YFRootBlurViewManager.m in Sources */,
+				2C7953BB1B623B3F00511EB7 /* HomeModuleModel.m in Sources */,
 				2C2529021B5E3AA900ADDEFB /* YFAppBackgroudConfiger.m in Sources */,
 				2C2528D01B5E39EF00ADDEFB /* MJRefreshConst.m in Sources */,
 			);

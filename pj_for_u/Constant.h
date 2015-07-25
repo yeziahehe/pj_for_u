@@ -82,7 +82,7 @@
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
 #define kLocationUrl            @"campus/getCampusAndCity.do"
 #define kLoginUrl               @"user/toLogin.do"
-#define kImageUrl               @"news/getMainImage.do?campusId=1"
+#define kGetMainImageUrl        @"news/getMainImage.do"
 #define kCheckUserExistUrl      @"user/checkUserIsExist.do"
 #define kRegisterUrl            @"user/registerIn.do"
 #define kResetPwdUrl            @"user/resetPassword.do"

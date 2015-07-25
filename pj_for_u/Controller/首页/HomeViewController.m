@@ -12,6 +12,7 @@
 #import "ImageContainView.h"
 #import "HomeContainView.h"
 #import "HomeActivityTableView.h"
+#import "ProductViewController.h"
 
 @interface HomeViewController ()
 @property (nonatomic, strong) NSMutableArray *subViewArray;
@@ -43,13 +44,7 @@
         rect.size.width = ScreenWidth;
         rect.origin.y = originY;
         rect.origin.x = 0.0f;
-        if ([homeSubView isKindOfClass:[ImageContainView class]]) {
-            ImageContainView *icv = (ImageContainView *)homeSubView;
-//            rect.size.height = icv.frame.size.height/320 * ScreenWidth-20;
-            rect.origin.y = 0.0f;
-        }
-        else if ([homeSubView isKindOfClass:[HomeContainView class]]) {
-            HomeContainView *hcv = (HomeContainView *)homeSubView;
+        if ([homeSubView isKindOfClass:[HomeContainView class]]) {
             rect.size.width = ScreenWidth;
             rect.size.height = ScreenWidth / 2.0;
         }
@@ -79,6 +74,8 @@
 {
     //跳转到商品分类页面
     [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
+    ProductViewController *productViewController = [[ProductViewController alloc]initWithNibName:@"ProductViewController" bundle:nil];
+    [self.navigationController pushViewController:productViewController animated:YES];
 }
 
 - (void)rightItemTapped
