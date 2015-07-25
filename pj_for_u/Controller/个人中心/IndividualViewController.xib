@@ -6,7 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IndividualViewController">
             <connections>
-                <outlet property="headPhoto" destination="ts2-SG-kkx" id="TCB-Pf-MME"/>
+                <outlet property="headPhoto" destination="ts2-SG-kkx" id="FNI-bl-Sf5"/>
                 <outlet property="logView" destination="7ix-RM-fMB" id="aQ3-34-ntC"/>
                 <outlet property="nameLabel" destination="XHw-R4-hMu" id="P0p-Lj-7Wp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -23,7 +23,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ix-RM-fMB" userLabel="LogView">
                             <rect key="frame" x="0.0" y="-64" width="375" height="250"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_select_city.png" translatesAutoresizingMaskIntoConstraints="NO" id="ts2-SG-kkx">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_login.png" translatesAutoresizingMaskIntoConstraints="NO" id="ts2-SG-kkx" customClass="YFAsynImageView">
                                     <rect key="frame" x="137" y="84" width="100" height="100"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="100" id="7Fh-IY-kU5"/>
@@ -86,7 +86,7 @@
         </view>
     </objects>
     <resources>
-        <image name="bg_select_city.png" width="100" height="44"/>
+        <image name="bg_login.png" width="375" height="185"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

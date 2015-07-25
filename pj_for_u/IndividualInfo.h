@@ -30,6 +30,6 @@
                             qq:(NSString *)qq
                         weixin:(NSString *)weixin;
 
-- (void)requestForIndividualInfo:(NSString *)phone;
+- (void)requestForIndividualInfo;
 
 @end

@@ -41,15 +41,15 @@
     return _infos;
 }
 
-- (void)requestForIndividualInfo:(NSString *)phone
+- (void)requestForIndividualInfo
 {
-    if (nil == phone)
-        phone = @"";
-    NSString *url = [NSString stringWithFormat:@"http://120.26.76.252:8080/foryou/user/mineInfo.do?phone=18896554880"];
-//    NSMutableDictionary *dict = kCommonParamsDict;
-//    [dict setObject:phone forKey:@"phone"];
+//    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    
+    NSString *url = [NSString stringWithFormat:@"http://120.26.76.252:8080/foryou/user/mineInfo.do?"];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:@"18896554880" forKey:@"phone"];
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
-                                                             postParams:nil
+                                                             postParams:dict
                                                             contentType:@"application/x-www-form-urlencoded"
                                                                delegate:self
                                                                 purpose:kIndividualInfo];
@@ -67,12 +67,36 @@
             [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
             NSDictionary *value = [dict objectForKey:@"userInfo"];
             
-            self.imgUrl = [NSString stringWithFormat:@"%@", [value objectForKey:@"imgUrl"]];
-            self.nickname = [NSString stringWithFormat:@"%@", [value objectForKey:@"nickname"]];
-            self.sex = [NSString stringWithFormat:@"%@", [value objectForKey:@"sex"]];
-            self.academy = [NSString stringWithFormat:@"%@", [value objectForKey:@"academy"]];
-            self.qq = [NSString stringWithFormat:@"%@", [value objectForKey:@"qq"]];
-            self.weixin = [NSString stringWithFormat:@"%@", [value objectForKey:@"weixin"]];
+            if ([value objectForKey:@"imgUrl"] == nil) {
+                self.imgUrl = @"未填写";
+            } else {
+                self.imgUrl = [NSString stringWithFormat:@"%@", [value objectForKey:@"imgUrl"]];
+            }
+            if ([value objectForKey:@"nickname"] == nil) {
+                self.nickname = @"未填写";
+            } else {
+                self.nickname = [NSString stringWithFormat:@"%@", [value objectForKey:@"nickname"]];
+            }
+            if ([value objectForKey:@"sex"] == nil) {
+                self.sex = @"未填写";
+            } else {
+                self.sex = [NSString stringWithFormat:@"%@", [value objectForKey:@"sex"]];
+            }
+            if ([value objectForKey:@"academy"] == nil) {
+                self.academy = @"未填写";
+            } else {
+                self.academy = [NSString stringWithFormat:@"%@", [value objectForKey:@"academy"]];
+            }
+            if ([value objectForKey:@"qq"] == nil) {
+                self.qq = @"未填写";
+            } else {
+                self.qq = [NSString stringWithFormat:@"%@", [value objectForKey:@"qq"]];
+            }
+            if ([value objectForKey:@"weixin"] == nil) {
+                self.weixin = @"未填写";
+            } else {
+                self.weixin = [NSString stringWithFormat:@"%@", [value objectForKey:@"weixin"]];
+            }
             
             [self.infos addObject:self.imgUrl];
             [self.infos addObject:self.nickname];

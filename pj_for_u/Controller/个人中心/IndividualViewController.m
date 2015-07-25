@@ -10,14 +10,17 @@
 #import "IndividualTableViewCell.h"
 #import "IndividualSubViewController.h"
 
-#import "IndividualInfo.h"
+
 
 @interface IndividualViewController ()
 
 @property (strong, nonatomic) UIView *navBackView;
 @property (strong, nonatomic) NSMutableArray *cellArray;
 @property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) IndividualInfo *individualInfo;
+
+@property (strong, nonatomic) IBOutlet UIView *logView;
+@property (strong, nonatomic) IBOutlet YFAsynImageView *headPhoto;
+@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end
 
@@ -26,14 +29,6 @@
 {
     NSString *path = [[NSBundle mainBundle] pathForResource:@"IndividualInfoMap" ofType:@"plist"];
     self.cellArray = [NSMutableArray arrayWithContentsOfFile:path];
-}
-
-- (IndividualInfo *)individualInfo
-{
-    if (!_individualInfo) {
-        _individualInfo = [[IndividualInfo alloc] init];
-    }
-    return _individualInfo;
 }
 
 - (void)addImageBorder
@@ -46,12 +41,15 @@
 }
 
 
-- (void)loadIndividual:(NSNotification *)notification
+- (void)loadIndividual
 {
+    self.nameLabel.text = self.individualInfo.infos[1];
+    self.headPhoto.cacheDir = kUserIconCacheDir;
+    [self.headPhoto aysnLoadImageWithUrl:self.individualInfo.imgUrl placeHolder:@"bg_login.png"];
+    
     for (int i = 0; i < self.cellArray.count; i++) {
         self.cellArray[i][2] = self.individualInfo.infos[i + 1];
     }
-    [self.tableView reloadData];
 }
 
 
@@ -93,6 +91,7 @@
     individualSubViewController.textFieldString = cell.secondLabel.text;
     individualSubViewController.indexPath = indexPath;
     individualSubViewController.cellArray = self.cellArray;
+    individualSubViewController.individualInfo = self.individualInfo;
     
     [self.navigationController pushViewController:individualSubViewController animated:YES];
 
@@ -112,13 +111,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addImageBorder];
-    [self loadFile];
-    
-    [self.individualInfo requestForIndividualInfo:[MemberDataManager sharedManager].loginMember.phone];
     
     [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_back_light.png"];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadIndividual:) name:@"loadIndividual" object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -127,8 +122,10 @@
     
     self.logView.backgroundColor = kMainProjColor;
     
+    [self loadFile];
+    [self loadIndividual];
+
     [self.tableView reloadData];
 }
-
 
 @end
