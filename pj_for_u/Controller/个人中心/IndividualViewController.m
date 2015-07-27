@@ -9,7 +9,7 @@
 #import "IndividualViewController.h"
 #import "IndividualTableViewCell.h"
 #import "IndividualSubViewController.h"
-
+#import "IndividualSexViewController.h"
 
 
 @interface IndividualViewController ()
@@ -85,15 +85,23 @@
     
     IndividualTableViewCell *cell = (IndividualTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     
-    IndividualSubViewController *individualSubViewController = [[IndividualSubViewController alloc] init];
-    
-    individualSubViewController.navigationTitle = cell.firstLabel.text;
-    individualSubViewController.textFieldString = cell.secondLabel.text;
-    individualSubViewController.indexPath = indexPath;
-    individualSubViewController.cellArray = self.cellArray;
-    individualSubViewController.individualInfo = self.individualInfo;
-    
-    [self.navigationController pushViewController:individualSubViewController animated:YES];
+    if (indexPath.section == 1) {
+        IndividualSexViewController *individualSexViewController = [[IndividualSexViewController alloc] init];
+        individualSexViewController.individualInfo = self.individualInfo;
+        individualSexViewController.sex = cell.secondLabel.text;
+        [self.navigationController pushViewController:individualSexViewController animated:YES];
+        
+    } else {
+        IndividualSubViewController *individualSubViewController = [[IndividualSubViewController alloc] init];
+        
+        individualSubViewController.navigationTitle = cell.firstLabel.text;
+        individualSubViewController.textFieldString = cell.secondLabel.text;
+        individualSubViewController.indexPath = indexPath;
+        individualSubViewController.cellArray = self.cellArray;
+        individualSubViewController.individualInfo = self.individualInfo;
+        
+        [self.navigationController pushViewController:individualSubViewController animated:YES];
+    }
 
 }
 
