@@ -45,8 +45,11 @@
         rect.origin.y = originY;
         rect.origin.x = 0.0f;
         if ([homeSubView isKindOfClass:[HomeContainView class]]) {
-            rect.size.width = ScreenWidth;
             rect.size.height = ScreenWidth / 2.0;
+        }
+        else if ([homeSubView isKindOfClass:[HomeActivityTableView class]]) {
+            HomeActivityTableView *hat = (HomeActivityTableView *)homeSubView;
+            rect.size.height = hat.activityTableview.contentSize.height;
         }
         homeSubView.frame = rect;
         [self.contentScrollView addSubview:homeSubView];
