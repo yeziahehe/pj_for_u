@@ -43,9 +43,9 @@
 
 - (void)requestForIndividualInfo
 {
-    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中..."];
-//    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
     
+//    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中..."];
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kIndividualInfoUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:@"18888888888" forKey:@"phone"];

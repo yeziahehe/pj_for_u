@@ -28,7 +28,7 @@
                            sex:(NSString *)sex
                        academy:(NSString *)academy
                             qq:(NSString *)qq
-                        weixin:(NSString *)weixin;
+                        weiXin:(NSString *)weixin;
 
 - (void)requestForIndividualInfo;
 
