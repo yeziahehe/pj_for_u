@@ -18,7 +18,7 @@
 @property (strong, nonatomic) NSString *sex;
 @property (strong, nonatomic) NSString *academy;
 @property (strong, nonatomic) NSString *qq;
-@property (strong, nonatomic) NSString *weixin;
+@property (strong, nonatomic) NSString *weiXin;
 
 @property (strong, nonatomic) NSMutableArray *infos;
 
