@@ -88,6 +88,8 @@
 #define kRegisterUrl            @"user/registerIn.do"
 #define kResetPwdUrl            @"user/resetPassword.do"
 #define kIndividualInfoUrl      @"user/mineInfo.do?"
-#define kGetModuleTypeUrl       @"service/getHomeCategoryInfo.do" 
+#define kGetModuleTypeUrl       @"service/getHomeCategoryInfo.do"
+#define kAddReciverUrl          @"receiver/addReceiver.do"
+#define kGetReciverUrl          @"receiver/selectReceiver.do"
 
 #endif
