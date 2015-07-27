@@ -11,6 +11,8 @@
 		0A3B670D1B6203BC0067C709 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B670B1B6203BC0067C709 /* SettingTableViewCell.m */; };
 		0A3B670E1B6203BC0067C709 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B670C1B6203BC0067C709 /* SettingTableViewCell.xib */; };
 		0A3B67121B622F5A0067C709 /* aboutImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B67111B622F5A0067C709 /* aboutImage.png */; };
+		0ACABED11B65FFAB009B18E0 /* HomeActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */; };
+		0ACABED21B65FFAB009B18E0 /* HomeActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */; };
 		0AE093071B60D2EC0095D639 /* AboutAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093051B60D2EC0095D639 /* AboutAppViewController.m */; };
 		0AE093081B60D2EC0095D639 /* AboutAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */; };
 		2C10D6A81B609335008C3DE0 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */; };
@@ -158,6 +160,12 @@
 		4A6C15AD1B66194400C9A9D2 /* AddressManageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15AB1B66194400C9A9D2 /* AddressManageTableViewCell.xib */; };
 		4A6C15B01B66247700C9A9D2 /* AddressInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15AF1B66247700C9A9D2 /* AddressInfo.m */; };
 		6D10BE6E1B61FA3700D3638C /* IndividualInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */; };
+		6D7716E51B65F1EE00257256 /* IndividualSexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7716E31B65F1EE00257256 /* IndividualSexViewController.m */; };
+		6D7716E61B65F1EE00257256 /* IndividualSexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E41B65F1EE00257256 /* IndividualSexViewController.xib */; };
+		6D7716EB1B65F4C700257256 /* empty_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E71B65F4C700257256 /* empty_choice@2x.png */; };
+		6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E81B65F4C700257256 /* empty_choice@3x.png */; };
+		6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E91B65F4C700257256 /* full_choice@2x.png */; };
+		6D7716EE1B65F4C700257256 /* full_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716EA1B65F4C700257256 /* full_choice@3x.png */; };
 		6D8AD3EC1B6097C70099A0D8 /* IndividualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD3EA1B6097C70099A0D8 /* IndividualViewController.m */; };
 		6D8AD3ED1B6097C70099A0D8 /* IndividualViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3EB1B6097C70099A0D8 /* IndividualViewController.xib */; };
 		6D8AD3F31B60BD250099A0D8 /* AddressManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD3F11B60BD250099A0D8 /* AddressManageViewController.m */; };
@@ -186,6 +194,9 @@
 		0A3B670B1B6203BC0067C709 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingTableViewCell.m; path = "Controller/设置/SettingTableViewCell.m"; sourceTree = "<group>"; };
 		0A3B670C1B6203BC0067C709 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingTableViewCell.xib; path = "Controller/设置/SettingTableViewCell.xib"; sourceTree = "<group>"; };
 		0A3B67111B622F5A0067C709 /* aboutImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = aboutImage.png; path = Resource/aboutImage.png; sourceTree = "<group>"; };
+		0ACABECE1B65FFAB009B18E0 /* HomeActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeActivityTableViewCell.h; path = "Controller/首页/HomeActivityTableViewCell.h"; sourceTree = "<group>"; };
+		0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeActivityTableViewCell.m; path = "Controller/首页/HomeActivityTableViewCell.m"; sourceTree = "<group>"; };
+		0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeActivityTableViewCell.xib; path = "Controller/首页/HomeActivityTableViewCell.xib"; sourceTree = "<group>"; };
 		0AE093041B60D2EC0095D639 /* AboutAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutAppViewController.h; path = "Controller/设置/AboutAppViewController.h"; sourceTree = "<group>"; };
 		0AE093051B60D2EC0095D639 /* AboutAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutAppViewController.m; path = "Controller/设置/AboutAppViewController.m"; sourceTree = "<group>"; };
 		0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutAppViewController.xib; path = "Controller/设置/AboutAppViewController.xib"; sourceTree = "<group>"; };
@@ -419,6 +430,13 @@
 		4A6C15AF1B66247700C9A9D2 /* AddressInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressInfo.m; path = Model/AddressInfo.m; sourceTree = "<group>"; };
 		6D10BE6C1B61FA3700D3638C /* IndividualInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualInfo.h; sourceTree = "<group>"; };
 		6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualInfo.m; sourceTree = "<group>"; };
+		6D7716E21B65F1EE00257256 /* IndividualSexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualSexViewController.h; sourceTree = "<group>"; };
+		6D7716E31B65F1EE00257256 /* IndividualSexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualSexViewController.m; sourceTree = "<group>"; };
+		6D7716E41B65F1EE00257256 /* IndividualSexViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualSexViewController.xib; sourceTree = "<group>"; };
+		6D7716E71B65F4C700257256 /* empty_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@2x.png"; path = "Resource/empty_choice@2x.png"; sourceTree = "<group>"; };
+		6D7716E81B65F4C700257256 /* empty_choice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@3x.png"; path = "Resource/empty_choice@3x.png"; sourceTree = "<group>"; };
+		6D7716E91B65F4C700257256 /* full_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "full_choice@2x.png"; path = "Resource/full_choice@2x.png"; sourceTree = "<group>"; };
+		6D7716EA1B65F4C700257256 /* full_choice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "full_choice@3x.png"; path = "Resource/full_choice@3x.png"; sourceTree = "<group>"; };
 		6D8AD3E91B6097C70099A0D8 /* IndividualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualViewController.h; sourceTree = "<group>"; };
 		6D8AD3EA1B6097C70099A0D8 /* IndividualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualViewController.m; sourceTree = "<group>"; };
 		6D8AD3EB1B6097C70099A0D8 /* IndividualViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualViewController.xib; sourceTree = "<group>"; };
@@ -645,6 +663,9 @@
 				2CF607C81B5EC9DE0022E8E7 /* HomeActivityTableView.h */,
 				2CF607C91B5EC9DE0022E8E7 /* HomeActivityTableView.m */,
 				2CF607CB1B5EC9E90022E8E7 /* HomeActivityTableView.xib */,
+				0ACABECE1B65FFAB009B18E0 /* HomeActivityTableViewCell.h */,
+				0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */,
+				0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */,
 				2CF607701B5EA1450022E8E7 /* 首页面子页面 */,
 			);
 			name = "首页";
@@ -789,6 +810,10 @@
 		2C7953931B613EC000511EB7 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				6D7716E71B65F4C700257256 /* empty_choice@2x.png */,
+				6D7716E81B65F4C700257256 /* empty_choice@3x.png */,
+				6D7716E91B65F4C700257256 /* full_choice@2x.png */,
+				6D7716EA1B65F4C700257256 /* full_choice@3x.png */,
 				4A6C15A21B65C84900C9A9D2 /* icon_addAdress@2x.png */,
 				0A3B67111B622F5A0067C709 /* aboutImage.png */,
 				2C7953A21B61432500511EB7 /* bg_user_img@2x.png */,
@@ -957,6 +982,9 @@
 				6D8AD3FC1B60E2510099A0D8 /* IndividualSubViewController.h */,
 				6D8AD3FD1B60E2510099A0D8 /* IndividualSubViewController.m */,
 				6D8AD3FE1B60E2510099A0D8 /* IndividualSubViewController.xib */,
+				6D7716E21B65F1EE00257256 /* IndividualSexViewController.h */,
+				6D7716E31B65F1EE00257256 /* IndividualSexViewController.m */,
+				6D7716E41B65F1EE00257256 /* IndividualSexViewController.xib */,
 			);
 			name = "个人信息";
 			sourceTree = "<group>";
@@ -1049,12 +1077,14 @@
 				2C2528841B5E2C9D00ADDEFB /* RootTabBarViewController.xib in Resources */,
 				2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */,
 				6D8AD3F41B60BD250099A0D8 /* AddressManageViewController.xib in Resources */,
+				6D7716E61B65F1EE00257256 /* IndividualSexViewController.xib in Resources */,
 				2CF607851B5EA9150022E8E7 /* SchoolSelectTableView.xib in Resources */,
 				2CF607661B5E9D100022E8E7 /* LocationViewController.xib in Resources */,
 				2CF6077A1B5EA3FF0022E8E7 /* CitySelectTableView.xib in Resources */,
 				6D8AD4001B60E2510099A0D8 /* IndividualSubViewController.xib in Resources */,
 				4A6C15851B5F877F00C9A9D2 /* UserInfoViewController.xib in Resources */,
 				4A6C15791B5F7D5300C9A9D2 /* icon_login_secret@2x.png in Resources */,
+				0ACABED21B65FFAB009B18E0 /* HomeActivityTableViewCell.xib in Resources */,
 				2CF607C01B5EC88C0022E8E7 /* icon_breakfest@2x.png in Resources */,
 				2CF607971B5EBDA10022E8E7 /* line_ver_1px_left.png in Resources */,
 				2C79539B1B613F4800511EB7 /* icon_userinfo@2x.png in Resources */,
@@ -1069,6 +1099,7 @@
 				2C7953921B6134B400511EB7 /* icon_new@2x.png in Resources */,
 				2C10D6C01B60B970008C3DE0 /* SettingViewController.xib in Resources */,
 				2C7953901B61321B00511EB7 /* home_image_default@2x.png in Resources */,
+				6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */,
 				2C2528991B5E38B100ADDEFB /* RegisterViewController.xib in Resources */,
 				2CF607A51B5EC6B60022E8E7 /* HomeContainView.xib in Resources */,
 				2CF607961B5EBDA10022E8E7 /* line_hon_1px_up.png in Resources */,
@@ -1087,6 +1118,7 @@
 				2C25288A1B5E2E1E00ADDEFB /* LoginViewController.xib in Resources */,
 				4A6C15941B60915500C9A9D2 /* icon_disagree@2x.png in Resources */,
 				0A3B670E1B6203BC0067C709 /* SettingTableViewCell.xib in Resources */,
+				6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */,
 				2CF607C41B5EC88C0022E8E7 /* icon_more@2x.png in Resources */,
 				4A6C15A31B65C84900C9A9D2 /* icon_addAdress@2x.png in Resources */,
 				2C2529091B5E3AA900ADDEFB /* YFProgressHUD.bundle in Resources */,
@@ -1102,6 +1134,7 @@
 				2C25289B1B5E38B100ADDEFB /* ResetPwdViewController.xib in Resources */,
 				2CF607C61B5EC88C0022E8E7 /* icon_preference@2x.png in Resources */,
 				2C2528901B5E2E9400ADDEFB /* HomeViewController.xib in Resources */,
+				6D7716EE1B65F4C700257256 /* full_choice@3x.png in Resources */,
 				6D8AD3FB1B60C6290099A0D8 /* IndividualInfoMap.plist in Resources */,
 				4A6C15751B5F7B1000C9A9D2 /* bg_login@2x.png in Resources */,
 				6D8AD3F91B60C2AF0099A0D8 /* IndividualTableViewCell.xib in Resources */,
@@ -1158,6 +1191,7 @@
 				4A6C15B01B66247700C9A9D2 /* AddressInfo.m in Sources */,
 				2C25289A1B5E38B100ADDEFB /* ResetPwdViewController.m in Sources */,
 				2C2528FD1B5E3AA900ADDEFB /* NSDate+YFAdditions.m in Sources */,
+				6D7716E51B65F1EE00257256 /* IndividualSexViewController.m in Sources */,
 				4A6C15831B5F877F00C9A9D2 /* UserInfoSubView.m in Sources */,
 				2C2528DA1B5E39EF00ADDEFB /* SBJsonBase.m in Sources */,
 				6D8AD3F31B60BD250099A0D8 /* AddressManageViewController.m in Sources */,
@@ -1205,6 +1239,7 @@
 				2C2528501B5E108900ADDEFB /* main.m in Sources */,
 				2C25288F1B5E2E9400ADDEFB /* HomeViewController.m in Sources */,
 				2C25290B1B5E3AA900ADDEFB /* YFRootBlurViewManager.m in Sources */,
+				0ACABED11B65FFAB009B18E0 /* HomeActivityTableViewCell.m in Sources */,
 				2C2529021B5E3AA900ADDEFB /* YFAppBackgroudConfiger.m in Sources */,
 				2C2528D01B5E39EF00ADDEFB /* MJRefreshConst.m in Sources */,
 				2C5C08481B63433D0004286C /* FirstClassModel.m in Sources */,

@@ -9,14 +9,14 @@
 #import "IndividualViewController.h"
 #import "IndividualTableViewCell.h"
 #import "IndividualSubViewController.h"
-
+#import "IndividualSexViewController.h"
 
 
 @interface IndividualViewController ()
 
 @property (strong, nonatomic) UIView *navBackView;
 @property (strong, nonatomic) NSMutableArray *cellArray;
-@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) IBOutlet UIView *logView;
 @property (strong, nonatomic) IBOutlet YFAsynImageView *headPhoto;
@@ -50,6 +50,7 @@
     for (int i = 0; i < self.cellArray.count; i++) {
         self.cellArray[i][2] = self.individualInfo.infos[i + 1];
     }
+    [self.tableView reloadData];
 }
 
 
@@ -65,14 +66,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *individualTableViewCell = @"IndividualTableViewCell";
-    
-    IndividualTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:individualTableViewCell];
-    
-    if (cell == nil) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"IndividualTableViewCell" owner:self options:nil] lastObject];
-    }
-    
+    IndividualTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IndividualTableViewCell"
+                                                            forIndexPath:indexPath];
+
     cell.firstLabel.text = self.cellArray[indexPath.section][0];
     cell.secondLabel.text = self.cellArray[indexPath.section][2];
     
@@ -85,15 +81,22 @@
     
     IndividualTableViewCell *cell = (IndividualTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     
-    IndividualSubViewController *individualSubViewController = [[IndividualSubViewController alloc] init];
-    
-    individualSubViewController.navigationTitle = cell.firstLabel.text;
-    individualSubViewController.textFieldString = cell.secondLabel.text;
-    individualSubViewController.indexPath = indexPath;
-    individualSubViewController.cellArray = self.cellArray;
-    individualSubViewController.individualInfo = self.individualInfo;
-    
-    [self.navigationController pushViewController:individualSubViewController animated:YES];
+    if (indexPath.section == 1) {
+        IndividualSexViewController *individualSexViewController = [[IndividualSexViewController alloc] init];
+        individualSexViewController.individualInfo = self.individualInfo;
+        individualSexViewController.sex = cell.secondLabel.text;
+        [self.navigationController pushViewController:individualSexViewController animated:YES];
+        
+    } else {
+        IndividualSubViewController *individualSubViewController = [[IndividualSubViewController alloc] init];
+        
+        individualSubViewController.navigationTitle = cell.firstLabel.text;
+        individualSubViewController.textFieldString = cell.secondLabel.text;
+        individualSubViewController.indexPath = indexPath;
+        individualSubViewController.individualInfo = self.individualInfo;
+        
+        [self.navigationController pushViewController:individualSubViewController animated:YES];
+    }
 
 }
 
@@ -111,6 +114,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self addImageBorder];
+    [self loadFile];
+    
+    UINib *nib = [UINib nibWithNibName:@"IndividualTableViewCell" bundle:nil];
+    
+    [self.tableView registerNib:nib
+         forCellReuseIdentifier:@"IndividualTableViewCell"];
+
     
     [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_back_light.png"];
     
@@ -119,13 +129,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self loadIndividual];
     self.logView.backgroundColor = kMainProjColor;
     
-    [self loadFile];
-    [self loadIndividual];
-
-    [self.tableView reloadData];
+    
+    
 }
 
 @end

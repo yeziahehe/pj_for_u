@@ -1,20 +1,23 @@
 //
-//  IndividualSubViewController.m
+//  IndividualSexViewController.m
 //  pj_for_u
 //
-//  Created by MiY on 15/7/23.
+//  Created by MiY on 15/7/27.
 //  Copyright (c) 2015年 叶帆. All rights reserved.
 //
 
-#import "IndividualSubViewController.h"
+#import "IndividualSexViewController.h"
 
-@interface IndividualSubViewController ()
+@interface IndividualSexViewController ()
 
-@property (strong, nonatomic) IBOutlet UITextField *textField;
+@property (strong, nonatomic) IBOutlet UIButton *manButton;
+@property (strong, nonatomic) IBOutlet UIButton *womanButton;
+
+
 
 @end
 
-@implementation IndividualSubViewController
+@implementation IndividualSexViewController
 
 - (void)updateIndividualInfo
 {
@@ -32,8 +35,6 @@
     } else {
         [dict setObject:@"1" forKey:@"sex"];
     }
-    
-    
     [dict setObject:self.individualInfo.academy forKey:@"academy"];
     [dict setObject:self.individualInfo.qq forKey:@"qq"];
     [dict setObject:self.individualInfo.weiXin forKey:@"weiXin"];
@@ -45,64 +46,43 @@
                                                                 purpose:@"saveIndividualInfo"];
 }
 
-
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+- (IBAction)selectMan:(UIButton *)sender
 {
-    [textField resignFirstResponder];
-    
-    self.individualInfo.infos[self.indexPath.section + 1] = self.textField.text;
-    
-    switch (self.indexPath.section) {
-        case 0:
-            self.individualInfo.nickname = self.textField.text;
-            break;
-        case 1:
-            self.individualInfo.sex = self.textField.text;
-            break;
-        case 2:
-            self.individualInfo.academy = self.textField.text;
-            break;
-        case 3:
-            self.individualInfo.qq = self.textField.text;
-            break;
-        case 4:
-            self.individualInfo.weiXin = self.textField.text;
-            break;
-        default:
-            break;
-    }
-    
-    [self updateIndividualInfo];
-    
-    return YES;
+    [self.manButton setImage:[UIImage imageNamed:@"full_choice.png"] forState:UIControlStateNormal];
+    [self.womanButton setImage:[UIImage imageNamed:@"empty_choice.png"] forState:UIControlStateNormal];
+    self.sex = @"男";
+}
+
+- (IBAction)selectWoman:(UIButton *)sender
+{
+    [self.womanButton setImage:[UIImage imageNamed:@"full_choice.png"] forState:UIControlStateNormal];
+    [self.manButton setImage:[UIImage imageNamed:@"empty_choice.png"] forState:UIControlStateNormal];
+    self.sex = @"女";
 }
 
 - (void)rightItemTapped
 {
-    [self textFieldShouldReturn:self.textField];
+    self.individualInfo.infos[2] = self.sex;
+    self.individualInfo.sex = self.sex;
+    [self updateIndividualInfo];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNaviTitle:self.navigationTitle];
-    
-    self.textField.text = self.textFieldString;
-    [self.textField becomeFirstResponder];
+    [self setNaviTitle:@"性别"];
     
     [self setRightNaviItemWithTitle:@"保存" imageName:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [self.view endEditing:YES];
-}
-
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
+    
+    self.manButton.userInteractionEnabled = YES;
+    
+    if ([self.individualInfo.sex isEqualToString:@"男"]) {
+        [self.manButton setImage:[UIImage imageNamed:@"full_choice.png"] forState:UIControlStateNormal];
+        [self.womanButton setImage:[UIImage imageNamed:@"empty_choice.png"] forState:UIControlStateNormal];
+    } else if ([self.individualInfo.sex isEqualToString:@"女"]) {
+        [self.womanButton setImage:[UIImage imageNamed:@"full_choice.png"] forState:UIControlStateNormal];
+        [self.manButton setImage:[UIImage imageNamed:@"empty_choice.png"] forState:UIControlStateNormal];
+    }
 }
 
 #pragma mark - YFDownloaderDelegate Methods
@@ -121,11 +101,16 @@
             [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
             NSString *message = @"保存失败！";
             [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
-
+            
         }
         [self.navigationController popViewControllerAnimated:YES];
     }
     
+}
+
+- (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
+{
+    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:2.f];
 }
 
 

@@ -9,6 +9,7 @@
                 <outlet property="headPhoto" destination="ts2-SG-kkx" id="FNI-bl-Sf5"/>
                 <outlet property="logView" destination="7ix-RM-fMB" id="aQ3-34-ntC"/>
                 <outlet property="nameLabel" destination="XHw-R4-hMu" id="P0p-Lj-7Wp"/>
+                <outlet property="tableView" destination="nVZ-lQ-QzJ" id="JSf-76-piA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
