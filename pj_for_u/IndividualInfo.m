@@ -17,7 +17,7 @@
                            sex:(NSString *)sex
                        academy:(NSString *)academy
                             qq:(NSString *)qq
-                        weixin:(NSString *)weixin
+                        weiXin:(NSString *)weiXin
 {
     self = [super init];
 
@@ -27,7 +27,7 @@
         _sex = sex;
         _academy = academy;
         _qq = qq;
-        _weixin = weixin;
+        _weiXin = weiXin;
     }
 
     return self;
@@ -43,11 +43,12 @@
 
 - (void)requestForIndividualInfo
 {
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中..."];
 //    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
     
-    NSString *url = [NSString stringWithFormat:@"http://120.26.76.252:8080/foryou/user/mineInfo.do?"];
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kIndividualInfoUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:@"18896554880" forKey:@"phone"];
+    [dict setObject:@"18888888888" forKey:@"phone"];
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict
                                                             contentType:@"application/x-www-form-urlencoded"
@@ -80,7 +81,12 @@
             if ([value objectForKey:@"sex"] == nil) {
                 self.sex = @"未填写";
             } else {
-                self.sex = [NSString stringWithFormat:@"%@", [value objectForKey:@"sex"]];
+                NSString *mySex = [NSString stringWithFormat:@"%@", [value objectForKey:@"sex"]];
+                if ([mySex isEqualToString:@"0"]) {
+                    self.sex = @"男";
+                } else {
+                    self.sex = @"女";
+                }
             }
             if ([value objectForKey:@"academy"] == nil) {
                 self.academy = @"未填写";
@@ -92,10 +98,10 @@
             } else {
                 self.qq = [NSString stringWithFormat:@"%@", [value objectForKey:@"qq"]];
             }
-            if ([value objectForKey:@"weixin"] == nil) {
-                self.weixin = @"未填写";
+            if ([value objectForKey:@"weiXin"] == nil) {
+                self.weiXin = @"未填写";
             } else {
-                self.weixin = [NSString stringWithFormat:@"%@", [value objectForKey:@"weixin"]];
+                self.weiXin = [NSString stringWithFormat:@"%@", [value objectForKey:@"weiXin"]];
             }
             
             [self.infos addObject:self.imgUrl];
@@ -103,7 +109,7 @@
             [self.infos addObject:self.sex];
             [self.infos addObject:self.academy];
             [self.infos addObject:self.qq];
-            [self.infos addObject:self.weixin];
+            [self.infos addObject:self.weiXin];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:@"loadIndividual" object:nil];
             

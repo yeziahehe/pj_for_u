@@ -11,12 +11,60 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-            <point key="canvasLocation" x="244" y="271"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFz-7M-4NT">
+                    <rect key="frame" x="0.0" y="78" width="375" height="44"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_addAdress.png" translatesAutoresizingMaskIntoConstraints="NO" id="IIV-lz-EHa">
+                            <rect key="frame" x="9" y="11" width="22" height="22"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增收货地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6h2-4I-9d5">
+                            <rect key="frame" x="39" y="11" width="96" height="21"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="21" id="77T-V5-4Cf"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.91764705879999997" green="0.2901960784" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="6h2-4I-9d5" firstAttribute="leading" secondItem="IIV-lz-EHa" secondAttribute="trailing" constant="8" id="3c2-Fw-9EX"/>
+                        <constraint firstAttribute="bottom" secondItem="6h2-4I-9d5" secondAttribute="bottom" constant="12" id="Bod-6v-0FX"/>
+                        <constraint firstItem="6h2-4I-9d5" firstAttribute="top" secondItem="MFz-7M-4NT" secondAttribute="top" constant="11" id="DYy-wA-aIl"/>
+                        <constraint firstItem="IIV-lz-EHa" firstAttribute="top" secondItem="MFz-7M-4NT" secondAttribute="top" constant="11" id="PFD-oz-5kl"/>
+                        <constraint firstAttribute="bottom" secondItem="IIV-lz-EHa" secondAttribute="bottom" constant="11" id="bGU-Cp-3po"/>
+                        <constraint firstAttribute="height" constant="44" id="eTZ-Gj-h6W"/>
+                        <constraint firstItem="IIV-lz-EHa" firstAttribute="leading" secondItem="MFz-7M-4NT" secondAttribute="leading" constant="9" id="jjy-tc-TBL"/>
+                        <constraint firstItem="6h2-4I-9d5" firstAttribute="leading" secondItem="IIV-lz-EHa" secondAttribute="trailing" constant="8" id="rMW-Oj-Vjy"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8rW-3c-A1O">
+                    <rect key="frame" x="0.0" y="146" width="375" height="521"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="8rW-3c-A1O" firstAttribute="top" secondItem="MFz-7M-4NT" secondAttribute="bottom" constant="24" id="7ke-ou-5MS"/>
+                <constraint firstItem="8rW-3c-A1O" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8dk-zr-Vtv"/>
+                <constraint firstAttribute="trailing" secondItem="8rW-3c-A1O" secondAttribute="trailing" id="EaI-nO-SDl"/>
+                <constraint firstItem="MFz-7M-4NT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NCO-fz-UwM"/>
+                <constraint firstItem="MFz-7M-4NT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="78" id="ZOX-PG-YhM"/>
+                <constraint firstAttribute="trailing" secondItem="MFz-7M-4NT" secondAttribute="trailing" id="jWl-Re-4R1"/>
+                <constraint firstAttribute="bottom" secondItem="8rW-3c-A1O" secondAttribute="bottom" id="mf1-tS-Xm8"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="243.5" y="270.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="icon_addAdress.png" width="22" height="22"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
