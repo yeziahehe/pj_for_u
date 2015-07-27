@@ -18,7 +18,7 @@
 
 - (void)updateIndividualInfo
 {
-    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"保存中..."];
+    //[[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"保存中..."];
     //    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
     
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSaveIndividualInfo];

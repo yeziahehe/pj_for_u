@@ -93,7 +93,6 @@
         individualSubViewController.navigationTitle = cell.firstLabel.text;
         individualSubViewController.textFieldString = cell.secondLabel.text;
         individualSubViewController.indexPath = indexPath;
-        individualSubViewController.cellArray = self.cellArray;
         individualSubViewController.individualInfo = self.individualInfo;
         
         [self.navigationController pushViewController:individualSubViewController animated:YES];
