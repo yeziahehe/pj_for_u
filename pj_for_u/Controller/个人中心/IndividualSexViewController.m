@@ -21,7 +21,7 @@
 
 - (void)updateIndividualInfo
 {
-    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"保存中..."];
+    //[[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"保存中..."];
     //    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
     
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSaveIndividualInfo];
@@ -35,8 +35,6 @@
     } else {
         [dict setObject:@"1" forKey:@"sex"];
     }
-    
-    
     [dict setObject:self.individualInfo.academy forKey:@"academy"];
     [dict setObject:self.individualInfo.qq forKey:@"qq"];
     [dict setObject:self.individualInfo.weiXin forKey:@"weiXin"];
@@ -66,7 +64,7 @@
 {
     self.individualInfo.infos[2] = self.sex;
     self.individualInfo.sex = self.sex;
-    [self.navigationController popViewControllerAnimated:YES];
+    [self updateIndividualInfo];
 }
 
 - (void)viewDidLoad

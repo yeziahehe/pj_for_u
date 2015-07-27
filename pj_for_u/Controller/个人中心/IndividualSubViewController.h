@@ -15,7 +15,6 @@
 @property (nonatomic, strong) NSString *textFieldString;
 
 @property (nonatomic, strong) NSIndexPath *indexPath;
-@property (nonatomic, strong) NSMutableArray *cellArray;
 
 @property (nonatomic, strong) IndividualInfo *individualInfo;
 
