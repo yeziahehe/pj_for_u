@@ -19,6 +19,7 @@
 @property (nonatomic, strong) NSArray *menuArray;
 @property (nonatomic, strong) UISwitch *pushSwitch;
 @property (nonatomic, strong) NSString *phoneNum;
+@property  BOOL remote;
 
 @end
 
@@ -32,11 +33,25 @@
     self.settingTableView.tableFooterView = self.logoutView;
 }
 
+- (BOOL)checkRemoteNotificationType
+{
+    UIRemoteNotificationType types;
+    if(IsIos8){
+        types = [[UIApplication sharedApplication] currentUserNotificationSettings].types;
+;
+    }
+    else{
+         types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
+    }
+    return (types & UIRemoteNotificationTypeAlert);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNaviTitle:@"设置"];
     [self loadSubViews];
     self.phoneNum = @"18013646790";
+    self.remote = [self checkRemoteNotificationType];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -107,11 +122,13 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     if (indexPath.section ==3) {
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
          self.pushSwitch = [[UISwitch alloc] init];
         CGRect frame = self.pushSwitch.frame;
         frame.origin.x = ScreenWidth - 8 - frame.size.width;
         frame.origin.y = cell.center.y - frame.size.height/2;
         self.pushSwitch.frame = frame;
+        [self.pushSwitch setOn:self.remote];
         [cell.contentView addSubview:self.pushSwitch];
     }
     return cell;
@@ -166,9 +183,8 @@
     }
     else if ([titleString isEqualToString:@"联系客服"])
     {
-        NSString *phoneNum = @"18013646790";
         CallNumAndMessViewController *callNum = [[CallNumAndMessViewController alloc]init];
-        callNum.phoneNum = phoneNum;
+        callNum.phoneNum = self.phoneNum;
         callNum.useViewController = self;
         [callNum clickPhone];
     }

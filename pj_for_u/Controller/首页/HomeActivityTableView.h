@@ -8,6 +8,7 @@
 
 #import "HomeSubView.h"
 
-@interface HomeActivityTableView : HomeSubView
+@interface HomeActivityTableView : HomeSubView<UITableViewDelegate,UITableViewDataSource>
+@property (strong, nonatomic) IBOutlet UITableView *activityTableview;
 
 @end
