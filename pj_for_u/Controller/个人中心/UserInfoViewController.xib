@@ -8,8 +8,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserInfoViewController">
             <connections>
+                <outlet property="headBackPhoto" destination="kbb-it-eQT" id="HVo-Tl-5fE"/>
                 <outlet property="headPhoto" destination="TT5-AO-RG0" id="AQY-C8-9x7"/>
-                <outlet property="logView" destination="g4a-vI-sVW" id="quY-GO-A34"/>
                 <outlet property="nameLabel" destination="zEO-aH-9wd" id="9sX-Y6-0IK"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -22,7 +22,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4a-vI-sVW" userLabel="LogView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_user_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="kbb-it-eQT">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_user_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="kbb-it-eQT" customClass="YFAsynImageView">
                             <rect key="frame" x="0.0" y="0.0" width="380" height="250"/>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_user_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="TT5-AO-RG0" customClass="YFAsynImageView">
@@ -32,7 +32,7 @@
                                 <constraint firstAttribute="height" constant="98" id="AwW-Or-CF7"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="乌龙茶多酚" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEO-aH-9wd">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="点击登录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zEO-aH-9wd">
                             <rect key="frame" x="97" y="199" width="180" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="180" id="0mG-Oz-62e"/>
@@ -50,7 +50,7 @@
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="individualInfo:" destination="-1" eventType="touchUpInside" id="wyr-BX-bXq"/>
+                                <action selector="LoginButtonClicked:" destination="-1" eventType="touchUpInside" id="NVl-NK-ps0"/>
                             </connections>
                         </button>
                     </subviews>

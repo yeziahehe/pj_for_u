@@ -7,91 +7,54 @@
 //
 
 #import "IndividualSubViewController.h"
+#define kUpdateUserInfoDownloaderKey        @"UpdateUserInfoDownloaderKey"
 
 @interface IndividualSubViewController ()
-
 @property (strong, nonatomic) IBOutlet UITextField *textField;
-
 @end
 
 @implementation IndividualSubViewController
+@synthesize userInfoDetailDict,textField;
 
-- (void)updateIndividualInfo
+- (void)requestUpdateUserInfo
 {
-    //[[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"保存中..."];
-    //    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    [self.view endEditing:YES];
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"保存中..."];
     
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSaveIndividualInfo];
     NSMutableDictionary *dict = kCommonParamsDict;
-    
-    [dict setObject:@"18888888888" forKey:@"phone"];
-    [dict setObject:self.individualInfo.nickname forKey:@"nickname"];
-    
-    if ([self.individualInfo.sex isEqualToString:@"男"]) {
-        [dict setObject:@"0" forKey:@"sex"];
-    } else {
-        [dict setObject:@"1" forKey:@"sex"];
-    }
-    
-    
-    [dict setObject:self.individualInfo.academy forKey:@"academy"];
-    [dict setObject:self.individualInfo.qq forKey:@"qq"];
-    [dict setObject:self.individualInfo.weiXin forKey:@"weiXin"];
-    
+    [dict setObject:@"18896554880" forKey:@"phone"];
+    [dict setObject:self.textField.text forKey:[self.userInfoDetailDict objectForKey:@"keyname"]];
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict
                                                             contentType:@"application/x-www-form-urlencoded"
                                                                delegate:self
-                                                                purpose:@"saveIndividualInfo"];
+                                                                purpose:kUpdateUserInfoDownloaderKey];
 }
 
-
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
+#pragma mark - Private Methods
+- (void)loadSubView
 {
-    [textField resignFirstResponder];
-    
-    self.individualInfo.infos[self.indexPath.section + 1] = self.textField.text;
-    
-    switch (self.indexPath.section) {
-        case 0:
-            self.individualInfo.nickname = self.textField.text;
-            break;
-        case 1:
-            self.individualInfo.sex = self.textField.text;
-            break;
-        case 2:
-            self.individualInfo.academy = self.textField.text;
-            break;
-        case 3:
-            self.individualInfo.qq = self.textField.text;
-            break;
-        case 4:
-            self.individualInfo.weiXin = self.textField.text;
-            break;
-        default:
-            break;
-    }
-    
-    [self updateIndividualInfo];
-    
-    return YES;
+    [self.textField becomeFirstResponder];
+    [self setNaviTitle:[self.userInfoDetailDict objectForKey:@"valuename"]];
+    if ([[self.userInfoDetailDict objectForKey:@"valuename"] isEqualToString:@"QQ号"])
+        self.textField.keyboardType = UIKeyboardTypeNumberPad;
+    self.textField.text = [[MemberDataManager sharedManager].mineInfo.userInfo valueForKey:[self.userInfoDetailDict objectForKey:@"keyname"]];
 }
 
+#pragma mark - BaseViewController Methods
 - (void)rightItemTapped
 {
-    [self textFieldShouldReturn:self.textField];
+    [self requestUpdateUserInfo];
 }
 
+#pragma mark - UIViewController Methods
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self setNaviTitle:self.navigationTitle];
-    
-    self.textField.text = self.textFieldString;
-    [self.textField becomeFirstResponder];
     
     [self setRightNaviItemWithTitle:@"保存" imageName:nil];
+    [self loadSubView];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -109,23 +72,32 @@
 - (void)downloader:(YFDownloader *)downloader completeWithNSData:(NSData *)data
 {
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSDictionary *dict = [str JSONValue];
-    
-    if ([downloader.purpose isEqualToString:@"saveIndividualInfo"]) {
-        if ([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+    if ([downloader.purpose isEqualToString:kUpdateUserInfoDownloaderKey])
+    {
+        NSDictionary *dict = [str JSONValue];
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
-            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            NSString *message = @"保存成功！";
-            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
-        } else {
-            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            NSString *message = @"保存失败！";
-            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
-
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"保存成功" hideDelay:2.f];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshUserInfoNotificaiton object:nil];
+            [self.navigationController popViewControllerAnimated:YES];
         }
-        [self.navigationController popViewControllerAnimated:YES];
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"保存失败";
+        }
     }
-    
+}
+
+- (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
+{
+    NSLog(@"%@",message);
+    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:2.f];
 }
 
 
