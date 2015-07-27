@@ -87,6 +87,7 @@
 - (void)refreshHomeNotification:(NSNotification *)notification
 {
     [self loadSubViews];
+    [self requestForImages];
 }
 
 #pragma mark - BaseViewController Methods
@@ -127,6 +128,7 @@
     self.imageUrlArray = [NSMutableArray arrayWithCapacity:0];
     [self loadSubViews];
     [self requestForImages];
+    [self.contentScrollView addHeaderWithTarget:self action:@selector(refreshHomeNotification:) dateKey:@"HomeViewController"];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(campusNameNotification:) name:kCampusNameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHomeNotification:) name:kRefreshHomeNotification object:nil];
@@ -146,11 +148,13 @@
     {
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
+            self.imageUrlArray = [NSMutableArray arrayWithCapacity:0];
             NSArray *valueArray = [dict objectForKey:@"food"];
             for (NSDictionary *valueDict in valueArray) {
                 NSString *lm = [valueDict objectForKey:@"imgUrl"];
                 [self.imageUrlArray addObject:lm];
             }
+            [self.contentScrollView headerEndRefreshing];
             [self loadSubViews];
         }
         else
@@ -162,6 +166,7 @@
             }
             if(message.length == 0)
                 message = @"获取图片失败";
+            [self.contentScrollView headerEndRefreshing];
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }

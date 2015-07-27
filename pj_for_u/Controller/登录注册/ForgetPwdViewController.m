@@ -63,8 +63,6 @@
         [self.resendTimer invalidate];
         self.resendTimer = nil;
     }
-    
-    
 }
 
 - (void)getVerifyCode

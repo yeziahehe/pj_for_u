@@ -21,15 +21,22 @@
 #pragma mark - Private Methods
 - (void)loadHomeModuleIsOpen
 {
-    int i = 0;
-    for (UIButton *button in self.homeModuleButtons) {
-        self.homeModuleModel = [self.homeModuleArray objectAtIndex:i];
-        if ([self.homeModuleModel.isOpen isEqualToString:@"1"]) {
-            
-        } else {
+    if (self.homeModuleArray.count > 0) {
+        int i = 0;
+        for (UIButton *button in self.homeModuleButtons) {
+            self.homeModuleModel = [self.homeModuleArray objectAtIndex:i];
+            if ([self.homeModuleModel.isOpen isEqualToString:@"1"]) {
+                
+            } else {
+                [button addTarget:self action:@selector(noOpenButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+            }
+            i++;
+        }
+    }
+    else {
+        for (UIButton *button in self.homeModuleButtons) {
             [button addTarget:self action:@selector(noOpenButtonClicked) forControlEvents:UIControlEventTouchUpInside];
         }
-        i++;
     }
 }
 
