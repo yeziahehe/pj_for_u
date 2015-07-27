@@ -7,15 +7,9 @@
 //
 
 #import "BaseViewController.h"
-#import "IndividualInfo.h"
 
 @interface IndividualSubViewController : BaseViewController
 
-@property (nonatomic, strong) NSString *navigationTitle;
-@property (nonatomic, strong) NSString *textFieldString;
-
-@property (nonatomic, strong) NSIndexPath *indexPath;
-
-@property (nonatomic, strong) IndividualInfo *individualInfo;
+@property (nonatomic, strong) NSDictionary *userInfoDetailDict;
 
 @end

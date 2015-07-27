@@ -12,33 +12,25 @@
 #import "AddressManageViewController.h"
 
 @interface UserInfoViewController ()
-@property (strong, nonatomic) IBOutlet UIView *logView;
 @property (strong, nonatomic) IBOutlet YFAsynImageView *headPhoto;
+@property (strong, nonatomic) IBOutlet YFAsynImageView *headBackPhoto;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-
 @property (strong, nonatomic) IndividualInfo *individualInfo;
 
 @end
 
 @implementation UserInfoViewController
 
-- (void)loadIndividual
+#pragma mark - Private Methods
+- (void)loadSubViews
 {
-    self.nameLabel.text = self.individualInfo.nickname;
-    
-    self.headPhoto.cacheDir = kUserIconCacheDir;
-    
-    [self.headPhoto aysnLoadImageWithUrl:self.individualInfo.imgUrl placeHolder:@"bg_login.png"];
-
-}
-
-
-- (IndividualInfo *)individualInfo
-{
-    if (!_individualInfo) {
-        _individualInfo = [[IndividualInfo alloc] init];
+    self.nameLabel.text = self.individualInfo.userInfo.nickname;
+    if (![self.individualInfo.userInfo.imgUrl isEqualToString:@""]) {
+        self.headPhoto.cacheDir = kUserIconCacheDir;
+        [self.headPhoto aysnLoadImageWithUrl:self.individualInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
+        self.headBackPhoto.cacheDir = kUserIconCacheDir;
+        [self.headBackPhoto aysnLoadImageWithUrl:self.individualInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
     }
-    return _individualInfo;
 }
 
 - (void)addImageBorder
@@ -50,59 +42,71 @@
     self.headPhoto.layer.cornerRadius = (self.headPhoto.bounds.size.width) / 2.f;
 }
 
-/*
-    - (UIImage *)createImageWithColor:(UIColor *)color
-    {
-        CGRect rect = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-        UIGraphicsBeginImageContext(rect.size);
-        CGContextRef context = UIGraphicsGetCurrentContext();
-        CGContextSetFillColorWithColor(context, [color CGColor]);
-        CGContextFillRect(context, rect);
-        UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        return image;
+#pragma mark - IBAction Methods
+- (IBAction)LoginButtonClicked:(id)sender {
+    if ([[MemberDataManager sharedManager] isLogin]) {
+        //do nothing
+    } else {
+        //登录
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
     }
-*/
+}
 
 - (IBAction)addressManage:(UIButton *)sender
 {
+    //地址管理页面
     AddressManageViewController *addressManageViewController = [[AddressManageViewController alloc] init];
     [self.navigationController pushViewController:addressManageViewController animated:YES];
 }
 
-- (IBAction)myOrder:(id)sender      //我的订单
+- (IBAction)myOrder:(id)sender
 {
-    
+    //我的订单页面
 }
 
 - (IBAction)individualInfo:(UIButton *)sender
 {
+    //个人信息页面
     IndividualViewController *individualViewController = [[IndividualViewController alloc] init];
-    individualViewController.individualInfo = self.individualInfo;
     [self.navigationController pushViewController:individualViewController animated:YES];
 }
 
 - (IBAction)setting:(UIButton *)sender
 {
+    //设置页面
     SettingViewController *settingViewController = [[SettingViewController alloc] init];
     [self.navigationController pushViewController:settingViewController animated:YES];
 }
 
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self addImageBorder];
-    
-    [self.individualInfo requestForIndividualInfo];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadIndividual) name:@"loadIndividual" object:nil];
+#pragma mark - NSNotification Methods
+- (void)refreshUserInfoWithNotification:(NSNotification *)notification
+{
+    [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:@"18896554880"];
+    //[[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)userInfoResponseWithNotification:(NSNotification *)notification
 {
-    [super viewWillAppear:YES];
-    self.logView.backgroundColor = kMainProjColor;
-    [self loadIndividual];
+    if (notification.object) {
+        [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"个人信息获取失败" hideDelay:2.f];
+    } else {
+        self.individualInfo = [MemberDataManager sharedManager].mineInfo;
+        [self loadSubViews];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshAccoutNotification object:nil];
+    }
+}
+
+#pragma mark - UIViewController Methods
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self addImageBorder];
+    
+    [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:@"18896554880"];
+    //[[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUserInfoWithNotification:) name:kRefreshUserInfoNotificaiton object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userInfoResponseWithNotification:) name:kUserInfoResponseNotification object:nil];
 }
 
 - (void)dealloc
@@ -110,7 +114,5 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
-
-
 
 @end

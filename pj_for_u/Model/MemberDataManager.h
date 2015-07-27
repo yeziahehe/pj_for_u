@@ -12,11 +12,13 @@
 
 #import <Foundation/Foundation.h>
 #import "Member.h"
+#import "IndividualInfo.h"
 
 #define kLoginDownloaderKey             @"LoginDownloaderKey"
 #define kRegisterDownloaderKey          @"RegisterDownloaderKey"
 #define kCheckUserExistDownloaderKey    @"CheckUserExistDownloaderKey"
 #define kResetPwdDownloaderKey          @"ResetPwdDownloaderKey"
+#define kIndividualInfoDownloaderKey    @"IndividualInfoDownloaderKey"
 
 
 #define kLoginResponseNotification              @"LoginResponseNotification"
@@ -26,7 +28,7 @@
 @interface MemberDataManager : NSObject
 
 @property (nonatomic, strong) Member *loginMember;
-
+@property (nonatomic, strong) IndividualInfo *mineInfo;
 
 + (MemberDataManager *)sharedManager;
 /**
@@ -73,6 +75,10 @@
  * @param newPassword 新密码
  */
 - (void)resetPwdWithPhone:(NSString *)phone newPassword:(NSString *)newPassword;
-
-
+/**
+ *  获取个人信息
+ *
+ *  @param phone 手机号
+ */
+- (void)requestForIndividualInfoWithPhone:(NSString *)phone;
 @end

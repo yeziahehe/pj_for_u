@@ -100,6 +100,7 @@
 		2C7953B21B614BD800511EB7 /* HAScrollNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953AA1B614BD800511EB7 /* HAScrollNavBar.m */; };
 		2C7953B31B614BD800511EB7 /* icons.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C7953AB1B614BD800511EB7 /* icons.bundle */; };
 		2C7953B41B614BD800511EB7 /* UIColor+RGBA.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C7953AD1B614BD800511EB7 /* UIColor+RGBA.m */; };
+		2CBC8E651B665F0400326059 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CBC8E641B665F0400326059 /* UserInfo.m */; };
 		2CF607511B5E4E390022E8E7 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF6074F1B5E4E390022E8E7 /* StartViewController.m */; };
 		2CF607521B5E4E390022E8E7 /* StartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF607501B5E4E390022E8E7 /* StartViewController.xib */; };
 		2CF6075B1B5E77560022E8E7 /* btn_search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF6075A1B5E77560022E8E7 /* btn_search@2x.png */; };
@@ -160,8 +161,6 @@
 		4A6C15AD1B66194400C9A9D2 /* AddressManageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15AB1B66194400C9A9D2 /* AddressManageTableViewCell.xib */; };
 		4A6C15B01B66247700C9A9D2 /* AddressInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15AF1B66247700C9A9D2 /* AddressInfo.m */; };
 		6D10BE6E1B61FA3700D3638C /* IndividualInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */; };
-		6D7716E51B65F1EE00257256 /* IndividualSexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D7716E31B65F1EE00257256 /* IndividualSexViewController.m */; };
-		6D7716E61B65F1EE00257256 /* IndividualSexViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E41B65F1EE00257256 /* IndividualSexViewController.xib */; };
 		6D7716EB1B65F4C700257256 /* empty_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E71B65F4C700257256 /* empty_choice@2x.png */; };
 		6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E81B65F4C700257256 /* empty_choice@3x.png */; };
 		6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E91B65F4C700257256 /* full_choice@2x.png */; };
@@ -345,6 +344,8 @@
 		2C7953AD1B614BD800511EB7 /* UIColor+RGBA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+RGBA.m"; sourceTree = "<group>"; };
 		2C7953AE1B614BD800511EB7 /* UIView+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Extension.h"; sourceTree = "<group>"; };
 		2C7953AF1B614BD800511EB7 /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
+		2CBC8E631B665F0400326059 /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserInfo.h; path = Model/UserInfo.h; sourceTree = "<group>"; };
+		2CBC8E641B665F0400326059 /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserInfo.m; path = Model/UserInfo.m; sourceTree = "<group>"; };
 		2CF6074E1B5E4E390022E8E7 /* StartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartViewController.h; sourceTree = "<group>"; };
 		2CF6074F1B5E4E390022E8E7 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		2CF607501B5E4E390022E8E7 /* StartViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StartViewController.xib; sourceTree = "<group>"; };
@@ -430,9 +431,6 @@
 		4A6C15AF1B66247700C9A9D2 /* AddressInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressInfo.m; path = Model/AddressInfo.m; sourceTree = "<group>"; };
 		6D10BE6C1B61FA3700D3638C /* IndividualInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualInfo.h; sourceTree = "<group>"; };
 		6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualInfo.m; sourceTree = "<group>"; };
-		6D7716E21B65F1EE00257256 /* IndividualSexViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualSexViewController.h; sourceTree = "<group>"; };
-		6D7716E31B65F1EE00257256 /* IndividualSexViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualSexViewController.m; sourceTree = "<group>"; };
-		6D7716E41B65F1EE00257256 /* IndividualSexViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualSexViewController.xib; sourceTree = "<group>"; };
 		6D7716E71B65F4C700257256 /* empty_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@2x.png"; path = "Resource/empty_choice@2x.png"; sourceTree = "<group>"; };
 		6D7716E81B65F4C700257256 /* empty_choice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@3x.png"; path = "Resource/empty_choice@3x.png"; sourceTree = "<group>"; };
 		6D7716E91B65F4C700257256 /* full_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "full_choice@2x.png"; path = "Resource/full_choice@2x.png"; sourceTree = "<group>"; };
@@ -982,9 +980,6 @@
 				6D8AD3FC1B60E2510099A0D8 /* IndividualSubViewController.h */,
 				6D8AD3FD1B60E2510099A0D8 /* IndividualSubViewController.m */,
 				6D8AD3FE1B60E2510099A0D8 /* IndividualSubViewController.xib */,
-				6D7716E21B65F1EE00257256 /* IndividualSexViewController.h */,
-				6D7716E31B65F1EE00257256 /* IndividualSexViewController.m */,
-				6D7716E41B65F1EE00257256 /* IndividualSexViewController.xib */,
 			);
 			name = "个人信息";
 			sourceTree = "<group>";
@@ -1077,7 +1072,6 @@
 				2C2528841B5E2C9D00ADDEFB /* RootTabBarViewController.xib in Resources */,
 				2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */,
 				6D8AD3F41B60BD250099A0D8 /* AddressManageViewController.xib in Resources */,
-				6D7716E61B65F1EE00257256 /* IndividualSexViewController.xib in Resources */,
 				2CF607851B5EA9150022E8E7 /* SchoolSelectTableView.xib in Resources */,
 				2CF607661B5E9D100022E8E7 /* LocationViewController.xib in Resources */,
 				2CF6077A1B5EA3FF0022E8E7 /* CitySelectTableView.xib in Resources */,
@@ -1191,7 +1185,6 @@
 				4A6C15B01B66247700C9A9D2 /* AddressInfo.m in Sources */,
 				2C25289A1B5E38B100ADDEFB /* ResetPwdViewController.m in Sources */,
 				2C2528FD1B5E3AA900ADDEFB /* NSDate+YFAdditions.m in Sources */,
-				6D7716E51B65F1EE00257256 /* IndividualSexViewController.m in Sources */,
 				4A6C15831B5F877F00C9A9D2 /* UserInfoSubView.m in Sources */,
 				2C2528DA1B5E39EF00ADDEFB /* SBJsonBase.m in Sources */,
 				6D8AD3F31B60BD250099A0D8 /* AddressManageViewController.m in Sources */,
@@ -1211,6 +1204,7 @@
 				2CF607781B5EA3E60022E8E7 /* CitySelectTableView.m in Sources */,
 				2C2529031B5E3AA900ADDEFB /* YFAsynImageView.m in Sources */,
 				2C2528D41B5E39EF00ADDEFB /* UIScrollView+MJRefresh.m in Sources */,
+				2CBC8E651B665F0400326059 /* UserInfo.m in Sources */,
 				6D10BE6E1B61FA3700D3638C /* IndividualInfo.m in Sources */,
 				2C2528D51B5E39EF00ADDEFB /* UIView+MJExtension.m in Sources */,
 				2C2528891B5E2E1E00ADDEFB /* LoginViewController.m in Sources */,

@@ -2,30 +2,35 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <array>
-	<array>
+	<dict>
+		<key>valuename</key>
 		<string>昵称</string>
+		<key>keyname</key>
 		<string>nickname</string>
-		<string></string>
-	</array>
-	<array>
+	</dict>
+	<dict>
+		<key>valuename</key>
 		<string>性别</string>
+		<key>keyname</key>
 		<string>sex</string>
-		<string></string>
-	</array>
-	<array>
+	</dict>
+	<dict>
+		<key>valuename</key>
 		<string>学院</string>
+		<key>keyname</key>
 		<string>academy</string>
-		<string></string>
-	</array>
-	<array>
+	</dict>
+	<dict>
+		<key>valuename</key>
 		<string>QQ号</string>
+		<key>keyname</key>
 		<string>qq</string>
-		<string></string>
-	</array>
-	<array>
+	</dict>
+	<dict>
+		<key>valuename</key>
 		<string>微信号</string>
-		<string>weixin</string>
-		<string></string>
-	</array>
+		<key>keyname</key>
+		<string>weiXin</string>
+	</dict>
 </array>
 </plist>

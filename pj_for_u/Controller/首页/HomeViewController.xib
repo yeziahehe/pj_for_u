@@ -17,7 +17,6 @@
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rnK-2Y-nLz">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                    <color key="backgroundColor" red="0.97953344666946585" green="0.97829060216019625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </scrollView>
             </subviews>
             <constraints>

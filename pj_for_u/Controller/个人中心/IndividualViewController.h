@@ -9,8 +9,6 @@
 #import "BaseViewController.h"
 #import "IndividualInfo.h"
 
-@interface IndividualViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
-
-@property (strong, nonatomic) IndividualInfo *individualInfo;
+@interface IndividualViewController : BaseViewController 
 
 @end

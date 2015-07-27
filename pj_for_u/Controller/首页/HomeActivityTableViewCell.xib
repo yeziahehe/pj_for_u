@@ -13,15 +13,15 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XYm-Hj-gzV" customClass="YFAsynImageView">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="XYm-Hj-gzV" customClass="YFAsynImageView">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="159"/>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="XYm-Hj-gzV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="0Gq-nu-GMk"/>
-                    <constraint firstItem="XYm-Hj-gzV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Cbh-kT-Z0d"/>
-                    <constraint firstAttribute="trailing" secondItem="XYm-Hj-gzV" secondAttribute="trailing" id="YDH-rW-25i"/>
-                    <constraint firstAttribute="bottom" secondItem="XYm-Hj-gzV" secondAttribute="bottom" id="ir3-KZ-1CB"/>
+                    <constraint firstAttribute="trailing" secondItem="XYm-Hj-gzV" secondAttribute="trailing" id="Fy5-Xv-EhZ"/>
+                    <constraint firstItem="XYm-Hj-gzV" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="W2n-sU-Roi"/>
+                    <constraint firstAttribute="bottom" secondItem="XYm-Hj-gzV" secondAttribute="bottom" id="YiA-LU-vf8"/>
+                    <constraint firstItem="XYm-Hj-gzV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ret-dq-Lqr"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

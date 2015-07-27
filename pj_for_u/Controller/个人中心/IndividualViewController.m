@@ -9,26 +9,30 @@
 #import "IndividualViewController.h"
 #import "IndividualTableViewCell.h"
 #import "IndividualSubViewController.h"
-#import "IndividualSexViewController.h"
 
+#define kUpdateUserInfoDownloaderKey        @"UpdateUserInfoDownloaderKey"
 
 @interface IndividualViewController ()
 
-@property (strong, nonatomic) UIView *navBackView;
-@property (strong, nonatomic) NSMutableArray *cellArray;
+@property (strong, nonatomic) NSMutableArray *userInfoArray;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) IBOutlet UIView *logView;
 @property (strong, nonatomic) IBOutlet YFAsynImageView *headPhoto;
+@property (strong, nonatomic) IBOutlet YFAsynImageView *headBackPhoto;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 
 @end
 
 @implementation IndividualViewController
-- (void)loadFile
+
+#pragma mark - Private Methods
+- (void)loadSubView
 {
+    [self addImageBorder];
+    self.nameLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.nickname;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"IndividualInfoMap" ofType:@"plist"];
-    self.cellArray = [NSMutableArray arrayWithContentsOfFile:path];
+    self.userInfoArray = [NSMutableArray arrayWithContentsOfFile:path];
+    [self.tableView reloadData];
 }
 
 - (void)addImageBorder
@@ -40,100 +44,136 @@
     self.headPhoto.layer.cornerRadius = (self.headPhoto.bounds.size.width) / 2.f;
 }
 
-
-- (void)loadIndividual
+- (void)requestUpdateUserInfoWithSex:(NSString *)sex
 {
-    self.nameLabel.text = self.individualInfo.infos[1];
-    self.headPhoto.cacheDir = kUserIconCacheDir;
-    [self.headPhoto aysnLoadImageWithUrl:self.individualInfo.imgUrl placeHolder:@"bg_login.png"];
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"保存中..."];
     
-    for (int i = 0; i < self.cellArray.count; i++) {
-        self.cellArray[i][2] = self.individualInfo.infos[i + 1];
-    }
-    [self.tableView reloadData];
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSaveIndividualInfo];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:@"18896554880" forKey:@"phone"];
+    [dict setObject:sex forKey:@"sex"];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kUpdateUserInfoDownloaderKey];
 }
 
+#pragma mark - Notification Methods
+- (void)refreshAccountWithNotification:(NSNotification *)notification
+{
+    [self loadSubView];
+}
 
+#pragma mark - UIViewController Methods
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
+    [self loadSubView];
+    [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_back_light.png"];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAccountWithNotification:) name:kRefreshAccoutNotification object:nil];
+}
+
+#pragma mark - UITableViewDataSource methods
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.cellArray.count;
+    return self.userInfoArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [[self.cellArray objectAtIndex:section] count] - 2;
+    return 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    IndividualTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"IndividualTableViewCell"
-                                                            forIndexPath:indexPath];
+    static NSString *UserInfoTableViewCellIdentifier = @"IndividualTableViewCell";
+    IndividualTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:UserInfoTableViewCellIdentifier];
+    if (cell == nil) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"IndividualTableViewCell" owner:self options:nil] lastObject];
+    }
+    NSDictionary *dict = [self.userInfoArray objectAtIndex:indexPath.section];
+    cell.firstLabel.text = [dict objectForKey:@"valuename"];
+    NSString *value = [[MemberDataManager sharedManager].mineInfo.userInfo valueForKey:[dict objectForKey:@"keyname"]];
+    if ([value isEqualToString:@""]) {
+        cell.secondLabel.text = @"未设置";
+    } else if ([[dict objectForKey:@"valuename"] isEqualToString:@"性别"]) {
+        if ([value isEqualToString:@"1"]) {
+            cell.secondLabel.text = @"女";
+        } else {
+            cell.secondLabel.text = @"男";
+        }
+    } else {
+        cell.secondLabel.text = value;
+    }
 
-    cell.firstLabel.text = self.cellArray[indexPath.section][0];
-    cell.secondLabel.text = self.cellArray[indexPath.section][2];
-    
     return cell;
+}
+
+#pragma mark - UITableViewDelegate methods
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44.f;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10.f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    IndividualTableViewCell *cell = (IndividualTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
-    
     if (indexPath.section == 1) {
-        IndividualSexViewController *individualSexViewController = [[IndividualSexViewController alloc] init];
-        individualSexViewController.individualInfo = self.individualInfo;
-        individualSexViewController.sex = cell.secondLabel.text;
-        [self.navigationController pushViewController:individualSexViewController animated:YES];
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil
+                                                                                 message:nil
+                                                                          preferredStyle: UIAlertControllerStyleActionSheet];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"男" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self requestUpdateUserInfoWithSex:@"0"];
+        }]];
+        [alertController addAction:[UIAlertAction actionWithTitle:@"女" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+            [self requestUpdateUserInfoWithSex:@"1"];
+        }]];
         
+        [self presentViewController:alertController animated:YES completion:nil];
     } else {
-        IndividualSubViewController *individualSubViewController = [[IndividualSubViewController alloc] init];
-        
-        individualSubViewController.navigationTitle = cell.firstLabel.text;
-        individualSubViewController.textFieldString = cell.secondLabel.text;
-        individualSubViewController.indexPath = indexPath;
-        individualSubViewController.individualInfo = self.individualInfo;
-        
+        IndividualSubViewController *individualSubViewController = [[IndividualSubViewController alloc]initWithNibName:@"IndividualSubViewController" bundle:nil];
+        individualSubViewController.userInfoDetailDict = [self.userInfoArray objectAtIndex:indexPath.section];
         [self.navigationController pushViewController:individualSubViewController animated:YES];
     }
-
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+#pragma mark - YFDownloaderDelegate Methods
+- (void)downloader:(YFDownloader *)downloader completeWithNSData:(NSData *)data
 {
-    return 10.f * ScreenHeight / 667.f;
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if ([downloader.purpose isEqualToString:kUpdateUserInfoDownloaderKey])
+    {
+        NSDictionary *dict = [str JSONValue];
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"保存成功" hideDelay:2.f];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshUserInfoNotificaiton object:nil];
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"保存失败";
+        }
+    }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+- (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
 {
-    return 0.000001;
-}
-
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self addImageBorder];
-    [self loadFile];
-    
-    UINib *nib = [UINib nibWithNibName:@"IndividualTableViewCell" bundle:nil];
-    
-    [self.tableView registerNib:nib
-         forCellReuseIdentifier:@"IndividualTableViewCell"];
-
-    
-    [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_back_light.png"];
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    [self loadIndividual];
-    self.logView.backgroundColor = kMainProjColor;
-    
-    
-    
+    NSLog(@"%@",message);
+    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:2.f];
 }
 
 @end

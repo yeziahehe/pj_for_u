@@ -9,7 +9,7 @@
 #import "MemberDataManager.h"
 
 @implementation MemberDataManager
-@synthesize loginMember;
+@synthesize loginMember,mineInfo;
 
 #pragma mark - Public Methods
 - (BOOL)isLogin
@@ -109,6 +109,20 @@
                                                                 purpose:kResetPwdDownloaderKey];
 }
 
+- (void)requestForIndividualInfoWithPhone:(NSString *)phone
+{
+    if (nil == phone)
+        phone = @"";
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kIndividualInfoUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:phone forKey:@"phone"];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kIndividualInfoDownloaderKey];
+}
+
 
 #pragma mark - Singleton methods
 - (id)init
@@ -205,7 +219,6 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:kRegisterResponseNotification object:message];
         }
     }
-    
     else if ([downloader.purpose isEqualToString:kResetPwdDownloaderKey])
     {
         NSDictionary *dict = [str JSONValue];
@@ -224,7 +237,26 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:kResetPwdResponseNotification object:message];
         }
     }
-
+    else if ([downloader.purpose isEqualToString:kIndividualInfoDownloaderKey])
+    {
+        NSDictionary *dict = [str JSONValue];
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            self.mineInfo = [IndividualInfo mineInfoWithDict:dict];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kUserInfoResponseNotification object:nil];
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"个人信息获取失败";
+            [[NSNotificationCenter defaultCenter] postNotificationName:kUserInfoResponseNotification object:message];
+        }
+    }
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
