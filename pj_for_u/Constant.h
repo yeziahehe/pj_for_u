@@ -84,6 +84,7 @@
 #define kLocationUrl            @"campus/getCampusAndCity.do"
 #define kLoginUrl               @"user/toLogin.do"
 #define kGetMainImageUrl        @"news/getMainImage.do"
+#define kGetActivityImageUrl    @"service/getHomeFood.do"
 #define kCheckUserExistUrl      @"user/checkUserIsExist.do"
 #define kRegisterUrl            @"user/registerIn.do"
 #define kResetPwdUrl            @"user/resetPassword.do"

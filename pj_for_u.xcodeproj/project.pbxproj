@@ -11,6 +11,8 @@
 		0A3B670D1B6203BC0067C709 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B670B1B6203BC0067C709 /* SettingTableViewCell.m */; };
 		0A3B670E1B6203BC0067C709 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B670C1B6203BC0067C709 /* SettingTableViewCell.xib */; };
 		0A3B67121B622F5A0067C709 /* aboutImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B67111B622F5A0067C709 /* aboutImage.png */; };
+		0ACABED11B65FFAB009B18E0 /* HomeActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */; };
+		0ACABED21B65FFAB009B18E0 /* HomeActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */; };
 		0AE093071B60D2EC0095D639 /* AboutAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093051B60D2EC0095D639 /* AboutAppViewController.m */; };
 		0AE093081B60D2EC0095D639 /* AboutAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */; };
 		2C10D6A81B609335008C3DE0 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */; };
@@ -187,6 +189,9 @@
 		0A3B670B1B6203BC0067C709 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingTableViewCell.m; path = "Controller/设置/SettingTableViewCell.m"; sourceTree = "<group>"; };
 		0A3B670C1B6203BC0067C709 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingTableViewCell.xib; path = "Controller/设置/SettingTableViewCell.xib"; sourceTree = "<group>"; };
 		0A3B67111B622F5A0067C709 /* aboutImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = aboutImage.png; path = Resource/aboutImage.png; sourceTree = "<group>"; };
+		0ACABECE1B65FFAB009B18E0 /* HomeActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeActivityTableViewCell.h; path = "Controller/首页/HomeActivityTableViewCell.h"; sourceTree = "<group>"; };
+		0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeActivityTableViewCell.m; path = "Controller/首页/HomeActivityTableViewCell.m"; sourceTree = "<group>"; };
+		0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeActivityTableViewCell.xib; path = "Controller/首页/HomeActivityTableViewCell.xib"; sourceTree = "<group>"; };
 		0AE093041B60D2EC0095D639 /* AboutAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutAppViewController.h; path = "Controller/设置/AboutAppViewController.h"; sourceTree = "<group>"; };
 		0AE093051B60D2EC0095D639 /* AboutAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutAppViewController.m; path = "Controller/设置/AboutAppViewController.m"; sourceTree = "<group>"; };
 		0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutAppViewController.xib; path = "Controller/设置/AboutAppViewController.xib"; sourceTree = "<group>"; };
@@ -643,6 +648,9 @@
 				2CF607C81B5EC9DE0022E8E7 /* HomeActivityTableView.h */,
 				2CF607C91B5EC9DE0022E8E7 /* HomeActivityTableView.m */,
 				2CF607CB1B5EC9E90022E8E7 /* HomeActivityTableView.xib */,
+				0ACABECE1B65FFAB009B18E0 /* HomeActivityTableViewCell.h */,
+				0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */,
+				0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */,
 				2CF607701B5EA1450022E8E7 /* 首页面子页面 */,
 			);
 			name = "首页";
@@ -1055,6 +1063,7 @@
 				6D8AD4001B60E2510099A0D8 /* IndividualSubViewController.xib in Resources */,
 				4A6C15851B5F877F00C9A9D2 /* UserInfoViewController.xib in Resources */,
 				4A6C15791B5F7D5300C9A9D2 /* icon_login_secret@2x.png in Resources */,
+				0ACABED21B65FFAB009B18E0 /* HomeActivityTableViewCell.xib in Resources */,
 				2CF607C01B5EC88C0022E8E7 /* icon_breakfest@2x.png in Resources */,
 				2CF607971B5EBDA10022E8E7 /* line_ver_1px_left.png in Resources */,
 				2C79539B1B613F4800511EB7 /* icon_userinfo@2x.png in Resources */,
@@ -1205,6 +1214,7 @@
 				2C2528501B5E108900ADDEFB /* main.m in Sources */,
 				2C25288F1B5E2E9400ADDEFB /* HomeViewController.m in Sources */,
 				2C25290B1B5E3AA900ADDEFB /* YFRootBlurViewManager.m in Sources */,
+				0ACABED11B65FFAB009B18E0 /* HomeActivityTableViewCell.m in Sources */,
 				2C2529021B5E3AA900ADDEFB /* YFAppBackgroudConfiger.m in Sources */,
 				2C2528D01B5E39EF00ADDEFB /* MJRefreshConst.m in Sources */,
 				2C5C08481B63433D0004286C /* FirstClassModel.m in Sources */,
