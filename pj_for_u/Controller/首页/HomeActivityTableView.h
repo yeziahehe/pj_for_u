@@ -11,4 +11,6 @@
 @interface HomeActivityTableView : HomeSubView<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *activityTableview;
 
+- (void)reloadWithActivityImages:(NSMutableArray *)activityImagesArray;
+
 @end

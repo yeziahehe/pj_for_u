@@ -11,5 +11,4 @@
 @interface HomeActivityTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet YFAsynImageView *activityImageView;
 
-
 @end

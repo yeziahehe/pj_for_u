@@ -78,6 +78,7 @@
 #define kSchoolSelectedNotificaition        @"SchoolSelectedNotificaition"
 #define kLoginResponseNotification          @"LoginResponseNotification"
 #define kCampusNameNotification             @"CampusNameNotification"
+#define kRefreshHomeNotification            @"RefreshHomeNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
