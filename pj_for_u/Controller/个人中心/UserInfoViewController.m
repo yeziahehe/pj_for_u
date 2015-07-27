@@ -28,7 +28,7 @@
     
     self.headPhoto.cacheDir = kUserIconCacheDir;
     
-    [self.headPhoto aysnLoadImageWithUrl:self.individualInfo.imgUrl placeHolder:@"bg_login.png"];
+    [self.headPhoto aysnLoadImageWithUrl:self.individualInfo.imgUrl placeHolder:@"icon_user_default.png"];
 
 }
 
