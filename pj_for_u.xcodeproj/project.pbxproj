@@ -13,6 +13,8 @@
 		0A3B67121B622F5A0067C709 /* aboutImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B67111B622F5A0067C709 /* aboutImage.png */; };
 		0ACABED11B65FFAB009B18E0 /* HomeActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */; };
 		0ACABED21B65FFAB009B18E0 /* HomeActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */; };
+		0ACABED41B67178D009B18E0 /* icon_user_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED31B67178D009B18E0 /* icon_user_default@2x.png */; };
+		0ACABED61B671DEE009B18E0 /* icon_yanzheng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED51B671DEE009B18E0 /* icon_yanzheng@2x.png */; };
 		0AE093071B60D2EC0095D639 /* AboutAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093051B60D2EC0095D639 /* AboutAppViewController.m */; };
 		0AE093081B60D2EC0095D639 /* AboutAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */; };
 		2C10D6A81B609335008C3DE0 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */; };
@@ -197,6 +199,8 @@
 		0ACABECE1B65FFAB009B18E0 /* HomeActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeActivityTableViewCell.h; path = "Controller/首页/HomeActivityTableViewCell.h"; sourceTree = "<group>"; };
 		0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeActivityTableViewCell.m; path = "Controller/首页/HomeActivityTableViewCell.m"; sourceTree = "<group>"; };
 		0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeActivityTableViewCell.xib; path = "Controller/首页/HomeActivityTableViewCell.xib"; sourceTree = "<group>"; };
+		0ACABED31B67178D009B18E0 /* icon_user_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_user_default@2x.png"; path = "Resource/icon_user_default@2x.png"; sourceTree = "<group>"; };
+		0ACABED51B671DEE009B18E0 /* icon_yanzheng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_yanzheng@2x.png"; path = "Resource/icon_yanzheng@2x.png"; sourceTree = "<group>"; };
 		0AE093041B60D2EC0095D639 /* AboutAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutAppViewController.h; path = "Controller/设置/AboutAppViewController.h"; sourceTree = "<group>"; };
 		0AE093051B60D2EC0095D639 /* AboutAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutAppViewController.m; path = "Controller/设置/AboutAppViewController.m"; sourceTree = "<group>"; };
 		0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutAppViewController.xib; path = "Controller/设置/AboutAppViewController.xib"; sourceTree = "<group>"; };
@@ -331,7 +335,6 @@
 		2C7953961B613F4800511EB7 /* icon_setting@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_setting@2x.png"; path = "Resource/icon_setting@2x.png"; sourceTree = "<group>"; };
 		2C7953971B613F4800511EB7 /* icon_userinfo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_userinfo@2x.png"; path = "Resource/icon_userinfo@2x.png"; sourceTree = "<group>"; };
 		2C79539C1B61402D00511EB7 /* bg_user_module@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg_user_module@2x.png"; path = "Resource/bg_user_module@2x.png"; sourceTree = "<group>"; };
-		2C79539E1B6140D800511EB7 /* icon_user_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_user_default@2x.png"; path = "Resource/icon_user_default@2x.png"; sourceTree = "<group>"; };
 		2C7953A01B61414200511EB7 /* icon_header_back_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_header_back_light@2x.png"; path = "Resource/icon_header_back_light@2x.png"; sourceTree = "<group>"; };
 		2C7953A21B61432500511EB7 /* bg_user_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg_user_img@2x.png"; path = "Resource/bg_user_img@2x.png"; sourceTree = "<group>"; };
 		2C7953A51B614BD800511EB7 /* HACursor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HACursor.h; sourceTree = "<group>"; };
@@ -417,7 +420,6 @@
 		4A6C15861B5F9C2900C9A9D2 /* YFCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YFCycleScrollView.h; path = Utilities/YFUtilities/YFCycleScrollView.h; sourceTree = "<group>"; };
 		4A6C15871B5F9C2900C9A9D2 /* YFCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YFCycleScrollView.m; path = Utilities/YFUtilities/YFCycleScrollView.m; sourceTree = "<group>"; };
 		4A6C15891B5FF22F00C9A9D2 /* icon_register_nickname@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_register_nickname@2x.png"; path = "Resource/icon_register_nickname@2x.png"; sourceTree = "<group>"; };
-		4A6C158B1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_yanzheng@2x.png"; path = "Resource/icon_yanzheng@2x.png"; sourceTree = "<group>"; };
 		4A6C15911B60915500C9A9D2 /* icon_agree@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_agree@2x.png"; path = "Resource/icon_agree@2x.png"; sourceTree = "<group>"; };
 		4A6C15921B60915500C9A9D2 /* icon_disagree@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_disagree@2x.png"; path = "Resource/icon_disagree@2x.png"; sourceTree = "<group>"; };
 		4A6C15951B60B4B600C9A9D2 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
@@ -821,8 +823,8 @@
 				4A6C15A21B65C84900C9A9D2 /* icon_addAdress@2x.png */,
 				0A3B67111B622F5A0067C709 /* aboutImage.png */,
 				2C7953A21B61432500511EB7 /* bg_user_img@2x.png */,
-				2C79539E1B6140D800511EB7 /* icon_user_default@2x.png */,
 				2C79539C1B61402D00511EB7 /* bg_user_module@2x.png */,
+				0ACABED31B67178D009B18E0 /* icon_user_default@2x.png */,
 				2C7953941B613F4800511EB7 /* icon_address@2x.png */,
 				2C7953951B613F4800511EB7 /* icon_order@2x.png */,
 				2C7953961B613F4800511EB7 /* icon_setting@2x.png */,
@@ -925,8 +927,8 @@
 			children = (
 				4A6C15911B60915500C9A9D2 /* icon_agree@2x.png */,
 				4A6C15921B60915500C9A9D2 /* icon_disagree@2x.png */,
-				4A6C158B1B5FF3CF00C9A9D2 /* icon_yanzheng@2x.png */,
 				4A6C15891B5FF22F00C9A9D2 /* icon_register_nickname@2x.png */,
+				0ACABED51B671DEE009B18E0 /* icon_yanzheng@2x.png */,
 				4A6C157B1B5F808D00C9A9D2 /* btn_login@2x.png */,
 				4A6C15761B5F7D5300C9A9D2 /* icon_login_phone@2x.png */,
 				4A6C15771B5F7D5300C9A9D2 /* icon_login_secret@2x.png */,
@@ -1116,6 +1118,7 @@
 				2C7953A31B61432500511EB7 /* bg_user_img@2x.png in Resources */,
 				2C79539A1B613F4800511EB7 /* icon_setting@2x.png in Resources */,
 				4A6C15931B60915500C9A9D2 /* icon_agree@2x.png in Resources */,
+				0ACABED41B67178D009B18E0 /* icon_user_default@2x.png in Resources */,
 				2CF607CC1B5EC9E90022E8E7 /* HomeActivityTableView.xib in Resources */,
 				4A6C15AD1B66194400C9A9D2 /* AddressManageTableViewCell.xib in Resources */,
 				2C25288A1B5E2E1E00ADDEFB /* LoginViewController.xib in Resources */,
@@ -1132,6 +1135,7 @@
 				6D8AD3ED1B6097C70099A0D8 /* IndividualViewController.xib in Resources */,
 				2CF607A01B5EC6460022E8E7 /* ImageContainView.xib in Resources */,
 				2C10D6B41B60B551008C3DE0 /* icon_home_user_selected@2x.png in Resources */,
+				0ACABED61B671DEE009B18E0 /* icon_yanzheng@2x.png in Resources */,
 				2CF607681B5E9D100022E8E7 /* SearchHistoryViewController.xib in Resources */,
 				2C7953A11B61414200511EB7 /* icon_header_back_light@2x.png in Resources */,
 				2C25289B1B5E38B100ADDEFB /* ResetPwdViewController.xib in Resources */,

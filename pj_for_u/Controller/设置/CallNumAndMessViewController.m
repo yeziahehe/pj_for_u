@@ -8,11 +8,6 @@
 
 #import "CallNumAndMessViewController.h"
 
-
-@interface CallNumAndMessViewController ()
-
-@end
-
 @implementation CallNumAndMessViewController
 
 - (void)viewDidLoad {
@@ -26,7 +21,6 @@
 #pragma mark - Public Methods
 - (void)clickPhone
 {
-    if (IsIos8) {
         UIAlertController *phonenumSheet = [UIAlertController alertControllerWithTitle:@"这是一个电话号码，您要对它：" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
         [phonenumSheet addAction:[UIAlertAction actionWithTitle:@"取消"
                                                           style:UIAlertActionStyleCancel
@@ -40,41 +34,19 @@
                                                             [self phonenumClickedAlertShow];
                                                             
                                                         }]];
-        
-//        [phonenumSheet addAction:[UIAlertAction actionWithTitle:@"发送信息"
-//                                                          style:UIAlertActionStyleDefault
-//                                                        handler:^(UIAlertAction *action) {
-//                                                            //发送信息
-//                                                            
-//                                                            [self startMessage];
-//                                                            
-//                                                        }]];
         [self.useViewController presentViewController:phonenumSheet animated:YES completion:nil];
-        
-    } else{
-        
-        UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"这是一个电话号码，您要对它："
-                                                                 delegate:self
-                                                        cancelButtonTitle:@"取消"
-                                                   destructiveButtonTitle:nil otherButtonTitles:@"拨打电话", nil];
-        [actionSheet showInView:self.useViewController.view];
-        
-    }
-
 }
 
-
-
 #pragma mark - Private Methods
+//电话点击alert的触发
 -(void)phonenumClickedAlertShow{
-    if (IsIos8) {
         UIAlertController *phonealert = [UIAlertController alertControllerWithTitle:nil
                                                                             message:self.phoneNum
-                                                                     preferredStyle:UIAlertControllerStyleAlert];
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
         [phonealert addAction:[UIAlertAction actionWithTitle:@"取消"
                                                        style:UIAlertActionStyleDefault
                                                      handler:^(UIAlertAction *action) {
-                                                         //
+                                                         //什么都不做
                                                      }]];
         [phonealert addAction:[UIAlertAction actionWithTitle:@"拨打"
                                                        style:UIAlertActionStyleDefault
@@ -83,20 +55,13 @@
                                                          [[UIApplication sharedApplication] openURL:telURL];
                                                      }]];
         [self.useViewController presentViewController:phonealert animated:YES completion:nil];
-    }
-    else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:self.phoneNum delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"拨打", nil];
-        [alert show];}
 }
+
 -(void)startTel{
     NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",self.phoneNum]];
     [[UIApplication sharedApplication] openURL:telURL];
 }
-//-(void)startMessage{
-//    NSURL *smsURL = [NSURL URLWithString:[NSString stringWithFormat:@"sms:%@",self.phoneNum]];
-//    [[UIApplication sharedApplication]openURL:smsURL];
 
-//}
 #pragma mark -ActionSheetDelegate Methods
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -106,21 +71,6 @@
         [self phonenumClickedAlertShow];
     }
     
-//    }else if (buttonIndex == 1) {
-//        //发信息
-//        [self startMessage];
-//    }
 }
-
-
-#pragma mark - AlertViewDelegate Methods
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if (buttonIndex == 1)
-    {
-        [self startTel];
-    }
-}
-
 
 @end

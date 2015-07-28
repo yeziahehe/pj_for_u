@@ -21,7 +21,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="128" id="9ry-ZN-6AB"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                 </textView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="aboutImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="FXz-kL-qBu">
