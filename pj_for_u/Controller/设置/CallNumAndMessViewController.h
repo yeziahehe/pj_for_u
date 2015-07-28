@@ -9,9 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface CallNumAndMessViewController : UIViewController<UIActionSheetDelegate,UIAlertViewDelegate>
+@interface CallNumAndMessViewController : UIViewController<UIActionSheetDelegate>
 @property (nonatomic, strong) NSString *phoneNum;
-
 @property (nonatomic, strong) BaseViewController *useViewController;
 
 - (void)clickPhone;

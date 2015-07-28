@@ -20,38 +20,34 @@
 @property (nonatomic, strong) UISwitch *pushSwitch;
 @property (nonatomic, strong) NSString *phoneNum;
 @property  BOOL remote;
-
 @end
 
 @implementation SettingViewController
 
 #pragma mark - Private Methods
+//加载plist文件的设置选项，并初始化客服电话和推送状态
 - (void)loadSubViews
 {
     NSString *tempPath = [[NSBundle mainBundle] pathForResource:kSettingMapFileName ofType:@"plist"];
     self.menuArray = [NSArray arrayWithContentsOfFile:tempPath];
     self.settingTableView.tableFooterView = self.logoutView;
+    [self setNaviTitle:@"设置"];
+    self.phoneNum = @"18013646790";
+    self.remote = [self checkRemoteNotificationType];
 }
 
+//获取当前设备的推送状态
 - (BOOL)checkRemoteNotificationType
 {
     UIRemoteNotificationType types;
-    if(IsIos8){
         types = [[UIApplication sharedApplication] currentUserNotificationSettings].types;
-;
-    }
-    else{
-         types = [[UIApplication sharedApplication] enabledRemoteNotificationTypes];
-    }
-    return (types & UIRemoteNotificationTypeAlert);
+
+        return (types & UIRemoteNotificationTypeAlert);
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setNaviTitle:@"设置"];
     [self loadSubViews];
-    self.phoneNum = @"18013646790";
-    self.remote = [self checkRemoteNotificationType];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,35 +55,12 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark - IBAction Methods
+//退出登录按钮点击事件
 - (IBAction)logoutButtonClicked:(UIButton *)sender
 {
     [[MemberDataManager sharedManager] logout];
     [self.navigationController popToRootViewControllerAnimated:YES];
-
-    
-}
-
-#pragma mark - AlertViewDelegate methods
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-//    if (alertView.tag == 1) {
-//        if (buttonIndex == 1)
-//        {
-//            [[MemberDataManager sharedManager] logout];
-//            [[NSNotificationCenter defaultCenter] postNotificationName:kUserChangeNotification object:nil];
-//            [self.tabBarController setSelectedIndex:0];
-//            [self.navigationController popToRootViewControllerAnimated:YES];
-//        }
-//    }
-//    else
-    if (alertView.tag == 2)
-    {
-        if (buttonIndex == 1)
-        {
-            [[YFProgressHUD sharedProgressHUD] showMixedWithLoading:@"清除缓存..." end:@"清理完成"];
-            [YFAppBackgroudConfiger clearAllCachesWhenBiggerThanSize:0];
-        }
-    }
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -118,10 +91,12 @@
     {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    if ((indexPath.section ==2) && (indexPath.row ==1)) {
+    if ((indexPath.section == 2) && (indexPath.row == 1))
+    {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    if (indexPath.section ==3) {
+    if (indexPath.section == 3)
+    {
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
          self.pushSwitch = [[UISwitch alloc] init];
         CGRect frame = self.pushSwitch.frame;
@@ -134,18 +109,14 @@
     return cell;
 }
 
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-       return nil;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
     return 1.f;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-        return 0.f;
+    return 0.f;
 }
 
 #pragma mark - UITableViewDelegate methods
@@ -154,13 +125,13 @@
     return 44.f;
 }
 
+//根据点击不同的cell触发不同事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *titleString = [[self.menuArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     if ([titleString isEqualToString:@"清除缓存"])
     {
-        if (IsIos8) {
             UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"清除缓存"
                                                                            message:@"是否清除缓存？"
                                                                     preferredStyle:UIAlertControllerStyleAlert];
@@ -175,11 +146,6 @@
                                                         [YFAppBackgroudConfiger clearAllCachesWhenBiggerThanSize:0];
                                                     }]];
             [self presentViewController:alert animated:YES completion:nil];
-        } else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"清除缓存" message:@"是否清除缓存？" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
-            alertView.tag = 2;
-            [alertView show];
-        }
     }
     else if ([titleString isEqualToString:@"联系客服"])
     {
@@ -201,11 +167,12 @@
     }
     else if ([titleString isEqualToString:@"修改密码"])
     {
-        if ([MemberDataManager sharedManager].loginMember.phone) {
+        if ([MemberDataManager sharedManager].loginMember.phone)
+        {
             ResetPwdViewController *rpvc = [[ResetPwdViewController alloc]initWithNibName:@"ResetPwdViewController" bundle:nil];
             [self.navigationController pushViewController:rpvc animated:YES];
         }
-        else{
+    else{
             ForgetPwdViewController *fpvc = [[ForgetPwdViewController alloc]initWithNibName:@"ForgetPwdViewController" bundle:nil];
             [self.navigationController pushViewController:fpvc animated:YES];
         }
@@ -214,7 +181,6 @@
     {
         
     }
-
-   }
+}
 
 @end
