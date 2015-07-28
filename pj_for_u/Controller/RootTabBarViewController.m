@@ -9,6 +9,7 @@
 #import "RootTabBarViewController.h"
 #import "LoginViewController.h"
 #import "HomeViewController.h"
+#import "UserInfoViewController.h"
 
 @interface RootTabBarViewController ()
 
@@ -64,6 +65,14 @@
         if ([vc isKindOfClass:[HomeViewController class]])
         {
             
+        }
+        else if ([vc isKindOfClass:[UserInfoViewController class]]) {
+            // to do
+            if (vc != nil) {
+                if ([[MemberDataManager sharedManager] isLogin]) {
+                    [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+                }
+            }
         }
     }
     return YES;

@@ -23,7 +23,7 @@
     
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSaveIndividualInfo];
     NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:@"18896554880" forKey:@"phone"];
+    [dict setObject:[MemberDataManager sharedManager].loginMember.phone forKey:@"phone"];
     [dict setObject:self.textField.text forKey:[self.userInfoDetailDict objectForKey:@"keyname"]];
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict

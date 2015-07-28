@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet YFAsynImageView *headBackPhoto;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IndividualInfo *individualInfo;
+@property (strong, nonatomic) UIVisualEffectView *effectView;
 
 @end
 
@@ -24,12 +25,30 @@
 #pragma mark - Private Methods
 - (void)loadSubViews
 {
-    self.nameLabel.text = self.individualInfo.userInfo.nickname;
-    if (![self.individualInfo.userInfo.imgUrl isEqualToString:@""]) {
-        self.headPhoto.cacheDir = kUserIconCacheDir;
-        [self.headPhoto aysnLoadImageWithUrl:self.individualInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
-        self.headBackPhoto.cacheDir = kUserIconCacheDir;
-        [self.headBackPhoto aysnLoadImageWithUrl:self.individualInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
+    if ([[MemberDataManager sharedManager] isLogin])
+    {
+        self.nameLabel.text = self.individualInfo.userInfo.nickname;
+        if (![self.individualInfo.userInfo.imgUrl isEqualToString:@""]) {
+            self.headPhoto.cacheDir = kUserIconCacheDir;
+            [self.headPhoto aysnLoadImageWithUrl:self.individualInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
+            // 毛玻璃效果，仅适用于ios8 and later
+            UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+            self.effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+            self.effectView.frame = self.headBackPhoto.frame;
+            [self.headBackPhoto addSubview:self.effectView];
+            self.headBackPhoto.cacheDir = kUserIconCacheDir;
+            [self.headBackPhoto aysnLoadImageWithUrl:self.individualInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
+        }
+        else {
+            [self.headPhoto setImage:[UIImage imageNamed:@"icon_user_default"]];
+            [self.headBackPhoto setImage:[UIImage imageNamed:@"bg_user_img"]];
+            [self.effectView removeFromSuperview];
+        }
+    } else {
+        self.nameLabel.text = @"点击登录";
+        [self.headPhoto setImage:[UIImage imageNamed:@"icon_user_default"]];
+        [self.headBackPhoto setImage:[UIImage imageNamed:@"bg_user_img"]];
+        [self.effectView removeFromSuperview];
     }
 }
 
@@ -54,21 +73,33 @@
 
 - (IBAction)addressManage:(UIButton *)sender
 {
-    //地址管理页面
-    AddressManageViewController *addressManageViewController = [[AddressManageViewController alloc] init];
-    [self.navigationController pushViewController:addressManageViewController animated:YES];
+    if ([[MemberDataManager sharedManager] isLogin]) {
+        //地址管理页面
+        AddressManageViewController *addressManageViewController = [[AddressManageViewController alloc] init];
+        [self.navigationController pushViewController:addressManageViewController animated:YES];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
+    }
 }
 
 - (IBAction)myOrder:(id)sender
 {
-    //我的订单页面
+    if ([[MemberDataManager sharedManager] isLogin]) {
+        //我的订单页面
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
+    }
 }
 
 - (IBAction)individualInfo:(UIButton *)sender
 {
-    //个人信息页面
-    IndividualViewController *individualViewController = [[IndividualViewController alloc] init];
-    [self.navigationController pushViewController:individualViewController animated:YES];
+    if ([[MemberDataManager sharedManager] isLogin]) {
+        //个人信息页面
+        IndividualViewController *individualViewController = [[IndividualViewController alloc] init];
+        [self.navigationController pushViewController:individualViewController animated:YES];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
+    }
 }
 
 - (IBAction)setting:(UIButton *)sender
@@ -79,10 +110,20 @@
 }
 
 #pragma mark - NSNotification Methods
+- (void)userChangeWithNotification:(NSNotification *)notification
+{
+    [self extraItemTapped];
+    if ([[MemberDataManager sharedManager] isLogin])
+    {
+        [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+    } else {
+        [self loadSubViews];
+    }
+}
+
 - (void)refreshUserInfoWithNotification:(NSNotification *)notification
 {
-    [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:@"18896554880"];
-    //[[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+    [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
 }
 
 - (void)userInfoResponseWithNotification:(NSNotification *)notification
@@ -102,9 +143,10 @@
     // Do any additional setup after loading the view.
     [self addImageBorder];
     
-    [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:@"18896554880"];
-    //[[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
-    
+    if ([[MemberDataManager sharedManager] isLogin]) {
+        [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userChangeWithNotification:) name:kUserChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUserInfoWithNotification:) name:kRefreshUserInfoNotificaiton object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userInfoResponseWithNotification:) name:kUserInfoResponseNotification object:nil];
 }

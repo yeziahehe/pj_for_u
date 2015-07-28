@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet YFAsynImageView *headPhoto;
 @property (strong, nonatomic) IBOutlet YFAsynImageView *headBackPhoto;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
+@property (strong, nonatomic) UIVisualEffectView *effectView;
 
 @end
 
@@ -30,6 +31,21 @@
 {
     [self addImageBorder];
     self.nameLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.nickname;
+    if (![[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl isEqualToString:@""]) {
+        self.headPhoto.cacheDir = kUserIconCacheDir;
+        [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
+        // 毛玻璃效果，仅适用于ios8 and later
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        self.effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+        self.effectView.frame = self.headBackPhoto.frame;
+        [self.headBackPhoto addSubview:self.effectView];
+        self.headBackPhoto.cacheDir = kUserIconCacheDir;
+        [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
+    } else {
+        [self.headPhoto setImage:[UIImage imageNamed:@"icon_user_default"]];
+        [self.headBackPhoto setImage:[UIImage imageNamed:@"bg_user_img"]];
+        [self.effectView removeFromSuperview];
+    }
     NSString *path = [[NSBundle mainBundle] pathForResource:@"IndividualInfoMap" ofType:@"plist"];
     self.userInfoArray = [NSMutableArray arrayWithContentsOfFile:path];
     [self.tableView reloadData];
@@ -50,7 +66,7 @@
     
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSaveIndividualInfo];
     NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:@"18896554880" forKey:@"phone"];
+    [dict setObject:[MemberDataManager sharedManager].loginMember.phone forKey:@"phone"];
     [dict setObject:sex forKey:@"sex"];
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict
