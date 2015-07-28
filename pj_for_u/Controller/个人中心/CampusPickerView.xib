@@ -34,24 +34,24 @@
                     <rect key="frame" x="0.0" y="49" width="320" height="180"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="186" id="FD5-pq-Hd0"/>
+                        <constraint firstAttribute="height" constant="180" id="XX0-x9-R1V"/>
                     </constraints>
                 </pickerView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="sv5-nF-aX9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0Ru-T3-2GX"/>
                 <constraint firstItem="HCP-o2-8uO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="38A-ha-M0x"/>
+                <constraint firstAttribute="trailing" secondItem="sv5-nF-aX9" secondAttribute="trailing" id="3t9-nA-1oK"/>
+                <constraint firstItem="sv5-nF-aX9" firstAttribute="top" secondItem="1wp-Gf-Wbk" secondAttribute="bottom" constant="11" id="8NG-4y-jFC"/>
+                <constraint firstAttribute="bottom" secondItem="sv5-nF-aX9" secondAttribute="bottom" constant="3" id="AlS-Jp-KWi"/>
                 <constraint firstAttribute="trailing" secondItem="1wp-Gf-Wbk" secondAttribute="trailing" constant="8" id="CAl-1l-Iqn"/>
                 <constraint firstItem="HCP-o2-8uO" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="XKb-mL-Uin"/>
                 <constraint firstItem="1wp-Gf-Wbk" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="Yiu-lE-TwJ"/>
-                <constraint firstItem="sv5-nF-aX9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cFQ-EK-wze"/>
-                <constraint firstItem="sv5-nF-aX9" firstAttribute="top" secondItem="HCP-o2-8uO" secondAttribute="bottom" constant="8" id="cyZ-JO-4Pf"/>
-                <constraint firstAttribute="bottom" secondItem="sv5-nF-aX9" secondAttribute="bottom" id="hwp-26-Szx"/>
-                <constraint firstItem="sv5-nF-aX9" firstAttribute="top" secondItem="1wp-Gf-Wbk" secondAttribute="bottom" constant="8" id="leg-Cf-aDC"/>
-                <constraint firstAttribute="trailing" secondItem="sv5-nF-aX9" secondAttribute="trailing" id="p2P-uN-3yo"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="campusPickerView" destination="sv5-nF-aX9" id="y4M-Ln-30I"/>
                 <outlet property="cancelButton" destination="HCP-o2-8uO" id="D6a-qr-pSD"/>
                 <outlet property="doneButton" destination="1wp-Gf-Wbk" id="rwn-Zm-zXK"/>
             </connections>

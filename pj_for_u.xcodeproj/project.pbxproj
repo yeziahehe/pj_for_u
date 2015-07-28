@@ -164,6 +164,7 @@
 		4A6C15B01B66247700C9A9D2 /* AddressInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15AF1B66247700C9A9D2 /* AddressInfo.m */; };
 		4A6C15B61B671D1400C9A9D2 /* CampusPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15B51B671D1400C9A9D2 /* CampusPickerView.m */; };
 		4A6C15B81B67219F00C9A9D2 /* CampusPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15B71B67219F00C9A9D2 /* CampusPickerView.xib */; };
+		4A6C15BA1B67B5EE00C9A9D2 /* icon_address_bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15B91B67B5EE00C9A9D2 /* icon_address_bottom@2x.png */; };
 		6D10BE6E1B61FA3700D3638C /* IndividualInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */; };
 		6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E81B65F4C700257256 /* empty_choice@3x.png */; };
 		6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E91B65F4C700257256 /* full_choice@2x.png */; };
@@ -435,6 +436,7 @@
 		4A6C15B41B671D1400C9A9D2 /* CampusPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusPickerView.h; sourceTree = "<group>"; };
 		4A6C15B51B671D1400C9A9D2 /* CampusPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusPickerView.m; sourceTree = "<group>"; };
 		4A6C15B71B67219F00C9A9D2 /* CampusPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampusPickerView.xib; sourceTree = "<group>"; };
+		4A6C15B91B67B5EE00C9A9D2 /* icon_address_bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_address_bottom@2x.png"; path = "Resource/icon_address_bottom@2x.png"; sourceTree = "<group>"; };
 		6D10BE6C1B61FA3700D3638C /* IndividualInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualInfo.h; sourceTree = "<group>"; };
 		6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualInfo.m; sourceTree = "<group>"; };
 		6D7716E71B65F4C700257256 /* empty_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@2x.png"; path = "Resource/empty_choice@2x.png"; sourceTree = "<group>"; };
@@ -816,6 +818,7 @@
 		2C7953931B613EC000511EB7 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				4A6C15B91B67B5EE00C9A9D2 /* icon_address_bottom@2x.png */,
 				6D7716E71B65F4C700257256 /* empty_choice@2x.png */,
 				6D7716E81B65F4C700257256 /* empty_choice@3x.png */,
 				6D7716E91B65F4C700257256 /* full_choice@2x.png */,
@@ -1085,6 +1088,7 @@
 				6D8AD3F41B60BD250099A0D8 /* AddressManageViewController.xib in Resources */,
 				2CF607851B5EA9150022E8E7 /* SchoolSelectTableView.xib in Resources */,
 				2CF607661B5E9D100022E8E7 /* LocationViewController.xib in Resources */,
+				4A6C15BA1B67B5EE00C9A9D2 /* icon_address_bottom@2x.png in Resources */,
 				2CF6077A1B5EA3FF0022E8E7 /* CitySelectTableView.xib in Resources */,
 				6D8AD4001B60E2510099A0D8 /* IndividualSubViewController.xib in Resources */,
 				4A6C15851B5F877F00C9A9D2 /* UserInfoViewController.xib in Resources */,

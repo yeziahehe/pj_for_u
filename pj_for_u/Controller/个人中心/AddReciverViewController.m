@@ -8,6 +8,7 @@
 
 #import "AddReciverViewController.h"
 #import "CampusPickerView.h"
+#import "CampusMoel.h"
 
 #define kChangeAddressDownloadKey       @"ChangeAddressDownloadKey"
 #define kAddReciverDownloadKey          @"AddReciverDownloadKey"
@@ -16,7 +17,7 @@
 @interface AddReciverViewController ()
 @property (strong,nonatomic)UIView *background;
 @property (strong,nonatomic)CampusPickerView *campusPickerView;
-
+@property (strong,nonatomic)CampusMoel *campusModel;
 @end
 
 @implementation AddReciverViewController
@@ -55,6 +56,34 @@
         return @"请输入详细地址";
     else
         return nil;
+}
+
+-(void)cancelButton{
+    [self removeSubViews];
+}
+-(void)doneButton{
+    self.campusTextField.text = self.campusModel.campusName;
+    [self removeSubViews];
+}
+-(void)removeSubViews{
+    CGFloat height = self.campusPickerView.frame.size.height;
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         
+                         [self.campusPickerView setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, height)];
+                     }
+                     completion:^(BOOL finished){
+                         if (finished) {
+                             [self.campusPickerView removeFromSuperview];
+                             self.campusPickerView = nil;
+                         }
+                     }];
+    [self.background removeFromSuperview];
+}
+
+- (void)resignAllField
+{
+    [self.view endEditing:YES];
 }
 
 //修改收货地址请求
@@ -158,33 +187,6 @@
                                                                 purpose:kSetDefaultDownloadKey];
 }
 
--(void)cancelButton{
-    [self removeSubViews];
-}
--(void)doneButton{
-    //self.campusLabel.text = self.goodTypeString;
-    [self removeSubViews];
-}
--(void)removeSubViews{
-    CGFloat height = self.campusPickerView.frame.size.height;
-    [UIView animateWithDuration:0.2
-                     animations:^{
-                         
-                         [self.campusPickerView setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, height)];
-                     }
-                     completion:^(BOOL finished){
-                         if (finished) {
-                             [self.campusPickerView removeFromSuperview];
-                             self.campusPickerView = nil;
-                         }
-                     }];
-    [self.background removeFromSuperview];
-}
-
-- (void)resignAllField
-{
-    [self.view endEditing:YES];
-}
 
 - (void)rightItemTapped{
     //点击保存所做的操作
@@ -193,8 +195,9 @@
     self.reciverPhone = self.phoneTextField.text;
     self.reciverCampusName = self.campusTextField.text;
     self.addressDetail = self.detailTextField.text;
-    if ([self.tag isEqualToString: @"1"]) {
-    //修改收货地址
+    self.reciverCampusName = self.campusTextField.text;
+    if ([self.tagNew isEqualToString: @"1"]) {
+    //保存修改后的收货地址
         NSString *validPassword = [self checkPasswordValid];
         if(validPassword)
         {
@@ -208,10 +211,10 @@
                                                 name:self.reciverName
                                              address:self.addressDetail
                                                phone:self.reciverPhone
-                                            campusId:self.reciverCampusId];
+                                            campusId:self.campusModel.campusId];
         }
     }
-    //新增收货地址
+    //保存新增的收货地址
     else
     {
         NSString *validPassword = [self checkPasswordValid];
@@ -225,11 +228,26 @@
                                             name:self.reciverName
                                            phone:self.reciverPhone
                                          address:self.addressDetail
-                                        campusId:self.reciverCampusId];
+                                        campusId:self.campusModel.campusId];
         }
     }
 }
 
+#pragma mark - Notification Methods
+- (void)textFieldChange:(NSNotification *)notification
+{
+    if ((self.nameTextField.text.length != 0)||(self.phoneTextField.text.length == 11)||(self.campusTextField.text.length != 0)||(self.detailTextField.text.length != 0)) {
+        self.setDefaultAddressButton.enabled = YES;
+    }
+    else{
+        self.setDefaultAddressButton.enabled = NO;
+    }
+}
+
+-(void)getCampusNameWithNotification:(NSNotification *)notification{
+    self.campusModel = notification.object;
+    NSLog(@"%@,%@",self.campusModel.campusId,self.campusModel.campusName);
+}
 #pragma mark - UIView Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -237,6 +255,8 @@
     [self setRightNaviItemWithTitle:@"保存" imageName:nil];
     [self loadData];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCampusNameWithNotification:) name:kGetCampusNameWithNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCampusNameWithNotification:) name:kGetFirstCampusNameWithNotification object:nil];
     UITapGestureRecognizer *tapGesuture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignAllField)];
     [self.view addGestureRecognizer:tapGesuture];
 }
@@ -276,13 +296,12 @@
 - (IBAction)setDefaultAddress:(id)sender {
     NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
     //设置默认地址
-    if ([self.tag isEqualToString:@"0"]) {
+    if ([self.tagNew isEqualToString:@"0"]) {
         [[YFProgressHUD sharedProgressHUD]showWithMessage:@"请先保存该收货地址" customView:nil hideDelay:2.f];
     }
     else
     {
-        if (([self.reciverPhone isEqualToString: self.phoneTextField.text])||([self.reciverName isEqualToString:self.nameTextField.text])||([self.addressDetail isEqualToString:self.detailTextField.text])) {
-            NSLog(@"test  %@%@",self.addressDetail,self.detailTextField.text);
+        if (([self.reciverPhone isEqualToString: self.phoneTextField.text])&([self.reciverName isEqualToString:self.nameTextField.text])&([self.addressDetail isEqualToString:self.detailTextField.text])&([self.reciverCampusName isEqualToString:self.campusTextField.text])) {
             [self requestToSetDefaultAddressWithPhontId:phoneId
                                                    rank:self.reciverRank];
         }
@@ -304,29 +323,15 @@
     else if(textField == self.phoneTextField)
     {
         [self.phoneTextField resignFirstResponder];
-        [self.campusTextField becomeFirstResponder];
-    }
-    else if(textField == self.campusTextField)
-    {
-        [self.campusTextField resignFirstResponder];
         [self.detailTextField becomeFirstResponder];
     }
     else if(textField == self.detailTextField)
     {
         [self.detailTextField resignFirstResponder];
     }
-    return YES;
+       return YES;
 }
 
-- (void)textFieldChange:(NSNotification *)notification
-{
-    if ((self.nameTextField.text.length != 0)||(self.phoneTextField.text.length < 11)||(self.campusTextField.text.length != 0)||(self.detailTextField.text.length != 0)) {
-        self.setDefaultAddressButton.enabled = YES;
-    }
-    else{
-        self.setDefaultAddressButton.enabled = NO;
-    }
-}
 
 #pragma mark - YFDownloaderDelegate Methods
 - (void)downloader:(YFDownloader *)downloader completeWithNSData:(NSData *)data

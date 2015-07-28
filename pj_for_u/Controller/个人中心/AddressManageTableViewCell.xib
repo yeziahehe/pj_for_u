@@ -34,10 +34,10 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="姓名" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rsk-jO-UpQ">
-                        <rect key="frame" x="8" y="8" width="71" height="21"/>
+                        <rect key="frame" x="8" y="8" width="92" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="eYK-bN-re9"/>
-                            <constraint firstAttribute="width" constant="71" id="omA-3R-1e2"/>
+                            <constraint firstAttribute="height" constant="21" id="FRA-Ev-Ctz"/>
+                            <constraint firstAttribute="width" constant="92" id="Pqn-C0-kqq"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -47,16 +47,16 @@
                 <constraints>
                     <constraint firstItem="CfQ-uJ-GGj" firstAttribute="top" secondItem="L1F-89-8gM" secondAttribute="bottom" constant="5" id="3Eg-4A-Sbd"/>
                     <constraint firstAttribute="trailing" secondItem="CfQ-uJ-GGj" secondAttribute="trailing" id="AS4-Qm-fBZ"/>
-                    <constraint firstItem="KjG-jC-tga" firstAttribute="firstBaseline" secondItem="Rsk-jO-UpQ" secondAttribute="firstBaseline" id="ESn-fj-OeC"/>
-                    <constraint firstItem="Rsk-jO-UpQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-7" id="LGD-S9-bBp"/>
-                    <constraint firstItem="KjG-jC-tga" firstAttribute="leading" secondItem="Rsk-jO-UpQ" secondAttribute="trailing" constant="29" id="Q41-9v-B0d"/>
+                    <constraint firstItem="Rsk-jO-UpQ" firstAttribute="baseline" secondItem="KjG-jC-tga" secondAttribute="baseline" id="OhX-3Q-sCb"/>
                     <constraint firstAttribute="trailingMargin" secondItem="KjG-jC-tga" secondAttribute="trailing" constant="64" id="R8K-A1-Ms8"/>
-                    <constraint firstItem="L1F-89-8gM" firstAttribute="leading" secondItem="Rsk-jO-UpQ" secondAttribute="leading" id="S3l-IF-eHC"/>
-                    <constraint firstItem="KjG-jC-tga" firstAttribute="baseline" secondItem="Rsk-jO-UpQ" secondAttribute="baseline" id="T3h-gP-QzD"/>
                     <constraint firstAttribute="bottomMargin" secondItem="CfQ-uJ-GGj" secondAttribute="bottom" constant="-9.5" id="WRe-Vs-kKM"/>
                     <constraint firstItem="KjG-jC-tga" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="ck3-Qf-99P"/>
-                    <constraint firstItem="L1F-89-8gM" firstAttribute="top" secondItem="Rsk-jO-UpQ" secondAttribute="bottom" constant="5" id="jgP-g5-uCz"/>
+                    <constraint firstItem="Rsk-jO-UpQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-7" id="fvc-X7-Psa"/>
+                    <constraint firstItem="KjG-jC-tga" firstAttribute="leading" secondItem="Rsk-jO-UpQ" secondAttribute="trailing" constant="8" symbolic="YES" id="gai-ks-xjh"/>
+                    <constraint firstItem="Rsk-jO-UpQ" firstAttribute="firstBaseline" secondItem="KjG-jC-tga" secondAttribute="firstBaseline" id="kYO-pL-lpY"/>
                     <constraint firstItem="CfQ-uJ-GGj" firstAttribute="centerX" secondItem="L1F-89-8gM" secondAttribute="centerX" id="nFQ-1w-Q7U"/>
+                    <constraint firstItem="L1F-89-8gM" firstAttribute="top" secondItem="Rsk-jO-UpQ" secondAttribute="bottom" constant="5" id="rl4-Gy-thW"/>
+                    <constraint firstItem="Rsk-jO-UpQ" firstAttribute="leading" secondItem="L1F-89-8gM" secondAttribute="leading" id="wVG-5h-nFF"/>
                     <constraint firstItem="CfQ-uJ-GGj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="zvO-Ul-s3E"/>
                 </constraints>
             </tableViewCellContentView>

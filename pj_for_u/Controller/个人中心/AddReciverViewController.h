@@ -16,7 +16,7 @@
 @property(strong,nonatomic)NSString *reciverCampusId;
 @property(strong,nonatomic)NSString *reciverCampusName;
 @property(strong,nonatomic)NSString *addressDetail;
-@property(strong,nonatomic)NSString *tag;//0 是新增， 1是修改
+@property(strong,nonatomic)NSString *tagNew;//0 是新增， 1是修改
 @property(strong,nonatomic)IBOutlet UITextField *nameTextField;
 @property(strong,nonatomic)IBOutlet UITextField *phoneTextField;
 @property(strong,nonatomic)IBOutlet UITextField *campusTextField;

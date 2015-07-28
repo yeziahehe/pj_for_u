@@ -81,6 +81,8 @@
 #define kRefreshHomeNotification            @"RefreshHomeNotification"
 #define kUserInfoResponseNotification       @"UserInfoResponseNotification"
 #define kRefreshReciverInfoNotification     @"RefreshReciverInfoNotification"
+#define kGetCampusNameWithNotification      @"GetCampusNameWithNotification"
+#define kGetFirstCampusNameWithNotification @"GetFirstCampusNameWithNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"

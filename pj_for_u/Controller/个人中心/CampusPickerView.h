@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CampusPickerView : UIView
+@interface CampusPickerView : UIView<UIPickerViewDataSource,UIPickerViewDelegate>
 @property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 @property (strong, nonatomic) IBOutlet UIButton *doneButton;
+@property (strong, nonatomic) IBOutlet UIPickerView *campusPickerView;
 
 @end

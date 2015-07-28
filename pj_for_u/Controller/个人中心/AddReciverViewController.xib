@@ -119,7 +119,7 @@
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择校区" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cut-3k-jQp">
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="请选择校区" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cut-3k-jQp">
                             <rect key="frame" x="90" y="7" width="206" height="30"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits"/>
@@ -181,13 +181,12 @@
                         <constraint firstItem="kNt-R3-cCj" firstAttribute="centerX" secondItem="UYA-zJ-466" secondAttribute="centerX" id="cYA-Gt-cii"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFB-CP-9dO">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFB-CP-9dO">
                     <rect key="frame" x="0.0" y="619" width="375" height="48"/>
-                    <color key="backgroundColor" red="0.98431372549999996" green="0.28627450980000002" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="8hO-99-Awr"/>
                     </constraints>
-                    <state key="normal" title="设置为默认地址">
+                    <state key="normal" title="设置为默认地址" backgroundImage="icon_address_bottom.png">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -223,6 +222,7 @@
         </view>
     </objects>
     <resources>
+        <image name="icon_address_bottom.png" width="375" height="48"/>
         <image name="line_hon_1px_down.png" width="640" height="2"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

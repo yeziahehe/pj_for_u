@@ -37,19 +37,23 @@
                                                                delegate:self
                                                                 purpose:kGetAddressDownloadKey];
 }
+
+- (void)loadSubView{
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [UIView new];
+    [self requestForAddress];
+}
 #pragma mark - Notification Methods
 - (void)refreshReciverInfoWithNotification:(NSNotification *)notification{
-    [self requestForAddress];
+    [self loadSubView];
 }
 
 #pragma mark - UIViewController Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNaviTitle:@"我的收货地址"];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    self.tableView.tableFooterView = [UIView new];
-    [self requestForAddress];
+    [self loadSubView];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshReciverInfoWithNotification:) name:kRefreshReciverInfoNotification object:nil];
 }
 
@@ -69,7 +73,7 @@
     AddReciverViewController *avc = [[AddReciverViewController alloc]initWithNibName:@"AddReciverViewController" bundle:nil];
     [self.navigationController pushViewController:avc animated:YES];
     avc.NavTitle = @"新增收货地址";
-    avc.tag = @"0";
+    avc.tagNew = @"0";
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -80,12 +84,15 @@
         cell = [[[NSBundle mainBundle] loadNibNamed:@"AddressManageTableViewCell" owner:self options:nil] lastObject];
     }
     AddressInfo *address = [self.allAddressArray objectAtIndex:indexPath.row];
-    
     cell.name.text = address.name;
     cell.phoneNum.text = address.phone;
     cell.address.text = address.address;
     cell.campusId = address.campusId;
     cell.campusName = address.campusName;
+    if ([address.tag isEqualToString: @"0"]) {
+        UIColor *color = [UIColor colorWithRed:36.f/255 green:233.f/255 blue:194.f/255 alpha:1.f];
+        cell.backgroundColor = color;
+    }
     return cell;
 }
 
@@ -107,7 +114,7 @@
     [self.navigationController pushViewController:avc animated:YES];
     avc.NavTitle = @"修改收货地址";
     AddressInfo *address = [self.allAddressArray objectAtIndex:indexPath.row];
-    avc.tag = @"1";
+    avc.tagNew = @"1";
     avc.reciverName = address.name;
     avc.reciverPhone = address.phone;
     avc.addressDetail = address.address;
