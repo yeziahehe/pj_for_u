@@ -9,7 +9,6 @@
 #import "SettingViewController.h"
 #import "SettingTableViewCell.h"
 #import "AboutAppViewController.h"
-#import "CallNumAndMessViewController.h"
 #import "ResetPwdViewController.h"
 #import "ForgetPwdViewController.h"
 
@@ -17,50 +16,57 @@
 
 @interface SettingViewController ()
 @property (nonatomic, strong) NSArray *menuArray;
-@property (nonatomic, strong) UISwitch *pushSwitch;
-@property (nonatomic, strong) NSString *phoneNum;
-@property  BOOL remote;
 @end
 
 @implementation SettingViewController
 
 #pragma mark - Private Methods
-//加载plist文件的设置选项，并初始化客服电话和推送状态
 - (void)loadSubViews
 {
     NSString *tempPath = [[NSBundle mainBundle] pathForResource:kSettingMapFileName ofType:@"plist"];
     self.menuArray = [NSArray arrayWithContentsOfFile:tempPath];
-    self.settingTableView.tableFooterView = self.logoutView;
-    [self setNaviTitle:@"设置"];
-    self.phoneNum = @"18013646790";
-    self.remote = [self checkRemoteNotificationType];
+    [self refreshSetting];
 }
 
-//获取当前设备的推送状态
-- (BOOL)checkRemoteNotificationType
+- (void)refreshSetting
 {
-    UIRemoteNotificationType types;
-        types = [[UIApplication sharedApplication] currentUserNotificationSettings].types;
-
-        return (types & UIRemoteNotificationTypeAlert);
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self loadSubViews];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if ([[MemberDataManager sharedManager] isLogin])
+    {
+        self.settingTableView.tableFooterView = self.logoutView;
+    }
+    else
+    {
+        self.settingTableView.tableFooterView = [UIView new];
+    }
+    [self.settingTableView reloadData];
 }
 
 #pragma mark - IBAction Methods
-//退出登录按钮点击事件
 - (IBAction)logoutButtonClicked:(UIButton *)sender
 {
-    [[MemberDataManager sharedManager] logout];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"退出"
+                                                                   message:@"确定退出登录？"
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                              style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction *action) {
+                                            }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                              style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction *action) {
+                                                [[MemberDataManager sharedManager] logout];
+                                                [[NSNotificationCenter defaultCenter] postNotificationName:kUserChangeNotification object:nil];
+                                                [self.tabBarController setSelectedIndex:0];
+                                                [self.navigationController popToRootViewControllerAnimated:YES];
+                                            }]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+#pragma mark - UIViewController Methods
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self setNaviTitle:@"设置"];
+    [self loadSubViews];
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -95,28 +101,12 @@
     {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    if (indexPath.section == 3)
-    {
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-         self.pushSwitch = [[UISwitch alloc] init];
-        CGRect frame = self.pushSwitch.frame;
-        frame.origin.x = ScreenWidth - 8 - frame.size.width;
-        frame.origin.y = cell.center.y - frame.size.height/2;
-        self.pushSwitch.frame = frame;
-        [self.pushSwitch setOn:self.remote];
-        [cell.contentView addSubview:self.pushSwitch];
-    }
     return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 1.f;
-}
-
--(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 0.f;
+    return 8.f;
 }
 
 #pragma mark - UITableViewDelegate methods
@@ -125,42 +115,61 @@
     return 44.f;
 }
 
-//根据点击不同的cell触发不同事件
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *titleString = [[self.menuArray objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     if ([titleString isEqualToString:@"清除缓存"])
     {
-            UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"清除缓存"
-                                                                           message:@"是否清除缓存？"
-                                                                    preferredStyle:UIAlertControllerStyleAlert];
-            [alert addAction:[UIAlertAction actionWithTitle:@"取消"
-                                                      style:UIAlertActionStyleDefault
-                                                    handler:^(UIAlertAction *action) {
-                                                    }]];
-            [alert addAction:[UIAlertAction actionWithTitle:@"确定"
-                                                      style:UIAlertActionStyleDefault
-                                                    handler:^(UIAlertAction *action) {
-                                                        [[YFProgressHUD sharedProgressHUD] showMixedWithLoading:@"清除缓存..." end:@"清理完成"];
-                                                        [YFAppBackgroudConfiger clearAllCachesWhenBiggerThanSize:0];
-                                                    }]];
-            [self presentViewController:alert animated:YES completion:nil];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"清除缓存"
+                                                                       message:@"是否清除缓存？"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    [[YFProgressHUD sharedProgressHUD] showMixedWithLoading:@"清除缓存..." end:@"清理完成"];
+                                                    [YFAppBackgroudConfiger clearAllCachesWhenBiggerThanSize:0];
+                                                }]];
+        [self presentViewController:alert animated:YES completion:nil];
     }
     else if ([titleString isEqualToString:@"联系客服"])
     {
-        CallNumAndMessViewController *callNum = [[CallNumAndMessViewController alloc]init];
-        callNum.phoneNum = self.phoneNum;
-        callNum.useViewController = self;
-        [callNum clickPhone];
+        UIAlertController *phonenumSheet = [UIAlertController alertControllerWithTitle:@"1111111" message:@"这是一个电话号码，您要对它：" preferredStyle:UIAlertControllerStyleActionSheet];
+        [phonenumSheet addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                          style:UIAlertActionStyleCancel
+                                                        handler:^(UIAlertAction *action) {
+                                                        }]];
+        [phonenumSheet addAction:[UIAlertAction actionWithTitle:@"拨打电话"
+                                                          style:UIAlertActionStyleDefault
+                                                        handler:^(UIAlertAction *action) {
+                                                            //打电话
+                                                            UIAlertController *phonealert = [UIAlertController alertControllerWithTitle:nil
+                                                                                                                                message:@"11111"
+                                                                                                                         preferredStyle:UIAlertControllerStyleAlert];
+                                                            [phonealert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                                                                           style:UIAlertActionStyleDefault
+                                                                                                         handler:^(UIAlertAction *action) {
+                                                                                                             //什么都不做
+                                                                                                         }]];
+                                                            [phonealert addAction:[UIAlertAction actionWithTitle:@"拨打"
+                                                                                                           style:UIAlertActionStyleDefault
+                                                                                                         handler:^(UIAlertAction *action) {
+                                                                                                             NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",@"1111"]];
+                                                                                                             [[UIApplication sharedApplication] openURL:telURL];
+                                                                                                         }]];
+                                                            [self presentViewController:phonealert animated:YES completion:nil];
+                                                        }]];
+        [self presentViewController:phonenumSheet animated:YES completion:nil];
     }
-    
     else if ([titleString isEqualToString:@"关于我们"])
     {
         AboutAppViewController *aboutAppViewController = [[AboutAppViewController alloc]initWithNibName:@"AboutAppViewController" bundle:nil];
         [self.navigationController pushViewController:aboutAppViewController animated:YES];
     }
-
     else if ([titleString isEqualToString:@"给我评分"])
     {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:kAppRateUrl, kAppAppleId]]];
@@ -171,15 +180,10 @@
         {
             ResetPwdViewController *rpvc = [[ResetPwdViewController alloc]initWithNibName:@"ResetPwdViewController" bundle:nil];
             [self.navigationController pushViewController:rpvc animated:YES];
-        }
-    else{
+        } else {
             ForgetPwdViewController *fpvc = [[ForgetPwdViewController alloc]initWithNibName:@"ForgetPwdViewController" bundle:nil];
             [self.navigationController pushViewController:fpvc animated:YES];
         }
-    }
-    else if ([titleString isEqualToString:@"是否推送"])
-    {
-        
     }
 }
 

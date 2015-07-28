@@ -13,8 +13,5 @@
 		<string>修改密码</string>
 		<string>清除缓存</string>
 	</array>
-	<array>
-		<string>是否推送</string>
-	</array>
 </array>
 </plist>
