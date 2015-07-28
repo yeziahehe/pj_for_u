@@ -99,7 +99,6 @@
 #pragma mark - IBAction Methods
 - (IBAction)registButtonClicked:(id)sender {
     [self resignAllFirstResponders];
-    
     NSString *validPassword = [self checkPasswordValid];
     if(validPassword)
     {

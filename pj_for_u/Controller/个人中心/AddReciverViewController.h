@@ -10,4 +10,20 @@
 
 @interface AddReciverViewController : BaseViewController
 @property(strong,nonatomic)NSString *NavTitle;
+@property(strong,nonatomic)NSString *reciverName;
+@property(strong,nonatomic)NSString *reciverPhone;
+@property(strong,nonatomic)NSString *reciverRank;
+@property(strong,nonatomic)NSString *reciverCampusId;
+@property(strong,nonatomic)NSString *reciverCampusName;
+@property(strong,nonatomic)NSString *addressDetail;
+@property(strong,nonatomic)NSString *tag;//0 是新增， 1是修改
+@property(strong,nonatomic)IBOutlet UITextField *nameTextField;
+@property(strong,nonatomic)IBOutlet UITextField *phoneTextField;
+@property(strong,nonatomic)IBOutlet UITextField *campusTextField;
+@property (strong, nonatomic) IBOutlet UITextField *detailTextField;
+@property (strong, nonatomic) IBOutlet UIButton *setDefaultAddressButton;
+
+- (IBAction)showCampusPickerView:(id)sender;
+- (IBAction)setDefaultAddress:(id)sender;
+
 @end

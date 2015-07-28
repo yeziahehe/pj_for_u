@@ -15,6 +15,8 @@
                   "name": "叶帆",
                   "address": "三江学院铁心桥主校区618",
                   "tag": 1
+                  "campusId": 0
+                  "campusName": "苏州大学独墅湖校区"
               },
  */
 
@@ -29,5 +31,7 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *address;
 @property (nonatomic, copy) NSString *tag;
+@property (nonatomic, copy) NSString *campusId;
+@property (nonatomic, copy) NSString *campusName;
 
 @end

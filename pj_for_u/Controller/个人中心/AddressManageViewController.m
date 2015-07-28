@@ -24,7 +24,6 @@
 - (void)requestForAddress
 {
     [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
-    //receiver/selectReceiver.do?phoneId=18762885079
     NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
     if (nil == phoneId) {
         phoneId = @"";
@@ -38,6 +37,10 @@
                                                                delegate:self
                                                                 purpose:kGetAddressDownloadKey];
 }
+#pragma mark - Notification Methods
+- (void)refreshReciverInfoWithNotification:(NSNotification *)notification{
+    [self requestForAddress];
+}
 
 #pragma mark - UIViewController Methods
 - (void)viewDidLoad {
@@ -47,6 +50,7 @@
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
     [self requestForAddress];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshReciverInfoWithNotification:) name:kRefreshReciverInfoNotification object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -65,6 +69,7 @@
     AddReciverViewController *avc = [[AddReciverViewController alloc]initWithNibName:@"AddReciverViewController" bundle:nil];
     [self.navigationController pushViewController:avc animated:YES];
     avc.NavTitle = @"新增收货地址";
+    avc.tag = @"0";
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -79,6 +84,8 @@
     cell.name.text = address.name;
     cell.phoneNum.text = address.phone;
     cell.address.text = address.address;
+    cell.campusId = address.campusId;
+    cell.campusName = address.campusName;
     return cell;
 }
 
@@ -95,10 +102,18 @@
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     AddReciverViewController *avc = [[AddReciverViewController alloc]initWithNibName:@"AddReciverViewController" bundle:nil];
     [self.navigationController pushViewController:avc animated:YES];
     avc.NavTitle = @"修改收货地址";
-    
+    AddressInfo *address = [self.allAddressArray objectAtIndex:indexPath.row];
+    avc.tag = @"1";
+    avc.reciverName = address.name;
+    avc.reciverPhone = address.phone;
+    avc.addressDetail = address.address;
+    avc.reciverRank = address.rank;
+    avc.reciverCampusId = address.campusId;
+    avc.reciverCampusName = address.campusName;
 }
 
 #pragma mark - YFDownloaderDelegate Methods

@@ -29,7 +29,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqB-JE-6Ju">
                                     <rect key="frame" x="0.0" y="10" width="375" height="45"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_login_secret.png" translatesAutoresizingMaskIntoConstraints="NO" id="l3u-OP-GWH">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_login_secret.png" translatesAutoresizingMaskIntoConstraints="NO" id="l3u-OP-GWH">
                                             <rect key="frame" x="30" y="10" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="22" id="vGB-v7-Ub2"/>
@@ -64,7 +64,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b6c-Hv-2sg">
                                     <rect key="frame" x="0.0" y="65" width="375" height="45"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_login_secret.png" translatesAutoresizingMaskIntoConstraints="NO" id="gD5-BS-pYu">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_login_secret.png" translatesAutoresizingMaskIntoConstraints="NO" id="gD5-BS-pYu">
                                             <rect key="frame" x="30" y="10" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="22" id="pO5-RI-kJe"/>
@@ -99,7 +99,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rze-lf-RVH">
                                     <rect key="frame" x="0.0" y="120" width="375" height="45"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_login_secret.png" translatesAutoresizingMaskIntoConstraints="NO" id="8Rj-MV-r8b">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_login_secret.png" translatesAutoresizingMaskIntoConstraints="NO" id="8Rj-MV-r8b">
                                             <rect key="frame" x="30" y="10" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="22" id="gE3-W8-28N"/>

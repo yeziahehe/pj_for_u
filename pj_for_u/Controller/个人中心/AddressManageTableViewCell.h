@@ -12,6 +12,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UILabel *phoneNum;
 @property (strong, nonatomic) IBOutlet UILabel *address;
-
+@property (strong, nonatomic) NSString *campusId;
+@property (strong, nonatomic) NSString *campusName;
 
 @end

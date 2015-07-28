@@ -160,8 +160,9 @@
 		4A6C15AC1B66194400C9A9D2 /* AddressManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15AA1B66194400C9A9D2 /* AddressManageTableViewCell.m */; };
 		4A6C15AD1B66194400C9A9D2 /* AddressManageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15AB1B66194400C9A9D2 /* AddressManageTableViewCell.xib */; };
 		4A6C15B01B66247700C9A9D2 /* AddressInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15AF1B66247700C9A9D2 /* AddressInfo.m */; };
+		4A6C15B61B671D1400C9A9D2 /* CampusPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15B51B671D1400C9A9D2 /* CampusPickerView.m */; };
+		4A6C15B81B67219F00C9A9D2 /* CampusPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15B71B67219F00C9A9D2 /* CampusPickerView.xib */; };
 		6D10BE6E1B61FA3700D3638C /* IndividualInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */; };
-		6D7716EB1B65F4C700257256 /* empty_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E71B65F4C700257256 /* empty_choice@2x.png */; };
 		6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E81B65F4C700257256 /* empty_choice@3x.png */; };
 		6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E91B65F4C700257256 /* full_choice@2x.png */; };
 		6D7716EE1B65F4C700257256 /* full_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716EA1B65F4C700257256 /* full_choice@3x.png */; };
@@ -429,6 +430,9 @@
 		4A6C15AB1B66194400C9A9D2 /* AddressManageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressManageTableViewCell.xib; sourceTree = "<group>"; };
 		4A6C15AE1B66247700C9A9D2 /* AddressInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressInfo.h; path = Model/AddressInfo.h; sourceTree = "<group>"; };
 		4A6C15AF1B66247700C9A9D2 /* AddressInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressInfo.m; path = Model/AddressInfo.m; sourceTree = "<group>"; };
+		4A6C15B41B671D1400C9A9D2 /* CampusPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusPickerView.h; sourceTree = "<group>"; };
+		4A6C15B51B671D1400C9A9D2 /* CampusPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusPickerView.m; sourceTree = "<group>"; };
+		4A6C15B71B67219F00C9A9D2 /* CampusPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampusPickerView.xib; sourceTree = "<group>"; };
 		6D10BE6C1B61FA3700D3638C /* IndividualInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualInfo.h; sourceTree = "<group>"; };
 		6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualInfo.m; sourceTree = "<group>"; };
 		6D7716E71B65F4C700257256 /* empty_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@2x.png"; path = "Resource/empty_choice@2x.png"; sourceTree = "<group>"; };
@@ -600,6 +604,8 @@
 				6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */,
 				4A6C15AE1B66247700C9A9D2 /* AddressInfo.h */,
 				4A6C15AF1B66247700C9A9D2 /* AddressInfo.m */,
+				2CBC8E631B665F0400326059 /* UserInfo.h */,
+				2CBC8E641B665F0400326059 /* UserInfo.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -957,6 +963,9 @@
 				4A6C15A41B66143000C9A9D2 /* AddReciverViewController.h */,
 				4A6C15A51B66143000C9A9D2 /* AddReciverViewController.m */,
 				4A6C15A61B66143000C9A9D2 /* AddReciverViewController.xib */,
+				4A6C15B41B671D1400C9A9D2 /* CampusPickerView.h */,
+				4A6C15B51B671D1400C9A9D2 /* CampusPickerView.m */,
+				4A6C15B71B67219F00C9A9D2 /* CampusPickerView.xib */,
 			);
 			name = "地址管理";
 			sourceTree = "<group>";
@@ -1134,6 +1143,7 @@
 				6D8AD3F91B60C2AF0099A0D8 /* IndividualTableViewCell.xib in Resources */,
 				2C10D6B31B60B551008C3DE0 /* icon_home_shopping_selected@2x.png in Resources */,
 				0A3B67121B622F5A0067C709 /* aboutImage.png in Resources */,
+				4A6C15B81B67219F00C9A9D2 /* CampusPickerView.xib in Resources */,
 				2CF607C21B5EC88C0022E8E7 /* icon_fruit@2x.png in Resources */,
 				2CF607521B5E4E390022E8E7 /* StartViewController.xib in Resources */,
 				2CF6075B1B5E77560022E8E7 /* btn_search@2x.png in Resources */,
@@ -1212,6 +1222,7 @@
 				2C2529001B5E3AA900ADDEFB /* UIImage+YFUtilities.m in Sources */,
 				2C2528531B5E108900ADDEFB /* AppDelegate.m in Sources */,
 				2C2528DB1B5E39EF00ADDEFB /* SBJsonParser.m in Sources */,
+				4A6C15B61B671D1400C9A9D2 /* CampusPickerView.m in Sources */,
 				2C2529071B5E3AA900ADDEFB /* YFImageDownloader.m in Sources */,
 				4A6C15AC1B66194400C9A9D2 /* AddressManageTableViewCell.m in Sources */,
 				2C2528CE1B5E39EF00ADDEFB /* MBProgressHUD.m in Sources */,

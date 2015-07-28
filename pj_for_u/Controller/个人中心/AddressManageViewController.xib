@@ -37,6 +37,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="B1j-NQ-RYL" firstAttribute="top" secondItem="6h2-4I-9d5" secondAttribute="top" id="FHU-Yt-nMt"/>
+                        <constraint firstAttribute="height" constant="54" id="GaS-ii-Qfu"/>
                         <constraint firstItem="6h2-4I-9d5" firstAttribute="leading" secondItem="B1j-NQ-RYL" secondAttribute="trailing" constant="8" symbolic="YES" id="OaE-21-om6"/>
                         <constraint firstItem="B1j-NQ-RYL" firstAttribute="leading" secondItem="MFz-7M-4NT" secondAttribute="leading" constant="15" id="fw4-bD-ZEN"/>
                         <constraint firstItem="6h2-4I-9d5" firstAttribute="centerY" secondItem="MFz-7M-4NT" secondAttribute="centerY" id="mzP-Hu-8X7"/>
