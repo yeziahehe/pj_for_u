@@ -80,6 +80,9 @@
 #define kCampusNameNotification             @"CampusNameNotification"
 #define kRefreshHomeNotification            @"RefreshHomeNotification"
 #define kUserInfoResponseNotification       @"UserInfoResponseNotification"
+#define kRefreshReciverInfoNotification     @"RefreshReciverInfoNotification"
+#define kGetCampusNameWithNotification      @"GetCampusNameWithNotification"
+#define kGetFirstCampusNameWithNotification @"GetFirstCampusNameWithNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
@@ -93,5 +96,10 @@
 #define kIndividualInfoUrl      @"user/mineInfo.do"
 #define kGetModuleTypeUrl       @"service/getHomeCategoryInfo.do" 
 #define kSaveIndividualInfo     @"user/updateUserInfo.do"
+#define kGetReciverUrl          @"receiver/selectReceiver.do"
+#define kChangeReciverUrl       @"receiver/updateReceiver.do"
+#define kAddNewReciverUrl       @"receiver/addReceiver.do"
+#define kSetDefaultAddressUrl   @"receiver/setDefaultAddress.do"
+
 
 #endif

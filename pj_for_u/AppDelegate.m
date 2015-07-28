@@ -148,7 +148,8 @@
 - (void)connectShareSDK
 {
     //配置SMS
-    [SMS_SDK registerApp:@"486f6cde1a52" withSecret:@"0af52d82128a9eadab1447b94435a47c"];
+    //http://dashboard.mob.com/Sms/#/
+    [SMS_SDK registerApp:@"91a73af59ad4" withSecret:@"e51fd9362953bfce350cd2b832e0e138"];
 }
 
 @end

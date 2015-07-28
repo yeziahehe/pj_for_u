@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface AddressManageViewController : BaseViewController
+@interface AddressManageViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
 
 @end

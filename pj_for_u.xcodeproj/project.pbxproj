@@ -156,8 +156,15 @@
 		4A6C15941B60915500C9A9D2 /* icon_disagree@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15921B60915500C9A9D2 /* icon_disagree@2x.png */; };
 		4A6C15961B60B4B700C9A9D2 /* SMS_SDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6C15951B60B4B600C9A9D2 /* SMS_SDK.framework */; };
 		4A6C15A31B65C84900C9A9D2 /* icon_addAdress@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15A21B65C84900C9A9D2 /* icon_addAdress@2x.png */; };
+		4A6C15A71B66143000C9A9D2 /* AddReciverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15A51B66143000C9A9D2 /* AddReciverViewController.m */; };
+		4A6C15A81B66143000C9A9D2 /* AddReciverViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15A61B66143000C9A9D2 /* AddReciverViewController.xib */; };
+		4A6C15AC1B66194400C9A9D2 /* AddressManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15AA1B66194400C9A9D2 /* AddressManageTableViewCell.m */; };
+		4A6C15AD1B66194400C9A9D2 /* AddressManageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15AB1B66194400C9A9D2 /* AddressManageTableViewCell.xib */; };
+		4A6C15B01B66247700C9A9D2 /* AddressInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15AF1B66247700C9A9D2 /* AddressInfo.m */; };
+		4A6C15B61B671D1400C9A9D2 /* CampusPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15B51B671D1400C9A9D2 /* CampusPickerView.m */; };
+		4A6C15B81B67219F00C9A9D2 /* CampusPickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15B71B67219F00C9A9D2 /* CampusPickerView.xib */; };
+		4A6C15BA1B67B5EE00C9A9D2 /* icon_address_bottom@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15B91B67B5EE00C9A9D2 /* icon_address_bottom@2x.png */; };
 		6D10BE6E1B61FA3700D3638C /* IndividualInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */; };
-		6D7716EB1B65F4C700257256 /* empty_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E71B65F4C700257256 /* empty_choice@2x.png */; };
 		6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E81B65F4C700257256 /* empty_choice@3x.png */; };
 		6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E91B65F4C700257256 /* full_choice@2x.png */; };
 		6D7716EE1B65F4C700257256 /* full_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716EA1B65F4C700257256 /* full_choice@3x.png */; };
@@ -415,6 +422,18 @@
 		4A6C15921B60915500C9A9D2 /* icon_disagree@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_disagree@2x.png"; path = "Resource/icon_disagree@2x.png"; sourceTree = "<group>"; };
 		4A6C15951B60B4B600C9A9D2 /* SMS_SDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SMS_SDK.framework; sourceTree = "<group>"; };
 		4A6C15A21B65C84900C9A9D2 /* icon_addAdress@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_addAdress@2x.png"; path = "Resource/icon_addAdress@2x.png"; sourceTree = "<group>"; };
+		4A6C15A41B66143000C9A9D2 /* AddReciverViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddReciverViewController.h; sourceTree = "<group>"; };
+		4A6C15A51B66143000C9A9D2 /* AddReciverViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddReciverViewController.m; sourceTree = "<group>"; };
+		4A6C15A61B66143000C9A9D2 /* AddReciverViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddReciverViewController.xib; sourceTree = "<group>"; };
+		4A6C15A91B66194400C9A9D2 /* AddressManageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressManageTableViewCell.h; sourceTree = "<group>"; };
+		4A6C15AA1B66194400C9A9D2 /* AddressManageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressManageTableViewCell.m; sourceTree = "<group>"; };
+		4A6C15AB1B66194400C9A9D2 /* AddressManageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressManageTableViewCell.xib; sourceTree = "<group>"; };
+		4A6C15AE1B66247700C9A9D2 /* AddressInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddressInfo.h; path = Model/AddressInfo.h; sourceTree = "<group>"; };
+		4A6C15AF1B66247700C9A9D2 /* AddressInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddressInfo.m; path = Model/AddressInfo.m; sourceTree = "<group>"; };
+		4A6C15B41B671D1400C9A9D2 /* CampusPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CampusPickerView.h; sourceTree = "<group>"; };
+		4A6C15B51B671D1400C9A9D2 /* CampusPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CampusPickerView.m; sourceTree = "<group>"; };
+		4A6C15B71B67219F00C9A9D2 /* CampusPickerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CampusPickerView.xib; sourceTree = "<group>"; };
+		4A6C15B91B67B5EE00C9A9D2 /* icon_address_bottom@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_address_bottom@2x.png"; path = "Resource/icon_address_bottom@2x.png"; sourceTree = "<group>"; };
 		6D10BE6C1B61FA3700D3638C /* IndividualInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualInfo.h; sourceTree = "<group>"; };
 		6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualInfo.m; sourceTree = "<group>"; };
 		6D7716E71B65F4C700257256 /* empty_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@2x.png"; path = "Resource/empty_choice@2x.png"; sourceTree = "<group>"; };
@@ -582,6 +601,8 @@
 				2C5C08441B6342CC0004286C /* HomeModuleModel.m */,
 				6D10BE6C1B61FA3700D3638C /* IndividualInfo.h */,
 				6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */,
+				4A6C15AE1B66247700C9A9D2 /* AddressInfo.h */,
+				4A6C15AF1B66247700C9A9D2 /* AddressInfo.m */,
 				2CBC8E631B665F0400326059 /* UserInfo.h */,
 				2CBC8E641B665F0400326059 /* UserInfo.m */,
 			);
@@ -792,6 +813,7 @@
 		2C7953931B613EC000511EB7 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				4A6C15B91B67B5EE00C9A9D2 /* icon_address_bottom@2x.png */,
 				6D7716E71B65F4C700257256 /* empty_choice@2x.png */,
 				6D7716E81B65F4C700257256 /* empty_choice@3x.png */,
 				6D7716E91B65F4C700257256 /* full_choice@2x.png */,
@@ -935,6 +957,15 @@
 				6D8AD3F01B60BD250099A0D8 /* AddressManageViewController.h */,
 				6D8AD3F11B60BD250099A0D8 /* AddressManageViewController.m */,
 				6D8AD3F21B60BD250099A0D8 /* AddressManageViewController.xib */,
+				4A6C15A91B66194400C9A9D2 /* AddressManageTableViewCell.h */,
+				4A6C15AA1B66194400C9A9D2 /* AddressManageTableViewCell.m */,
+				4A6C15AB1B66194400C9A9D2 /* AddressManageTableViewCell.xib */,
+				4A6C15A41B66143000C9A9D2 /* AddReciverViewController.h */,
+				4A6C15A51B66143000C9A9D2 /* AddReciverViewController.m */,
+				4A6C15A61B66143000C9A9D2 /* AddReciverViewController.xib */,
+				4A6C15B41B671D1400C9A9D2 /* CampusPickerView.h */,
+				4A6C15B51B671D1400C9A9D2 /* CampusPickerView.m */,
+				4A6C15B71B67219F00C9A9D2 /* CampusPickerView.xib */,
 			);
 			name = "地址管理";
 			sourceTree = "<group>";
@@ -1052,6 +1083,7 @@
 				6D8AD3F41B60BD250099A0D8 /* AddressManageViewController.xib in Resources */,
 				2CF607851B5EA9150022E8E7 /* SchoolSelectTableView.xib in Resources */,
 				2CF607661B5E9D100022E8E7 /* LocationViewController.xib in Resources */,
+				4A6C15BA1B67B5EE00C9A9D2 /* icon_address_bottom@2x.png in Resources */,
 				2CF6077A1B5EA3FF0022E8E7 /* CitySelectTableView.xib in Resources */,
 				6D8AD4001B60E2510099A0D8 /* IndividualSubViewController.xib in Resources */,
 				4A6C15851B5F877F00C9A9D2 /* UserInfoViewController.xib in Resources */,
@@ -1087,6 +1119,7 @@
 				4A6C15931B60915500C9A9D2 /* icon_agree@2x.png in Resources */,
 				0ACABED41B67178D009B18E0 /* icon_user_default@2x.png in Resources */,
 				2CF607CC1B5EC9E90022E8E7 /* HomeActivityTableView.xib in Resources */,
+				4A6C15AD1B66194400C9A9D2 /* AddressManageTableViewCell.xib in Resources */,
 				2C25288A1B5E2E1E00ADDEFB /* LoginViewController.xib in Resources */,
 				4A6C15941B60915500C9A9D2 /* icon_disagree@2x.png in Resources */,
 				0A3B670E1B6203BC0067C709 /* SettingTableViewCell.xib in Resources */,
@@ -1095,7 +1128,7 @@
 				4A6C15A31B65C84900C9A9D2 /* icon_addAdress@2x.png in Resources */,
 				2C2529091B5E3AA900ADDEFB /* YFProgressHUD.bundle in Resources */,
 				2CF607C31B5EC88C0022E8E7 /* icon_house@2x.png in Resources */,
-				6D7716EB1B65F4C700257256 /* empty_choice@2x.png in Resources */,
+				4A6C15A81B66143000C9A9D2 /* AddReciverViewController.xib in Resources */,
 				2C2528A51B5E38BB00ADDEFB /* ForgetPwdViewController.xib in Resources */,
 				4A6C15781B5F7D5300C9A9D2 /* icon_login_phone@2x.png in Resources */,
 				6D8AD3ED1B6097C70099A0D8 /* IndividualViewController.xib in Resources */,
@@ -1113,6 +1146,7 @@
 				6D8AD3F91B60C2AF0099A0D8 /* IndividualTableViewCell.xib in Resources */,
 				2C10D6B31B60B551008C3DE0 /* icon_home_shopping_selected@2x.png in Resources */,
 				0A3B67121B622F5A0067C709 /* aboutImage.png in Resources */,
+				4A6C15B81B67219F00C9A9D2 /* CampusPickerView.xib in Resources */,
 				2CF607C21B5EC88C0022E8E7 /* icon_fruit@2x.png in Resources */,
 				2CF607521B5E4E390022E8E7 /* StartViewController.xib in Resources */,
 				2CF6075B1B5E77560022E8E7 /* btn_search@2x.png in Resources */,
@@ -1161,6 +1195,7 @@
 				2C2529051B5E3AA900ADDEFB /* YFDownloader.m in Sources */,
 				2C2529041B5E3AA900ADDEFB /* YFCommonMethods.m in Sources */,
 				2CF6079B1B5EC5FE0022E8E7 /* HomeSubView.m in Sources */,
+				4A6C15B01B66247700C9A9D2 /* AddressInfo.m in Sources */,
 				2C25289A1B5E38B100ADDEFB /* ResetPwdViewController.m in Sources */,
 				2C2528FD1B5E3AA900ADDEFB /* NSDate+YFAdditions.m in Sources */,
 				4A6C15831B5F877F00C9A9D2 /* UserInfoSubView.m in Sources */,
@@ -1189,13 +1224,16 @@
 				2C2529001B5E3AA900ADDEFB /* UIImage+YFUtilities.m in Sources */,
 				2C2528531B5E108900ADDEFB /* AppDelegate.m in Sources */,
 				2C2528DB1B5E39EF00ADDEFB /* SBJsonParser.m in Sources */,
+				4A6C15B61B671D1400C9A9D2 /* CampusPickerView.m in Sources */,
 				2C2529071B5E3AA900ADDEFB /* YFImageDownloader.m in Sources */,
+				4A6C15AC1B66194400C9A9D2 /* AddressManageTableViewCell.m in Sources */,
 				2C2528CE1B5E39EF00ADDEFB /* MBProgressHUD.m in Sources */,
 				4A6C156F1B5F724C00C9A9D2 /* MemberDataManager.m in Sources */,
 				2CF6078D1B5EB5BB0022E8E7 /* BaseModel.m in Sources */,
 				6D8AD3F81B60C2AF0099A0D8 /* IndividualTableViewCell.m in Sources */,
 				2C2529081B5E3AA900ADDEFB /* YFMediaPicker.m in Sources */,
 				2C2528D71B5E39EF00ADDEFB /* NSObject+SBJSON.m in Sources */,
+				4A6C15A71B66143000C9A9D2 /* AddReciverViewController.m in Sources */,
 				2CF607CA1B5EC9DE0022E8E7 /* HomeActivityTableView.m in Sources */,
 				2C2528D91B5E39EF00ADDEFB /* SBJSON.m in Sources */,
 				2C2528FE1B5E3AA900ADDEFB /* NSString+ParamString.m in Sources */,

@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AddressManageViewController">
             <connections>
+                <outlet property="tableView" destination="8rW-3c-A1O" id="ccG-D1-vxS"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,16 +16,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFz-7M-4NT">
-                    <rect key="frame" x="0.0" y="78" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="78" width="375" height="54"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_addAdress.png" translatesAutoresizingMaskIntoConstraints="NO" id="IIV-lz-EHa">
-                            <rect key="frame" x="9" y="11" width="22" height="22"/>
-                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B1j-NQ-RYL">
+                            <rect key="frame" x="15" y="17" width="22" height="22"/>
+                            <state key="normal" image="icon_addAdress.png">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="addNewAdress:" destination="-1" eventType="touchUpInside" id="Ivf-4q-THi"/>
+                            </connections>
+                        </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增收货地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6h2-4I-9d5">
-                            <rect key="frame" x="39" y="11" width="96" height="21"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="21" id="77T-V5-4Cf"/>
-                            </constraints>
+                            <rect key="frame" x="45" y="17" width="96" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" red="0.91764705879999997" green="0.2901960784" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -32,30 +36,32 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="6h2-4I-9d5" firstAttribute="leading" secondItem="IIV-lz-EHa" secondAttribute="trailing" constant="8" id="3c2-Fw-9EX"/>
-                        <constraint firstAttribute="bottom" secondItem="6h2-4I-9d5" secondAttribute="bottom" constant="12" id="Bod-6v-0FX"/>
-                        <constraint firstItem="6h2-4I-9d5" firstAttribute="top" secondItem="MFz-7M-4NT" secondAttribute="top" constant="11" id="DYy-wA-aIl"/>
-                        <constraint firstItem="IIV-lz-EHa" firstAttribute="top" secondItem="MFz-7M-4NT" secondAttribute="top" constant="11" id="PFD-oz-5kl"/>
-                        <constraint firstAttribute="bottom" secondItem="IIV-lz-EHa" secondAttribute="bottom" constant="11" id="bGU-Cp-3po"/>
-                        <constraint firstAttribute="height" constant="44" id="eTZ-Gj-h6W"/>
-                        <constraint firstItem="IIV-lz-EHa" firstAttribute="leading" secondItem="MFz-7M-4NT" secondAttribute="leading" constant="9" id="jjy-tc-TBL"/>
-                        <constraint firstItem="6h2-4I-9d5" firstAttribute="leading" secondItem="IIV-lz-EHa" secondAttribute="trailing" constant="8" id="rMW-Oj-Vjy"/>
+                        <constraint firstItem="B1j-NQ-RYL" firstAttribute="top" secondItem="6h2-4I-9d5" secondAttribute="top" id="FHU-Yt-nMt"/>
+                        <constraint firstAttribute="height" constant="54" id="GaS-ii-Qfu"/>
+                        <constraint firstItem="6h2-4I-9d5" firstAttribute="leading" secondItem="B1j-NQ-RYL" secondAttribute="trailing" constant="8" symbolic="YES" id="OaE-21-om6"/>
+                        <constraint firstItem="B1j-NQ-RYL" firstAttribute="leading" secondItem="MFz-7M-4NT" secondAttribute="leading" constant="15" id="fw4-bD-ZEN"/>
+                        <constraint firstItem="6h2-4I-9d5" firstAttribute="centerY" secondItem="MFz-7M-4NT" secondAttribute="centerY" id="mzP-Hu-8X7"/>
+                        <constraint firstItem="B1j-NQ-RYL" firstAttribute="top" secondItem="MFz-7M-4NT" secondAttribute="top" constant="17" id="rps-7S-uG6"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8rW-3c-A1O">
-                    <rect key="frame" x="0.0" y="146" width="375" height="521"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <rect key="frame" x="0.0" y="156" width="375" height="521"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="521" id="hg4-ba-5uB"/>
+                    </constraints>
+                    <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="8rW-3c-A1O" firstAttribute="top" secondItem="MFz-7M-4NT" secondAttribute="bottom" constant="24" id="7ke-ou-5MS"/>
-                <constraint firstItem="8rW-3c-A1O" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8dk-zr-Vtv"/>
-                <constraint firstAttribute="trailing" secondItem="8rW-3c-A1O" secondAttribute="trailing" id="EaI-nO-SDl"/>
-                <constraint firstItem="MFz-7M-4NT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="NCO-fz-UwM"/>
-                <constraint firstItem="MFz-7M-4NT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="78" id="ZOX-PG-YhM"/>
-                <constraint firstAttribute="trailing" secondItem="MFz-7M-4NT" secondAttribute="trailing" id="jWl-Re-4R1"/>
-                <constraint firstAttribute="bottom" secondItem="8rW-3c-A1O" secondAttribute="bottom" id="mf1-tS-Xm8"/>
+                <constraint firstItem="MFz-7M-4NT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8FP-EH-C0m"/>
+                <constraint firstItem="MFz-7M-4NT" firstAttribute="leading" secondItem="8rW-3c-A1O" secondAttribute="leading" id="EWZ-PT-HO5"/>
+                <constraint firstItem="MFz-7M-4NT" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="78" id="Hti-mr-MPp"/>
+                <constraint firstItem="8rW-3c-A1O" firstAttribute="trailing" secondItem="MFz-7M-4NT" secondAttribute="trailing" id="csY-07-GIf"/>
+                <constraint firstItem="8rW-3c-A1O" firstAttribute="top" secondItem="MFz-7M-4NT" secondAttribute="bottom" constant="24" id="dhU-va-YDr"/>
+                <constraint firstAttribute="trailing" secondItem="MFz-7M-4NT" secondAttribute="trailing" id="jmc-d8-peF"/>
+                <constraint firstAttribute="bottom" secondItem="8rW-3c-A1O" secondAttribute="bottom" constant="-10" id="uR9-z4-DsQ"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
