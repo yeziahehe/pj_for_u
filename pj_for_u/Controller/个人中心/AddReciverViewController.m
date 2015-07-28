@@ -52,7 +52,7 @@
         return @"请输入正确的手机号码";
     else if(self.campusTextField.text.length == 0)
         return @"请选择所在校区";
-    else if(self.detailTextField.text.length < 4 )
+    else if(self.detailTextField.text.length < 1 )
         return @"请输入详细地址";
     else
         return nil;
@@ -95,24 +95,6 @@
                                   campusId:(NSString *)campusId
 {
     [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
-    if (nil == phoneId) {
-        phoneId = @"";
-    }
-    if (nil == rank) {
-        rank = @"";
-    }
-    if (nil == name) {
-        name = @"";
-    }
-    if (nil == address) {
-        address = @"";
-    }
-    if (nil == phone) {
-        phone = @"";
-    }
-    if (nil == campusId) {
-        campusId = @"";
-    }
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kChangeReciverUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:phoneId forKey:@"phoneId"];
@@ -136,21 +118,6 @@
                               campusId:(NSString *)campusId
 {
     [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
-    if (nil == phoneId) {
-        phoneId = @"";
-    }
-    if (nil == name) {
-        name = @"";
-    }
-    if (nil == address) {
-        address = @"";
-    }
-    if (nil == phone) {
-        phone = @"";
-    }
-    if (nil == campusId) {
-        campusId = @"";
-    }
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kAddNewReciverUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:phoneId forKey:@"phoneId"];
@@ -190,14 +157,11 @@
 
 - (void)rightItemTapped{
     //点击保存所做的操作
+    [self resignAllField];
     NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
-    self.reciverName = self.nameTextField.text;
-    self.reciverPhone = self.phoneTextField.text;
-    self.reciverCampusName = self.campusTextField.text;
-    self.addressDetail = self.detailTextField.text;
     self.reciverCampusName = self.campusTextField.text;
     if ([self.tagNew isEqualToString: @"1"]) {
-    //保存修改后的收货地址
+        //保存修改后的收货地址
         NSString *validPassword = [self checkPasswordValid];
         if(validPassword)
         {
@@ -208,9 +172,9 @@
             //保存地址的请求
             [self requestForChangeAddressWithPhoneId:phoneId
                                                 rank:self.reciverRank
-                                                name:self.reciverName
-                                             address:self.addressDetail
-                                               phone:self.reciverPhone
+                                                name:self.nameTextField.text
+                                             address:self.detailTextField.text
+                                               phone:self.phoneTextField.text
                                             campusId:self.campusModel.campusId];
         }
     }
@@ -225,9 +189,9 @@
         else
         {
             [self requestToAddReciverWithPhoneId:phoneId
-                                            name:self.reciverName
-                                           phone:self.reciverPhone
-                                         address:self.addressDetail
+                                            name:self.nameTextField.text
+                                           phone:self.phoneTextField.text
+                                         address:self.detailTextField.text
                                         campusId:self.campusModel.campusId];
         }
     }
@@ -248,6 +212,7 @@
     self.campusModel = notification.object;
     NSLog(@"%@,%@",self.campusModel.campusId,self.campusModel.campusName);
 }
+
 #pragma mark - UIView Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
