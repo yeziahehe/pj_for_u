@@ -62,16 +62,15 @@
 {
     switch (component) {
         case 0:
-        {
-            self.locationModel = [self.cityArray objectAtIndex:0];
-            self.schoolArray = [NSMutableArray arrayWithArray:self.locationModel.campuses];
-        }
+
             return self.cityArray.count;
             
             break;
             
         case 1:
+        {
             return self.schoolArray.count;
+        }
             break;
             
         default:
@@ -96,6 +95,7 @@
             dateLabel.font = [UIFont fontWithName:nil size:15];
             [dateLabel setTextColor:kMainProjColor];
             [dateLabel setBackgroundColor:[UIColor clearColor]];
+            
             self.locationModel = [self.cityArray objectAtIndex:row];
             self.schoolArray = [NSMutableArray arrayWithArray:self.locationModel.campuses];
             [dateLabel setText:self.locationModel.cityName];
@@ -111,6 +111,7 @@
             dateLabel.font = [UIFont fontWithName:nil size:15];
             [dateLabel setTextColor:kMainProjColor];
             [dateLabel setBackgroundColor:[UIColor clearColor]];
+            
             self.campusModel = [self.schoolArray objectAtIndex:row];
             [dateLabel setText:self.campusModel.campusName];
             dateLabel.textAlignment = NSTextAlignmentLeft;
@@ -151,7 +152,7 @@
 -(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
     switch (component) {
         case 0:
-            return 170.f;
+            return 150.f;
             break;
         case 1:
             return 150.f;
@@ -175,6 +176,9 @@
             for (NSDictionary *valueDict in valueArray) {
                 LocationModel *lm = [[LocationModel alloc]initWithDict:valueDict];
                 [self.cityArray addObject:lm];
+                self.locationModel = [self.cityArray objectAtIndex:0];
+                self.schoolArray = [NSMutableArray arrayWithArray:self.locationModel.campuses];
+
                 [self.campusPickerView reloadAllComponents];
             }
         }
