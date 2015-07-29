@@ -9,6 +9,6 @@
 #import "BaseViewController.h"
 #import "IndividualInfo.h"
 
-@interface IndividualViewController : BaseViewController 
+@interface IndividualViewController : BaseViewController <UIActionSheetDelegate,YFMediaPickerDelegate>
 
 @end

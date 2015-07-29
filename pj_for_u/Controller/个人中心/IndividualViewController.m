@@ -17,6 +17,9 @@
 @property (strong, nonatomic) NSMutableArray *userInfoArray;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
+@property (strong, nonatomic) NSData *imageData;
+@property (strong, nonatomic) NSString *imageFileName;
+
 @property (strong, nonatomic) IBOutlet YFAsynImageView *headPhoto;
 @property (strong, nonatomic) IBOutlet YFAsynImageView *headBackPhoto;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
@@ -37,7 +40,9 @@
         // 毛玻璃效果，仅适用于ios8 and later
         UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
         self.effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
-        self.effectView.frame = self.headBackPhoto.frame;
+        CGRect frame = self.headBackPhoto.frame;
+        frame.size.width = ScreenWidth;
+        self.effectView.frame = frame;
         [self.headBackPhoto addSubview:self.effectView];
         self.headBackPhoto.cacheDir = kUserIconCacheDir;
         [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
@@ -75,6 +80,20 @@
                                                                 purpose:kUpdateUserInfoDownloaderKey];
 }
 
+- (void)uploadImageRequestForImageFile:(NSData *)imageFile
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kUploadUserImage];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:[MemberDataManager sharedManager].loginMember.phone forKey:@"phoneId"];
+    [dict setObject:[YFCommonMethods base64StringFromData:imageFile length:0] forKey:@"image"];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kUpdateUserInfoDownloaderKey];
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"上传头像中..."];
+}
+
 #pragma mark - Notification Methods
 - (void)refreshAccountWithNotification:(NSNotification *)notification
 {
@@ -88,6 +107,82 @@
     [self loadSubView];
     [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_back_light.png"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAccountWithNotification:) name:kRefreshAccoutNotification object:nil];
+}
+
+- (IBAction)headButton:(id)sender
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"上传头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                              style:UIAlertActionStyleCancel
+                                            handler:^(UIAlertAction *action) {
+                                            }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"拍照"
+                                              style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction *action) {
+                                                //拍照
+                                                [YFMediaPicker sharedPicker].parentController = self;
+                                                [YFMediaPicker sharedPicker].delegate = self;
+                                                [YFMediaPicker sharedPicker].fileType = kPhotoType;
+                                                [[YFMediaPicker sharedPicker] takePhotoWithCamera];
+                                            }]];
+    [alert addAction:[UIAlertAction actionWithTitle:@"相册选取"
+                                              style:UIAlertActionStyleDefault
+                                            handler:^(UIAlertAction *action) {
+                                                //从相册选取
+                                                [YFMediaPicker sharedPicker].parentController = self;
+                                                [YFMediaPicker sharedPicker].delegate = self;
+                                                [YFMediaPicker sharedPicker].fileType = kPhotoType;
+                                                [[YFMediaPicker sharedPicker] getPhotoFromLibrary];
+                                            }]];
+    [self presentViewController:alert animated:YES completion:nil];
+    
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        //拍照
+        [YFMediaPicker sharedPicker].parentController = self;
+        [YFMediaPicker sharedPicker].delegate = self;
+        [YFMediaPicker sharedPicker].fileType = kPhotoType;
+        [[YFMediaPicker sharedPicker] takePhotoWithCamera];
+    }else if (buttonIndex == 1) {
+        //从相册选取
+        [YFMediaPicker sharedPicker].parentController = self;
+        [YFMediaPicker sharedPicker].delegate = self;
+        [YFMediaPicker sharedPicker].fileType = kPhotoType;
+        [[YFMediaPicker sharedPicker] getPhotoFromLibrary];
+    }
+}
+
+#pragma mark - YFMediaPickerDelegate methods
+- (void)didGetFileWithData:(YFMediaPicker *)mediaPicker
+{
+    //编辑过的图片尺寸640*640，大小约350KB，压缩为120*120大小的图片，约20KB
+    //本地保存当前选中的图片，同时上传至服务器
+    UIImage *originalImage = [UIImage imageWithData:mediaPicker.fileData];
+    CGSize userIconSize = [UIImage equalScaleSizeForMaxSize:CGSizeMake(640.f, 640.f) actualSize:originalImage.size];
+    UIImage *userIconImage = [originalImage imageByScalingProportionallyToSize:userIconSize];
+    
+    NSString *userIconDir = [DOCUMENTS_FOLDER stringByAppendingPathComponent:kUserIconCacheDir];
+    NSString *userIconPath = [NSString stringWithFormat:@"%@/%@",userIconDir,mediaPicker.fileName];
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if(![manager fileExistsAtPath:userIconDir])
+        [manager createDirectoryAtPath:userIconDir withIntermediateDirectories:NO attributes:nil error:nil];
+    NSData *userIconData = UIImageJPEGRepresentation(userIconImage, 1);
+    [userIconData writeToFile:userIconPath atomically:NO];
+    
+    self.headPhoto.image = userIconImage;
+    self.headBackPhoto.image = userIconImage;
+    self.imageData = userIconData;
+    self.imageFileName = mediaPicker.fileName;
+    //上传图片请求
+    [self uploadImageRequestForImageFile:self.imageData];
+}
+
+- (void)didGetFileFailedWithMessage:(NSString *)message
+{
+    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.0f];
 }
 
 #pragma mark - UITableViewDataSource methods
