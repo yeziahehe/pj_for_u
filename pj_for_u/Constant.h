@@ -84,6 +84,7 @@
 #define kGetCampusNameWithNotification      @"GetCampusNameWithNotification"
 #define kGetFirstCampusNameWithNotification @"GetFirstCampusNameWithNotification"
 
+
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
 #define kLocationUrl            @"campus/getCampusAndCity.do"

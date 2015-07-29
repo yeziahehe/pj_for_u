@@ -62,16 +62,15 @@
 {
     switch (component) {
         case 0:
-        {
-            self.locationModel = [self.cityArray objectAtIndex:0];
-            self.schoolArray = [NSMutableArray arrayWithArray:self.locationModel.campuses];
-        }
+
             return self.cityArray.count;
             
             break;
             
         case 1:
+        {
             return self.schoolArray.count;
+        }
             break;
             
         default:
@@ -96,8 +95,8 @@
             dateLabel.font = [UIFont fontWithName:nil size:15];
             [dateLabel setTextColor:kMainProjColor];
             [dateLabel setBackgroundColor:[UIColor clearColor]];
+            
             self.locationModel = [self.cityArray objectAtIndex:row];
-            self.schoolArray = [NSMutableArray arrayWithArray:self.locationModel.campuses];
             [dateLabel setText:self.locationModel.cityName];
             dateLabel.textAlignment = NSTextAlignmentCenter;
             return dateLabel;
@@ -111,6 +110,7 @@
             dateLabel.font = [UIFont fontWithName:nil size:15];
             [dateLabel setTextColor:kMainProjColor];
             [dateLabel setBackgroundColor:[UIColor clearColor]];
+            
             self.campusModel = [self.schoolArray objectAtIndex:row];
             [dateLabel setText:self.campusModel.campusName];
             dateLabel.textAlignment = NSTextAlignmentLeft;
@@ -128,10 +128,14 @@
     switch (component) {
         case 0:
         {
+            self.locationModel = [self.cityArray objectAtIndex:row];
+            self.schoolArray = [NSMutableArray arrayWithArray:self.locationModel.campuses];
+            self.campusModel = [self.schoolArray objectAtIndex:0];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kGetFirstCampusNameWithNotification object:self.campusModel];
             //更新第二个轮子并重置
             [self.campusPickerView reloadComponent:1];
             [self.campusPickerView selectRow:0 inComponent:1 animated:NO];
-            [[NSNotificationCenter defaultCenter]postNotificationName:kGetFirstCampusNameWithNotification object:self.campusModel];
+
         }
             break;
         case 1:
@@ -151,7 +155,7 @@
 -(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
     switch (component) {
         case 0:
-            return 170.f;
+            return 150.f;
             break;
         case 1:
             return 150.f;
@@ -175,7 +179,12 @@
             for (NSDictionary *valueDict in valueArray) {
                 LocationModel *lm = [[LocationModel alloc]initWithDict:valueDict];
                 [self.cityArray addObject:lm];
+                //默认
+                self.locationModel = [self.cityArray objectAtIndex:0];
+                self.schoolArray = [NSMutableArray arrayWithArray:self.locationModel.campuses];
+                CampusMoel *cm = [self.schoolArray objectAtIndex:0];
                 [self.campusPickerView reloadAllComponents];
+                [[NSNotificationCenter defaultCenter]postNotificationName:kGetFirstCampusNameWithNotification object:cm];
             }
         }
         else

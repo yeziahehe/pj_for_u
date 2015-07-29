@@ -69,7 +69,6 @@
 {
     //验证码获取
     [SMS_SDK getVerificationCodeBySMSWithPhone:self.phoneTextField.text zone:@"86" result:^(SMS_SDKError *error){
-        [[YFProgressHUD sharedProgressHUD]stoppedNetWorkActivity];
         if (error == nil) {
             self.phoneLabel.attributedText = [self codeStatusLabel:@"验证码已发往%@，请稍等"];
         }
@@ -101,7 +100,7 @@
         self.identifyButton.enabled = NO;
         self.resendSecond = kResendTimeCount;
         self.resendTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(resendTimerChange) userInfo:nil repeats:YES];
-        [[YFProgressHUD sharedProgressHUD]startedNetWorkActivityWithText:@"正在发送验证码..."];
+        [[YFProgressHUD sharedProgressHUD]showWithMessage:@"验证码发送中，请稍等……" customView:nil hideDelay:2.f];
         [self getVerifyCode];
     }
 }
