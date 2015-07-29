@@ -97,6 +97,7 @@
 #define kIndividualInfoUrl      @"user/mineInfo.do"
 #define kGetModuleTypeUrl       @"service/getHomeCategoryInfo.do" 
 #define kSaveIndividualInfo     @"user/updateUserInfo.do"
+#define kUploadUserImage        @"user/uploadUserImage.do"
 #define kGetReciverUrl          @"receiver/selectReceiver.do"
 #define kChangeReciverUrl       @"receiver/updateReceiver.do"
 #define kAddNewReciverUrl       @"receiver/addReceiver.do"

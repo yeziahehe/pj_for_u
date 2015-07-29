@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -22,8 +22,11 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g4a-vI-sVW" userLabel="LogView">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_user_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="kbb-it-eQT" customClass="YFAsynImageView">
-                            <rect key="frame" x="0.0" y="0.0" width="380" height="250"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_user_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="kbb-it-eQT" customClass="YFAsynImageView">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="250" id="mb5-R7-mVT"/>
+                            </constraints>
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_user_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="TT5-AO-RG0" customClass="YFAsynImageView">
                             <rect key="frame" x="137" y="84" width="98" height="98"/>
@@ -55,8 +58,12 @@
                         </button>
                     </subviews>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="kbb-it-eQT" secondAttribute="trailing" id="6x6-fS-y9Q"/>
                         <constraint firstAttribute="centerX" secondItem="TT5-AO-RG0" secondAttribute="centerX" constant="1.5" id="94g-f0-TFX"/>
+                        <constraint firstItem="kbb-it-eQT" firstAttribute="top" secondItem="g4a-vI-sVW" secondAttribute="top" id="B6i-m0-WKC"/>
                         <constraint firstItem="zEO-aH-9wd" firstAttribute="bottom" secondItem="hsN-YR-crn" secondAttribute="bottom" id="Eo4-JL-Dnq"/>
+                        <constraint firstItem="kbb-it-eQT" firstAttribute="leading" secondItem="g4a-vI-sVW" secondAttribute="leading" id="K4E-4J-uQI"/>
+                        <constraint firstAttribute="bottom" secondItem="kbb-it-eQT" secondAttribute="bottom" id="NbR-zu-O0c"/>
                         <constraint firstItem="zEO-aH-9wd" firstAttribute="trailing" secondItem="hsN-YR-crn" secondAttribute="trailing" id="QMw-Y3-rMc"/>
                         <constraint firstAttribute="centerX" secondItem="zEO-aH-9wd" secondAttribute="centerX" id="W12-0P-AmY"/>
                         <constraint firstItem="TT5-AO-RG0" firstAttribute="top" secondItem="g4a-vI-sVW" secondAttribute="top" constant="84" id="X3i-or-ACd"/>
@@ -205,7 +212,7 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="325.5" y="334.5"/>
+            <point key="canvasLocation" x="327.5" y="290.5"/>
         </view>
     </objects>
     <resources>

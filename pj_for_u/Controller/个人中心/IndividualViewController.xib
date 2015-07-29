@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -24,8 +24,11 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ix-RM-fMB" userLabel="LogView">
                             <rect key="frame" x="0.0" y="-64" width="375" height="250"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg_user_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Xz-fk-gqY" customClass="YFAsynImageView">
-                                    <rect key="frame" x="-3" y="0.0" width="380" height="250"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_user_img.png" translatesAutoresizingMaskIntoConstraints="NO" id="4Xz-fk-gqY" customClass="YFAsynImageView">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="250" id="tS4-HB-hUB"/>
+                                    </constraints>
                                 </imageView>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_user_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="ts2-SG-kkx" customClass="YFAsynImageView">
                                     <rect key="frame" x="137" y="84" width="100" height="100"/>
@@ -44,14 +47,31 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ey3-bP-6PQ">
+                                    <rect key="frame" x="137" y="84" width="100" height="100"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="headButton:" destination="-1" eventType="touchUpInside" id="RU5-J1-zcE"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                             <constraints>
+                                <constraint firstItem="Ey3-bP-6PQ" firstAttribute="trailing" secondItem="ts2-SG-kkx" secondAttribute="trailing" id="0r6-EF-YJ9"/>
+                                <constraint firstItem="Ey3-bP-6PQ" firstAttribute="leading" secondItem="ts2-SG-kkx" secondAttribute="leading" id="Ew7-gT-tZF"/>
+                                <constraint firstAttribute="bottom" secondItem="4Xz-fk-gqY" secondAttribute="bottom" id="FCP-HO-uSq"/>
                                 <constraint firstAttribute="centerX" secondItem="XHw-R4-hMu" secondAttribute="centerX" id="G9w-No-KQA"/>
                                 <constraint firstAttribute="height" constant="250" id="J7s-Wn-hz8"/>
                                 <constraint firstAttribute="centerX" secondItem="ts2-SG-kkx" secondAttribute="centerX" id="JxG-mA-eHw"/>
                                 <constraint firstItem="XHw-R4-hMu" firstAttribute="top" secondItem="ts2-SG-kkx" secondAttribute="bottom" constant="15" id="PZB-nF-ful"/>
+                                <constraint firstItem="Ey3-bP-6PQ" firstAttribute="top" secondItem="ts2-SG-kkx" secondAttribute="top" id="PxN-Kz-m3x"/>
+                                <constraint firstItem="4Xz-fk-gqY" firstAttribute="leading" secondItem="7ix-RM-fMB" secondAttribute="leading" id="UwR-Cp-nrg"/>
+                                <constraint firstItem="4Xz-fk-gqY" firstAttribute="top" secondItem="7ix-RM-fMB" secondAttribute="top" id="a5G-Fx-znp"/>
                                 <constraint firstItem="ts2-SG-kkx" firstAttribute="top" secondItem="7ix-RM-fMB" secondAttribute="top" constant="84" id="aim-nb-saa"/>
+                                <constraint firstItem="Ey3-bP-6PQ" firstAttribute="bottom" secondItem="ts2-SG-kkx" secondAttribute="bottom" id="ewu-2g-bL7"/>
+                                <constraint firstAttribute="trailing" secondItem="4Xz-fk-gqY" secondAttribute="trailing" id="yt2-sk-YRA"/>
                             </constraints>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="nVZ-lQ-QzJ">
