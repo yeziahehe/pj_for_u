@@ -182,7 +182,9 @@
                 //默认
                 self.locationModel = [self.cityArray objectAtIndex:0];
                 self.schoolArray = [NSMutableArray arrayWithArray:self.locationModel.campuses];
+                CampusMoel *cm = [self.schoolArray objectAtIndex:0];
                 [self.campusPickerView reloadAllComponents];
+                [[NSNotificationCenter defaultCenter]postNotificationName:kGetFirstCampusNameWithNotification object:cm];
             }
         }
         else
