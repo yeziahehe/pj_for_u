@@ -97,7 +97,6 @@
             [dateLabel setBackgroundColor:[UIColor clearColor]];
             
             self.locationModel = [self.cityArray objectAtIndex:row];
-            self.schoolArray = [NSMutableArray arrayWithArray:self.locationModel.campuses];
             [dateLabel setText:self.locationModel.cityName];
             dateLabel.textAlignment = NSTextAlignmentCenter;
             return dateLabel;
@@ -129,10 +128,14 @@
     switch (component) {
         case 0:
         {
+            self.locationModel = [self.cityArray objectAtIndex:row];
+            self.schoolArray = [NSMutableArray arrayWithArray:self.locationModel.campuses];
+            self.campusModel = [self.schoolArray objectAtIndex:0];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kGetFirstCampusNameWithNotification object:self.campusModel];
             //更新第二个轮子并重置
             [self.campusPickerView reloadComponent:1];
             [self.campusPickerView selectRow:0 inComponent:1 animated:NO];
-            [[NSNotificationCenter defaultCenter]postNotificationName:kGetFirstCampusNameWithNotification object:self.campusModel];
+
         }
             break;
         case 1:
@@ -176,9 +179,9 @@
             for (NSDictionary *valueDict in valueArray) {
                 LocationModel *lm = [[LocationModel alloc]initWithDict:valueDict];
                 [self.cityArray addObject:lm];
+                //默认
                 self.locationModel = [self.cityArray objectAtIndex:0];
                 self.schoolArray = [NSMutableArray arrayWithArray:self.locationModel.campuses];
-
                 [self.campusPickerView reloadAllComponents];
             }
         }
