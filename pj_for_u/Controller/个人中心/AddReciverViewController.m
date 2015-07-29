@@ -178,7 +178,7 @@
                                             campusId:self.campusModel.campusId];
         }
     }
-    //保存新增的收货地址
+    //保存新增的收货地址，同时设置为默认地址
     else
     {
         NSString *validPassword = [self checkPasswordValid];
@@ -335,6 +335,7 @@
             [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
             [self.navigationController popViewControllerAnimated:YES];
             [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshReciverInfoNotification object:nil];
+        //将第一个地址设置为默认地址
         }
         else        //失败
         {

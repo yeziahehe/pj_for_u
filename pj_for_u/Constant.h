@@ -101,6 +101,6 @@
 #define kChangeReciverUrl       @"receiver/updateReceiver.do"
 #define kAddNewReciverUrl       @"receiver/addReceiver.do"
 #define kSetDefaultAddressUrl   @"receiver/setDefaultAddress.do"
-
+#define kDeleteReciverUrl       @"receiver/deleteReceiver.do"
 
 #endif

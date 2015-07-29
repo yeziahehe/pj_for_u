@@ -12,15 +12,19 @@
 #import "AddressInfo.h"
 #import "LoginViewController.h"
 
-#define kGetAddressDownloadKey  @"GetAddressDownloadKey"
+#define kGetAddressDownloadKey      @"GetAddressDownloadKey"
+#define kDeleteAddressDownloadKey   @"DeleteAddressDownloadKey"
+
 @interface AddressManageViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic)NSMutableArray *allAddressArray;
+@property (strong,nonatomic)NSIndexPath *deleteIndex;
 @end
 
 @implementation AddressManageViewController
 
 #pragma mark - Priavte Methods
+//请求用户的收货地址
 - (void)requestForAddress
 {
     [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
@@ -38,12 +42,35 @@
                                                                 purpose:kGetAddressDownloadKey];
 }
 
+//删除某条rank收货地址请求
+- (void)requestToDeleteReciverAddressWithPhoneId:(NSString *)phoneId
+                                            rank:(NSString *)rank
+{
+    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
+    if (nil == phoneId) {
+        phoneId = @"";
+    }
+    if (nil == rank) {
+        rank = @"";
+    }
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kDeleteReciverUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:phoneId forKey:@"phoneId"];
+    [dict setObject:rank forKey:@"rank"];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kDeleteAddressDownloadKey];
+}
+
 - (void)loadSubView{
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
     [self requestForAddress];
 }
+
 #pragma mark - Notification Methods
 - (void)refreshReciverInfoWithNotification:(NSNotification *)notification{
     [self loadSubView];
@@ -106,6 +133,18 @@
     return 60.f;
 }
 
+- (void)tableView:(UITableView*)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //左滑删除地址数据
+    AddressInfo *address = [self.allAddressArray objectAtIndex:indexPath.row];
+    NSString *rank = address.rank;
+    NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
+    [self requestToDeleteReciverAddressWithPhoneId:phoneId
+                                              rank:rank];
+    [self.allAddressArray removeObjectAtIndex:indexPath.row];
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationTop];
+}
+
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -153,6 +192,27 @@
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
+    if ([downloader.purpose isEqualToString:kDeleteAddressDownloadKey])
+    {
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
+            //删除收货地址数组
+            [self.tableView reloadData];
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"获取地址失败,请稍后再试";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
