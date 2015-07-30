@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet YFAsynImageView *headBackPhoto;
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) UIVisualEffectView *effectView;
+@property (strong, nonatomic) UIImage *previousImage;
 
 @end
 
@@ -48,14 +49,22 @@
     self.nameLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.nickname;
     if (![[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl isEqualToString:@""]) {
         self.headPhoto.cacheDir = kUserIconCacheDir;
-        [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
+        if (self.previousImage != nil) {
+            [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolderImage:self.previousImage];
+        } else {
+            [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
+        }
         // 毛玻璃效果，仅适用于ios8 and later
         //删除了部分代码，写到了懒加载里面
         //先remove再加载，为了避免重复覆盖
         [self.effectView removeFromSuperview];
         [self.headBackPhoto addSubview:self.effectView];
         self.headBackPhoto.cacheDir = kUserIconCacheDir;
-        [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
+        if (self.previousImage != nil) {
+            [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolderImage:self.previousImage];
+        } else {
+            [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
+        }
     } else {
         [self.headPhoto setImage:[UIImage imageNamed:@"icon_user_default"]];
         [self.headBackPhoto setImage:[UIImage imageNamed:@"bg_user_img"]];
@@ -92,6 +101,8 @@
 
 - (void)uploadImageRequestForImageFile:(NSData *)imageFile
 {
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"上传头像中..."];
+    
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kUploadUserImage];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:[MemberDataManager sharedManager].loginMember.phone forKey:@"phoneId"];
@@ -101,7 +112,6 @@
                                                             contentType:@"application/x-www-form-urlencoded"
                                                                delegate:self
                                                                 purpose:kUpdateUserInfoDownloaderKey];
-    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"上传头像中..."];
 }
 
 #pragma mark - Notification Methods
@@ -171,8 +181,9 @@
     //编辑过的图片尺寸640*640，大小约350KB，压缩为120*120大小的图片，约20KB
     //本地保存当前选中的图片，同时上传至服务器
     UIImage *originalImage = [UIImage imageWithData:mediaPicker.fileData];
-    CGSize userIconSize = [UIImage equalScaleSizeForMaxSize:CGSizeMake(640.f, 640.f) actualSize:originalImage.size];
-    UIImage *userIconImage = [originalImage imageByScalingProportionallyToSize:userIconSize];
+//    CGSize userIconSize = [UIImage equalScaleSizeForMaxSize:CGSizeMake(640.f, 640.f) actualSize:originalImage.size];
+//    UIImage *userIconImage = [originalImage imageByScalingProportionallyToSize:userIconSize];
+    UIImage *userIconImage = [originalImage squareImageFromImage:originalImage scaledToSize:320.f];
     
     NSString *userIconDir = [DOCUMENTS_FOLDER stringByAppendingPathComponent:kUserIconCacheDir];
     NSString *userIconPath = [NSString stringWithFormat:@"%@/%@",userIconDir,mediaPicker.fileName];
@@ -182,6 +193,8 @@
     NSData *userIconData = UIImageJPEGRepresentation(userIconImage, 1);
     [userIconData writeToFile:userIconPath atomically:NO];
     
+    self.headBackPhoto.image = userIconImage;
+    self.headPhoto.image = userIconImage;
     self.imageData = userIconData;
     self.imageFileName = mediaPicker.fileName;
     //上传图片请求
@@ -275,6 +288,7 @@
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"保存成功" hideDelay:2.f];
+            self.previousImage = self.headPhoto.image;
             [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshUserInfoNotificaiton object:nil];
         }
         else

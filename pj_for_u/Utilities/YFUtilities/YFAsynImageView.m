@@ -18,7 +18,7 @@
 @implementation YFAsynImageView
 @synthesize shouldResize = shouldResize_;
 @synthesize aysnLoader = aysnLoader_;
-@synthesize placeholderName,cacheDir;
+@synthesize placeholderName,placeholderImage,cacheDir;
 @synthesize originalFrame;
 
 #pragma mark - UIView methods
@@ -163,6 +163,52 @@
         }
         else
             NSAssert(0, @"%@ not existed.", placeHolder);
+        YFImageDownloader *d = [[YFImageDownloader alloc] init];
+        d.purpose = imagePath;
+        d.delegate = self;
+        self.aysnLoader = d;
+        
+        NSString *realUrl = url;
+        [self.aysnLoader startDownloadWithURL:realUrl];
+    }
+}
+
+- (void)aysnLoadImageWithUrl:(NSString *)url placeHolderImage:(UIImage *)placeHolder
+{
+    if(nil != aysnLoader_)
+    {
+        [aysnLoader_ cancelDownload];
+        aysnLoader_.delegate = nil;
+        aysnLoader_ = nil;
+    }
+    self.placeholderImage = placeHolder;
+    if(nil == url || [url isEqualToString:@""])
+    {
+        if(self.shouldResize)
+            [self resizeSelfWithImage:placeHolder];
+        self.image = placeHolder;
+    }
+    NSFileManager *manager =[NSFileManager defaultManager];
+    NSArray *array = [url componentsSeparatedByString:@"/"];
+    NSString *imageName = [array lastObject];
+    
+    NSString *imagePath = [[self getImagesDirectory] stringByAppendingPathComponent:imageName];
+    
+    BOOL isDirectory,valid;
+    valid = [manager fileExistsAtPath:imagePath isDirectory:&isDirectory];
+    if(valid && !isDirectory)
+    {
+        
+        UIImage *img = [UIImage imageWithContentsOfFile:imagePath];
+        if(self.shouldResize)
+            [self resizeSelfWithImage:img];
+        self.image = img;
+    }
+    else
+    {
+        if(self.shouldResize)
+            [self resizeSelfWithImage:placeHolder];
+        self.image = placeHolder;
         YFImageDownloader *d = [[YFImageDownloader alloc] init];
         d.purpose = imagePath;
         d.delegate = self;
