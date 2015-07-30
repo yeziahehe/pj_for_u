@@ -37,7 +37,6 @@
 
 - (void)loadSubViews
 {
-    [self.effectView removeFromSuperview];
     if ([[MemberDataManager sharedManager] isLogin])
     {
         self.nameLabel.text = self.individualInfo.userInfo.nickname;
