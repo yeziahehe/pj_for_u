@@ -24,56 +24,41 @@
 @implementation AddressManageViewController
 
 #pragma mark - Priavte Methods
-//请求用户的收货地址
-- (void)requestForAddress
-{
-    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
-    NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
-    if (nil == phoneId) {
-        phoneId = @"";
-    }
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetReciverUrl];
-    NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:phoneId forKey:@"phoneId"];
-    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
-                                                             postParams:dict
-                                                            contentType:@"application/x-www-form-urlencoded"
-                                                               delegate:self
-                                                                purpose:kGetAddressDownloadKey];
-}
-
-//删除某条rank收货地址请求
-- (void)requestToDeleteReciverAddressWithPhoneId:(NSString *)phoneId
-                                            rank:(NSString *)rank
-{
-    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
-    if (nil == phoneId) {
-        phoneId = @"";
-    }
-    if (nil == rank) {
-        rank = @"";
-    }
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kDeleteReciverUrl];
-    NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:phoneId forKey:@"phoneId"];
-    [dict setObject:rank forKey:@"rank"];
-    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
-                                                             postParams:dict
-                                                            contentType:@"application/x-www-form-urlencoded"
-                                                               delegate:self
-                                                                purpose:kDeleteAddressDownloadKey];
-}
-
 - (void)loadSubView{
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
-    [self requestForAddress];
+    NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
+    [[AddressDataManager sharedManager] requestForAddressWithPhoneId:phoneId];
 }
 
 #pragma mark - Notification Methods
 - (void)refreshReciverInfoWithNotification:(NSNotification *)notification{
     [self loadSubView];
+}
+
+- (void)getAddressWithNotification:(NSNotification *)notification{
+    NSArray *valueArray = notification.object;
+    self.allAddressArray = [NSMutableArray arrayWithCapacity:0];
+    for (NSDictionary *valueDict in valueArray)
+    {
+        AddressInfo *hmm = [[AddressInfo alloc]initWithDict:valueDict];
+        [self.allAddressArray addObject:hmm];
+    }
+    //如果只有一个收货地址，做设置默认地址处理
+    if (self.allAddressArray.count == 1) {
+        AddressInfo *firstAddress = [self.allAddressArray objectAtIndex:0];
+        NSString *rank = firstAddress.rank;
+        NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
+        [[AddressDataManager sharedManager]requestToSetDefaultAddressWithPhontId:phoneId
+                                                                            rank:rank];
+    }
+    [self.tableView reloadData];
+}
+
+- (void)deleteAddressWithNotification:(NSNotification *)notification
+{
+    [self.tableView reloadData];
 }
 
 #pragma mark - UIViewController Methods
@@ -82,6 +67,8 @@
     [self setNaviTitle:@"我的收货地址"];
     [self loadSubView];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshReciverInfoWithNotification:) name:kRefreshReciverInfoNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getAddressWithNotification:) name:kGetAddressNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteAddressWithNotification:) name:kDeleteAddressNotification object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -96,7 +83,8 @@
 }
 
 #pragma mark - IBAction Methods
-- (IBAction)addNewAdress:(id)sender {
+- (IBAction)addNewAdress:(id)sender
+{
     AddReciverViewController *avc = [[AddReciverViewController alloc]initWithNibName:@"AddReciverViewController" bundle:nil];
     [self.navigationController pushViewController:avc animated:YES];
     avc.NavTitle = @"新增收货地址";
@@ -114,10 +102,8 @@
     cell.name.text = address.name;
     cell.phoneNum.text = address.phone;
     cell.address.text = address.address;
-    cell.campusId = address.campusId;
-    cell.campusName = address.campusName;
     if ([address.tag isEqualToString: @"0"]) {
-        UIColor *color = [UIColor colorWithRed:36.f/255 green:233.f/255 blue:194.f/255 alpha:1.f];
+        UIColor *color = [UIColor colorWithRed:231.f/255 green:231.f/255 blue:231.f/255 alpha:1.f];
         cell.backgroundColor = color;
     }
     return cell;
@@ -139,8 +125,8 @@
     AddressInfo *address = [self.allAddressArray objectAtIndex:indexPath.row];
     NSString *rank = address.rank;
     NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
-    [self requestToDeleteReciverAddressWithPhoneId:phoneId
-                                              rank:rank];
+    [[AddressDataManager sharedManager]requestToDeleteReciverAddressWithPhoneId:phoneId
+                                                                           rank:rank];
     [self.allAddressArray removeObjectAtIndex:indexPath.row];
     [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationTop];
 }
@@ -160,65 +146,6 @@
     avc.reciverRank = address.rank;
     avc.reciverCampusId = address.campusId;
     avc.reciverCampusName = address.campusName;
-}
-
-#pragma mark - YFDownloaderDelegate Methods
-- (void)downloader:(YFDownloader *)downloader completeWithNSData:(NSData *)data
-{
-    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSDictionary *dict = [str JSONValue];
-    if ([downloader.purpose isEqualToString:kGetAddressDownloadKey])
-    {
-        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
-        {
-            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            self.allAddressArray = [NSMutableArray arrayWithCapacity:0];
-            NSArray *valueArray = [dict objectForKey:@"receivers"];
-            for (NSDictionary *valueDict in valueArray) {
-                AddressInfo *hmm = [[AddressInfo alloc]initWithDict:valueDict];
-                [self.allAddressArray addObject:hmm];
-            }
-            [self.tableView reloadData];
-        }
-        else
-        {
-            NSString *message = [dict objectForKey:kMessageKey];
-            if ([message isKindOfClass:[NSNull class]])
-            {
-                message = @"";
-            }
-            if(message.length == 0)
-                message = @"获取地址失败,请稍后再试";
-            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
-        }
-    }
-    if ([downloader.purpose isEqualToString:kDeleteAddressDownloadKey])
-    {
-        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
-        {
-            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            //删除收货地址数组
-            [self.tableView reloadData];
-        }
-        else
-        {
-            NSString *message = [dict objectForKey:kMessageKey];
-            if ([message isKindOfClass:[NSNull class]])
-            {
-                message = @"";
-            }
-            if(message.length == 0)
-                message = @"获取地址失败,请稍后再试";
-            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
-        }
-    }
-
-}
-
-- (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
-{
-    NSLog(@"%@",message);
-    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:2.f];
 }
 
 @end

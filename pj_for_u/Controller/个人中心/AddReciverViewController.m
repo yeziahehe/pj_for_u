@@ -10,10 +10,6 @@
 #import "CampusPickerView.h"
 #import "CampusMoel.h"
 
-#define kChangeAddressDownloadKey       @"ChangeAddressDownloadKey"
-#define kAddReciverDownloadKey          @"AddReciverDownloadKey"
-#define kSetDefaultDownloadKey          @"SetDefaultDownloadKey"
-
 @interface AddReciverViewController ()
 @property (strong,nonatomic)UIView *background;
 @property (strong,nonatomic)CampusPickerView *campusPickerView;
@@ -86,77 +82,8 @@
     [self.view endEditing:YES];
 }
 
-//修改收货地址请求
-- (void)requestForChangeAddressWithPhoneId:(NSString *)phoneId
-                                      rank:(NSString *)rank
-                                      name:(NSString *)name
-                                   address:(NSString *)address
-                                     phone:(NSString *)phone
-                                  campusId:(NSString *)campusId
-{
-    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kChangeReciverUrl];
-    NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:phoneId forKey:@"phoneId"];
-    [dict setObject:rank forKey:@"rank"];
-    [dict setObject:name forKey:@"name"];
-    [dict setObject:address forKey:@"address"];
-    [dict setObject:phone forKey:@"phone"];
-    [dict setObject:campusId forKey:@"campusId"];
-    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
-                                                             postParams:dict
-                                                            contentType:@"application/x-www-form-urlencoded"
-                                                               delegate:self
-                                                                purpose:kChangeAddressDownloadKey];
-}
-
-//新增收货地址请求
-- (void)requestToAddReciverWithPhoneId:(NSString *)phoneId
-                                  name:(NSString *)name
-                                 phone:(NSString *)phone
-                               address:(NSString *)address
-                              campusId:(NSString *)campusId
-{
-    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kAddNewReciverUrl];
-    NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:phoneId forKey:@"phoneId"];
-    [dict setObject:name forKey:@"name"];
-    [dict setObject:address forKey:@"address"];
-    [dict setObject:phone forKey:@"phone"];
-    [dict setObject:campusId forKey:@"campusId"];
-    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
-                                                             postParams:dict
-                                                            contentType:@"application/x-www-form-urlencoded"
-                                                               delegate:self
-                                                                purpose:kAddReciverDownloadKey];
-}
-
-//设置默认地址
-- (void)requestToSetDefaultAddressWithPhontId:(NSString *)phoneId
-                                         rank:(NSString *)rank
-{
-    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
-    if (nil == phoneId) {
-        phoneId = @"";
-    }
-    if (nil == rank) {
-        rank = @"";
-    }
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kSetDefaultAddressUrl];
-    NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:phoneId forKey:@"phoneId"];
-    [dict setObject:rank forKey:@"rank"];
-    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
-                                                             postParams:dict
-                                                            contentType:@"application/x-www-form-urlencoded"
-                                                               delegate:self
-                                                                purpose:kSetDefaultDownloadKey];
-}
-
-
+//点击保存所做的操作
 - (void)rightItemTapped{
-    //点击保存所做的操作
     [self resignAllField];
     NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
     self.reciverCampusName = self.campusTextField.text;
@@ -170,7 +97,7 @@
         else
         {
             //保存地址的请求
-            [self requestForChangeAddressWithPhoneId:phoneId
+            [[AddressDataManager sharedManager] requestForChangeAddressWithPhoneId:phoneId
                                                 rank:self.reciverRank
                                                 name:self.nameTextField.text
                                              address:self.detailTextField.text
@@ -178,7 +105,7 @@
                                             campusId:self.campusModel.campusId];
         }
     }
-    //保存新增的收货地址，同时设置为默认地址
+    //保存新增的收货地址
     else
     {
         NSString *validPassword = [self checkPasswordValid];
@@ -188,7 +115,7 @@
         }
         else
         {
-            [self requestToAddReciverWithPhoneId:phoneId
+            [[AddressDataManager sharedManager] requestToAddReciverWithPhoneId:phoneId
                                             name:self.nameTextField.text
                                            phone:self.phoneTextField.text
                                          address:self.detailTextField.text
@@ -208,9 +135,27 @@
     }
 }
 
--(void)getCampusNameWithNotification:(NSNotification *)notification{
+- (void)getCampusNameWithNotification:(NSNotification *)notification
+{
     self.campusModel = notification.object;
-    NSLog(@"%@,%@",self.campusModel.campusId,self.campusModel.campusName);
+}
+
+- (void)saveAddressWithNotification:(NSNotification *)notification
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshReciverInfoNotification object:nil];
+}
+
+- (void)addNewAddressWithNotification:(NSNotification *)notification
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshReciverInfoNotification object:nil];
+}
+
+- (void)setDefaultAddressWithNotificaton:(NSNotification *)notification
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshReciverInfoNotification object:nil];
 }
 
 #pragma mark - UIView Methods
@@ -222,6 +167,9 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCampusNameWithNotification:) name:kGetCampusNameWithNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCampusNameWithNotification:) name:kGetFirstCampusNameWithNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(saveAddressWithNotification:) name:kSaveAddressNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(addNewAddressWithNotification:) name:kAddAddressNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setDefaultAddressWithNotificaton:) name:kSetDefaultAddressNotification object:nil];
     UITapGestureRecognizer *tapGesuture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignAllField)];
     [self.view addGestureRecognizer:tapGesuture];
 }
@@ -267,7 +215,7 @@
     else
     {
         if (([self.reciverPhone isEqualToString: self.phoneTextField.text])&([self.reciverName isEqualToString:self.nameTextField.text])&([self.addressDetail isEqualToString:self.detailTextField.text])&([self.reciverCampusName isEqualToString:self.campusTextField.text])) {
-            [self requestToSetDefaultAddressWithPhontId:phoneId
+            [[AddressDataManager sharedManager] requestToSetDefaultAddressWithPhontId:phoneId
                                                    rank:self.reciverRank];
         }
         else
@@ -295,95 +243,6 @@
         [self.detailTextField resignFirstResponder];
     }
        return YES;
-}
-
-
-#pragma mark - YFDownloaderDelegate Methods
-- (void)downloader:(YFDownloader *)downloader completeWithNSData:(NSData *)data
-{
-    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSDictionary *dict = [str JSONValue];       //把数据放入dict
-    //修改地址请求回调
-    if ([downloader.purpose isEqualToString:kChangeAddressDownloadKey])      //标记是哪个接口
-    {
-        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
-        {
-            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            [self.navigationController popViewControllerAnimated:YES];
-            [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshReciverInfoNotification object:nil];
-        }
-        else        //失败
-        {
-            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            NSString *message = [dict objectForKey:kMessageKey];
-            if ([message isKindOfClass:[NSNull class]])
-            {
-                message = @"";
-            }
-            if(message.length == 0)
-            {
-                message = @"地址保存失败";
-                [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
-            }
-        }
-    }
-    //新建收货地址请求回调
-    if ([downloader.purpose isEqualToString:kAddReciverDownloadKey])      //标记是哪个接口
-    {
-        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
-        {
-            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            [self.navigationController popViewControllerAnimated:YES];
-            [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshReciverInfoNotification object:nil];
-        //将第一个地址设置为默认地址
-        }
-        else        //失败
-        {
-            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            NSString *message = [dict objectForKey:kMessageKey];
-            if ([message isKindOfClass:[NSNull class]])
-            {
-                message = @"";
-            }
-            if(message.length == 0)
-            {
-                message = @"新增地址失败";
-                [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
-            }
-        }
-    }
-    //设置默认地址请求回调
-    if ([downloader.purpose isEqualToString:kSetDefaultDownloadKey])      //标记是哪个接口
-    {
-        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
-        {
-            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            [[YFProgressHUD sharedProgressHUD]showWithMessage:@"设置默认收货地址成功" customView:nil hideDelay:2.f];
-
-            [self.navigationController popViewControllerAnimated:YES];
-            [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshReciverInfoNotification object:nil];
-        }
-        else        //失败
-        {
-            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            NSString *message = [dict objectForKey:kMessageKey];
-            if ([message isKindOfClass:[NSNull class]])
-            {
-                message = @"";
-            }
-            if(message.length == 0)
-            {
-                message = @"设置默认地址失败";
-                [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
-            }
-        }
-    }
-
-}
-
-- (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
-{
-    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:2.f];
 }
 
 @end
