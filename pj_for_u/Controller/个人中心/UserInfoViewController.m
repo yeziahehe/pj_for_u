@@ -23,8 +23,21 @@
 @implementation UserInfoViewController
 
 #pragma mark - Private Methods
+- (UIVisualEffectView *)effectView      //懒加载，这样比较方便
+{
+    if (!_effectView) {
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        self.effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+        CGRect frame = self.headBackPhoto.frame;
+        frame.size.width = ScreenWidth;
+        self.effectView.frame = frame;
+    }
+    return _effectView;
+}
+
 - (void)loadSubViews
 {
+    [self.effectView removeFromSuperview];
     if ([[MemberDataManager sharedManager] isLogin])
     {
         self.nameLabel.text = self.individualInfo.userInfo.nickname;
@@ -32,9 +45,9 @@
             self.headPhoto.cacheDir = kUserIconCacheDir;
             [self.headPhoto aysnLoadImageWithUrl:self.individualInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
             // 毛玻璃效果，仅适用于ios8 and later
-            UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-            self.effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
-            self.effectView.frame = self.headBackPhoto.frame;
+            //删除了部分代码，写到了懒加载里面
+            //先remove再加载，为了避免重复覆盖
+            [self.effectView removeFromSuperview];
             [self.headBackPhoto addSubview:self.effectView];
             self.headBackPhoto.cacheDir = kUserIconCacheDir;
             [self.headBackPhoto aysnLoadImageWithUrl:self.individualInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
