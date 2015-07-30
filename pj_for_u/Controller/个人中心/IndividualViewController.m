@@ -30,6 +30,18 @@
 @implementation IndividualViewController
 
 #pragma mark - Private Methods
+- (UIVisualEffectView *)effectView      //懒加载，这样比较方便
+{
+    if (!_effectView) {
+        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        self.effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
+        CGRect frame = self.headBackPhoto.frame;
+        frame.size.width = ScreenWidth;
+        self.effectView.frame = frame;
+    }
+    return _effectView;
+}
+
 - (void)loadSubView
 {
     [self addImageBorder];
@@ -38,11 +50,7 @@
         self.headPhoto.cacheDir = kUserIconCacheDir;
         [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
         // 毛玻璃效果，仅适用于ios8 and later
-        UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        self.effectView = [[UIVisualEffectView alloc]initWithEffect:blur];
-        CGRect frame = self.headBackPhoto.frame;
-        frame.size.width = ScreenWidth;
-        self.effectView.frame = frame;
+        //删除了部分代码，写到了懒加载里面
         [self.headBackPhoto addSubview:self.effectView];
         self.headBackPhoto.cacheDir = kUserIconCacheDir;
         [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
@@ -174,10 +182,16 @@
     
     self.headPhoto.image = userIconImage;
     self.headBackPhoto.image = userIconImage;
+    
+    //下面两行代码用于如果用户初始没有头像，要上传头像时候的添加模糊背景
+    [self.effectView removeFromSuperview];
+    [self.headBackPhoto addSubview:self.effectView];
+    
     self.imageData = userIconData;
     self.imageFileName = mediaPicker.fileName;
     //上传图片请求
     [self uploadImageRequestForImageFile:self.imageData];
+    
 }
 
 - (void)didGetFileFailedWithMessage:(NSString *)message
