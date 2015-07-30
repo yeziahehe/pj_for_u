@@ -51,6 +51,8 @@
         [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
         // 毛玻璃效果，仅适用于ios8 and later
         //删除了部分代码，写到了懒加载里面
+        //先remove再加载，为了避免重复覆盖
+        [self.effectView removeFromSuperview];
         [self.headBackPhoto addSubview:self.effectView];
         self.headBackPhoto.cacheDir = kUserIconCacheDir;
         [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
@@ -179,13 +181,6 @@
         [manager createDirectoryAtPath:userIconDir withIntermediateDirectories:NO attributes:nil error:nil];
     NSData *userIconData = UIImageJPEGRepresentation(userIconImage, 1);
     [userIconData writeToFile:userIconPath atomically:NO];
-    
-    self.headPhoto.image = userIconImage;
-    self.headBackPhoto.image = userIconImage;
-    
-    //下面两行代码用于如果用户初始没有头像，要上传头像时候的添加模糊背景
-    [self.effectView removeFromSuperview];
-    [self.headBackPhoto addSubview:self.effectView];
     
     self.imageData = userIconData;
     self.imageFileName = mediaPicker.fileName;
