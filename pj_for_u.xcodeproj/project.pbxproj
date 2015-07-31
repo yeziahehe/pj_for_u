@@ -178,6 +178,10 @@
 		6D8AD3FB1B60C6290099A0D8 /* IndividualInfoMap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3FA1B60C6290099A0D8 /* IndividualInfoMap.plist */; };
 		6D8AD3FF1B60E2510099A0D8 /* IndividualSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD3FD1B60E2510099A0D8 /* IndividualSubViewController.m */; };
 		6D8AD4001B60E2510099A0D8 /* IndividualSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3FE1B60E2510099A0D8 /* IndividualSubViewController.xib */; };
+		6D95415F1B6B0D8C00532677 /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D95415D1B6B0D8C00532677 /* MyOrderViewController.m */; };
+		6D9541601B6B0D8C00532677 /* MyOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D95415E1B6B0D8C00532677 /* MyOrderViewController.xib */; };
+		6D9541641B6B361F00532677 /* MyOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9541621B6B361F00532677 /* MyOrderTableViewCell.m */; };
+		6D9541651B6B361F00532677 /* MyOrderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D9541631B6B361F00532677 /* MyOrderTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -456,6 +460,12 @@
 		6D8AD3FC1B60E2510099A0D8 /* IndividualSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualSubViewController.h; sourceTree = "<group>"; };
 		6D8AD3FD1B60E2510099A0D8 /* IndividualSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualSubViewController.m; sourceTree = "<group>"; };
 		6D8AD3FE1B60E2510099A0D8 /* IndividualSubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualSubViewController.xib; sourceTree = "<group>"; };
+		6D95415C1B6B0D8C00532677 /* MyOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderViewController.h; sourceTree = "<group>"; };
+		6D95415D1B6B0D8C00532677 /* MyOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewController.m; sourceTree = "<group>"; };
+		6D95415E1B6B0D8C00532677 /* MyOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderViewController.xib; sourceTree = "<group>"; };
+		6D9541611B6B361F00532677 /* MyOrderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderTableViewCell.h; sourceTree = "<group>"; };
+		6D9541621B6B361F00532677 /* MyOrderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderTableViewCell.m; sourceTree = "<group>"; };
+		6D9541631B6B361F00532677 /* MyOrderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -978,6 +988,12 @@
 		6D8AD3E61B608D100099A0D8 /* 我的订单 */ = {
 			isa = PBXGroup;
 			children = (
+				6D95415C1B6B0D8C00532677 /* MyOrderViewController.h */,
+				6D95415D1B6B0D8C00532677 /* MyOrderViewController.m */,
+				6D95415E1B6B0D8C00532677 /* MyOrderViewController.xib */,
+				6D9541611B6B361F00532677 /* MyOrderTableViewCell.h */,
+				6D9541621B6B361F00532677 /* MyOrderTableViewCell.m */,
+				6D9541631B6B361F00532677 /* MyOrderTableViewCell.xib */,
 			);
 			name = "我的订单";
 			sourceTree = "<group>";
@@ -1116,6 +1132,7 @@
 				2C7953991B613F4800511EB7 /* icon_order@2x.png in Resources */,
 				4A6C158A1B5FF22F00C9A9D2 /* icon_register_nickname@2x.png in Resources */,
 				2C10D6AD1B60B1F7008C3DE0 /* icon_home_user@2x.png in Resources */,
+				6D9541601B6B0D8C00532677 /* MyOrderViewController.xib in Resources */,
 				2C25285B1B5E108A00ADDEFB /* Images.xcassets in Resources */,
 				0AE093081B60D2EC0095D639 /* AboutAppViewController.xib in Resources */,
 				2CF607B21B5EC7DD0022E8E7 /* icon_header_back@2x.png in Resources */,
@@ -1140,6 +1157,7 @@
 				2CF607A01B5EC6460022E8E7 /* ImageContainView.xib in Resources */,
 				2C10D6B41B60B551008C3DE0 /* icon_home_user_selected@2x.png in Resources */,
 				0ACABED61B671DEE009B18E0 /* icon_yanzheng@2x.png in Resources */,
+				6D9541651B6B361F00532677 /* MyOrderTableViewCell.xib in Resources */,
 				2CF607681B5E9D100022E8E7 /* SearchHistoryViewController.xib in Resources */,
 				2C7953A11B61414200511EB7 /* icon_header_back_light@2x.png in Resources */,
 				2C25289B1B5E38B100ADDEFB /* ResetPwdViewController.xib in Resources */,
@@ -1201,6 +1219,7 @@
 				2C2529041B5E3AA900ADDEFB /* YFCommonMethods.m in Sources */,
 				2CF6079B1B5EC5FE0022E8E7 /* HomeSubView.m in Sources */,
 				4A6C15B01B66247700C9A9D2 /* AddressInfo.m in Sources */,
+				6D95415F1B6B0D8C00532677 /* MyOrderViewController.m in Sources */,
 				2C25289A1B5E38B100ADDEFB /* ResetPwdViewController.m in Sources */,
 				2C2528FD1B5E3AA900ADDEFB /* NSDate+YFAdditions.m in Sources */,
 				4A6C15831B5F877F00C9A9D2 /* UserInfoSubView.m in Sources */,
@@ -1222,6 +1241,7 @@
 				2CF607781B5EA3E60022E8E7 /* CitySelectTableView.m in Sources */,
 				2C2529031B5E3AA900ADDEFB /* YFAsynImageView.m in Sources */,
 				2C2528D41B5E39EF00ADDEFB /* UIScrollView+MJRefresh.m in Sources */,
+				6D9541641B6B361F00532677 /* MyOrderTableViewCell.m in Sources */,
 				2CBC8E651B665F0400326059 /* UserInfo.m in Sources */,
 				6D10BE6E1B61FA3700D3638C /* IndividualInfo.m in Sources */,
 				2C2528D51B5E39EF00ADDEFB /* UIView+MJExtension.m in Sources */,
