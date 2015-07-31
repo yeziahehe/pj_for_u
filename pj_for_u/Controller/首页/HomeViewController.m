@@ -151,8 +151,10 @@
             self.imageUrlArray = [NSMutableArray arrayWithCapacity:0];
             NSArray *valueArray = [dict objectForKey:@"food"];
             for (NSDictionary *valueDict in valueArray) {
-                NSString *lm = [valueDict objectForKey:@"imgUrl"];
+                NSString *lm = [valueDict objectForKey:@"homeImage"];
+                if(lm){
                 [self.imageUrlArray addObject:lm];
+                }
             }
             [self.contentScrollView headerEndRefreshing];
             [self loadSubViews];
