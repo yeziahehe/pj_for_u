@@ -31,7 +31,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="CfQ-uJ-GGj">
-                        <rect key="frame" x="0.0" y="59" width="320" height="1"/>
+                        <rect key="frame" x="0.0" y="60" width="320" height="1"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="oqF-NK-0JN"/>
                         </constraints>
@@ -47,19 +47,19 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="L1F-89-8gM" firstAttribute="leading" secondItem="Rsk-jO-UpQ" secondAttribute="leading" id="5Qu-6Q-lZb"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="CfQ-uJ-GGj" secondAttribute="bottom" constant="-8" id="88w-oo-VMM"/>
-                    <constraint firstItem="L1F-89-8gM" firstAttribute="centerX" secondItem="CfQ-uJ-GGj" secondAttribute="centerX" id="G4M-0L-dT3"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="CfQ-uJ-GGj" secondAttribute="bottom" constant="-9.5" id="88w-oo-VMM"/>
+                    <constraint firstItem="CfQ-uJ-GGj" firstAttribute="centerX" secondItem="L1F-89-8gM" secondAttribute="centerX" id="Dcr-bu-iSe"/>
                     <constraint firstAttribute="trailingMargin" secondItem="KjG-jC-tga" secondAttribute="trailing" constant="64" id="JQP-NO-n3F"/>
                     <constraint firstAttribute="trailing" secondItem="CfQ-uJ-GGj" secondAttribute="trailing" id="JSm-TT-d7g"/>
                     <constraint firstItem="KjG-jC-tga" firstAttribute="baseline" secondItem="Rsk-jO-UpQ" secondAttribute="baseline" id="KZD-aV-WYg"/>
                     <constraint firstItem="KjG-jC-tga" firstAttribute="leading" secondItem="Rsk-jO-UpQ" secondAttribute="trailing" constant="8" symbolic="YES" id="OXf-yn-4Zz"/>
-                    <constraint firstItem="CfQ-uJ-GGj" firstAttribute="top" secondItem="L1F-89-8gM" secondAttribute="bottom" constant="4" id="Rvt-sx-Kwm"/>
+                    <constraint firstItem="Rsk-jO-UpQ" firstAttribute="leading" secondItem="L1F-89-8gM" secondAttribute="leading" id="TnM-Gj-QGA"/>
                     <constraint firstItem="Rsk-jO-UpQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="UgB-y9-NGa"/>
+                    <constraint firstItem="L1F-89-8gM" firstAttribute="top" secondItem="Rsk-jO-UpQ" secondAttribute="bottom" constant="5" id="YyJ-aY-hgm"/>
                     <constraint firstItem="Rsk-jO-UpQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-7" id="bIj-G3-0vE"/>
                     <constraint firstItem="CfQ-uJ-GGj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="cRP-Mg-fN7"/>
+                    <constraint firstItem="CfQ-uJ-GGj" firstAttribute="top" secondItem="L1F-89-8gM" secondAttribute="bottom" constant="5" id="idx-ee-2gZ"/>
                     <constraint firstItem="Rsk-jO-UpQ" firstAttribute="firstBaseline" secondItem="KjG-jC-tga" secondAttribute="firstBaseline" id="rmE-3s-NAo"/>
-                    <constraint firstItem="L1F-89-8gM" firstAttribute="top" secondItem="Rsk-jO-UpQ" secondAttribute="bottom" constant="5" id="vAL-ab-QP7"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

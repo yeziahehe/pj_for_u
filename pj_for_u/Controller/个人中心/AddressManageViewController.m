@@ -58,7 +58,7 @@
 
 - (void)deleteAddressWithNotification:(NSNotification *)notification
 {
-    [self.tableView reloadData];
+    [self loadSubView];
 }
 
 #pragma mark - UIViewController Methods
@@ -68,7 +68,7 @@
     [self loadSubView];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshReciverInfoWithNotification:) name:kRefreshReciverInfoNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getAddressWithNotification:) name:kGetAddressNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(deleteAddressWithNotification:) name:kDeleteAddressNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshReciverInfoWithNotification:) name:kDeleteAddressNotification object:nil];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -102,7 +102,8 @@
     cell.name.text = address.name;
     cell.phoneNum.text = address.phone;
     cell.address.text = address.address;
-    if ([address.tag isEqualToString: @"0"]) {
+    if ([address.tag isEqualToString: @"0"])
+    {
         UIColor *color = [UIColor colorWithRed:231.f/255 green:231.f/255 blue:231.f/255 alpha:1.f];
         cell.backgroundColor = color;
     }
@@ -128,9 +129,13 @@
     [[AddressDataManager sharedManager]requestToDeleteReciverAddressWithPhoneId:phoneId
                                                                            rank:rank];
     [self.allAddressArray removeObjectAtIndex:indexPath.row];
-    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationTop];
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
