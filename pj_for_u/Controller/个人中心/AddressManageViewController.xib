@@ -44,7 +44,7 @@
                         <constraint firstItem="B1j-NQ-RYL" firstAttribute="top" secondItem="MFz-7M-4NT" secondAttribute="top" constant="17" id="rps-7S-uG6"/>
                     </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8rW-3c-A1O">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8rW-3c-A1O">
                     <rect key="frame" x="0.0" y="156" width="375" height="521"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -53,7 +53,7 @@
                     <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.97953344669999998" green="0.97829060219999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.96078431372549022" green="0.98039215686274506" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="MFz-7M-4NT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8FP-EH-C0m"/>
                 <constraint firstItem="MFz-7M-4NT" firstAttribute="leading" secondItem="8rW-3c-A1O" secondAttribute="leading" id="EWZ-PT-HO5"/>
