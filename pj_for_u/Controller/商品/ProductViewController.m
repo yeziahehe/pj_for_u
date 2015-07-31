@@ -7,13 +7,13 @@
 //
 
 #import "ProductViewController.h"
-
 #import "CategoryLabel.h"
 #import "MainTableViewController.h"
+#import "ProductInfo.h"
 
 @interface ProductViewController ()
 
-@property (nonatomic, strong) NSArray *categories;
+@property (nonatomic, strong) NSMutableArray *allCategories;
 
 @end
 
@@ -21,13 +21,20 @@
 #pragma mark - Private Methods
 - (void)loadCategoryArray
 {
-    self.categories = [NSArray arrayWithObjects:@"日狗",@"我叫赵日天",@"胖子",@"测试",@"我去", nil];
+    [[ProductDataManager sharedManager]requestForAddressWithCampusId:kCampusId];
 }
 
 
 //添加子视图控制器
 - (void)addController
 {
+    for(int i=0 ; i<self.allCategories.count; i++)
+    {
+        ProductInfo *pinfo = [self.allCategories objectAtIndex:i];
+        //循环创建vc
+    
+        
+    }
     MainTableViewController *vc1 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
     vc1.title = @"新品上架";
     [self addChildViewController:vc1];
@@ -84,6 +91,20 @@
     [self.bigScrollView setContentOffset:offset animated:YES];
 }
 
+#pragma mark - Notification Methods
+- (void)getCategoriesWithNotification:(NSNotification *)notification
+{
+    NSArray *valueArray = notification.object;
+    self.allCategories = [NSMutableArray arrayWithCapacity:0];
+    for(NSDictionary *valueDict in valueArray)
+    {
+        ProductInfo *pi = [[ProductInfo alloc]initWithDict:valueDict];
+        [self.allCategories addObject:pi];
+    }
+    [self addController];
+    [self addLable];
+}
+
 #pragma mark - UIView Methods
 - (void)viewDidLoad
 {
@@ -95,9 +116,6 @@
     self.smallScrollView.showsVerticalScrollIndicator = NO;
     self.bigScrollView.delegate = self;
     
-    [self addController];
-    [self addLable];
-    
     CGFloat contentX = self.childViewControllers.count * ScreenWidth;
     self.bigScrollView.contentSize = CGSizeMake(contentX, 0);
     self.bigScrollView.pagingEnabled = YES;
@@ -108,6 +126,9 @@
     [self.bigScrollView addSubview:vc.view];
     CategoryLabel *lable = [self.smallScrollView.subviews firstObject];
     lable.scale = 1.0;
+    
+    //通知监听
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCategoriesWithNotification:) name:kGetCategoryNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -125,7 +146,6 @@
 /** 滚动结束后调用（代码导致） */
 - (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
 {
-    self.categories = [NSArray arrayWithObjects:@"日狗",@"我叫赵日天",@"胖子",@"测试",@"我去",@"shabi", nil];
     // 获得索引
     NSUInteger index = scrollView.contentOffset.x / self.bigScrollView.frame.size.width;
     
@@ -146,7 +166,7 @@
     // 添加控制器
     MainTableViewController *MVc = self.childViewControllers[index];
     MVc.index = index;
-    MVc.testString = [self.categories objectAtIndex:index];
+    
     [self.smallScrollView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if (idx != index) {
             CategoryLabel *temlabel = self.smallScrollView.subviews[idx];

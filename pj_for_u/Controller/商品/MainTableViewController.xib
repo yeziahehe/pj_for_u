@@ -6,24 +6,30 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainTableViewController">
             <connections>
-                <outlet property="label" destination="vMN-CA-KBR" id="7Nx-MS-fzf"/>
+                <outlet property="tableView" destination="mai-x7-W83" id="QhC-0u-r0C"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMN-CA-KBR">
-                    <rect key="frame" x="139" y="273" width="115" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mai-x7-W83">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
             </subviews>
             <color key="backgroundColor" red="0.96078431372549022" green="0.98039215686274506" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
-            <point key="canvasLocation" x="335" y="301"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="mai-x7-W83" secondAttribute="bottom" id="7d1-Qe-LtL"/>
+                <constraint firstItem="mai-x7-W83" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="DTk-DW-vzE"/>
+                <constraint firstItem="mai-x7-W83" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="K6g-D3-ANL"/>
+                <constraint firstAttribute="trailing" secondItem="mai-x7-W83" secondAttribute="trailing" id="bjY-g1-abJ"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="334.5" y="300.5"/>
         </view>
     </objects>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

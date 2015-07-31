@@ -89,6 +89,7 @@
 #define kAddAddressNotification             @"kAddAddressNotification"
 #define kSetDefaultAddressNotification      @"SetDefaultAddressNotification"
 #define kSetFirstAddressNotification        @"SetFirstAddressNotification"
+#define kGetCategoryNotification            @"GetCategoryNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
@@ -109,4 +110,7 @@
 #define kSetDefaultAddressUrl   @"receiver/setDefaultAddress.do"
 #define kDeleteReciverUrl       @"receiver/deleteReceiver.do"
 #define kGetOrderInMine         @"order/getOrderInMine.do"
+#define kGetCategoryUrl         @"service/getCategory.do"
+
+
 #endif

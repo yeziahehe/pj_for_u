@@ -29,7 +29,7 @@
     self.textColor = [UIColor colorWithRed:scale green:0.0 blue:0.0 alpha:1];
     
     //改变字体大小，缩放效果
-    CGFloat minScale = 0.7;
+    CGFloat minScale = 0.99;
     CGFloat trueScale = minScale + (1-minScale)*scale;
     self.transform = CGAffineTransformMakeScale(trueScale, trueScale);
 }
