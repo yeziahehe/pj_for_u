@@ -192,7 +192,6 @@
         {
             [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
             [[NSNotificationCenter defaultCenter]postNotificationName:kSaveAddressNotification object:nil];
-//            [self.navigationController popViewControllerAnimated:YES];
             [[NSNotificationCenter defaultCenter]postNotificationName:kRefreshReciverInfoNotification object:nil];
         }
         else        //失败

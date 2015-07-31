@@ -11,14 +11,14 @@
 #import "AddReciverViewController.h"
 #import "AddressInfo.h"
 #import "LoginViewController.h"
-
-#define kGetAddressDownloadKey      @"GetAddressDownloadKey"
-#define kDeleteAddressDownloadKey   @"DeleteAddressDownloadKey"
+#import "CampusMoel.h"
 
 @interface AddressManageViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong,nonatomic)NSMutableArray *allAddressArray;
-@property (strong,nonatomic)NSIndexPath *deleteIndex;
+@property (strong, nonatomic)NSMutableArray *allAddressArray;
+@property (strong, nonatomic)NSIndexPath *deleteIndex;
+@property (strong, nonatomic)NSString *phoneId;
+
 @end
 
 @implementation AddressManageViewController
@@ -28,8 +28,8 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];
-    NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
-    [[AddressDataManager sharedManager] requestForAddressWithPhoneId:phoneId];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    [[AddressDataManager sharedManager] requestForAddressWithPhoneId:self.phoneId];
 }
 
 #pragma mark - Notification Methods
@@ -46,11 +46,10 @@
         [self.allAddressArray addObject:hmm];
     }
     //如果只有一个收货地址，做设置默认地址处理
-    if (self.allAddressArray.count == 1) {
+    if(self.allAddressArray.count != 0){
         AddressInfo *firstAddress = [self.allAddressArray objectAtIndex:0];
         NSString *rank = firstAddress.rank;
-        NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
-        [[AddressDataManager sharedManager]requestToSetDefaultAddressWithPhontId:phoneId
+        [[AddressDataManager sharedManager]requestToSetDefaultAddressWithPhontId:self.phoneId
                                                                             rank:rank];
     }
     [self.tableView reloadData];
@@ -58,13 +57,14 @@
 
 - (void)deleteAddressWithNotification:(NSNotification *)notification
 {
-    [self.tableView reloadData];
+    [self loadSubView];
 }
 
 #pragma mark - UIViewController Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNaviTitle:@"我的收货地址"];
+    self.phoneId = [MemberDataManager sharedManager].loginMember.phone;
     [self loadSubView];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshReciverInfoWithNotification:) name:kRefreshReciverInfoNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getAddressWithNotification:) name:kGetAddressNotification object:nil];
@@ -102,9 +102,11 @@
     cell.name.text = address.name;
     cell.phoneNum.text = address.phone;
     cell.address.text = address.address;
-    if ([address.tag isEqualToString: @"0"]) {
-        UIColor *color = [UIColor colorWithRed:231.f/255 green:231.f/255 blue:231.f/255 alpha:1.f];
-        cell.backgroundColor = color;
+    if ([address.tag isEqualToString: @"0"])
+    {
+//        UIColor *color = [UIColor colorWithRed:230.f/255 green:235.f/255 blue:236.f/255 alpha:1.f];
+//        cell.backgroundColor = color;
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     return cell;
 }
@@ -124,13 +126,16 @@
     //左滑删除地址数据
     AddressInfo *address = [self.allAddressArray objectAtIndex:indexPath.row];
     NSString *rank = address.rank;
-    NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
-    [[AddressDataManager sharedManager]requestToDeleteReciverAddressWithPhoneId:phoneId
+    [[AddressDataManager sharedManager]requestToDeleteReciverAddressWithPhoneId:self.phoneId
                                                                            rank:rank];
     [self.allAddressArray removeObjectAtIndex:indexPath.row];
-    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationTop];
+    [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath, nil] withRowAnimation:UITableViewRowAnimationFade];
 }
 
+-(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return @"删除";
+}
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

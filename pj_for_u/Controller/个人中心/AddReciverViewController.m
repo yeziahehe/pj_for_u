@@ -102,7 +102,7 @@
                                                 name:self.nameTextField.text
                                              address:self.detailTextField.text
                                                phone:self.phoneTextField.text
-                                            campusId:self.campusModel.campusId];
+                                            campusId:self.reciverCampusId];
         }
     }
     //保存新增的收货地址
