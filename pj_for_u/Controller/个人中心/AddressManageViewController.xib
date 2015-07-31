@@ -53,7 +53,7 @@
                     <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </tableView>
             </subviews>
-            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.97953344669999998" green="0.97829060219999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="MFz-7M-4NT" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="8FP-EH-C0m"/>
                 <constraint firstItem="MFz-7M-4NT" firstAttribute="leading" secondItem="8rW-3c-A1O" secondAttribute="leading" id="EWZ-PT-HO5"/>
