@@ -10,6 +10,7 @@
 #import "IndividualViewController.h"
 #import "SettingViewController.h"
 #import "AddressManageViewController.h"
+#import "MyOrderViewController.h"
 
 @interface UserInfoViewController ()
 @property (strong, nonatomic) IBOutlet YFAsynImageView *headPhoto;
@@ -37,7 +38,6 @@
 
 - (void)loadSubViews
 {
-    [self.effectView removeFromSuperview];
     if ([[MemberDataManager sharedManager] isLogin])
     {
         self.nameLabel.text = self.individualInfo.userInfo.nickname;
@@ -104,6 +104,8 @@
 {
     if ([[MemberDataManager sharedManager] isLogin]) {
         //我的订单页面
+        MyOrderViewController *myOrderViewController = [[MyOrderViewController alloc] init];
+        [self.navigationController pushViewController:myOrderViewController animated:YES];
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
     }

@@ -108,5 +108,5 @@
 #define kAddNewReciverUrl       @"receiver/addReceiver.do"
 #define kSetDefaultAddressUrl   @"receiver/setDefaultAddress.do"
 #define kDeleteReciverUrl       @"receiver/deleteReceiver.do"
-
+#define kGetOrderInMine         @"order/getOrderInMine.do"
 #endif
