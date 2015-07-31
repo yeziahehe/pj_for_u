@@ -8,6 +8,9 @@
 
 #import "BaseViewController.h"
 
-@interface ProductViewController : BaseViewController
+@interface ProductViewController : BaseViewController<UIScrollViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIScrollView *smallScrollView;
+@property (weak, nonatomic) IBOutlet UIScrollView *bigScrollView;
 
 @end

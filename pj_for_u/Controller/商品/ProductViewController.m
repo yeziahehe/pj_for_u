@@ -7,64 +7,182 @@
 //
 
 #import "ProductViewController.h"
-#import "HACursor.h"
-#import "UIView+Extension.h"
-#import "HATestView.h"
+
+#import "CategoryLabel.h"
+#import "MainTableViewController.h"
 
 @interface ProductViewController ()
-@property (nonatomic, strong) NSArray *titles;
-@property (nonatomic, strong) NSMutableArray *pageViews;
-@property (strong,nonatomic) HACursor *cursor;
+
+@property (nonatomic, strong) NSArray *categories;
+
 @end
 
 @implementation ProductViewController
+#pragma mark - Private Methods
+- (void)loadCategoryArray
+{
+    self.categories = [NSArray arrayWithObjects:@"日狗",@"我叫赵日天",@"胖子",@"测试",@"我去", nil];
+}
 
-#pragma mark - 加载
-- (NSMutableArray *)createPageViews{
-    NSMutableArray *pageViews = [NSMutableArray array];
-    for (NSInteger i = 0; i < self.titles.count; i++) {
-        HATestView *textView = [[HATestView alloc]init];
-        textView.label.text = self.titles[i];
-        [pageViews addObject:textView];
+
+//添加子视图控制器
+- (void)addController
+{
+    MainTableViewController *vc1 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
+    vc1.title = @"新品上架";
+    [self addChildViewController:vc1];
+    
+    MainTableViewController *vc2 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
+    vc2.title = @"水果超市";
+    [self addChildViewController:vc2];
+    
+    MainTableViewController *vc3 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
+    vc3.title = @"家政服务";
+    [self addChildViewController:vc3];
+    
+    MainTableViewController *vc4 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
+    vc4.title = @"大保健啊";
+    [self addChildViewController:vc4];
+    
+    MainTableViewController *vc5 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
+    vc5.title = @"更多精彩";
+    [self addChildViewController:vc5];
+    
+    MainTableViewController *vc6 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
+    vc6.title = @"好麻烦啊";
+    [self addChildViewController:vc6];
+}
+
+- (void)addLable
+{
+    
+    for (int i = 0; i < 6; i++) {
+        CGFloat lblW = 90;
+        CGFloat lblH = 30;
+        CGFloat lblY = 0;
+        CGFloat lblX = i * lblW ;
+        CategoryLabel *lbl1 = [[CategoryLabel alloc]init];
+        UIViewController *vc = self.childViewControllers[i];
+        lbl1.text = vc.title;
+        lbl1.frame = CGRectMake(lblX, lblY , lblW, lblH);
+        lbl1.font = [UIFont fontWithName:@"HYQiHei" size:5];
+        lbl1.tag = i;
+        lbl1.userInteractionEnabled = YES;
+        [self.smallScrollView addSubview:lbl1];
+        [lbl1 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(lblClick:)]];
     }
-    return pageViews;
+    self.smallScrollView.contentSize = CGSizeMake(90 * 6 , 0);
+}
+
+/** 标题栏label的点击事件 */
+- (void)lblClick:(UITapGestureRecognizer *)recognizer
+{
+    CategoryLabel *titlelable = (CategoryLabel *)recognizer.view;
+    CGFloat offsetX = titlelable.tag * self.bigScrollView.frame.size.width;
+    CGFloat offsetY = self.bigScrollView.contentOffset.y;
+    CGPoint offset = CGPointMake(offsetX, offsetY);
+    [self.bigScrollView setContentOffset:offset animated:YES];
 }
 
 #pragma mark - UIView Methods
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    //不允许有重复的标题
-    self.titles = @[@"家政服务",@"水果上门",@"代取快递",@"特惠秒杀",@"最新体验",@"特色服务"];
+    [self setNaviTitle:@"分类"];
+    [self loadCategoryArray];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.smallScrollView.showsHorizontalScrollIndicator = NO;
+    self.smallScrollView.showsVerticalScrollIndicator = NO;
+    self.bigScrollView.delegate = self;
     
-    _cursor = [[HACursor alloc]init];
-    _cursor.frame = CGRectMake(0, 64, self.view.width, 29);
-    _cursor.titles = self.titles;
-    _cursor.pageViews = [self createPageViews];
-    //设置根滚动视图的高度
-    _cursor.rootScrollViewHeight = self.view.frame.size.height - 109;
-    //默认值是白色
-    _cursor.titleNormalColor = [UIColor blackColor];
-    //默认值是白色
-    _cursor.titleSelectedColor = [UIColor redColor];
-    _cursor.showSortbutton = NO;
-    _cursor.minFontSize = 14;
-    _cursor.maxFontSize = 14;
-    _cursor.isGraduallyChangFont = NO;
-    //在isGraduallyChangFont为NO的时候，isGraduallyChangColor不会有效果
-    //cursor.isGraduallyChangColor = NO;
-    [self.view addSubview:_cursor];
+    [self addController];
+    [self addLable];
     
+    CGFloat contentX = self.childViewControllers.count * ScreenWidth;
+    self.bigScrollView.contentSize = CGSizeMake(contentX, 0);
+    self.bigScrollView.pagingEnabled = YES;
+    
+    // 默认状态控制器
+    UIViewController *vc = [self.childViewControllers firstObject];
+    vc.view.frame = self.bigScrollView.bounds;
+    [self.bigScrollView addSubview:vc.view];
+    CategoryLabel *lable = [self.smallScrollView.subviews firstObject];
+    lable.scale = 1.0;
 }
 
-- (void)viewDidDisappear:(BOOL)animated{
-    [self.navigationController popViewControllerAnimated:YES];
-
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
+
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
+//    [[NSNotificationCenter defaultCenter] removeObserver:self];
+//    [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
 
+#pragma mark - UIScrollView Delegat Methods
+/** 滚动结束后调用（代码导致） */
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView
+{
+    self.categories = [NSArray arrayWithObjects:@"日狗",@"我叫赵日天",@"胖子",@"测试",@"我去",@"shabi", nil];
+    // 获得索引
+    NSUInteger index = scrollView.contentOffset.x / self.bigScrollView.frame.size.width;
+    
+    // 滚动标题栏
+    CategoryLabel *titleLable = (CategoryLabel *)self.smallScrollView.subviews[index];
+    
+    CGFloat offsetx = titleLable.center.x - self.smallScrollView.frame.size.width * 0.5;
+    
+    CGFloat offsetMax = self.smallScrollView.contentSize.width - self.smallScrollView.frame.size.width;
+    if (offsetx < 0) {
+        offsetx = 0;
+    }else if (offsetx > offsetMax){
+        offsetx = offsetMax;
+    }
+    
+    CGPoint offset = CGPointMake(offsetx, self.smallScrollView.contentOffset.y);
+    [self.smallScrollView setContentOffset:offset animated:YES];
+    // 添加控制器
+    MainTableViewController *MVc = self.childViewControllers[index];
+    MVc.index = index;
+    MVc.testString = [self.categories objectAtIndex:index];
+    [self.smallScrollView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if (idx != index) {
+            CategoryLabel *temlabel = self.smallScrollView.subviews[idx];
+            temlabel.scale = 0.0;
+        }
+    }];
+    
+    if (MVc.view.superview) return;
+    
+    MVc.view.frame = scrollView.bounds;
+    [self.bigScrollView addSubview:MVc.view];
+}
+
+/** 滚动结束（手势导致） */
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    [self scrollViewDidEndScrollingAnimation:scrollView];
+}
+
+/** 正在滚动 */
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    // 取出绝对值 避免最左边往右拉时形变超过1
+    CGFloat value = ABS(scrollView.contentOffset.x / scrollView.frame.size.width);
+    NSUInteger leftIndex = (int)value;
+    NSUInteger rightIndex = leftIndex + 1;
+    CGFloat scaleRight = value - leftIndex;
+    CGFloat scaleLeft = 1 - scaleRight;
+    CategoryLabel *labelLeft = self.smallScrollView.subviews[leftIndex];
+    labelLeft.scale = scaleLeft;
+    // 考虑到最后一个板块，如果右边已经没有板块了 就不在下面赋值scale了
+    if (rightIndex < self.smallScrollView.subviews.count) {
+        CategoryLabel *labelRight = self.smallScrollView.subviews[rightIndex];
+        labelRight.scale = scaleRight;
+    }
+    
+}
 
 @end
