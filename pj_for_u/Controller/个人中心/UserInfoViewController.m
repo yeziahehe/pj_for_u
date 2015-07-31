@@ -17,7 +17,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *nameLabel;
 @property (strong, nonatomic) IndividualInfo *individualInfo;
 @property (strong, nonatomic) UIVisualEffectView *effectView;
-
+@property (strong, nonatomic) UIImage *previousImage;
 @end
 
 @implementation UserInfoViewController
@@ -41,15 +41,20 @@
     {
         self.nameLabel.text = self.individualInfo.userInfo.nickname;
         if (![self.individualInfo.userInfo.imgUrl isEqualToString:@""]) {
-            self.headPhoto.cacheDir = kUserIconCacheDir;
-            [self.headPhoto aysnLoadImageWithUrl:self.individualInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
+            if (self.previousImage != nil) {
+                [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolderImage:self.previousImage];
+            } else {
+                [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
+            }
             // 毛玻璃效果，仅适用于ios8 and later
             //删除了部分代码，写到了懒加载里面
             //先remove再加载，为了避免重复覆盖
-            [self.effectView removeFromSuperview];
             [self.headBackPhoto addSubview:self.effectView];
-            self.headBackPhoto.cacheDir = kUserIconCacheDir;
-            [self.headBackPhoto aysnLoadImageWithUrl:self.individualInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
+            if (self.previousImage != nil) {
+                [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolderImage:self.previousImage];
+            } else {
+                [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
+            }
         }
         else {
             [self.headPhoto setImage:[UIImage imageNamed:@"icon_user_default"]];
@@ -135,6 +140,7 @@
 
 - (void)refreshUserInfoWithNotification:(NSNotification *)notification
 {
+    self.previousImage = self.headPhoto.image;
     [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
 }
 

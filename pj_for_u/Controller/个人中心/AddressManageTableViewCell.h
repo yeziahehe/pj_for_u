@@ -14,5 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *address;
 @property (strong, nonatomic) NSString *campusId;
 @property (strong, nonatomic) NSString *campusName;
+@property (strong, nonatomic) NSString *rank;
 
 @end

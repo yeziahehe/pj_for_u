@@ -83,7 +83,12 @@
 #define kRefreshReciverInfoNotification     @"RefreshReciverInfoNotification"
 #define kGetCampusNameWithNotification      @"GetCampusNameWithNotification"
 #define kGetFirstCampusNameWithNotification @"GetFirstCampusNameWithNotification"
-
+#define kGetAddressNotification             @"GetAddressNotification"
+#define kDeleteAddressNotification          @"DeleteAddressNotification"
+#define kSaveAddressNotification            @"kSaveAddressNotification"
+#define kAddAddressNotification             @"kAddAddressNotification"
+#define kSetDefaultAddressNotification      @"SetDefaultAddressNotification"
+#define kSetFirstAddressNotification        @"SetFirstAddressNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
