@@ -102,7 +102,6 @@
 - (void)leftItemTapped
 {
     //跳转到商品分类页面
-    [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
     ProductViewController *productViewController = [[ProductViewController alloc]initWithNibName:@"ProductViewController" bundle:nil];
     [self.navigationController pushViewController:productViewController animated:YES];
 }

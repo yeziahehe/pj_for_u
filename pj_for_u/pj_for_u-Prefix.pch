@@ -22,5 +22,6 @@
     #import "Reachability.h"
     #import "JSON.h"
     #import "MJRefresh.h"
+    #import "HACursor.h"
 
 #endif
