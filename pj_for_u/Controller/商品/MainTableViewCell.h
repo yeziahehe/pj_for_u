@@ -9,5 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface MainTableViewCell : UITableViewCell
+@property (strong, nonatomic) IBOutlet YFAsynImageView *image;
+@property (strong, nonatomic) IBOutlet UILabel *proNameLabel;
+@property (strong, nonatomic) IBOutlet UILabel *introLabel;
+@property (strong, nonatomic) IBOutlet UILabel *priceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *oldPriceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *amountLabel;
 
 @end
