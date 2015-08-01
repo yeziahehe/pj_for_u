@@ -66,14 +66,12 @@
                             <constraint firstAttribute="height" constant="55" id="swo-u9-Opz"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Homee LED百变耳机台灯创意可以做耳机的台灯" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYD-hN-Ncc">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Homee LED百变耳机台灯创意可以做耳机的台灯" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYD-hN-Ncc">
                         <rect key="frame" x="73" y="33" width="211" height="41"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="41" id="FWT-E6-vud"/>
-                            <constraint firstAttribute="width" constant="211" id="lUP-bN-gMb"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.33333333333333331" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设计师原创" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="10X-bf-RJJ">
@@ -145,12 +143,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ceE-Dj-ey2">
-                        <rect key="frame" x="207" y="142" width="75" height="27"/>
+                        <rect key="frame" x="207" y="142" width="75" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="27" id="g6G-U7-cUc"/>
+                            <constraint firstAttribute="height" constant="25" id="g6G-U7-cUc"/>
                             <constraint firstAttribute="width" constant="75" id="mEx-oB-wyF"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                         <state key="normal" title="立即付款">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -158,12 +158,14 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cbo-eh-Nzu">
-                        <rect key="frame" x="290" y="142" width="75" height="27"/>
+                        <rect key="frame" x="290" y="142" width="75" height="25"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="75" id="XsW-uk-fh1"/>
-                            <constraint firstAttribute="height" constant="27" id="uU1-Qg-sx2"/>
+                            <constraint firstAttribute="height" constant="25" id="uU1-Qg-sx2"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
                         <state key="normal" title="取消订单">
+                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -188,6 +190,7 @@
                     <constraint firstItem="Ldh-Kw-6LF" firstAttribute="top" secondItem="Rg8-rj-4gH" secondAttribute="bottom" constant="6" id="E03-Mg-ItY"/>
                     <constraint firstItem="2OZ-NY-S2O" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Fhn-mU-ywb"/>
                     <constraint firstAttribute="trailing" secondItem="P8K-h0-exe" secondAttribute="trailing" constant="10" id="H5q-sD-8DZ"/>
+                    <constraint firstAttribute="trailing" secondItem="qYD-hN-Ncc" secondAttribute="trailing" constant="91" id="HBY-HQ-SUW"/>
                     <constraint firstAttribute="trailing" secondItem="orv-1z-czw" secondAttribute="trailing" constant="10" id="JHb-sG-k96"/>
                     <constraint firstItem="cKN-Xv-sSg" firstAttribute="leading" secondItem="M3Y-lD-IMk" secondAttribute="trailing" constant="6" id="KBi-Lm-J1y"/>
                     <constraint firstItem="dXz-Lv-LHs" firstAttribute="top" secondItem="Nrv-q0-dBL" secondAttribute="bottom" constant="8" id="OG9-P8-yjz"/>
@@ -226,15 +229,17 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="image" destination="Nrv-q0-dBL" id="s8c-1y-LeM"/>
+                <outlet property="leftButton" destination="ceE-Dj-ey2" id="2Fg-R8-tzL"/>
                 <outlet property="nameLabel" destination="qYD-hN-Ncc" id="dmt-UO-dJx"/>
                 <outlet property="orderConut" destination="P8K-h0-exe" id="Thu-Gc-Yh5"/>
                 <outlet property="orderType" destination="2OZ-NY-S2O" id="Tef-YA-ZfG"/>
                 <outlet property="price" destination="orv-1z-czw" id="LNG-k3-8ib"/>
+                <outlet property="rightButton" destination="Cbo-eh-Nzu" id="ebx-J6-3N1"/>
                 <outlet property="togetherDate" destination="M3Y-lD-IMk" id="hbp-rb-wdb"/>
                 <outlet property="totalConut" destination="Rg8-rj-4gH" id="6Lg-lT-KNt"/>
                 <outlet property="totalPrice" destination="dqc-EH-cRm" id="due-dj-yRV"/>
             </connections>
-            <point key="canvasLocation" x="346.5" y="63.5"/>
+            <point key="canvasLocation" x="303.5" y="110.5"/>
         </tableViewCell>
     </objects>
     <resources>
