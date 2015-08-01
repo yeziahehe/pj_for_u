@@ -11,4 +11,5 @@
 @interface MainTableViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,assign) NSInteger index;
 @property (strong,nonatomic)NSString *testString;
+@property (strong,nonatomic)NSString *categoryId;
 @end

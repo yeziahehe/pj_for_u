@@ -9,6 +9,7 @@
 #import "ProductDataManager.h"
 
 #define kGetCategoryDownloadKey     @"GetCategoryDownloadKey"
+#define kGetCategoryFoodDownloadKedy    @"kGetCategoryFoodDownloadKedy"
 
 @implementation ProductDataManager
 
@@ -30,11 +31,37 @@
                                                                delegate:self
                                                                 purpose:kGetCategoryDownloadKey];
 }
+//请求某一分类下得
 -(void)requestForProductWithCampusId:(NSString *)campusId
+                          categoryId:(NSString *)categoryId
                                 page:(NSString *)page
                                limit:(NSString *)limit
 {
+    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
+    if (nil == campusId) {
+        campusId = @"";
+    }
+    if (nil == categoryId) {
+        categoryId = @"";
+    }
+    if (nil == page){
+        page = @"";
+    }
+    if (nil == limit) {
+        limit = @"";
+    }
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetCategoryFoodUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
     
+    [dict setObject:campusId forKey:@"campusId"];
+    [dict setObject:categoryId forKey:@"categoryId"];
+    [dict setObject:page forKey:@"page"];
+    [dict setObject:limit forKey:@"limit"];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kGetCategoryFoodDownloadKedy];
 }
 #pragma mark - Singleton methods
 + (ProductDataManager *)sharedManager
@@ -78,6 +105,28 @@
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
+    //请求某一分类下的商品信息回调
+    if ([downloader.purpose isEqualToString:kGetCategoryFoodDownloadKedy])
+    {
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
+            NSArray *valueArray = [dict objectForKey:@"foodCategory"];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kGetCategoryFoodNotification object:valueArray];
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"获取商品失败,请稍后再试";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message

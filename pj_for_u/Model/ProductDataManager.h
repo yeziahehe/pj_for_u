@@ -14,4 +14,10 @@
 
 //请求分类信息
 - (void)requestForAddressWithCampusId:(NSString *)campusId;
+
+//请求某一分类下的商品信息
+-(void)requestForProductWithCampusId:(NSString *)campusId
+                          categoryId:(NSString *)categoryId
+                                page:(NSString *)page
+                               limit:(NSString *)limit;
 @end

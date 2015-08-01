@@ -8,13 +8,27 @@
 
 #import "MainTableViewController.h"
 #import "MainTableViewCell.h"
+#import "ProductionInfo.h"
 
 @interface MainTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property(strong,nonatomic)NSMutableArray *allProductionMArray;
 //@property (strong, nonatomic)NSMutableArray *productArray;
 @end
 
 @implementation MainTableViewController
+
+#pragma mark - Notification Methods
+-(void)getCategoryFoodWithNotification:(NSNotification *)notification{
+    NSArray *valueArray = notification.object;
+    self.allProductionMArray = [[NSMutableArray alloc]initWithCapacity:0];
+    for(NSDictionary *valueDict in valueArray)
+    {
+        ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
+        [self.allProductionMArray addObject:pi];
+    }
+    NSLog(@"有几个商品: %lu",(unsigned long)self.allProductionMArray.count);
+}
 
 #pragma mark - UIView Methods
 - (void)viewDidLoad {
@@ -24,7 +38,10 @@
     UINib *nib = [UINib nibWithNibName:@"MainTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"MainTableViewCell"];
-
+    [[ProductDataManager sharedManager]requestForProductWithCampusId:kCampusId
+                                                          categoryId:self.categoryId
+                                                                page:@"1" limit:@"10"];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCategoryFoodWithNotification:) name:kGetCategoryFoodNotification object:nil];
     
 }
 

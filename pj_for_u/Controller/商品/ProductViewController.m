@@ -37,6 +37,7 @@
 //    }
     MainTableViewController *vc1 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
     vc1.title = @"小优推荐";
+    vc1.categoryId = @"105";
     [self addChildViewController:vc1];
     
     MainTableViewController *vc2 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
