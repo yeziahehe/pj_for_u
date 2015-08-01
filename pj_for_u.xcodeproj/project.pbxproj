@@ -16,6 +16,10 @@
 		0ACABED61B671DEE009B18E0 /* icon_yanzheng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED51B671DEE009B18E0 /* icon_yanzheng@2x.png */; };
 		0AE093071B60D2EC0095D639 /* AboutAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093051B60D2EC0095D639 /* AboutAppViewController.m */; };
 		0AE093081B60D2EC0095D639 /* AboutAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */; };
+		0AFC07151B6CAE46002BDB90 /* ShoppingCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC07101B6CAE46002BDB90 /* ShoppingCarTableViewCell.m */; };
+		0AFC07161B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFC07111B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib */; };
+		0AFC07171B6CAE46002BDB90 /* ShoppingCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC07131B6CAE46002BDB90 /* ShoppingCarViewController.m */; };
+		0AFC07181B6CAE46002BDB90 /* ShoppingCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFC07141B6CAE46002BDB90 /* ShoppingCarViewController.xib */; };
 		2C10D6A81B609335008C3DE0 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */; };
 		2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6A91B60B1F7008C3DE0 /* icon_home_shopping@2x.png */; };
 		2C10D6AD1B60B1F7008C3DE0 /* icon_home_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6AA1B60B1F7008C3DE0 /* icon_home_user@2x.png */; };
@@ -210,6 +214,12 @@
 		0AE093041B60D2EC0095D639 /* AboutAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutAppViewController.h; path = "Controller/设置/AboutAppViewController.h"; sourceTree = "<group>"; };
 		0AE093051B60D2EC0095D639 /* AboutAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutAppViewController.m; path = "Controller/设置/AboutAppViewController.m"; sourceTree = "<group>"; };
 		0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutAppViewController.xib; path = "Controller/设置/AboutAppViewController.xib"; sourceTree = "<group>"; };
+		0AFC070F1B6CAE46002BDB90 /* ShoppingCarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingCarTableViewCell.h; path = "Controller/购物车/ShoppingCarTableViewCell.h"; sourceTree = "<group>"; };
+		0AFC07101B6CAE46002BDB90 /* ShoppingCarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingCarTableViewCell.m; path = "Controller/购物车/ShoppingCarTableViewCell.m"; sourceTree = "<group>"; };
+		0AFC07111B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoppingCarTableViewCell.xib; path = "Controller/购物车/ShoppingCarTableViewCell.xib"; sourceTree = "<group>"; };
+		0AFC07121B6CAE46002BDB90 /* ShoppingCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingCarViewController.h; path = "Controller/购物车/ShoppingCarViewController.h"; sourceTree = "<group>"; };
+		0AFC07131B6CAE46002BDB90 /* ShoppingCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingCarViewController.m; path = "Controller/购物车/ShoppingCarViewController.m"; sourceTree = "<group>"; };
+		0AFC07141B6CAE46002BDB90 /* ShoppingCarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoppingCarViewController.xib; path = "Controller/购物车/ShoppingCarViewController.xib"; sourceTree = "<group>"; };
 		2C10D6A61B609335008C3DE0 /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTimer+Addition.h"; path = "Utilities/YFUtilities/NSTimer+Addition.h"; sourceTree = "<group>"; };
 		2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTimer+Addition.m"; path = "Utilities/YFUtilities/NSTimer+Addition.m"; sourceTree = "<group>"; };
 		2C10D6A91B60B1F7008C3DE0 /* icon_home_shopping@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_home_shopping@2x.png"; path = "Resource/icon_home_shopping@2x.png"; sourceTree = "<group>"; };
@@ -501,6 +511,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0AFC070E1B6CADE6002BDB90 /* 购物车 */ = {
+			isa = PBXGroup;
+			children = (
+				0AFC070F1B6CAE46002BDB90 /* ShoppingCarTableViewCell.h */,
+				0AFC07101B6CAE46002BDB90 /* ShoppingCarTableViewCell.m */,
+				0AFC07111B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib */,
+				0AFC07121B6CAE46002BDB90 /* ShoppingCarViewController.h */,
+				0AFC07131B6CAE46002BDB90 /* ShoppingCarViewController.m */,
+				0AFC07141B6CAE46002BDB90 /* ShoppingCarViewController.xib */,
+			);
+			name = "购物车";
+			sourceTree = "<group>";
+		};
 		2C10D6B51B60B7E1008C3DE0 /* 商品 */ = {
 			isa = PBXGroup;
 			children = (
@@ -656,6 +679,7 @@
 				2C25287D1B5E2C9D00ADDEFB /* RootTabBarViewController.h */,
 				2C25287E1B5E2C9D00ADDEFB /* RootTabBarViewController.m */,
 				2C25287F1B5E2C9D00ADDEFB /* RootTabBarViewController.xib */,
+				0AFC070E1B6CADE6002BDB90 /* 购物车 */,
 				2C10D6BB1B60B951008C3DE0 /* 设置 */,
 				2C10D6B51B60B7E1008C3DE0 /* 商品 */,
 				2C25288B1B5E2E5B00ADDEFB /* 首页 */,
@@ -1098,6 +1122,7 @@
 			files = (
 				2CF607C71B5EC88C0022E8E7 /* icon_recommend@2x.png in Resources */,
 				2C10D6AE1B60B1F7008C3DE0 /* icon_home@2x.png in Resources */,
+				0AFC07161B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib in Resources */,
 				2CF6076E1B5EA0EF0022E8E7 /* btn_category@2x.png in Resources */,
 				2CF607981B5EBDA10022E8E7 /* line_ver_1px_right.png in Resources */,
 				2C2528841B5E2C9D00ADDEFB /* RootTabBarViewController.xib in Resources */,
@@ -1114,6 +1139,7 @@
 				2CF607C01B5EC88C0022E8E7 /* icon_breakfest@2x.png in Resources */,
 				2CF607971B5EBDA10022E8E7 /* line_ver_1px_left.png in Resources */,
 				2C79539B1B613F4800511EB7 /* icon_userinfo@2x.png in Resources */,
+				0AFC07181B6CAE46002BDB90 /* ShoppingCarViewController.xib in Resources */,
 				2CF607871B5EABA60022E8E7 /* bg_select_city@2x.png in Resources */,
 				4A6C161E1B6B703C00C9A9D2 /* MainTableViewController.xib in Resources */,
 				2C10D6BA1B60B7F2008C3DE0 /* ProductViewController.xib in Resources */,
@@ -1229,6 +1255,7 @@
 				2C2528D81B5E39EF00ADDEFB /* NSString+SBJSON.m in Sources */,
 				2CF6079E1B5EC6360022E8E7 /* ImageContainView.m in Sources */,
 				0AE093071B60D2EC0095D639 /* AboutAppViewController.m in Sources */,
+				0AFC07171B6CAE46002BDB90 /* ShoppingCarViewController.m in Sources */,
 				4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */,
 				2C2528811B5E2C9D00ADDEFB /* BaseViewController.m in Sources */,
 				4A6C15BD1B69FA2700C9A9D2 /* AddressDataManager.m in Sources */,
@@ -1248,6 +1275,7 @@
 				6D10BE6E1B61FA3700D3638C /* IndividualInfo.m in Sources */,
 				2C2528D51B5E39EF00ADDEFB /* UIView+MJExtension.m in Sources */,
 				4A6C16211B6B93AB00C9A9D2 /* CategoryLabel.m in Sources */,
+				0AFC07151B6CAE46002BDB90 /* ShoppingCarTableViewCell.m in Sources */,
 				2C2528891B5E2E1E00ADDEFB /* LoginViewController.m in Sources */,
 				6D8AD3EC1B6097C70099A0D8 /* IndividualViewController.m in Sources */,
 				2C2529001B5E3AA900ADDEFB /* UIImage+YFUtilities.m in Sources */,
