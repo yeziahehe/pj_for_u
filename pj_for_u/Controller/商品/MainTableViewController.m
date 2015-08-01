@@ -24,7 +24,8 @@
     UINib *nib = [UINib nibWithNibName:@"MainTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"MainTableViewCell"];
-    NSLog(@"%@",self.testString);
+
+    
 }
 
 -(void)dealloc{
