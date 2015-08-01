@@ -30,7 +30,12 @@
                                                                delegate:self
                                                                 purpose:kGetCategoryDownloadKey];
 }
-
+-(void)requestForProductWithCampusId:(NSString *)campusId
+                                page:(NSString *)page
+                               limit:(NSString *)limit
+{
+    
+}
 #pragma mark - Singleton methods
 + (ProductDataManager *)sharedManager
 {

@@ -39,6 +39,9 @@
                                             <rect key="frame" x="88" y="8" width="279" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="Afg-iA-jTJ"/>
+                                            </connections>
                                         </textField>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="LHL-Ny-Kgo">
                                             <rect key="frame" x="70" y="10" width="1" height="25"/>
@@ -74,6 +77,9 @@
                                             <rect key="frame" x="88" y="8" width="279" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="Xdy-AQ-M0h"/>
+                                            </connections>
                                         </textField>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="BGQ-tz-Iiy">
                                             <rect key="frame" x="70" y="10" width="1" height="25"/>
@@ -109,6 +115,9 @@
                                             <rect key="frame" x="88" y="8" width="279" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="kyF-ac-mSu"/>
+                                            </connections>
                                         </textField>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="1KM-ob-4Wg">
                                             <rect key="frame" x="70" y="10" width="1" height="25"/>
@@ -166,6 +175,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" red="0.97953344666946585" green="0.97829060216019625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="euN-D4-NEd" firstAttribute="leading" secondItem="11O-ZB-DIP" secondAttribute="leading" id="Jaz-Y8-bO8"/>
                         <constraint firstAttribute="trailing" secondItem="euN-D4-NEd" secondAttribute="trailing" id="UhE-hz-8WG"/>
