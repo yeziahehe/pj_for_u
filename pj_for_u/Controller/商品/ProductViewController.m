@@ -28,13 +28,13 @@
 //添加子视图控制器
 - (void)addController
 {
-    for(int i=0 ; i<self.allCategories.count; i++)
-    {
-        ProductInfo *pinfo = [self.allCategories objectAtIndex:i];
-        //循环创建vc
-    
-        
-    }
+//    for(int i=0 ; i<self.allCategories.count; i++)
+//    {
+//        ProductInfo *pinfo = [self.allCategories objectAtIndex:i];
+//        //循环创建vc
+//    
+//        
+//    }
     MainTableViewController *vc1 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
     vc1.title = @"新品上架";
     [self addChildViewController:vc1];
@@ -101,21 +101,15 @@
         ProductInfo *pi = [[ProductInfo alloc]initWithDict:valueDict];
         [self.allCategories addObject:pi];
     }
-    [self addController];
-    [self addLable];
+    
+    //接受完分类信息，开始加载页面
+    [self loadSubViews];
 }
 
-#pragma mark - UIView Methods
-- (void)viewDidLoad
+- (void)loadSubViews
 {
-    [super viewDidLoad];
-    [self setNaviTitle:@"分类"];
-    [self loadCategoryArray];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.smallScrollView.showsHorizontalScrollIndicator = NO;
-    self.smallScrollView.showsVerticalScrollIndicator = NO;
-    self.bigScrollView.delegate = self;
-    
+    [self addController];
+    [self addLable];
     CGFloat contentX = self.childViewControllers.count * ScreenWidth;
     self.bigScrollView.contentSize = CGSizeMake(contentX, 0);
     self.bigScrollView.pagingEnabled = YES;
@@ -126,7 +120,18 @@
     [self.bigScrollView addSubview:vc.view];
     CategoryLabel *lable = [self.smallScrollView.subviews firstObject];
     lable.scale = 1.0;
-    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.smallScrollView.showsHorizontalScrollIndicator = NO;
+    self.smallScrollView.showsVerticalScrollIndicator = NO;
+    self.bigScrollView.delegate = self;
+}
+#pragma mark - UIView Methods
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self setNaviTitle:@"分类"];
+    [self loadCategoryArray];
+
     //通知监听
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCategoriesWithNotification:) name:kGetCategoryNotification object:nil];
 }

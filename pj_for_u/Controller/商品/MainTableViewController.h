@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainTableViewController : UIViewController<UITableViewDataSource,UITabBarDelegate>
+@interface MainTableViewController : UIViewController
 @property (nonatomic,assign) NSInteger index;
 @property (strong,nonatomic)NSString *testString;
 @end
