@@ -111,7 +111,7 @@
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            NSArray *valueArray = [dict objectForKey:@"foodCategory"];
+            NSArray *valueArray = [dict objectForKey:@"foods"];
             [[NSNotificationCenter defaultCenter]postNotificationName:kGetCategoryFoodNotification object:valueArray];
         }
         else

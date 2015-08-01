@@ -23,5 +23,13 @@
 #import "BaseModel.h"
 
 @interface ProductionInfo : BaseModel
-
+@property (nonatomic, copy) NSString *foodId;
+@property (nonatomic, copy) NSString *campusId;
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *price;
+@property (nonatomic, copy) NSString *foodCount;
+@property (nonatomic, copy) NSString *discountPrice;
+@property (nonatomic, copy) NSString *imgUrl;
+@property (nonatomic, copy) NSString *isDiscount;
+@property (nonatomic, copy) NSString *saleNumber;
 @end

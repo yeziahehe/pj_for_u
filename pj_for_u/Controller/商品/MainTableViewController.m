@@ -13,7 +13,6 @@
 @interface MainTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property(strong,nonatomic)NSMutableArray *allProductionMArray;
-//@property (strong, nonatomic)NSMutableArray *productArray;
 @end
 
 @implementation MainTableViewController
@@ -21,13 +20,14 @@
 #pragma mark - Notification Methods
 -(void)getCategoryFoodWithNotification:(NSNotification *)notification{
     NSArray *valueArray = notification.object;
+    NSLog(@"aaaaa %@",valueArray);
     self.allProductionMArray = [[NSMutableArray alloc]initWithCapacity:0];
     for(NSDictionary *valueDict in valueArray)
     {
         ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
         [self.allProductionMArray addObject:pi];
     }
-    NSLog(@"有几个商品: %lu",(unsigned long)self.allProductionMArray.count);
+    
 }
 
 #pragma mark - UIView Methods
@@ -35,9 +35,11 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    
     UINib *nib = [UINib nibWithNibName:@"MainTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"MainTableViewCell"];
+    
     [[ProductDataManager sharedManager]requestForProductWithCampusId:kCampusId
                                                           categoryId:self.categoryId
                                                                 page:@"1" limit:@"10"];
@@ -54,8 +56,10 @@
 {
     MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MainTableViewCell" forIndexPath:indexPath];
     
-    //
-    
+//    ProductionInfo *pi = [self.allProductionMArray objectAtIndex:indexPath.row];
+//    
+//    cell.proNameLabel.text = pi.name;
+//    
     
     return cell;
 }
@@ -63,7 +67,7 @@
 #pragma mark - UITableView Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 3;
+    return self.allProductionMArray.count;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
