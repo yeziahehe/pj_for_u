@@ -36,34 +36,50 @@
 //        
 //    }
     MainTableViewController *vc1 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc1.title = @"新品上架";
+    vc1.title = @"小优推荐";
     [self addChildViewController:vc1];
     
     MainTableViewController *vc2 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc2.title = @"水果超市";
+    vc2.title = @"最新体验";
     [self addChildViewController:vc2];
     
     MainTableViewController *vc3 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc3.title = @"家政服务";
+    vc3.title = @"特惠秒杀";
     [self addChildViewController:vc3];
     
     MainTableViewController *vc4 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc4.title = @"大保健啊";
+    vc4.title = @"早餐上门";
     [self addChildViewController:vc4];
     
     MainTableViewController *vc5 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc5.title = @"更多精彩";
+    vc5.title = @"更多分类";
     [self addChildViewController:vc5];
     
     MainTableViewController *vc6 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc6.title = @"好麻烦啊";
+    vc6.title = @"家政服务";
     [self addChildViewController:vc6];
+    
+    MainTableViewController *vc7 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
+    vc7.title = @"水果上门";
+    [self addChildViewController:vc7];
+    
+    MainTableViewController *vc8 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
+    vc8.title = @"酒水饮品";
+    [self addChildViewController:vc8];
+    
+    MainTableViewController *vc9 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
+    vc9.title = @"饼干糕点";
+    [self addChildViewController:vc9];
+    
+    MainTableViewController *vc10 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
+    vc10.title = @"快递代取";
+    [self addChildViewController:vc10];
 }
 
 - (void)addLable
 {
     
-    for (int i = 0; i < 6; i++) {
+    for (int i = 0; i < 10; i++) {
         CGFloat lblW = 90;
         CGFloat lblH = 30;
         CGFloat lblY = 0;
@@ -78,7 +94,7 @@
         [self.smallScrollView addSubview:lbl1];
         [lbl1 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(lblClick:)]];
     }
-    self.smallScrollView.contentSize = CGSizeMake(90 * 6 , 0);
+    self.smallScrollView.contentSize = CGSizeMake(90 * 10 , 0);
 }
 
 /** 标题栏label的点击事件 */
@@ -101,7 +117,7 @@
         ProductInfo *pi = [[ProductInfo alloc]initWithDict:valueDict];
         [self.allCategories addObject:pi];
     }
-    
+    NSLog(@"有几个分类：%lu",(unsigned long)self.allCategories.count);
     //接受完分类信息，开始加载页面
     [self loadSubViews];
 }
