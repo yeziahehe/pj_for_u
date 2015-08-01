@@ -18,5 +18,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *orderConut;
 @property (strong, nonatomic) IBOutlet UILabel *totalConut;
 @property (strong, nonatomic) IBOutlet UILabel *totalPrice;
+@property (strong, nonatomic) IBOutlet UIButton *leftButton;
+@property (strong, nonatomic) IBOutlet UIButton *rightButton;
 
 @end
