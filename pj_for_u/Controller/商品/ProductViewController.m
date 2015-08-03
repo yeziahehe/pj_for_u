@@ -30,67 +30,20 @@
 //添加子视图控制器
 - (void)addController
 {
-//    for(int i=0 ; i<self.allCategories.count; i++)
-//    {
-//        ProductInfo *pinfo = [self.allCategories objectAtIndex:i];
-//        //循环创建vc
-//    
-//        
-//    }
-    MainTableViewController *vc1 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc1.title = @"小优推荐";
-    vc1.categoryId = @"105";
-    [self addChildViewController:vc1];
-    
-    MainTableViewController *vc2 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc2.title = @"最新体验";
-    vc2.categoryId = @"106";
-    [self addChildViewController:vc2];
-    
-    MainTableViewController *vc3 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc3.title = @"特惠秒杀";
-    vc3.categoryId = @"107";
-    [self addChildViewController:vc3];
-    
-    MainTableViewController *vc4 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc4.title = @"早餐上门";
-    vc4.categoryId = @"201";
-    [self addChildViewController:vc4];
-    
-    MainTableViewController *vc5 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc5.title = @"更多分类";
-    vc5.categoryId = @"202";
-    [self addChildViewController:vc5];
-    
-    MainTableViewController *vc6 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc6.title = @"家政服务";
-    vc6.categoryId = @"203";
-    [self addChildViewController:vc6];
-    
-    MainTableViewController *vc7 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc7.title = @"水果上门";
-    vc7.categoryId = @"204";
-    [self addChildViewController:vc7];
-    
-    MainTableViewController *vc8 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc8.title = @"酒水饮品";
-    vc8.categoryId = @"206";
-    [self addChildViewController:vc8];
-    
-    MainTableViewController *vc9 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc9.title = @"饼干糕点";
-    vc9.categoryId = @"207";
-    [self addChildViewController:vc9];
-    
-    MainTableViewController *vc10 = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
-    vc10.title = @"快递代取";
-    vc10.categoryId = @"401";
-    [self addChildViewController:vc10];
+    for(int i=0 ; i<self.allCategories.count; i++)
+    {
+        ProductInfo *pinfo = [self.allCategories objectAtIndex:i];
+        //循环创建子vc
+        MainTableViewController *mvc = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
+        mvc.title = pinfo.category;
+        mvc.categoryId = pinfo.categoryId;
+        [self addChildViewController:mvc];
+    }
 }
 
 - (void)addLable
 {
-    for (int i = 0; i < 10; i++) {
+    for (int i = 0; i < self.allCategories.count; i++) {
         CGFloat lblW = 90;
         CGFloat lblH = 30;
         CGFloat lblY = 0;
@@ -170,8 +123,8 @@
     if (self.currenVC.index < 1) {
         self.currenVC.allProductionMArray = self.allProductionMArray;
         [self.bigScrollView addSubview:self.currenVC.view];
-
     }
+    
     self.NVC.allProductionMArray = self.allProductionMArray;
     [self.bigScrollView addSubview:self.NVC.view];
     
@@ -230,6 +183,7 @@
             temlabel.scale = 0.0;
         }
     }];
+    //如果nvc已经存在了，不作处理
     if (self.NVC.view.superview) return;
     self.NVC.view.frame = scrollView.bounds;
 }
