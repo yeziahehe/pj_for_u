@@ -15,7 +15,8 @@
 
 @property (nonatomic, strong) NSMutableArray *allCategories;
 @property (nonatomic, strong) NSMutableArray *allProductionMArray;
-
+@property (strong,nonatomic)MainTableViewController *currenVC;
+@property (strong,nonatomic)MainTableViewController *NVC;
 @end
 
 @implementation ProductViewController
@@ -131,9 +132,13 @@
     self.bigScrollView.delegate = self;
     
     // 默认状态控制器
-    UIViewController *vc = [self.childViewControllers firstObject];
-    vc.view.frame = self.bigScrollView.bounds;
-    [self.bigScrollView addSubview:vc.view];
+    self.currenVC = [self.childViewControllers firstObject];
+    self.currenVC.view.frame = self.bigScrollView.bounds;
+    
+    [[ProductDataManager sharedManager]requestForProductWithCampusId:kCampusId
+                                                          categoryId:self.currenVC.categoryId
+                                                                page:@"1"
+                                                               limit:@"30"];
     CategoryLabel *lable = [self.smallScrollView.subviews firstObject];
     lable.scale = 1.0;
 }
@@ -152,15 +157,25 @@
     [self loadSubViews];
 }
 
-//-(void)getCategoryFoodWithNotification:(NSNotification *)notification{
-//    NSArray *valueArray = notification.object;
-//    self.allProductionMArray = [[NSMutableArray alloc]initWithCapacity:0];
-//    for(NSDictionary *valueDict in valueArray)
-//    {
-//        ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
-//        [self.allProductionMArray addObject:pi];
-//    }
-//}
+//获取当前childvc的数据model，直接传给maintablevc，防止所有子vc数据全部重载
+//建议：使用带block的网络协议
+-(void)getCategoryFoodWithNotification:(NSNotification *)notification{
+    NSArray *valueArray = notification.object;
+    self.allProductionMArray = [[NSMutableArray alloc]initWithCapacity:0];
+    for(NSDictionary *valueDict in valueArray)
+    {
+        ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
+        [self.allProductionMArray addObject:pi];
+    }
+    if (self.currenVC.index < 1) {
+        self.currenVC.allProductionMArray = self.allProductionMArray;
+        [self.bigScrollView addSubview:self.currenVC.view];
+
+    }
+    self.NVC.allProductionMArray = self.allProductionMArray;
+    [self.bigScrollView addSubview:self.NVC.view];
+    
+}
 #pragma mark - UIView Methods
 - (void)viewDidLoad
 {
@@ -170,7 +185,8 @@
 
     //通知监听
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCategoriesWithNotification:) name:kGetCategoryNotification object:nil];
-//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCategoryFoodWithNotification:) name:kGetCategoryFoodNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCategoryFoodWithNotification:) name:kGetCategoryFoodNotification object:nil];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -205,26 +221,17 @@
     CGPoint offset = CGPointMake(offsetx, self.smallScrollView.contentOffset.y);
     [self.smallScrollView setContentOffset:offset animated:YES];
     
-    NSArray *array = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", nil];
-    
     // 添加控制器
-    MainTableViewController *MVc = self.childViewControllers[index];
-    MVc.index = index;
-    NSLog(@"控制器：%ld",(long)index);
-    NSLog(@"%@",MVc.categoryId);
- 
-    MVc.testString = [NSString stringWithFormat:@"%@",[array objectAtIndex:index]];
+    self.NVC = self.childViewControllers[index];
+    self.NVC.categoryId = [self.childViewControllers[index] categoryId];
     [self.smallScrollView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if (idx != index) {
             CategoryLabel *temlabel = self.smallScrollView.subviews[idx];
             temlabel.scale = 0.0;
         }
     }];
-    
-    if (MVc.view.superview) return;
-    
-    MVc.view.frame = scrollView.bounds;
-    [self.bigScrollView addSubview:MVc.view];
+    if (self.NVC.view.superview) return;
+    self.NVC.view.frame = scrollView.bounds;
 }
 
 /** 滚动结束（手势导致） */
