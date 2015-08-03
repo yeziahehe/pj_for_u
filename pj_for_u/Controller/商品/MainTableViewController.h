@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MainTableViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property (strong, nonatomic) IBOutlet UILabel *testLabel;
 @property (nonatomic,assign) NSInteger index;
 @property (strong,nonatomic)NSString *testString;
 @property (strong,nonatomic)NSString *categoryId;

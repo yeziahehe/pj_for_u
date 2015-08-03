@@ -10,10 +10,11 @@
 #import "CategoryLabel.h"
 #import "MainTableViewController.h"
 #import "ProductInfo.h"
-
+#import "ProductionInfo.h"
 @interface ProductViewController ()
 
 @property (nonatomic, strong) NSMutableArray *allCategories;
+@property (nonatomic, strong) NSMutableArray *allProductionMArray;
 
 @end
 
@@ -88,7 +89,6 @@
 
 - (void)addLable
 {
-    
     for (int i = 0; i < 10; i++) {
         CGFloat lblW = 90;
         CGFloat lblH = 30;
@@ -116,6 +116,27 @@
     CGPoint offset = CGPointMake(offsetX, offsetY);
     [self.bigScrollView setContentOffset:offset animated:YES];
 }
+- (void)loadSubViews
+{
+    [self addController];
+    [self addLable];
+    CGFloat contentX = self.childViewControllers.count * ScreenWidth;
+    self.bigScrollView.contentSize = CGSizeMake(contentX, 0);
+    self.bigScrollView.pagingEnabled = YES;
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.smallScrollView.showsHorizontalScrollIndicator = NO;
+    self.bigScrollView.showsHorizontalScrollIndicator = NO;
+    self.smallScrollView.showsVerticalScrollIndicator = NO;
+    self.bigScrollView.delegate = self;
+    
+    // 默认状态控制器
+    UIViewController *vc = [self.childViewControllers firstObject];
+    vc.view.frame = self.bigScrollView.bounds;
+    [self.bigScrollView addSubview:vc.view];
+    CategoryLabel *lable = [self.smallScrollView.subviews firstObject];
+    lable.scale = 1.0;
+}
 
 #pragma mark - Notification Methods
 - (void)getCategoriesWithNotification:(NSNotification *)notification
@@ -127,30 +148,19 @@
         ProductInfo *pi = [[ProductInfo alloc]initWithDict:valueDict];
         [self.allCategories addObject:pi];
     }
-    NSLog(@"有几个分类：%lu",(unsigned long)self.allCategories.count);
     //接受完分类信息，开始加载页面
     [self loadSubViews];
 }
 
-- (void)loadSubViews
-{
-    [self addController];
-    [self addLable];
-    CGFloat contentX = self.childViewControllers.count * ScreenWidth;
-    self.bigScrollView.contentSize = CGSizeMake(contentX, 0);
-    self.bigScrollView.pagingEnabled = YES;
-    
-    // 默认状态控制器
-    UIViewController *vc = [self.childViewControllers firstObject];
-    vc.view.frame = self.bigScrollView.bounds;
-    [self.bigScrollView addSubview:vc.view];
-    CategoryLabel *lable = [self.smallScrollView.subviews firstObject];
-    lable.scale = 1.0;
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.smallScrollView.showsHorizontalScrollIndicator = NO;
-    self.smallScrollView.showsVerticalScrollIndicator = NO;
-    self.bigScrollView.delegate = self;
-}
+//-(void)getCategoryFoodWithNotification:(NSNotification *)notification{
+//    NSArray *valueArray = notification.object;
+//    self.allProductionMArray = [[NSMutableArray alloc]initWithCapacity:0];
+//    for(NSDictionary *valueDict in valueArray)
+//    {
+//        ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
+//        [self.allProductionMArray addObject:pi];
+//    }
+//}
 #pragma mark - UIView Methods
 - (void)viewDidLoad
 {
@@ -160,6 +170,7 @@
 
     //通知监听
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCategoriesWithNotification:) name:kGetCategoryNotification object:nil];
+//    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCategoryFoodWithNotification:) name:kGetCategoryFoodNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -170,8 +181,7 @@
 
 - (void)dealloc
 {
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//    [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - UIScrollView Delegat Methods
@@ -192,13 +202,18 @@
     }else if (offsetx > offsetMax){
         offsetx = offsetMax;
     }
-    
     CGPoint offset = CGPointMake(offsetx, self.smallScrollView.contentOffset.y);
     [self.smallScrollView setContentOffset:offset animated:YES];
+    
+    NSArray *array = [NSArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", nil];
+    
     // 添加控制器
     MainTableViewController *MVc = self.childViewControllers[index];
     MVc.index = index;
-    
+    NSLog(@"控制器：%ld",(long)index);
+    NSLog(@"%@",MVc.categoryId);
+ 
+    MVc.testString = [NSString stringWithFormat:@"%@",[array objectAtIndex:index]];
     [self.smallScrollView.subviews enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         if (idx != index) {
             CategoryLabel *temlabel = self.smallScrollView.subviews[idx];
@@ -206,11 +221,9 @@
         }
     }];
     
-    if (MVc.view.superview)
-        return;
+    if (MVc.view.superview) return;
     
     MVc.view.frame = scrollView.bounds;
-//    [[self.bigScrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     [self.bigScrollView addSubview:MVc.view];
 }
 

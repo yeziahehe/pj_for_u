@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProductionInfo.h"
 
 @interface MainTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet YFAsynImageView *image;
@@ -16,5 +17,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *oldPriceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *amountLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *discountImageView;
+@property (strong, nonatomic) ProductionInfo *pi;
 
 @end
