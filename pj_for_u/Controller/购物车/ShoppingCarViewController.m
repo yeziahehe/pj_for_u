@@ -16,17 +16,39 @@
 @property (strong, nonatomic) IBOutlet UITableView *ShoppingCarTableView;
 @property (strong, nonatomic) ShoppingCar *shoppingCarInfo;
 @property (strong, nonatomic) NSMutableArray *shoppingCarArray;
+@property (strong, nonatomic) IBOutlet UIView *noOrderView;
+@property (strong, nonatomic) IBOutlet UIView *CalculateView;
+@property (strong, nonatomic) IBOutlet UIButton *goAroundButton;
 
 @end
 @implementation ShoppingCarViewController
 
+- (void)loadSubViews
+{
+    //初始化界面为购物车中没有商品
+    CGRect rect = self.noOrderView.frame;
+    rect.size.height = ScreenHeight;
+    rect.size.width = ScreenWidth;
+    self.noOrderView.frame = rect;
+    self.shoppingCarArray = [NSMutableArray arrayWithCapacity:0];
+    self.ShoppingCarTableView.tableFooterView = self.noOrderView;
+    self.ShoppingCarTableView.scrollEnabled = NO;
+    self.CalculateView.hidden = YES;
+    self.navigationItem.rightBarButtonItem = nil;
+    [[self.goAroundButton layer] setCornerRadius:5];
+    [[self.goAroundButton layer] setBorderWidth:0.5];
+    [[self.goAroundButton layer] setBorderColor:[UIColor lightGrayColor].CGColor];
+    //[self.ShoppingCarTableView reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    self.ShoppingCarTableView.delegate = self;
-    self.ShoppingCarTableView.dataSource = self;
-    [self requestForShoppingCar:@"18896554880" page:@"1" limit:@"3"];
+    if ([[MemberDataManager sharedManager] isLogin]) {
+        [self requestForShoppingCar:@"18896554880" page:@"1" limit:@"3"];
+    } else {
+        [self.ShoppingCarTableView removeHeader];
+        [self loadSubViews];
+    }
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(plusShoppingAmountNotification:) name:kPlusShoppingAmountNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(minusShoppingAmountNotification:) name:kMinusShoppingAmountNotification object:nil];
 }
