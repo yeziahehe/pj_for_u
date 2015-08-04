@@ -26,7 +26,6 @@
     [[ProductDataManager sharedManager]requestForAddressWithCampusId:kCampusId];
 }
 
-
 //添加子视图控制器
 - (void)addController
 {
@@ -88,12 +87,12 @@
     self.currenVC = [self.childViewControllers firstObject];
     self.currenVC.view.frame = self.bigScrollView.bounds;
     
-    [[ProductDataManager sharedManager]requestForProductWithCampusId:kCampusId
-                                                          categoryId:self.currenVC.categoryId
-                                                                page:@"1"
-                                                               limit:@"30"];
+    self.currenVC.categoryId = [self.allCategories firstObject];
     CategoryLabel *lable = [self.smallScrollView.subviews firstObject];
     lable.scale = 1.0;
+    self.currenVC.allProductionMArray = self.allProductionMArray;
+    [self.bigScrollView addSubview:self.currenVC.view];
+
 }
 
 #pragma mark - Notification Methods
@@ -110,25 +109,6 @@
     [self loadSubViews];
 }
 
-//获取当前childvc的数据model，直接传给maintablevc，防止所有子vc数据全部重载
-//建议：使用带block的网络协议
--(void)getCategoryFoodWithNotification:(NSNotification *)notification{
-    NSArray *valueArray = notification.object;
-    self.allProductionMArray = [[NSMutableArray alloc]initWithCapacity:0];
-    for(NSDictionary *valueDict in valueArray)
-    {
-        ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
-        [self.allProductionMArray addObject:pi];
-    }
-    if (self.currenVC.index < 1) {
-        self.currenVC.allProductionMArray = self.allProductionMArray;
-        [self.bigScrollView addSubview:self.currenVC.view];
-    }
-    
-    self.NVC.allProductionMArray = self.allProductionMArray;
-    [self.bigScrollView addSubview:self.NVC.view];
-    
-}
 #pragma mark - UIView Methods
 - (void)viewDidLoad
 {
@@ -138,7 +118,6 @@
 
     //通知监听
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCategoriesWithNotification:) name:kGetCategoryNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCategoryFoodWithNotification:) name:kGetCategoryFoodNotification object:nil];
 
 }
 
@@ -185,7 +164,9 @@
     }];
     //如果nvc已经存在了，不作处理
     if (self.NVC.view.superview) return;
+    
     self.NVC.view.frame = scrollView.bounds;
+    [self.bigScrollView addSubview:self.NVC.view];
 }
 
 /** 滚动结束（手势导致） */
@@ -205,6 +186,7 @@
     CGFloat scaleLeft = 1 - scaleRight;
     CategoryLabel *labelLeft = self.smallScrollView.subviews[leftIndex];
     labelLeft.scale = scaleLeft;
+    
     // 考虑到最后一个板块，如果右边已经没有板块了 就不在下面赋值scale了
     if (rightIndex < self.smallScrollView.subviews.count) {
         CategoryLabel *labelRight = self.smallScrollView.subviews[rightIndex];
