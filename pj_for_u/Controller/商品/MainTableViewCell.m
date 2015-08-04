@@ -11,13 +11,25 @@
 @implementation MainTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+  
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)setPi:(ProductionInfo *)pi{
+    _pi = pi;
+    
+    if ( [self.pi.isDiscount isEqualToString:@"1"]) {
+        self.oldPriceLabel.hidden = NO;
+        self.discountImageView.hidden = NO;
+        self.oldPriceLabel.text = [NSString stringWithFormat:@"%@元",pi.price];
+    } else {
+        self.oldPriceLabel.hidden = YES;
+        self.discountImageView.hidden = YES;
+    }
+    self.priceLabel.text = [NSString stringWithFormat:@"%@元",pi.discountPrice];
+    self.proNameLabel.text = pi.name;
+    self.amountLabel.text = [NSString stringWithFormat:@"销量：%@",pi.saleNumber];
+    self.image.cacheDir = kUserIconCacheDir;
+    [self.image aysnLoadImageWithUrl:pi.imgUrl placeHolder:@"icon_user_default.png"];
 }
 
 @end

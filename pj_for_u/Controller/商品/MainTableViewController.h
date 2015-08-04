@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MainTableViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@property(strong,nonatomic)NSMutableArray *allProductionMArray;
 @property (nonatomic,assign) NSInteger index;
-@property (strong,nonatomic)NSString *testString;
 @property (strong,nonatomic)NSString *categoryId;
 @end
