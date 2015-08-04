@@ -12,7 +12,7 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "AFHTTPSessionManager.h"
 
-#define kLimit @"5"
+#define kLimit @"10"
 @interface MainTableViewController ()
 @property NSInteger page;
 
