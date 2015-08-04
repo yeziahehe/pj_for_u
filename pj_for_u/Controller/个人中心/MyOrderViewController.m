@@ -15,7 +15,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSArray *orderInfoArray;
+@property (strong, nonatomic) NSArray *orderListArray;
 
 @end
 
@@ -123,22 +123,23 @@ alreadyFinishedView;
 {
     MyOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderTableViewCell"
                                                                  forIndexPath:indexPath];
-    if (self.orderInfoArray) {
-        NSDictionary *orderInfoDictionary = self.orderInfoArray[indexPath.section];
+    if (self.orderListArray) {
+        NSDictionary *orderInfoDictionary = self.orderListArray[indexPath.section];
+        NSArray *smallOrders = [orderInfoDictionary objectForKey:@"smallOrders"];
         cell.togetherDate.text = [orderInfoDictionary objectForKey:@"togetherDate"];
-        cell.nameLabel.text = [orderInfoDictionary objectForKey:@"name"];
-        cell.price.text = [NSString stringWithFormat:@"%@", [orderInfoDictionary objectForKey:@"price"]];
-        cell.image.cacheDir = kUserIconCacheDir;
-        [cell.image aysnLoadImageWithUrl:[orderInfoDictionary objectForKey:@"imageUrl"] placeHolder:@"icon_user_default.png"];
+        cell.smallOrders = smallOrders;
         
-//        UILabel *togetherDate;
-//        UILabel *orderTypr;
-//        UIImageView *image;
-//        UILabel *nameLabel;
-//        UILabel *price;
-//        UILabel *orderConut;
-//        UILabel *totalConut;
-//        UILabel *totalPrice;
+        int count = 0;
+        int price = 0;
+        for (NSDictionary *dict in smallOrders) {
+            int singleCount = [[dict objectForKey:@"orderCount"] intValue];
+            int singlePrice = [[dict objectForKey:@"discountPrice"] intValue];
+            price += singleCount * singlePrice;
+            count += singleCount;
+        }
+        
+        cell.totalConut.text = [NSString stringWithFormat:@"%d", count];
+        cell.totalPrice.text = [NSString stringWithFormat:@"%d", price];
 
     }
 
@@ -152,7 +153,7 @@ alreadyFinishedView;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.orderInfoArray.count;
+    return self.orderListArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -196,8 +197,8 @@ alreadyFinishedView;
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            NSArray *valueArray = [dict objectForKey:@"orderList"];
-            self.orderInfoArray = [valueArray[0] objectForKey:@"smallOrders"];
+            self.orderListArray = [dict objectForKey:@"orderList"];
+
             [self.tableView reloadData];
         }
         else

@@ -7,6 +7,7 @@
 //
 
 #import "MyOrderTableViewCell.h"
+#import "MyOrderInsideTableViewCell.h"
 
 @implementation MyOrderTableViewCell
 
@@ -18,8 +19,6 @@
     layer.borderWidth = 1.f;
     self.leftButton.layer.masksToBounds = YES;
     self.leftButton.layer.cornerRadius = 2.5f;
-
-    
     
     CALayer *layer1 = [self.rightButton layer];
     layer1.borderColor = [[UIColor darkGrayColor] CGColor];
@@ -27,7 +26,9 @@
     self.rightButton.layer.masksToBounds = YES;
     self.rightButton.layer.cornerRadius = 2.5f;
     
-
+    UINib *nib = [UINib nibWithNibName:@"MyOrderInsideTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib
+         forCellReuseIdentifier:@"MyOrderInsideTableViewCell"];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -44,6 +45,25 @@
 - (IBAction)cancelOrder:(UIButton *)sender
 {
     
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MyOrderInsideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderInsideTableViewCell"];
+    
+    
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70.f;
 }
 
 @end

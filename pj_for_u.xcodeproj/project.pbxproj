@@ -172,6 +172,8 @@
 		6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E81B65F4C700257256 /* empty_choice@3x.png */; };
 		6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E91B65F4C700257256 /* full_choice@2x.png */; };
 		6D7716EE1B65F4C700257256 /* full_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716EA1B65F4C700257256 /* full_choice@3x.png */; };
+		6D8A3DBE1B6CB4F500694CEF /* MyOrderInsideTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8A3DBC1B6CB4F500694CEF /* MyOrderInsideTableViewCell.m */; };
+		6D8A3DBF1B6CB4F500694CEF /* MyOrderInsideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8A3DBD1B6CB4F500694CEF /* MyOrderInsideTableViewCell.xib */; };
 		6D8AD3EC1B6097C70099A0D8 /* IndividualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD3EA1B6097C70099A0D8 /* IndividualViewController.m */; };
 		6D8AD3ED1B6097C70099A0D8 /* IndividualViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3EB1B6097C70099A0D8 /* IndividualViewController.xib */; };
 		6D8AD3F31B60BD250099A0D8 /* AddressManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD3F11B60BD250099A0D8 /* AddressManageViewController.m */; };
@@ -453,6 +455,9 @@
 		6D7716E81B65F4C700257256 /* empty_choice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@3x.png"; path = "Resource/empty_choice@3x.png"; sourceTree = "<group>"; };
 		6D7716E91B65F4C700257256 /* full_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "full_choice@2x.png"; path = "Resource/full_choice@2x.png"; sourceTree = "<group>"; };
 		6D7716EA1B65F4C700257256 /* full_choice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "full_choice@3x.png"; path = "Resource/full_choice@3x.png"; sourceTree = "<group>"; };
+		6D8A3DBB1B6CB4F500694CEF /* MyOrderInsideTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderInsideTableViewCell.h; sourceTree = "<group>"; };
+		6D8A3DBC1B6CB4F500694CEF /* MyOrderInsideTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderInsideTableViewCell.m; sourceTree = "<group>"; };
+		6D8A3DBD1B6CB4F500694CEF /* MyOrderInsideTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderInsideTableViewCell.xib; sourceTree = "<group>"; };
 		6D8AD3E91B6097C70099A0D8 /* IndividualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualViewController.h; sourceTree = "<group>"; };
 		6D8AD3EA1B6097C70099A0D8 /* IndividualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualViewController.m; sourceTree = "<group>"; };
 		6D8AD3EB1B6097C70099A0D8 /* IndividualViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualViewController.xib; sourceTree = "<group>"; };
@@ -995,6 +1000,9 @@
 				6D9541611B6B361F00532677 /* MyOrderTableViewCell.h */,
 				6D9541621B6B361F00532677 /* MyOrderTableViewCell.m */,
 				6D9541631B6B361F00532677 /* MyOrderTableViewCell.xib */,
+				6D8A3DBB1B6CB4F500694CEF /* MyOrderInsideTableViewCell.h */,
+				6D8A3DBC1B6CB4F500694CEF /* MyOrderInsideTableViewCell.m */,
+				6D8A3DBD1B6CB4F500694CEF /* MyOrderInsideTableViewCell.xib */,
 			);
 			name = "我的订单";
 			sourceTree = "<group>";
@@ -1172,6 +1180,7 @@
 				2C10D6B31B60B551008C3DE0 /* icon_home_shopping_selected@2x.png in Resources */,
 				0A3B67121B622F5A0067C709 /* aboutImage.png in Resources */,
 				4A6C15B81B67219F00C9A9D2 /* CampusPickerView.xib in Resources */,
+				6D8A3DBF1B6CB4F500694CEF /* MyOrderInsideTableViewCell.xib in Resources */,
 				2CF607C21B5EC88C0022E8E7 /* icon_fruit@2x.png in Resources */,
 				2CF607521B5E4E390022E8E7 /* StartViewController.xib in Resources */,
 				2CF6075B1B5E77560022E8E7 /* btn_search@2x.png in Resources */,
@@ -1194,6 +1203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6D8A3DBE1B6CB4F500694CEF /* MyOrderInsideTableViewCell.m in Sources */,
 				2CF607731B5EA2B90022E8E7 /* LocationSubView.m in Sources */,
 				2C2528FF1B5E3AA900ADDEFB /* UIImage+YFAdditions.m in Sources */,
 				2CF607831B5EA8F60022E8E7 /* SchoolSelectTableView.m in Sources */,
