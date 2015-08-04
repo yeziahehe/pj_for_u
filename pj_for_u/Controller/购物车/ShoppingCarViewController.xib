@@ -8,8 +8,11 @@
             <connections>
                 <outlet property="CalculateView" destination="qp5-DK-roV" id="G1O-u1-QC4"/>
                 <outlet property="ShoppingCarTableView" destination="IGJ-fS-aXH" id="13E-bC-fQK"/>
+                <outlet property="discountPrice" destination="7jT-bv-okA" id="dEM-DW-fbt"/>
                 <outlet property="goAroundButton" destination="Zps-fL-rNg" id="a5Y-Jw-H1j"/>
+                <outlet property="moneySavedLabel" destination="ehx-nQ-mQf" id="EgR-j7-byv"/>
                 <outlet property="noOrderView" destination="xIn-7Y-4bt" id="3Cr-84-Tc4"/>
+                <outlet property="totalPriceLabel" destination="qs9-xL-qdb" id="BKT-Nw-t5y"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,10 +22,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qp5-DK-roV">
-                    <rect key="frame" x="0.0" y="568" width="375" height="130"/>
+                    <rect key="frame" x="0.0" y="578" width="375" height="120"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfM-wV-hIa">
-                            <rect key="frame" x="10" y="64" width="355" height="45"/>
+                            <rect key="frame" x="10" y="58" width="355" height="45"/>
                             <color key="backgroundColor" red="1" green="0.32156862749999998" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="H9Y-Jn-h1b"/>
@@ -31,6 +34,9 @@
                             <state key="normal" title="结     算">
                                 <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="calculateButtonClicked:" destination="-1" eventType="touchUpInside" id="Ayh-Gc-Cm4"/>
+                            </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合计：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5eO-Eg-dtr">
                             <rect key="frame" x="37" y="32" width="51" height="21"/>
@@ -75,20 +81,20 @@
                             <rect key="frame" x="151" y="42" width="46" height="2"/>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="nfM-wV-hIa" secondAttribute="trailing" constant="10" id="37U-bB-W4J"/>
                         <constraint firstItem="7jT-bv-okA" firstAttribute="top" secondItem="qp5-DK-roV" secondAttribute="top" constant="32" id="7uB-Xc-hDX"/>
                         <constraint firstItem="ehx-nQ-mQf" firstAttribute="top" secondItem="qp5-DK-roV" secondAttribute="top" constant="32" id="ACR-qM-woi"/>
                         <constraint firstItem="nfM-wV-hIa" firstAttribute="leading" secondItem="qp5-DK-roV" secondAttribute="leading" constant="10" id="MMf-QI-ZSS"/>
                         <constraint firstItem="v9c-zs-FTU" firstAttribute="trailing" secondItem="7jT-bv-okA" secondAttribute="trailing" constant="1" id="OXm-vu-rJG"/>
-                        <constraint firstItem="nfM-wV-hIa" firstAttribute="top" secondItem="qp5-DK-roV" secondAttribute="top" constant="64" id="OsT-QN-3jy"/>
+                        <constraint firstItem="nfM-wV-hIa" firstAttribute="top" secondItem="qp5-DK-roV" secondAttribute="top" constant="58" id="OsT-QN-3jy"/>
                         <constraint firstItem="qs9-xL-qdb" firstAttribute="top" secondItem="qp5-DK-roV" secondAttribute="top" constant="32" id="QUp-lQ-4t7"/>
                         <constraint firstItem="v9c-zs-FTU" firstAttribute="centerY" secondItem="7jT-bv-okA" secondAttribute="centerY" id="QVR-Nw-amH"/>
                         <constraint firstItem="5eO-Eg-dtr" firstAttribute="top" secondItem="qp5-DK-roV" secondAttribute="top" constant="32" id="SwN-Y1-ZoH"/>
                         <constraint firstItem="5eO-Eg-dtr" firstAttribute="leading" secondItem="qp5-DK-roV" secondAttribute="leading" constant="37" id="Zcq-Vy-Oge"/>
                         <constraint firstItem="7jT-bv-okA" firstAttribute="leading" secondItem="qs9-xL-qdb" secondAttribute="trailing" constant="11" id="ate-br-ZMK"/>
-                        <constraint firstAttribute="height" constant="130" id="bXB-fZ-G3Y"/>
+                        <constraint firstAttribute="height" constant="120" id="bXB-fZ-G3Y"/>
                         <constraint firstItem="v9c-zs-FTU" firstAttribute="leading" secondItem="7jT-bv-okA" secondAttribute="leading" constant="1" id="h3P-yX-5Dr"/>
                         <constraint firstItem="v9c-zs-FTU" firstAttribute="leading" secondItem="7jT-bv-okA" secondAttribute="leading" constant="1" id="i7K-fA-cHy"/>
                         <constraint firstItem="qs9-xL-qdb" firstAttribute="leading" secondItem="5eO-Eg-dtr" secondAttribute="trailing" constant="5" id="inT-iJ-DU6"/>
@@ -96,7 +102,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="IGJ-fS-aXH">
-                    <rect key="frame" x="0.0" y="64" width="375" height="504"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="514"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="ifF-Rm-bBE"/>

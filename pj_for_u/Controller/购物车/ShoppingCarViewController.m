@@ -19,6 +19,10 @@
 @property (strong, nonatomic) IBOutlet UIView *noOrderView;
 @property (strong, nonatomic) IBOutlet UIView *CalculateView;
 @property (strong, nonatomic) IBOutlet UIButton *goAroundButton;
+@property (strong, nonatomic) NSString *totalPrice;
+@property (strong, nonatomic) IBOutlet UILabel *totalPriceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *discountPrice;
+@property (strong, nonatomic) IBOutlet UILabel *moneySavedLabel;
 
 @end
 @implementation ShoppingCarViewController
@@ -41,24 +45,40 @@
     //[self.ShoppingCarTableView reloadData];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
+- (void)viewWillAppear:(BOOL)animated
+{
     if ([[MemberDataManager sharedManager] isLogin]) {
         [self requestForShoppingCar:@"18896554880" page:@"1" limit:@"3"];
     } else {
         [self.ShoppingCarTableView removeHeader];
         [self loadSubViews];
     }
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(plusShoppingAmountNotification:) name:kPlusShoppingAmountNotification object:nil];
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(plusShoppingAmountNotification:) name:kPlusShoppingAmountNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(minusShoppingAmountNotification:) name:kMinusShoppingAmountNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginOutNotification:) name:kLoginOutNotification object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (IBAction)calculateButtonClicked:(id)sender {
+    for (int i = 0; i < self.shoppingCarArray.count; i++) {
+        ShoppingCar *sc = [self.shoppingCarArray objectAtIndex:i];
+            self.totalPrice = [NSString stringWithFormat:@"%.2f",[sc.discountPrice floatValue]*[sc.orderCount intValue]];
+    }
+    NSLog(@"%@",self.totalPrice);
+    self.totalPriceLabel.text = self.totalPrice;
+}
 
 #pragma mark - notification方法
+- (void)loginOutNotification:(NSNotification *)notification{
+    
+}
 - (void)plusShoppingAmountNotification:(NSNotification *)notification{
     NSIndexPath *shopId = notification.object;
     ShoppingCar *sc = [self.shoppingCarArray objectAtIndex:shopId.section];
