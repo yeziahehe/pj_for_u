@@ -30,5 +30,11 @@
 
     // Configure the view for the selected state
 }
+- (IBAction)minusButtonClicked:(id)sender {
+    [[NSNotificationCenter defaultCenter]postNotificationName:kMinusShoppingAmountNotification object:self.shoppingId];
+}
+- (IBAction)plusButtonClicked:(id)sender {
+    [[NSNotificationCenter defaultCenter]postNotificationName:kPlusShoppingAmountNotification object:self.shoppingId];
+}
 
 @end

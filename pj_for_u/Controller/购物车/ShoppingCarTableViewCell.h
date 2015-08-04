@@ -15,5 +15,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *discountPrice;
 @property (strong, nonatomic) IBOutlet UILabel *originPrice;
 @property (strong, nonatomic) IBOutlet UILabel *orderCount;
+@property (strong, nonatomic) IBOutlet UIButton *PlusButton;
+@property (strong, nonatomic) IBOutlet UIButton *MinusButton;
+@property int amount;
+@property (strong, nonatomic) NSIndexPath *shoppingId;
 
 @end
