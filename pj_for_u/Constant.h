@@ -91,6 +91,8 @@
 #define kSetFirstAddressNotification        @"SetFirstAddressNotification"
 #define kGetCategoryNotification            @"GetCategoryNotification"
 #define kGetCategoryFoodNotification        @"GetCategoryFoodNotification"
+#define kPlusShoppingAmountNotification     @"PlusShoppingAmountNotification"
+#define kMinusShoppingAmountNotification    @"MinusShoppingAmountNotification"
 #define kPushToMyOrderDetailNotification    @"PushToMyOrderDetailNotification"
 
 //Url values
