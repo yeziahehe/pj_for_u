@@ -8,15 +8,19 @@
 /*
  "foods": [
  {
- "foodId": 10108,
+ "foodId": 10505,
  "campusId": 1,
- "name": "康师傅大食桶红烧牛肉面 方便面",
- "price": 4.5,
+ "name": "明屋木瓜牛奶",
+ "price": 10,
  "foodCount": 500,
- "discountPrice": 4,
- "imgUrl": "http://120.26.76.252:8080/MickeyImage/food/1428320512186957709840.jpg",
+ "discountPrice": 9,
+ "imgUrl": "http://120.26.76.252:8080/MickeyImage/food/1430356924473-2020464999.jpg",
  "isDiscount": 1,
- "saleNumber": 0
+ "saleNumber": 7,
+ "info": "http://img4.duitang.com/uploads/item/201208/11/20120811145508_JXksH.jpeg,http://www.pp3.cn/uploads/allimg/111111/092I4E50-6.jpg",
+ "message": "所有食品都是绿色食品，不含防腐剂，您吃的放心是我们的荣幸",
+ "grade": null
+"commentCount": 1
  },
  */
 
@@ -32,4 +36,9 @@
 @property (nonatomic, copy) NSString *imgUrl;
 @property (nonatomic, copy) NSString *isDiscount;
 @property (nonatomic, copy) NSString *saleNumber;
+@property (nonatomic, copy) NSString *info;
+@property (nonatomic, copy) NSString *message;
+@property (nonatomic, copy) NSString *grade;
+@property (nonatomic, copy) NSString *commentCount;
+
 @end

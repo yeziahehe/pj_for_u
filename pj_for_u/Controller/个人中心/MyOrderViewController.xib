@@ -184,7 +184,7 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="83.5" y="253.5"/>
+            <point key="canvasLocation" x="202.5" y="261.5"/>
         </view>
     </objects>
     <resources>

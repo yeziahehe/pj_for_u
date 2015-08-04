@@ -7,6 +7,11 @@
 //
 
 #import "MyOrderTableViewCell.h"
+#import "MyOrderInsideTableViewCell.h"
+
+@interface MyOrderTableViewCell ()
+
+@end
 
 @implementation MyOrderTableViewCell
 
@@ -18,8 +23,6 @@
     layer.borderWidth = 1.f;
     self.leftButton.layer.masksToBounds = YES;
     self.leftButton.layer.cornerRadius = 2.5f;
-
-    
     
     CALayer *layer1 = [self.rightButton layer];
     layer1.borderColor = [[UIColor darkGrayColor] CGColor];
@@ -27,6 +30,9 @@
     self.rightButton.layer.masksToBounds = YES;
     self.rightButton.layer.cornerRadius = 2.5f;
     
+    UINib *nib = [UINib nibWithNibName:@"MyOrderInsideTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib
+         forCellReuseIdentifier:@"MyOrderInsideTableViewCell"];
 
 }
 
@@ -44,6 +50,37 @@
 - (IBAction)cancelOrder:(UIButton *)sender
 {
     
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MyOrderInsideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderInsideTableViewCell"];
+    
+    NSDictionary *smallDictionary = self.smallOrders[indexPath.row];
+    
+    cell.image.cacheDir = kUserIconCacheDir;
+    [cell.image aysnLoadImageWithUrl:[smallDictionary objectForKey:@"imageUrl"] placeHolder:@"icon_user_default.png"];
+    cell.nameLabel.text = [smallDictionary objectForKey:@"name"];
+    cell.price.text = [NSString stringWithFormat:@"%@", [smallDictionary objectForKey:@"discountPrice"]];
+    cell.orderConut.text = [NSString stringWithFormat:@"%@", [smallDictionary objectForKey:@"orderCount"]];
+    
+    return cell;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.smallOrders.count;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70.f;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"MyOrderInsideTableViewCell" object:indexPath];
 }
 
 @end
