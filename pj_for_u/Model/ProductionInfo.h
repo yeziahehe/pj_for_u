@@ -20,6 +20,7 @@
  "info": "http://img4.duitang.com/uploads/item/201208/11/20120811145508_JXksH.jpeg,http://www.pp3.cn/uploads/allimg/111111/092I4E50-6.jpg",
  "message": "所有食品都是绿色食品，不含防腐剂，您吃的放心是我们的荣幸",
  "grade": null
+"commentCount": 1
  },
  */
 
@@ -38,5 +39,6 @@
 @property (nonatomic, copy) NSString *info;
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, copy) NSString *grade;
+@property (nonatomic, copy) NSString *commentCount;
 
 @end

@@ -84,15 +84,12 @@
     self.bigScrollView.delegate = self;
     
     // 默认状态控制器
-    self.currenVC = [self.childViewControllers firstObject];
-    self.currenVC.view.frame = self.bigScrollView.bounds;
-    
-    self.currenVC.categoryId = [self.allCategories firstObject];
+    MainTableViewController *mvc = [self.childViewControllers firstObject];
+    mvc.view.frame = self.bigScrollView.bounds;
+    mvc.categoryId = [[self.childViewControllers firstObject] categoryId];
+    [self.bigScrollView addSubview:mvc.view];
     CategoryLabel *lable = [self.smallScrollView.subviews firstObject];
     lable.scale = 1.0;
-    self.currenVC.allProductionMArray = self.allProductionMArray;
-    [self.bigScrollView addSubview:self.currenVC.view];
-
 }
 
 #pragma mark - Notification Methods

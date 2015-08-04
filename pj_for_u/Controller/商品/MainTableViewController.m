@@ -9,10 +9,12 @@
 #import "MainTableViewController.h"
 #import "MainTableViewCell.h"
 #import "ProductionInfo.h"
-#import "SXNetworkTools.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "AFHTTPSessionManager.h"
+
+#define kLimit @"5"
 @interface MainTableViewController ()
+@property NSInteger page;
 
 @end
 
@@ -20,33 +22,60 @@
 
 #pragma mark - Private Methods
 
-// ------下拉刷新
-- (void)loadData
+//上拉加载
+-(void)loadData{
+    [self loadDataWithType:@"1"];
+}
+
+//下拉刷新
+-(void)loadMoreData{
+    [self loadDataWithType:@"2"];
+}
+
+//加载，刷新的公用方法
+- (void)loadDataWithType:(NSString *)type
 {
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    //接口地址
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetCategoryFoodUrl];
+    //传递参数存放的字典
     NSMutableDictionary *dict = kCommonParamsDict;
-    
     [dict setObject:kCampusId forKey:@"campusId"];
     [dict setObject:self.categoryId forKey:@"categoryId"];
-    [dict setObject:@"1" forKey:@"page"];
-    [dict setObject:@"30" forKey:@"limit"];
+    [dict setObject:kLimit forKey:@"limit"];
     
+    if([type isEqualToString:@"1"]){
+        [dict setObject:@"1" forKey:@"page"];
+    }
+    else if([type isEqualToString:@"2"]){
+        NSString *pageString = [NSString stringWithFormat:@"%ld",(long)self.page];
+        [dict setObject:pageString forKey:@"page"];
+        self.page ++;
+    }
+    
+    //进行post请求
     [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation,id responseObject) {
         
         NSArray *valueArray = [responseObject objectForKey:@"foods"];
-        self.allProductionMArray = [[NSMutableArray alloc]initWithCapacity:0];
+        NSMutableArray *tempArray = [[NSMutableArray alloc]initWithCapacity:0];
         for(NSDictionary *valueDict in valueArray)
         {
             ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
-            [self.allProductionMArray addObject:pi];
+            [tempArray addObject:pi];
         }
-        dispatch_async(dispatch_get_main_queue(), ^{
+        if ([type isEqualToString:@"1"]) {
+            [self.tableView headerEndRefreshing];
+            self.allProductionMArray = tempArray;
             [self.tableView reloadData];
-        });
+        }
+        else if ([type isEqualToString:@"2"]){
+            [self.tableView footerEndRefreshing];
+            [self.allProductionMArray addObjectsFromArray:tempArray];
+            [self.tableView reloadData];
+        }
         NSLog(@"Success:%lu",(unsigned long)self.allProductionMArray.count);
          }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
              
@@ -55,25 +84,16 @@
          }];
 }
 
-// ------上拉加载
-//- (void)loadMoreData
-//{
-//    NSString *allUrlstring = [NSString stringWithFormat:@"/nc/article/%@/%ld-20.html",self.urlString,(self.arrayList.count - self.arrayList.count%10)];
-//    [self loadDataForType:2 withURL:allUrlstring];
-//}
-
-
 #pragma mark - UIView Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     UINib *nib = [UINib nibWithNibName:@"MainTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"MainTableViewCell"];
-//    [[ProductDataManager sharedManager]requestForProductWithCampusId:kCampusId
-//                                                          categoryId:self.categoryId
-//                                                                page:@"1" limit:@"30"];
-    [self loadData];
+    self.page = 2;
+    [self.tableView addHeaderWithTarget:self action:@selector(loadData)];
+    [self.tableView addFooterWithTarget:self action:@selector(loadMoreData)];
+    [self.tableView headerBeginRefreshing];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -84,13 +104,13 @@
     
 }
 
-
 #pragma mark - UITableView Datasource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MainTableViewCell" ];
     ProductionInfo *pi = [self.allProductionMArray objectAtIndex:indexPath.row];
     cell.pi = pi;
+    
     return cell;
 }
 
