@@ -80,7 +80,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"MyOrderInsideTableViewCell" object:indexPath];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kPushToMyOrderDetailNotification object:self.itsIndexPath];
 }
 
 @end

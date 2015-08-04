@@ -20,4 +20,5 @@
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSArray *smallOrders;
+@property (strong, nonatomic) NSIndexPath *itsIndexPath;
 @end
