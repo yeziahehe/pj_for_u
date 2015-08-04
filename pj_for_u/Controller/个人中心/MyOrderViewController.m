@@ -15,11 +15,21 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSArray *orderInfoArray;
+@property (strong, nonatomic) NSArray *orderListArray;
+@property (strong, nonatomic) NSMutableArray *eachCountOfSmallOrders;
 
 @end
 
 @implementation MyOrderViewController
+
+
+- (NSMutableArray *)eachCountOfSmallOrders
+{
+    if (!_eachCountOfSmallOrders) {
+        _eachCountOfSmallOrders = [[NSMutableArray alloc] initWithCapacity:5];
+    }
+    return _eachCountOfSmallOrders;
+}
 
 - (void)addTargetToButton
 {
@@ -32,7 +42,7 @@
 
 - (void)requestForMyOrderByStatus:(NSString *)status page:(NSString *)page limit:(NSString *)limit
 {
-//    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中..."];
+    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中..."];
     
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kGetOrderInMine];
     NSMutableDictionary *dict = kCommonParamsDict;
@@ -119,30 +129,64 @@ alreadyFinishedView;
     [self requestForMyOrderByStatus:nil page:nil limit:nil];
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderTableViewCell"
                                                                  forIndexPath:indexPath];
-    if (self.orderInfoArray) {
-        NSDictionary *orderInfoDictionary = self.orderInfoArray[indexPath.section];
+    if (self.orderListArray) {
+        NSDictionary *orderInfoDictionary = self.orderListArray[indexPath.section];
+        NSArray *smallOrders = [orderInfoDictionary objectForKey:@"smallOrders"];
         cell.togetherDate.text = [orderInfoDictionary objectForKey:@"togetherDate"];
-        cell.nameLabel.text = [orderInfoDictionary objectForKey:@"name"];
-        cell.price.text = [NSString stringWithFormat:@"%@", [orderInfoDictionary objectForKey:@"price"]];
-        cell.image.cacheDir = kUserIconCacheDir;
-        [cell.image aysnLoadImageWithUrl:[orderInfoDictionary objectForKey:@"imageUrl"] placeHolder:@"icon_user_default.png"];
+        cell.smallOrders = smallOrders;
+        [cell.tableView reloadData];
+        int count = 0;
+        double price = 0.0;
+        for (NSDictionary *dict in smallOrders) {
+            int singleCount = [[dict objectForKey:@"orderCount"] intValue];
+            double singlePrice = [[dict objectForKey:@"discountPrice"] doubleValue];
+            price += singleCount * singlePrice;
+            count += singleCount;
+        }
         
-//        UILabel *togetherDate;
-//        UILabel *orderTypr;
-//        UIImageView *image;
-//        UILabel *nameLabel;
-//        UILabel *price;
-//        UILabel *orderConut;
-//        UILabel *totalConut;
-//        UILabel *totalPrice;
-
+        cell.totalConut.text = [NSString stringWithFormat:@"共%d件商品", count];
+        cell.totalPrice.text = [NSString stringWithFormat:@"￥%.1lf", price];
+        
+        NSString *status = [NSString stringWithFormat:@"%@", [orderInfoDictionary objectForKey:@"status"]];
+        
+        if ([status isEqualToString:@"1"]) {
+            CALayer *layer = [cell.leftButton layer];
+            layer.borderColor = [[UIColor redColor] CGColor];
+            [cell.leftButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+            cell.leftButton.titleLabel.text = @"删除订单";
+            cell.rightButton.titleLabel.text = @"评价订单";
+        }
+        if ([status isEqualToString:@"2"]) {
+            CALayer *layer = [cell.leftButton layer];
+            layer.borderColor = [[UIColor darkGrayColor] CGColor];
+            [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            
+            cell.leftButton.titleLabel.text = @"删除订单";
+            cell.rightButton.titleLabel.text = @"评价订单";
+        }
+        if ([status isEqualToString:@"3"]) {
+            CALayer *layer = [cell.leftButton layer];
+            layer.borderColor = [[UIColor darkGrayColor] CGColor];
+            [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            
+            cell.leftButton.titleLabel.text = @"删除订单";
+            cell.rightButton.titleLabel.text = @"评价订单";
+        }
     }
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -152,12 +196,16 @@ alreadyFinishedView;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.orderInfoArray.count;
+    return self.orderListArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 178.f;
+    if (self.eachCountOfSmallOrders.count > indexPath.section) {
+        return 108.f + [self.eachCountOfSmallOrders[indexPath.section] intValue] * 70.f;
+    } else {
+        return 178.f;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -196,9 +244,17 @@ alreadyFinishedView;
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            NSArray *valueArray = [dict objectForKey:@"orderList"];
-            self.orderInfoArray = [valueArray[0] objectForKey:@"smallOrders"];
+            self.orderListArray = [dict objectForKey:@"orderList"];
+            
+            [self.eachCountOfSmallOrders removeAllObjects];
+            for (NSDictionary *dict in self.orderListArray) {
+                NSArray *smallOrders = [dict objectForKey:@"smallOrders"];
+                NSNumber *smallOrderCount = [NSNumber numberWithInteger:smallOrders.count];
+                [self.eachCountOfSmallOrders addObject:smallOrderCount];
+            }
+            
             [self.tableView reloadData];
+            
         }
         else
         {
