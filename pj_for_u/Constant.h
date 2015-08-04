@@ -91,6 +91,8 @@
 #define kSetFirstAddressNotification        @"SetFirstAddressNotification"
 #define kGetCategoryNotification            @"GetCategoryNotification"
 #define kGetCategoryFoodNotification        @"GetCategoryFoodNotification"
+#define kPlusShoppingAmountNotification     @"PlusShoppingAmountNotification"
+#define kMinusShoppingAmountNotification    @"MinusShoppingAmountNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
@@ -98,6 +100,7 @@
 #define kLoginUrl               @"user/toLogin.do"
 #define kGetMainImageUrl        @"news/getMainImage.do"
 #define kGetShoppingCarUrl      @"order/getUserOrder.do"
+#define kEditShoppingCarUrl     @"order/editUserOrder.do"
 #define kGetActivityImageUrl    @"service/getHomeFood.do"
 #define kCheckUserExistUrl      @"user/checkUserIsExist.do"
 #define kRegisterUrl            @"user/registerIn.do"
