@@ -183,6 +183,10 @@
 		4A6C166B1B6FBA9E00C9A9D2 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C16611B6FBA9E00C9A9D2 /* AFURLResponseSerialization.m */; };
 		4A6C166C1B6FBA9E00C9A9D2 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C16631B6FBA9E00C9A9D2 /* AFURLSessionManager.m */; };
 		6D10BE6E1B61FA3700D3638C /* IndividualInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */; };
+		6D3885EE1B70B08C00206E2A /* MyOrderEvaluationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3885EC1B70B08C00206E2A /* MyOrderEvaluationViewController.m */; };
+		6D3885EF1B70B08C00206E2A /* MyOrderEvaluationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D3885ED1B70B08C00206E2A /* MyOrderEvaluationViewController.xib */; };
+		6D3885F31B70B68400206E2A /* MyOrderEvaluationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D3885F11B70B68400206E2A /* MyOrderEvaluationTableViewCell.m */; };
+		6D3885F41B70B68400206E2A /* MyOrderEvaluationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D3885F21B70B68400206E2A /* MyOrderEvaluationTableViewCell.xib */; };
 		6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E81B65F4C700257256 /* empty_choice@3x.png */; };
 		6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E91B65F4C700257256 /* full_choice@2x.png */; };
 		6D7716EE1B65F4C700257256 /* full_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716EA1B65F4C700257256 /* full_choice@3x.png */; };
@@ -494,6 +498,12 @@
 		4A6C16631B6FBA9E00C9A9D2 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		6D10BE6C1B61FA3700D3638C /* IndividualInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualInfo.h; sourceTree = "<group>"; };
 		6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualInfo.m; sourceTree = "<group>"; };
+		6D3885EB1B70B08C00206E2A /* MyOrderEvaluationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderEvaluationViewController.h; sourceTree = "<group>"; };
+		6D3885EC1B70B08C00206E2A /* MyOrderEvaluationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderEvaluationViewController.m; sourceTree = "<group>"; };
+		6D3885ED1B70B08C00206E2A /* MyOrderEvaluationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderEvaluationViewController.xib; sourceTree = "<group>"; };
+		6D3885F01B70B68400206E2A /* MyOrderEvaluationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderEvaluationTableViewCell.h; sourceTree = "<group>"; };
+		6D3885F11B70B68400206E2A /* MyOrderEvaluationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderEvaluationTableViewCell.m; sourceTree = "<group>"; };
+		6D3885F21B70B68400206E2A /* MyOrderEvaluationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderEvaluationTableViewCell.xib; sourceTree = "<group>"; };
 		6D7716E71B65F4C700257256 /* empty_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@2x.png"; path = "Resource/empty_choice@2x.png"; sourceTree = "<group>"; };
 		6D7716E81B65F4C700257256 /* empty_choice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@3x.png"; path = "Resource/empty_choice@3x.png"; sourceTree = "<group>"; };
 		6D7716E91B65F4C700257256 /* full_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "full_choice@2x.png"; path = "Resource/full_choice@2x.png"; sourceTree = "<group>"; };
@@ -1061,6 +1071,29 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		6D3885E91B70AFB100206E2A /* 订单详情 */ = {
+			isa = PBXGroup;
+			children = (
+				6DD2283F1B7096D600378642 /* MyOrderDetailViewController.h */,
+				6DD228401B7096D600378642 /* MyOrderDetailViewController.m */,
+				6DD228411B7096D600378642 /* MyOrderDetailViewController.xib */,
+			);
+			name = "订单详情";
+			sourceTree = "<group>";
+		};
+		6D3885EA1B70B05C00206E2A /* 评价订单 */ = {
+			isa = PBXGroup;
+			children = (
+				6D3885EB1B70B08C00206E2A /* MyOrderEvaluationViewController.h */,
+				6D3885EC1B70B08C00206E2A /* MyOrderEvaluationViewController.m */,
+				6D3885ED1B70B08C00206E2A /* MyOrderEvaluationViewController.xib */,
+				6D3885F01B70B68400206E2A /* MyOrderEvaluationTableViewCell.h */,
+				6D3885F11B70B68400206E2A /* MyOrderEvaluationTableViewCell.m */,
+				6D3885F21B70B68400206E2A /* MyOrderEvaluationTableViewCell.xib */,
+			);
+			name = "评价订单";
+			sourceTree = "<group>";
+		};
 		6D8AD3E51B608D080099A0D8 /* 地址管理 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1092,9 +1125,8 @@
 				6D8A3DBB1B6CB4F500694CEF /* MyOrderInsideTableViewCell.h */,
 				6D8A3DBC1B6CB4F500694CEF /* MyOrderInsideTableViewCell.m */,
 				6D8A3DBD1B6CB4F500694CEF /* MyOrderInsideTableViewCell.xib */,
-				6DD2283F1B7096D600378642 /* MyOrderDetailViewController.h */,
-				6DD228401B7096D600378642 /* MyOrderDetailViewController.m */,
-				6DD228411B7096D600378642 /* MyOrderDetailViewController.xib */,
+				6D3885E91B70AFB100206E2A /* 订单详情 */,
+				6D3885EA1B70B05C00206E2A /* 评价订单 */,
 			);
 			name = "我的订单";
 			sourceTree = "<group>";
@@ -1199,6 +1231,7 @@
 				2CF607C71B5EC88C0022E8E7 /* icon_recommend@2x.png in Resources */,
 				2C10D6AE1B60B1F7008C3DE0 /* icon_home@2x.png in Resources */,
 				0AFC07161B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib in Resources */,
+				6D3885EF1B70B08C00206E2A /* MyOrderEvaluationViewController.xib in Resources */,
 				2CF6076E1B5EA0EF0022E8E7 /* btn_category@2x.png in Resources */,
 				2CF607981B5EBDA10022E8E7 /* line_ver_1px_right.png in Resources */,
 				2C2528841B5E2C9D00ADDEFB /* RootTabBarViewController.xib in Resources */,
@@ -1245,6 +1278,7 @@
 				0ACABED41B67178D009B18E0 /* icon_user_default@2x.png in Resources */,
 				2CF607CC1B5EC9E90022E8E7 /* HomeActivityTableView.xib in Resources */,
 				4A6C15AD1B66194400C9A9D2 /* AddressManageTableViewCell.xib in Resources */,
+				6D3885F41B70B68400206E2A /* MyOrderEvaluationTableViewCell.xib in Resources */,
 				2C25288A1B5E2E1E00ADDEFB /* LoginViewController.xib in Resources */,
 				4A6C15941B60915500C9A9D2 /* icon_disagree@2x.png in Resources */,
 				0A3B670E1B6203BC0067C709 /* SettingTableViewCell.xib in Resources */,
@@ -1339,6 +1373,7 @@
 				2C2528831B5E2C9D00ADDEFB /* RootTabBarViewController.m in Sources */,
 				2C2528D81B5E39EF00ADDEFB /* NSString+SBJSON.m in Sources */,
 				2CF6079E1B5EC6360022E8E7 /* ImageContainView.m in Sources */,
+				6D3885EE1B70B08C00206E2A /* MyOrderEvaluationViewController.m in Sources */,
 				0AE093071B60D2EC0095D639 /* AboutAppViewController.m in Sources */,
 				0AFC07171B6CAE46002BDB90 /* ShoppingCarViewController.m in Sources */,
 				4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */,
@@ -1393,6 +1428,7 @@
 				2C2528501B5E108900ADDEFB /* main.m in Sources */,
 				2C25288F1B5E2E9400ADDEFB /* HomeViewController.m in Sources */,
 				2C25290B1B5E3AA900ADDEFB /* YFRootBlurViewManager.m in Sources */,
+				6D3885F31B70B68400206E2A /* MyOrderEvaluationTableViewCell.m in Sources */,
 				0ACABED11B65FFAB009B18E0 /* HomeActivityTableViewCell.m in Sources */,
 				2C2529021B5E3AA900ADDEFB /* YFAppBackgroudConfiger.m in Sources */,
 				2C2528D01B5E39EF00ADDEFB /* MJRefreshConst.m in Sources */,
