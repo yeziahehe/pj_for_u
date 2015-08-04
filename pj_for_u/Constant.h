@@ -99,6 +99,7 @@
 #define kLoginUrl               @"user/toLogin.do"
 #define kGetMainImageUrl        @"news/getMainImage.do"
 #define kGetShoppingCarUrl      @"order/getUserOrder.do"
+#define kEditShoppingCarUrl     @"order/editUserOrder.do"
 #define kGetActivityImageUrl    @"service/getHomeFood.do"
 #define kCheckUserExistUrl      @"user/checkUserIsExist.do"
 #define kRegisterUrl            @"user/registerIn.do"

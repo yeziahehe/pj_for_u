@@ -12,7 +12,7 @@
 #import "AFHTTPRequestOperationManager.h"
 #import "AFHTTPSessionManager.h"
 
-#define kLimit @"5"
+#define kLimit @"10"
 @interface MainTableViewController ()
 @property NSInteger page;
 
@@ -49,6 +49,7 @@
     
     if([type isEqualToString:@"1"]){
         [dict setObject:@"1" forKey:@"page"];
+        self.page =2;
     }
     else if([type isEqualToString:@"2"]){
         NSString *pageString = [NSString stringWithFormat:@"%ld",(long)self.page];

@@ -77,7 +77,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="uN0-4Y-BFk"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="22"/>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -90,6 +90,9 @@
                                 <state key="normal" title="−">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="minusButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Q8i-J9-CaB"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ll3-LD-jvx">
                                 <rect key="frame" x="70" y="0.0" width="37" height="30"/>
@@ -97,6 +100,9 @@
                                 <state key="normal" title="+">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="plusButtonClicked:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5Cj-2u-KiU"/>
+                                </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="rAa-7f-huK">
                                 <rect key="frame" x="67" y="0.0" width="1" height="30"/>
@@ -172,6 +178,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="MinusButton" destination="6y9-4N-Vxg" id="0Ad-Yt-bKF"/>
+                <outlet property="PlusButton" destination="Ll3-LD-jvx" id="3tw-In-SPE"/>
                 <outlet property="YFImageView" destination="OZO-FX-UBQ" id="kdg-QL-t4B"/>
                 <outlet property="amountView" destination="Mkt-sB-7VR" id="6Zj-c7-Iy7"/>
                 <outlet property="discountPrice" destination="Pc8-QE-9NJ" id="H2T-vQ-6Hh"/>

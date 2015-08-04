@@ -53,6 +53,8 @@
         [[AddressDataManager sharedManager]requestToSetDefaultAddressWithPhontId:self.phoneId
                                                                             rank:rank];
     }
+    CGFloat height = 160 + self.allAddressArray.count * 60;
+    [self.scrollView setContentSize:CGSizeMake(ScreenWidth, height)];
     [self.tableView reloadData];
 }
 
