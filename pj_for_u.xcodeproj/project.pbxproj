@@ -184,6 +184,15 @@
 		4A6C16871B70BAC500C9A9D2 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C167C1B70BAC500C9A9D2 /* AFURLRequestSerialization.m */; };
 		4A6C16881B70BAC500C9A9D2 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C167E1B70BAC500C9A9D2 /* AFURLResponseSerialization.m */; };
 		4A6C16891B70BAC500C9A9D2 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C16801B70BAC500C9A9D2 /* AFURLSessionManager.m */; };
+		4A6C168D1B70BDA300C9A9D2 /* ProductDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C168B1B70BDA300C9A9D2 /* ProductDetailViewController.m */; };
+		4A6C168E1B70BDA300C9A9D2 /* ProductDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C168C1B70BDA300C9A9D2 /* ProductDetailViewController.xib */; };
+		4A6C16931B70C6B000C9A9D2 /* ProductSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C16921B70C6B000C9A9D2 /* ProductSubView.m */; };
+		4A6C169B1B70C92500C9A9D2 /* ProInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C169A1B70C92500C9A9D2 /* ProInfoView.m */; };
+		4A6C169D1B70C93F00C9A9D2 /* ProInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C169C1B70C93F00C9A9D2 /* ProInfoView.xib */; };
+		4A6C16A01B70C97800C9A9D2 /* ProCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C169F1B70C97800C9A9D2 /* ProCommentView.m */; };
+		4A6C16A21B70C99200C9A9D2 /* ProCommentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C16A11B70C99200C9A9D2 /* ProCommentView.xib */; };
+		4A6C16A51B70CE5500C9A9D2 /* ProImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C16A41B70CE5500C9A9D2 /* ProImageView.m */; };
+		4A6C16A71B70CE6B00C9A9D2 /* ProImageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C16A61B70CE6B00C9A9D2 /* ProImageView.xib */; };
 		6D10BE6E1B61FA3700D3638C /* IndividualInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */; };
 		6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E81B65F4C700257256 /* empty_choice@3x.png */; };
 		6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E91B65F4C700257256 /* full_choice@2x.png */; };
@@ -497,6 +506,20 @@
 		4A6C167E1B70BAC500C9A9D2 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		4A6C167F1B70BAC500C9A9D2 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		4A6C16801B70BAC500C9A9D2 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		4A6C168A1B70BDA300C9A9D2 /* ProductDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDetailViewController.h; path = "Controller/商品/ProductDetailViewController.h"; sourceTree = "<group>"; };
+		4A6C168B1B70BDA300C9A9D2 /* ProductDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDetailViewController.m; path = "Controller/商品/ProductDetailViewController.m"; sourceTree = "<group>"; };
+		4A6C168C1B70BDA300C9A9D2 /* ProductDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductDetailViewController.xib; path = "Controller/商品/ProductDetailViewController.xib"; sourceTree = "<group>"; };
+		4A6C16911B70C6B000C9A9D2 /* ProductSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductSubView.h; path = "Controller/商品/ProductSubView.h"; sourceTree = "<group>"; };
+		4A6C16921B70C6B000C9A9D2 /* ProductSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductSubView.m; path = "Controller/商品/ProductSubView.m"; sourceTree = "<group>"; };
+		4A6C16991B70C92500C9A9D2 /* ProInfoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProInfoView.h; path = "Controller/商品/ProInfoView.h"; sourceTree = "<group>"; };
+		4A6C169A1B70C92500C9A9D2 /* ProInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProInfoView.m; path = "Controller/商品/ProInfoView.m"; sourceTree = "<group>"; };
+		4A6C169C1B70C93F00C9A9D2 /* ProInfoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProInfoView.xib; path = "Controller/商品/ProInfoView.xib"; sourceTree = "<group>"; };
+		4A6C169E1B70C97800C9A9D2 /* ProCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProCommentView.h; path = "Controller/商品/ProCommentView.h"; sourceTree = "<group>"; };
+		4A6C169F1B70C97800C9A9D2 /* ProCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProCommentView.m; path = "Controller/商品/ProCommentView.m"; sourceTree = "<group>"; };
+		4A6C16A11B70C99200C9A9D2 /* ProCommentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProCommentView.xib; path = "Controller/商品/ProCommentView.xib"; sourceTree = "<group>"; };
+		4A6C16A31B70CE5500C9A9D2 /* ProImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProImageView.h; path = "Controller/商品/ProImageView.h"; sourceTree = "<group>"; };
+		4A6C16A41B70CE5500C9A9D2 /* ProImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProImageView.m; path = "Controller/商品/ProImageView.m"; sourceTree = "<group>"; };
+		4A6C16A61B70CE6B00C9A9D2 /* ProImageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProImageView.xib; path = "Controller/商品/ProImageView.xib"; sourceTree = "<group>"; };
 		6D10BE6C1B61FA3700D3638C /* IndividualInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualInfo.h; sourceTree = "<group>"; };
 		6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualInfo.m; sourceTree = "<group>"; };
 		6D7716E71B65F4C700257256 /* empty_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@2x.png"; path = "Resource/empty_choice@2x.png"; sourceTree = "<group>"; };
@@ -573,17 +596,8 @@
 		2C10D6B51B60B7E1008C3DE0 /* 商品 */ = {
 			isa = PBXGroup;
 			children = (
-				2C10D6B61B60B7F2008C3DE0 /* ProductViewController.h */,
-				2C10D6B71B60B7F2008C3DE0 /* ProductViewController.m */,
-				2C10D6B81B60B7F2008C3DE0 /* ProductViewController.xib */,
-				4A6C161F1B6B93AB00C9A9D2 /* CategoryLabel.h */,
-				4A6C16201B6B93AB00C9A9D2 /* CategoryLabel.m */,
-				4A6C161A1B6B703C00C9A9D2 /* MainTableViewController.h */,
-				4A6C161B1B6B703C00C9A9D2 /* MainTableViewController.m */,
-				4A6C161C1B6B703C00C9A9D2 /* MainTableViewController.xib */,
-				4A6C16221B6BBD1700C9A9D2 /* MainTableViewCell.h */,
-				4A6C16231B6BBD1700C9A9D2 /* MainTableViewCell.m */,
-				4A6C16241B6BBD1700C9A9D2 /* MainTableViewCell.xib */,
+				4A6C168F1B70C62000C9A9D2 /* 分类 */,
+				4A6C16901B70C63200C9A9D2 /* 商品详情 */,
 			);
 			name = "商品";
 			sourceTree = "<group>";
@@ -1069,6 +1083,45 @@
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
+		4A6C168F1B70C62000C9A9D2 /* 分类 */ = {
+			isa = PBXGroup;
+			children = (
+				2C10D6B61B60B7F2008C3DE0 /* ProductViewController.h */,
+				2C10D6B71B60B7F2008C3DE0 /* ProductViewController.m */,
+				2C10D6B81B60B7F2008C3DE0 /* ProductViewController.xib */,
+				4A6C161F1B6B93AB00C9A9D2 /* CategoryLabel.h */,
+				4A6C16201B6B93AB00C9A9D2 /* CategoryLabel.m */,
+				4A6C161A1B6B703C00C9A9D2 /* MainTableViewController.h */,
+				4A6C161B1B6B703C00C9A9D2 /* MainTableViewController.m */,
+				4A6C161C1B6B703C00C9A9D2 /* MainTableViewController.xib */,
+				4A6C16221B6BBD1700C9A9D2 /* MainTableViewCell.h */,
+				4A6C16231B6BBD1700C9A9D2 /* MainTableViewCell.m */,
+				4A6C16241B6BBD1700C9A9D2 /* MainTableViewCell.xib */,
+			);
+			name = "分类";
+			sourceTree = "<group>";
+		};
+		4A6C16901B70C63200C9A9D2 /* 商品详情 */ = {
+			isa = PBXGroup;
+			children = (
+				4A6C168A1B70BDA300C9A9D2 /* ProductDetailViewController.h */,
+				4A6C168B1B70BDA300C9A9D2 /* ProductDetailViewController.m */,
+				4A6C168C1B70BDA300C9A9D2 /* ProductDetailViewController.xib */,
+				4A6C16911B70C6B000C9A9D2 /* ProductSubView.h */,
+				4A6C16921B70C6B000C9A9D2 /* ProductSubView.m */,
+				4A6C16A31B70CE5500C9A9D2 /* ProImageView.h */,
+				4A6C16A41B70CE5500C9A9D2 /* ProImageView.m */,
+				4A6C16A61B70CE6B00C9A9D2 /* ProImageView.xib */,
+				4A6C16991B70C92500C9A9D2 /* ProInfoView.h */,
+				4A6C169A1B70C92500C9A9D2 /* ProInfoView.m */,
+				4A6C169C1B70C93F00C9A9D2 /* ProInfoView.xib */,
+				4A6C169E1B70C97800C9A9D2 /* ProCommentView.h */,
+				4A6C169F1B70C97800C9A9D2 /* ProCommentView.m */,
+				4A6C16A11B70C99200C9A9D2 /* ProCommentView.xib */,
+			);
+			name = "商品详情";
+			sourceTree = "<group>";
+		};
 		6D8AD3E51B608D080099A0D8 /* 地址管理 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1220,6 +1273,7 @@
 				4A6C15851B5F877F00C9A9D2 /* UserInfoViewController.xib in Resources */,
 				4A6C15791B5F7D5300C9A9D2 /* icon_login_secret@2x.png in Resources */,
 				0ACABED21B65FFAB009B18E0 /* HomeActivityTableViewCell.xib in Resources */,
+				4A6C169D1B70C93F00C9A9D2 /* ProInfoView.xib in Resources */,
 				2CF607C01B5EC88C0022E8E7 /* icon_breakfest@2x.png in Resources */,
 				2CF607971B5EBDA10022E8E7 /* line_ver_1px_left.png in Resources */,
 				2C79539B1B613F4800511EB7 /* icon_userinfo@2x.png in Resources */,
@@ -1231,6 +1285,7 @@
 				2CF6076A1B5E9D270022E8E7 /* icon_header_back@2x.png in Resources */,
 				2C10D6C31B60C30D008C3DE0 /* SettingMap.plist in Resources */,
 				2C10D6B21B60B551008C3DE0 /* icon_home_selected@2x.png in Resources */,
+				4A6C16A21B70C99200C9A9D2 /* ProCommentView.xib in Resources */,
 				2C79539D1B61402D00511EB7 /* bg_user_module@2x.png in Resources */,
 				2C7953921B6134B400511EB7 /* icon_new@2x.png in Resources */,
 				2C10D6C01B60B970008C3DE0 /* SettingViewController.xib in Resources */,
@@ -1242,6 +1297,7 @@
 				4A6C157C1B5F808D00C9A9D2 /* btn_login@2x.png in Resources */,
 				2C7953991B613F4800511EB7 /* icon_order@2x.png in Resources */,
 				4A6C158A1B5FF22F00C9A9D2 /* icon_register_nickname@2x.png in Resources */,
+				4A6C16A71B70CE6B00C9A9D2 /* ProImageView.xib in Resources */,
 				2C10D6AD1B60B1F7008C3DE0 /* icon_home_user@2x.png in Resources */,
 				6D9541601B6B0D8C00532677 /* MyOrderViewController.xib in Resources */,
 				2C25285B1B5E108A00ADDEFB /* Images.xcassets in Resources */,
@@ -1275,6 +1331,7 @@
 				2C25289B1B5E38B100ADDEFB /* ResetPwdViewController.xib in Resources */,
 				2CF607C61B5EC88C0022E8E7 /* icon_preference@2x.png in Resources */,
 				2C2528901B5E2E9400ADDEFB /* HomeViewController.xib in Resources */,
+				4A6C168E1B70BDA300C9A9D2 /* ProductDetailViewController.xib in Resources */,
 				6D7716EE1B65F4C700257256 /* full_choice@3x.png in Resources */,
 				6D8AD3FB1B60C6290099A0D8 /* IndividualInfoMap.plist in Resources */,
 				4A6C15751B5F7B1000C9A9D2 /* bg_login@2x.png in Resources */,
@@ -1335,12 +1392,14 @@
 				2C2529051B5E3AA900ADDEFB /* YFDownloader.m in Sources */,
 				2C2529041B5E3AA900ADDEFB /* YFCommonMethods.m in Sources */,
 				2CF6079B1B5EC5FE0022E8E7 /* HomeSubView.m in Sources */,
+				4A6C16A01B70C97800C9A9D2 /* ProCommentView.m in Sources */,
 				4A6C15B01B66247700C9A9D2 /* AddressInfo.m in Sources */,
 				6D95415F1B6B0D8C00532677 /* MyOrderViewController.m in Sources */,
 				2C25289A1B5E38B100ADDEFB /* ResetPwdViewController.m in Sources */,
 				2C2528FD1B5E3AA900ADDEFB /* NSDate+YFAdditions.m in Sources */,
 				4A6C15831B5F877F00C9A9D2 /* UserInfoSubView.m in Sources */,
 				2C2528DA1B5E39EF00ADDEFB /* SBJsonBase.m in Sources */,
+				4A6C169B1B70C92500C9A9D2 /* ProInfoView.m in Sources */,
 				6D8AD3F31B60BD250099A0D8 /* AddressManageViewController.m in Sources */,
 				4A6C16251B6BBD1700C9A9D2 /* MainTableViewCell.m in Sources */,
 				2C2528831B5E2C9D00ADDEFB /* RootTabBarViewController.m in Sources */,
@@ -1364,6 +1423,7 @@
 				2C2528D41B5E39EF00ADDEFB /* UIScrollView+MJRefresh.m in Sources */,
 				6D9541641B6B361F00532677 /* MyOrderTableViewCell.m in Sources */,
 				2CBC8E651B665F0400326059 /* UserInfo.m in Sources */,
+				4A6C16931B70C6B000C9A9D2 /* ProductSubView.m in Sources */,
 				4A6C162F1B6C7D7D00C9A9D2 /* ProductionInfo.m in Sources */,
 				6D10BE6E1B61FA3700D3638C /* IndividualInfo.m in Sources */,
 				2C2528D51B5E39EF00ADDEFB /* UIView+MJExtension.m in Sources */,
@@ -1406,9 +1466,11 @@
 				0ACABED11B65FFAB009B18E0 /* HomeActivityTableViewCell.m in Sources */,
 				2C2529021B5E3AA900ADDEFB /* YFAppBackgroudConfiger.m in Sources */,
 				2C2528D01B5E39EF00ADDEFB /* MJRefreshConst.m in Sources */,
+				4A6C16A51B70CE5500C9A9D2 /* ProImageView.m in Sources */,
 				2C5C08481B63433D0004286C /* FirstClassModel.m in Sources */,
 				2C5C08451B6342CC0004286C /* HomeModuleModel.m in Sources */,
 				4A6C16291B6BC1AE00C9A9D2 /* CategoryInfo.m in Sources */,
+				4A6C168D1B70BDA300C9A9D2 /* ProductDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
