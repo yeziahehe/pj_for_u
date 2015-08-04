@@ -25,7 +25,7 @@
         self.oldPriceLabel.hidden = YES;
         self.discountImageView.hidden = YES;
     }
-    self.priceLabel.text = [NSString stringWithFormat:@"%@元",pi.discountPrice];
+    self.priceLabel.text = [NSString stringWithFormat:@"%.1lf元",[pi.discountPrice doubleValue]];
     self.proNameLabel.text = pi.name;
     self.amountLabel.text = [NSString stringWithFormat:@"销量：%@",pi.saleNumber];
     self.image.cacheDir = kUserIconCacheDir;

@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainTableViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface MainTableViewController : UIViewController
 @property(strong,nonatomic)NSMutableArray *allProductionMArray;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic,assign) NSInteger index;
 @property (strong,nonatomic)NSString *categoryId;
 @end
