@@ -13,7 +13,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9TF-zK-9UZ">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9TF-zK-9UZ" customClass="YFAsynImageView">
                         <rect key="frame" x="10" y="7" width="55" height="55"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="55" id="iuU-Mk-GnK"/>
@@ -77,7 +77,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="LHC-Sx-gBf">
-                        <rect key="frame" x="10" y="69" width="355" height="1"/>
+                        <rect key="frame" x="10" y="68.5" width="355" height="1"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="6sd-XW-JKx"/>
                         </constraints>
@@ -106,9 +106,13 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="image" destination="9TF-zK-9UZ" id="wXv-f8-lR0"/>
                 <outlet property="lineImageView" destination="LHC-Sx-gBf" id="AcE-0Q-Ck5"/>
+                <outlet property="nameLabel" destination="JQf-M0-Ubm" id="vI9-rR-oQX"/>
+                <outlet property="orderConut" destination="9pD-KB-wo0" id="R7n-4f-adz"/>
+                <outlet property="price" destination="C0t-a1-5ie" id="DSh-w0-hOI"/>
             </connections>
-            <point key="canvasLocation" x="215.5" y="172"/>
+            <point key="canvasLocation" x="302.5" y="180"/>
         </tableViewCell>
     </objects>
     <resources>
