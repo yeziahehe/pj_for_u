@@ -19,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *discountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
 @property (strong,nonatomic)ProductionInfo *proInfo;
+@property (strong,nonatomic)NSString *foodId;
 @property(strong,nonatomic)NSString *imageUrl;
 @end

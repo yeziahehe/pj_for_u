@@ -10,6 +10,7 @@
 
 @implementation ProImageView
 
+
 -(void)awakeFromNib{
     [super awakeFromNib];
 }
@@ -21,15 +22,21 @@
     
 }
 
+-(void)setFoodId:(NSString *)foodId{
+    
+}
+
 -(void)setProInfo:(ProductionInfo *)proInfo{
     _proInfo = proInfo;
     self.nameLabel.text = proInfo.name;
     self.messageLabel.text = proInfo.message;
-    self.priceLabel.text = [NSString stringWithFormat:@"￥：%@元",proInfo.discountPrice];
-    self.oldPriceLabel.text = [NSString stringWithFormat:@"%@元",proInfo.price];
+    self.priceLabel.text = [NSString stringWithFormat:@"￥：%@",proInfo.discountPrice];
+    self.oldPriceLabel.text = [NSString stringWithFormat:@"%@",proInfo.price];
     self.saleNumLabel.text = [NSString stringWithFormat:@"销量：%@",proInfo.saleNumber];
     CGFloat discountPrice = [proInfo.price doubleValue] - [proInfo.discountPrice doubleValue];
     self.discountLabel.text = [NSString stringWithFormat:@"( 省%.1f元 )",discountPrice];
-//    self.gradeLabel.text = proInfo.grade;
+    if (!proInfo.grade) {
+        self.gradeLabel.text = proInfo.grade;
+    }
 }
 @end

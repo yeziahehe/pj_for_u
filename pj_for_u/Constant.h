@@ -118,5 +118,6 @@
 #define kGetOrderInMine         @"order/getOrderInMine.do"
 #define kGetCategoryUrl         @"service/getCategory.do"
 #define kGetCategoryFoodUrl     @"service/selectFoods.do"
-
+#define kGetFoodCommentUrl      @"service/getCommentsByFoodId.do"
+#define kGetFoodByIdUrl         @"service/getFoodById.do"
 #endif

@@ -199,6 +199,9 @@
 		4A6C16B11B711E7C00C9A9D2 /* MyOrderEvaluationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C16AD1B711E7C00C9A9D2 /* MyOrderEvaluationViewController.xib */; };
 		4A6C16B51B711ECD00C9A9D2 /* MyOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C16B31B711ECD00C9A9D2 /* MyOrderDetailViewController.m */; };
 		4A6C16B61B711ECD00C9A9D2 /* MyOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C16B41B711ECD00C9A9D2 /* MyOrderDetailViewController.xib */; };
+		4AB377D01B71AB3A0052168A /* ProCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB377CE1B71AB3A0052168A /* ProCommentTableViewCell.m */; };
+		4AB377D11B71AB3A0052168A /* ProCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB377CF1B71AB3A0052168A /* ProCommentTableViewCell.xib */; };
+		4AB377D41B71AE4E0052168A /* ProCommentDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB377D31B71AE4E0052168A /* ProCommentDetail.m */; };
 		6D10BE6E1B61FA3700D3638C /* IndividualInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */; };
 		6D3885FB1B70C3B000206E2A /* icon_evaluationStarLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3885F91B70C3B000206E2A /* icon_evaluationStarLight@2x.png */; };
 		6D3885FC1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3885FA1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png */; };
@@ -537,6 +540,11 @@
 		4A6C16B21B711ECD00C9A9D2 /* MyOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderDetailViewController.h; sourceTree = "<group>"; };
 		4A6C16B31B711ECD00C9A9D2 /* MyOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderDetailViewController.m; sourceTree = "<group>"; };
 		4A6C16B41B711ECD00C9A9D2 /* MyOrderDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderDetailViewController.xib; sourceTree = "<group>"; };
+		4AB377CD1B71AB3A0052168A /* ProCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProCommentTableViewCell.h; path = "Controller/商品/ProCommentTableViewCell.h"; sourceTree = "<group>"; };
+		4AB377CE1B71AB3A0052168A /* ProCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProCommentTableViewCell.m; path = "Controller/商品/ProCommentTableViewCell.m"; sourceTree = "<group>"; };
+		4AB377CF1B71AB3A0052168A /* ProCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProCommentTableViewCell.xib; path = "Controller/商品/ProCommentTableViewCell.xib"; sourceTree = "<group>"; };
+		4AB377D21B71AE4E0052168A /* ProCommentDetail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProCommentDetail.h; path = Model/ProCommentDetail.h; sourceTree = "<group>"; };
+		4AB377D31B71AE4E0052168A /* ProCommentDetail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProCommentDetail.m; path = Model/ProCommentDetail.m; sourceTree = "<group>"; };
 		6D10BE6C1B61FA3700D3638C /* IndividualInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualInfo.h; sourceTree = "<group>"; };
 		6D10BE6D1B61FA3700D3638C /* IndividualInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualInfo.m; sourceTree = "<group>"; };
 		6D3885F91B70C3B000206E2A /* icon_evaluationStarLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_evaluationStarLight@2x.png"; path = "Resource/icon_evaluationStarLight@2x.png"; sourceTree = "<group>"; };
@@ -743,6 +751,8 @@
 				4A6C162E1B6C7D7D00C9A9D2 /* ProductionInfo.m */,
 				0AE7424E1B708CA8005A91CF /* ShoppingCar.h */,
 				0AE7424F1B708CA8005A91CF /* ShoppingCar.m */,
+				4AB377D21B71AE4E0052168A /* ProCommentDetail.h */,
+				4AB377D31B71AE4E0052168A /* ProCommentDetail.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1140,6 +1150,9 @@
 				4A6C169E1B70C97800C9A9D2 /* ProCommentView.h */,
 				4A6C169F1B70C97800C9A9D2 /* ProCommentView.m */,
 				4A6C16A11B70C99200C9A9D2 /* ProCommentView.xib */,
+				4AB377CD1B71AB3A0052168A /* ProCommentTableViewCell.h */,
+				4AB377CE1B71AB3A0052168A /* ProCommentTableViewCell.m */,
+				4AB377CF1B71AB3A0052168A /* ProCommentTableViewCell.xib */,
 			);
 			name = "商品详情";
 			sourceTree = "<group>";
@@ -1310,6 +1323,7 @@
 				2CF607871B5EABA60022E8E7 /* bg_select_city@2x.png in Resources */,
 				4A6C161E1B6B703C00C9A9D2 /* MainTableViewController.xib in Resources */,
 				6D3885FC1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png in Resources */,
+				4AB377D11B71AB3A0052168A /* ProCommentTableViewCell.xib in Resources */,
 				2C10D6BA1B60B7F2008C3DE0 /* ProductViewController.xib in Resources */,
 				2CF607951B5EBDA10022E8E7 /* line_hon_1px_down.png in Resources */,
 				2CF6076A1B5E9D270022E8E7 /* icon_header_back@2x.png in Resources */,
@@ -1437,6 +1451,7 @@
 				4A6C169B1B70C92500C9A9D2 /* ProInfoView.m in Sources */,
 				6D8AD3F31B60BD250099A0D8 /* AddressManageViewController.m in Sources */,
 				4A6C16251B6BBD1700C9A9D2 /* MainTableViewCell.m in Sources */,
+				4AB377D01B71AB3A0052168A /* ProCommentTableViewCell.m in Sources */,
 				4A6C16AE1B711E7C00C9A9D2 /* MyOrderEvaluationTableViewCell.m in Sources */,
 				2C2528831B5E2C9D00ADDEFB /* RootTabBarViewController.m in Sources */,
 				2C2528D81B5E39EF00ADDEFB /* NSString+SBJSON.m in Sources */,
@@ -1444,6 +1459,7 @@
 				0AE093071B60D2EC0095D639 /* AboutAppViewController.m in Sources */,
 				0AFC07171B6CAE46002BDB90 /* ShoppingCarViewController.m in Sources */,
 				4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */,
+				4AB377D41B71AE4E0052168A /* ProCommentDetail.m in Sources */,
 				2C2528811B5E2C9D00ADDEFB /* BaseViewController.m in Sources */,
 				4A6C15BD1B69FA2700C9A9D2 /* AddressDataManager.m in Sources */,
 				4A6C161D1B6B703C00C9A9D2 /* MainTableViewController.m in Sources */,
