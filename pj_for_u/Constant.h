@@ -94,7 +94,7 @@
 #define kPlusShoppingAmountNotification     @"PlusShoppingAmountNotification"
 #define kMinusShoppingAmountNotification    @"MinusShoppingAmountNotification"
 #define kPushToMyOrderDetailNotification    @"PushToMyOrderDetailNotification"
-
+#define kCilckOrderButtonNotification       @"CilckOrderButtonNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
@@ -119,5 +119,6 @@
 #define kGetOrderInMine         @"order/getOrderInMine.do"
 #define kGetCategoryUrl         @"service/getCategory.do"
 #define kGetCategoryFoodUrl     @"service/selectFoods.do"
-
+#define kGetFoodCommentUrl      @"service/getCommentsByFoodId.do"
+#define kGetFoodByIdUrl         @"service/getFoodById.do"
 #endif

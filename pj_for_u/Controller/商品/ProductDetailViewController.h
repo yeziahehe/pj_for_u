@@ -12,5 +12,4 @@
 @interface ProductDetailViewController : BaseViewController
 @property (strong, nonatomic) IBOutlet UIScrollView *contentScrollView;
 @property(strong,nonatomic)NSString *foodId;
-@property(strong,nonatomic)ProductionInfo *proInfo;
 @end

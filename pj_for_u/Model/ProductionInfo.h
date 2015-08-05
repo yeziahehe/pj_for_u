@@ -6,22 +6,26 @@
 //  Copyright (c) 2015年 叶帆. All rights reserved.
 //
 /*
- "foods": [
- {
- "foodId": 10505,
- "campusId": 1,
- "name": "明屋木瓜牛奶",
- "price": 10,
+ "food": {
+ "foodId": 10101,
+ "name": "小当家干脆面",
+ "price": 0.5,
+ "discountPrice": 0.4,
+ "grade": 4.6,
+ "imgUrl": "http://120.26.76.252:8080/MickeyImage/food/1428302624611322199081.jpg",
+ "info": "http://120.26.76.252:8080/ForyouImage/food/info/14386711936981107723134.jpg",
  "foodCount": 500,
- "discountPrice": 9,
- "imgUrl": "http://120.26.76.252:8080/MickeyImage/food/1430356924473-2020464999.jpg",
- "isDiscount": 1,
- "saleNumber": 7,
- "info": "http://img4.duitang.com/uploads/item/201208/11/20120811145508_JXksH.jpeg,http://www.pp3.cn/uploads/allimg/111111/092I4E50-6.jpg",
- "message": "所有食品都是绿色食品，不含防腐剂，您吃的放心是我们的荣幸",
- "grade": null
-"commentCount": 1
- },
+ "modifyTime": 1432651904000,
+ "status": 1,
+ "foodFlag": "方便面，爆款",
+ "tag": 1,
+ "isDiscount": 0,
+ "categoryId": 101,
+ "primeCost": null,
+ "saleNumber": 0,
+ "commentNumber": 4,
+ "campusId": 1
+ }
  */
 
 #import "BaseModel.h"
@@ -39,6 +43,11 @@
 @property (nonatomic, copy) NSString *info;
 @property (nonatomic, copy) NSString *message;
 @property (nonatomic, copy) NSString *grade;
-@property (nonatomic, copy) NSString *commentCount;
+@property (nonatomic, copy) NSString *commentNumber;
+@property (nonatomic, copy) NSString *tag;
+@property (nonatomic, copy) NSString *modifyTime;
+@property (nonatomic, copy) NSString *foodFlag;
+@property (nonatomic, copy) NSString *primeCost;
+
 
 @end

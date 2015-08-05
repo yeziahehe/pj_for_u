@@ -7,7 +7,12 @@
 //
 
 #import "ProductSubView.h"
+#import "ProductionInfo.h"
 
 @interface ProCommentView : ProductSubView
+@property (strong, nonatomic) IBOutlet UILabel *commentLabel;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong,nonatomic)ProductionInfo *proInfo;
+
 
 @end
