@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -70,7 +70,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="slk-7e-QU2">
-                        <rect key="frame" x="203" y="97" width="60" height="2"/>
+                        <rect key="frame" x="213" y="97" width="40" height="2"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -90,10 +90,10 @@
                     <constraint firstItem="qza-ce-8Qc" firstAttribute="leading" secondItem="CDM-gU-4Z7" secondAttribute="trailing" constant="10" id="Uuj-w8-LDZ"/>
                     <constraint firstItem="OLv-Ow-ANT" firstAttribute="leading" secondItem="CDM-gU-4Z7" secondAttribute="trailing" constant="10" id="eIv-yM-IoM"/>
                     <constraint firstItem="CDM-gU-4Z7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="f4q-h7-SSj"/>
-                    <constraint firstItem="slk-7e-QU2" firstAttribute="leading" secondItem="OCx-88-N1b" secondAttribute="leading" constant="2" id="fFx-Lh-xz1"/>
+                    <constraint firstItem="slk-7e-QU2" firstAttribute="leading" secondItem="OCx-88-N1b" secondAttribute="leading" constant="12" id="fFx-Lh-xz1"/>
                     <constraint firstItem="tzo-r5-wfa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="h4h-9x-Jfs"/>
                     <constraint firstAttribute="trailing" secondItem="qza-ce-8Qc" secondAttribute="trailing" constant="10" id="lUL-2D-TGR"/>
-                    <constraint firstItem="slk-7e-QU2" firstAttribute="trailing" secondItem="OCx-88-N1b" secondAttribute="trailing" constant="-2" id="ybX-Ly-evX"/>
+                    <constraint firstItem="slk-7e-QU2" firstAttribute="trailing" secondItem="OCx-88-N1b" secondAttribute="trailing" constant="-12" id="ybX-Ly-evX"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

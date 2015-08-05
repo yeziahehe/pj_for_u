@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 叶帆. All rights reserved.
 //
 
-#import "ProductInfo.h"
+#import "CategoryInfo.h"
 
-@implementation ProductInfo
+@implementation CategoryInfo
 
 @end

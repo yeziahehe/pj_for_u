@@ -22,7 +22,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BaseModel.h"
-@interface ProductInfo : BaseModel
+@interface CategoryInfo : BaseModel
 @property (nonatomic, copy) NSString *categoryId;
 @property (nonatomic, copy) NSString *campusId;
 @property (nonatomic, copy) NSString *category;

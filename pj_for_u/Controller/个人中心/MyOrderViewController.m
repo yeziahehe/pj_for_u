@@ -8,6 +8,7 @@
 
 #import "MyOrderViewController.h"
 #import "MyOrderTableViewCell.h"
+#import "MyOrderDetailViewController.h"
 
 #define kGetOrderInMineKey        @"GetOrderInMineKey"
 
@@ -22,6 +23,12 @@
 
 @implementation MyOrderViewController
 
+- (void)pushToMyOrderDetailViewController:(NSNotification *)notification
+{
+    MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
+    [self.navigationController pushViewController:myOrderDetailViewController animated:YES];
+
+}
 
 - (NSMutableArray *)eachCountOfSmallOrders
 {
@@ -148,7 +155,7 @@ alreadyFinishedView;
             price += singleCount * singlePrice;
             count += singleCount;
         }
-        
+        cell.itsIndexPath = indexPath;
         cell.totalConut.text = [NSString stringWithFormat:@"共%d件商品", count];
         cell.totalPrice.text = [NSString stringWithFormat:@"￥%.1lf", price];
         
@@ -185,7 +192,8 @@ alreadyFinishedView;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
+    [self.navigationController pushViewController:myOrderDetailViewController animated:YES];
     
 }
 
@@ -231,6 +239,9 @@ alreadyFinishedView;
     
     [self addTargetToButton];
     [self waitForPaymentAction];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(pushToMyOrderDetailViewController:)
+                                                 name:kPushToMyOrderDetailNotification object:nil];
 }
 
 #pragma mark - YFDownloaderDelegate Methods

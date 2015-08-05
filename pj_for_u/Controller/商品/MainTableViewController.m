@@ -11,8 +11,10 @@
 #import "ProductionInfo.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "AFHTTPSessionManager.h"
+#import "ProductDetailViewController.h"
 
 #define kLimit @"10"
+
 @interface MainTableViewController ()
 @property NSInteger page;
 
@@ -134,6 +136,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    ProductionInfo *pi = [self.allProductionMArray objectAtIndex:indexPath.row];
+    NSString *foodId =  [self.allProductionMArray[indexPath.row] foodId];
+    ProductDetailViewController *pdvc = [[ProductDetailViewController alloc]initWithNibName:@"ProductDetailViewController" bundle:nil];
+    pdvc.foodId = foodId;
+    pdvc.proInfo = pi;
+    [self.navigationController pushViewController:pdvc animated:YES];
 }
 
 @end

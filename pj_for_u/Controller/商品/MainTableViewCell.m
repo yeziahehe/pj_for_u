@@ -25,6 +25,7 @@
         self.oldPriceLabel.hidden = YES;
         self.discountImageView.hidden = YES;
     }
+    self.introLabel.text = pi.message;
     self.priceLabel.text = [NSString stringWithFormat:@"%.1lf元",[pi.discountPrice doubleValue]];
     self.proNameLabel.text = pi.name;
     self.amountLabel.text = [NSString stringWithFormat:@"销量：%@",pi.saleNumber];

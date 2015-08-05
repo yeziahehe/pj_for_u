@@ -9,7 +9,7 @@
 #import "ProductViewController.h"
 #import "CategoryLabel.h"
 #import "MainTableViewController.h"
-#import "ProductInfo.h"
+#import "CategoryInfo.h"
 #import "ProductionInfo.h"
 @interface ProductViewController ()
 
@@ -31,7 +31,7 @@
 {
     for(int i=0 ; i<self.allCategories.count; i++)
     {
-        ProductInfo *pinfo = [self.allCategories objectAtIndex:i];
+        CategoryInfo *pinfo = [self.allCategories objectAtIndex:i];
         //循环创建子vc
         MainTableViewController *mvc = [[MainTableViewController alloc]initWithNibName:@"MainTableViewController" bundle:nil];
         mvc.title = pinfo.category;
@@ -99,7 +99,7 @@
     self.allCategories = [NSMutableArray arrayWithCapacity:0];
     for(NSDictionary *valueDict in valueArray)
     {
-        ProductInfo *pi = [[ProductInfo alloc]initWithDict:valueDict];
+        CategoryInfo *pi = [[CategoryInfo alloc]initWithDict:valueDict];
         [self.allCategories addObject:pi];
     }
     //接受完分类信息，开始加载页面
