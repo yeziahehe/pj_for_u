@@ -8,8 +8,35 @@
 
 #import "ProInfoView.h"
 
+@interface ProInfoView ()
+@property(strong,nonatomic)UIView *background;
+@end
+
 @implementation ProInfoView
 
+#pragma mark - Initialize Methods
+- (UIView *)background
+{
+    if (!_background) {
+        _background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+        _background.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.5];
+        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                    action:@selector(removeSubViews)];
+        singleTap.numberOfTapsRequired = 1;
+        [_background addGestureRecognizer:singleTap];
+    }
+    return _background;
+}
 
+#pragma mark - UIView Methods
+-(void)awakeFromNib{
+    [super awakeFromNib];
+    
+}
+
+#pragma mark - IBAction Methods
+- (IBAction)showChooseDetail:(id)sender {
+    
+}
 
 @end

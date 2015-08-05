@@ -191,7 +191,7 @@
         </view>
     </objects>
     <resources>
-        <image name="icon_shoppingcar_default.png" width="212" height="214"/>
+        <image name="icon_shoppingcar_default.png" width="106" height="107"/>
         <image name="line_hon_1px_down.png" width="640" height="2"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

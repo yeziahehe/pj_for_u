@@ -30,7 +30,7 @@
     _proInfo = proInfo;
     self.nameLabel.text = proInfo.name;
     self.messageLabel.text = proInfo.message;
-    self.priceLabel.text = [NSString stringWithFormat:@"￥：%@",proInfo.discountPrice];
+    self.priceLabel.text = [NSString stringWithFormat:@"￥: %.1f",[proInfo.discountPrice doubleValue]];
     self.oldPriceLabel.text = [NSString stringWithFormat:@"%@",proInfo.price];
     self.saleNumLabel.text = [NSString stringWithFormat:@"销量：%@",proInfo.saleNumber];
     CGFloat discountPrice = [proInfo.price doubleValue] - [proInfo.discountPrice doubleValue];
