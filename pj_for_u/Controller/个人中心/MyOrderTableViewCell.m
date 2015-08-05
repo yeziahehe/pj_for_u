@@ -42,15 +42,22 @@
     // Configure the view for the selected state
 }
 
-- (IBAction)toPay:(UIButton *)sender
+- (IBAction)leftButtonAction
 {
-    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:2];
+    [dict setObject:self.itsIndexPath forKey:@"indexPath"];
+    [dict setObject:self.leftButton.titleLabel.text forKey:@"title"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCilckOrderButtonNotification object:dict];
 }
 
-- (IBAction)cancelOrder:(UIButton *)sender
+- (IBAction)rightButtonAction
 {
-    
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:2];
+    [dict setObject:self.itsIndexPath forKey:@"indexPath"];
+    [dict setObject:self.rightButton.titleLabel.text forKey:@"title"];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kCilckOrderButtonNotification object:dict];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

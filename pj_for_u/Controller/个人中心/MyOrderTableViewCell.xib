@@ -79,12 +79,12 @@
                             <constraint firstAttribute="height" constant="25" id="drc-4t-x4h"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                        <state key="normal">
+                        <state key="normal" title="left">
                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
-                            <action selector="toPay:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="4Ti-fx-Nac"/>
+                            <action selector="leftButtonAction" destination="KGk-i7-Jjw" eventType="touchUpInside" id="koV-kY-Wa9"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cbo-eh-Nzu">
@@ -94,12 +94,12 @@
                             <constraint firstAttribute="width" constant="75" id="ZDz-34-KAP"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
-                        <state key="normal">
+                        <state key="normal" title="right">
                             <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
-                            <action selector="cancelOrder:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5EX-ch-fr8"/>
+                            <action selector="rightButtonAction" destination="KGk-i7-Jjw" eventType="touchUpInside" id="hZo-RE-Rdq"/>
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥8888" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dqc-EH-cRm">

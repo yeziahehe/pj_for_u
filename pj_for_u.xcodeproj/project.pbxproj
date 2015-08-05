@@ -17,7 +17,7 @@
 		0AE093071B60D2EC0095D639 /* AboutAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093051B60D2EC0095D639 /* AboutAppViewController.m */; };
 		0AE093081B60D2EC0095D639 /* AboutAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */; };
 		0AE742501B708CA8005A91CF /* ShoppingCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE7424F1B708CA8005A91CF /* ShoppingCar.m */; };
-		0AE742521B70A4D7005A91CF /* icon_shoppingcar_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE742511B70A4D7005A91CF /* icon_shoppingcar_default.png */; };
+		0AE742521B70A4D7005A91CF /* icon_shoppingcar_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0AE742511B70A4D7005A91CF /* icon_shoppingcar_default@2x.png */; };
 		0AFC07151B6CAE46002BDB90 /* ShoppingCarTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC07101B6CAE46002BDB90 /* ShoppingCarTableViewCell.m */; };
 		0AFC07161B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFC07111B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib */; };
 		0AFC07171B6CAE46002BDB90 /* ShoppingCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC07131B6CAE46002BDB90 /* ShoppingCarViewController.m */; };
@@ -206,7 +206,7 @@
 		6D3885FB1B70C3B000206E2A /* icon_evaluationStarLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3885F91B70C3B000206E2A /* icon_evaluationStarLight@2x.png */; };
 		6D3885FC1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3885FA1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png */; };
 		6D3885FF1B70C47200206E2A /* icon_anonymous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3885FD1B70C47200206E2A /* icon_anonymous@2x.png */; };
-		6D3886001B70C47200206E2A /* icon_notAnonymous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3885FE1B70C47200206E2A /* icon_notAnonymous@2x.png */; };
+		6D6A43C81B71E8E20029620E /* icon_notAnonymous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A43C71B71E8E20029620E /* icon_notAnonymous@2x.png */; };
 		6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E81B65F4C700257256 /* empty_choice@3x.png */; };
 		6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E91B65F4C700257256 /* full_choice@2x.png */; };
 		6D7716EE1B65F4C700257256 /* full_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716EA1B65F4C700257256 /* full_choice@3x.png */; };
@@ -252,7 +252,7 @@
 		0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutAppViewController.xib; path = "Controller/设置/AboutAppViewController.xib"; sourceTree = "<group>"; };
 		0AE7424E1B708CA8005A91CF /* ShoppingCar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingCar.h; path = Model/ShoppingCar.h; sourceTree = "<group>"; };
 		0AE7424F1B708CA8005A91CF /* ShoppingCar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingCar.m; path = Model/ShoppingCar.m; sourceTree = "<group>"; };
-		0AE742511B70A4D7005A91CF /* icon_shoppingcar_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_shoppingcar_default.png; path = Resource/icon_shoppingcar_default.png; sourceTree = "<group>"; };
+		0AE742511B70A4D7005A91CF /* icon_shoppingcar_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_shoppingcar_default@2x.png"; path = "Resource/icon_shoppingcar_default@2x.png"; sourceTree = "<group>"; };
 		0AFC070F1B6CAE46002BDB90 /* ShoppingCarTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingCarTableViewCell.h; path = "Controller/购物车/ShoppingCarTableViewCell.h"; sourceTree = "<group>"; };
 		0AFC07101B6CAE46002BDB90 /* ShoppingCarTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingCarTableViewCell.m; path = "Controller/购物车/ShoppingCarTableViewCell.m"; sourceTree = "<group>"; };
 		0AFC07111B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoppingCarTableViewCell.xib; path = "Controller/购物车/ShoppingCarTableViewCell.xib"; sourceTree = "<group>"; };
@@ -550,7 +550,7 @@
 		6D3885F91B70C3B000206E2A /* icon_evaluationStarLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_evaluationStarLight@2x.png"; path = "Resource/icon_evaluationStarLight@2x.png"; sourceTree = "<group>"; };
 		6D3885FA1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_evaluationStarNotLight@2x.png"; path = "Resource/icon_evaluationStarNotLight@2x.png"; sourceTree = "<group>"; };
 		6D3885FD1B70C47200206E2A /* icon_anonymous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_anonymous@2x.png"; path = "Resource/icon_anonymous@2x.png"; sourceTree = "<group>"; };
-		6D3885FE1B70C47200206E2A /* icon_notAnonymous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_notAnonymous@2x.png"; path = "Resource/icon_notAnonymous@2x.png"; sourceTree = "<group>"; };
+		6D6A43C71B71E8E20029620E /* icon_notAnonymous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_notAnonymous@2x.png"; path = "Resource/icon_notAnonymous@2x.png"; sourceTree = "<group>"; };
 		6D7716E71B65F4C700257256 /* empty_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@2x.png"; path = "Resource/empty_choice@2x.png"; sourceTree = "<group>"; };
 		6D7716E81B65F4C700257256 /* empty_choice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@3x.png"; path = "Resource/empty_choice@3x.png"; sourceTree = "<group>"; };
 		6D7716E91B65F4C700257256 /* full_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "full_choice@2x.png"; path = "Resource/full_choice@2x.png"; sourceTree = "<group>"; };
@@ -964,8 +964,8 @@
 		2C7953931B613EC000511EB7 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				6D6A43C71B71E8E20029620E /* icon_notAnonymous@2x.png */,
 				6D3885FD1B70C47200206E2A /* icon_anonymous@2x.png */,
-				6D3885FE1B70C47200206E2A /* icon_notAnonymous@2x.png */,
 				6D3885F91B70C3B000206E2A /* icon_evaluationStarLight@2x.png */,
 				6D3885FA1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png */,
 				4A6C15B91B67B5EE00C9A9D2 /* icon_address_bottom@2x.png */,
@@ -1060,7 +1060,7 @@
 		4A6C157A1B5F7D5800C9A9D2 /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
-				0AE742511B70A4D7005A91CF /* icon_shoppingcar_default.png */,
+				0AE742511B70A4D7005A91CF /* icon_shoppingcar_default@2x.png */,
 				4A6C15911B60915500C9A9D2 /* icon_agree@2x.png */,
 				4A6C15921B60915500C9A9D2 /* icon_disagree@2x.png */,
 				4A6C15891B5FF22F00C9A9D2 /* icon_register_nickname@2x.png */,
@@ -1157,6 +1157,29 @@
 			name = "商品详情";
 			sourceTree = "<group>";
 		};
+		6D6A43C51B71A3C50029620E /* 评价订单 */ = {
+			isa = PBXGroup;
+			children = (
+				4A6C16AB1B711E7C00C9A9D2 /* MyOrderEvaluationViewController.h */,
+				4A6C16AC1B711E7C00C9A9D2 /* MyOrderEvaluationViewController.m */,
+				4A6C16AD1B711E7C00C9A9D2 /* MyOrderEvaluationViewController.xib */,
+				4A6C16A81B711E7C00C9A9D2 /* MyOrderEvaluationTableViewCell.h */,
+				4A6C16A91B711E7C00C9A9D2 /* MyOrderEvaluationTableViewCell.m */,
+				4A6C16AA1B711E7C00C9A9D2 /* MyOrderEvaluationTableViewCell.xib */,
+			);
+			name = "评价订单";
+			sourceTree = "<group>";
+		};
+		6D6A43C61B71A4030029620E /* 订单详情 */ = {
+			isa = PBXGroup;
+			children = (
+				4A6C16B21B711ECD00C9A9D2 /* MyOrderDetailViewController.h */,
+				4A6C16B31B711ECD00C9A9D2 /* MyOrderDetailViewController.m */,
+				4A6C16B41B711ECD00C9A9D2 /* MyOrderDetailViewController.xib */,
+			);
+			name = "订单详情";
+			sourceTree = "<group>";
+		};
 		6D8AD3E51B608D080099A0D8 /* 地址管理 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1179,15 +1202,6 @@
 		6D8AD3E61B608D100099A0D8 /* 我的订单 */ = {
 			isa = PBXGroup;
 			children = (
-				4A6C16B21B711ECD00C9A9D2 /* MyOrderDetailViewController.h */,
-				4A6C16B31B711ECD00C9A9D2 /* MyOrderDetailViewController.m */,
-				4A6C16B41B711ECD00C9A9D2 /* MyOrderDetailViewController.xib */,
-				4A6C16A81B711E7C00C9A9D2 /* MyOrderEvaluationTableViewCell.h */,
-				4A6C16A91B711E7C00C9A9D2 /* MyOrderEvaluationTableViewCell.m */,
-				4A6C16AA1B711E7C00C9A9D2 /* MyOrderEvaluationTableViewCell.xib */,
-				4A6C16AB1B711E7C00C9A9D2 /* MyOrderEvaluationViewController.h */,
-				4A6C16AC1B711E7C00C9A9D2 /* MyOrderEvaluationViewController.m */,
-				4A6C16AD1B711E7C00C9A9D2 /* MyOrderEvaluationViewController.xib */,
 				6D95415C1B6B0D8C00532677 /* MyOrderViewController.h */,
 				6D95415D1B6B0D8C00532677 /* MyOrderViewController.m */,
 				6D95415E1B6B0D8C00532677 /* MyOrderViewController.xib */,
@@ -1197,6 +1211,8 @@
 				6D8A3DBB1B6CB4F500694CEF /* MyOrderInsideTableViewCell.h */,
 				6D8A3DBC1B6CB4F500694CEF /* MyOrderInsideTableViewCell.m */,
 				6D8A3DBD1B6CB4F500694CEF /* MyOrderInsideTableViewCell.xib */,
+				6D6A43C61B71A4030029620E /* 订单详情 */,
+				6D6A43C51B71A3C50029620E /* 评价订单 */,
 			);
 			name = "我的订单";
 			sourceTree = "<group>";
@@ -1300,7 +1316,6 @@
 			files = (
 				2CF607C71B5EC88C0022E8E7 /* icon_recommend@2x.png in Resources */,
 				2C10D6AE1B60B1F7008C3DE0 /* icon_home@2x.png in Resources */,
-				6D3886001B70C47200206E2A /* icon_notAnonymous@2x.png in Resources */,
 				0AFC07161B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib in Resources */,
 				2CF6076E1B5EA0EF0022E8E7 /* btn_category@2x.png in Resources */,
 				2CF607981B5EBDA10022E8E7 /* line_ver_1px_right.png in Resources */,
@@ -1355,8 +1370,9 @@
 				2CF607CC1B5EC9E90022E8E7 /* HomeActivityTableView.xib in Resources */,
 				4A6C16AF1B711E7C00C9A9D2 /* MyOrderEvaluationTableViewCell.xib in Resources */,
 				4A6C16B11B711E7C00C9A9D2 /* MyOrderEvaluationViewController.xib in Resources */,
+				6D6A43C81B71E8E20029620E /* icon_notAnonymous@2x.png in Resources */,
 				4A6C15AD1B66194400C9A9D2 /* AddressManageTableViewCell.xib in Resources */,
-				0AE742521B70A4D7005A91CF /* icon_shoppingcar_default.png in Resources */,
+				0AE742521B70A4D7005A91CF /* icon_shoppingcar_default@2x.png in Resources */,
 				2C25288A1B5E2E1E00ADDEFB /* LoginViewController.xib in Resources */,
 				4A6C15941B60915500C9A9D2 /* icon_disagree@2x.png in Resources */,
 				0A3B670E1B6203BC0067C709 /* SettingTableViewCell.xib in Resources */,
