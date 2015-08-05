@@ -9,25 +9,65 @@
 #import "MyOrderViewController.h"
 #import "MyOrderTableViewCell.h"
 #import "MyOrderDetailViewController.h"
+#import "MyOrderEvaluationViewController.h"
 
 #define kGetOrderInMineKey        @"GetOrderInMineKey"
 
 @interface MyOrderViewController ()
+
+@property (strong, nonatomic) IBOutlet UIButton *waitForPayment;
+@property (strong, nonatomic) IBOutlet UIButton *waitForConfirm;
+@property (strong, nonatomic) IBOutlet UIButton *distributing;
+@property (strong, nonatomic) IBOutlet UIButton *waitForEvaluation;
+@property (strong, nonatomic) IBOutlet UIButton *alreadyFinished;
+
+@property (strong, nonatomic) IBOutlet UIView *waitForPaymentView;
+@property (strong, nonatomic) IBOutlet UIView *waitForConfirmView;
+@property (strong, nonatomic) IBOutlet UIView *distributingView;
+@property (strong, nonatomic) IBOutlet UIView *waitForEvaluationView;
+@property (strong, nonatomic) IBOutlet UIView *alreadyFinishedView;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) NSArray *orderListArray;
 @property (strong, nonatomic) NSMutableArray *eachCountOfSmallOrders;
 
+@property (strong, nonatomic) IBOutlet UIView *noOrderView;
+@property (strong, nonatomic) IBOutlet UIButton *goAroundButton;
+
 @end
 
 @implementation MyOrderViewController
 
+- (IBAction)goAround
+{
+    self.tabBarController.selectedIndex = 0;
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
 - (void)pushToMyOrderDetailViewController:(NSNotification *)notification
 {
     MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
+    
+    
+    
     [self.navigationController pushViewController:myOrderDetailViewController animated:YES];
 
+}
+
+- (void)cilckOrderButtonNotification:(NSNotification *)notification
+{
+    NSDictionary *dict = (NSDictionary *)notification.object;
+    NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
+    
+    NSArray *smallOrders = [self.orderListArray[indexPath.section] objectForKey:@"smallOrders"];
+    
+    
+    MyOrderEvaluationViewController *myOrderEvaluationViewController = [[MyOrderEvaluationViewController alloc] init];
+    
+    myOrderEvaluationViewController.smallOrders = smallOrders;
+    
+    [self.navigationController pushViewController:myOrderEvaluationViewController animated:YES];
 }
 
 - (NSMutableArray *)eachCountOfSmallOrders
@@ -68,25 +108,22 @@
                                                                delegate:self
                                                                 purpose:kGetOrderInMineKey];
 }
-/*
-waitForPaymentView;
-waitForConfirmView;
-distributingView;
-waitForEvaluationView;
-alreadyFinishedView;
- */
 
 - (void)changeButtonToBlackColor
 {
-    self.waitForPayment.titleLabel.textColor = [UIColor darkGrayColor];
+    [self.waitForPayment setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     self.waitForPaymentView.backgroundColor = [UIColor clearColor];
-    self.waitForConfirm.titleLabel.textColor = [UIColor darkGrayColor];
+    
+    [self.waitForConfirm setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     self.waitForConfirmView.backgroundColor = [UIColor clearColor];
-    self.waitForEvaluation.titleLabel.textColor = [UIColor darkGrayColor];
+    
+    [self.waitForEvaluation setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     self.waitForEvaluationView.backgroundColor = [UIColor clearColor];
-    self.distributing.titleLabel.textColor = [UIColor darkGrayColor];
+    
+    [self.distributing setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     self.distributingView.backgroundColor = [UIColor clearColor];
-    self.alreadyFinished.titleLabel.textColor = [UIColor darkGrayColor];
+    
+    [self.alreadyFinished setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     self.alreadyFinishedView.backgroundColor = [UIColor clearColor];
 }
 
@@ -165,24 +202,23 @@ alreadyFinishedView;
             CALayer *layer = [cell.leftButton layer];
             layer.borderColor = [[UIColor redColor] CGColor];
             [cell.leftButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-            cell.leftButton.titleLabel.text = @"删除订单";
-            cell.rightButton.titleLabel.text = @"评价订单";
+            [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];
         }
         if ([status isEqualToString:@"2"]) {
             CALayer *layer = [cell.leftButton layer];
             layer.borderColor = [[UIColor darkGrayColor] CGColor];
             [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             
-            cell.leftButton.titleLabel.text = @"删除订单";
-            cell.rightButton.titleLabel.text = @"评价订单";
-        }
+            [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];        }
         if ([status isEqualToString:@"3"]) {
             CALayer *layer = [cell.leftButton layer];
             layer.borderColor = [[UIColor darkGrayColor] CGColor];
             [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             
-            cell.leftButton.titleLabel.text = @"删除订单";
-            cell.rightButton.titleLabel.text = @"评价订单";
+            [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];;
         }
     }
 
@@ -192,8 +228,9 @@ alreadyFinishedView;
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
-    [self.navigationController pushViewController:myOrderDetailViewController animated:YES];
+    
+//    MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
+//    [self.navigationController pushViewController:myOrderDetailViewController animated:YES];
     
 }
 
@@ -239,9 +276,21 @@ alreadyFinishedView;
     
     [self addTargetToButton];
     [self waitForPaymentAction];
+    
+    CALayer *layer = [self.goAroundButton layer];
+    layer.borderColor = [[UIColor darkGrayColor] CGColor];
+    layer.borderWidth = 1.f;
+    self.goAroundButton.layer.masksToBounds = YES;
+    self.goAroundButton.layer.cornerRadius = 2.5f;
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(pushToMyOrderDetailViewController:)
                                                  name:kPushToMyOrderDetailNotification object:nil];
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(cilckOrderButtonNotification:)
+                                                 name:kCilckOrderButtonNotification object:nil];
 }
 
 #pragma mark - YFDownloaderDelegate Methods
@@ -264,8 +313,19 @@ alreadyFinishedView;
                 [self.eachCountOfSmallOrders addObject:smallOrderCount];
             }
             
-            [self.tableView reloadData];
-            
+            if (self.orderListArray.count == 0) {
+                self.tableView.hidden = YES;
+                CGRect frame = self.noOrderView.frame;
+                frame.origin.x = 0;
+                frame.origin.y = 94;
+                frame.size.width = ScreenWidth;
+                frame.size.height = ScreenHeight - 94;
+                self.noOrderView.frame = frame;
+                [self.view addSubview:self.noOrderView];
+            } else {
+                self.tableView.hidden = NO;
+                [self.tableView reloadData];
+            }
         }
         else
         {

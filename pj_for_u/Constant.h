@@ -95,7 +95,7 @@
 #define kMinusShoppingAmountNotification    @"MinusShoppingAmountNotification"
 #define kLoginOutNotification               @"LoginOutNotification"
 #define kPushToMyOrderDetailNotification    @"PushToMyOrderDetailNotification"
-
+#define kCilckOrderButtonNotification       @"CilckOrderButtonNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"

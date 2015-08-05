@@ -10,4 +10,6 @@
 
 @interface MyOrderDetailViewController : BaseViewController
 
+@property (strong, nonatomic) NSArray *orderList;
+
 @end

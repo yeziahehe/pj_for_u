@@ -112,7 +112,7 @@
                 <outlet property="orderConut" destination="9pD-KB-wo0" id="R7n-4f-adz"/>
                 <outlet property="price" destination="C0t-a1-5ie" id="DSh-w0-hOI"/>
             </connections>
-            <point key="canvasLocation" x="302.5" y="180"/>
+            <point key="canvasLocation" x="340.5" y="147"/>
         </tableViewCell>
     </objects>
     <resources>

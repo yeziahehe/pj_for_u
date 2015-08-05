@@ -10,4 +10,10 @@
 
 @interface MyOrderEvaluationTableViewCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet YFAsynImageView *image;
+@property (strong, nonatomic) IBOutlet UILabel *name;
+@property (strong, nonatomic) IBOutlet UILabel *price;
+
+@property (strong, nonatomic) IBOutlet UITextView *textView;
+
 @end
