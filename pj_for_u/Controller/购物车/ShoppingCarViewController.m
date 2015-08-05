@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UITableView *ShoppingCarTableView;
 @property (strong, nonatomic) ShoppingCar *shoppingCarInfo;
 @property (strong, nonatomic) NSMutableArray *shoppingCarArray;
+@property (strong, nonatomic) NSMutableArray *shoppingTempArray;
 @property (strong, nonatomic) IBOutlet UIView *noOrderView;
 @property (strong, nonatomic) IBOutlet UIView *CalculateView;
 @property (strong, nonatomic) IBOutlet UIButton *goAroundButton;
@@ -23,10 +24,19 @@
 @property (strong, nonatomic) IBOutlet UILabel *totalPriceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *discountPrice;
 @property (strong, nonatomic) IBOutlet UILabel *moneySavedLabel;
+@property int page;
+@property (strong, nonatomic) NSString *type;
 
 @end
 @implementation ShoppingCarViewController
 
+- (NSMutableArray *)shoppingCarArray
+{
+    if (!_shoppingCarArray) {
+        _shoppingCarArray = [[NSMutableArray alloc]initWithCapacity:0];
+    }
+    return _shoppingCarArray;
+}
 - (void)loadSubViews
 {
     //初始化界面为购物车中没有商品
@@ -42,36 +52,54 @@
     [[self.goAroundButton layer] setCornerRadius:5];
     [[self.goAroundButton layer] setBorderWidth:0.5];
     [[self.goAroundButton layer] setBorderColor:[UIColor lightGrayColor].CGColor];
-    //[self.ShoppingCarTableView reloadData];
+    [self.ShoppingCarTableView reloadData];
 }
 
+- (void)dropDownRefresh
+{
+    self.type = @"1";
+    self.page = 1;
+    NSString *pageString = [NSString stringWithFormat:@"%d",self.page];
+    [self requestForShoppingCar:@"18896554880" page:pageString limit:@"3"];
+}
+- (void)pullUpRefresh
+{
+    self.type = @"2";
+    self.page ++;
+    NSString *pageString = [NSString stringWithFormat:@"%d",self.page];
+    [self requestForShoppingCar:@"18896554880" page:pageString limit:@"3"];
+}
 - (void)viewWillAppear:(BOOL)animated
 {
+}
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.page = 1;
+    self.type = @"1";
     if ([[MemberDataManager sharedManager] isLogin]) {
         [self requestForShoppingCar:@"18896554880" page:@"1" limit:@"3"];
     } else {
         [self.ShoppingCarTableView removeHeader];
         [self loadSubViews];
     }
-}
-- (void)viewDidLoad {
-    [super viewDidLoad];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(plusShoppingAmountNotification:) name:kPlusShoppingAmountNotification object:nil];
+    [self.ShoppingCarTableView addHeaderWithTarget:self action:@selector(dropDownRefresh)];
+    [self.ShoppingCarTableView addFooterWithTarget:self action:@selector(pullUpRefresh)];
+    //[self.ShoppingCarTableView headerBeginRefreshing];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(plusShoppingAmountNotification:) name:kPlusShoppingAmountNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(minusShoppingAmountNotification:) name:kMinusShoppingAmountNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginOutNotification:) name:kLoginOutNotification object:nil];
-
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - IBAction methods
 - (IBAction)calculateButtonClicked:(id)sender {
     for (int i = 0; i < self.shoppingCarArray.count; i++) {
         ShoppingCar *sc = [self.shoppingCarArray objectAtIndex:i];
             self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.discountPrice floatValue]*[sc.orderCount intValue]];
     }
-    NSLog(@"%@",self.totalPrice);
     self.totalPriceLabel.text = self.totalPrice;
 }
 
@@ -135,7 +163,6 @@
         cell.originPrice.text = [NSString stringWithFormat:@"原价:%@",self.shoppingCarInfo.price];
         cell.amount = [self.shoppingCarInfo.orderCount intValue ];
         cell.orderCount.text = [NSString stringWithFormat:@"%d",cell.amount];
-
     }
     return cell;
 }
@@ -177,6 +204,7 @@
                          page:(NSString *)page
                         limit:(NSString *)limit
 {
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中..."];
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetShoppingCarUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:phone forKey:@"phoneId"];
@@ -201,12 +229,21 @@
     {
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
-            //[[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            self.shoppingCarArray = [NSMutableArray arrayWithCapacity:0];
+            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
+            self.shoppingTempArray = [[NSMutableArray alloc] initWithCapacity:0];
             NSArray *valueArray = [dict objectForKey:@"orderList"];
             for (NSDictionary *valueDict in valueArray) {
                 ShoppingCar *shoppingCar = [[ShoppingCar alloc] initWithDict:valueDict];
-                [self.shoppingCarArray addObject:shoppingCar];
+                [self.shoppingTempArray addObject:shoppingCar];
+            }
+            if ([self.type isEqualToString:@"1"]) {
+                self.shoppingCarArray = self.shoppingTempArray;
+                [self.ShoppingCarTableView headerEndRefreshing];
+            }
+            else if([self.type isEqualToString:@"2"])
+            {
+                [self.shoppingCarArray addObjectsFromArray:self.shoppingTempArray];
+                [self.ShoppingCarTableView footerEndRefreshing];
             }
             [self.ShoppingCarTableView reloadData];
         }
