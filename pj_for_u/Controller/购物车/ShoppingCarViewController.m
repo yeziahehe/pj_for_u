@@ -40,19 +40,15 @@
 - (void)loadSubViews
 {
     //初始化界面为购物车中没有商品
+    self.shoppingCarArray = nil;
     CGRect rect = self.noOrderView.frame;
     rect.size.height = ScreenHeight;
     rect.size.width = ScreenWidth;
     self.noOrderView.frame = rect;
-    self.shoppingCarArray = [NSMutableArray arrayWithCapacity:0];
-    self.ShoppingCarTableView.tableFooterView = self.noOrderView;
-    self.ShoppingCarTableView.scrollEnabled = NO;
-    self.CalculateView.hidden = YES;
-    self.navigationItem.rightBarButtonItem = nil;
     [[self.goAroundButton layer] setCornerRadius:5];
     [[self.goAroundButton layer] setBorderWidth:0.5];
     [[self.goAroundButton layer] setBorderColor:[UIColor lightGrayColor].CGColor];
-    [self.ShoppingCarTableView reloadData];
+    [self.view addSubview:self.noOrderView];
 }
 
 - (void)dropDownRefresh
@@ -70,13 +66,28 @@
     [self requestForShoppingCar:@"18896554880" page:pageString limit:@"3"];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    if ([[MemberDataManager sharedManager] isLogin]) {
+        if ([self.shoppingCarArray count]==0) {
+            [self.noOrderView removeFromSuperview];
+            [self.ShoppingCarTableView headerBeginRefreshing];
+            [self.ShoppingCarTableView reloadData];
+        }
+           }
+    else
+    {
+        [self loadSubViews];
+    }
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.page = 1;
     self.type = @"1";
     [self.ShoppingCarTableView addHeaderWithTarget:self action:@selector(dropDownRefresh)];
     [self.ShoppingCarTableView addFooterWithTarget:self action:@selector(pullUpRefresh)];
-    //[self.ShoppingCarTableView headerBeginRefreshing];
+        //[self.ShoppingCarTableView headerBeginRefreshing];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(plusShoppingAmountNotification:) name:kPlusShoppingAmountNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(minusShoppingAmountNotification:) name:kMinusShoppingAmountNotification object:nil];
 }
@@ -243,6 +254,16 @@
                 [self.shoppingCarArray addObjectsFromArray:self.shoppingTempArray];
                 [self.ShoppingCarTableView footerEndRefreshing];
             }
+//            if([self.shoppingCarArray count] == 0)
+//            {
+//                [self loadSubViews];
+//            }
+//            else
+//            {
+//                [self.ShoppingCarTableView removeFooter];
+//                self.ShoppingCarTableView.scrollEnabled = YES;
+//                self.CalculateView.hidden = NO;
+            //}
             [self.ShoppingCarTableView reloadData];
         }
         else
@@ -253,7 +274,7 @@
                 message = @"";
             }
             if(message.length == 0)
-                message = @"获取图片失败";
+                message = @"获取购物车信息失败";
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
