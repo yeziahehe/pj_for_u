@@ -69,7 +69,7 @@
 - (IBAction)calculateButtonClicked:(id)sender {
     for (int i = 0; i < self.shoppingCarArray.count; i++) {
         ShoppingCar *sc = [self.shoppingCarArray objectAtIndex:i];
-            self.totalPrice = [NSString stringWithFormat:@"%.2f",[sc.discountPrice floatValue]*[sc.orderCount intValue]];
+            self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.discountPrice floatValue]*[sc.orderCount intValue]];
     }
     NSLog(@"%@",self.totalPrice);
     self.totalPriceLabel.text = self.totalPrice;
