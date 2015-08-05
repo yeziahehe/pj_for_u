@@ -94,6 +94,7 @@
 #define kPlusShoppingAmountNotification     @"PlusShoppingAmountNotification"
 #define kMinusShoppingAmountNotification    @"MinusShoppingAmountNotification"
 #define kLoginOutNotification               @"LoginOutNotification"
+#define kPushToMyOrderDetailNotification    @"PushToMyOrderDetailNotification"
 
 
 //Url values
