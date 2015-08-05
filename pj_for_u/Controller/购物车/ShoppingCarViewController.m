@@ -69,25 +69,16 @@
     NSString *pageString = [NSString stringWithFormat:@"%d",self.page];
     [self requestForShoppingCar:@"18896554880" page:pageString limit:@"3"];
 }
-- (void)viewWillAppear:(BOOL)animated
-{
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.page = 1;
     self.type = @"1";
-    if ([[MemberDataManager sharedManager] isLogin]) {
-        [self requestForShoppingCar:@"18896554880" page:@"1" limit:@"3"];
-    } else {
-        [self.ShoppingCarTableView removeHeader];
-        [self loadSubViews];
-    }
     [self.ShoppingCarTableView addHeaderWithTarget:self action:@selector(dropDownRefresh)];
     [self.ShoppingCarTableView addFooterWithTarget:self action:@selector(pullUpRefresh)];
     //[self.ShoppingCarTableView headerBeginRefreshing];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(plusShoppingAmountNotification:) name:kPlusShoppingAmountNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(minusShoppingAmountNotification:) name:kMinusShoppingAmountNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginOutNotification:) name:kLoginOutNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,6 +86,10 @@
     // Dispose of any resources that can be recreated.
 }
 #pragma mark - IBAction methods
+- (IBAction)goAroundButtonClicked:(id)sender {
+    self.tabBarController.selectedIndex = 0;
+}
+
 - (IBAction)calculateButtonClicked:(id)sender {
     for (int i = 0; i < self.shoppingCarArray.count; i++) {
         ShoppingCar *sc = [self.shoppingCarArray objectAtIndex:i];
@@ -104,9 +99,6 @@
 }
 
 #pragma mark - notification方法
-- (void)loginOutNotification:(NSNotification *)notification{
-    
-}
 - (void)plusShoppingAmountNotification:(NSNotification *)notification{
     NSIndexPath *shopId = notification.object;
     ShoppingCar *sc = [self.shoppingCarArray objectAtIndex:shopId.section];
@@ -177,6 +169,12 @@
 {
     return 10.f;
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 0.1f;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

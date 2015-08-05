@@ -60,7 +60,6 @@
                                                 [self.navigationController popToRootViewControllerAnimated:YES];
                                             }]];
     [self presentViewController:alert animated:YES completion:nil];
-    [[NSNotificationCenter defaultCenter]postNotificationName:kLoginOutNotification object:nil];
 
 }
 
