@@ -10,4 +10,10 @@
 
 @interface ShoppingCarViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
 
+- (void)requestForShoppingCar:(NSString *)phone
+                         page:(NSString *)page
+                        limit:(NSString *)limit;
+
+- (void)loadSubViews;
+
 @end

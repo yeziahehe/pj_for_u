@@ -10,6 +10,7 @@
 #import "LoginViewController.h"
 #import "HomeViewController.h"
 #import "UserInfoViewController.h"
+#import "ShoppingCarViewController.h"
 
 @interface RootTabBarViewController ()
 
@@ -73,6 +74,19 @@
                     [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
                 }
             }
+        }
+        else if([vc isKindOfClass:[ShoppingCarViewController class]])
+        {
+//            if (vc != nil) {
+//                if ([[MemberDataManager sharedManager] isLogin]) {
+//                    [vc requestForShoppingCar:@"18896554880" page:@"1" limit:@"3"];
+//                }
+//                else
+//                {
+//                    [vc loadSubViews];
+//                }
+//            }
+
         }
     }
     return YES;
