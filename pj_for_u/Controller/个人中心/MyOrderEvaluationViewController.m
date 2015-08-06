@@ -9,10 +9,12 @@
 #import "MyOrderEvaluationViewController.h"
 #import "MyOrderEvaluationTableViewCell.h"
 
+#define kCreatOrderComment      @"CreatOrderComment"
+
 @interface MyOrderEvaluationViewController ()
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-
+@property (strong, nonatomic) NSIndexPath *indexPath;
 
 @property (strong, nonatomic) NSString *comment;
 
@@ -24,6 +26,57 @@
 
 @implementation MyOrderEvaluationViewController
 
+#pragma mark - Private
+//===========接收通知，添加数据，并网络请求数据==========
+- (void)deliverComment:(NSNotification *)notification
+{
+    NSMutableDictionary *dict = (NSMutableDictionary *)notification.object;
+    NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
+    self.indexPath = indexPath;
+    [dict removeObjectForKey:@"indexPath"];
+    NSDictionary *smallOrder = self.smallOrders[indexPath.section];
+    NSString *foodId = [NSString stringWithFormat:@"%@", [smallOrder objectForKey:@"foodId"]];
+    NSString *orderId = [NSString stringWithFormat:@"%@", [smallOrder objectForKey:@"orderId"]];
+
+    if (!self.comment) {
+        self.comment = @"";
+    }
+    if (!foodId) {
+        foodId = @"";
+    }
+    if (!orderId) {
+        orderId = @"";
+    }
+    [dict setObject:kCampusId forKey:@"campusId"];
+    [dict setObject:@"18896554880" forKey:@"phoneId"];
+    [dict setObject:self.comment forKey:@"comment"];
+    [dict setObject:foodId forKey:@"foodId"];
+    [dict setObject:orderId forKey:@"orderId"];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kCreatOrderCommentUrl];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kCreatOrderComment];
+    
+}
+
+#pragma mark - ViewController Lifecycle
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    [self setNaviTitle:@"评价订单"];
+    self.isFirstTime = YES;
+    self.tableView.delegate = self;
+    
+    UINib *nib = [UINib nibWithNibName:@"MyOrderEvaluationTableViewCell" bundle:nil];
+    [self.tableView registerNib:nib
+         forCellReuseIdentifier:@"MyOrderEvaluationTableViewCell"];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deliverComment:) name:kDeliverCommentNotification object:nil];
+
+}
 
 #pragma mark - UITextView Delegate Methods
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView       //开始输入前
@@ -60,20 +113,6 @@
 }
 
 
-#pragma mark - ViewController Lifecycle
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    self.isFirstTime = YES;
-    
-    UINib *nib = [UINib nibWithNibName:@"MyOrderEvaluationTableViewCell" bundle:nil];
-    [self.tableView registerNib:nib
-         forCellReuseIdentifier:@"MyOrderEvaluationTableViewCell"];
-    
-    
-
-}
-
 #pragma mark - UITableView Delegate And DataScource Methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -86,7 +125,7 @@
     [cell.image aysnLoadImageWithUrl:[smallDictionary objectForKey:@"imageUrl"] placeHolder:@"icon_user_default.png"];
     cell.name.text = [smallDictionary objectForKey:@"name"];
     cell.price.text = [NSString stringWithFormat:@"￥%@", [smallDictionary objectForKey:@"discountPrice"]];
-    
+    cell.itsIndexPath = indexPath;
     cell.textView.delegate = self;
     
     return cell;
@@ -118,10 +157,52 @@
     return 10.f;
 }
 
-
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 0.000001f;
 }
+
+
+
+#pragma mark - YFDownloaderDelegate Methods
+- (void)downloader:(YFDownloader *)downloader completeWithNSData:(NSData *)data
+{
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if ([downloader.purpose isEqualToString:kCreatOrderComment])
+    {
+        NSDictionary *dict = [str JSONValue];
+        
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"评论成功" hideDelay:2.f];
+            
+            [self.smallOrders removeObjectAtIndex:self.indexPath.section];
+            [self.tableView reloadData];
+            if (self.smallOrders.count == 0) {
+                [self.navigationController popViewControllerAnimated:YES];
+            }
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"评价订单失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+        
+    }
+}
+
+- (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
+{
+    NSLog(@"%@",message);
+    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:2.f];
+}
+
+
 
 @end

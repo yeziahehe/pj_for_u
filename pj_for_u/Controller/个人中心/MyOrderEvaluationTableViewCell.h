@@ -16,4 +16,5 @@
 
 @property (strong, nonatomic) IBOutlet UITextView *textView;
 
+@property (strong, nonatomic) NSIndexPath *itsIndexPath;        //cell的唯一标识
 @end
