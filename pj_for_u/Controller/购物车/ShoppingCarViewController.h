@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface ShoppingCarViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+@interface ShoppingCarViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
 
 - (void)requestForShoppingCar:(NSString *)phone
                          page:(NSString *)page

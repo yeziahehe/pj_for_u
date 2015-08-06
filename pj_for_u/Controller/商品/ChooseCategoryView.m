@@ -58,6 +58,12 @@
         
     }];
 }
+- (IBAction)doneButton:(id)sender {
+    if ([self.flag isEqualToString:@"1"]) {
+        NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
+        [self addShoppingCarWithfoodId:self.proInfo.foodId foodCount:foodCount];
+    }
+}
 -(void)sendNotification{
     [[NSNotificationCenter defaultCenter]postNotificationName:kSuccessAddingToCarNotification object:nil];
 
