@@ -9,9 +9,13 @@
 #import "ShoppingCarViewController.h"
 #import "ShoppingCarTableViewCell.h"
 #import "ShoppingCar.h"
+#import "ConfirmOrderViewController.h"
+#import "ProductDetailViewController.h"
 
 #define kGetShoppingCarDownloaderKey    @"GetShoppingCarDownloaderKey"
 #define kEditShoppingCarDownloaderKey   @"EditShoppingCarDownloaderKey"
+#define kDeleteShoppingCarDownloaderKey   @"DeleteShoppingCarDownloaderKey"
+
 @interface ShoppingCarViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *ShoppingCarTableView;
 @property (strong, nonatomic) ShoppingCar *shoppingCarInfo;
@@ -27,6 +31,7 @@
 @property int page;
 @property (strong, nonatomic) NSString *type;
 
+@property BOOL isChangedToSelectMode;
 @end
 @implementation ShoppingCarViewController
 
@@ -70,7 +75,7 @@
 {
     [super viewWillAppear:YES];
     if ([[MemberDataManager sharedManager] isLogin]) {
-        if ([self.shoppingCarArray count]==0) {
+        if ([self.shoppingCarArray count] == 0) {
             [self.noOrderView removeFromSuperview];
             [self.ShoppingCarTableView headerBeginRefreshing];
             [self.ShoppingCarTableView reloadData];
@@ -83,19 +88,40 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.isChangedToSelectMode = NO;
     self.page = 1;
     self.type = @"1";
     [self.ShoppingCarTableView addHeaderWithTarget:self action:@selector(dropDownRefresh)];
     [self.ShoppingCarTableView addFooterWithTarget:self action:@selector(pullUpRefresh)];
+    [self setRightNaviItemWithTitle:@"选择" imageName:nil];
         //[self.ShoppingCarTableView headerBeginRefreshing];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(plusShoppingAmountNotification:) name:kPlusShoppingAmountNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(minusShoppingAmountNotification:) name:kMinusShoppingAmountNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeBackGrayViewNotification:) name:kRemoveBackGrayViewNotification object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (void)rightItemTapped
+{
+    if(self.isChangedToSelectMode)
+    {
+        self.isChangedToSelectMode = NO;
+        [self setRightNaviItemWithTitle:@"选择" imageName:nil];
+        [self.ShoppingCarTableView reloadData];
+    }
+    else
+    {
+        [self setRightNaviItemWithTitle:@"完成" imageName:nil];
+        self.isChangedToSelectMode = YES;
+        [self.ShoppingCarTableView reloadData];
+    }
+}
+
 #pragma mark - IBAction methods
 - (IBAction)goAroundButtonClicked:(id)sender {
     self.tabBarController.selectedIndex = 0;
@@ -107,6 +133,8 @@
             self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.discountPrice floatValue]*[sc.orderCount intValue]];
     }
     self.totalPriceLabel.text = self.totalPrice;
+    ConfirmOrderViewController *confirmOrder = [[ConfirmOrderViewController alloc]initWithNibName:@"ConfirmOrderViewController" bundle:nil];
+    [self.navigationController pushViewController:confirmOrder animated:YES];
 }
 
 #pragma mark - notification方法
@@ -133,6 +161,12 @@
     [self requestForEdit:sc.orderId withOrderCount:sc.orderCount];
     }
 }
+- (void)removeBackGrayViewNotification:(NSNotification *)notification
+{
+    NSIndexPath *cellId = notification.object;
+    ShoppingCarTableViewCell *cell = (ShoppingCarTableViewCell *)[self.ShoppingCarTableView cellForRowAtIndexPath:cellId];
+    cell.backGrayView.hidden = YES;
+}
 
 
 
@@ -155,6 +189,8 @@
         NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"ShoppingCarTableViewCell" owner:self options:nil];
         cell = [nibs lastObject];
     }
+    
+    
     cell.shoppingId = indexPath;
         self.shoppingCarInfo = [self.shoppingCarArray objectAtIndex:indexPath.section];
     if (self.shoppingCarInfo) {
@@ -162,10 +198,14 @@
         NSString *imageUrl = self.shoppingCarInfo.imageUrl;
         cell.YFImageView.cacheDir = kUserIconCacheDir;
         [cell.YFImageView aysnLoadImageWithUrl:imageUrl placeHolder:@"icon_user_default.png"];
-        cell.discountPrice.text = [NSString stringWithFormat:@"%@",self.shoppingCarInfo.discountPrice];
-        cell.originPrice.text = [NSString stringWithFormat:@"原价:%@",self.shoppingCarInfo.price];
+        cell.discountPrice.text = [NSString stringWithFormat:@"%.1lf",[self.shoppingCarInfo.discountPrice floatValue]];
+        cell.originPrice.text = [NSString stringWithFormat:@"原价:%.1lf",[self.shoppingCarInfo.price  floatValue]];
         cell.amount = [self.shoppingCarInfo.orderCount intValue ];
         cell.orderCount.text = [NSString stringWithFormat:@"%d",cell.amount];
+    }
+    
+    if (self.isChangedToSelectMode) {
+        cell.backGrayView.hidden = NO;
     }
     return cell;
 }
@@ -189,8 +229,33 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(self.isChangedToSelectMode)
+    {
+        ShoppingCarTableViewCell *cell = (ShoppingCarTableViewCell *)[self.ShoppingCarTableView cellForRowAtIndexPath:indexPath];
+        cell.backGrayView.hidden = NO;
+    }
+    else{
+        ProductDetailViewController *detail = [[ProductDetailViewController alloc]init];
+        self.shoppingCarInfo = [self.shoppingCarArray objectAtIndex:indexPath.section];
+        detail.foodId = self.shoppingCarInfo.foodId;
+        [self.navigationController pushViewController:detail animated:YES];
+    }
 }
 
+- (void)requestForDelete:(NSString *)orderId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kEditShoppingCarUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:kCampusId forKey:@"campusId"];
+    [dict setObject:orderId forKey:@"orderId"];
+    
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kDeleteShoppingCarDownloaderKey];
+}
 - (void)requestForEdit:(NSString *)orderId
         withOrderCount:(NSString *)orderCount
 {
@@ -296,6 +361,25 @@
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
+    else if ([downloader.purpose isEqualToString:kDeleteShoppingCarDownloaderKey])
+    {
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            //成功
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"删除订单失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+
 
 }
 

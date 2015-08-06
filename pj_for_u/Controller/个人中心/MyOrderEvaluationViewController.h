@@ -8,8 +8,8 @@
 
 #import "BaseViewController.h"
 
-@interface MyOrderEvaluationViewController : BaseViewController <UITextViewDelegate>
+@interface MyOrderEvaluationViewController : BaseViewController <UITextViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
-@property (strong, nonatomic) NSArray *smallOrders;
+@property (strong, nonatomic) NSMutableArray *smallOrders;
 
 @end

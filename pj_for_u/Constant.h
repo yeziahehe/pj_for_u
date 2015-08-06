@@ -104,6 +104,7 @@
 #define kGetMainImageUrl        @"news/getMainImage.do"
 #define kGetShoppingCarUrl      @"order/getUserOrder.do"
 #define kEditShoppingCarUrl     @"order/editUserOrder.do"
+#define kDeleteShoppingCarUrl   @"order/deleteAllUserOrder.do"
 #define kGetActivityImageUrl    @"service/getHomeFood.do"
 #define kCheckUserExistUrl      @"user/checkUserIsExist.do"
 #define kRegisterUrl            @"user/registerIn.do"
@@ -122,6 +123,7 @@
 #define kGetCategoryFoodUrl     @"service/selectFoods.do"
 #define kGetFoodCommentUrl      @"service/getCommentsByFoodId.do"
 #define kGetFoodByIdUrl         @"service/getFoodById.do"
+#define kCreatOrderCommentUrl   @"service/creatOrderComment.do"
 #define kAddToShoppingCarUrl    @"order/createOrder.do"
 
 #endif
