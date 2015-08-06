@@ -9,6 +9,8 @@
 #import "MyOrderDetailViewController.h"
 
 @interface MyOrderDetailViewController ()
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) IBOutlet UILabel *name;
 
 @end
 
@@ -18,7 +20,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self setNaviTitle:@"订单详情"];
     
 }
 

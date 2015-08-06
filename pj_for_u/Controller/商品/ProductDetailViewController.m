@@ -57,9 +57,6 @@
     CGRect rect = piv.frame;
     rect.origin.y = 64.f;
     piv.frame = rect;
-    if (!self.proInfo) {
-        piv.foodId = self.foodId;
-    }
     piv.imageUrl = self.proInfo.imgUrl;
     piv.proInfo = self.proInfo;
     [self.contentScrollView addSubview:piv];
@@ -68,6 +65,7 @@
     rect = pinv.frame;
     rect.origin.y = 76.f + piv.frame.size.height ;
     pinv.frame = rect;
+    pinv.proInfo = self.proInfo;
     [self.contentScrollView addSubview:pinv];
     
     ProCommentView *pcv = [[[NSBundle mainBundle]loadNibNamed:@"ProCommentView" owner:self options:nil]lastObject];
@@ -86,6 +84,11 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setNaviTitle:@"商品详情"];
     [self loadDataWithfoodId:self.foodId];
+
 }
+- (IBAction)addShoppingCar:(id)sender {
+    
+}
+
 
 @end

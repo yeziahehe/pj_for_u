@@ -18,6 +18,7 @@
 - (void)awakeFromNib {
     // Initialization code
     
+    //左右两个按钮增加圆角边框
     CALayer *layer = [self.leftButton layer];
     layer.borderColor = [[UIColor darkGrayColor] CGColor];
     layer.borderWidth = 1.f;
@@ -30,6 +31,7 @@
     self.rightButton.layer.masksToBounds = YES;
     self.rightButton.layer.cornerRadius = 2.5f;
     
+    //register cell
     UINib *nib = [UINib nibWithNibName:@"MyOrderInsideTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"MyOrderInsideTableViewCell"];
@@ -42,6 +44,7 @@
     // Configure the view for the selected state
 }
 
+//以下两个按钮事件发送同一个通知，因为本质一样
 - (IBAction)leftButtonAction
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:2];
@@ -58,7 +61,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kCilckOrderButtonNotification object:dict];
 }
 
-
+#pragma mark - UITableViewDataSource Methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyOrderInsideTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderInsideTableViewCell"];
@@ -84,6 +87,7 @@
     return 70.f;
 }
 
+#pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

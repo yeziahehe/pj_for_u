@@ -79,6 +79,8 @@
 -(void)setProInfo:(ProductionInfo *)proInfo{
     _proInfo = proInfo;
     [self loadDataWithType:@"1" foodId:proInfo.foodId];
+    self.commentLabel.text = [NSString stringWithFormat:@"商品评价(%@)",proInfo.commentNumber];
+
 }
 #pragma mark - UIView Methosd
 -(void)awakeFromNib{
@@ -88,7 +90,6 @@
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"ProCommentTableViewCell"];
     [self.tableView addFooterWithTarget:self action:@selector(loadMoreComments)];
-    
 }
 
 #pragma mark - UITableView Datasource

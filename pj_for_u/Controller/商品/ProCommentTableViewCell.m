@@ -21,7 +21,7 @@
     self.nickNameLabel.text = pcd.nickName;
     self.gradeLabel.text = pcd.grade;
     self.timeLabel.text = pcd.date;
-    self.saleNumber.text = pcd.orderCount;
+    self.saleNumber.text = [NSString stringWithFormat:@"销量：%@",pcd.orderCount];
     self.commentLabel.text = pcd.comment;
     self.userImage.cacheDir = kUserIconCacheDir;
     [self.userImage aysnLoadImageWithUrl:pcd.imgUrl placeHolder:@"icon_user_default.png"];

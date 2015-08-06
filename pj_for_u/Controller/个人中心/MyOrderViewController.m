@@ -39,53 +39,7 @@
 
 @implementation MyOrderViewController
 
-- (IBAction)goAround
-{
-    self.tabBarController.selectedIndex = 0;
-    [self.navigationController popViewControllerAnimated:NO];
-}
-
-- (void)pushToMyOrderDetailViewController:(NSNotification *)notification
-{
-    MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
-    
-    
-    
-    [self.navigationController pushViewController:myOrderDetailViewController animated:YES];
-
-}
-
-- (void)cilckOrderButtonNotification:(NSNotification *)notification
-{
-    NSDictionary *dict = (NSDictionary *)notification.object;
-    NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
-    
-    NSArray *smallOrders = [self.orderListArray[indexPath.section] objectForKey:@"smallOrders"];
-    
-    
-    MyOrderEvaluationViewController *myOrderEvaluationViewController = [[MyOrderEvaluationViewController alloc] init];
-    
-    myOrderEvaluationViewController.smallOrders = smallOrders;
-    
-    [self.navigationController pushViewController:myOrderEvaluationViewController animated:YES];
-}
-
-- (NSMutableArray *)eachCountOfSmallOrders
-{
-    if (!_eachCountOfSmallOrders) {
-        _eachCountOfSmallOrders = [[NSMutableArray alloc] initWithCapacity:5];
-    }
-    return _eachCountOfSmallOrders;
-}
-
-- (void)addTargetToButton
-{
-    [self.waitForPayment addTarget:self action:@selector(waitForPaymentAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.waitForConfirm addTarget:self action:@selector(waitForConfirmAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.distributing addTarget:self action:@selector(distributingAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.waitForEvaluation addTarget:self action:@selector(waitForEvaluationAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.alreadyFinished addTarget:self action:@selector(alreadyFinishedAction) forControlEvents:UIControlEventTouchUpInside];
-}
+#pragma mark - Private Methods
 
 - (void)requestForMyOrderByStatus:(NSString *)status page:(NSString *)page limit:(NSString *)limit
 {
@@ -109,6 +63,16 @@
                                                                 purpose:kGetOrderInMineKey];
 }
 
+
+#pragma mark - Universal AND IBAciton
+//==================随便逛逛================
+- (IBAction)goAround
+{
+    self.tabBarController.selectedIndex = 0;
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
+//==================将按钮边框和底下条纹设置成默认===========
 - (void)changeButtonToBlackColor
 {
     [self.waitForPayment setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
@@ -127,6 +91,7 @@
     self.alreadyFinishedView.backgroundColor = [UIColor clearColor];
 }
 
+//==============以下点击事件将待付款一栏和底下条纹颜色变为红色并调用网络请求================
 - (void)waitForPaymentAction
 {
     [self changeButtonToBlackColor];
@@ -174,6 +139,60 @@
 }
 
 
+#pragma mark - Initialize
+//=========给待收货一栏按钮添加点击事件=========
+- (void)addTargetToButton
+{
+    [self.waitForPayment addTarget:self action:@selector(waitForPaymentAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.waitForConfirm addTarget:self action:@selector(waitForConfirmAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.distributing addTarget:self action:@selector(distributingAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.waitForEvaluation addTarget:self action:@selector(waitForEvaluationAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.alreadyFinished addTarget:self action:@selector(alreadyFinishedAction) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (NSMutableArray *)eachCountOfSmallOrders
+{
+    if (!_eachCountOfSmallOrders) {
+        _eachCountOfSmallOrders = [[NSMutableArray alloc] initWithCapacity:5];
+    }
+    return _eachCountOfSmallOrders;
+}
+
+
+#pragma mark - Notification Methods
+//=============订单详情===========
+- (void)pushToMyOrderDetailViewController:(NSNotification *)notification
+{
+    MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
+    
+    
+    [self.navigationController pushViewController:myOrderDetailViewController animated:YES];
+
+}
+
+//============点击左或者右两个按钮发生的事件，通过title来判断============
+- (void)cilckOrderButtonNotification:(NSNotification *)notification
+{
+    NSDictionary *dict = (NSDictionary *)notification.object;
+    NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
+    NSArray *smallOrders = [self.orderListArray[indexPath.section] objectForKey:@"smallOrders"];
+    
+    //评价订单，只显示未评价过得订单 if title = ...
+    NSMutableArray *realSmallOrders = [[NSMutableArray alloc] initWithCapacity:10];
+    for (NSDictionary *dict in smallOrders) {
+        NSString *isRemarked = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isRemarked"]];
+        if ([isRemarked isEqualToString:@"0"]) {
+            [realSmallOrders addObject:dict];
+        }
+    }
+    MyOrderEvaluationViewController *myOrderEvaluationViewController = [[MyOrderEvaluationViewController alloc] init];
+    myOrderEvaluationViewController.smallOrders = realSmallOrders;
+    
+    [self.navigationController pushViewController:myOrderEvaluationViewController animated:YES];
+}
+
+
+#pragma mark - UITableViewDataSource Methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MyOrderTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyOrderTableViewCell"
@@ -184,6 +203,8 @@
         cell.togetherDate.text = [orderInfoDictionary objectForKey:@"togetherDate"];
         cell.smallOrders = smallOrders;
         [cell.tableView reloadData];
+        
+        //后台不给。。。手动计算个数个总价
         int count = 0;
         double price = 0.0;
         for (NSDictionary *dict in smallOrders) {
@@ -198,6 +219,7 @@
         
         NSString *status = [NSString stringWithFormat:@"%@", [orderInfoDictionary objectForKey:@"status"]];
         
+        //通过status判断是什么状态，由此来确定每个按钮下应该显示的界面
         if ([status isEqualToString:@"1"]) {
             CALayer *layer = [cell.leftButton layer];
             layer.borderColor = [[UIColor redColor] CGColor];
@@ -211,7 +233,8 @@
             [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             
             [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];        }
+            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];
+        }
         if ([status isEqualToString:@"3"]) {
             CALayer *layer = [cell.leftButton layer];
             layer.borderColor = [[UIColor darkGrayColor] CGColor];
@@ -223,15 +246,6 @@
     }
 
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-//    MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
-//    [self.navigationController pushViewController:myOrderDetailViewController animated:YES];
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -259,6 +273,13 @@
 }
 
 
+#pragma mark - UITableViewDelegate Methods
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 0.000001f;
@@ -270,13 +291,15 @@
     [super viewDidLoad];
     [self setNaviTitle:@"我的订单"];
     
+    //register cell
     UINib *nib = [UINib nibWithNibName:@"MyOrderTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"MyOrderTableViewCell"];
+    //=============
     
     [self addTargetToButton];
-    [self waitForPaymentAction];
     
+    //随便逛逛按钮增加圆角边框
     CALayer *layer = [self.goAroundButton layer];
     layer.borderColor = [[UIColor darkGrayColor] CGColor];
     layer.borderWidth = 1.f;
@@ -287,10 +310,18 @@
                                              selector:@selector(pushToMyOrderDetailViewController:)
                                                  name:kPushToMyOrderDetailNotification object:nil];
     
-    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(cilckOrderButtonNotification:)
                                                  name:kCilckOrderButtonNotification object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    //每次进入页面刷新数据
+    [self waitForPaymentAction];
+    
 }
 
 #pragma mark - YFDownloaderDelegate Methods
@@ -313,6 +344,7 @@
                 [self.eachCountOfSmallOrders addObject:smallOrderCount];
             }
             
+            //如果没数据就显示随便逛逛页面
             if (self.orderListArray.count == 0) {
                 self.tableView.hidden = YES;
                 CGRect frame = self.noOrderView.frame;
@@ -325,6 +357,7 @@
             } else {
                 self.tableView.hidden = NO;
                 [self.tableView reloadData];
+                [self.noOrderView removeFromSuperview];
             }
         }
         else

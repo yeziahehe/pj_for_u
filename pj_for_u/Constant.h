@@ -123,4 +123,7 @@
 #define kGetCategoryFoodUrl     @"service/selectFoods.do"
 #define kGetFoodCommentUrl      @"service/getCommentsByFoodId.do"
 #define kGetFoodByIdUrl         @"service/getFoodById.do"
+#define kCreatOrderCommentUrl   @"service/creatOrderComment.do"
+#define kAddToShoppingCarUrl    @"order/createOrder.do"
+
 #endif
