@@ -176,6 +176,10 @@
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="fer-Pb-vuW">
                     <rect key="frame" x="0.0" y="235" width="375" height="432"/>
                     <color key="backgroundColor" red="0.97953344666946585" green="0.97829060216019625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="sXQ-zR-PaM"/>
+                        <outlet property="delegate" destination="-1" id="cip-Cr-lec"/>
+                    </connections>
                 </tableView>
             </subviews>
             <color key="backgroundColor" red="0.97953344666946585" green="0.97829060216019625" blue="1" alpha="1" colorSpace="calibratedRGB"/>

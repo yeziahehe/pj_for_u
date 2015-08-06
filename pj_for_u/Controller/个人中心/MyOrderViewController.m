@@ -163,8 +163,14 @@
 //=============订单详情===========
 - (void)pushToMyOrderDetailViewController:(NSNotification *)notification
 {
-    MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
+    NSIndexPath *indexPath = (NSIndexPath *)notification.object;
     
+    NSDictionary *orderList = self.orderListArray[indexPath.section];
+    
+    NSString *togetherId = [orderList objectForKey:@"togetherId"];
+    
+    MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
+    myOrderDetailViewController.togetherId = togetherId;
     
     [self.navigationController pushViewController:myOrderDetailViewController animated:YES];
 
@@ -178,6 +184,7 @@
     NSArray *smallOrders = [self.orderListArray[indexPath.section] objectForKey:@"smallOrders"];
     
     //评价订单，只显示未评价过得订单 if title = ...
+    
     NSMutableArray *realSmallOrders = [[NSMutableArray alloc] initWithCapacity:10];
     for (NSDictionary *dict in smallOrders) {
         NSString *isRemarked = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isRemarked"]];
@@ -204,7 +211,7 @@
         cell.smallOrders = smallOrders;
         [cell.tableView reloadData];
         
-        //后台不给。。。手动计算个数个总价
+        //后台不给。。。手动计算个数和总价
         int count = 0;
         double price = 0.0;
         for (NSDictionary *dict in smallOrders) {
@@ -272,17 +279,16 @@
     return 10.f;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.000001f;
+}
 
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 0.000001f;
 }
 
 #pragma mark - ViewController Lifecycle
@@ -369,6 +375,7 @@
             }
             if(message.length == 0)
                 message = @"信息获取失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
 }
