@@ -14,6 +14,27 @@
 @end
 @implementation ShoppingCarTableViewCell
 
+- (UIView *)backGrayView
+{
+    if (!_backGrayView) {
+        _backGrayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 140.f)];
+        _backGrayView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.5];
+        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                    action:@selector(removeBackGrayView)];
+        singleTap.numberOfTapsRequired = 1;
+        [_backGrayView addGestureRecognizer:singleTap];
+        [self.contentView addSubview:_backGrayView];
+        _backGrayView.hidden = YES;
+    }
+    return _backGrayView;
+}
+
+- (void)removeBackGrayView
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRemoveBackGrayViewNotification
+                                                        object:self.shoppingId];
+}
+
 - (void)loadSubView
 {
     [[self.amountView layer] setCornerRadius:5];
@@ -23,6 +44,11 @@
 - (void)awakeFromNib {
     // Initialization code
     [self loadSubView];
+//    self.darkGreyView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+//    self.darkGreyView.backgroundColor = [[UIColor darkGrayColor]colorWithAlphaComponent:0.5];
+//    self.darkGreyView.hidden = YES;
+//    [self addSubview:self.darkGreyView];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

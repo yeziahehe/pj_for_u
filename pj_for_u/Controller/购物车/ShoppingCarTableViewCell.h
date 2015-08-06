@@ -19,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UIButton *MinusButton;
 @property int amount;
 @property (strong, nonatomic) NSIndexPath *shoppingId;
+@property (strong, nonatomic) UIView *backGrayView;
 
 @end

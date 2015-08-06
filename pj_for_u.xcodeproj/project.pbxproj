@@ -10,6 +10,13 @@
 		0A3B670D1B6203BC0067C709 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B670B1B6203BC0067C709 /* SettingTableViewCell.m */; };
 		0A3B670E1B6203BC0067C709 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B670C1B6203BC0067C709 /* SettingTableViewCell.xib */; };
 		0A3B67121B622F5A0067C709 /* aboutImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B67111B622F5A0067C709 /* aboutImage.png */; };
+		0A54DA711B73121C00FCBAB0 /* ConfirmOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A54DA6F1B73121C00FCBAB0 /* ConfirmOrderViewController.m */; };
+		0A54DA721B73121C00FCBAB0 /* ConfirmOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA701B73121C00FCBAB0 /* ConfirmOrderViewController.xib */; };
+		0A54DA7B1B7322EC00FCBAB0 /* icon_order_headimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA791B7322EC00FCBAB0 /* icon_order_headimage@2x.png */; };
+		0A54DA7C1B7322EC00FCBAB0 /* icon_received_address@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA7A1B7322EC00FCBAB0 /* icon_received_address@2x.png */; };
+		0A54DA7E1B73261D00FCBAB0 /* icon_addre@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA7D1B73261D00FCBAB0 /* icon_addre@2x.png */; };
+		0A54DA811B73311E00FCBAB0 /* icon_alipay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA7F1B73311E00FCBAB0 /* icon_alipay@2x.png */; };
+		0A54DA821B73311E00FCBAB0 /* icon_wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA801B73311E00FCBAB0 /* icon_wechat@2x.png */; };
 		0ACABED11B65FFAB009B18E0 /* HomeActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */; };
 		0ACABED21B65FFAB009B18E0 /* HomeActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */; };
 		0ACABED41B67178D009B18E0 /* icon_user_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED31B67178D009B18E0 /* icon_user_default@2x.png */; };
@@ -242,6 +249,14 @@
 		0A3B670B1B6203BC0067C709 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingTableViewCell.m; path = "Controller/设置/SettingTableViewCell.m"; sourceTree = "<group>"; };
 		0A3B670C1B6203BC0067C709 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingTableViewCell.xib; path = "Controller/设置/SettingTableViewCell.xib"; sourceTree = "<group>"; };
 		0A3B67111B622F5A0067C709 /* aboutImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = aboutImage.png; path = Resource/aboutImage.png; sourceTree = "<group>"; };
+		0A54DA6E1B73121C00FCBAB0 /* ConfirmOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfirmOrderViewController.h; path = "Controller/购物车/ConfirmOrderViewController.h"; sourceTree = "<group>"; };
+		0A54DA6F1B73121C00FCBAB0 /* ConfirmOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfirmOrderViewController.m; path = "Controller/购物车/ConfirmOrderViewController.m"; sourceTree = "<group>"; };
+		0A54DA701B73121C00FCBAB0 /* ConfirmOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConfirmOrderViewController.xib; path = "Controller/购物车/ConfirmOrderViewController.xib"; sourceTree = "<group>"; };
+		0A54DA791B7322EC00FCBAB0 /* icon_order_headimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_order_headimage@2x.png"; path = "Resource/icon_order_headimage@2x.png"; sourceTree = "<group>"; };
+		0A54DA7A1B7322EC00FCBAB0 /* icon_received_address@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_received_address@2x.png"; path = "Resource/icon_received_address@2x.png"; sourceTree = "<group>"; };
+		0A54DA7D1B73261D00FCBAB0 /* icon_addre@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_addre@2x.png"; path = "Resource/icon_addre@2x.png"; sourceTree = "<group>"; };
+		0A54DA7F1B73311E00FCBAB0 /* icon_alipay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_alipay@2x.png"; path = "Resource/icon_alipay@2x.png"; sourceTree = "<group>"; };
+		0A54DA801B73311E00FCBAB0 /* icon_wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_wechat@2x.png"; path = "Resource/icon_wechat@2x.png"; sourceTree = "<group>"; };
 		0ACABECE1B65FFAB009B18E0 /* HomeActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeActivityTableViewCell.h; path = "Controller/首页/HomeActivityTableViewCell.h"; sourceTree = "<group>"; };
 		0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeActivityTableViewCell.m; path = "Controller/首页/HomeActivityTableViewCell.m"; sourceTree = "<group>"; };
 		0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeActivityTableViewCell.xib; path = "Controller/首页/HomeActivityTableViewCell.xib"; sourceTree = "<group>"; };
@@ -606,6 +621,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A54DA6D1B73119900FCBAB0 /* 确认订单 */ = {
+			isa = PBXGroup;
+			children = (
+				0A54DA6E1B73121C00FCBAB0 /* ConfirmOrderViewController.h */,
+				0A54DA6F1B73121C00FCBAB0 /* ConfirmOrderViewController.m */,
+				0A54DA701B73121C00FCBAB0 /* ConfirmOrderViewController.xib */,
+			);
+			name = "确认订单";
+			sourceTree = "<group>";
+		};
 		0AFC070E1B6CADE6002BDB90 /* 购物车 */ = {
 			isa = PBXGroup;
 			children = (
@@ -615,6 +640,7 @@
 				0AFC07121B6CAE46002BDB90 /* ShoppingCarViewController.h */,
 				0AFC07131B6CAE46002BDB90 /* ShoppingCarViewController.m */,
 				0AFC07141B6CAE46002BDB90 /* ShoppingCarViewController.xib */,
+				0A54DA6D1B73119900FCBAB0 /* 确认订单 */,
 			);
 			name = "购物车";
 			sourceTree = "<group>";
@@ -964,6 +990,11 @@
 		2C7953931B613EC000511EB7 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
+				0A54DA7F1B73311E00FCBAB0 /* icon_alipay@2x.png */,
+				0A54DA801B73311E00FCBAB0 /* icon_wechat@2x.png */,
+				0A54DA7D1B73261D00FCBAB0 /* icon_addre@2x.png */,
+				0A54DA791B7322EC00FCBAB0 /* icon_order_headimage@2x.png */,
+				0A54DA7A1B7322EC00FCBAB0 /* icon_received_address@2x.png */,
 				6D6A43C71B71E8E20029620E /* icon_notAnonymous@2x.png */,
 				6D3885FD1B70C47200206E2A /* icon_anonymous@2x.png */,
 				6D3885F91B70C3B000206E2A /* icon_evaluationStarLight@2x.png */,
@@ -1347,9 +1378,11 @@
 				4A6C16A21B70C99200C9A9D2 /* ProCommentView.xib in Resources */,
 				2C79539D1B61402D00511EB7 /* bg_user_module@2x.png in Resources */,
 				2C7953921B6134B400511EB7 /* icon_new@2x.png in Resources */,
+				0A54DA7C1B7322EC00FCBAB0 /* icon_received_address@2x.png in Resources */,
 				2C10D6C01B60B970008C3DE0 /* SettingViewController.xib in Resources */,
 				2C7953901B61321B00511EB7 /* home_image_default@2x.png in Resources */,
 				6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */,
+				0A54DA721B73121C00FCBAB0 /* ConfirmOrderViewController.xib in Resources */,
 				4A6C16B61B711ECD00C9A9D2 /* MyOrderDetailViewController.xib in Resources */,
 				2C2528991B5E38B100ADDEFB /* RegisterViewController.xib in Resources */,
 				2CF607A51B5EC6B60022E8E7 /* HomeContainView.xib in Resources */,
@@ -1363,8 +1396,10 @@
 				2C25285B1B5E108A00ADDEFB /* Images.xcassets in Resources */,
 				0AE093081B60D2EC0095D639 /* AboutAppViewController.xib in Resources */,
 				2CF607B21B5EC7DD0022E8E7 /* icon_header_back@2x.png in Resources */,
+				0A54DA7E1B73261D00FCBAB0 /* icon_addre@2x.png in Resources */,
 				2C7953A31B61432500511EB7 /* bg_user_img@2x.png in Resources */,
 				2C79539A1B613F4800511EB7 /* icon_setting@2x.png in Resources */,
+				0A54DA821B73311E00FCBAB0 /* icon_wechat@2x.png in Resources */,
 				4A6C15931B60915500C9A9D2 /* icon_agree@2x.png in Resources */,
 				0ACABED41B67178D009B18E0 /* icon_user_default@2x.png in Resources */,
 				2CF607CC1B5EC9E90022E8E7 /* HomeActivityTableView.xib in Resources */,
@@ -1376,12 +1411,14 @@
 				2C25288A1B5E2E1E00ADDEFB /* LoginViewController.xib in Resources */,
 				4A6C15941B60915500C9A9D2 /* icon_disagree@2x.png in Resources */,
 				0A3B670E1B6203BC0067C709 /* SettingTableViewCell.xib in Resources */,
+				0A54DA811B73311E00FCBAB0 /* icon_alipay@2x.png in Resources */,
 				6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */,
 				2CF607C41B5EC88C0022E8E7 /* icon_more@2x.png in Resources */,
 				4A6C15A31B65C84900C9A9D2 /* icon_addAdress@2x.png in Resources */,
 				2C2529091B5E3AA900ADDEFB /* YFProgressHUD.bundle in Resources */,
 				2CF607C31B5EC88C0022E8E7 /* icon_house@2x.png in Resources */,
 				4A6C15A81B66143000C9A9D2 /* AddReciverViewController.xib in Resources */,
+				0A54DA7B1B7322EC00FCBAB0 /* icon_order_headimage@2x.png in Resources */,
 				2C2528A51B5E38BB00ADDEFB /* ForgetPwdViewController.xib in Resources */,
 				4A6C15781B5F7D5300C9A9D2 /* icon_login_phone@2x.png in Resources */,
 				6D3885FF1B70C47200206E2A /* icon_anonymous@2x.png in Resources */,
@@ -1476,6 +1513,7 @@
 				0AFC07171B6CAE46002BDB90 /* ShoppingCarViewController.m in Sources */,
 				4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */,
 				4AB377D41B71AE4E0052168A /* ProCommentDetail.m in Sources */,
+				0A54DA711B73121C00FCBAB0 /* ConfirmOrderViewController.m in Sources */,
 				2C2528811B5E2C9D00ADDEFB /* BaseViewController.m in Sources */,
 				4A6C15BD1B69FA2700C9A9D2 /* AddressDataManager.m in Sources */,
 				4A6C161D1B6B703C00C9A9D2 /* MainTableViewController.m in Sources */,

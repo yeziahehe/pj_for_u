@@ -95,6 +95,7 @@
 #define kMinusShoppingAmountNotification    @"MinusShoppingAmountNotification"
 #define kPushToMyOrderDetailNotification    @"PushToMyOrderDetailNotification"
 #define kCilckOrderButtonNotification       @"CilckOrderButtonNotification"
+#define kRemoveBackGrayViewNotification     @"RemoveBackGrayViewNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
@@ -103,6 +104,7 @@
 #define kGetMainImageUrl        @"news/getMainImage.do"
 #define kGetShoppingCarUrl      @"order/getUserOrder.do"
 #define kEditShoppingCarUrl     @"order/editUserOrder.do"
+#define kDeleteShoppingCarUrl   @"order/deleteAllUserOrder.do"
 #define kGetActivityImageUrl    @"service/getHomeFood.do"
 #define kCheckUserExistUrl      @"user/checkUserIsExist.do"
 #define kRegisterUrl            @"user/registerIn.do"
