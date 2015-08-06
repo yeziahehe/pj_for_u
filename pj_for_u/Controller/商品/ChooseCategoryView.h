@@ -13,4 +13,5 @@
 @property (strong, nonatomic) IBOutlet UIButton *doneButton;
 @property (strong, nonatomic) IBOutlet YFAsynImageView *productImage;
 @property(strong,nonatomic)ProductionInfo *proInfo;
+@property(strong,nonatomic)NSString *flag;
 @end

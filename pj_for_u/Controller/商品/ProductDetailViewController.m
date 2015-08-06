@@ -12,14 +12,45 @@
 #import "ProInfoView.h"
 #import "ProCommentView.h"
 #import "ProductionInfo.h"
+#import "ChooseCategoryView.h"
 
 @interface ProductDetailViewController ()
 @property(strong,nonatomic)ProductionInfo *proInfo;
 @property(strong,nonatomic)NSArray *productInfoArray;
+@property(strong,nonatomic)UIView *background;
+@property(strong,nonatomic)ChooseCategoryView *chooseCategoryView;
 @end
 
 @implementation ProductDetailViewController
+#pragma mark - 懒加载
+- (UIView *)background
+{
+    if (!_background) {
+        _background = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, ScreenHeight)];
+        _background.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.5];
+        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                    action:@selector(removeSubViews)];
+        singleTap.numberOfTapsRequired = 1;
+        [_background addGestureRecognizer:singleTap];
+    }
+    return _background;
+}
 
+-(void)removeSubViews{
+    CGFloat height = self.chooseCategoryView.frame.size.height;
+    [UIView animateWithDuration:0.2
+                     animations:^{
+                         
+                         [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, height)];
+                     }
+                     completion:^(BOOL finished){
+                         if (finished) {
+                             [self.chooseCategoryView removeFromSuperview];
+                             self.chooseCategoryView = nil;
+                         }
+                     }];
+    [self.background removeFromSuperview];
+}
 #pragma mark - Private Methods
 - (void)loadDataWithfoodId:(NSString *)foodId
 {
@@ -84,10 +115,22 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setNaviTitle:@"商品详情"];
     [self loadDataWithfoodId:self.foodId];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessAddingToCarNotification object:nil];
 
 }
+
 - (IBAction)addShoppingCar:(id)sender {
-    
+    self.chooseCategoryView = [[[NSBundle mainBundle]loadNibNamed:@"ChooseCategoryView" owner:self options:nil]lastObject];
+    //传递参数
+    self.chooseCategoryView.proInfo = self.proInfo;
+    self.chooseCategoryView.flag = @"1";
+    CGFloat height = self.chooseCategoryView.frame.size.height;
+    [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, height)];
+    [self.view addSubview:self.background];
+    [self.view addSubview:self.chooseCategoryView];
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight - height, ScreenWidth, height)];
+    }];
 }
 
 
