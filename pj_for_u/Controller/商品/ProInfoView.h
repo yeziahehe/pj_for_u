@@ -7,7 +7,8 @@
 //
 
 #import "ProductSubView.h"
+#import "ProductionInfo.h"
 
 @interface ProInfoView : ProductSubView
-
+@property(strong,nonatomic)ProductionInfo *proInfo;
 @end

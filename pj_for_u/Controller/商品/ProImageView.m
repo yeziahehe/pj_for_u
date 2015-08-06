@@ -23,7 +23,7 @@
 }
 
 -(void)setFoodId:(NSString *)foodId{
-    
+    _foodId = foodId;
 }
 
 -(void)setProInfo:(ProductionInfo *)proInfo{
