@@ -17,6 +17,11 @@
 @property (strong, nonatomic) IBOutlet UILabel *commentLabel;
 @property (strong, nonatomic) IBOutlet UILabel *timeLabel;
 @property (strong, nonatomic) IBOutlet UILabel *saleNumber;
+@property (strong, nonatomic) IBOutlet UIImageView *starView1;
+@property (strong, nonatomic) IBOutlet UIImageView *starView2;
+@property (strong, nonatomic) IBOutlet UIImageView *starView3;
+@property (strong, nonatomic) IBOutlet UIImageView *starView4;
+@property (strong, nonatomic) IBOutlet UIImageView *starView5;
 
 @property (strong, nonatomic) ProCommentDetail *pcd;
 

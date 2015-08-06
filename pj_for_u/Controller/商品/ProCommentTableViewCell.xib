@@ -69,9 +69,15 @@
                 <outlet property="gradeLabel" destination="N9U-cF-bX9" id="QTW-IX-6dJ"/>
                 <outlet property="nickNameLabel" destination="ZWA-YA-Kgw" id="0mG-JU-q0Y"/>
                 <outlet property="saleNumber" destination="VXi-aV-Q4D" id="A6d-2L-JZf"/>
+                <outlet property="starView1" destination="8s7-LA-z8z" id="MDI-8x-LQy"/>
+                <outlet property="starView2" destination="cAl-cu-P9a" id="uHE-X9-daJ"/>
+                <outlet property="starView3" destination="XHn-aY-Xnm" id="9t9-tR-NY0"/>
+                <outlet property="starView4" destination="Mca-Mz-qQa" id="pax-Sf-Dml"/>
+                <outlet property="starView5" destination="Cj2-ru-5GW" id="EwZ-WT-xka"/>
                 <outlet property="timeLabel" destination="TT4-Cw-QKN" id="4zG-fh-yVZ"/>
                 <outlet property="userImage" destination="j8h-1K-kEd" id="TU4-Ok-ULK"/>
             </connections>
+            <point key="canvasLocation" x="71.5" y="433"/>
         </tableViewCell>
     </objects>
     <resources>
