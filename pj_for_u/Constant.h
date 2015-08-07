@@ -98,7 +98,7 @@
 #define kSuccessAddingToCarNotification     @"SuccessAddingToCarNotification"
 #define kDeliverCommentNotification         @"DeliverCommentNotification"
 #define kRemoveBackGrayViewNotification     @"RemoveBackGrayViewNotification"
-
+#define kHeightForTBVNotification           @"HeightForTBVNotification"
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
 #define kLocationUrl            @"campus/getCampusAndCity.do"

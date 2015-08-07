@@ -97,12 +97,13 @@
         CGRect rect = productSubView.frame;
         rect.size.width = ScreenWidth;
         rect.origin.y = originY;
-        rect.origin.x = 0.0f;
+        rect.origin.x = 0;
         if ([productSubView isKindOfClass:[ProImageView class]]) {
-            rect.size.height = ScreenWidth + 101.f;
             ProImageView *proImageView = (ProImageView *)productSubView;
             proImageView.imageUrl = self.proInfo.imgUrl;
             proImageView.proInfo = self.proInfo;
+            rect.size.width = ScreenWidth;
+            rect.size.height = ScreenWidth + 101.f;
             rect.origin.y += 64.f;
         }
         else if ([productSubView isKindOfClass:[ProInfoView class]]) {
@@ -113,17 +114,16 @@
         }
         else if ([productSubView isKindOfClass:[ProCommentView class]]){
             ProCommentView *proCommentView = (ProCommentView *)productSubView;
-            proCommentView.proInfo = self.proInfo;
             rect.origin.y += 10.f;
+            proCommentView.proInfo = self.proInfo;
             rect.size.height = proCommentView.tableView.contentSize.height;
+            
         }
         productSubView.frame = rect;
         [self.contentScrollView addSubview:productSubView];
         originY = rect.origin.y + rect.size.height;
     }
-    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, originY)];
-    NSLog(@"ccccccccc%f",originY);
-//    ProImageView *piv = [[[NSBundle mainBundle] loadNibNamed:@"ProImageView" owner:self options:nil]lastObject];
+    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, originY + 44.f)];//    ProImageView *piv = [[[NSBundle mainBundle] loadNibNamed:@"ProImageView" owner:self options:nil]lastObject];
 //    CGRect rect = piv.frame;
 //    rect.origin.y = 64.f;
 //    piv.frame = rect;
@@ -150,6 +150,10 @@
     [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
 }
 
+-(void)heightForTableViewWithNotification:(NSNotification *)notification{
+    CGFloat height = [notification.object doubleValue];
+    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, self.contentScrollView.contentSize.height + height)];
+}
 #pragma mark - UIView Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -157,7 +161,7 @@
     [self setNaviTitle:@"商品详情"];
     [self loadDataWithfoodId:self.foodId];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessAddingToCarNotification object:nil];
-
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(heightForTableViewWithNotification:) name:kHeightForTBVNotification object:nil];
 }
 
 -(void)dealloc{

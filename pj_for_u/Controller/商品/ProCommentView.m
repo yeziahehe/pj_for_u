@@ -44,7 +44,6 @@
         [dict setObject:pageString forKey:@"page"];
         self.page ++;
     }
-    NSLog(@"%@,%@,%@,%@,%@",foodId,kCampusId,kLimit,page,url);
     //进行post请求
     [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation,id responseObject) {
         
@@ -58,6 +57,8 @@
         if ([type isEqualToString:@"1"]) {
             self.allCommentMArray = tempArray;
             [self.tableView reloadData];
+            NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height];
+            [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
         }
         else if ([type isEqualToString:@"2"]){
             [self.tableView footerEndRefreshing];
