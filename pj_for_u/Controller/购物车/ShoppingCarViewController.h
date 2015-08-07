@@ -15,6 +15,5 @@
                          page:(NSString *)page
                         limit:(NSString *)limit;
 
-- (void)loadSubViews;
 
 @end

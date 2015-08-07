@@ -16,6 +16,7 @@
 		0A54DA7E1B73261D00FCBAB0 /* icon_addre@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA7D1B73261D00FCBAB0 /* icon_addre@2x.png */; };
 		0A54DA811B73311E00FCBAB0 /* icon_alipay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA7F1B73311E00FCBAB0 /* icon_alipay@2x.png */; };
 		0A54DA821B73311E00FCBAB0 /* icon_wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA801B73311E00FCBAB0 /* icon_wechat@2x.png */; };
+		0A72CE4D1B744D3E00222284 /* icon_rubbish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A72CE4C1B744D3E00222284 /* icon_rubbish@2x.png */; };
 		0ACABED11B65FFAB009B18E0 /* HomeActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */; };
 		0ACABED21B65FFAB009B18E0 /* HomeActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */; };
 		0ACABED41B67178D009B18E0 /* icon_user_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED31B67178D009B18E0 /* icon_user_default@2x.png */; };
@@ -260,6 +261,7 @@
 		0A54DA7D1B73261D00FCBAB0 /* icon_addre@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_addre@2x.png"; path = "Resource/icon_addre@2x.png"; sourceTree = "<group>"; };
 		0A54DA7F1B73311E00FCBAB0 /* icon_alipay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_alipay@2x.png"; path = "Resource/icon_alipay@2x.png"; sourceTree = "<group>"; };
 		0A54DA801B73311E00FCBAB0 /* icon_wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_wechat@2x.png"; path = "Resource/icon_wechat@2x.png"; sourceTree = "<group>"; };
+		0A72CE4C1B744D3E00222284 /* icon_rubbish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_rubbish@2x.png"; path = "Resource/icon_rubbish@2x.png"; sourceTree = "<group>"; };
 		0ACABECE1B65FFAB009B18E0 /* HomeActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeActivityTableViewCell.h; path = "Controller/首页/HomeActivityTableViewCell.h"; sourceTree = "<group>"; };
 		0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeActivityTableViewCell.m; path = "Controller/首页/HomeActivityTableViewCell.m"; sourceTree = "<group>"; };
 		0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeActivityTableViewCell.xib; path = "Controller/首页/HomeActivityTableViewCell.xib"; sourceTree = "<group>"; };
@@ -1206,6 +1208,7 @@
 		4AB377D51B723D270052168A /* 其他 */ = {
 			isa = PBXGroup;
 			children = (
+				0A72CE4C1B744D3E00222284 /* icon_rubbish@2x.png */,
 				4AB377D61B723D340052168A /* icon_addshopingcar@2x.png */,
 				4AB377D71B723D340052168A /* icon_addshoppingcarcircle@2x.png */,
 			);
@@ -1406,6 +1409,7 @@
 				0A54DA7C1B7322EC00FCBAB0 /* icon_received_address@2x.png in Resources */,
 				2C10D6C01B60B970008C3DE0 /* SettingViewController.xib in Resources */,
 				2C7953901B61321B00511EB7 /* home_image_default@2x.png in Resources */,
+				0A72CE4D1B744D3E00222284 /* icon_rubbish@2x.png in Resources */,
 				6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */,
 				0A54DA721B73121C00FCBAB0 /* ConfirmOrderViewController.xib in Resources */,
 				4A6C16B61B711ECD00C9A9D2 /* MyOrderDetailViewController.xib in Resources */,
