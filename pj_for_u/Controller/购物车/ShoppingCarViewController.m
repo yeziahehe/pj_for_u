@@ -21,6 +21,7 @@
 @property (strong, nonatomic) ShoppingCar *shoppingCarInfo;
 @property (strong, nonatomic) NSMutableArray *shoppingCarArray;
 @property (strong, nonatomic) NSMutableArray *shoppingTempArray;
+@property (strong, nonatomic) NSMutableArray *shoppingCarSelectedArray;
 @property (strong, nonatomic) IBOutlet UIView *noOrderView;
 @property (strong, nonatomic) IBOutlet UIView *CalculateView;
 @property (strong, nonatomic) IBOutlet UIButton *goAroundButton;
@@ -30,6 +31,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *moneySavedLabel;
 @property int page;
 @property (strong, nonatomic) NSString *type;
+@property (strong, nonatomic) IBOutlet UIView *deleteShoppingCarView;
+@property (strong, nonatomic) UIView *backGrayView;
 
 @property BOOL isChangedToSelectMode;
 @end
@@ -91,6 +94,8 @@
     self.isChangedToSelectMode = NO;
     self.page = 1;
     self.type = @"1";
+    self.shoppingCarSelectedArray = [[NSMutableArray alloc]initWithCapacity:0];
+    self.deleteShoppingCarView.hidden = YES;
     [self.ShoppingCarTableView addHeaderWithTarget:self action:@selector(dropDownRefresh)];
     [self.ShoppingCarTableView addFooterWithTarget:self action:@selector(pullUpRefresh)];
     [self setRightNaviItemWithTitle:@"选择" imageName:nil];
@@ -110,8 +115,10 @@
 {
     if(self.isChangedToSelectMode)
     {
+        [self.backGrayView removeFromSuperview];
         self.isChangedToSelectMode = NO;
         [self setRightNaviItemWithTitle:@"选择" imageName:nil];
+        self.deleteShoppingCarView.hidden = YES;
         [self.ShoppingCarTableView reloadData];
     }
     else
@@ -119,10 +126,33 @@
         [self setRightNaviItemWithTitle:@"完成" imageName:nil];
         self.isChangedToSelectMode = YES;
         [self.ShoppingCarTableView reloadData];
+        self.backGrayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 120.f)];
+        self.backGrayView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.5];
+        [self.CalculateView addSubview:self.backGrayView];
+        self.deleteShoppingCarView.hidden = NO;
+        [self.CalculateView addSubview:self.deleteShoppingCarView];
     }
 }
 
 #pragma mark - IBAction methods
+- (IBAction)deleteShoppingCar:(id)sender {
+    NSMutableString *orderId = [[NSMutableString alloc]initWithCapacity:0];
+    if (self.shoppingCarSelectedArray) {
+        for (int i = 0;i < [self.shoppingCarSelectedArray count];i++) {
+            ShoppingCar *sc = [self.shoppingCarSelectedArray objectAtIndex:i];
+            if (i == 0) {
+                [orderId appendFormat:@"%@",sc.orderId];
+            }
+            else{
+                [orderId appendFormat:@",%@",sc.orderId];
+            }
+        }
+    }
+    NSLog(@"%@",orderId);
+    [self requestForDelete:@"18896554880" orderId:orderId];
+    orderId = nil;
+}
+
 - (IBAction)goAroundButtonClicked:(id)sender {
     self.tabBarController.selectedIndex = 0;
 }
@@ -165,6 +195,9 @@
 {
     NSIndexPath *cellId = notification.object;
     ShoppingCarTableViewCell *cell = (ShoppingCarTableViewCell *)[self.ShoppingCarTableView cellForRowAtIndexPath:cellId];
+    ShoppingCar *sc = [self.shoppingCarArray objectAtIndex:cellId.section];
+    [self.shoppingCarSelectedArray addObject:sc];
+    cell.isSelected = YES;
     cell.backGrayView.hidden = YES;
 }
 
@@ -189,8 +222,6 @@
         NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"ShoppingCarTableViewCell" owner:self options:nil];
         cell = [nibs lastObject];
     }
-    
-    
     cell.shoppingId = indexPath;
         self.shoppingCarInfo = [self.shoppingCarArray objectAtIndex:indexPath.section];
     if (self.shoppingCarInfo) {
@@ -200,12 +231,16 @@
         [cell.YFImageView aysnLoadImageWithUrl:imageUrl placeHolder:@"icon_user_default.png"];
         cell.discountPrice.text = [NSString stringWithFormat:@"%.1lf",[self.shoppingCarInfo.discountPrice floatValue]];
         cell.originPrice.text = [NSString stringWithFormat:@"原价:%.1lf",[self.shoppingCarInfo.price  floatValue]];
-        cell.amount = [self.shoppingCarInfo.orderCount intValue ];
+        cell.amount = [self.shoppingCarInfo.orderCount intValue];
         cell.orderCount.text = [NSString stringWithFormat:@"%d",cell.amount];
     }
     
     if (self.isChangedToSelectMode) {
-        cell.backGrayView.hidden = NO;
+        if (!cell.isSelected) {
+            cell.backGrayView.hidden = NO;
+        }
+        cell.PlusButton.enabled = NO;
+        cell.MinusButton.enabled = NO;
     }
     return cell;
 }
@@ -232,6 +267,8 @@
     if(self.isChangedToSelectMode)
     {
         ShoppingCarTableViewCell *cell = (ShoppingCarTableViewCell *)[self.ShoppingCarTableView cellForRowAtIndexPath:indexPath];
+        ShoppingCar *sc = [self.shoppingCarArray objectAtIndex:indexPath.section];
+        [self.shoppingCarSelectedArray removeObject:sc];
         cell.backGrayView.hidden = NO;
     }
     else{
@@ -242,13 +279,13 @@
     }
 }
 
-- (void)requestForDelete:(NSString *)orderId
+- (void)requestForDelete:(NSString *)phone
+                 orderId:(NSString *)orderId
 {
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kEditShoppingCarUrl];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kDeleteShoppingCarUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:kCampusId forKey:@"campusId"];
+    [dict setObject:phone forKey:@"phoneId"];
     [dict setObject:orderId forKey:@"orderId"];
-    
     
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict
@@ -319,16 +356,10 @@
                 [self.shoppingCarArray addObjectsFromArray:self.shoppingTempArray];
                 [self.ShoppingCarTableView footerEndRefreshing];
             }
-//            if([self.shoppingCarArray count] == 0)
-//            {
-//                [self loadSubViews];
-//            }
-//            else
-//            {
-//                [self.ShoppingCarTableView removeFooter];
-//                self.ShoppingCarTableView.scrollEnabled = YES;
-//                self.CalculateView.hidden = NO;
-            //}
+            if([self.shoppingCarArray count] == 0)
+            {
+                [self loadSubViews];
+            }
             [self.ShoppingCarTableView reloadData];
         }
         else
@@ -348,6 +379,7 @@
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             //成功
+            
         }
         else
         {
@@ -366,6 +398,9 @@
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             //成功
+            [self.shoppingCarArray removeObjectsInArray:self.shoppingCarSelectedArray];
+            [self.ShoppingCarTableView headerBeginRefreshing];
+            [self.shoppingCarSelectedArray removeAllObjects];
         }
         else
         {

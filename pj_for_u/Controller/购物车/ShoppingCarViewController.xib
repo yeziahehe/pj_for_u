@@ -2,12 +2,14 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShoppingCarViewController">
             <connections>
                 <outlet property="CalculateView" destination="qp5-DK-roV" id="G1O-u1-QC4"/>
                 <outlet property="ShoppingCarTableView" destination="IGJ-fS-aXH" id="13E-bC-fQK"/>
+                <outlet property="deleteShoppingCarView" destination="xkD-gH-Qn0" id="iAN-cB-iwY"/>
                 <outlet property="discountPrice" destination="7jT-bv-okA" id="dEM-DW-fbt"/>
                 <outlet property="goAroundButton" destination="Zps-fL-rNg" id="a5Y-Jw-H1j"/>
                 <outlet property="moneySavedLabel" destination="ehx-nQ-mQf" id="EgR-j7-byv"/>
@@ -25,7 +27,7 @@
                     <rect key="frame" x="0.0" y="578" width="375" height="120"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nfM-wV-hIa">
-                            <rect key="frame" x="10" y="58" width="355" height="45"/>
+                            <rect key="frame" x="8" y="58" width="359" height="45"/>
                             <color key="backgroundColor" red="1" green="0.32156862749999998" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="H9Y-Jn-h1b"/>
@@ -85,13 +87,70 @@
                                 <constraint firstAttribute="height" constant="1" id="fUa-Xs-3t0"/>
                             </constraints>
                         </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xkD-gH-Qn0">
+                            <rect key="frame" x="8" y="58" width="359" height="45"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s1E-0F-NlH">
+                                    <rect key="frame" x="76" y="0.0" width="283" height="45"/>
+                                    <color key="backgroundColor" red="1" green="0.32156862749999998" blue="0.25490196079999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="74P-BF-dmn"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                    <state key="normal" title="结     算">
+                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="calculateButtonClicked:" destination="-1" eventType="touchUpInside" id="mIl-bh-MYj"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CGB-5a-mZD">
+                                    <rect key="frame" x="0.0" y="0.0" width="76" height="45"/>
+                                    <color key="backgroundColor" red="1" green="0.32156862745098036" blue="0.25490196078431371" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="dKf-lb-gqP"/>
+                                    </constraints>
+                                    <state key="normal" image="icon_rubbish.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="deleteShoppingCar:" destination="-1" eventType="touchUpInside" id="qbi-bJ-ilt"/>
+                                    </connections>
+                                </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="xXJ-ct-neR">
+                                    <rect key="frame" x="77" y="8" width="3" height="29"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="3" id="yiS-eW-GF9"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="CGB-5a-mZD" firstAttribute="leading" secondItem="xkD-gH-Qn0" secondAttribute="leading" id="0GX-qy-TIk"/>
+                                <constraint firstItem="CGB-5a-mZD" firstAttribute="top" secondItem="xkD-gH-Qn0" secondAttribute="top" id="18T-D9-Vft"/>
+                                <constraint firstItem="xXJ-ct-neR" firstAttribute="top" secondItem="xkD-gH-Qn0" secondAttribute="top" constant="8" id="Ifj-WJ-iQz"/>
+                                <constraint firstItem="xXJ-ct-neR" firstAttribute="leading" secondItem="CGB-5a-mZD" secondAttribute="trailing" constant="1" id="L92-SK-REZ"/>
+                                <constraint firstItem="s1E-0F-NlH" firstAttribute="top" secondItem="xkD-gH-Qn0" secondAttribute="top" id="OaQ-zx-gTF"/>
+                                <constraint firstAttribute="height" constant="45" id="SPG-QL-OXe"/>
+                                <constraint firstAttribute="bottom" secondItem="CGB-5a-mZD" secondAttribute="bottom" id="Svl-Yo-kau"/>
+                                <constraint firstItem="s1E-0F-NlH" firstAttribute="width" secondItem="CGB-5a-mZD" secondAttribute="height" multiplier="283:45" id="X8M-EK-RLp"/>
+                                <constraint firstItem="s1E-0F-NlH" firstAttribute="height" secondItem="CGB-5a-mZD" secondAttribute="height" id="XLK-ix-qgH"/>
+                                <constraint firstAttribute="bottom" secondItem="s1E-0F-NlH" secondAttribute="bottom" id="XNm-uq-ozN"/>
+                                <constraint firstAttribute="trailing" secondItem="s1E-0F-NlH" secondAttribute="trailing" id="cSM-Fq-QGb"/>
+                                <constraint firstItem="s1E-0F-NlH" firstAttribute="leading" secondItem="CGB-5a-mZD" secondAttribute="trailing" id="d3t-Eh-wRQ"/>
+                                <constraint firstAttribute="bottom" secondItem="xXJ-ct-neR" secondAttribute="bottom" constant="8" id="dkQ-sh-qxY"/>
+                                <constraint firstItem="s1E-0F-NlH" firstAttribute="leading" secondItem="CGB-5a-mZD" secondAttribute="trailing" id="kOt-Qz-lZj"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="nfM-wV-hIa" secondAttribute="trailing" constant="10" id="37U-bB-W4J"/>
+                        <constraint firstItem="xkD-gH-Qn0" firstAttribute="top" secondItem="ehx-nQ-mQf" secondAttribute="bottom" constant="5" id="1RA-q2-kgW"/>
+                        <constraint firstAttribute="trailing" secondItem="nfM-wV-hIa" secondAttribute="trailing" constant="8" id="37U-bB-W4J"/>
+                        <constraint firstAttribute="trailing" secondItem="xkD-gH-Qn0" secondAttribute="trailing" constant="8" id="F3d-ne-kHl"/>
                         <constraint firstItem="qs9-xL-qdb" firstAttribute="leading" secondItem="5eO-Eg-dtr" secondAttribute="trailing" id="HOo-Gh-m0d"/>
                         <constraint firstItem="ehx-nQ-mQf" firstAttribute="top" secondItem="qp5-DK-roV" secondAttribute="top" constant="32" id="IAP-48-KRG"/>
-                        <constraint firstItem="nfM-wV-hIa" firstAttribute="leading" secondItem="qp5-DK-roV" secondAttribute="leading" constant="10" id="MMf-QI-ZSS"/>
+                        <constraint firstItem="nfM-wV-hIa" firstAttribute="leading" secondItem="qp5-DK-roV" secondAttribute="leading" constant="8" id="MMf-QI-ZSS"/>
                         <constraint firstItem="nfM-wV-hIa" firstAttribute="top" secondItem="v9c-zs-FTU" secondAttribute="bottom" constant="14" id="NbQ-Fl-shb"/>
                         <constraint firstItem="nfM-wV-hIa" firstAttribute="top" secondItem="qp5-DK-roV" secondAttribute="top" constant="58" id="OsT-QN-3jy"/>
                         <constraint firstItem="5eO-Eg-dtr" firstAttribute="top" secondItem="qp5-DK-roV" secondAttribute="top" constant="32" id="SwN-Y1-ZoH"/>
@@ -102,6 +161,7 @@
                         <constraint firstItem="qs9-xL-qdb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qp5-DK-roV" secondAttribute="top" constant="32" id="Zvn-An-IGm"/>
                         <constraint firstAttribute="height" constant="120" id="bXB-fZ-G3Y"/>
                         <constraint firstAttribute="trailing" secondItem="ehx-nQ-mQf" secondAttribute="trailing" constant="13" id="fXQ-Bs-rQz"/>
+                        <constraint firstItem="xkD-gH-Qn0" firstAttribute="leading" secondItem="qp5-DK-roV" secondAttribute="leading" constant="8" id="mEM-xS-t4f"/>
                         <constraint firstItem="7jT-bv-okA" firstAttribute="top" relation="greaterThanOrEqual" secondItem="qp5-DK-roV" secondAttribute="top" constant="32" id="mjw-sA-238"/>
                         <constraint firstItem="7jT-bv-okA" firstAttribute="top" secondItem="qp5-DK-roV" secondAttribute="top" constant="32" id="mxW-VG-Gmk"/>
                         <constraint firstItem="qs9-xL-qdb" firstAttribute="top" secondItem="qp5-DK-roV" secondAttribute="top" constant="32" id="naC-hM-Pl3"/>
@@ -194,8 +254,10 @@
         </view>
     </objects>
     <resources>
+        <image name="icon_rubbish.png" width="22" height="21"/>
         <image name="icon_shoppingcar_default.png" width="106" height="107"/>
         <image name="line_hon_1px_down.png" width="640" height="2"/>
+        <image name="line_ver_1px_left.png" width="2" height="149"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
