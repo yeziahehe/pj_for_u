@@ -75,6 +75,7 @@
     
 }
 
+
 #pragma mark - IBAction Methods
 // -
 - (IBAction)reduceNumber:(id)sender {
@@ -109,7 +110,7 @@
     _proInfo = proInfo;
     self.productImage.cacheDir = kUserIconCacheDir;
     [self.productImage aysnLoadImageWithUrl:proInfo.imgUrl placeHolder:@"icon_user_default.png"];
-    self.discountPrice.text = [NSString stringWithFormat:@"%@元",proInfo.discountPrice];
+    self.discountPrice.text = [NSString stringWithFormat:@"%.1f元",[proInfo.discountPrice doubleValue]];
     self.oldPrice.text = proInfo.price;
     CGFloat discountPrice = [proInfo.price doubleValue] - [proInfo.discountPrice doubleValue];
     self.midPrice.text = [NSString stringWithFormat:@"( 省%.1f元 )",discountPrice];

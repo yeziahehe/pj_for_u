@@ -16,6 +16,7 @@
 
 @interface ProductDetailViewController ()
 @property(strong,nonatomic)ProductionInfo *proInfo;
+@property (nonatomic, strong) NSMutableArray *subViewArray;
 @property(strong,nonatomic)NSArray *productInfoArray;
 @property(strong,nonatomic)UIView *background;
 @property(strong,nonatomic)ChooseCategoryView *chooseCategoryView;
@@ -85,37 +86,70 @@
             [subView removeFromSuperview];
         }
     }
-    ProImageView *piv = [[[NSBundle mainBundle] loadNibNamed:@"ProImageView" owner:self options:nil]lastObject];
-    CGRect rect = piv.frame;
-    rect.origin.y = 64.f;
-    piv.frame = rect;
-    piv.imageUrl = self.proInfo.imgUrl;
-    piv.proInfo = self.proInfo;
-    [self.contentScrollView addSubview:piv];
-
-    ProInfoView *pinv = [[[NSBundle mainBundle]loadNibNamed:@"ProInfoView" owner:self options:nil]lastObject];
-    rect = pinv.frame;
-    rect.origin.y = 76.f + piv.frame.size.height ;
-    pinv.frame = rect;
-    pinv.proInfo = self.proInfo;
-    [self.contentScrollView addSubview:pinv];
+    self.subViewArray = [NSMutableArray arrayWithObjects:@"ProImageView", @"ProInfoView", @"ProCommentView",nil];
     
-    ProCommentView *pcv = [[[NSBundle mainBundle]loadNibNamed:@"ProCommentView" owner:self options:nil]lastObject];
-    rect = pcv.frame;
-    rect.origin.y = 88.f + piv.frame.size.height + pinv.frame.size.height;
-    pcv.frame = rect;
-    pcv.proInfo = self.proInfo;
-    [self.contentScrollView addSubview:pcv];
-    
-    
-    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth,pcv.frame.origin.y + pcv.frame.size.height)];
+    //加载每个子模块
+    CGFloat originY = 0.f;
+    [self.contentScrollView layoutIfNeeded];
+    for (NSString *classString in self.subViewArray) {
+        NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:classString owner:self options:nil];
+        ProductSubView *productSubView = [nibs lastObject];
+        CGRect rect = productSubView.frame;
+        rect.size.width = ScreenWidth;
+        rect.origin.y = originY;
+        rect.origin.x = 0.0f;
+        if ([productSubView isKindOfClass:[ProImageView class]]) {
+            rect.size.height = ScreenWidth + 101.f;
+            ProImageView *proImageView = (ProImageView *)productSubView;
+            proImageView.imageUrl = self.proInfo.imgUrl;
+            proImageView.proInfo = self.proInfo;
+            rect.origin.y += 64.f;
+        }
+        else if ([productSubView isKindOfClass:[ProInfoView class]]) {
+            ProInfoView *proInfoView = (ProInfoView *)productSubView;
+            proInfoView.proInfo = self.proInfo;
+            rect.size.height = 44.f;
+            rect.origin.y += 10.f;
+        }
+        else if ([productSubView isKindOfClass:[ProCommentView class]]){
+            ProCommentView *proCommentView = (ProCommentView *)productSubView;
+            proCommentView.proInfo = self.proInfo;
+            rect.origin.y += 10.f;
+            rect.size.height = proCommentView.tableView.contentSize.height;
+        }
+        productSubView.frame = rect;
+        [self.contentScrollView addSubview:productSubView];
+        originY = rect.origin.y + rect.size.height;
+    }
+    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, originY)];
+    NSLog(@"ccccccccc%f",originY);
+//    ProImageView *piv = [[[NSBundle mainBundle] loadNibNamed:@"ProImageView" owner:self options:nil]lastObject];
+//    CGRect rect = piv.frame;
+//    rect.origin.y = 64.f;
+//    piv.frame = rect;
+//    piv.imageUrl = self.proInfo.imgUrl;
+//    piv.proInfo = self.proInfo;
+//    [self.contentScrollView addSubview:piv];
+//
+//    ProInfoView *pinv = [[[NSBundle mainBundle]loadNibNamed:@"ProInfoView" owner:self options:nil]lastObject];
+//    rect = pinv.frame;
+//    rect.origin.y = 76.f + piv.frame.size.height ;
+//    pinv.frame = rect;
+//    pinv.proInfo = self.proInfo;
+//    [self.contentScrollView addSubview:pinv];
+//    
+//    ProCommentView *pcv = [[[NSBundle mainBundle]loadNibNamed:@"ProCommentView" owner:self options:nil]lastObject];
+//    rect = pcv.frame;
+//    rect.origin.y = 88.f + piv.frame.size.height + pinv.frame.size.height;
+//    pcv.frame = rect;
+//    pcv.proInfo = self.proInfo;
+//    [self.contentScrollView addSubview:pcv];
+//    
+//    
+//    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth,1600.f)];
     [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
 }
 
--(void)setContentSizeForScrollViewWithheight:(CGFloat)height
-{
-    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth,height)];
-}
 #pragma mark - UIView Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -124,6 +158,10 @@
     [self loadDataWithfoodId:self.foodId];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessAddingToCarNotification object:nil];
 
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 - (IBAction)addShoppingCar:(id)sender {

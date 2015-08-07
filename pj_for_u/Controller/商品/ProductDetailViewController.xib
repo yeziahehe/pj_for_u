@@ -131,7 +131,7 @@
                 <constraint firstItem="4Pf-3C-1Rr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eJR-pG-4oh"/>
                 <constraint firstItem="4Pf-3C-1Rr" firstAttribute="trailing" secondItem="sAG-NC-iCB" secondAttribute="trailing" id="uj6-It-Utb"/>
             </constraints>
-            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <nil key="simulatedTopBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
             <point key="canvasLocation" x="340.5" y="322.5"/>
         </view>
