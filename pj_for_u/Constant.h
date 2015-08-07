@@ -96,6 +96,8 @@
 #define kPushToMyOrderDetailNotification    @"PushToMyOrderDetailNotification"
 #define kCilckOrderButtonNotification       @"CilckOrderButtonNotification"
 #define kSuccessAddingToCarNotification     @"SuccessAddingToCarNotification"
+#define kDeliverCommentNotification         @"DeliverCommentNotification"
+#define kRemoveBackGrayViewNotification     @"RemoveBackGrayViewNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"

@@ -98,7 +98,7 @@
     [self.waitForPayment setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForPaymentView.backgroundColor = [UIColor redColor];
     
-    [self requestForMyOrderByStatus:nil page:nil limit:nil];
+    [self requestForMyOrderByStatus:@"1" page:nil limit:nil];
 }
 
 - (void)waitForConfirmAction
@@ -107,7 +107,7 @@
     [self.waitForConfirm setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForConfirmView.backgroundColor = [UIColor redColor];
     
-    [self requestForMyOrderByStatus:@"1" page:nil limit:nil];
+    [self requestForMyOrderByStatus:@"2" page:nil limit:nil];
 }
 
 - (void)distributingAction
@@ -117,7 +117,7 @@
     [self.distributing setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.distributingView.backgroundColor = [UIColor redColor];
     
-    [self requestForMyOrderByStatus:@"2" page:nil limit:nil];
+    [self requestForMyOrderByStatus:@"3" page:nil limit:nil];
 }
 
 - (void)waitForEvaluationAction
@@ -126,7 +126,7 @@
     [self.waitForEvaluation setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForEvaluationView.backgroundColor = [UIColor redColor];
     
-    [self requestForMyOrderByStatus:@"3" page:nil limit:nil];
+    [self requestForMyOrderByStatus:@"4" page:nil limit:nil];
 }
 
 - (void)alreadyFinishedAction
@@ -135,7 +135,7 @@
     [self.alreadyFinished setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.alreadyFinishedView.backgroundColor = [UIColor redColor];
     
-    [self requestForMyOrderByStatus:nil page:nil limit:nil];
+    [self requestForMyOrderByStatus:@"5" page:nil limit:nil];
 }
 
 
@@ -227,27 +227,36 @@
         NSString *status = [NSString stringWithFormat:@"%@", [orderInfoDictionary objectForKey:@"status"]];
         
         //通过status判断是什么状态，由此来确定每个按钮下应该显示的界面
+        cell.leftButton.hidden = NO;
         if ([status isEqualToString:@"1"]) {
             CALayer *layer = [cell.leftButton layer];
             layer.borderColor = [[UIColor redColor] CGColor];
             [cell.leftButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-            [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            [cell.leftButton setTitle:@"立即付款" forState:UIControlStateNormal];
+            [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
         }
         if ([status isEqualToString:@"2"]) {
-            CALayer *layer = [cell.leftButton layer];
-            layer.borderColor = [[UIColor darkGrayColor] CGColor];
-            [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            
-            [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            cell.leftButton.hidden = YES;
+            [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
         }
         if ([status isEqualToString:@"3"]) {
+            cell.leftButton.hidden = YES;
+            [cell.rightButton setTitle:@"确认收货" forState:UIControlStateNormal];;
+        }
+        if ([status isEqualToString:@"4"]) {
             CALayer *layer = [cell.leftButton layer];
             layer.borderColor = [[UIColor darkGrayColor] CGColor];
             [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             
             [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            [cell.rightButton setTitle:@"评价订单" forState:UIControlStateNormal];;
+        }
+        if ([status isEqualToString:@"5"]) {
+            CALayer *layer = [cell.leftButton layer];
+            layer.borderColor = [[UIColor darkGrayColor] CGColor];
+            [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            
+            [cell.leftButton setTitle:@"追加评论" forState:UIControlStateNormal];
             [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];;
         }
     }

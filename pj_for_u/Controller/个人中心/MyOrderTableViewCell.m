@@ -16,7 +16,7 @@
 @implementation MyOrderTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    self.canBeSelected = YES;
     
     //左右两个按钮增加圆角边框
     CALayer *layer = [self.leftButton layer];
@@ -73,7 +73,7 @@
     cell.nameLabel.text = [smallDictionary objectForKey:@"name"];
     cell.price.text = [NSString stringWithFormat:@"%@", [smallDictionary objectForKey:@"discountPrice"]];
     cell.orderConut.text = [NSString stringWithFormat:@"%@", [smallDictionary objectForKey:@"orderCount"]];
-    
+    cell.message.text = [NSString stringWithFormat:@"%@", [smallDictionary objectForKey:@"message"]];
     return cell;
 }
 
@@ -91,7 +91,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kPushToMyOrderDetailNotification object:self.itsIndexPath];
+    if (self.canBeSelected) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kPushToMyOrderDetailNotification object:self.itsIndexPath];
+    }
 }
 
 @end
