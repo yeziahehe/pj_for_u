@@ -91,6 +91,7 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationItem.leftBarButtonItem = nil;
     self.isChangedToSelectMode = NO;
     self.page = 1;
     self.type = @"1";
