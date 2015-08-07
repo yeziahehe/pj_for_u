@@ -111,6 +111,7 @@
     return self.allCommentMArray.count;
 }
 
+//配合aotomaticDimension让tableviewcell高度自适应
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 110.f;
