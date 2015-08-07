@@ -182,6 +182,7 @@
 }
 
 #pragma mark - IBAction methods
+//购物车删除按钮点击事件
 - (IBAction)deleteShoppingCar:(id)sender {
     NSMutableString *orderId = [[NSMutableString alloc]initWithCapacity:0];
     if (self.shoppingCarSelectedArray) {
@@ -198,11 +199,11 @@
     [self requestForDelete:@"18896554880" orderId:orderId];
     orderId = nil;
 }
-
+//随便逛逛按钮点击事件
 - (IBAction)goAroundButtonClicked:(id)sender {
     self.tabBarController.selectedIndex = 0;
 }
-
+//结算按钮点击事件
 - (IBAction)calculateButtonClicked:(id)sender {
     ConfirmOrderViewController *confirmOrder = [[ConfirmOrderViewController alloc]initWithNibName:@"ConfirmOrderViewController" bundle:nil];
     [self.navigationController pushViewController:confirmOrder animated:YES];
