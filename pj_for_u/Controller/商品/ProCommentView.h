@@ -11,7 +11,7 @@
 
 @interface ProCommentView : ProductSubView
 @property (strong, nonatomic) IBOutlet UILabel *commentLabel;
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic)ProductionInfo *proInfo;
 
 

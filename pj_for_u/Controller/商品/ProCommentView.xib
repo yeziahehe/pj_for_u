@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -10,10 +11,10 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYb-D9-iq5">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYb-D9-iq5">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商品评论(23条)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v88-tf-h3i">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品评论(23条)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v88-tf-h3i">
                             <rect key="frame" x="8" y="11" width="113" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -21,8 +22,13 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="v88-tf-h3i" firstAttribute="leading" secondItem="CYb-D9-iq5" secondAttribute="leadingMargin" id="Cbj-uo-Tew"/>
+                        <constraint firstItem="v88-tf-h3i" firstAttribute="top" secondItem="CYb-D9-iq5" secondAttribute="top" constant="11" id="kqD-AF-NsT"/>
+                        <constraint firstAttribute="bottom" secondItem="v88-tf-h3i" secondAttribute="bottom" constant="12" id="pmc-22-4uV"/>
+                    </constraints>
                 </view>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JO8-k5-Wiy">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JO8-k5-Wiy">
                     <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <connections>
@@ -32,6 +38,16 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="JO8-k5-Wiy" firstAttribute="top" secondItem="CYb-D9-iq5" secondAttribute="bottom" id="2bq-iz-vo4"/>
+                <constraint firstItem="CYb-D9-iq5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="9ff-OU-sv8"/>
+                <constraint firstItem="JO8-k5-Wiy" firstAttribute="leading" secondItem="CYb-D9-iq5" secondAttribute="leading" id="B0W-Kd-eZU"/>
+                <constraint firstAttribute="bottom" secondItem="CYb-D9-iq5" secondAttribute="bottom" constant="623" id="ChU-c4-n6i"/>
+                <constraint firstAttribute="bottom" secondItem="JO8-k5-Wiy" secondAttribute="bottom" id="GKA-ba-wIe"/>
+                <constraint firstItem="JO8-k5-Wiy" firstAttribute="trailing" secondItem="CYb-D9-iq5" secondAttribute="trailing" id="XBX-2f-Hvt"/>
+                <constraint firstAttribute="trailing" secondItem="CYb-D9-iq5" secondAttribute="trailing" id="l7D-zh-bxS"/>
+                <constraint firstItem="CYb-D9-iq5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vpV-4y-WNb"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="commentLabel" destination="v88-tf-h3i" id="7dw-T3-m8Q"/>
