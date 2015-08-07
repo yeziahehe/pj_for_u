@@ -57,8 +57,7 @@
         if ([type isEqualToString:@"1"]) {
             self.allCommentMArray = tempArray;
             [self.tableView reloadData];
-            NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height];
-            [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
+
         }
         else if ([type isEqualToString:@"2"]){
             [self.tableView footerEndRefreshing];
@@ -105,6 +104,7 @@
     return cell;
 }
 
+
 #pragma mark - UITableView Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -120,5 +120,13 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-
+//加载完成cell后的方法，在该方法中实现tableview高度自适应
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGRect rect = self.tableView.frame;
+    rect.size.height = self.tableView.contentSize.height;
+    self.tableView.frame = rect;
+    NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
+}
 @end

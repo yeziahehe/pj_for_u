@@ -123,30 +123,7 @@
         [self.contentScrollView addSubview:productSubView];
         originY = rect.origin.y + rect.size.height;
     }
-    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, originY + 44.f)];//    ProImageView *piv = [[[NSBundle mainBundle] loadNibNamed:@"ProImageView" owner:self options:nil]lastObject];
-//    CGRect rect = piv.frame;
-//    rect.origin.y = 64.f;
-//    piv.frame = rect;
-//    piv.imageUrl = self.proInfo.imgUrl;
-//    piv.proInfo = self.proInfo;
-//    [self.contentScrollView addSubview:piv];
-//
-//    ProInfoView *pinv = [[[NSBundle mainBundle]loadNibNamed:@"ProInfoView" owner:self options:nil]lastObject];
-//    rect = pinv.frame;
-//    rect.origin.y = 76.f + piv.frame.size.height ;
-//    pinv.frame = rect;
-//    pinv.proInfo = self.proInfo;
-//    [self.contentScrollView addSubview:pinv];
-//    
-//    ProCommentView *pcv = [[[NSBundle mainBundle]loadNibNamed:@"ProCommentView" owner:self options:nil]lastObject];
-//    rect = pcv.frame;
-//    rect.origin.y = 88.f + piv.frame.size.height + pinv.frame.size.height;
-//    pcv.frame = rect;
-//    pcv.proInfo = self.proInfo;
-//    [self.contentScrollView addSubview:pcv];
-//    
-//    
-//    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth,1600.f)];
+    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, originY + 44.f)];
     [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
 }
 
