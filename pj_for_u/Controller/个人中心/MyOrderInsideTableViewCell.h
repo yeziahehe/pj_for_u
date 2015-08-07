@@ -15,5 +15,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *price;
 @property (strong, nonatomic) IBOutlet UILabel *orderConut;
 @property (strong, nonatomic) IBOutlet UIImageView *lineImageView;
+@property (strong, nonatomic) IBOutlet UILabel *message;
 
 @end

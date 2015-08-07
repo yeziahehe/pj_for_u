@@ -21,4 +21,6 @@
 
 @property (strong, nonatomic) NSArray *smallOrders;
 @property (strong, nonatomic) NSIndexPath *itsIndexPath;        //cell的唯一标识
+
+@property BOOL canBeSelected;
 @end

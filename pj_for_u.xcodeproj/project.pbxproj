@@ -12,7 +12,6 @@
 		0A3B67121B622F5A0067C709 /* aboutImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B67111B622F5A0067C709 /* aboutImage.png */; };
 		0A54DA711B73121C00FCBAB0 /* ConfirmOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A54DA6F1B73121C00FCBAB0 /* ConfirmOrderViewController.m */; };
 		0A54DA721B73121C00FCBAB0 /* ConfirmOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA701B73121C00FCBAB0 /* ConfirmOrderViewController.xib */; };
-		0A54DA7B1B7322EC00FCBAB0 /* icon_order_headimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA791B7322EC00FCBAB0 /* icon_order_headimage@2x.png */; };
 		0A54DA7C1B7322EC00FCBAB0 /* icon_received_address@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA7A1B7322EC00FCBAB0 /* icon_received_address@2x.png */; };
 		0A54DA7E1B73261D00FCBAB0 /* icon_addre@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA7D1B73261D00FCBAB0 /* icon_addre@2x.png */; };
 		0A54DA811B73311E00FCBAB0 /* icon_alipay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA7F1B73311E00FCBAB0 /* icon_alipay@2x.png */; };
@@ -232,6 +231,8 @@
 		6D8AD3FB1B60C6290099A0D8 /* IndividualInfoMap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3FA1B60C6290099A0D8 /* IndividualInfoMap.plist */; };
 		6D8AD3FF1B60E2510099A0D8 /* IndividualSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD3FD1B60E2510099A0D8 /* IndividualSubViewController.m */; };
 		6D8AD4001B60E2510099A0D8 /* IndividualSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3FE1B60E2510099A0D8 /* IndividualSubViewController.xib */; };
+		6D938E891B74593700AB9895 /* icon_order_headimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D938E881B74593700AB9895 /* icon_order_headimage@2x.png */; };
+		6D938E8B1B745A3400AB9895 /* icon_trade_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D938E8A1B745A3400AB9895 /* icon_trade_success.png */; };
 		6D95415F1B6B0D8C00532677 /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D95415D1B6B0D8C00532677 /* MyOrderViewController.m */; };
 		6D9541601B6B0D8C00532677 /* MyOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D95415E1B6B0D8C00532677 /* MyOrderViewController.xib */; };
 		6D9541641B6B361F00532677 /* MyOrderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D9541621B6B361F00532677 /* MyOrderTableViewCell.m */; };
@@ -256,7 +257,6 @@
 		0A54DA6E1B73121C00FCBAB0 /* ConfirmOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfirmOrderViewController.h; path = "Controller/购物车/ConfirmOrderViewController.h"; sourceTree = "<group>"; };
 		0A54DA6F1B73121C00FCBAB0 /* ConfirmOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfirmOrderViewController.m; path = "Controller/购物车/ConfirmOrderViewController.m"; sourceTree = "<group>"; };
 		0A54DA701B73121C00FCBAB0 /* ConfirmOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConfirmOrderViewController.xib; path = "Controller/购物车/ConfirmOrderViewController.xib"; sourceTree = "<group>"; };
-		0A54DA791B7322EC00FCBAB0 /* icon_order_headimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_order_headimage@2x.png"; path = "Resource/icon_order_headimage@2x.png"; sourceTree = "<group>"; };
 		0A54DA7A1B7322EC00FCBAB0 /* icon_received_address@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_received_address@2x.png"; path = "Resource/icon_received_address@2x.png"; sourceTree = "<group>"; };
 		0A54DA7D1B73261D00FCBAB0 /* icon_addre@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_addre@2x.png"; path = "Resource/icon_addre@2x.png"; sourceTree = "<group>"; };
 		0A54DA7F1B73311E00FCBAB0 /* icon_alipay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_alipay@2x.png"; path = "Resource/icon_alipay@2x.png"; sourceTree = "<group>"; };
@@ -596,6 +596,8 @@
 		6D8AD3FC1B60E2510099A0D8 /* IndividualSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualSubViewController.h; sourceTree = "<group>"; };
 		6D8AD3FD1B60E2510099A0D8 /* IndividualSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualSubViewController.m; sourceTree = "<group>"; };
 		6D8AD3FE1B60E2510099A0D8 /* IndividualSubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualSubViewController.xib; sourceTree = "<group>"; };
+		6D938E881B74593700AB9895 /* icon_order_headimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_order_headimage@2x.png"; path = "Resource/icon_order_headimage@2x.png"; sourceTree = "<group>"; };
+		6D938E8A1B745A3400AB9895 /* icon_trade_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_trade_success.png; path = Resource/icon_trade_success.png; sourceTree = "<group>"; };
 		6D95415C1B6B0D8C00532677 /* MyOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderViewController.h; sourceTree = "<group>"; };
 		6D95415D1B6B0D8C00532677 /* MyOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderViewController.m; sourceTree = "<group>"; };
 		6D95415E1B6B0D8C00532677 /* MyOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderViewController.xib; sourceTree = "<group>"; };
@@ -1003,7 +1005,8 @@
 				0A54DA7F1B73311E00FCBAB0 /* icon_alipay@2x.png */,
 				0A54DA801B73311E00FCBAB0 /* icon_wechat@2x.png */,
 				0A54DA7D1B73261D00FCBAB0 /* icon_addre@2x.png */,
-				0A54DA791B7322EC00FCBAB0 /* icon_order_headimage@2x.png */,
+				6D938E8A1B745A3400AB9895 /* icon_trade_success.png */,
+				6D938E881B74593700AB9895 /* icon_order_headimage@2x.png */,
 				0A54DA7A1B7322EC00FCBAB0 /* icon_received_address@2x.png */,
 				6D6A43C71B71E8E20029620E /* icon_notAnonymous@2x.png */,
 				6D3885FD1B70C47200206E2A /* icon_anonymous@2x.png */,
@@ -1439,13 +1442,13 @@
 				4A6C15941B60915500C9A9D2 /* icon_disagree@2x.png in Resources */,
 				0A3B670E1B6203BC0067C709 /* SettingTableViewCell.xib in Resources */,
 				0A54DA811B73311E00FCBAB0 /* icon_alipay@2x.png in Resources */,
+				6D938E8B1B745A3400AB9895 /* icon_trade_success.png in Resources */,
 				6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */,
 				2CF607C41B5EC88C0022E8E7 /* icon_more@2x.png in Resources */,
 				4A6C15A31B65C84900C9A9D2 /* icon_addAdress@2x.png in Resources */,
 				2C2529091B5E3AA900ADDEFB /* YFProgressHUD.bundle in Resources */,
 				2CF607C31B5EC88C0022E8E7 /* icon_house@2x.png in Resources */,
 				4A6C15A81B66143000C9A9D2 /* AddReciverViewController.xib in Resources */,
-				0A54DA7B1B7322EC00FCBAB0 /* icon_order_headimage@2x.png in Resources */,
 				2C2528A51B5E38BB00ADDEFB /* ForgetPwdViewController.xib in Resources */,
 				4A6C15781B5F7D5300C9A9D2 /* icon_login_phone@2x.png in Resources */,
 				6D3885FF1B70C47200206E2A /* icon_anonymous@2x.png in Resources */,
@@ -1473,6 +1476,7 @@
 				2CF607C21B5EC88C0022E8E7 /* icon_fruit@2x.png in Resources */,
 				2CF607521B5E4E390022E8E7 /* StartViewController.xib in Resources */,
 				2CF6075B1B5E77560022E8E7 /* btn_search@2x.png in Resources */,
+				6D938E891B74593700AB9895 /* icon_order_headimage@2x.png in Resources */,
 				2C7953981B613F4800511EB7 /* icon_address@2x.png in Resources */,
 				2CF607C11B5EC88C0022E8E7 /* icon_courier@2x.png in Resources */,
 			);

@@ -98,7 +98,7 @@
     [self.waitForPayment setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForPaymentView.backgroundColor = [UIColor redColor];
     
-    [self requestForMyOrderByStatus:nil page:nil limit:nil];
+    [self requestForMyOrderByStatus:@"1" page:nil limit:nil];
 }
 
 - (void)waitForConfirmAction
@@ -107,7 +107,7 @@
     [self.waitForConfirm setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForConfirmView.backgroundColor = [UIColor redColor];
     
-    [self requestForMyOrderByStatus:@"1" page:nil limit:nil];
+    [self requestForMyOrderByStatus:@"2" page:nil limit:nil];
 }
 
 - (void)distributingAction
@@ -117,7 +117,7 @@
     [self.distributing setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.distributingView.backgroundColor = [UIColor redColor];
     
-    [self requestForMyOrderByStatus:@"2" page:nil limit:nil];
+    [self requestForMyOrderByStatus:@"3" page:nil limit:nil];
 }
 
 - (void)waitForEvaluationAction
@@ -126,7 +126,7 @@
     [self.waitForEvaluation setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForEvaluationView.backgroundColor = [UIColor redColor];
     
-    [self requestForMyOrderByStatus:@"3" page:nil limit:nil];
+    [self requestForMyOrderByStatus:@"4" page:nil limit:nil];
 }
 
 - (void)alreadyFinishedAction
@@ -135,7 +135,7 @@
     [self.alreadyFinished setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.alreadyFinishedView.backgroundColor = [UIColor redColor];
     
-    [self requestForMyOrderByStatus:nil page:nil limit:nil];
+    [self requestForMyOrderByStatus:@"5" page:nil limit:nil];
 }
 
 
@@ -163,8 +163,14 @@
 //=============订单详情===========
 - (void)pushToMyOrderDetailViewController:(NSNotification *)notification
 {
-    MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
+    NSIndexPath *indexPath = (NSIndexPath *)notification.object;
     
+    NSDictionary *orderList = self.orderListArray[indexPath.section];
+    
+    NSString *togetherId = [orderList objectForKey:@"togetherId"];
+    
+    MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
+    myOrderDetailViewController.togetherId = togetherId;
     
     [self.navigationController pushViewController:myOrderDetailViewController animated:YES];
 
@@ -178,6 +184,7 @@
     NSArray *smallOrders = [self.orderListArray[indexPath.section] objectForKey:@"smallOrders"];
     
     //评价订单，只显示未评价过得订单 if title = ...
+    
     NSMutableArray *realSmallOrders = [[NSMutableArray alloc] initWithCapacity:10];
     for (NSDictionary *dict in smallOrders) {
         NSString *isRemarked = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isRemarked"]];
@@ -204,7 +211,7 @@
         cell.smallOrders = smallOrders;
         [cell.tableView reloadData];
         
-        //后台不给。。。手动计算个数个总价
+        //后台不给。。。手动计算个数和总价
         int count = 0;
         double price = 0.0;
         for (NSDictionary *dict in smallOrders) {
@@ -220,27 +227,36 @@
         NSString *status = [NSString stringWithFormat:@"%@", [orderInfoDictionary objectForKey:@"status"]];
         
         //通过status判断是什么状态，由此来确定每个按钮下应该显示的界面
+        cell.leftButton.hidden = NO;
         if ([status isEqualToString:@"1"]) {
             CALayer *layer = [cell.leftButton layer];
             layer.borderColor = [[UIColor redColor] CGColor];
             [cell.leftButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-            [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            [cell.leftButton setTitle:@"立即付款" forState:UIControlStateNormal];
+            [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
         }
         if ([status isEqualToString:@"2"]) {
-            CALayer *layer = [cell.leftButton layer];
-            layer.borderColor = [[UIColor darkGrayColor] CGColor];
-            [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            
-            [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            cell.leftButton.hidden = YES;
+            [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
         }
         if ([status isEqualToString:@"3"]) {
+            cell.leftButton.hidden = YES;
+            [cell.rightButton setTitle:@"确认收货" forState:UIControlStateNormal];;
+        }
+        if ([status isEqualToString:@"4"]) {
             CALayer *layer = [cell.leftButton layer];
             layer.borderColor = [[UIColor darkGrayColor] CGColor];
             [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             
             [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            [cell.rightButton setTitle:@"评价订单" forState:UIControlStateNormal];;
+        }
+        if ([status isEqualToString:@"5"]) {
+            CALayer *layer = [cell.leftButton layer];
+            layer.borderColor = [[UIColor darkGrayColor] CGColor];
+            [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            
+            [cell.leftButton setTitle:@"追加评论" forState:UIControlStateNormal];
             [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];;
         }
     }
@@ -272,17 +288,16 @@
     return 10.f;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 0.000001f;
+}
 
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
-{
-    return 0.000001f;
 }
 
 #pragma mark - ViewController Lifecycle
@@ -369,6 +384,7 @@
             }
             if(message.length == 0)
                 message = @"信息获取失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
 }
