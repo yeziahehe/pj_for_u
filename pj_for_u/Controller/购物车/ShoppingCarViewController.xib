@@ -14,6 +14,7 @@
                 <outlet property="goAroundButton" destination="Zps-fL-rNg" id="a5Y-Jw-H1j"/>
                 <outlet property="moneySavedLabel" destination="ehx-nQ-mQf" id="EgR-j7-byv"/>
                 <outlet property="noOrderView" destination="xIn-7Y-4bt" id="3Cr-84-Tc4"/>
+                <outlet property="totalLabel" destination="5eO-Eg-dtr" id="Nvn-oD-VUN"/>
                 <outlet property="totalPriceLabel" destination="qs9-xL-qdb" id="BKT-Nw-t5y"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
