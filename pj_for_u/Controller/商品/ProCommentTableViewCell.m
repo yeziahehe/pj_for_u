@@ -21,7 +21,7 @@
     _pcd = pcd;
     
     self.nickNameLabel.text = pcd.nickName;
-    self.gradeLabel.text = pcd.grade;
+    self.gradeLabel.text = [NSString stringWithFormat:@"%@分",pcd.grade];
     self.timeLabel.text = pcd.date;
     self.saleNumber.text = [NSString stringWithFormat:@"销量：%@",pcd.orderCount];
     self.commentLabel.text = pcd.comment;
@@ -38,7 +38,7 @@
     if (grade > 4) {
         [self.starView5 setImage:[UIImage imageNamed:@"icon_evaluationStarLight.png"]];
     }
-    else if (grade > 3) {
+    if (grade > 3) {
         [self.starView4 setImage:[UIImage imageNamed:@"icon_evaluationStarLight.png"]];
     }
     if (grade > 2) {
@@ -49,7 +49,6 @@
     }
     if (grade > 0) {
         [self.starView1 setImage:[UIImage imageNamed:@"icon_evaluationStarLight.png"]];
-
     }
 }
 @end

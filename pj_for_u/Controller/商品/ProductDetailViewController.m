@@ -69,7 +69,8 @@
         NSDictionary *valueDict = [responseObject objectForKey:@"food"];
         self.proInfo = [[ProductionInfo alloc]initWithDict:valueDict];
         [self loadSubViews];
-        
+        [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
+
     }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
         
         NSLog(@"Error: %@", error);
@@ -106,9 +107,15 @@
     pcv.proInfo = self.proInfo;
     [self.contentScrollView addSubview:pcv];
     
-    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, pcv.frame.origin.y + pcv.frame.size.height)];
+    
+    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth,pcv.frame.origin.y + pcv.frame.size.height)];
+    [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
 }
 
+-(void)setContentSizeForScrollViewWithheight:(CGFloat)height
+{
+    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth,height)];
+}
 #pragma mark - UIView Methods
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -90,6 +90,9 @@
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"ProCommentTableViewCell"];
     [self.tableView addFooterWithTarget:self action:@selector(loadMoreComments)];
+    
+    self.tableView.estimatedRowHeight = 110.0f;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
 #pragma mark - UITableView Datasource
@@ -112,9 +115,9 @@
     return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 120.f;
+    return 110.f;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
