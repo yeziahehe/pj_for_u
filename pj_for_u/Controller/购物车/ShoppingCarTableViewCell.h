@@ -20,5 +20,6 @@
 @property int amount;
 @property (strong, nonatomic) NSIndexPath *shoppingId;
 @property (strong, nonatomic) UIView *backGrayView;
+@property BOOL isSelected;
 
 @end

@@ -27,7 +27,7 @@
                             <constraint firstAttribute="width" constant="85" id="k0M-W4-S9N"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9U-cF-bX9">
@@ -43,7 +43,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="哈哈哈哈哈哈" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hsq-H3-qeB">
                         <rect key="frame" x="8" y="61" width="359" height="16"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2015.6.12" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TT4-Cw-QKN">
@@ -100,11 +100,18 @@
                             <constraint firstAttribute="width" constant="15" id="Up0-qo-FCj"/>
                         </constraints>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="ApL-rC-MGT">
+                        <rect key="frame" x="0.0" y="110" width="375" height="1"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="4Q8-Go-U9N"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Hsq-H3-qeB" secondAttribute="trailing" constant="8" id="1di-yc-6sX"/>
                     <constraint firstItem="Mca-Mz-qQa" firstAttribute="leading" secondItem="XHn-aY-Xnm" secondAttribute="trailing" constant="4" id="3po-M7-UIc"/>
+                    <constraint firstAttribute="bottom" secondItem="ApL-rC-MGT" secondAttribute="bottom" constant="1.5" id="6Qj-xt-xA6"/>
                     <constraint firstItem="j8h-1K-kEd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="7G6-Xw-aMa"/>
                     <constraint firstItem="Cj2-ru-5GW" firstAttribute="leading" secondItem="Mca-Mz-qQa" secondAttribute="trailing" constant="4" id="8qP-st-FdW"/>
                     <constraint firstItem="Cj2-ru-5GW" firstAttribute="leading" secondItem="Mca-Mz-qQa" secondAttribute="trailing" constant="4" id="9Zq-Ti-uOd"/>
@@ -112,6 +119,7 @@
                     <constraint firstItem="cAl-cu-P9a" firstAttribute="leading" secondItem="8s7-LA-z8z" secondAttribute="trailing" constant="4" id="AIN-pC-pRT"/>
                     <constraint firstItem="cAl-cu-P9a" firstAttribute="leading" secondItem="8s7-LA-z8z" secondAttribute="trailing" constant="4" id="Boa-iD-DIX"/>
                     <constraint firstItem="XHn-aY-Xnm" firstAttribute="leading" secondItem="cAl-cu-P9a" secondAttribute="trailing" constant="4" id="C86-iY-pQc"/>
+                    <constraint firstItem="ApL-rC-MGT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="CP3-nW-NSO"/>
                     <constraint firstItem="cAl-cu-P9a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="27" id="ChW-Aa-lzm"/>
                     <constraint firstItem="XHn-aY-Xnm" firstAttribute="leading" secondItem="cAl-cu-P9a" secondAttribute="trailing" constant="4" id="DYQ-4K-vws"/>
                     <constraint firstItem="N9U-cF-bX9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="Em0-61-lIb"/>
@@ -122,6 +130,7 @@
                     <constraint firstItem="Hsq-H3-qeB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="61" id="Sx2-du-0yw"/>
                     <constraint firstItem="Mca-Mz-qQa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="27" id="WPQ-1Q-UXQ"/>
                     <constraint firstItem="ZWA-YA-Kgw" firstAttribute="leading" secondItem="j8h-1K-kEd" secondAttribute="trailing" constant="8" id="YKk-LI-E5e"/>
+                    <constraint firstAttribute="trailing" secondItem="ApL-rC-MGT" secondAttribute="trailing" id="YeZ-6T-wVV"/>
                     <constraint firstAttribute="bottom" secondItem="TT4-Cw-QKN" secondAttribute="bottom" constant="5.5" id="ZCg-Dc-1Hk"/>
                     <constraint firstAttribute="bottom" secondItem="VXi-aV-Q4D" secondAttribute="bottom" constant="5.5" id="ZO5-nl-ZYT"/>
                     <constraint firstItem="Mca-Mz-qQa" firstAttribute="leading" secondItem="XHn-aY-Xnm" secondAttribute="trailing" constant="4" id="aHb-TY-eig"/>
@@ -149,11 +158,12 @@
                 <outlet property="timeLabel" destination="TT4-Cw-QKN" id="4zG-fh-yVZ"/>
                 <outlet property="userImage" destination="j8h-1K-kEd" id="TU4-Ok-ULK"/>
             </connections>
-            <point key="canvasLocation" x="71.5" y="433"/>
+            <point key="canvasLocation" x="139.5" y="435"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="icon_evaluationStarNotLight.png" width="23" height="21"/>
         <image name="icon_user_default.png" width="98" height="97"/>
+        <image name="line_hon_1px_down.png" width="640" height="2"/>
     </resources>
 </document>

@@ -44,7 +44,6 @@
         [dict setObject:pageString forKey:@"page"];
         self.page ++;
     }
-    NSLog(@"%@,%@,%@,%@,%@",foodId,kCampusId,kLimit,page,url);
     //进行post请求
     [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation,id responseObject) {
         
@@ -58,6 +57,7 @@
         if ([type isEqualToString:@"1"]) {
             self.allCommentMArray = tempArray;
             [self.tableView reloadData];
+
         }
         else if ([type isEqualToString:@"2"]){
             [self.tableView footerEndRefreshing];
@@ -104,17 +104,14 @@
     return cell;
 }
 
+
 #pragma mark - UITableView Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return self.allCommentMArray.count;
 }
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
+//配合aotomaticDimension让tableviewcell高度自适应
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 110.f;
@@ -122,8 +119,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-
+//加载完成cell后的方法，在该方法中实现tableview高度自适应
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CGRect rect = self.tableView.frame;
+    rect.size.height = self.tableView.contentSize.height;
+    self.tableView.frame = rect;
+    NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height];
+    [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
+}
 @end
