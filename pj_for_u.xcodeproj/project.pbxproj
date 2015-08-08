@@ -149,6 +149,10 @@
 		2CF607C71B5EC88C0022E8E7 /* icon_recommend@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2CF607BF1B5EC88C0022E8E7 /* icon_recommend@2x.png */; };
 		2CF607CA1B5EC9DE0022E8E7 /* HomeActivityTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CF607C91B5EC9DE0022E8E7 /* HomeActivityTableView.m */; };
 		2CF607CC1B5EC9E90022E8E7 /* HomeActivityTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2CF607CB1B5EC9E90022E8E7 /* HomeActivityTableView.xib */; };
+		4A1464F01B759B5900B9F058 /* icon_choose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A1464EE1B759B5900B9F058 /* icon_choose@2x.png */; };
+		4A1464F11B759B5900B9F058 /* icon_nochoose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A1464EF1B759B5900B9F058 /* icon_nochoose@2x.png */; };
+		4A1464F31B75F33000B9F058 /* icon_addshopcar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A1464F21B75F33000B9F058 /* icon_addshopcar@2x.png */; };
+		4A1464F51B75F34600B9F058 /* icon_shopcarright@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A1464F41B75F34600B9F058 /* icon_shopcarright@2x.png */; };
 		4A6C156C1B5F6D1100C9A9D2 /* Member.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C156B1B5F6D1100C9A9D2 /* Member.m */; };
 		4A6C156F1B5F724C00C9A9D2 /* MemberDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C156E1B5F724C00C9A9D2 /* MemberDataManager.m */; };
 		4A6C15751B5F7B1000C9A9D2 /* bg_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15741B5F7B1000C9A9D2 /* bg_login@2x.png */; };
@@ -468,6 +472,10 @@
 		2CF607C81B5EC9DE0022E8E7 /* HomeActivityTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeActivityTableView.h; path = "Controller/首页/HomeActivityTableView.h"; sourceTree = "<group>"; };
 		2CF607C91B5EC9DE0022E8E7 /* HomeActivityTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeActivityTableView.m; path = "Controller/首页/HomeActivityTableView.m"; sourceTree = "<group>"; };
 		2CF607CB1B5EC9E90022E8E7 /* HomeActivityTableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeActivityTableView.xib; path = "Controller/首页/HomeActivityTableView.xib"; sourceTree = "<group>"; };
+		4A1464EE1B759B5900B9F058 /* icon_choose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_choose@2x.png"; path = "Resource/icon_choose@2x.png"; sourceTree = "<group>"; };
+		4A1464EF1B759B5900B9F058 /* icon_nochoose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_nochoose@2x.png"; path = "Resource/icon_nochoose@2x.png"; sourceTree = "<group>"; };
+		4A1464F21B75F33000B9F058 /* icon_addshopcar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_addshopcar@2x.png"; path = "Resource/icon_addshopcar@2x.png"; sourceTree = "<group>"; };
+		4A1464F41B75F34600B9F058 /* icon_shopcarright@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_shopcarright@2x.png"; path = "Resource/icon_shopcarright@2x.png"; sourceTree = "<group>"; };
 		4A6C156A1B5F6D1100C9A9D2 /* Member.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Member.h; path = Model/Member.h; sourceTree = "<group>"; };
 		4A6C156B1B5F6D1100C9A9D2 /* Member.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Member.m; path = Model/Member.m; sourceTree = "<group>"; };
 		4A6C156D1B5F724C00C9A9D2 /* MemberDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MemberDataManager.h; path = Model/MemberDataManager.h; sourceTree = "<group>"; };
@@ -1208,6 +1216,10 @@
 		4AB377D51B723D270052168A /* 其他 */ = {
 			isa = PBXGroup;
 			children = (
+				4A1464F41B75F34600B9F058 /* icon_shopcarright@2x.png */,
+				4A1464F21B75F33000B9F058 /* icon_addshopcar@2x.png */,
+				4A1464EE1B759B5900B9F058 /* icon_choose@2x.png */,
+				4A1464EF1B759B5900B9F058 /* icon_nochoose@2x.png */,
 				0A72CE4C1B744D3E00222284 /* icon_rubbish@2x.png */,
 				4AB377D61B723D340052168A /* icon_addshopingcar@2x.png */,
 				4AB377D71B723D340052168A /* icon_addshoppingcarcircle@2x.png */,
@@ -1392,6 +1404,7 @@
 				4A6C169D1B70C93F00C9A9D2 /* ProInfoView.xib in Resources */,
 				2CF607C01B5EC88C0022E8E7 /* icon_breakfest@2x.png in Resources */,
 				2CF607971B5EBDA10022E8E7 /* line_ver_1px_left.png in Resources */,
+				4A1464F01B759B5900B9F058 /* icon_choose@2x.png in Resources */,
 				2C79539B1B613F4800511EB7 /* icon_userinfo@2x.png in Resources */,
 				0AFC07181B6CAE46002BDB90 /* ShoppingCarViewController.xib in Resources */,
 				2CF607871B5EABA60022E8E7 /* bg_select_city@2x.png in Resources */,
@@ -1407,10 +1420,12 @@
 				2C79539D1B61402D00511EB7 /* bg_user_module@2x.png in Resources */,
 				2C7953921B6134B400511EB7 /* icon_new@2x.png in Resources */,
 				0A54DA7C1B7322EC00FCBAB0 /* icon_received_address@2x.png in Resources */,
+				4A1464F51B75F34600B9F058 /* icon_shopcarright@2x.png in Resources */,
 				2C10D6C01B60B970008C3DE0 /* SettingViewController.xib in Resources */,
 				2C7953901B61321B00511EB7 /* home_image_default@2x.png in Resources */,
 				0A72CE4D1B744D3E00222284 /* icon_rubbish@2x.png in Resources */,
 				6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */,
+				4A1464F31B75F33000B9F058 /* icon_addshopcar@2x.png in Resources */,
 				0A54DA721B73121C00FCBAB0 /* ConfirmOrderViewController.xib in Resources */,
 				4A6C16B61B711ECD00C9A9D2 /* MyOrderDetailViewController.xib in Resources */,
 				2C2528991B5E38B100ADDEFB /* RegisterViewController.xib in Resources */,
@@ -1431,6 +1446,7 @@
 				0A54DA821B73311E00FCBAB0 /* icon_wechat@2x.png in Resources */,
 				4A6C15931B60915500C9A9D2 /* icon_agree@2x.png in Resources */,
 				0ACABED41B67178D009B18E0 /* icon_user_default@2x.png in Resources */,
+				4A1464F11B759B5900B9F058 /* icon_nochoose@2x.png in Resources */,
 				2CF607CC1B5EC9E90022E8E7 /* HomeActivityTableView.xib in Resources */,
 				4A6C16AF1B711E7C00C9A9D2 /* MyOrderEvaluationTableViewCell.xib in Resources */,
 				4AB377DE1B724E100052168A /* ChooseCategoryView.xib in Resources */,
