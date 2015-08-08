@@ -98,6 +98,7 @@
 #define kSuccessAddingToCarNotification     @"SuccessAddingToCarNotification"
 #define kDeliverCommentNotification         @"DeliverCommentNotification"
 #define kRemoveBackGrayViewNotification     @"RemoveBackGrayViewNotification"
+#define kDeliverCommentNotification         @"DeliverCommentNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
