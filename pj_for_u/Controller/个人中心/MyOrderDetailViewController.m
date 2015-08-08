@@ -28,8 +28,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *address;
 @property (strong, nonatomic) IBOutlet UILabel *phone;
 
-
-
 @end
 
 @implementation MyOrderDetailViewController

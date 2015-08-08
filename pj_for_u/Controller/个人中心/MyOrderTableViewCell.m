@@ -49,7 +49,7 @@
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:2];
     [dict setObject:self.itsIndexPath forKey:@"indexPath"];
-    [dict setObject:self.leftButton.titleLabel.text forKey:@"title"];
+    [dict setObject:self.leftButton.currentTitle forKey:@"title"];
     [[NSNotificationCenter defaultCenter] postNotificationName:kCilckOrderButtonNotification object:dict];
 }
 
@@ -57,7 +57,7 @@
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:2];
     [dict setObject:self.itsIndexPath forKey:@"indexPath"];
-    [dict setObject:self.rightButton.titleLabel.text forKey:@"title"];
+    [dict setObject:self.rightButton.currentTitle forKey:@"title"];
     [[NSNotificationCenter defaultCenter] postNotificationName:kCilckOrderButtonNotification object:dict];
 }
 
