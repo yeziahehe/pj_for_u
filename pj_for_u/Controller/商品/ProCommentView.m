@@ -78,9 +78,9 @@
 //获取商品评论model后进行请求并加载
 -(void)setProInfo:(ProductionInfo *)proInfo{
     _proInfo = proInfo;
+    NSLog(@"当前食品的ID：%@",proInfo.foodId);
     [self loadDataWithType:@"1" foodId:proInfo.foodId];
     self.commentLabel.text = [NSString stringWithFormat:@"商品评价(%@)",proInfo.commentNumber];
-
 }
 #pragma mark - UIView Methosd
 -(void)awakeFromNib{
@@ -101,9 +101,9 @@
     ProCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProCommentTableViewCell" ];
     ProCommentDetail *pcd = [self.allCommentMArray objectAtIndex:indexPath.row];
     cell.pcd = pcd;
+    
     return cell;
 }
-
 
 #pragma mark - UITableView Delegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -111,6 +111,7 @@
     return self.allCommentMArray.count;
 }
 
+//配合aotomaticDimension让tableviewcell高度自适应
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return 110.f;
@@ -120,9 +121,10 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-//加载完成cell后的方法，在该方法中实现tableview高度自适应
+//加载完成cell后的方法，在该方法中实现tableview高度自适应,cell>1执行
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"shit%ld",(long)indexPath.row );
     CGRect rect = self.tableView.frame;
     rect.size.height = self.tableView.contentSize.height;
     self.tableView.frame = rect;

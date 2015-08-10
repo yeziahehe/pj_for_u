@@ -35,6 +35,7 @@
 @property (strong, nonatomic) IBOutlet UIView *noOrderView;
 @property (strong, nonatomic) IBOutlet UIButton *goAroundButton;
 
+@property int recordLastStatus;
 @end
 
 @implementation MyOrderViewController
@@ -97,7 +98,7 @@
     [self changeButtonToBlackColor];
     [self.waitForPayment setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForPaymentView.backgroundColor = [UIColor redColor];
-    
+    self.recordLastStatus = 1;
     [self requestForMyOrderByStatus:@"1" page:nil limit:nil];
 }
 
@@ -106,7 +107,7 @@
     [self changeButtonToBlackColor];
     [self.waitForConfirm setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForConfirmView.backgroundColor = [UIColor redColor];
-    
+    self.recordLastStatus = 2;
     [self requestForMyOrderByStatus:@"2" page:nil limit:nil];
 }
 
@@ -116,7 +117,7 @@
     
     [self.distributing setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.distributingView.backgroundColor = [UIColor redColor];
-    
+    self.recordLastStatus = 3;
     [self requestForMyOrderByStatus:@"3" page:nil limit:nil];
 }
 
@@ -125,7 +126,7 @@
     [self changeButtonToBlackColor];
     [self.waitForEvaluation setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForEvaluationView.backgroundColor = [UIColor redColor];
-    
+    self.recordLastStatus = 4;
     [self requestForMyOrderByStatus:@"4" page:nil limit:nil];
 }
 
@@ -134,7 +135,7 @@
     [self changeButtonToBlackColor];
     [self.alreadyFinished setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.alreadyFinishedView.backgroundColor = [UIColor redColor];
-    
+    self.recordLastStatus = 5;
     [self requestForMyOrderByStatus:@"5" page:nil limit:nil];
 }
 
@@ -182,20 +183,33 @@
     NSDictionary *dict = (NSDictionary *)notification.object;
     NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
     NSArray *smallOrders = [self.orderListArray[indexPath.section] objectForKey:@"smallOrders"];
-    
+    NSString *title = [dict objectForKey:@"title"];
     //评价订单，只显示未评价过得订单 if title = ...
     
-    NSMutableArray *realSmallOrders = [[NSMutableArray alloc] initWithCapacity:10];
-    for (NSDictionary *dict in smallOrders) {
-        NSString *isRemarked = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isRemarked"]];
-        if ([isRemarked isEqualToString:@"0"]) {
-            [realSmallOrders addObject:dict];
+    if ([title isEqualToString:@"评价订单"]) {
+        NSMutableArray *realSmallOrders = [[NSMutableArray alloc] initWithCapacity:10];
+        for (NSDictionary *dict in smallOrders) {
+            NSString *isRemarked = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isRemarked"]];
+            if ([isRemarked isEqualToString:@"0"]) {
+                [realSmallOrders addObject:dict];
+            }
         }
+        MyOrderEvaluationViewController *myOrderEvaluationViewController = [[MyOrderEvaluationViewController alloc] init];
+        myOrderEvaluationViewController.smallOrders = realSmallOrders;
+        
+        [self.navigationController pushViewController:myOrderEvaluationViewController animated:YES];
+        
+    } else if ([title isEqualToString:@"删除订单"]) {
+        
+    } else if ([title isEqualToString:@"立即付款"]) {
+        
+    } else if ([title isEqualToString:@"取消订单"]) {
+        
+    } else if ([title isEqualToString:@"确认收货"]) {
+        
+    } else if ([title isEqualToString:@"追加评论"]) {
+        
     }
-    MyOrderEvaluationViewController *myOrderEvaluationViewController = [[MyOrderEvaluationViewController alloc] init];
-    myOrderEvaluationViewController.smallOrders = realSmallOrders;
-    
-    [self.navigationController pushViewController:myOrderEvaluationViewController animated:YES];
 }
 
 
@@ -321,6 +335,7 @@
     self.goAroundButton.layer.masksToBounds = YES;
     self.goAroundButton.layer.cornerRadius = 2.5f;
     
+    self.recordLastStatus = 1;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(pushToMyOrderDetailViewController:)
                                                  name:kPushToMyOrderDetailNotification object:nil];
@@ -335,7 +350,25 @@
     [super viewWillAppear:animated];
     
     //每次进入页面刷新数据
-    [self waitForPaymentAction];
+    switch (self.recordLastStatus) {
+        case 1:
+            [self waitForPaymentAction];
+            break;
+        case 2:
+            [self waitForConfirmAction];
+            break;
+        case 3:
+            [self distributingAction];
+            break;
+        case 4:
+            [self waitForEvaluationAction];
+            break;
+        case 5:
+            [self alreadyFinishedAction];
+            break;
+        default:
+            break;
+    }
     
 }
 
