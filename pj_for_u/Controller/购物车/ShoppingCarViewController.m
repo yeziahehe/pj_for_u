@@ -72,10 +72,12 @@
 //下拉刷新方法
 - (void)dropDownRefresh
 {
+    self.shoppingCarSelectedArray = nil;
     self.type = @"1";
     self.page = 1;
     NSString *pageString = [NSString stringWithFormat:@"%d",self.page];
-    [self requestForShoppingCar:@"18896554880" page:pageString limit:@"3"];
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    [self requestForShoppingCar:phone page:pageString limit:@"3"];
 }
 //上拉刷新方法
 - (void)pullUpRefresh
@@ -83,7 +85,8 @@
     self.type = @"2";
     self.page ++;
     NSString *pageString = [NSString stringWithFormat:@"%d",self.page];
-    [self requestForShoppingCar:@"18896554880" page:pageString limit:@"3"];
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    [self requestForShoppingCar:phone page:pageString limit:@"3"];
 }
 
 //添加订单总价
@@ -171,9 +174,7 @@
         [self setRightNaviItemWithTitle:@"选择" imageName:nil];
         self.deleteShoppingCarView.hidden = YES;
         [self.ShoppingCarTableView reloadData];
-        self.totalPriceLabel.text = @"0.0元";
-        self.discountPrice.text = @"0.0元";
-        self.moneySavedLabel.text =@"(已节省0.0元)";
+        [self calculateTotalPrice];
     }
     else
     {
@@ -205,8 +206,10 @@
             }
         }
     }
-    [self requestForDelete:@"18896554880" orderId:orderId];
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    [self requestForDelete:phone orderId:orderId];
     orderId = nil;
+    self.shoppingCarSelectedArray = nil;
 }
 //随便逛逛按钮点击事件
 - (IBAction)goAroundButtonClicked:(id)sender {
@@ -380,8 +383,9 @@
         withOrderCount:(NSString *)orderCount
 {
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kEditShoppingCarUrl];
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
     NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:@"18896554880" forKey:@"phoneId"];
+    [dict setObject:phone forKey:@"phoneId"];
     [dict setObject:orderId forKey:@"orderId"];
     [dict setObject:orderCount forKey:@"orderCount"];
 
