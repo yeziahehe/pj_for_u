@@ -10,6 +10,7 @@
                 <outlet property="addressView" destination="8S2-XK-BLw" id="q1p-vP-CtO"/>
                 <outlet property="calculateView" destination="ykN-vp-Pq2" id="DAJ-jt-1cZ"/>
                 <outlet property="contentView" destination="bbW-ol-GKd" id="0j6-uu-xyY"/>
+                <outlet property="deliverTimeLabel" destination="xg1-Yu-J3W" id="T0q-P1-jvy"/>
                 <outlet property="deliverView" destination="yg7-nx-J9d" id="qz0-XC-mvz"/>
                 <outlet property="descriptionView" destination="8S2-XK-BLw" id="kTE-zL-ueX"/>
                 <outlet property="moneySavedLabel" destination="yPt-9x-8dP" id="OhB-cI-cYA"/>
@@ -33,16 +34,32 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8S2-XK-BLw">
                             <rect key="frame" x="0.0" y="446" width="375" height="72"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="留言备注：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOS-hC-eqZ">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="留言备注：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOS-hC-eqZ">
                                     <rect key="frame" x="8" y="12" width="85" height="21"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="85" id="bKJ-R4-lVy"/>
+                                        <constraint firstAttribute="height" constant="21" id="jxC-h5-pt6"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sIJ-gZ-Q9o">
+                                    <rect key="frame" x="93" y="12" width="274" height="60"/>
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="jOS-hC-eqZ" firstAttribute="leading" secondItem="8S2-XK-BLw" secondAttribute="leading" constant="8" id="8kz-2n-KgR"/>
+                                <constraint firstItem="sIJ-gZ-Q9o" firstAttribute="leading" secondItem="jOS-hC-eqZ" secondAttribute="trailing" id="Blu-Mk-sLy"/>
+                                <constraint firstItem="sIJ-gZ-Q9o" firstAttribute="top" secondItem="8S2-XK-BLw" secondAttribute="top" constant="12" id="KbP-6D-jwb"/>
+                                <constraint firstAttribute="bottom" secondItem="sIJ-gZ-Q9o" secondAttribute="bottom" id="cWY-Gl-CgU"/>
                                 <constraint firstAttribute="height" constant="72" id="cs1-kW-C8Z"/>
+                                <constraint firstItem="jOS-hC-eqZ" firstAttribute="top" secondItem="8S2-XK-BLw" secondAttribute="top" constant="12" id="pwH-Mi-i5P"/>
+                                <constraint firstAttribute="trailing" secondItem="sIJ-gZ-Q9o" secondAttribute="trailing" constant="8" id="zkI-5N-j9Q"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RBB-7j-LbD">
@@ -74,12 +91,18 @@
                                     <state key="normal" image="icon_anonymous.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="aLiPayButtonClicked:" destination="-1" eventType="touchUpInside" id="cBG-ub-8Rv"/>
+                                    </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85X-OD-bel">
                                     <rect key="frame" x="-18" y="73" width="75" height="27"/>
                                     <state key="normal" image="icon_notAnonymous.png">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="wechatButtonClicked:" destination="-1" eventType="touchUpInside" id="Zfq-IQ-unG"/>
+                                    </connections>
                                 </button>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_alipay.png" translatesAutoresizingMaskIntoConstraints="NO" id="0gc-8e-JHA">
                                     <rect key="frame" x="132" y="45" width="16" height="16"/>
@@ -111,6 +134,21 @@
                                         <constraint firstAttribute="height" constant="11" id="Yjl-xa-mKk"/>
                                     </constraints>
                                 </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="立即送达" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xg1-Yu-J3W">
+                                    <rect key="frame" x="259" y="11" width="68" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zFu-pp-URm">
+                                    <rect key="frame" x="72" y="2" width="303" height="44"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="selectButtonClicked:" destination="-1" eventType="touchUpInside" id="Jby-co-nhI"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
@@ -214,7 +252,7 @@
                                         <constraint firstAttribute="height" constant="45" id="3PI-JI-P6e"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                    <state key="normal" title="结     算">
+                                    <state key="normal" title="立即支付">
                                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </state>
                                 </button>
@@ -297,7 +335,7 @@
                 <constraint firstAttribute="bottom" secondItem="bbW-ol-GKd" secondAttribute="bottom" id="r4L-pC-lxS"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="318.5" y="45.5"/>
+            <point key="canvasLocation" x="318.5" y="45"/>
         </view>
     </objects>
     <resources>

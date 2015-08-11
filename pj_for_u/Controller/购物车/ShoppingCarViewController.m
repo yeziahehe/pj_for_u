@@ -117,6 +117,8 @@
 //初始化数据
 - (void)loadSubViews
 {
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    [[MemberDataManager sharedManager]requestForIndividualInfoWithPhone:phone];
     self.navigationItem.leftBarButtonItem = nil;
     self.isChangedToSelectMode = NO;
     self.page = 1;
@@ -217,7 +219,13 @@
 //结算按钮点击事件
 - (IBAction)calculateButtonClicked:(id)sender {
     ConfirmOrderViewController *confirmOrder = [[ConfirmOrderViewController alloc]initWithNibName:@"ConfirmOrderViewController" bundle:nil];
-    confirmOrder.selectedArray = self.shoppingCarSelectedArray;
+    if (self.isChangedToSelectMode) {
+        confirmOrder.selectedArray = self.shoppingCarSelectedArray;
+    }
+    else
+    {
+        confirmOrder.selectedArray = self.shoppingCarArray;
+    }
     confirmOrder.totalPrice = self.totalPrice;
     confirmOrder.originPrice = self.originPrice;
     confirmOrder.moneySaved = self.disCount;
