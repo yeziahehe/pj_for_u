@@ -34,18 +34,6 @@
     self.nameLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.nickname;
     self.phoneLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.phone;
     self.addressLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.defaultAddress;
-//    CGFloat originY = 0.f;
-//    originY = self.selectGoodsTableView.contentSize.height +self.addressView.frame.size.height;
-//    CGRect rect1 = self.selectGoodsTableView.frame;
-//    rect1.size.height = 140.f*[self.selectedArray count];
-//    self.selectGoodsTableView.frame = rect1;
-//    [self.selectGoodsTableView reloadData];
-//
-//    CGRect rect = self.deliverView.frame;
-//    rect.origin.y = originY;
-//    self.deliverView.frame = rect;
-//    [self.contentView setContentSize:CGSizeMake(ScreenWidth,460+self.selectGoodsTableView.frame.size.height)];
-
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -89,7 +77,8 @@
         cell.amount = [self.shoppingCarInfo.orderCount intValue];
         cell.orderCount.text = [NSString stringWithFormat:@"%d",cell.amount];
     }
-    
+    cell.PlusButton.enabled = NO;
+    cell.MinusButton.enabled = NO;
         return cell;
 }
 
@@ -109,10 +98,4 @@
     return 0.1f;
 }
 
-//-(void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    CGRect rect = self.selectGoodsTableView.frame;
-//    rect.size.height = self.selectGoodsTableView.contentSize.height;
-//    self.selectGoodsTableView.frame = rect;
-//}
 @end

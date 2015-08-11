@@ -25,7 +25,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *totalPriceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *discountPrice;
 @property (strong, nonatomic) IBOutlet UILabel *moneySavedLabel;
-@property (strong, nonatomic) IBOutlet UILabel *totalLabel;
 @property (strong, nonatomic) ShoppingCar *shoppingCarInfo;
 @property (strong, nonatomic) NSMutableArray *shoppingCarArray;
 @property (strong, nonatomic) NSMutableArray *shoppingTempArray;
@@ -109,7 +108,7 @@
         self.originPrice = [NSString stringWithFormat:@"%.1f元",[self.originPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
         self.disCount = [NSString stringWithFormat:@"(已节省%.1f元)",[self.originPrice floatValue]-[self.totalPrice floatValue]];
     }
-    self.totalPriceLabel.text = self.totalPrice;
+    self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%@",self.totalPrice];
     self.discountPrice.text = self.originPrice;
     self.moneySavedLabel.text = self.disCount;
 }
@@ -178,7 +177,7 @@
     }
     else
     {
-        self.totalPriceLabel.text = @"0.0元";
+        self.totalPriceLabel.text = @"合计:0.0元";
         self.discountPrice.text = @"0.0元";
         self.moneySavedLabel.text =@"(已节省0.0元)";
         [self setRightNaviItemWithTitle:@"完成" imageName:nil];
@@ -259,7 +258,6 @@
         self.deleteShoppingCarView.hidden = NO;
         [self.CalculateView addSubview:self.totalPriceLabel];
         [self.CalculateView addSubview:self.moneySavedLabel];
-        [self.CalculateView addSubview:self.totalLabel];
     }
     [self.shoppingCarSelectedArray addObject:sc];
     cell.isSelected = YES;
@@ -348,7 +346,7 @@
         [self.shoppingCarSelectedArray removeObject:sc];
         cell.backGrayView.hidden = NO;
         if ([self.shoppingCarSelectedArray count] == 0) {
-            self.totalPriceLabel.text = @"0.0元";
+            self.totalPriceLabel.text = @"合计:0.0元";
             self.discountPrice.text = @"0.0元";
             self.moneySavedLabel.text =@"(已节省0.0元)";
             self.deleteShoppingCarView.hidden = YES;
