@@ -22,7 +22,7 @@
                                 <constraint firstAttribute="width" constant="68" id="dgC-JM-4ps"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QE9-Wf-Z8q">
@@ -31,7 +31,8 @@
                                 <constraint firstAttribute="height" constant="30" id="gAb-XA-lff"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <state key="normal" title="脉动600ml">
+                            <state key="normal" title="脉动600ml" backgroundImage="icon_nochoose.png">
+                                <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
@@ -48,12 +49,13 @@
                                 <constraint firstAttribute="height" constant="21" id="gxQ-H7-SI8"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ssx-tH-qAR">
                             <rect key="frame" x="108" y="108" width="60" height="30"/>
-                            <state key="normal" title="脉动红色">
+                            <state key="normal" title="脉动红色" backgroundImage="icon_choose.png">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                         </button>
@@ -92,7 +94,7 @@
                                         <constraint firstAttribute="height" constant="21" id="qSJ-Jb-5mf"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -184,7 +186,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="11.0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keo-c4-wcs">
-                            <rect key="frame" x="216" y="41" width="33.5" height="21"/>
+                            <rect key="frame" x="216" y="41" width="34" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -192,7 +194,7 @@
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="（省5.0元）" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QiV-BA-hdq">
                             <rect key="frame" x="257" y="41" width="92" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="DiC-up-UVR">
@@ -267,9 +269,12 @@
                         <action selector="buyNow:" destination="iN0-l3-epB" eventType="touchUpInside" id="S20-Nw-vlx"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nX-Sf-JVn">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6nX-Sf-JVn">
                     <rect key="frame" x="0.0" y="306" width="375" height="44"/>
                     <color key="backgroundColor" red="0.91764705879999997" green="0.2901960784" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="94q-IJ-cAz"/>
+                    </constraints>
                     <state key="normal" title="确定">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -285,13 +290,16 @@
                 <constraint firstItem="taz-B2-1gg" firstAttribute="top" secondItem="fD8-FL-Jfk" secondAttribute="top" id="3ur-eE-kNV"/>
                 <constraint firstAttribute="trailing" secondItem="AUj-HI-Meq" secondAttribute="trailing" id="7IY-JI-QXg"/>
                 <constraint firstItem="fD8-FL-Jfk" firstAttribute="leading" secondItem="AUj-HI-Meq" secondAttribute="leading" id="7aO-PU-OAs"/>
+                <constraint firstAttribute="bottom" secondItem="6nX-Sf-JVn" secondAttribute="bottom" id="GQE-tS-jqx"/>
                 <constraint firstItem="taz-B2-1gg" firstAttribute="leading" secondItem="fD8-FL-Jfk" secondAttribute="trailing" id="MvC-Mw-hgO"/>
                 <constraint firstItem="taz-B2-1gg" firstAttribute="baseline" secondItem="fD8-FL-Jfk" secondAttribute="firstBaseline" id="Wh7-PQ-2Hm"/>
                 <constraint firstItem="AUj-HI-Meq" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bK8-Jv-AzW"/>
                 <constraint firstItem="taz-B2-1gg" firstAttribute="leading" secondItem="fD8-FL-Jfk" secondAttribute="trailing" id="bug-3f-67V"/>
+                <constraint firstAttribute="trailing" secondItem="6nX-Sf-JVn" secondAttribute="trailing" id="cqH-dB-X0x"/>
                 <constraint firstItem="fD8-FL-Jfk" firstAttribute="width" secondItem="taz-B2-1gg" secondAttribute="width" constant="1" id="hU8-Gp-PKD"/>
                 <constraint firstItem="fD8-FL-Jfk" firstAttribute="bottom" secondItem="AUj-HI-Meq" secondAttribute="bottom" id="kfE-6N-Lqn"/>
                 <constraint firstItem="fD8-FL-Jfk" firstAttribute="baseline" secondItem="taz-B2-1gg" secondAttribute="firstBaseline" id="oQa-Ui-94W"/>
+                <constraint firstItem="6nX-Sf-JVn" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qul-DK-q3s"/>
                 <constraint firstAttribute="bottom" secondItem="AUj-HI-Meq" secondAttribute="bottom" id="w0V-NN-jIL"/>
                 <constraint firstItem="taz-B2-1gg" firstAttribute="trailing" secondItem="AUj-HI-Meq" secondAttribute="trailing" id="wc4-CZ-Jhv"/>
             </constraints>
@@ -309,6 +317,8 @@
         </view>
     </objects>
     <resources>
+        <image name="icon_choose.png" width="60" height="29"/>
+        <image name="icon_nochoose.png" width="60" height="29"/>
         <image name="icon_user_default.png" width="98" height="97"/>
         <image name="line_hon_1px_down.png" width="640" height="2"/>
         <image name="line_ver_1px_left.png" width="2" height="149"/>

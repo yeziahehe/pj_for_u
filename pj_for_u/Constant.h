@@ -100,6 +100,7 @@
 #define kRemoveBackGrayViewNotification     @"RemoveBackGrayViewNotification"
 #define kHeightForTBVNotification           @"HeightForTBVNotification"
 #define kDeliverCommentNotification         @"DeliverCommentNotification"
+#define kHeightForTBVNotification           @"HeightForTBVNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"

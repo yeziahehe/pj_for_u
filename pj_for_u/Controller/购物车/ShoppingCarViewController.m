@@ -72,10 +72,12 @@
 //下拉刷新方法
 - (void)dropDownRefresh
 {
+    self.shoppingCarSelectedArray = nil;
     self.type = @"1";
     self.page = 1;
     NSString *pageString = [NSString stringWithFormat:@"%d",self.page];
-    [self requestForShoppingCar:@"18896554880" page:pageString limit:@"3"];
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    [self requestForShoppingCar:phone page:pageString limit:@"3"];
 }
 //上拉刷新方法
 - (void)pullUpRefresh
@@ -83,17 +85,26 @@
     self.type = @"2";
     self.page ++;
     NSString *pageString = [NSString stringWithFormat:@"%d",self.page];
-    [self requestForShoppingCar:@"18896554880" page:pageString limit:@"3"];
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    [self requestForShoppingCar:phone page:pageString limit:@"3"];
 }
 
 //添加订单总价
 - (void)calculateTotalPrice
 {
+    NSMutableArray *calculateArray = [[NSMutableArray alloc]init];
+    if (!self.isChangedToSelectMode) {
+        calculateArray = self.shoppingCarArray;
+    }
+    else
+    {
+        calculateArray = self.shoppingCarSelectedArray;
+    }
     self.totalPrice = nil;
     self.originPrice = nil;
     self.disCount = nil;
-    for (int i = 0; i < self.shoppingCarSelectedArray.count; i++) {
-        ShoppingCar *sc = [self.shoppingCarSelectedArray objectAtIndex:i];
+    for (int i = 0; i < calculateArray.count; i++) {
+        ShoppingCar *sc = [calculateArray objectAtIndex:i];
         self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.discountPrice floatValue]*[sc.orderCount intValue]];
         self.originPrice = [NSString stringWithFormat:@"%.1f元",[self.originPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
         self.disCount = [NSString stringWithFormat:@"(已节省%.1f元)",[self.originPrice floatValue]-[self.totalPrice floatValue]];
@@ -116,6 +127,7 @@
     [self.ShoppingCarTableView addHeaderWithTarget:self action:@selector(dropDownRefresh)];
     [self.ShoppingCarTableView addFooterWithTarget:self action:@selector(pullUpRefresh)];
     [self setRightNaviItemWithTitle:@"选择" imageName:nil];
+
 }
 //视图出现前调用,依据是否登录判断显示界面
 - (void)viewWillAppear:(BOOL)animated
@@ -158,15 +170,17 @@
     {
         [self.backGrayView removeFromSuperview];
         self.isChangedToSelectMode = NO;
+        self.shoppingCarSelectedArray = nil;
         [self setRightNaviItemWithTitle:@"选择" imageName:nil];
         self.deleteShoppingCarView.hidden = YES;
         [self.ShoppingCarTableView reloadData];
-        self.totalPriceLabel.text = @"0.0元";
-        self.discountPrice.text = @"0.0元";
-        self.moneySavedLabel.text =@"(已节省0.0元)";
+        [self calculateTotalPrice];
     }
     else
     {
+        self.totalPriceLabel.text = @"0.0元";
+        self.discountPrice.text = @"0.0元";
+        self.moneySavedLabel.text =@"(已节省0.0元)";
         [self setRightNaviItemWithTitle:@"完成" imageName:nil];
         self.isChangedToSelectMode = YES;
         [self.ShoppingCarTableView reloadData];
@@ -174,10 +188,6 @@
         self.backGrayView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.5];
         [self.CalculateView addSubview:self.backGrayView];
         self.deleteShoppingCarView.hidden = NO;
-        [self.CalculateView addSubview:self.deleteShoppingCarView];
-        [self.CalculateView addSubview:self.totalPriceLabel];
-        [self.CalculateView addSubview:self.moneySavedLabel];
-        [self.CalculateView addSubview:self.totalLabel];
     }
 }
 
@@ -196,8 +206,10 @@
             }
         }
     }
-    [self requestForDelete:@"18896554880" orderId:orderId];
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    [self requestForDelete:phone orderId:orderId];
     orderId = nil;
+    self.shoppingCarSelectedArray = nil;
 }
 //随便逛逛按钮点击事件
 - (IBAction)goAroundButtonClicked:(id)sender {
@@ -206,10 +218,12 @@
 //结算按钮点击事件
 - (IBAction)calculateButtonClicked:(id)sender {
     ConfirmOrderViewController *confirmOrder = [[ConfirmOrderViewController alloc]initWithNibName:@"ConfirmOrderViewController" bundle:nil];
+    confirmOrder.selectedArray = self.shoppingCarSelectedArray;
     [self.navigationController pushViewController:confirmOrder animated:YES];
 }
 
 #pragma mark - notification方法
+//加号按钮监听事件
 - (void)plusShoppingAmountNotification:(NSNotification *)notification{
     NSIndexPath *shopId = notification.object;
     ShoppingCar *sc = [self.shoppingCarArray objectAtIndex:shopId.section];
@@ -221,6 +235,7 @@
     [self.ShoppingCarTableView reloadData];
     [self requestForEdit:sc.orderId withOrderCount:sc.orderCount];
 }
+//减号按钮监听事件
 - (void)minusShoppingAmountNotification:(NSNotification *)notification{
     NSIndexPath *shopId = notification.object;
     ShoppingCar *sc = [self.shoppingCarArray objectAtIndex:shopId.section];
@@ -233,11 +248,19 @@
     [self requestForEdit:sc.orderId withOrderCount:sc.orderCount];
     }
 }
+//移除darkgreyview
 - (void)removeBackGrayViewNotification:(NSNotification *)notification
 {
     NSIndexPath *cellId = notification.object;
     ShoppingCarTableViewCell *cell = (ShoppingCarTableViewCell *)[self.ShoppingCarTableView cellForRowAtIndexPath:cellId];
     ShoppingCar *sc = [self.shoppingCarArray objectAtIndex:cellId.section];
+    if ([self.shoppingCarSelectedArray count] == 0) {
+        [self.CalculateView addSubview:self.deleteShoppingCarView];
+        self.deleteShoppingCarView.hidden = NO;
+        [self.CalculateView addSubview:self.totalPriceLabel];
+        [self.CalculateView addSubview:self.moneySavedLabel];
+        [self.CalculateView addSubview:self.totalLabel];
+    }
     [self.shoppingCarSelectedArray addObject:sc];
     cell.isSelected = YES;
     cell.backGrayView.hidden = YES;
@@ -258,8 +281,19 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    ShoppingCar *car = [self.shoppingCarArray objectAtIndex:indexPath.section];
+    BOOL select =  [self.shoppingCarSelectedArray containsObject:car];
     static NSString *cellIdentity = @"ShoppingCarTableViewCell";
-    ShoppingCarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentity];
+    static NSString *selectCellIdentity = @"selectShoppingCarTableViewCell";
+    NSString *selectString;
+    if (select) {
+        selectString = selectCellIdentity;
+    }
+    else{
+        selectString = cellIdentity;
+    }
+    ShoppingCarTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:selectString];
+
     if (nil == cell)
     {
         NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"ShoppingCarTableViewCell" owner:self options:nil];
@@ -279,7 +313,7 @@
     }
     
     if (self.isChangedToSelectMode) {
-        if (!cell.isSelected) {
+        if (!select) {
             cell.backGrayView.hidden = NO;
         }
         cell.PlusButton.enabled = NO;
@@ -317,6 +351,7 @@
             self.totalPriceLabel.text = @"0.0元";
             self.discountPrice.text = @"0.0元";
             self.moneySavedLabel.text =@"(已节省0.0元)";
+            self.deleteShoppingCarView.hidden = YES;
         }
         else{
             [self calculateTotalPrice];
@@ -348,8 +383,9 @@
         withOrderCount:(NSString *)orderCount
 {
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kEditShoppingCarUrl];
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
     NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:@"18896554880" forKey:@"phoneId"];
+    [dict setObject:phone forKey:@"phoneId"];
     [dict setObject:orderId forKey:@"orderId"];
     [dict setObject:orderCount forKey:@"orderCount"];
 
@@ -409,6 +445,7 @@
             {
                 [self noGoodsExistView];
             }
+            [self calculateTotalPrice];
             [self.ShoppingCarTableView reloadData];
         }
         else

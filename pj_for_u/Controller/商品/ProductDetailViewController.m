@@ -13,6 +13,7 @@
 #import "ProCommentView.h"
 #import "ProductionInfo.h"
 #import "ChooseCategoryView.h"
+#import "ShoppingCarViewController.h"
 
 @interface ProductDetailViewController ()
 @property(strong,nonatomic)ProductionInfo *proInfo;
@@ -136,6 +137,7 @@
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setNaviTitle:@"商品详情"];
+    [self setRightNaviItemWithTitle:nil imageName:@"icon_shopcarright"];
     [self loadDataWithfoodId:self.foodId];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessAddingToCarNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(heightForTableViewWithNotification:) name:kHeightForTBVNotification object:nil];
@@ -145,6 +147,7 @@
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
+#pragma mark - IBAction Methods
 - (IBAction)addShoppingCar:(id)sender {
     self.chooseCategoryView = [[[NSBundle mainBundle]loadNibNamed:@"ChooseCategoryView" owner:self options:nil]lastObject];
     //传递参数
@@ -159,5 +162,7 @@
     }];
 }
 
-
+-(void)rightItemTapped{
+    self.tabBarController.selectedIndex = 1;
+}
 @end

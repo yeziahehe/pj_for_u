@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface ConfirmOrderViewController : BaseViewController
-
+@interface ConfirmOrderViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
+@property (strong, nonatomic)NSMutableArray *selectedArray;
 @end
