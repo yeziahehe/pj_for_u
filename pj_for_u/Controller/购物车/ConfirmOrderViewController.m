@@ -22,6 +22,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *phoneLabel;
 @property (strong, nonatomic) IBOutlet UILabel *addressLabel;
 @property (strong, nonatomic) ShoppingCar *shoppingCarInfo;
+@property (strong, nonatomic) IBOutlet UILabel *totalPriceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *originPriceLabel;
+@property (strong, nonatomic) IBOutlet UILabel *moneySavedLabel;
 
 
 @end
@@ -35,6 +38,9 @@
     self.nameLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.nickname;
     self.phoneLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.phone;
     self.addressLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.defaultAddress;
+    self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%@",self.totalPrice];
+    self.originPriceLabel.text = self.originPrice;
+    self.moneySavedLabel.text = self.moneySaved;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
