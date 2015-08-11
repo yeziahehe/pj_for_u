@@ -30,7 +30,8 @@
 
 - (void)loadSubViews
 {
-    [[MemberDataManager sharedManager]requestForIndividualInfoWithPhone:@"18013646790"];
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    [[MemberDataManager sharedManager]requestForIndividualInfoWithPhone:phone];
     self.nameLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.nickname;
     self.phoneLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.phone;
     self.addressLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.defaultAddress;

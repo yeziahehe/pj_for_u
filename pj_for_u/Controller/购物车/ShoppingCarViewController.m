@@ -218,6 +218,9 @@
 - (IBAction)calculateButtonClicked:(id)sender {
     ConfirmOrderViewController *confirmOrder = [[ConfirmOrderViewController alloc]initWithNibName:@"ConfirmOrderViewController" bundle:nil];
     confirmOrder.selectedArray = self.shoppingCarSelectedArray;
+    confirmOrder.totalPrice = self.totalPrice;
+    confirmOrder.originPrice = self.originPrice;
+    confirmOrder.moneySaved = self.disCount;
     [self.navigationController pushViewController:confirmOrder animated:YES];
 }
 
