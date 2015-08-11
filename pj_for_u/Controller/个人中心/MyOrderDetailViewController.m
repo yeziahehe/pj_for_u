@@ -54,15 +54,15 @@
     int status = [[self.bigOrder objectForKey:@"status"] intValue];
     NSString *message;
     if (status == 1) {
-        message = @"待付款";
+        message = @"订单待付款";
     } else if (status == 2) {
-        message = @"待确认";
+        message = @"订单确认中";
     } else if (status == 3) {
-        message = @"配送中";
+        message = @"订单配送中";
     } else if (status == 4) {
-        message = @"待评价";
+        message = @"交易成功";
     } else if (status == 5) {
-        message = @"待确认";
+        message = @"交易完成";
     }
     
     self.status.text = message;

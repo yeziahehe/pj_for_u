@@ -248,14 +248,17 @@
             [cell.leftButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
             [cell.leftButton setTitle:@"立即付款" forState:UIControlStateNormal];
             [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
+            cell.orderStatus.text = @"订单待付款";
         }
         if ([status isEqualToString:@"2"]) {
             cell.leftButton.hidden = YES;
             [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
+            cell.orderStatus.text = @"订单确认中";
         }
         if ([status isEqualToString:@"3"]) {
             cell.leftButton.hidden = YES;
-            [cell.rightButton setTitle:@"确认收货" forState:UIControlStateNormal];;
+            [cell.rightButton setTitle:@"确认收货" forState:UIControlStateNormal];
+            cell.orderStatus.text = @"订单配送中";
         }
         if ([status isEqualToString:@"4"]) {
             CALayer *layer = [cell.leftButton layer];
@@ -263,7 +266,8 @@
             [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             
             [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"评价订单" forState:UIControlStateNormal];;
+            [cell.rightButton setTitle:@"评价订单" forState:UIControlStateNormal];
+            cell.orderStatus.text = @"交易成功";
         }
         if ([status isEqualToString:@"5"]) {
             CALayer *layer = [cell.leftButton layer];
@@ -271,7 +275,8 @@
             [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             
             [cell.leftButton setTitle:@"追加评论" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];;
+            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            cell.orderStatus.text = @"交易完成";
         }
     }
 
