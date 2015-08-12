@@ -33,9 +33,7 @@
 @property (strong, nonatomic) NSString *totalPrice;
 @property (strong, nonatomic) NSString *originPrice;
 @property (strong, nonatomic) NSString *disCount;
-@property (strong, nonatomic) NSString *type;
 @property BOOL isChangedToSelectMode;
-@property int page;
 
 @end
 @implementation ShoppingCarViewController
@@ -72,20 +70,8 @@
 - (void)dropDownRefresh
 {
     self.shoppingCarSelectedArray = nil;
-    self.type = @"1";
-    self.page = 1;
-    NSString *pageString = [NSString stringWithFormat:@"%d",self.page];
     NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
-    [self requestForShoppingCar:phone page:pageString limit:@"3"];
-}
-//上拉刷新方法
-- (void)pullUpRefresh
-{
-    self.type = @"2";
-    self.page ++;
-    NSString *pageString = [NSString stringWithFormat:@"%d",self.page];
-    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
-    [self requestForShoppingCar:phone page:pageString limit:@"3"];
+    [self requestForShoppingCar:phone];
 }
 
 //添加订单总价
@@ -121,12 +107,9 @@
     [[MemberDataManager sharedManager]requestForIndividualInfoWithPhone:phone];
     self.navigationItem.leftBarButtonItem = nil;
     self.isChangedToSelectMode = NO;
-    self.page = 1;
-    self.type = @"1";
     self.shoppingCarSelectedArray = [[NSMutableArray alloc]initWithCapacity:0];
     self.deleteShoppingCarView.hidden = YES;
     [self.ShoppingCarTableView addHeaderWithTarget:self action:@selector(dropDownRefresh)];
-    [self.ShoppingCarTableView addFooterWithTarget:self action:@selector(pullUpRefresh)];
     [self setRightNaviItemWithTitle:@"选择" imageName:nil];
 
 }
@@ -171,6 +154,9 @@
     {
         [self.backGrayView removeFromSuperview];
         self.isChangedToSelectMode = NO;
+        self.totalPriceLabel.text = @"合计:0.0元";
+        self.discountPrice.text = @"0.0元";
+        self.moneySavedLabel.text =@"(已节省0.0元)";
         self.shoppingCarSelectedArray = nil;
         [self setRightNaviItemWithTitle:@"选择" imageName:nil];
         self.deleteShoppingCarView.hidden = YES;
@@ -408,15 +394,11 @@
 
 }
 - (void)requestForShoppingCar:(NSString *)phone
-                         page:(NSString *)page
-                        limit:(NSString *)limit
 {
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetShoppingCarUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:phone forKey:@"phoneId"];
     [dict setObject:kCampusId forKey:@"campusId"];
-    [dict setObject:page forKey:@"page"];
-    [dict setObject:limit forKey:@"limit"];
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict
                                                             contentType:@"application/x-www-form-urlencoded"
@@ -441,15 +423,8 @@
                 ShoppingCar *shoppingCar = [[ShoppingCar alloc] initWithDict:valueDict];
                 [self.shoppingTempArray addObject:shoppingCar];
             }
-            if ([self.type isEqualToString:@"1"]) {
                 self.shoppingCarArray = self.shoppingTempArray;
                 [self.ShoppingCarTableView headerEndRefreshing];
-            }
-            else if([self.type isEqualToString:@"2"])
-            {
-                [self.shoppingCarArray addObjectsFromArray:self.shoppingTempArray];
-                [self.ShoppingCarTableView footerEndRefreshing];
-            }
             if([self.shoppingCarArray count] == 0)
             {
                 [self noGoodsExistView];

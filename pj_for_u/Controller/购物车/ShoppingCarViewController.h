@@ -11,9 +11,6 @@
 
 @interface ShoppingCarViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
 
-- (void)requestForShoppingCar:(NSString *)phone
-                         page:(NSString *)page
-                        limit:(NSString *)limit;
 
 
 @end
