@@ -158,7 +158,7 @@
                 <outlet property="timeLabel" destination="TT4-Cw-QKN" id="4zG-fh-yVZ"/>
                 <outlet property="userImage" destination="j8h-1K-kEd" id="TU4-Ok-ULK"/>
             </connections>
-            <point key="canvasLocation" x="139.5" y="435"/>
+            <point key="canvasLocation" x="102.5" y="428"/>
         </tableViewCell>
     </objects>
     <resources>

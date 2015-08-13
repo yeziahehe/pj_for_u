@@ -85,13 +85,13 @@
 #pragma mark - UIView Methosd
 -(void)awakeFromNib{
     [super awakeFromNib];
+
     self.page = 2;
     UINib *nib = [UINib nibWithNibName:@"ProCommentTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"ProCommentTableViewCell"];
     [self.tableView addFooterWithTarget:self action:@selector(loadMoreComments)];
     
-    self.tableView.estimatedRowHeight = 110.0f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
@@ -101,6 +101,18 @@
     ProCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProCommentTableViewCell" ];
     ProCommentDetail *pcd = [self.allCommentMArray objectAtIndex:indexPath.row];
     cell.pcd = pcd;
+    
+    
+    if (indexPath.row == self.allCommentMArray.count - 1) {
+        CGRect rect = self.tableView.frame;
+        rect.size.height = self.tableView.contentSize.height + cell.frame.size.height;
+        rect.size.width = ScreenWidth;
+        self.tableView.frame = rect;
+        
+        NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height+cell.frame.size.height+44];
+        NSLog(@"shit %@",height);
+        [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
+    }
     
     return cell;
 }
@@ -124,10 +136,10 @@
 //加载完成cell后的方法，在该方法中实现tableview高度自适应,cell>1执行
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"shit%ld",(long)indexPath.row );
     CGRect rect = self.tableView.frame;
     rect.size.height = self.tableView.contentSize.height;
     self.tableView.frame = rect;
+    
     NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height];
     [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
 }

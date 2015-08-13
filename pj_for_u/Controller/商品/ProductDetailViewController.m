@@ -118,13 +118,13 @@
             rect.origin.y += 10.f;
             proCommentView.proInfo = self.proInfo;
             rect.size.height = proCommentView.tableView.contentSize.height;
-            
         }
         productSubView.frame = rect;
         [self.contentScrollView addSubview:productSubView];
         originY = rect.origin.y + rect.size.height;
     }
     [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, originY + 44.f)];
+    NSLog(@"fuck %f",self.contentScrollView.contentSize.height);
     [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
 }
 
