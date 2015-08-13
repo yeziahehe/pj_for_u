@@ -13,8 +13,8 @@
 #import "ShoppingCar.h"
 #import "ConfirmOrderViewController.h"
 
-#define sizeofPage                  @"5"
-#define sizeofPageInt               5
+#define sizeofPage                  @"1"
+#define sizeofPageInt               1
 
 #define kGetOrderInMineKey          @"GetOrderInMineKey"
 #define kDeleteOrderKey             @"DeleteOrderKey"
@@ -346,9 +346,6 @@
 
         ConfirmOrderViewController *coVC = [[ConfirmOrderViewController alloc] init];
 
-        coVC.totalPrice = [NSString stringWithFormat:@"%.1lf元", price];
-        coVC.originPrice = [NSString stringWithFormat:@"原价:%.1lf元", originPrice];
-        coVC.moneySaved = [NSString stringWithFormat:@"(已节省%.1lf元)", originPrice - price];
         coVC.selectedArray = shoppingCar;
         
         [self.navigationController pushViewController:coVC animated:YES];        
@@ -629,14 +626,9 @@
                 [self.noOrderView removeFromSuperview];
                 if (valueArray.count < sizeofPageInt) {
                     self.tableView.footerHidden = YES;
-                    self.lastestId = [NSString stringWithFormat:@"%d", ++self.indexOfPage];
-                    postInfoLabel.text = @"已加载全部数据";
                 }
-                else if (valueArray.count == sizeofPageInt) {
-                    //下拉获取更多
-                    self.lastestId = [NSString stringWithFormat:@"%d", ++self.indexOfPage];
-                    postInfoLabel.text = @"上拉获取更多数据";
-                }
+                self.lastestId = [NSString stringWithFormat:@"%d", ++self.indexOfPage];
+
                 [self.tableView reloadData];
 
             }
@@ -664,7 +656,8 @@
             
             [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
-
+            
+            NSString *badgeNum = [NSString stringWithFormat:@"%lu", (unsigned long)self.orderListArray.count];
             switch (self.recordLastStatus) {
                 case 4:
                     for (UIView *subView in self.waitForEvaluation.subviews) {
@@ -673,7 +666,7 @@
                         }
                     }
                     
-                    [self setBadgeViewWithView:self.waitForEvaluation badgeNum:[NSString stringWithFormat:@"%d", --self.waitForEvaluationNum]];
+                    [self setBadgeViewWithView:self.waitForEvaluation badgeNum:badgeNum];
                     break;
                 case 5:
                     for (UIView *subView in self.alreadyFinished.subviews) {
@@ -682,7 +675,7 @@
                         }
                     }
                     
-                    [self setBadgeViewWithView:self.alreadyFinished badgeNum:[NSString stringWithFormat:@"%d", --self.alreadyFinishedNum]];
+                    [self setBadgeViewWithView:self.alreadyFinished badgeNum:badgeNum];
                     break;
                 default:
                     break;
@@ -709,7 +702,7 @@
             
             [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
-
+            NSString *badgeNum = [NSString stringWithFormat:@"%lu", (unsigned long)self.orderListArray.count];
             switch (self.recordLastStatus) {
                 case 1:
                     for (UIView *subView in self.waitForPayment.subviews) {
@@ -718,7 +711,7 @@
                         }
                     }
                     
-                    [self setBadgeViewWithView:self.waitForPayment badgeNum:[NSString stringWithFormat:@"%d", --self.waitForPaymentNum]];
+                    [self setBadgeViewWithView:self.waitForPayment badgeNum:badgeNum];
                     break;
                 case 2:
                     for (UIView *subView in self.waitForConfirm.subviews) {
@@ -727,7 +720,7 @@
                         }
                     }
                     
-                    [self setBadgeViewWithView:self.waitForConfirm badgeNum:[NSString stringWithFormat:@"%d", --self.waitForConfirmNum]];
+                    [self setBadgeViewWithView:self.waitForConfirm badgeNum:badgeNum];
                     break;
                 default:
                     break;

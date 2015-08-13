@@ -138,5 +138,6 @@
 #define kGetOrderDetailUrl      @"order/getBigOrderById.do"
 #define kDeleteOrderUrl         @"order/deleteOrder.do"
 #define kSetOrderInvalidUrl     @"order/setOrderInvalid.do"
+#define kBuyNowUrl              @"order/purchaseImmediately.do"
 
 #endif
