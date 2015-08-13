@@ -101,6 +101,10 @@
 #define kHeightForTBVNotification           @"HeightForTBVNotification"
 #define kDeliverCommentNotification         @"DeliverCommentNotification"
 #define kHeightForTBVNotification           @"HeightForTBVNotification"
+#define kConfirmDeliverTimeNotification           @"ConfirmDeliverTimeNotification"
+#define kCancelDeliverTimeNotification           @"CancelDeliverTimeNotification"
+
+
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"

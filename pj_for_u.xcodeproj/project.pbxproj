@@ -21,6 +21,8 @@
 		0ACABED21B65FFAB009B18E0 /* HomeActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */; };
 		0ACABED41B67178D009B18E0 /* icon_user_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED31B67178D009B18E0 /* icon_user_default@2x.png */; };
 		0ACABED61B671DEE009B18E0 /* icon_yanzheng@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED51B671DEE009B18E0 /* icon_yanzheng@2x.png */; };
+		0AD63F021B79C01E0072BEA1 /* selectDeliverTimeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD63F011B79C01E0072BEA1 /* selectDeliverTimeView.m */; };
+		0AD63F041B79C0460072BEA1 /* selectDeliverTimeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AD63F031B79C0460072BEA1 /* selectDeliverTimeView.xib */; };
 		0AE093071B60D2EC0095D639 /* AboutAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE093051B60D2EC0095D639 /* AboutAppViewController.m */; };
 		0AE093081B60D2EC0095D639 /* AboutAppViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */; };
 		0AE742501B708CA8005A91CF /* ShoppingCar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE7424F1B708CA8005A91CF /* ShoppingCar.m */; };
@@ -271,6 +273,9 @@
 		0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeActivityTableViewCell.xib; path = "Controller/首页/HomeActivityTableViewCell.xib"; sourceTree = "<group>"; };
 		0ACABED31B67178D009B18E0 /* icon_user_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_user_default@2x.png"; path = "Resource/icon_user_default@2x.png"; sourceTree = "<group>"; };
 		0ACABED51B671DEE009B18E0 /* icon_yanzheng@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_yanzheng@2x.png"; path = "Resource/icon_yanzheng@2x.png"; sourceTree = "<group>"; };
+		0AD63F001B79C01E0072BEA1 /* selectDeliverTimeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = selectDeliverTimeView.h; path = "Controller/购物车/selectDeliverTimeView.h"; sourceTree = "<group>"; };
+		0AD63F011B79C01E0072BEA1 /* selectDeliverTimeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = selectDeliverTimeView.m; path = "Controller/购物车/selectDeliverTimeView.m"; sourceTree = "<group>"; };
+		0AD63F031B79C0460072BEA1 /* selectDeliverTimeView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = selectDeliverTimeView.xib; path = "Controller/购物车/selectDeliverTimeView.xib"; sourceTree = "<group>"; };
 		0AE093041B60D2EC0095D639 /* AboutAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutAppViewController.h; path = "Controller/设置/AboutAppViewController.h"; sourceTree = "<group>"; };
 		0AE093051B60D2EC0095D639 /* AboutAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutAppViewController.m; path = "Controller/设置/AboutAppViewController.m"; sourceTree = "<group>"; };
 		0AE093061B60D2EC0095D639 /* AboutAppViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AboutAppViewController.xib; path = "Controller/设置/AboutAppViewController.xib"; sourceTree = "<group>"; };
@@ -647,6 +652,9 @@
 				0A54DA6E1B73121C00FCBAB0 /* ConfirmOrderViewController.h */,
 				0A54DA6F1B73121C00FCBAB0 /* ConfirmOrderViewController.m */,
 				0A54DA701B73121C00FCBAB0 /* ConfirmOrderViewController.xib */,
+				0AD63F001B79C01E0072BEA1 /* selectDeliverTimeView.h */,
+				0AD63F011B79C01E0072BEA1 /* selectDeliverTimeView.m */,
+				0AD63F031B79C0460072BEA1 /* selectDeliverTimeView.xib */,
 			);
 			name = "确认订单";
 			sourceTree = "<group>";
@@ -1495,6 +1503,7 @@
 				6D938E891B74593700AB9895 /* icon_order_headimage@2x.png in Resources */,
 				2C7953981B613F4800511EB7 /* icon_address@2x.png in Resources */,
 				2CF607C11B5EC88C0022E8E7 /* icon_courier@2x.png in Resources */,
+				0AD63F041B79C0460072BEA1 /* selectDeliverTimeView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1611,6 +1620,7 @@
 				2CF607671B5E9D100022E8E7 /* SearchHistoryViewController.m in Sources */,
 				4A6C16841B70BAC500C9A9D2 /* AFNetworkReachabilityManager.m in Sources */,
 				2C2528DC1B5E39EF00ADDEFB /* SBJsonWriter.m in Sources */,
+				0AD63F021B79C01E0072BEA1 /* selectDeliverTimeView.m in Sources */,
 				2C2529061B5E3AA900ADDEFB /* YFDownloaderManager.m in Sources */,
 				2C2528A41B5E38BB00ADDEFB /* ForgetPwdViewController.m in Sources */,
 				2C2528501B5E108900ADDEFB /* main.m in Sources */,
