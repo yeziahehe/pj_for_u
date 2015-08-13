@@ -61,7 +61,6 @@
 
 - (void)removeFirstResponder
 {
-    
     [self.background removeFromSuperview];
     [self cancelDeliverTimeNotification:nil];
     self.background = nil;
@@ -72,6 +71,9 @@
     self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%@",self.totalPrice];
     self.originPriceLabel.text = self.originPrice;
     self.moneySavedLabel.text = self.moneySaved;
+    CGRect rect = self.selectGoodsTableView.frame;
+    rect.size.height = [self.selectedArray count] * 140.f;
+    self.selectGoodsTableView.frame = rect;
 }
 - (void)viewWillAppear:(BOOL)animated
 {
