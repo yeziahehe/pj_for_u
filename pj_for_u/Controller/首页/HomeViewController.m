@@ -82,12 +82,11 @@
 {
     if (notification.object)
         [self setNaviTitle:[NSString stringWithFormat:@"%@ > ",notification.object]];
-    [self loadSubViews];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshHomeNotification object:nil];
 }
 
 - (void)refreshHomeNotification:(NSNotification *)notification
 {
-    [self loadSubViews];
     [self requestForImages];
 }
 
