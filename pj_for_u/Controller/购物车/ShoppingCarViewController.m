@@ -225,9 +225,6 @@
     {
         confirmOrder.selectedArray = self.shoppingCarArray;
     }
-    confirmOrder.totalPrice = self.totalPrice;
-    confirmOrder.originPrice = self.originPrice;
-    confirmOrder.moneySaved = self.disCount;
     [self.navigationController pushViewController:confirmOrder animated:YES];
 }
 
