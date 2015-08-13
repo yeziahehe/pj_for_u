@@ -101,10 +101,9 @@
 #define kHeightForTBVNotification           @"HeightForTBVNotification"
 #define kDeliverCommentNotification         @"DeliverCommentNotification"
 #define kHeightForTBVNotification           @"HeightForTBVNotification"
-#define kConfirmDeliverTimeNotification           @"ConfirmDeliverTimeNotification"
-#define kCancelDeliverTimeNotification           @"CancelDeliverTimeNotification"
-
-
+#define kConfirmDeliverTimeNotification     @"ConfirmDeliverTimeNotification"
+#define kCancelDeliverTimeNotification      @"CancelDeliverTimeNotification"
+#define kSuccessBuyNowNotification          @"SuccessBuyNowNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
@@ -137,5 +136,6 @@
 #define kCreatOrderCommentUrl   @"service/creatOrderComment.do"
 #define kAddToShoppingCarUrl    @"order/createOrder.do"
 #define kGetOrderDetailUrl      @"order/getBigOrderById.do"
+#define kBuyNowUrl              @"order/purchaseImmediately.do"
 
 #endif
