@@ -88,9 +88,16 @@
         //后台不给。。。手动计算个数和总价
         int count = 0;
         double price = 0.0;
+        NSString *realPriceType;
         for (NSDictionary *dict in self.smallOrders) {
+            NSString *isDiscount = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isDiscount"]];
+            if ([isDiscount isEqualToString:@"1"]) {
+                realPriceType = @"discountPrice";
+            } else {
+                realPriceType = @"price";
+            }
             int singleCount = [[dict objectForKey:@"orderCount"] intValue];
-            double singlePrice = [[dict objectForKey:@"discountPrice"] doubleValue];
+            double singlePrice = [[dict objectForKey:realPriceType] doubleValue];
             price += singleCount * singlePrice;
             count += singleCount;
         }
@@ -187,6 +194,12 @@
     //=============
 
     [self requestForMyOrderDetailByTogetherId:self.togetherId];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
 
 #pragma mark - YFDownloaderDelegate Methods
