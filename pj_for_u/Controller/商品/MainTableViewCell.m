@@ -20,13 +20,16 @@
     if ( [self.pi.isDiscount isEqualToString:@"1"]) {
         self.oldPriceLabel.hidden = NO;
         self.discountImageView.hidden = NO;
+        self.priceLabel.text = [NSString stringWithFormat:@"%.1lf元",[pi.discountPrice doubleValue]];
+
         self.oldPriceLabel.text = [NSString stringWithFormat:@"%@元",pi.price];
     } else {
         self.oldPriceLabel.hidden = YES;
         self.discountImageView.hidden = YES;
+        self.priceLabel.text = [NSString stringWithFormat:@"%.1lf元",[pi.price doubleValue]];
+
     }
     self.introLabel.text = pi.message;
-    self.priceLabel.text = [NSString stringWithFormat:@"%.1lf元",[pi.discountPrice doubleValue]];
     self.proNameLabel.text = pi.name;
     self.amountLabel.text = [NSString stringWithFormat:@"销量：%@",pi.saleNumber];
     self.image.cacheDir = kUserIconCacheDir;

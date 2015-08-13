@@ -118,7 +118,6 @@
             rect.origin.y += 10.f;
             proCommentView.proInfo = self.proInfo;
             rect.size.height = proCommentView.tableView.contentSize.height;
-            
         }
         productSubView.frame = rect;
         [self.contentScrollView addSubview:productSubView];

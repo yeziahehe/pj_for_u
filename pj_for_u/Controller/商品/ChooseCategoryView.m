@@ -34,6 +34,7 @@
 #pragma mark - Private Methods
 -(void)addShoppingCarWithfoodId:(NSString *)foodId
                       foodCount:(NSString *)foodCount
+                           type:(NSString *)type
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -49,9 +50,14 @@
     
     //进行post请求
     [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation,id responseObject) {
-        [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"加入购物车成功" hideDelay:2.f];
-        [self sendNotification];
-        NSLog(@"加入购物车成功");
+        if ([type isEqualToString:@"1"]) {
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"加入购物车成功" hideDelay:2.f];
+            [self sendNotification];
+            NSLog(@"加入购物车成功");
+        }else{
+            //再次请求
+        }
+
     }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
         
         NSLog(@"Error: %@", error);
@@ -59,9 +65,11 @@
     }];
 }
 - (IBAction)doneButton:(id)sender {
+    NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
     if ([self.flag isEqualToString:@"1"]) {
-        NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
-        [self addShoppingCarWithfoodId:self.proInfo.foodId foodCount:foodCount];
+        [self addShoppingCarWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"1"];
+    }else{
+        
     }
 }
 -(void)sendNotification{
@@ -97,7 +105,7 @@
 //加入购物车
 - (IBAction)addToShoppingCar:(id)sender {
     NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
-    [self addShoppingCarWithfoodId:self.proInfo.foodId foodCount:foodCount];
+    [self addShoppingCarWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"1"];
 }
 
 //立即购买

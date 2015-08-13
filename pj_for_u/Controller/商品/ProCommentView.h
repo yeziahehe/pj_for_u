@@ -9,7 +9,7 @@
 #import "ProductSubView.h"
 #import "ProductionInfo.h"
 
-@interface ProCommentView : ProductSubView
+@interface ProCommentView : ProductSubView <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic)ProductionInfo *proInfo;
