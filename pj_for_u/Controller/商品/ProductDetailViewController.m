@@ -53,6 +53,7 @@
                          }
                      }];
     [self.background removeFromSuperview];
+    NSLog(@"移除subview成功");
 }
 #pragma mark - Private Methods
 - (void)loadDataWithfoodId:(NSString *)foodId
@@ -134,10 +135,10 @@
 }
 
 -(void)buyNowWithNotification:(NSNotification *)notification{
-    NSArray *OrderArray = [[NSArray alloc]initWithObjects:notification.object, nil];
     [self removeSubViews];
+    NSMutableArray *OrderArray = [[NSMutableArray alloc]initWithObjects:notification.object, nil];
     ConfirmOrderViewController *covc = [[ConfirmOrderViewController alloc]initWithNibName:@"ConfirmOrderViewController" bundle:nil];
-    
+    covc.selectedArray = OrderArray;
     [self.navigationController pushViewController:covc animated:YES];
 }
 #pragma mark - UIView Methods
