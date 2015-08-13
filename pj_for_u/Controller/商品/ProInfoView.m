@@ -50,6 +50,8 @@
 -(void)awakeFromNib{
     [super awakeFromNib];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessAddingToCarNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessBuyNowNotification object:nil];
+    
 }
 
 -(void)dealloc{
