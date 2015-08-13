@@ -70,7 +70,10 @@
     [self cancelDeliverTimeNotification:nil];
     self.background = nil;
 }
-
+- (void)touchScrollView
+{
+    [self.descriptionTextView resignFirstResponder];
+}
 //添加订单总价
 - (void)calculateTotalPrice
 {
@@ -153,6 +156,12 @@
     [self.contentView addSubview:self.calculateView];
     [self.contentView setContentSize:CGSizeMake(ScreenWidth, originY)];
     
+    self.contentView.delegate = self;
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchScrollView)];
+    [recognizer setNumberOfTapsRequired:1];
+    [recognizer setNumberOfTouchesRequired:1];
+    [self.contentView addGestureRecognizer:recognizer];
+    
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
@@ -169,11 +178,25 @@
     // Do any additional setup after loading the view from its nib.
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(confirmDeliverTimeNotification:) name:kConfirmDeliverTimeNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(cancelDeliverTimeNotification:) name:kCancelDeliverTimeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Keyboard Notification methords
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    self.contentView.contentInset = UIEdgeInsetsMake(self.contentView.contentInset.top, self.contentView.contentInset.left, keyboardSize.height, self.contentView.contentInset.right);
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    self.contentView.contentInset = UIEdgeInsetsMake(self.contentView.contentInset.top, self.contentView.contentInset.left, 0, self.contentView.contentInset.right);
 }
 
 - (void)confirmDeliverTimeNotification:(NSNotification *)notification
