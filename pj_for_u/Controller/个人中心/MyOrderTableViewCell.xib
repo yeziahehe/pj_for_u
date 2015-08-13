@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -37,7 +37,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单待付款" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OZ-NY-S2O">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2OZ-NY-S2O">
                         <rect key="frame" x="265" y="8" width="100" height="17"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="MJ2-D4-vqA"/>
@@ -151,6 +151,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="leftButton" destination="ceE-Dj-ey2" id="2Fg-R8-tzL"/>
+                <outlet property="orderStatus" destination="2OZ-NY-S2O" id="caI-ck-uS0"/>
                 <outlet property="orderType" destination="2OZ-NY-S2O" id="Tef-YA-ZfG"/>
                 <outlet property="rightButton" destination="Cbo-eh-Nzu" id="ebx-J6-3N1"/>
                 <outlet property="tableView" destination="4eP-0b-b1D" id="be9-K8-Nfv"/>
@@ -158,7 +159,7 @@
                 <outlet property="totalConut" destination="Rg8-rj-4gH" id="6Lg-lT-KNt"/>
                 <outlet property="totalPrice" destination="dqc-EH-cRm" id="due-dj-yRV"/>
             </connections>
-            <point key="canvasLocation" x="312.5" y="152.5"/>
+            <point key="canvasLocation" x="267.5" y="117.5"/>
         </tableViewCell>
     </objects>
     <resources>

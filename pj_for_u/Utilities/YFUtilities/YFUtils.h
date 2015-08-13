@@ -26,6 +26,8 @@
     加入截屏和毛玻璃效果
  -v1.6
     加入头图海报通用类和计算cell中label，text高度的类
+ -v1.7
+    加入角标类
 */
 
 #ifndef YFUtils_YFUtils_h
@@ -50,6 +52,7 @@
 #import "UITableViewCell+YFAdditions.h"
 #import "YFCycleScrollView.h"
 #import "NSTimer+Addition.h"
+#import "YFBadgeView.h"
 
 #endif
 

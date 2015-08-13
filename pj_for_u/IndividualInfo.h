@@ -36,9 +36,11 @@
 
 @property (nonatomic, copy) UserInfo *userInfo;
 
-@property (nonatomic, copy) NSString *waitDeliveryOrder;
-@property (nonatomic, copy) NSString *waitReceiveOrder;
+@property (nonatomic, copy) NSString *waitPayOrder;
+@property (nonatomic, copy) NSString *doneOrder;
+@property (nonatomic, copy) NSString *waitMakeSureOrder;
 @property (nonatomic, copy) NSString *waitCommentOrder;
+@property (nonatomic, copy) NSString *distribution;
 
 - (id)initWithDict:(NSDictionary *)dict;
 + (instancetype)mineInfoWithDict:(NSDictionary *)dict;

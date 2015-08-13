@@ -48,7 +48,7 @@
     
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kGetOrderInMine];
     NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:@"18896554880" forKey:@"phoneId"];
+    [dict setObject:[MemberDataManager sharedManager].loginMember.phone forKey:@"phoneId"];
     if (status) {
         [dict setObject:status forKey:@"status"];
     }
@@ -63,6 +63,30 @@
                                                                delegate:self
                                                                 purpose:kGetOrderInMineKey];
 }
+
+- (void)setBadgeViewWithView:(UIView *)parentView badgeNum:(NSString *)badgeNum
+{
+
+    if (![badgeNum isEqualToString:@"0"]) {
+        YFBadgeView *badgeView = [[YFBadgeView alloc]initWithParentView:parentView alignment:YFBadgeViewAlignmentTopRight];
+        badgeView.badgeBackgroundColor = [UIColor redColor];
+        badgeView.badgeTextFont = [UIFont boldSystemFontOfSize:11];
+        badgeView.badgeText = badgeNum;
+    }
+}
+
+- (void)addBadgeViewToButton
+{
+    //角标
+    [self setBadgeViewWithView:self.waitForPayment badgeNum:[MemberDataManager sharedManager].mineInfo.waitPayOrder];
+    [self setBadgeViewWithView:self.waitForConfirm badgeNum:[MemberDataManager sharedManager].mineInfo.waitMakeSureOrder];
+    [self setBadgeViewWithView:self.distributing badgeNum:[MemberDataManager sharedManager].mineInfo.distribution];
+    [self setBadgeViewWithView:self.waitForEvaluation badgeNum:[MemberDataManager sharedManager].mineInfo.waitCommentOrder];
+    [self setBadgeViewWithView:self.alreadyFinished badgeNum:[MemberDataManager sharedManager].mineInfo.doneOrder];
+
+    
+}
+
 
 
 #pragma mark - Universal AND IBAciton
@@ -248,14 +272,17 @@
             [cell.leftButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
             [cell.leftButton setTitle:@"立即付款" forState:UIControlStateNormal];
             [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
+            cell.orderStatus.text = @"订单待付款";
         }
         if ([status isEqualToString:@"2"]) {
             cell.leftButton.hidden = YES;
             [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
+            cell.orderStatus.text = @"订单确认中";
         }
         if ([status isEqualToString:@"3"]) {
             cell.leftButton.hidden = YES;
-            [cell.rightButton setTitle:@"确认收货" forState:UIControlStateNormal];;
+            [cell.rightButton setTitle:@"确认收货" forState:UIControlStateNormal];
+            cell.orderStatus.text = @"订单配送中";
         }
         if ([status isEqualToString:@"4"]) {
             CALayer *layer = [cell.leftButton layer];
@@ -263,7 +290,8 @@
             [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             
             [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"评价订单" forState:UIControlStateNormal];;
+            [cell.rightButton setTitle:@"评价订单" forState:UIControlStateNormal];
+            cell.orderStatus.text = @"交易成功";
         }
         if ([status isEqualToString:@"5"]) {
             CALayer *layer = [cell.leftButton layer];
@@ -271,7 +299,8 @@
             [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
             
             [cell.leftButton setTitle:@"追加评论" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];;
+            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];
+            cell.orderStatus.text = @"交易完成";
         }
     }
 
@@ -326,6 +355,7 @@
          forCellReuseIdentifier:@"MyOrderTableViewCell"];
     //=============
     
+    [self addBadgeViewToButton];
     [self addTargetToButton];
     
     //随便逛逛按钮增加圆角边框
@@ -334,6 +364,8 @@
     layer.borderWidth = 1.f;
     self.goAroundButton.layer.masksToBounds = YES;
     self.goAroundButton.layer.cornerRadius = 2.5f;
+    
+//    [MemberDataManager sharedManager].mineInfo.
     
     self.recordLastStatus = 1;
     [[NSNotificationCenter defaultCenter] addObserver:self

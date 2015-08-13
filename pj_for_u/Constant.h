@@ -98,14 +98,21 @@
 #define kSuccessAddingToCarNotification     @"SuccessAddingToCarNotification"
 #define kDeliverCommentNotification         @"DeliverCommentNotification"
 #define kRemoveBackGrayViewNotification     @"RemoveBackGrayViewNotification"
+#define kHeightForTBVNotification           @"HeightForTBVNotification"
 #define kDeliverCommentNotification         @"DeliverCommentNotification"
 #define kHeightForTBVNotification           @"HeightForTBVNotification"
+#define kConfirmDeliverTimeNotification           @"ConfirmDeliverTimeNotification"
+#define kCancelDeliverTimeNotification           @"CancelDeliverTimeNotification"
+
+
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
 #define kLocationUrl            @"campus/getCampusAndCity.do"
 #define kLoginUrl               @"user/toLogin.do"
 #define kGetMainImageUrl        @"news/getMainImage.do"
+#define kGetDefaultAddressUrl   @"receiver/selectReceiver.do"
+#define kOneKeyOrderUrl         @"order/orderToBuy.do"
 #define kGetShoppingCarUrl      @"order/getUserOrder.do"
 #define kEditShoppingCarUrl     @"order/editUserOrder.do"
 #define kDeleteShoppingCarUrl   @"order/deleteAllUserOrder.do"
