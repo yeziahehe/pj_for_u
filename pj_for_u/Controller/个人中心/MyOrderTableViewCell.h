@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *totalPrice;
 @property (strong, nonatomic) IBOutlet UIButton *leftButton;
 @property (strong, nonatomic) IBOutlet UIButton *rightButton;
+@property (strong, nonatomic) IBOutlet UILabel *orderStatus;
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 

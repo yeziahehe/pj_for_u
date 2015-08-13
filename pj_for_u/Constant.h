@@ -98,6 +98,7 @@
 #define kSuccessAddingToCarNotification     @"SuccessAddingToCarNotification"
 #define kDeliverCommentNotification         @"DeliverCommentNotification"
 #define kRemoveBackGrayViewNotification     @"RemoveBackGrayViewNotification"
+#define kHeightForTBVNotification           @"HeightForTBVNotification"
 #define kDeliverCommentNotification         @"DeliverCommentNotification"
 #define kHeightForTBVNotification           @"HeightForTBVNotification"
 #define kConfirmDeliverTimeNotification           @"ConfirmDeliverTimeNotification"

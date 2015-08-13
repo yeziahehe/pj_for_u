@@ -161,7 +161,6 @@
 		4A6C15781B5F7D5300C9A9D2 /* icon_login_phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15761B5F7D5300C9A9D2 /* icon_login_phone@2x.png */; };
 		4A6C15791B5F7D5300C9A9D2 /* icon_login_secret@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15771B5F7D5300C9A9D2 /* icon_login_secret@2x.png */; };
 		4A6C157C1B5F808D00C9A9D2 /* btn_login@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C157B1B5F808D00C9A9D2 /* btn_login@2x.png */; };
-		4A6C15831B5F877F00C9A9D2 /* UserInfoSubView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C157F1B5F877F00C9A9D2 /* UserInfoSubView.m */; };
 		4A6C15841B5F877F00C9A9D2 /* UserInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15811B5F877F00C9A9D2 /* UserInfoViewController.m */; };
 		4A6C15851B5F877F00C9A9D2 /* UserInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C15821B5F877F00C9A9D2 /* UserInfoViewController.xib */; };
 		4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C15871B5F9C2900C9A9D2 /* YFCycleScrollView.m */; };
@@ -237,6 +236,7 @@
 		6D8AD3FB1B60C6290099A0D8 /* IndividualInfoMap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3FA1B60C6290099A0D8 /* IndividualInfoMap.plist */; };
 		6D8AD3FF1B60E2510099A0D8 /* IndividualSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD3FD1B60E2510099A0D8 /* IndividualSubViewController.m */; };
 		6D8AD4001B60E2510099A0D8 /* IndividualSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3FE1B60E2510099A0D8 /* IndividualSubViewController.xib */; };
+		6D8AF6871B7C3EEA00B1BFBF /* YFBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AF6861B7C3EEA00B1BFBF /* YFBadgeView.m */; };
 		6D938E891B74593700AB9895 /* icon_order_headimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D938E881B74593700AB9895 /* icon_order_headimage@2x.png */; };
 		6D938E8B1B745A3400AB9895 /* icon_trade_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D938E8A1B745A3400AB9895 /* icon_trade_success.png */; };
 		6D95415F1B6B0D8C00532677 /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D95415D1B6B0D8C00532677 /* MyOrderViewController.m */; };
@@ -489,8 +489,6 @@
 		4A6C15761B5F7D5300C9A9D2 /* icon_login_phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_login_phone@2x.png"; path = "Resource/icon_login_phone@2x.png"; sourceTree = "<group>"; };
 		4A6C15771B5F7D5300C9A9D2 /* icon_login_secret@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_login_secret@2x.png"; path = "Resource/icon_login_secret@2x.png"; sourceTree = "<group>"; };
 		4A6C157B1B5F808D00C9A9D2 /* btn_login@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_login@2x.png"; path = "Resource/btn_login@2x.png"; sourceTree = "<group>"; };
-		4A6C157E1B5F877F00C9A9D2 /* UserInfoSubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoSubView.h; sourceTree = "<group>"; };
-		4A6C157F1B5F877F00C9A9D2 /* UserInfoSubView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoSubView.m; sourceTree = "<group>"; };
 		4A6C15801B5F877F00C9A9D2 /* UserInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfoViewController.h; sourceTree = "<group>"; };
 		4A6C15811B5F877F00C9A9D2 /* UserInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfoViewController.m; sourceTree = "<group>"; };
 		4A6C15821B5F877F00C9A9D2 /* UserInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserInfoViewController.xib; sourceTree = "<group>"; };
@@ -609,6 +607,8 @@
 		6D8AD3FC1B60E2510099A0D8 /* IndividualSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualSubViewController.h; sourceTree = "<group>"; };
 		6D8AD3FD1B60E2510099A0D8 /* IndividualSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualSubViewController.m; sourceTree = "<group>"; };
 		6D8AD3FE1B60E2510099A0D8 /* IndividualSubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualSubViewController.xib; sourceTree = "<group>"; };
+		6D8AF6851B7C3EEA00B1BFBF /* YFBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YFBadgeView.h; path = Utilities/YFUtilities/YFBadgeView.h; sourceTree = "<group>"; };
+		6D8AF6861B7C3EEA00B1BFBF /* YFBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YFBadgeView.m; path = Utilities/YFUtilities/YFBadgeView.m; sourceTree = "<group>"; };
 		6D938E881B74593700AB9895 /* icon_order_headimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_order_headimage@2x.png"; path = "Resource/icon_order_headimage@2x.png"; sourceTree = "<group>"; };
 		6D938E8A1B745A3400AB9895 /* icon_trade_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_trade_success.png; path = Resource/icon_trade_success.png; sourceTree = "<group>"; };
 		6D95415C1B6B0D8C00532677 /* MyOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderViewController.h; sourceTree = "<group>"; };
@@ -1011,6 +1011,8 @@
 				2C2528FA1B5E3AA900ADDEFB /* YFRootBlurViewManager.h */,
 				2C2528FB1B5E3AA900ADDEFB /* YFRootBlurViewManager.m */,
 				2C2528FC1B5E3AA900ADDEFB /* YFUtils.h */,
+				6D8AF6851B7C3EEA00B1BFBF /* YFBadgeView.h */,
+				6D8AF6861B7C3EEA00B1BFBF /* YFBadgeView.m */,
 			);
 			name = YFUtilities;
 			sourceTree = "<group>";
@@ -1137,8 +1139,6 @@
 		4A6C157D1B5F877F00C9A9D2 /* 个人中心 */ = {
 			isa = PBXGroup;
 			children = (
-				4A6C157E1B5F877F00C9A9D2 /* UserInfoSubView.h */,
-				4A6C157F1B5F877F00C9A9D2 /* UserInfoSubView.m */,
 				4A6C15801B5F877F00C9A9D2 /* UserInfoViewController.h */,
 				4A6C15811B5F877F00C9A9D2 /* UserInfoViewController.m */,
 				4A6C15821B5F877F00C9A9D2 /* UserInfoViewController.xib */,
@@ -1538,6 +1538,7 @@
 				0AE742501B708CA8005A91CF /* ShoppingCar.m in Sources */,
 				2CF607511B5E4E390022E8E7 /* StartViewController.m in Sources */,
 				2C2528D21B5E39EF00ADDEFB /* MJRefreshHeaderView.m in Sources */,
+				6D8AF6871B7C3EEA00B1BFBF /* YFBadgeView.m in Sources */,
 				4A6C16821B70BAC500C9A9D2 /* AFHTTPRequestOperationManager.m in Sources */,
 				2CF6077F1B5EA5DB0022E8E7 /* UITableView+YFAdditions.m in Sources */,
 				2C10D6BF1B60B970008C3DE0 /* SettingViewController.m in Sources */,
@@ -1555,7 +1556,6 @@
 				6D95415F1B6B0D8C00532677 /* MyOrderViewController.m in Sources */,
 				2C25289A1B5E38B100ADDEFB /* ResetPwdViewController.m in Sources */,
 				2C2528FD1B5E3AA900ADDEFB /* NSDate+YFAdditions.m in Sources */,
-				4A6C15831B5F877F00C9A9D2 /* UserInfoSubView.m in Sources */,
 				2C2528DA1B5E39EF00ADDEFB /* SBJsonBase.m in Sources */,
 				4A6C169B1B70C92500C9A9D2 /* ProInfoView.m in Sources */,
 				6D8AD3F31B60BD250099A0D8 /* AddressManageViewController.m in Sources */,
