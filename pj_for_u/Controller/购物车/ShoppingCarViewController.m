@@ -26,8 +26,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *discountPrice;
 @property (strong, nonatomic) IBOutlet UILabel *moneySavedLabel;
 @property (strong, nonatomic) ShoppingCar *shoppingCarInfo;
-@property (strong, nonatomic) NSMutableArray *shoppingCarArray;
 @property (strong, nonatomic) NSMutableArray *shoppingTempArray;
+@property (strong, nonatomic) NSMutableArray *shoppingCarArray;
 @property (strong, nonatomic) NSMutableArray *shoppingCarSelectedArray;
 @property (strong, nonatomic) UIView *backGrayView;
 @property (strong, nonatomic) NSString *totalPrice;
@@ -72,6 +72,11 @@
     self.shoppingCarSelectedArray = nil;
     NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
     [self requestForShoppingCar:phone];
+}
+
+- (void)clearShoppingCar;
+{
+    self.shoppingCarArray = nil;
 }
 
 //添加订单总价
@@ -127,12 +132,12 @@
 {
     [super viewWillAppear:YES];
     if ([[MemberDataManager sharedManager] isLogin]) {
-        if ([self.shoppingCarArray count] == 0) {
+//        if ([self.shoppingCarArray count] == 0) {
             //[self.noOrderView removeFromSuperview];
             NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
             [self requestForShoppingCar:phone];
             [self.ShoppingCarTableView reloadData];
-        }
+        //}
     }
     else
     {
@@ -220,9 +225,6 @@
     {
         confirmOrder.selectedArray = self.shoppingCarArray;
     }
-    confirmOrder.totalPrice = self.totalPrice;
-    confirmOrder.originPrice = self.originPrice;
-    confirmOrder.moneySaved = self.disCount;
     [self.navigationController pushViewController:confirmOrder animated:YES];
 }
 
@@ -403,6 +405,7 @@
 }
 - (void)requestForShoppingCar:(NSString *)phone
 {
+    [[YFProgressHUD sharedProgressHUD]startedNetWorkActivityWithText:@"加载中"];
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetShoppingCarUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:phone forKey:@"phoneId"];
@@ -423,6 +426,7 @@
     {
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
+            [[YFProgressHUD sharedProgressHUD]stoppedNetWorkActivity];
             self.shoppingTempArray = [[NSMutableArray alloc] initWithCapacity:0];
             NSArray *valueArray = [dict objectForKey:@"orderList"];
             for (NSDictionary *valueDict in valueArray) {

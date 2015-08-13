@@ -37,6 +37,11 @@
 @property (strong, nonatomic) NSString *defaultRecPhone;
 @property (strong, nonatomic) NSString *defaultReceiver;
 @property (strong, nonatomic) NSString *defaultRank;
+@property (strong, nonatomic) NSString *totalPrice;
+@property (strong, nonatomic) NSString *originPrice;
+@property (strong, nonatomic) NSString *moneySaved;
+
+
 
 
 @end
@@ -61,17 +66,105 @@
 
 - (void)removeFirstResponder
 {
-    
     [self.background removeFromSuperview];
     [self cancelDeliverTimeNotification:nil];
     self.background = nil;
 }
+- (void)touchScrollView
+{
+    [self.descriptionTextView resignFirstResponder];
+}
+//添加订单总价
+- (void)calculateTotalPrice
+{
+        self.totalPrice = nil;
+        self.originPrice = nil;
+        self.moneySaved = nil;
+        for (int i = 0; i < [self.selectedArray count]; i++) {
+            ShoppingCar *sc = [self.selectedArray objectAtIndex:i];
+            if ([sc.isDiscount isEqualToString:@"1"]) {
+                self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.discountPrice floatValue]*[sc.orderCount intValue]];
+            }
+            else{
+                self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
+            }
+            self.originPrice = [NSString stringWithFormat:@"%.1f元",[self.originPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
+            self.moneySaved = [NSString stringWithFormat:@"(已节省%.1f元)",[self.originPrice floatValue]-[self.totalPrice floatValue]];
+        }
+        self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%@",self.totalPrice];
+        self.originPriceLabel.text = self.originPrice;
+        self.moneySavedLabel.text = self.moneySaved;
+}
 
 - (void)loadSubViews
 {
-    self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%@",self.totalPrice];
-    self.originPriceLabel.text = self.originPrice;
-    self.moneySavedLabel.text = self.moneySaved;
+    [self calculateTotalPrice];
+    CGFloat originY = 0.f;
+    CGRect rect = self.addressView.frame;
+    rect.origin.x = 0.f;
+    rect.origin.y = originY;
+    rect.size.height = 113.f;
+    rect.size.width = ScreenWidth;
+    originY = originY + 122.f;
+    self.addressView.frame = rect;
+    
+    rect = self.selectGoodsTableView.frame;
+    rect.origin.x = 0;
+    rect.origin.y = originY;
+    rect.size.height = [self.selectedArray count]*150.f;
+    rect.size.width = ScreenWidth;
+    self.selectGoodsTableView.frame = rect;
+    originY = 131.f + rect.size.height;
+    
+    rect = self.deliverView.frame;
+    rect.origin.x = 0;
+    rect.origin.y = originY;
+    rect.size.height = 44.f;
+    rect.size.width = ScreenWidth;
+    self.deliverView.frame = rect;
+    originY = originY + 53.f;
+    
+    rect = self.payView.frame;
+    rect.origin.x = 0;
+    rect.origin.y = originY;
+    rect.size.height = 106.f;
+    rect.size.width = ScreenWidth;
+    self.payView.frame = rect;
+    originY = originY + 115.f;
+    
+    rect = self.descriptionView.frame;
+    rect.origin.x = 0;
+    rect.origin.y = originY;
+    rect.size.height = 72.f;
+    rect.size.width = ScreenWidth;
+    self.descriptionView.frame = rect;
+    originY = originY + 81.f;
+    
+    rect = self.calculateView.frame;
+    rect.origin.x = 0;
+    rect.origin.y = originY;
+    rect.size.height = 82.f;
+    rect.size.width = ScreenWidth;
+    self.calculateView.frame = rect;
+    originY = originY + 91.f;
+
+    [self.contentView addSubview:self.addressView];
+    [self.contentView addSubview:self.selectGoodsTableView];
+    [self.contentView addSubview:self.deliverView];
+    [self.contentView addSubview:self.payView];
+    [self.contentView addSubview:self.descriptionView];
+    [self.contentView addSubview:self.calculateView];
+    [self.contentView setContentSize:CGSizeMake(ScreenWidth, originY)];
+    
+    self.contentView.delegate = self;
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchScrollView)];
+    [recognizer setNumberOfTapsRequired:1];
+    [recognizer setNumberOfTouchesRequired:1];
+    [self.contentView addGestureRecognizer:recognizer];
+    
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -85,11 +178,25 @@
     // Do any additional setup after loading the view from its nib.
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(confirmDeliverTimeNotification:) name:kConfirmDeliverTimeNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(cancelDeliverTimeNotification:) name:kCancelDeliverTimeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Keyboard Notification methords
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    self.contentView.contentInset = UIEdgeInsetsMake(self.contentView.contentInset.top, self.contentView.contentInset.left, keyboardSize.height, self.contentView.contentInset.right);
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    self.contentView.contentInset = UIEdgeInsetsMake(self.contentView.contentInset.top, self.contentView.contentInset.left, 0, self.contentView.contentInset.right);
 }
 
 - (void)confirmDeliverTimeNotification:(NSNotification *)notification
