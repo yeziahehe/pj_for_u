@@ -9,7 +9,7 @@
 #import "IndividualInfo.h"
 
 @implementation IndividualInfo
-@synthesize userInfo,waitDeliveryOrder,waitReceiveOrder,waitCommentOrder;
+@synthesize userInfo,waitPayOrder,doneOrder,waitMakeSureOrder,waitCommentOrder,distribution;
 
 - (id)initWithDict:(NSDictionary *)dict
 {

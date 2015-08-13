@@ -36,6 +36,7 @@ typedef enum {
 @property (nonatomic, copy) NSString *nickname;
 @property (nonatomic, copy) NSString *imgUrl;
 @property (nonatomic, copy) NSString *type;
+@property (nonatomic, copy) NSString *defaultAddress;
 @property (nonatomic, copy) NSString *sex;
 @property (nonatomic, copy) NSString *academy;
 @property (nonatomic, copy) NSString *weiXin;

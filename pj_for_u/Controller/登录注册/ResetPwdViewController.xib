@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -29,7 +29,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gqB-JE-6Ju">
                                     <rect key="frame" x="0.0" y="10" width="375" height="45"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_login_secret.png" translatesAutoresizingMaskIntoConstraints="NO" id="l3u-OP-GWH">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_login_secret.png" translatesAutoresizingMaskIntoConstraints="NO" id="l3u-OP-GWH">
                                             <rect key="frame" x="30" y="10" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="22" id="vGB-v7-Ub2"/>
@@ -39,6 +39,9 @@
                                             <rect key="frame" x="88" y="8" width="279" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="Afg-iA-jTJ"/>
+                                            </connections>
                                         </textField>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="LHL-Ny-Kgo">
                                             <rect key="frame" x="70" y="10" width="1" height="25"/>
@@ -64,7 +67,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b6c-Hv-2sg">
                                     <rect key="frame" x="0.0" y="65" width="375" height="45"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_login_secret.png" translatesAutoresizingMaskIntoConstraints="NO" id="gD5-BS-pYu">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_login_secret.png" translatesAutoresizingMaskIntoConstraints="NO" id="gD5-BS-pYu">
                                             <rect key="frame" x="30" y="10" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="22" id="pO5-RI-kJe"/>
@@ -74,6 +77,9 @@
                                             <rect key="frame" x="88" y="8" width="279" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="Xdy-AQ-M0h"/>
+                                            </connections>
                                         </textField>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="BGQ-tz-Iiy">
                                             <rect key="frame" x="70" y="10" width="1" height="25"/>
@@ -99,7 +105,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rze-lf-RVH">
                                     <rect key="frame" x="0.0" y="120" width="375" height="45"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_login_secret.png" translatesAutoresizingMaskIntoConstraints="NO" id="8Rj-MV-r8b">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_login_secret.png" translatesAutoresizingMaskIntoConstraints="NO" id="8Rj-MV-r8b">
                                             <rect key="frame" x="30" y="10" width="22" height="22"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="22" id="gE3-W8-28N"/>
@@ -109,6 +115,9 @@
                                             <rect key="frame" x="88" y="8" width="279" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="done" enablesReturnKeyAutomatically="YES" secureTextEntry="YES"/>
+                                            <connections>
+                                                <outlet property="delegate" destination="-1" id="kyF-ac-mSu"/>
+                                            </connections>
                                         </textField>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="1KM-ob-4Wg">
                                             <rect key="frame" x="70" y="10" width="1" height="25"/>
@@ -166,6 +175,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" red="0.97953344666946585" green="0.97829060216019625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="euN-D4-NEd" firstAttribute="leading" secondItem="11O-ZB-DIP" secondAttribute="leading" id="Jaz-Y8-bO8"/>
                         <constraint firstAttribute="trailing" secondItem="euN-D4-NEd" secondAttribute="trailing" id="UhE-hz-8WG"/>

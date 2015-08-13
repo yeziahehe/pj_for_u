@@ -18,9 +18,12 @@
     #import "Constant.h"
     #import "MemberDataManager.h"
     #import "AddressDataManager.h"  
+    #import "ProductDataManager.h"
     #import "YFUtils.h"
     #import "Reachability.h"
     #import "JSON.h"
     #import "MJRefresh.h"
+    #import "AFHTTPRequestOperationManager.h"
+    #import "AFHTTPSessionManager.h"
 
 #endif

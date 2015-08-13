@@ -30,13 +30,13 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NNf-qv-JgH">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="393"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jvT-5J-LHw">
+                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jvT-5J-LHw">
                                     <rect key="frame" x="0.0" y="10" width="375" height="45"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_login_phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="JCk-By-5Gn">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_login_phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="JCk-By-5Gn">
                                             <rect key="frame" x="30" y="10" width="22" height="22"/>
                                         </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="YZD-CR-zJw">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="YZD-CR-zJw">
                                             <rect key="frame" x="88" y="8" width="279" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -44,13 +44,13 @@
                                                 <outlet property="delegate" destination="-1" id="SKv-Ue-4Qg"/>
                                             </connections>
                                         </textField>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="FwW-p7-T89">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="FwW-p7-T89">
                                             <rect key="frame" x="70" y="10" width="1" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="1" id="A1a-K4-38u"/>
                                             </constraints>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEU-AS-TdF">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jEU-AS-TdF">
                                             <rect key="frame" x="284" y="10" width="80" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="80" id="0Kb-EC-0Wy"/>
@@ -81,13 +81,13 @@
                                         <constraint firstItem="YZD-CR-zJw" firstAttribute="leading" secondItem="FwW-p7-T89" secondAttribute="trailing" constant="17" id="yTT-gX-gCK"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3S-lP-kB2">
+                                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="L3S-lP-kB2">
                                     <rect key="frame" x="0.0" y="65" width="375" height="45"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_yanzheng.png" translatesAutoresizingMaskIntoConstraints="NO" id="2Im-fc-oVH">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_yanzheng.png" translatesAutoresizingMaskIntoConstraints="NO" id="2Im-fc-oVH">
                                             <rect key="frame" x="30" y="10" width="22" height="22"/>
                                         </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机验证码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Rbr-9T-Epq">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机验证码" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Rbr-9T-Epq">
                                             <rect key="frame" x="88" y="8" width="279" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
@@ -95,7 +95,7 @@
                                                 <outlet property="delegate" destination="-1" id="tge-Mj-TPc"/>
                                             </connections>
                                         </textField>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="rNI-p6-FFU">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="rNI-p6-FFU">
                                             <rect key="frame" x="70" y="10" width="1" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="1" id="Wcw-g3-7tx"/>

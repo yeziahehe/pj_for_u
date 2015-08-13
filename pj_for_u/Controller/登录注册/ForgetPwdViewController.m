@@ -156,7 +156,6 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
     //在该方法中设置contentsize大小
     [super viewDidAppear:YES];
     CGFloat contentHeight = self.resetPwdButton.frame.origin.y+self.resetPwdButton.frame.size.height+20.f;

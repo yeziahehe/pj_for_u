@@ -31,15 +31,15 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Vt-RY-1Ur">
                                     <rect key="frame" x="0.0" y="10" width="375" height="45"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_login_phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="4S4-qf-PZT">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="icon_login_phone.png" translatesAutoresizingMaskIntoConstraints="NO" id="4S4-qf-PZT">
                                             <rect key="frame" x="30" y="10" width="22" height="22"/>
                                         </imageView>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2yE-ud-5YL">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="手机号" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="2yE-ud-5YL">
                                             <rect key="frame" x="88" y="8" width="279" height="30"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" keyboardType="phonePad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                                         </textField>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="dke-tS-r9y">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="line_ver_1px_left.png" translatesAutoresizingMaskIntoConstraints="NO" id="dke-tS-r9y">
                                             <rect key="frame" x="70" y="10" width="1" height="25"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="1" id="QLy-y1-Q1s"/>
@@ -217,6 +217,7 @@
                             </constraints>
                         </view>
                     </subviews>
+                    <color key="backgroundColor" red="0.97953344666946585" green="0.97829060216019625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="3CL-xt-Ihp" firstAttribute="leading" secondItem="nyU-O1-mUT" secondAttribute="leading" id="4ZW-Hs-lTm"/>
                         <constraint firstAttribute="bottom" secondItem="3CL-xt-Ihp" secondAttribute="bottom" constant="210" id="4pP-nF-P5E"/>

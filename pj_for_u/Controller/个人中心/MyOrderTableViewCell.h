@@ -8,15 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MyOrderTableViewCell : UITableViewCell
+@interface MyOrderTableViewCell : UITableViewCell <UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *togetherDate;
 @property (strong, nonatomic) IBOutlet UILabel *orderType;
-@property (strong, nonatomic) IBOutlet YFAsynImageView *image;
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *price;
-@property (strong, nonatomic) IBOutlet UILabel *orderConut;
 @property (strong, nonatomic) IBOutlet UILabel *totalConut;
 @property (strong, nonatomic) IBOutlet UILabel *totalPrice;
+@property (strong, nonatomic) IBOutlet UIButton *leftButton;
+@property (strong, nonatomic) IBOutlet UIButton *rightButton;
+@property (strong, nonatomic) IBOutlet UILabel *orderStatus;
 
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) NSArray *smallOrders;
+@property (strong, nonatomic) NSIndexPath *itsIndexPath;        //cell的唯一标识
+
+@property BOOL canBeSelected;
 @end

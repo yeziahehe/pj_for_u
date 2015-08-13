@@ -60,6 +60,7 @@
                                                 [self.navigationController popToRootViewControllerAnimated:YES];
                                             }]];
     [self presentViewController:alert animated:YES completion:nil];
+
 }
 
 #pragma mark - UIViewController Methods

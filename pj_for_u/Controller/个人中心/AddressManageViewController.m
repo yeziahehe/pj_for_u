@@ -14,6 +14,7 @@
 #import "CampusMoel.h"
 
 @interface AddressManageViewController ()
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic)NSMutableArray *allAddressArray;
 @property (strong, nonatomic)NSIndexPath *deleteIndex;
@@ -52,6 +53,8 @@
         [[AddressDataManager sharedManager]requestToSetDefaultAddressWithPhontId:self.phoneId
                                                                             rank:rank];
     }
+    CGFloat height = 160 + self.allAddressArray.count * 60;
+    [self.scrollView setContentSize:CGSizeMake(ScreenWidth, height)];
     [self.tableView reloadData];
 }
 
@@ -64,6 +67,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNaviTitle:@"我的收货地址"];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     self.phoneId = [MemberDataManager sharedManager].loginMember.phone;
     [self loadSubView];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(refreshReciverInfoWithNotification:) name:kRefreshReciverInfoNotification object:nil];
