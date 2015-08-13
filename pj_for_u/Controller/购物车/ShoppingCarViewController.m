@@ -84,30 +84,39 @@
     else
     {
         calculateArray = self.shoppingCarSelectedArray;
+        if ([calculateArray count] == 0) {
+            self.totalPriceLabel.text = @"合计:0.0元";
+            self.discountPrice.text = @"0.0元";
+            self.moneySavedLabel.text =@"(已节省0.0元)";
+        }
     }
+    if ([calculateArray count] != 0) {
     self.totalPrice = nil;
     self.originPrice = nil;
     self.disCount = nil;
     for (int i = 0; i < calculateArray.count; i++) {
         ShoppingCar *sc = [calculateArray objectAtIndex:i];
-        self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.discountPrice floatValue]*[sc.orderCount intValue]];
+        if ([sc.isDiscount isEqualToString:@"1"]) {
+            self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.discountPrice floatValue]*[sc.orderCount intValue]];
+        }
+        else{
+            self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
+        }
         self.originPrice = [NSString stringWithFormat:@"%.1f元",[self.originPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
         self.disCount = [NSString stringWithFormat:@"(已节省%.1f元)",[self.originPrice floatValue]-[self.totalPrice floatValue]];
     }
     self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%@",self.totalPrice];
     self.discountPrice.text = self.originPrice;
     self.moneySavedLabel.text = self.disCount;
+    }
 }
 
 
 //初始化数据
 - (void)loadSubViews
 {
-    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
-    [[MemberDataManager sharedManager]requestForIndividualInfoWithPhone:phone];
     self.navigationItem.leftBarButtonItem = nil;
     self.isChangedToSelectMode = NO;
-    self.shoppingCarSelectedArray = [[NSMutableArray alloc]initWithCapacity:0];
     self.deleteShoppingCarView.hidden = YES;
     [self.ShoppingCarTableView addHeaderWithTarget:self action:@selector(dropDownRefresh)];
     [self setRightNaviItemWithTitle:@"选择" imageName:nil];
@@ -154,9 +163,6 @@
     {
         [self.backGrayView removeFromSuperview];
         self.isChangedToSelectMode = NO;
-        self.totalPriceLabel.text = @"合计:0.0元";
-        self.discountPrice.text = @"0.0元";
-        self.moneySavedLabel.text =@"(已节省0.0元)";
         self.shoppingCarSelectedArray = nil;
         [self setRightNaviItemWithTitle:@"选择" imageName:nil];
         self.deleteShoppingCarView.hidden = YES;
@@ -230,6 +236,7 @@
     //}
     [self.ShoppingCarTableView reloadData];
     [self requestForEdit:sc.orderId withOrderCount:sc.orderCount];
+    [self calculateTotalPrice];
 }
 //减号按钮监听事件
 - (void)minusShoppingAmountNotification:(NSNotification *)notification{
@@ -242,6 +249,7 @@
     sc.orderCount = [NSString stringWithFormat:@"%d",[sc.orderCount intValue]-1];
     [self.ShoppingCarTableView reloadData];
     [self requestForEdit:sc.orderId withOrderCount:sc.orderCount];
+    [self calculateTotalPrice];
     }
 }
 //移除darkgreyview
@@ -301,8 +309,16 @@
         NSString *imageUrl = self.shoppingCarInfo.imageUrl;
         cell.YFImageView.cacheDir = kUserIconCacheDir;
         [cell.YFImageView aysnLoadImageWithUrl:imageUrl placeHolder:@"icon_user_default.png"];
-        cell.discountPrice.text = [NSString stringWithFormat:@"%.1lf",[self.shoppingCarInfo.discountPrice floatValue]];
-        cell.originPrice.text = [NSString stringWithFormat:@"原价:%.1lf",[self.shoppingCarInfo.price  floatValue]];
+        if ([self.shoppingCarInfo.isDiscount isEqualToString:@"1"]) {
+            cell.originPrice.text = [NSString stringWithFormat:@"原价:%.1lf",[self.shoppingCarInfo.price  floatValue]];
+            cell.discountPrice.text = [NSString stringWithFormat:@"%.1lf",[self.shoppingCarInfo.discountPrice floatValue]];
+        }
+        else
+        {
+            cell.discountPrice.text = [NSString stringWithFormat:@"%.1lf",[self.shoppingCarInfo.price floatValue]];
+            cell.originPrice.hidden = YES;
+            cell.discountLine.hidden = YES;
+        }
         cell.amount = [self.shoppingCarInfo.orderCount intValue];
         cell.orderCount.text = [NSString stringWithFormat:@"%d",cell.amount];
     }
@@ -342,15 +358,7 @@
         ShoppingCar *sc = [self.shoppingCarArray objectAtIndex:indexPath.section];
         [self.shoppingCarSelectedArray removeObject:sc];
         cell.backGrayView.hidden = NO;
-        if ([self.shoppingCarSelectedArray count] == 0) {
-            self.totalPriceLabel.text = @"合计:0.0元";
-            self.discountPrice.text = @"0.0元";
-            self.moneySavedLabel.text =@"(已节省0.0元)";
-            self.deleteShoppingCarView.hidden = YES;
-        }
-        else{
             [self calculateTotalPrice];
-        }
     }
     else{
         ProductDetailViewController *detail = [[ProductDetailViewController alloc]init];
@@ -390,8 +398,6 @@
                                                             contentType:@"application/x-www-form-urlencoded"
                                                                delegate:self
                                                                 purpose:kEditShoppingCarDownloaderKey];
-    
-
 }
 - (void)requestForShoppingCar:(NSString *)phone
 {
@@ -404,9 +410,7 @@
                                                             contentType:@"application/x-www-form-urlencoded"
                                                                delegate:self
                                                                 purpose:kGetShoppingCarDownloaderKey];
-
 }
-
 
 #pragma mark - YFDownloaderDelegate Methods
 - (void)downloader:(YFDownloader *)downloader completeWithNSData:(NSData *)data
@@ -429,7 +433,9 @@
             {
                 [self noGoodsExistView];
             }
+
             [self calculateTotalPrice];
+            
             [self.ShoppingCarTableView reloadData];
         }
         else
@@ -449,7 +455,6 @@
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             //成功
-            
         }
         else
         {
@@ -484,8 +489,6 @@
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
-
-
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message

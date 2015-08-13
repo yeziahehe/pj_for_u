@@ -10,6 +10,7 @@
 #import "ShoppingCarTableViewCell.h"
 #import "ShoppingCar.h"
 #import "selectDeliverTimeView.h"
+#import "AddressManageViewController.h"
 
 @interface ConfirmOrderViewController ()
 @property (strong, nonatomic) IBOutlet UIScrollView *contentView;
@@ -60,12 +61,18 @@
 
 - (void)loadSubViews
 {
-    self.nameLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.nickname;
-    self.phoneLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.phone;
-    self.addressLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.defaultAddress;
     self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%@",self.totalPrice];
     self.originPriceLabel.text = self.originPrice;
     self.moneySavedLabel.text = self.moneySaved;
+}
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    [[MemberDataManager sharedManager]requestForIndividualInfoWithPhone:phone];
+    self.nameLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.nickname;
+    self.phoneLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.phone;
+    self.addressLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.defaultAddress;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -103,6 +110,10 @@
             self.background = nil;
         }
     }
+}
+- (IBAction)alterAddress:(id)sender {
+    AddressManageViewController *address = [[AddressManageViewController alloc]init];
+    [self.navigationController pushViewController:address animated:YES];
 }
 - (IBAction)aLiPayButtonClicked:(id)sender {
 }
@@ -177,5 +188,6 @@
 {
     return 0.1f;
 }
+
 
 @end

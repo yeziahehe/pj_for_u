@@ -172,6 +172,7 @@
                 <outlet property="PlusButton" destination="Ll3-LD-jvx" id="3tw-In-SPE"/>
                 <outlet property="YFImageView" destination="OZO-FX-UBQ" id="kdg-QL-t4B"/>
                 <outlet property="amountView" destination="Mkt-sB-7VR" id="6Zj-c7-Iy7"/>
+                <outlet property="discountLine" destination="wU2-v3-hNr" id="C5a-es-bxc"/>
                 <outlet property="discountPrice" destination="Pc8-QE-9NJ" id="H2T-vQ-6Hh"/>
                 <outlet property="mainLabel" destination="dbw-Kj-7BL" id="SiW-tF-l8D"/>
                 <outlet property="orderCount" destination="FF3-ZH-7nU" id="7TF-sr-UAz"/>
