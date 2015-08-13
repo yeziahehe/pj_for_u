@@ -71,6 +71,7 @@
         
     }];
 }
+
 //下拉加载更多评论
 -(void)loadMoreComments{
     [self loadDataWithType:@"2" foodId:self.proInfo.foodId];
@@ -85,13 +86,13 @@
 #pragma mark - UIView Methosd
 -(void)awakeFromNib{
     [super awakeFromNib];
+
     self.page = 2;
     UINib *nib = [UINib nibWithNibName:@"ProCommentTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"ProCommentTableViewCell"];
     [self.tableView addFooterWithTarget:self action:@selector(loadMoreComments)];
     
-    self.tableView.estimatedRowHeight = 110.0f;
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
@@ -101,7 +102,7 @@
     ProCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProCommentTableViewCell" ];
     ProCommentDetail *pcd = [self.allCommentMArray objectAtIndex:indexPath.row];
     cell.pcd = pcd;
-    
+
     return cell;
 }
 
@@ -121,14 +122,18 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-//加载完成cell后的方法，在该方法中实现tableview高度自适应,cell>1执行
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+
+//实现高度自适应
+-(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"shit%ld",(long)indexPath.row );
-    CGRect rect = self.tableView.frame;
-    rect.size.height = self.tableView.contentSize.height;
-    self.tableView.frame = rect;
-    NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height];
-    [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
+    if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
+        NSLog(@"shit");
+        CGRect rect = self.tableView.frame;
+        rect.size.height = self.tableView.contentSize.height;
+        self.tableView.frame = rect;
+        
+        NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height];
+        [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
+    }
 }
 @end

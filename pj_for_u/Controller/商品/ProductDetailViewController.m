@@ -14,6 +14,7 @@
 #import "ProductionInfo.h"
 #import "ChooseCategoryView.h"
 #import "ShoppingCarViewController.h"
+#import "ConfirmOrderViewController.h"
 
 @interface ProductDetailViewController ()
 @property(strong,nonatomic)ProductionInfo *proInfo;
@@ -118,7 +119,6 @@
             rect.origin.y += 10.f;
             proCommentView.proInfo = self.proInfo;
             rect.size.height = proCommentView.tableView.contentSize.height;
-            
         }
         productSubView.frame = rect;
         [self.contentScrollView addSubview:productSubView];
@@ -132,6 +132,14 @@
     CGFloat height = [notification.object doubleValue];
     [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, self.contentScrollView.contentSize.height + height)];
 }
+
+-(void)buyNowWithNotification:(NSNotification *)notification{
+    NSArray *OrderArray = [[NSArray alloc]initWithObjects:notification.object, nil];
+    [self removeSubViews];
+    ConfirmOrderViewController *covc = [[ConfirmOrderViewController alloc]initWithNibName:@"ConfirmOrderViewController" bundle:nil];
+    
+    [self.navigationController pushViewController:covc animated:YES];
+}
 #pragma mark - UIView Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -140,6 +148,7 @@
     [self setRightNaviItemWithTitle:nil imageName:@"icon_shopcarright"];
     [self loadDataWithfoodId:self.foodId];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessAddingToCarNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(buyNowWithNotification:) name:kSuccessBuyNowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(heightForTableViewWithNotification:) name:kHeightForTBVNotification object:nil];
 }
 
@@ -148,11 +157,16 @@
 }
 
 #pragma mark - IBAction Methods
-- (IBAction)addShoppingCar:(id)sender {
+- (IBAction)addShoppingCarAndBuyNow:(UIButton *)sender {
     self.chooseCategoryView = [[[NSBundle mainBundle]loadNibNamed:@"ChooseCategoryView" owner:self options:nil]lastObject];
     //传递参数
     self.chooseCategoryView.proInfo = self.proInfo;
-    self.chooseCategoryView.flag = @"1";
+    if (sender.tag == 1) {
+        self.chooseCategoryView.flag = @"1";
+    }
+    else{
+        self.chooseCategoryView.flag = @"2";
+    }
     CGFloat height = self.chooseCategoryView.frame.size.height;
     [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, height)];
     [self.view addSubview:self.background];
@@ -161,6 +175,7 @@
         [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight - height, ScreenWidth, height)];
     }];
 }
+
 
 -(void)rightItemTapped{
     self.tabBarController.selectedIndex = 1;

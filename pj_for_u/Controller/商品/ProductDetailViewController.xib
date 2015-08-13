@@ -58,16 +58,29 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n6Z-Gk-7yI">
+                                    <rect key="frame" x="8" y="0.0" width="251" height="44"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="addShoppingCarAndBuyNow:" destination="-1" eventType="touchUpInside" id="3an-Kc-7q3"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="rZW-yw-EG5" firstAttribute="top" secondItem="NTe-fO-rMB" secondAttribute="top" constant="11" id="68Z-64-cVU"/>
                                 <constraint firstAttribute="bottom" secondItem="rZW-yw-EG5" secondAttribute="bottom" constant="10" id="H5Z-sQ-RQE"/>
+                                <constraint firstItem="n6Z-Gk-7yI" firstAttribute="top" secondItem="NTe-fO-rMB" secondAttribute="top" id="cA9-Ui-jVO"/>
+                                <constraint firstItem="n6Z-Gk-7yI" firstAttribute="leading" secondItem="NTe-fO-rMB" secondAttribute="leading" constant="8" id="kPM-Zh-IZP"/>
                                 <constraint firstAttribute="trailing" secondItem="rZW-yw-EG5" secondAttribute="trailing" constant="41" id="kXb-kP-0Xs"/>
+                                <constraint firstAttribute="bottom" secondItem="n6Z-Gk-7yI" secondAttribute="bottom" id="pfI-62-I5S"/>
+                                <constraint firstAttribute="trailing" secondItem="n6Z-Gk-7yI" secondAttribute="trailing" constant="8" id="tsh-jx-6o6"/>
                                 <constraint firstItem="rZW-yw-EG5" firstAttribute="leading" secondItem="NTe-fO-rMB" secondAttribute="leading" constant="40" id="uOA-DK-Mr3"/>
                             </constraints>
                         </view>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rJ-in-Fsr">
+                        <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rJ-in-Fsr">
                             <rect key="frame" x="42" y="10" width="27" height="26"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="27" id="K3a-Kd-irV"/>
@@ -77,7 +90,7 @@
                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
                             <connections>
-                                <action selector="addShoppingCar:" destination="-1" eventType="touchUpInside" id="WZm-hX-ttd"/>
+                                <action selector="addShoppingCarAndBuyNow:" destination="-1" eventType="touchUpInside" id="KxV-rM-bb3"/>
                             </connections>
                         </button>
                     </subviews>

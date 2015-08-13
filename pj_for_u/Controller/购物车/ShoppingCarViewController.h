@@ -10,7 +10,4 @@
 #import "BaseViewController.h"
 
 @interface ShoppingCarViewController : BaseViewController<UITableViewDelegate,UITableViewDataSource>
-
-
-
 @end

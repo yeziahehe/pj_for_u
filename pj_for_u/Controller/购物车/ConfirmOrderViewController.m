@@ -12,6 +12,9 @@
 #import "selectDeliverTimeView.h"
 #import "AddressManageViewController.h"
 
+#define kGetDefaultAddressDownloaderKey     @"GetDefaultAddressDownloaderKey"
+#define kOneKeyOrderDownloaderKey           @"OneKeyOrderDownloaderKey"
+
 @interface ConfirmOrderViewController ()
 @property (strong, nonatomic) IBOutlet UIScrollView *contentView;
 @property (strong, nonatomic) IBOutlet UIView *addressView;
@@ -27,8 +30,18 @@
 @property (strong, nonatomic) IBOutlet UILabel *totalPriceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *originPriceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *moneySavedLabel;
+@property (strong, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (strong, nonatomic) IBOutlet UILabel *deliverTimeLabel;
 @property (strong, nonatomic) UIView *background;
+@property (strong, nonatomic) NSString *defaultAddress;
+@property (strong, nonatomic) NSString *defaultRecPhone;
+@property (strong, nonatomic) NSString *defaultReceiver;
+@property (strong, nonatomic) NSString *defaultRank;
+@property (strong, nonatomic) NSString *totalPrice;
+@property (strong, nonatomic) NSString *originPrice;
+@property (strong, nonatomic) NSString *moneySaved;
+
+
 
 
 @end
@@ -53,26 +66,111 @@
 
 - (void)removeFirstResponder
 {
-    
     [self.background removeFromSuperview];
     [self cancelDeliverTimeNotification:nil];
     self.background = nil;
 }
+- (void)touchScrollView
+{
+    [self.descriptionTextView resignFirstResponder];
+}
+//添加订单总价
+- (void)calculateTotalPrice
+{
+        self.totalPrice = nil;
+        self.originPrice = nil;
+        self.moneySaved = nil;
+        for (int i = 0; i < [self.selectedArray count]; i++) {
+            ShoppingCar *sc = [self.selectedArray objectAtIndex:i];
+            if ([sc.isDiscount isEqualToString:@"1"]) {
+                self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.discountPrice floatValue]*[sc.orderCount intValue]];
+            }
+            else{
+                self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
+            }
+            self.originPrice = [NSString stringWithFormat:@"%.1f元",[self.originPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
+            self.moneySaved = [NSString stringWithFormat:@"(已节省%.1f元)",[self.originPrice floatValue]-[self.totalPrice floatValue]];
+        }
+        self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%@",self.totalPrice];
+        self.originPriceLabel.text = self.originPrice;
+        self.moneySavedLabel.text = self.moneySaved;
+}
 
 - (void)loadSubViews
 {
-    self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%@",self.totalPrice];
-    self.originPriceLabel.text = self.originPrice;
-    self.moneySavedLabel.text = self.moneySaved;
+    [self calculateTotalPrice];
+    CGFloat originY = 0.f;
+    CGRect rect = self.addressView.frame;
+    rect.origin.x = 0.f;
+    rect.origin.y = originY;
+    rect.size.height = 113.f;
+    rect.size.width = ScreenWidth;
+    originY = originY + 122.f;
+    self.addressView.frame = rect;
+    
+    rect = self.selectGoodsTableView.frame;
+    rect.origin.x = 0;
+    rect.origin.y = originY;
+    rect.size.height = [self.selectedArray count]*150.f;
+    rect.size.width = ScreenWidth;
+    self.selectGoodsTableView.frame = rect;
+    originY = 131.f + rect.size.height;
+    
+    rect = self.deliverView.frame;
+    rect.origin.x = 0;
+    rect.origin.y = originY;
+    rect.size.height = 44.f;
+    rect.size.width = ScreenWidth;
+    self.deliverView.frame = rect;
+    originY = originY + 53.f;
+    
+    rect = self.payView.frame;
+    rect.origin.x = 0;
+    rect.origin.y = originY;
+    rect.size.height = 106.f;
+    rect.size.width = ScreenWidth;
+    self.payView.frame = rect;
+    originY = originY + 115.f;
+    
+    rect = self.descriptionView.frame;
+    rect.origin.x = 0;
+    rect.origin.y = originY;
+    rect.size.height = 72.f;
+    rect.size.width = ScreenWidth;
+    self.descriptionView.frame = rect;
+    originY = originY + 81.f;
+    
+    rect = self.calculateView.frame;
+    rect.origin.x = 0;
+    rect.origin.y = originY;
+    rect.size.height = 82.f;
+    rect.size.width = ScreenWidth;
+    self.calculateView.frame = rect;
+    originY = originY + 91.f;
+
+    [self.contentView addSubview:self.addressView];
+    [self.contentView addSubview:self.selectGoodsTableView];
+    [self.contentView addSubview:self.deliverView];
+    [self.contentView addSubview:self.payView];
+    [self.contentView addSubview:self.descriptionView];
+    [self.contentView addSubview:self.calculateView];
+    [self.contentView setContentSize:CGSizeMake(ScreenWidth, originY)];
+    
+    self.contentView.delegate = self;
+    UITapGestureRecognizer *recognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(touchScrollView)];
+    [recognizer setNumberOfTapsRequired:1];
+    [recognizer setNumberOfTouchesRequired:1];
+    [self.contentView addGestureRecognizer:recognizer];
+    
+}
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
 }
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
     NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
-    [[MemberDataManager sharedManager]requestForIndividualInfoWithPhone:phone];
-    self.nameLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.nickname;
-    self.phoneLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.phone;
-    self.addressLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.defaultAddress;
+    [self requestForDefaultAddress:phone];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -80,11 +178,25 @@
     // Do any additional setup after loading the view from its nib.
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(confirmDeliverTimeNotification:) name:kConfirmDeliverTimeNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(cancelDeliverTimeNotification:) name:kCancelDeliverTimeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Keyboard Notification methords
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
+    self.contentView.contentInset = UIEdgeInsetsMake(self.contentView.contentInset.top, self.contentView.contentInset.left, keyboardSize.height, self.contentView.contentInset.right);
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    self.contentView.contentInset = UIEdgeInsetsMake(self.contentView.contentInset.top, self.contentView.contentInset.left, 0, self.contentView.contentInset.right);
 }
 
 - (void)confirmDeliverTimeNotification:(NSNotification *)notification
@@ -118,6 +230,23 @@
 - (IBAction)aLiPayButtonClicked:(id)sender {
 }
 - (IBAction)wechatButtonClicked:(id)sender {
+}
+- (IBAction)payButtonClicked:(id)sender {
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    NSMutableString *orderId = [[NSMutableString alloc]initWithCapacity:0];
+    if (self.selectedArray) {
+        for (int i = 0;i < [self.selectedArray count];i++) {
+            ShoppingCar *sc = [self.selectedArray objectAtIndex:i];
+            if (i == 0) {
+                [orderId appendFormat:@"%@",sc.orderId];
+            }
+            else{
+                [orderId appendFormat:@",%@",sc.orderId];
+            }
+        }
+    }
+    [self requestForOneKeyOrder:phone orderId:orderId rank:self.defaultRank reserveTime:self.deliverTimeLabel.text message:self.descriptionTextView.text];
+    orderId = nil;
 }
 
 - (IBAction)selectButtonClicked:(id)sender {
@@ -163,8 +292,16 @@
         NSString *imageUrl = self.shoppingCarInfo.imageUrl;
         cell.YFImageView.cacheDir = kUserIconCacheDir;
         [cell.YFImageView aysnLoadImageWithUrl:imageUrl placeHolder:@"icon_user_default.png"];
-        cell.discountPrice.text = [NSString stringWithFormat:@"%.1lf",[self.shoppingCarInfo.discountPrice floatValue]];
-        cell.originPrice.text = [NSString stringWithFormat:@"原价:%.1lf",[self.shoppingCarInfo.price  floatValue]];
+        if ([self.shoppingCarInfo.isDiscount isEqualToString:@"1"]) {
+            cell.originPrice.text = [NSString stringWithFormat:@"原价:%.1lf",[self.shoppingCarInfo.price  floatValue]];
+            cell.discountPrice.text = [NSString stringWithFormat:@"%.1lf",[self.shoppingCarInfo.discountPrice floatValue]];
+        }
+        else
+        {
+            cell.discountPrice.text = [NSString stringWithFormat:@"%.1lf",[self.shoppingCarInfo.price floatValue]];
+            cell.originPrice.hidden = YES;
+            cell.discountLine.hidden = YES;
+        }
         cell.amount = [self.shoppingCarInfo.orderCount intValue];
         cell.orderCount.text = [NSString stringWithFormat:@"%d",cell.amount];
     }
@@ -189,5 +326,103 @@
     return 0.1f;
 }
 
+- (void)requestForDefaultAddress:(NSString *)phoneId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetDefaultAddressUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:phoneId forKey:@"phoneId"];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kGetDefaultAddressDownloaderKey];
+}
+//phoneId      手机号Id（required）
+//orderId      订单号，多条以逗号隔开（required)
+//rank      用户收货人标识（required）
+//reserveTime      预约时间,默认立即送达
+//message      备注
+- (void)requestForOneKeyOrder:(NSString *)phoneId
+                      orderId:(NSString *)orderId
+                         rank:(NSString *)rank
+                  reserveTime:(NSString *)reserveTime
+                      message:(NSString *)message
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kOneKeyOrderUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:phoneId forKey:@"phoneId"];
+    [dict setObject:orderId forKey:@"orderId"];
+    [dict setObject:rank forKey:@"rank"];
+    [dict setObject:reserveTime forKey:@"reserveTime"];
+    [dict setObject:message forKey:@"message"];
+
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kOneKeyOrderDownloaderKey];
+}
+#pragma mark - YFDownloaderDelegate Methods
+- (void)downloader:(YFDownloader *)downloader completeWithNSData:(NSData *)data
+{
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary *dict = [str JSONValue];
+    if ([downloader.purpose isEqualToString:kGetDefaultAddressDownloaderKey])
+    {
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            NSArray *valueArray = [dict objectForKey:@"receivers"];
+            for (NSDictionary *valueDict in valueArray) {
+                NSString *lm = [NSString stringWithFormat:@"%@",[valueDict objectForKey:@"tag"]];
+                if ([lm isEqualToString:@"0"]) {
+                    self.defaultReceiver = [valueDict objectForKey:@"name"];
+                    self.defaultRecPhone = [valueDict objectForKey:@"phone"];
+                    self.defaultAddress = [valueDict objectForKey:@"address"];
+                    self.defaultRank = [valueDict objectForKey:@"rank"];
+                }
+            }
+            self.nameLabel.text = self.defaultReceiver;
+            self.phoneLabel.text = self.defaultRecPhone;
+            self.addressLabel.text = self.defaultAddress;
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"获取默认地址失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+    else if ([downloader.purpose isEqualToString:kOneKeyOrderDownloaderKey])
+    {
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            //成功
+            NSLog(@"下单成功");
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"下单失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+
+}
+
+- (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
+{
+    NSLog(@"%@",message);
+    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:2.f];
+}
 
 @end
