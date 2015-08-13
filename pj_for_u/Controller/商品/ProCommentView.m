@@ -101,19 +101,7 @@
     ProCommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ProCommentTableViewCell" ];
     ProCommentDetail *pcd = [self.allCommentMArray objectAtIndex:indexPath.row];
     cell.pcd = pcd;
-    
-    
-    if (indexPath.row == self.allCommentMArray.count - 1) {
-        CGRect rect = self.tableView.frame;
-        rect.size.height = self.tableView.contentSize.height + cell.frame.size.height;
-        rect.size.width = ScreenWidth;
-        self.tableView.frame = rect;
-        
-        NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height+cell.frame.size.height+44];
-        NSLog(@"shit %@",height);
-        [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
-    }
-    
+
     return cell;
 }
 
@@ -133,14 +121,18 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
-//加载完成cell后的方法，在该方法中实现tableview高度自适应,cell>1执行
-- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+
+//实现高度自适应
+-(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGRect rect = self.tableView.frame;
-    rect.size.height = self.tableView.contentSize.height;
-    self.tableView.frame = rect;
-    
-    NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height];
-    [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
+    if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
+        NSLog(@"shit");
+        CGRect rect = self.tableView.frame;
+        rect.size.height = self.tableView.contentSize.height;
+        self.tableView.frame = rect;
+        
+        NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height];
+        [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
+    }
 }
 @end
