@@ -12,6 +12,9 @@
 #import "selectDeliverTimeView.h"
 #import "AddressManageViewController.h"
 
+#define kGetDefaultAddressDownloaderKey     @"GetDefaultAddressDownloaderKey"
+#define kOneKeyOrderDownloaderKey           @"OneKeyOrderDownloaderKey"
+
 @interface ConfirmOrderViewController ()
 @property (strong, nonatomic) IBOutlet UIScrollView *contentView;
 @property (strong, nonatomic) IBOutlet UIView *addressView;
@@ -27,8 +30,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *totalPriceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *originPriceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *moneySavedLabel;
+@property (strong, nonatomic) IBOutlet UITextView *descriptionTextView;
 @property (strong, nonatomic) IBOutlet UILabel *deliverTimeLabel;
 @property (strong, nonatomic) UIView *background;
+@property (strong, nonatomic) NSString *defaultAddress;
+@property (strong, nonatomic) NSString *defaultRecPhone;
+@property (strong, nonatomic) NSString *defaultReceiver;
+@property (strong, nonatomic) NSString *defaultRank;
 
 
 @end
@@ -69,10 +77,7 @@
 {
     [super viewWillAppear:YES];
     NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
-    [[MemberDataManager sharedManager]requestForIndividualInfoWithPhone:phone];
-    self.nameLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.nickname;
-    self.phoneLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.phone;
-    self.addressLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.defaultAddress;
+    [self requestForDefaultAddress:phone];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -119,6 +124,23 @@
 }
 - (IBAction)wechatButtonClicked:(id)sender {
 }
+- (IBAction)payButtonClicked:(id)sender {
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    NSMutableString *orderId = [[NSMutableString alloc]initWithCapacity:0];
+    if (self.selectedArray) {
+        for (int i = 0;i < [self.selectedArray count];i++) {
+            ShoppingCar *sc = [self.selectedArray objectAtIndex:i];
+            if (i == 0) {
+                [orderId appendFormat:@"%@",sc.orderId];
+            }
+            else{
+                [orderId appendFormat:@",%@",sc.orderId];
+            }
+        }
+    }
+    [self requestForOneKeyOrder:phone orderId:orderId rank:self.defaultRank reserveTime:self.deliverTimeLabel.text message:self.descriptionTextView.text];
+    orderId = nil;
+}
 
 - (IBAction)selectButtonClicked:(id)sender {
     for (UIView *subView in self.view.subviews) {
@@ -163,8 +185,16 @@
         NSString *imageUrl = self.shoppingCarInfo.imageUrl;
         cell.YFImageView.cacheDir = kUserIconCacheDir;
         [cell.YFImageView aysnLoadImageWithUrl:imageUrl placeHolder:@"icon_user_default.png"];
-        cell.discountPrice.text = [NSString stringWithFormat:@"%.1lf",[self.shoppingCarInfo.discountPrice floatValue]];
-        cell.originPrice.text = [NSString stringWithFormat:@"原价:%.1lf",[self.shoppingCarInfo.price  floatValue]];
+        if ([self.shoppingCarInfo.isDiscount isEqualToString:@"1"]) {
+            cell.originPrice.text = [NSString stringWithFormat:@"原价:%.1lf",[self.shoppingCarInfo.price  floatValue]];
+            cell.discountPrice.text = [NSString stringWithFormat:@"%.1lf",[self.shoppingCarInfo.discountPrice floatValue]];
+        }
+        else
+        {
+            cell.discountPrice.text = [NSString stringWithFormat:@"%.1lf",[self.shoppingCarInfo.price floatValue]];
+            cell.originPrice.hidden = YES;
+            cell.discountLine.hidden = YES;
+        }
         cell.amount = [self.shoppingCarInfo.orderCount intValue];
         cell.orderCount.text = [NSString stringWithFormat:@"%d",cell.amount];
     }
@@ -189,5 +219,103 @@
     return 0.1f;
 }
 
+- (void)requestForDefaultAddress:(NSString *)phoneId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetDefaultAddressUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:phoneId forKey:@"phoneId"];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kGetDefaultAddressDownloaderKey];
+}
+//phoneId      手机号Id（required）
+//orderId      订单号，多条以逗号隔开（required)
+//rank      用户收货人标识（required）
+//reserveTime      预约时间,默认立即送达
+//message      备注
+- (void)requestForOneKeyOrder:(NSString *)phoneId
+                      orderId:(NSString *)orderId
+                         rank:(NSString *)rank
+                  reserveTime:(NSString *)reserveTime
+                      message:(NSString *)message
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kOneKeyOrderUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:phoneId forKey:@"phoneId"];
+    [dict setObject:orderId forKey:@"orderId"];
+    [dict setObject:rank forKey:@"rank"];
+    [dict setObject:reserveTime forKey:@"reserveTime"];
+    [dict setObject:message forKey:@"message"];
+
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kOneKeyOrderDownloaderKey];
+}
+#pragma mark - YFDownloaderDelegate Methods
+- (void)downloader:(YFDownloader *)downloader completeWithNSData:(NSData *)data
+{
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary *dict = [str JSONValue];
+    if ([downloader.purpose isEqualToString:kGetDefaultAddressDownloaderKey])
+    {
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            NSArray *valueArray = [dict objectForKey:@"receivers"];
+            for (NSDictionary *valueDict in valueArray) {
+                NSString *lm = [NSString stringWithFormat:@"%@",[valueDict objectForKey:@"tag"]];
+                if ([lm isEqualToString:@"0"]) {
+                    self.defaultReceiver = [valueDict objectForKey:@"name"];
+                    self.defaultRecPhone = [valueDict objectForKey:@"phone"];
+                    self.defaultAddress = [valueDict objectForKey:@"address"];
+                    self.defaultRank = [valueDict objectForKey:@"rank"];
+                }
+            }
+            self.nameLabel.text = self.defaultReceiver;
+            self.phoneLabel.text = self.defaultRecPhone;
+            self.addressLabel.text = self.defaultAddress;
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"获取默认地址失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+    else if ([downloader.purpose isEqualToString:kOneKeyOrderDownloaderKey])
+    {
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            //成功
+            NSLog(@"下单成功");
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"下单失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+
+}
+
+- (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
+{
+    NSLog(@"%@",message);
+    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:2.f];
+}
 
 @end

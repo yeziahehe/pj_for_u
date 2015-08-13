@@ -128,8 +128,9 @@
     [super viewWillAppear:YES];
     if ([[MemberDataManager sharedManager] isLogin]) {
         if ([self.shoppingCarArray count] == 0) {
-            [self.noOrderView removeFromSuperview];
-            [self.ShoppingCarTableView headerBeginRefreshing];
+            //[self.noOrderView removeFromSuperview];
+            NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+            [self requestForShoppingCar:phone];
             [self.ShoppingCarTableView reloadData];
         }
     }
@@ -141,6 +142,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadSubViews];
+    [self noGoodsExistView];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(plusShoppingAmountNotification:) name:kPlusShoppingAmountNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(minusShoppingAmountNotification:) name:kMinusShoppingAmountNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeBackGrayViewNotification:) name:kRemoveBackGrayViewNotification object:nil];
@@ -433,7 +435,10 @@
             {
                 [self noGoodsExistView];
             }
-
+            else
+            {
+                [self.noOrderView removeFromSuperview];
+            }
             [self calculateTotalPrice];
             
             [self.ShoppingCarTableView reloadData];

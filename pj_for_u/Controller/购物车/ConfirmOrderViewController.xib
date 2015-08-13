@@ -12,6 +12,7 @@
                 <outlet property="contentView" destination="bbW-ol-GKd" id="0j6-uu-xyY"/>
                 <outlet property="deliverTimeLabel" destination="xg1-Yu-J3W" id="T0q-P1-jvy"/>
                 <outlet property="deliverView" destination="yg7-nx-J9d" id="qz0-XC-mvz"/>
+                <outlet property="descriptionTextView" destination="sIJ-gZ-Q9o" id="Z8S-ou-1m3"/>
                 <outlet property="descriptionView" destination="8S2-XK-BLw" id="kTE-zL-ueX"/>
                 <outlet property="moneySavedLabel" destination="yPt-9x-8dP" id="OhB-cI-cYA"/>
                 <outlet property="nameLabel" destination="dVO-Om-CyH" id="zVi-c1-DQB"/>
@@ -272,6 +273,9 @@
                                     <state key="normal" title="立即支付">
                                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     </state>
+                                    <connections>
+                                        <action selector="payButtonClicked:" destination="-1" eventType="touchUpInside" id="dvs-Dk-UaP"/>
+                                    </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="合计：237.0元" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PvM-XE-Qjk">
                                     <rect key="frame" x="32" y="11" width="111" height="21"/>
