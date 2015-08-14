@@ -188,7 +188,6 @@
         NSLog(@"Error: %@", error);
         
     }];
-
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -230,13 +229,15 @@
 {
     self.deliverButton.enabled = NO;
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    self.contentView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+    CGFloat originYY = self.calculateView.frame.origin.y;
+    [self.contentView setContentOffset:CGPointMake(0, originYY- (ScreenHeight - keyboardSize.height - self.calculateView.frame.size.height) + 10)];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     self.deliverButton.enabled = YES;
-    self.contentView.contentInset = UIEdgeInsetsZero;
+    CGFloat originYY = self.calculateView.frame.origin.y;
+    [self.contentView setContentOffset:CGPointMake(0,originYY + self.calculateView.frame.size.height - ScreenHeight + 10)];
 }
 
 - (void)confirmDeliverTimeNotification:(NSNotification *)notification
