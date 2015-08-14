@@ -23,10 +23,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oRI-kS-dJ9">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="677"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="717"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EuI-eP-QWG" userLabel="Content View">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="677"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="717"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Le-XR-Ffw" userLabel="top">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
@@ -189,7 +189,7 @@
                                     </constraints>
                                 </view>
                                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="fer-Pb-vuW">
-                                    <rect key="frame" x="0.0" y="171" width="375" height="506"/>
+                                    <rect key="frame" x="0.0" y="171" width="375" height="546"/>
                                     <color key="backgroundColor" red="0.97953344666946585" green="0.97829060216019625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                     <connections>
                                         <outlet property="dataSource" destination="-1" id="sXQ-zR-PaM"/>
@@ -225,13 +225,13 @@
             <color key="backgroundColor" red="0.97953344666946585" green="0.97829060216019625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="oRI-kS-dJ9" secondAttribute="trailing" id="5Xe-Yd-tkb"/>
-                <constraint firstAttribute="bottom" secondItem="oRI-kS-dJ9" secondAttribute="bottom" constant="-10" id="KFX-gM-Goa"/>
+                <constraint firstAttribute="bottom" secondItem="oRI-kS-dJ9" secondAttribute="bottom" constant="-50" id="KFX-gM-Goa"/>
                 <constraint firstItem="oRI-kS-dJ9" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MGt-Ae-s0u"/>
                 <constraint firstItem="oRI-kS-dJ9" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nzy-nK-H9c"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="56.5" y="30.5"/>
+            <point key="canvasLocation" x="-57.5" y="-28.5"/>
         </view>
     </objects>
     <resources>
