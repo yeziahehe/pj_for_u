@@ -67,7 +67,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥0.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XaV-c0-Q0a">
-                                            <rect key="frame" x="84" y="67" width="41.5" height="12"/>
+                                            <rect key="frame" x="84" y="67" width="42" height="12"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="12" id="zbZ-Xk-orX"/>
                                             </constraints>

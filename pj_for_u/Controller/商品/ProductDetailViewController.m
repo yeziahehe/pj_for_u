@@ -15,11 +15,13 @@
 #import "ChooseCategoryView.h"
 #import "ShoppingCarViewController.h"
 #import "ConfirmOrderViewController.h"
+#import "LoginViewController.h"
 
 @interface ProductDetailViewController ()
 @property(strong,nonatomic)ProductionInfo *proInfo;
 @property (nonatomic, strong) NSMutableArray *subViewArray;
 @property(strong,nonatomic)NSArray *productInfoArray;
+@property(strong,nonatomic)NSString *isLoaded;
 @property(strong,nonatomic)UIView *background;
 @property(strong,nonatomic)ChooseCategoryView *chooseCategoryView;
 @end
@@ -125,6 +127,7 @@
         [self.contentScrollView addSubview:productSubView];
         originY = rect.origin.y + rect.size.height;
     }
+    self.isLoaded = @"1";
     [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, originY + 44.f)];
     [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
 }
@@ -153,12 +156,21 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(heightForTableViewWithNotification:) name:kHeightForTBVNotification object:nil];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    if (![self.isLoaded isEqualToString:@"1"]) {
+        [[YFProgressHUD sharedProgressHUD]startedNetWorkActivityWithText:@"加载中"];
+    }
+}
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 #pragma mark - IBAction Methods
 - (IBAction)addShoppingCarAndBuyNow:(UIButton *)sender {
+    if (![MemberDataManager sharedManager].loginMember.phone) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
+    }else{
     self.chooseCategoryView = [[[NSBundle mainBundle]loadNibNamed:@"ChooseCategoryView" owner:self options:nil]lastObject];
     //传递参数
     self.chooseCategoryView.proInfo = self.proInfo;
@@ -175,6 +187,7 @@
     [UIView animateWithDuration:0.2 animations:^{
         [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight - height, ScreenWidth, height)];
     }];
+    }
 }
 
 
