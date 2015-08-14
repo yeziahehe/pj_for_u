@@ -10,8 +10,15 @@
 #import "MyOrderTableViewCell.h"
 #import "MyOrderDetailViewController.h"
 #import "MyOrderEvaluationViewController.h"
+#import "ShoppingCar.h"
+#import "ConfirmOrderViewController.h"
 
-#define kGetOrderInMineKey        @"GetOrderInMineKey"
+#define sizeofPage                  @"30"
+#define sizeofPageInt               30
+
+#define kGetOrderInMineKey          @"GetOrderInMineKey"
+#define kDeleteOrderKey             @"DeleteOrderKey"
+#define kSetOrderInvalidKey         @"SetOrderInvalidKey"
 
 @interface MyOrderViewController ()
 
@@ -29,18 +36,164 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSArray *orderListArray;
+@property (strong, nonatomic) NSMutableArray *orderListArray;
 @property (strong, nonatomic) NSMutableArray *eachCountOfSmallOrders;
 
 @property (strong, nonatomic) IBOutlet UIView *noOrderView;
 @property (strong, nonatomic) IBOutlet UIButton *goAroundButton;
 
+@property (strong, nonatomic) NSString *lastestId;
+@property BOOL isRefreshHeader;
+@property int indexOfPage;
+
 @property int recordLastStatus;
+
+@property int waitForPaymentNum;
+@property int waitForConfirmNum;
+@property int distributingNum;
+@property int waitForEvaluationNum;
+@property int alreadyFinishedNum;
+
+@property NSInteger indexPathBuffer;
+
 @end
 
 @implementation MyOrderViewController
 
 #pragma mark - Private Methods
+
+- (void)loadInfoByRefreshFooter:(NSInteger)count
+{
+    //====================上拉加载==================
+    UIView *postInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 34)];
+    UILabel *postInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 7, ScreenWidth, 20)];
+    postInfoLabel.textAlignment = NSTextAlignmentCenter;
+    postInfoLabel.font = [UIFont systemFontOfSize:12.0];
+    postInfoLabel.textColor = [UIColor darkGrayColor];
+    [postInfoView addSubview:postInfoLabel];
+    
+    
+    if (self.orderListArray.count == 0) {
+        self.tableView.footerHidden = YES;
+        self.tableView.hidden = YES;
+        CGRect frame = self.noOrderView.frame;
+        frame.origin.x = 0;
+        frame.origin.y = 94;
+        frame.size.width = ScreenWidth;
+        frame.size.height = ScreenHeight - 94;
+        self.noOrderView.frame = frame;
+        [self.view addSubview:self.noOrderView];
+        
+    } else {
+        self.tableView.hidden = NO;
+        [self.noOrderView removeFromSuperview];
+        if (count < sizeofPageInt) {
+            self.tableView.footerHidden = YES;
+        }
+        self.lastestId = [NSString stringWithFormat:@"%d", ++self.indexOfPage];
+        
+        [self.tableView reloadData];
+        
+    }
+    self.tableView.tableFooterView = postInfoView;
+    //==============================================
+    self.isRefreshHeader = NO;
+
+}
+- (void)showNoOrderView
+{
+    //如果没数据就显示随便逛逛页面
+    if (self.orderListArray.count == 0) {
+        self.tableView.hidden = YES;
+        CGRect frame = self.noOrderView.frame;
+        frame.origin.x = 0;
+        frame.origin.y = 94;
+        frame.size.width = ScreenWidth;
+        frame.size.height = ScreenHeight - 94;
+        self.noOrderView.frame = frame;
+        [self.view addSubview:self.noOrderView];
+    } else {
+        self.tableView.hidden = NO;
+        [self.tableView reloadData];
+        [self.noOrderView removeFromSuperview];
+    }
+
+}
+
+- (void)resetBadgeNum
+{
+    NSString *badgeNum = [NSString stringWithFormat:@"%lu", (unsigned long)self.orderListArray.count];
+    switch (self.recordLastStatus) {
+        case 1:
+            for (UIView *subView in self.waitForPayment.subviews) {
+                if ([subView isKindOfClass:[YFBadgeView class]]) {
+                    [subView removeFromSuperview];
+                }
+            }
+            
+            [self setBadgeViewWithView:self.waitForPayment badgeNum:badgeNum];
+            break;
+            
+        case 2:
+            for (UIView *subView in self.waitForConfirm.subviews) {
+                if ([subView isKindOfClass:[YFBadgeView class]]) {
+                    [subView removeFromSuperview];
+                }
+            }
+            
+            [self setBadgeViewWithView:self.waitForConfirm badgeNum:badgeNum];
+            break;
+        case 3:
+            for (UIView *subView in self.distributing.subviews) {
+                if ([subView isKindOfClass:[YFBadgeView class]]) {
+                    [subView removeFromSuperview];
+                }
+            }
+            
+            [self setBadgeViewWithView:self.distributing badgeNum:badgeNum];
+            break;
+            
+        case 4:
+            for (UIView *subView in self.waitForEvaluation.subviews) {
+                if ([subView isKindOfClass:[YFBadgeView class]]) {
+                    [subView removeFromSuperview];
+                }
+            }
+            
+            [self setBadgeViewWithView:self.waitForEvaluation badgeNum:badgeNum];
+            break;
+        case 5:
+            for (UIView *subView in self.alreadyFinished.subviews) {
+                if ([subView isKindOfClass:[YFBadgeView class]]) {
+                    [subView removeFromSuperview];
+                }
+            }
+            
+            [self setBadgeViewWithView:self.alreadyFinished badgeNum:badgeNum];
+            break;
+        default:
+            break;
+    }
+
+}
+
+- (void)refreshFooter       //上拉加载
+{
+    NSString *more = @"1";
+    if (self.orderListArray.count != 0) {
+        more = self.lastestId;
+    }
+    [self requestForMyOrderByStatus:[NSString stringWithFormat:@"%d", self.recordLastStatus] page:more limit:sizeofPage];
+    
+}
+
+- (void)refreshHeader       //下拉刷新
+{
+    self.isRefreshHeader = YES;
+    self.indexOfPage = 1;
+    self.lastestId = @"1";
+    [self requestForMyOrderByStatus:[NSString stringWithFormat:@"%d", self.recordLastStatus] page:@"1" limit:sizeofPage];
+}
 
 - (void)requestForMyOrderByStatus:(NSString *)status page:(NSString *)page limit:(NSString *)limit
 {
@@ -64,6 +217,32 @@
                                                                 purpose:kGetOrderInMineKey];
 }
 
+- (void)requestForDeleteOrder:(NSString *)togetherId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kDeleteOrderUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:togetherId forKey:@"togetherId"];
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kDeleteOrderKey];
+}
+
+- (void)requestForSetOrderInvalid:(NSString *)togetherId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSetOrderInvalidUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:togetherId forKey:@"togetherId"];
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kSetOrderInvalidKey];
+}
+
 - (void)setBadgeViewWithView:(UIView *)parentView badgeNum:(NSString *)badgeNum
 {
 
@@ -77,6 +256,11 @@
 
 - (void)addBadgeViewToButton
 {
+    self.waitForPaymentNum = [MemberDataManager sharedManager].mineInfo.waitPayOrder.intValue;
+    self.waitForConfirmNum = [MemberDataManager sharedManager].mineInfo.waitMakeSureOrder.intValue;
+    self.waitForEvaluationNum = [MemberDataManager sharedManager].mineInfo.waitCommentOrder .intValue;
+    self.alreadyFinishedNum = [MemberDataManager sharedManager].mineInfo.doneOrder.intValue;
+    
     //角标
     [self setBadgeViewWithView:self.waitForPayment badgeNum:[MemberDataManager sharedManager].mineInfo.waitPayOrder];
     [self setBadgeViewWithView:self.waitForConfirm badgeNum:[MemberDataManager sharedManager].mineInfo.waitMakeSureOrder];
@@ -123,7 +307,8 @@
     [self.waitForPayment setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForPaymentView.backgroundColor = [UIColor redColor];
     self.recordLastStatus = 1;
-    [self requestForMyOrderByStatus:@"1" page:nil limit:nil];
+    [self refreshHeader];
+
 }
 
 - (void)waitForConfirmAction
@@ -132,7 +317,8 @@
     [self.waitForConfirm setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForConfirmView.backgroundColor = [UIColor redColor];
     self.recordLastStatus = 2;
-    [self requestForMyOrderByStatus:@"2" page:nil limit:nil];
+    [self refreshHeader];
+
 }
 
 - (void)distributingAction
@@ -142,7 +328,8 @@
     [self.distributing setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.distributingView.backgroundColor = [UIColor redColor];
     self.recordLastStatus = 3;
-    [self requestForMyOrderByStatus:@"3" page:nil limit:nil];
+    [self refreshHeader];
+
 }
 
 - (void)waitForEvaluationAction
@@ -151,7 +338,8 @@
     [self.waitForEvaluation setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForEvaluationView.backgroundColor = [UIColor redColor];
     self.recordLastStatus = 4;
-    [self requestForMyOrderByStatus:@"4" page:nil limit:nil];
+    [self refreshHeader];
+
 }
 
 - (void)alreadyFinishedAction
@@ -160,7 +348,8 @@
     [self.alreadyFinished setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.alreadyFinishedView.backgroundColor = [UIColor redColor];
     self.recordLastStatus = 5;
-    [self requestForMyOrderByStatus:@"5" page:nil limit:nil];
+    [self refreshHeader];
+
 }
 
 
@@ -173,6 +362,14 @@
     [self.distributing addTarget:self action:@selector(distributingAction) forControlEvents:UIControlEventTouchUpInside];
     [self.waitForEvaluation addTarget:self action:@selector(waitForEvaluationAction) forControlEvents:UIControlEventTouchUpInside];
     [self.alreadyFinished addTarget:self action:@selector(alreadyFinishedAction) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (NSMutableArray *)orderListArray
+{
+    if (!_orderListArray) {
+        _orderListArray = [[NSMutableArray alloc] initWithCapacity:0];
+    }
+    return  _orderListArray;
 }
 
 - (NSMutableArray *)eachCountOfSmallOrders
@@ -207,8 +404,9 @@
     NSDictionary *dict = (NSDictionary *)notification.object;
     NSIndexPath *indexPath = [dict objectForKey:@"indexPath"];
     NSArray *smallOrders = [self.orderListArray[indexPath.section] objectForKey:@"smallOrders"];
+    NSString *togetherId = [self.orderListArray[indexPath.section] objectForKey:@"togetherId"];
     NSString *title = [dict objectForKey:@"title"];
-    //评价订单，只显示未评价过得订单 if title = ...
+
     
     if ([title isEqualToString:@"评价订单"]) {
         NSMutableArray *realSmallOrders = [[NSMutableArray alloc] initWithCapacity:10];
@@ -223,15 +421,70 @@
         
         [self.navigationController pushViewController:myOrderEvaluationViewController animated:YES];
         
-    } else if ([title isEqualToString:@"删除订单"]) {
+    }
+    
+    else if ([title isEqualToString:@"删除订单"]) {
         
-    } else if ([title isEqualToString:@"立即付款"]) {
+        self.indexPathBuffer = indexPath.section;
         
-    } else if ([title isEqualToString:@"取消订单"]) {
+        [self requestForDeleteOrder:togetherId];
         
-    } else if ([title isEqualToString:@"确认收货"]) {
+    }
+    
+    else if ([title isEqualToString:@"立即付款"]) {
         
-    } else if ([title isEqualToString:@"追加评论"]) {
+        NSMutableArray *shoppingCar = [[NSMutableArray alloc] initWithCapacity:10];
+        
+        int count = 0;
+        double price = 0.0;
+        double originPrice = 0.0;
+        NSString *realPriceType;
+        
+        for (NSDictionary *dict in smallOrders) {
+            ShoppingCar *car = [[ShoppingCar alloc] initWithDict:dict];
+            [shoppingCar addObject:car];
+            
+            NSString *isDiscount = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isDiscount"]];
+            if ([isDiscount isEqualToString:@"1"]) {
+                realPriceType = @"discountPrice";
+            } else {
+                realPriceType = @"price";
+            }
+            int singleCount = [[dict objectForKey:@"orderCount"] intValue];
+            double singlePrice = [[dict objectForKey:realPriceType] doubleValue];
+            double singleOriginPrice = [[dict objectForKey:@"price"] doubleValue];
+            originPrice += singleCount * singleOriginPrice;
+            price += singleCount * singlePrice;
+            count += singleCount;
+
+        }
+
+        ConfirmOrderViewController *coVC = [[ConfirmOrderViewController alloc] init];
+
+        coVC.selectedArray = shoppingCar;
+        
+        [self.navigationController pushViewController:coVC animated:YES];        
+    }
+    
+    else if ([title isEqualToString:@"取消订单"]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"取消订单"
+                                                                       message:@"是否取消订单？"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    self.indexPathBuffer = indexPath.section;
+                                                    [self requestForSetOrderInvalid:togetherId];
+                                                    
+                                                    
+                                                }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
+    else if ([title isEqualToString:@"确认收货"]) {
         
     }
 }
@@ -252,9 +505,16 @@
         //后台不给。。。手动计算个数和总价
         int count = 0;
         double price = 0.0;
+        NSString *realPriceType;
         for (NSDictionary *dict in smallOrders) {
+            NSString *isDiscount = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isDiscount"]];
+            if ([isDiscount isEqualToString:@"1"]) {
+                realPriceType = @"discountPrice";
+            } else {
+                realPriceType = @"price";
+            }
             int singleCount = [[dict objectForKey:@"orderCount"] intValue];
-            double singlePrice = [[dict objectForKey:@"discountPrice"] doubleValue];
+            double singlePrice = [[dict objectForKey:realPriceType] doubleValue];
             price += singleCount * singlePrice;
             count += singleCount;
         }
@@ -294,11 +554,7 @@
             cell.orderStatus.text = @"交易成功";
         }
         if ([status isEqualToString:@"5"]) {
-            CALayer *layer = [cell.leftButton layer];
-            layer.borderColor = [[UIColor darkGrayColor] CGColor];
-            [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            
-            [cell.leftButton setTitle:@"追加评论" forState:UIControlStateNormal];
+            cell.leftButton.hidden = YES;
             [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];
             cell.orderStatus.text = @"交易完成";
         }
@@ -349,6 +605,9 @@
     [super viewDidLoad];
     [self setNaviTitle:@"我的订单"];
     
+    self.indexOfPage = 1;
+    self.isRefreshHeader = NO;
+    
     //register cell
     UINib *nib = [UINib nibWithNibName:@"MyOrderTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
@@ -365,9 +624,16 @@
     self.goAroundButton.layer.masksToBounds = YES;
     self.goAroundButton.layer.cornerRadius = 2.5f;
     
-//    [MemberDataManager sharedManager].mineInfo.
+    [self.tableView addHeaderWithTarget:self action:@selector(refreshHeader)];
+    [self.tableView addFooterWithTarget:self action:@selector(refreshFooter)];
     
     self.recordLastStatus = 1;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(pushToMyOrderDetailViewController:)
                                                  name:kPushToMyOrderDetailNotification object:nil];
@@ -375,11 +641,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(cilckOrderButtonNotification:)
                                                  name:kCilckOrderButtonNotification object:nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
     //每次进入页面刷新数据
     switch (self.recordLastStatus) {
@@ -401,22 +662,40 @@
         default:
             break;
     }
-    
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
+
 }
 
 #pragma mark - YFDownloaderDelegate Methods
 - (void)downloader:(YFDownloader *)downloader completeWithNSData:(NSData *)data
 {
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary *dict = [str JSONValue];
     if ([downloader.purpose isEqualToString:kGetOrderInMineKey])
     {
-        NSDictionary *dict = [str JSONValue];
-        
+        [self.tableView footerEndRefreshing];
+        [self.tableView headerEndRefreshing];
+
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-            self.orderListArray = [dict objectForKey:@"orderList"];
             
+            NSArray *valueArray = [dict objectForKey:@"orderList"];
+            
+            if (self.isRefreshHeader) {
+                [self.orderListArray removeAllObjects];
+                self.tableView.footerHidden = NO;
+            }
+
+            for (NSDictionary *dict in valueArray) {
+                [self.orderListArray addObject:dict];
+            }
+
             [self.eachCountOfSmallOrders removeAllObjects];
             for (NSDictionary *dict in self.orderListArray) {
                 NSArray *smallOrders = [dict objectForKey:@"smallOrders"];
@@ -424,21 +703,14 @@
                 [self.eachCountOfSmallOrders addObject:smallOrderCount];
             }
             
-            //如果没数据就显示随便逛逛页面
-            if (self.orderListArray.count == 0) {
-                self.tableView.hidden = YES;
-                CGRect frame = self.noOrderView.frame;
-                frame.origin.x = 0;
-                frame.origin.y = 94;
-                frame.size.width = ScreenWidth;
-                frame.size.height = ScreenHeight - 94;
-                self.noOrderView.frame = frame;
-                [self.view addSubview:self.noOrderView];
-            } else {
-                self.tableView.hidden = NO;
-                [self.tableView reloadData];
-                [self.noOrderView removeFromSuperview];
-            }
+            //带判功能的显示随便逛逛
+            [self showNoOrderView];
+            
+            //上拉刷新
+            [self loadInfoByRefreshFooter:valueArray.count];
+            
+            //重置角标
+            [self resetBadgeNum];
         }
         else
         {
@@ -449,6 +721,51 @@
             }
             if(message.length == 0)
                 message = @"信息获取失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+    else if ([downloader.purpose isEqualToString:kDeleteOrderKey]) {
+        NSString *message = [dict objectForKey:kMessageKey];
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
+            
+            [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
+            [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
+            
+            [self refreshHeader];
+
+        }
+        else
+        {
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"订单删除失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+    else if ([downloader.purpose isEqualToString:kSetOrderInvalidKey]) {
+        NSString *message = [dict objectForKey:kMessageKey];
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
+            
+            [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
+            [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
+            
+            [self refreshHeader];
+        }
+        else
+        {
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"取消订单失败";
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }

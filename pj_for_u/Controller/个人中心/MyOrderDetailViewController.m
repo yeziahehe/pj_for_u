@@ -8,8 +8,13 @@
 
 #import "MyOrderDetailViewController.h"
 #import "MyOrderTableViewCell.h"
+#import "ShoppingCar.h"
+#import "ConfirmOrderViewController.h"
+#import "MyOrderEvaluationViewController.h"
 
 #define kGetOrderDetailKey         @"GetOrderDetailKey"
+#define kDeleteOrderKey             @"DeleteOrderKey"
+#define kSetOrderInvalidKey         @"SetOrderInvalidKey"
 
 @interface MyOrderDetailViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -33,6 +38,33 @@
 @implementation MyOrderDetailViewController
 
 #pragma mark - Private Method
+
+- (void)requestForDeleteOrder:(NSString *)togetherId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kDeleteOrderUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:togetherId forKey:@"togetherId"];
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kDeleteOrderKey];
+}
+
+- (void)requestForSetOrderInvalid:(NSString *)togetherId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSetOrderInvalidUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:togetherId forKey:@"togetherId"];
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kSetOrderInvalidKey];
+}
+
 - (void)requestForMyOrderDetailByTogetherId:(NSString *)togetherId
 {
     [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中..."];
@@ -73,6 +105,89 @@
     self.phone.text = [self.receiver objectForKey:@"phone"];
 }
 
+//============点击左或者右两个按钮发生的事件，通过title来判断============
+- (void)cilckOrderButtonNotification:(NSNotification *)notification
+{
+    NSDictionary *dict = (NSDictionary *)notification.object;
+    NSString *title = [dict objectForKey:@"title"];
+    
+    if ([title isEqualToString:@"评价订单"]) {
+        NSMutableArray *realSmallOrders = [[NSMutableArray alloc] initWithCapacity:10];
+        for (NSDictionary *dict in self.smallOrders) {
+            NSString *isRemarked = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isRemarked"]];
+            if ([isRemarked isEqualToString:@"0"]) {
+                [realSmallOrders addObject:dict];
+            }
+        }
+        MyOrderEvaluationViewController *myOrderEvaluationViewController = [[MyOrderEvaluationViewController alloc] init];
+        myOrderEvaluationViewController.smallOrders = realSmallOrders;
+        
+        [self.navigationController pushViewController:myOrderEvaluationViewController animated:YES];
+        
+    }
+    
+    else if ([title isEqualToString:@"删除订单"]) {
+                
+        [self requestForDeleteOrder:self.togetherId];
+        
+    }
+    
+    else if ([title isEqualToString:@"立即付款"]) {
+        
+        NSMutableArray *shoppingCar = [[NSMutableArray alloc] initWithCapacity:10];
+        
+        int count = 0;
+        double price = 0.0;
+        double originPrice = 0.0;
+        NSString *realPriceType;
+        
+        for (NSDictionary *dict in self.smallOrders) {
+            ShoppingCar *car = [[ShoppingCar alloc] initWithDict:dict];
+            [shoppingCar addObject:car];
+            
+            NSString *isDiscount = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isDiscount"]];
+            if ([isDiscount isEqualToString:@"1"]) {
+                realPriceType = @"discountPrice";
+            } else {
+                realPriceType = @"price";
+            }
+            int singleCount = [[dict objectForKey:@"orderCount"] intValue];
+            double singlePrice = [[dict objectForKey:realPriceType] doubleValue];
+            double singleOriginPrice = [[dict objectForKey:@"price"] doubleValue];
+            originPrice += singleCount * singleOriginPrice;
+            price += singleCount * singlePrice;
+            count += singleCount;
+            
+        }
+        
+        ConfirmOrderViewController *coVC = [[ConfirmOrderViewController alloc] init];
+        
+        coVC.selectedArray = shoppingCar;
+        
+        [self.navigationController pushViewController:coVC animated:YES];
+    }
+    
+    else if ([title isEqualToString:@"取消订单"]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"取消订单"
+                                                                       message:@"是否取消订单？"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    [self requestForSetOrderInvalid:self.togetherId];
+                                                    
+                                                }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
+    
+    else if ([title isEqualToString:@"确认收货"]) {
+        
+    }
+}
+
 #pragma mark - UITableViewDataSource Methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -88,9 +203,16 @@
         //后台不给。。。手动计算个数和总价
         int count = 0;
         double price = 0.0;
+        NSString *realPriceType;
         for (NSDictionary *dict in self.smallOrders) {
+            NSString *isDiscount = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isDiscount"]];
+            if ([isDiscount isEqualToString:@"1"]) {
+                realPriceType = @"discountPrice";
+            } else {
+                realPriceType = @"price";
+            }
             int singleCount = [[dict objectForKey:@"orderCount"] intValue];
-            double singlePrice = [[dict objectForKey:@"discountPrice"] doubleValue];
+            double singlePrice = [[dict objectForKey:realPriceType] doubleValue];
             price += singleCount * singlePrice;
             count += singleCount;
         }
@@ -187,15 +309,27 @@
     //=============
 
     [self requestForMyOrderDetailByTogetherId:self.togetherId];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(cilckOrderButtonNotification:)
+                                                 name:kCilckOrderButtonNotification object:nil];
+
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
 
 #pragma mark - YFDownloaderDelegate Methods
 - (void)downloader:(YFDownloader *)downloader completeWithNSData:(NSData *)data
 {
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSDictionary *dict = [str JSONValue];
+
     if ([downloader.purpose isEqualToString:kGetOrderDetailKey])
     {
-        NSDictionary *dict = [str JSONValue];
         
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
@@ -216,6 +350,44 @@
             }
             if(message.length == 0)
                 message = @"信息获取失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+    else if ([downloader.purpose isEqualToString:kDeleteOrderKey]) {
+        NSString *message = [dict objectForKey:kMessageKey];
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"订单删除失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+    else if ([downloader.purpose isEqualToString:kSetOrderInvalidKey]) {
+        NSString *message = [dict objectForKey:kMessageKey];
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"取消订单失败";
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }

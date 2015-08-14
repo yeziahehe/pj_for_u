@@ -129,6 +129,12 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAccountWithNotification:) name:kRefreshAccoutNotification object:nil];
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
+}
+
 - (IBAction)headButton:(id)sender
 {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"上传头像" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
