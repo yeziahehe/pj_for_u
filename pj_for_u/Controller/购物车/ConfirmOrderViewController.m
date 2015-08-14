@@ -14,6 +14,8 @@
 
 #define kGetDefaultAddressDownloaderKey     @"GetDefaultAddressDownloaderKey"
 #define kOneKeyOrderDownloaderKey           @"OneKeyOrderDownloaderKey"
+#define kUrlScheme      @"demoapp001" // 这个是你定义的 URL Scheme，支付宝、微信支付和测试模式需要。
+#define kUrl            @"http://218.244.151.190/demo/charge" // 你的服务端创建并返回 charge 的 URL 地址，此地址仅供测试用。
 
 @interface ConfirmOrderViewController ()<UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonArray;
@@ -42,6 +44,7 @@
 @property (strong, nonatomic) NSString *totalPrice;
 @property (strong, nonatomic) NSString *originPrice;
 @property (strong, nonatomic) NSString *moneySaved;
+@property (strong, nonatomic) NSString *channel;
 @property (strong, nonatomic) IBOutlet UIButton *aLiPayButton;
 @property BOOL select;
 
@@ -315,6 +318,53 @@
     }
     [self requestForOneKeyOrder:phone orderId:orderId rank:self.defaultRank reserveTime:self.deliverTimeLabel.text message:self.descriptionTextView.text];
     orderId = nil;
+    if (self.select) {
+        self.channel = @"alipay";
+    }
+    else
+    {
+        self.channel = @"wx";
+    }
+    [self requestForPay];
+}
+
+- (void)requestForPay
+{
+    NSString *amount = [NSString stringWithFormat:@"%.1lf",self.totalPrice.doubleValue];
+    NSString *pay = @"12.0";
+        long long amount1 = [[pay stringByReplacingOccurrencesOfString:@"." withString:@""] longLongValue];
+    NSString *amountStr = [NSString stringWithFormat:@"%lld", amount1];
+    NSURL* url = [NSURL URLWithString:kUrl];
+    NSMutableURLRequest * postRequest=[NSMutableURLRequest requestWithURL:url];
+    
+    NSDictionary* dict = @{
+                           @"channel" : self.channel,
+                           @"amount"  : amountStr
+                           };
+    NSData* data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *bodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    [postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
+    [postRequest setHTTPMethod:@"POST"];
+    [postRequest setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:postRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+                NSString* charge = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"charge = %@", charge);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [Pingpp createPayment:charge viewController:self appURLScheme:kUrlScheme withCompletion:^(NSString *result, PingppError *error) {
+                NSLog(@"completion block: %@", result);
+                if (error == nil) {
+                    NSLog(@"PingppError is nil");
+                } else {
+                    NSLog(@"PingppError: code=%lu msg=%@", (unsigned  long)error.code, [error getMsg]);
+                }
+            }];
+        });
+    }];
+  
 }
 //选择送达时间点击事件
 - (IBAction)selectButtonClicked:(id)sender {

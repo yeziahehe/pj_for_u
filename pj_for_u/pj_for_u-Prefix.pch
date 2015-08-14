@@ -25,5 +25,6 @@
     #import "MJRefresh.h"
     #import "AFHTTPRequestOperationManager.h"
     #import "AFHTTPSessionManager.h"
+    #import "Pingpp.h"
 
 #endif
