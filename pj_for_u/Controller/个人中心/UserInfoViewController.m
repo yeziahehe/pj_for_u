@@ -164,12 +164,17 @@
     // Do any additional setup after loading the view.
     [self addImageBorder];
     
-    if ([[MemberDataManager sharedManager] isLogin]) {
-        [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
-    }
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userChangeWithNotification:) name:kUserChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshUserInfoWithNotification:) name:kRefreshUserInfoNotificaiton object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userInfoResponseWithNotification:) name:kUserInfoResponseNotification object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if ([[MemberDataManager sharedManager] isLogin]) {
+        [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+    }
 }
 
 - (void)dealloc

@@ -10,8 +10,6 @@
 		0A3B670D1B6203BC0067C709 /* SettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A3B670B1B6203BC0067C709 /* SettingTableViewCell.m */; };
 		0A3B670E1B6203BC0067C709 /* SettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B670C1B6203BC0067C709 /* SettingTableViewCell.xib */; };
 		0A3B67121B622F5A0067C709 /* aboutImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A3B67111B622F5A0067C709 /* aboutImage.png */; };
-		0A54DA711B73121C00FCBAB0 /* ConfirmOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A54DA6F1B73121C00FCBAB0 /* ConfirmOrderViewController.m */; };
-		0A54DA721B73121C00FCBAB0 /* ConfirmOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA701B73121C00FCBAB0 /* ConfirmOrderViewController.xib */; };
 		0A54DA7C1B7322EC00FCBAB0 /* icon_received_address@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA7A1B7322EC00FCBAB0 /* icon_received_address@2x.png */; };
 		0A54DA7E1B73261D00FCBAB0 /* icon_addre@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA7D1B73261D00FCBAB0 /* icon_addre@2x.png */; };
 		0A54DA811B73311E00FCBAB0 /* icon_alipay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA7F1B73311E00FCBAB0 /* icon_alipay@2x.png */; };
@@ -237,6 +235,8 @@
 		6D8AD3FF1B60E2510099A0D8 /* IndividualSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AD3FD1B60E2510099A0D8 /* IndividualSubViewController.m */; };
 		6D8AD4001B60E2510099A0D8 /* IndividualSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AD3FE1B60E2510099A0D8 /* IndividualSubViewController.xib */; };
 		6D8AF6871B7C3EEA00B1BFBF /* YFBadgeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AF6861B7C3EEA00B1BFBF /* YFBadgeView.m */; };
+		6D8AF68B1B7CE14A00B1BFBF /* ConfirmOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D8AF6891B7CE14A00B1BFBF /* ConfirmOrderViewController.m */; };
+		6D8AF68C1B7CE14A00B1BFBF /* ConfirmOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AF68A1B7CE14A00B1BFBF /* ConfirmOrderViewController.xib */; };
 		6D938E891B74593700AB9895 /* icon_order_headimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D938E881B74593700AB9895 /* icon_order_headimage@2x.png */; };
 		6D938E8B1B745A3400AB9895 /* icon_trade_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D938E8A1B745A3400AB9895 /* icon_trade_success.png */; };
 		6D95415F1B6B0D8C00532677 /* MyOrderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D95415D1B6B0D8C00532677 /* MyOrderViewController.m */; };
@@ -260,9 +260,6 @@
 		0A3B670B1B6203BC0067C709 /* SettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingTableViewCell.m; path = "Controller/设置/SettingTableViewCell.m"; sourceTree = "<group>"; };
 		0A3B670C1B6203BC0067C709 /* SettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingTableViewCell.xib; path = "Controller/设置/SettingTableViewCell.xib"; sourceTree = "<group>"; };
 		0A3B67111B622F5A0067C709 /* aboutImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = aboutImage.png; path = Resource/aboutImage.png; sourceTree = "<group>"; };
-		0A54DA6E1B73121C00FCBAB0 /* ConfirmOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfirmOrderViewController.h; path = "Controller/购物车/ConfirmOrderViewController.h"; sourceTree = "<group>"; };
-		0A54DA6F1B73121C00FCBAB0 /* ConfirmOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfirmOrderViewController.m; path = "Controller/购物车/ConfirmOrderViewController.m"; sourceTree = "<group>"; };
-		0A54DA701B73121C00FCBAB0 /* ConfirmOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConfirmOrderViewController.xib; path = "Controller/购物车/ConfirmOrderViewController.xib"; sourceTree = "<group>"; };
 		0A54DA7A1B7322EC00FCBAB0 /* icon_received_address@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_received_address@2x.png"; path = "Resource/icon_received_address@2x.png"; sourceTree = "<group>"; };
 		0A54DA7D1B73261D00FCBAB0 /* icon_addre@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_addre@2x.png"; path = "Resource/icon_addre@2x.png"; sourceTree = "<group>"; };
 		0A54DA7F1B73311E00FCBAB0 /* icon_alipay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_alipay@2x.png"; path = "Resource/icon_alipay@2x.png"; sourceTree = "<group>"; };
@@ -609,6 +606,9 @@
 		6D8AD3FE1B60E2510099A0D8 /* IndividualSubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IndividualSubViewController.xib; sourceTree = "<group>"; };
 		6D8AF6851B7C3EEA00B1BFBF /* YFBadgeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YFBadgeView.h; path = Utilities/YFUtilities/YFBadgeView.h; sourceTree = "<group>"; };
 		6D8AF6861B7C3EEA00B1BFBF /* YFBadgeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YFBadgeView.m; path = Utilities/YFUtilities/YFBadgeView.m; sourceTree = "<group>"; };
+		6D8AF6881B7CE14A00B1BFBF /* ConfirmOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ConfirmOrderViewController.h; path = "Controller/购物车/ConfirmOrderViewController.h"; sourceTree = "<group>"; };
+		6D8AF6891B7CE14A00B1BFBF /* ConfirmOrderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ConfirmOrderViewController.m; path = "Controller/购物车/ConfirmOrderViewController.m"; sourceTree = "<group>"; };
+		6D8AF68A1B7CE14A00B1BFBF /* ConfirmOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConfirmOrderViewController.xib; path = "Controller/购物车/ConfirmOrderViewController.xib"; sourceTree = "<group>"; };
 		6D938E881B74593700AB9895 /* icon_order_headimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_order_headimage@2x.png"; path = "Resource/icon_order_headimage@2x.png"; sourceTree = "<group>"; };
 		6D938E8A1B745A3400AB9895 /* icon_trade_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_trade_success.png; path = Resource/icon_trade_success.png; sourceTree = "<group>"; };
 		6D95415C1B6B0D8C00532677 /* MyOrderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderViewController.h; sourceTree = "<group>"; };
@@ -649,9 +649,9 @@
 		0A54DA6D1B73119900FCBAB0 /* 确认订单 */ = {
 			isa = PBXGroup;
 			children = (
-				0A54DA6E1B73121C00FCBAB0 /* ConfirmOrderViewController.h */,
-				0A54DA6F1B73121C00FCBAB0 /* ConfirmOrderViewController.m */,
-				0A54DA701B73121C00FCBAB0 /* ConfirmOrderViewController.xib */,
+				6D8AF6881B7CE14A00B1BFBF /* ConfirmOrderViewController.h */,
+				6D8AF6891B7CE14A00B1BFBF /* ConfirmOrderViewController.m */,
+				6D8AF68A1B7CE14A00B1BFBF /* ConfirmOrderViewController.xib */,
 				0AD63F001B79C01E0072BEA1 /* selectDeliverTimeView.h */,
 				0AD63F011B79C01E0072BEA1 /* selectDeliverTimeView.m */,
 				0AD63F031B79C0460072BEA1 /* selectDeliverTimeView.xib */,
@@ -1400,6 +1400,7 @@
 				2C2528841B5E2C9D00ADDEFB /* RootTabBarViewController.xib in Resources */,
 				2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */,
 				6D8AD3F41B60BD250099A0D8 /* AddressManageViewController.xib in Resources */,
+				6D8AF68C1B7CE14A00B1BFBF /* ConfirmOrderViewController.xib in Resources */,
 				2CF607851B5EA9150022E8E7 /* SchoolSelectTableView.xib in Resources */,
 				2CF607661B5E9D100022E8E7 /* LocationViewController.xib in Resources */,
 				4A6C15BA1B67B5EE00C9A9D2 /* icon_address_bottom@2x.png in Resources */,
@@ -1434,7 +1435,6 @@
 				0A72CE4D1B744D3E00222284 /* icon_rubbish@2x.png in Resources */,
 				6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */,
 				4A1464F31B75F33000B9F058 /* icon_addshopcar@2x.png in Resources */,
-				0A54DA721B73121C00FCBAB0 /* ConfirmOrderViewController.xib in Resources */,
 				4A6C16B61B711ECD00C9A9D2 /* MyOrderDetailViewController.xib in Resources */,
 				2C2528991B5E38B100ADDEFB /* RegisterViewController.xib in Resources */,
 				2CF607A51B5EC6B60022E8E7 /* HomeContainView.xib in Resources */,
@@ -1569,7 +1569,6 @@
 				0AFC07171B6CAE46002BDB90 /* ShoppingCarViewController.m in Sources */,
 				4A6C15881B5F9C2900C9A9D2 /* YFCycleScrollView.m in Sources */,
 				4AB377D41B71AE4E0052168A /* ProCommentDetail.m in Sources */,
-				0A54DA711B73121C00FCBAB0 /* ConfirmOrderViewController.m in Sources */,
 				2C2528811B5E2C9D00ADDEFB /* BaseViewController.m in Sources */,
 				4A6C15BD1B69FA2700C9A9D2 /* AddressDataManager.m in Sources */,
 				4A6C161D1B6B703C00C9A9D2 /* MainTableViewController.m in Sources */,
@@ -1630,6 +1629,7 @@
 				0ACABED11B65FFAB009B18E0 /* HomeActivityTableViewCell.m in Sources */,
 				2C2529021B5E3AA900ADDEFB /* YFAppBackgroudConfiger.m in Sources */,
 				2C2528D01B5E39EF00ADDEFB /* MJRefreshConst.m in Sources */,
+				6D8AF68B1B7CE14A00B1BFBF /* ConfirmOrderViewController.m in Sources */,
 				4A6C16A51B70CE5500C9A9D2 /* ProImageView.m in Sources */,
 				2C5C08481B63433D0004286C /* FirstClassModel.m in Sources */,
 				2C5C08451B6342CC0004286C /* HomeModuleModel.m in Sources */,

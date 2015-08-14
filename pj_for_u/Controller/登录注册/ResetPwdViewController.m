@@ -66,7 +66,6 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
     //在该方法中设置contentsize大小
     [super viewDidAppear:YES];
     CGFloat contentHeight = self.commitButton.frame.origin.y+self.commitButton.frame.size.height+20.f;

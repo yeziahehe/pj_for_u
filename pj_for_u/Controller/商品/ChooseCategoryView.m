@@ -38,6 +38,8 @@
                             foodCount:(NSString *)foodCount
                                  type:(NSString *)type
 {
+    [[YFProgressHUD sharedProgressHUD]startedNetWorkActivityWithText:@"加载中"];
+    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     //接口地址
@@ -89,6 +91,9 @@
     [self loadFrameWork];
 }
 
+-(void)dealloc{
+    [[YFProgressHUD sharedProgressHUD]stoppedNetWorkActivity];
+}
 #pragma mark - IBAction Methods
 // -
 - (IBAction)reduceNumber:(id)sender {
@@ -116,7 +121,7 @@
 - (IBAction)buyNow:(id)sender {
     NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
     [self addShoppingCarBuyNowWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"2"];}
-//完成按钮
+//商品详情完成按钮
 - (IBAction)doneButton:(id)sender {
     NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
     if ([self.flag isEqualToString:@"1"]) {

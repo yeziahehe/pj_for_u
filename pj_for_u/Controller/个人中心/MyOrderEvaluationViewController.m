@@ -78,6 +78,13 @@
 
 }
 
+- (void)dealloc
+{
+    [self.view endEditing:YES];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
+}
+
 #pragma mark - UITextView Delegate Methods
 - (BOOL)textViewShouldBeginEditing:(UITextView *)textView       //开始输入前
 {

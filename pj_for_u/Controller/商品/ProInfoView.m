@@ -31,25 +31,29 @@
 }
 
 -(void)removeSubViews{
-    CGFloat height = self.chooseCategoryView.frame.size.height;
-    [UIView animateWithDuration:0.2
-                     animations:^{
-                         
-                         [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, height)];
-                     }
-                     completion:^(BOOL finished){
-                         if (finished) {
-                             [self.chooseCategoryView removeFromSuperview];
-                             self.chooseCategoryView = nil;
+    if (self.chooseCategoryView) {
+        CGFloat height = self.chooseCategoryView.frame.size.height;
+        [UIView animateWithDuration:0.2
+                         animations:^{
+                             
+                             [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, height)];
                          }
-                     }];
-    [self.background removeFromSuperview];
+                         completion:^(BOOL finished){
+                             if (finished) {
+                                 [self.chooseCategoryView removeFromSuperview];
+                                 self.chooseCategoryView = nil;
+                             }
+                         }];
+        [self.background removeFromSuperview];
 
+    }
 }
 #pragma mark - UIView Methods
 -(void)awakeFromNib{
     [super awakeFromNib];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessAddingToCarNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessBuyNowNotification object:nil];
+    
 }
 
 -(void)dealloc{
