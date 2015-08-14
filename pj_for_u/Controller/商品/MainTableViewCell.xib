@@ -36,13 +36,13 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设计师原创，手工打造" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="83q-i1-fnv">
-                        <rect key="frame" x="120" y="61" width="244.5" height="14.5"/>
+                        <rect key="frame" x="120" y="61" width="245" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥：8888" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OLv-Ow-ANT">
-                        <rect key="frame" x="118" y="88" width="76.5" height="20"/>
+                        <rect key="frame" x="118" y="88" width="77" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="b2H-lk-Zml"/>
                         </constraints>
@@ -61,7 +61,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="销量：3456" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2Y-aZ-eY0">
-                        <rect key="frame" x="306" y="88" width="58.5" height="20"/>
+                        <rect key="frame" x="306" y="88" width="59" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="EnI-zM-wsj"/>
                         </constraints>

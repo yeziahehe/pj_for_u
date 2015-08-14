@@ -102,6 +102,7 @@
         CategoryInfo *pi = [[CategoryInfo alloc]initWithDict:valueDict];
         [self.allCategories addObject:pi];
     }
+    NSLog(@"%@",self.allCategories);
     //接受完分类信息，开始加载页面
     [self loadSubViews];
 }

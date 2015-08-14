@@ -216,6 +216,8 @@
 		4A6C16B11B711E7C00C9A9D2 /* MyOrderEvaluationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C16AD1B711E7C00C9A9D2 /* MyOrderEvaluationViewController.xib */; };
 		4A6C16B51B711ECD00C9A9D2 /* MyOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C16B31B711ECD00C9A9D2 /* MyOrderDetailViewController.m */; };
 		4A6C16B61B711ECD00C9A9D2 /* MyOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C16B41B711ECD00C9A9D2 /* MyOrderDetailViewController.xib */; };
+		4AB10F791B7DC959001D2AEF /* GeneralProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB10F771B7DC959001D2AEF /* GeneralProductViewController.m */; };
+		4AB10F7A1B7DC959001D2AEF /* GeneralProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB10F781B7DC959001D2AEF /* GeneralProductViewController.xib */; };
 		4AB377D01B71AB3A0052168A /* ProCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB377CE1B71AB3A0052168A /* ProCommentTableViewCell.m */; };
 		4AB377D11B71AB3A0052168A /* ProCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB377CF1B71AB3A0052168A /* ProCommentTableViewCell.xib */; };
 		4AB377D41B71AE4E0052168A /* ProCommentDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB377D31B71AE4E0052168A /* ProCommentDetail.m */; };
@@ -585,6 +587,9 @@
 		4A6C16B21B711ECD00C9A9D2 /* MyOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderDetailViewController.h; sourceTree = "<group>"; };
 		4A6C16B31B711ECD00C9A9D2 /* MyOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderDetailViewController.m; sourceTree = "<group>"; };
 		4A6C16B41B711ECD00C9A9D2 /* MyOrderDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderDetailViewController.xib; sourceTree = "<group>"; };
+		4AB10F761B7DC959001D2AEF /* GeneralProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralProductViewController.h; path = "Controller/商品/GeneralProductViewController.h"; sourceTree = "<group>"; };
+		4AB10F771B7DC959001D2AEF /* GeneralProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneralProductViewController.m; path = "Controller/商品/GeneralProductViewController.m"; sourceTree = "<group>"; };
+		4AB10F781B7DC959001D2AEF /* GeneralProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeneralProductViewController.xib; path = "Controller/商品/GeneralProductViewController.xib"; sourceTree = "<group>"; };
 		4AB377CD1B71AB3A0052168A /* ProCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProCommentTableViewCell.h; path = "Controller/商品/ProCommentTableViewCell.h"; sourceTree = "<group>"; };
 		4AB377CE1B71AB3A0052168A /* ProCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProCommentTableViewCell.m; path = "Controller/商品/ProCommentTableViewCell.m"; sourceTree = "<group>"; };
 		4AB377CF1B71AB3A0052168A /* ProCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProCommentTableViewCell.xib; path = "Controller/商品/ProCommentTableViewCell.xib"; sourceTree = "<group>"; };
@@ -739,6 +744,9 @@
 		2C10D6B51B60B7E1008C3DE0 /* 商品 */ = {
 			isa = PBXGroup;
 			children = (
+				4AB10F761B7DC959001D2AEF /* GeneralProductViewController.h */,
+				4AB10F771B7DC959001D2AEF /* GeneralProductViewController.m */,
+				4AB10F781B7DC959001D2AEF /* GeneralProductViewController.xib */,
 				4A6C168F1B70C62000C9A9D2 /* 分类 */,
 				4A6C16901B70C63200C9A9D2 /* 商品详情 */,
 			);
@@ -1424,7 +1432,7 @@
 				TargetAttributes = {
 					2C2528491B5E108900ADDEFB = {
 						CreatedOnToolsVersion = 6.4;
-						DevelopmentTeam = 3WTM5PLDUE;
+						DevelopmentTeam = C4Q55SNFQ6;
 					};
 					2C2528621B5E108A00ADDEFB = {
 						CreatedOnToolsVersion = 6.4;
@@ -1505,6 +1513,7 @@
 				2CF607A51B5EC6B60022E8E7 /* HomeContainView.xib in Resources */,
 				2CF607961B5EBDA10022E8E7 /* line_hon_1px_up.png in Resources */,
 				4A6C157C1B5F808D00C9A9D2 /* btn_login@2x.png in Resources */,
+				4AB10F7A1B7DC959001D2AEF /* GeneralProductViewController.xib in Resources */,
 				2C7953991B613F4800511EB7 /* icon_order@2x.png in Resources */,
 				4A6C158A1B5FF22F00C9A9D2 /* icon_register_nickname@2x.png in Resources */,
 				4A6C16A71B70CE6B00C9A9D2 /* ProImageView.xib in Resources */,
@@ -1643,6 +1652,7 @@
 				4AB377DC1B724DF50052168A /* ChooseCategoryView.m in Sources */,
 				2C2528981B5E38B100ADDEFB /* RegisterViewController.m in Sources */,
 				4A6C156C1B5F6D1100C9A9D2 /* Member.m in Sources */,
+				4AB10F791B7DC959001D2AEF /* GeneralProductViewController.m in Sources */,
 				2C2529011B5E3AA900ADDEFB /* UIView+YFUtilities.m in Sources */,
 				2C2528D61B5E39EF00ADDEFB /* Reachability.m in Sources */,
 				4A6C16891B70BAC500C9A9D2 /* AFURLSessionManager.m in Sources */,

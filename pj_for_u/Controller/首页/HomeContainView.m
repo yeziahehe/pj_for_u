@@ -8,11 +8,16 @@
 
 #import "HomeContainView.h"
 #import "HomeModuleModel.h"
+#import "CategoryInfo.h"
+#import "GeneralProductViewController.h"
+
 #define kGetModuleTypeDownloaderKey     @"GetModuleTypeDownloaderKey"
 
 @interface HomeContainView ()
 @property (nonatomic, strong) NSMutableArray *homeModuleArray;
 @property (nonatomic, strong) HomeModuleModel *homeModuleModel;
+@property(strong,nonatomic)NSMutableArray *allCategories;
+
 @end
 
 @implementation HomeContainView
@@ -26,7 +31,7 @@
         for (UIButton *button in self.homeModuleButtons) {
             self.homeModuleModel = [self.homeModuleArray objectAtIndex:i];
             if ([self.homeModuleModel.isOpen isEqualToString:@"1"]) {
-                
+                [button addTarget:self action:@selector(OpenButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
             } else {
                 [button addTarget:self action:@selector(noOpenButtonClicked) forControlEvents:UIControlEventTouchUpInside];
             }
@@ -53,17 +58,53 @@
                                                                 purpose:kGetModuleTypeDownloaderKey];
 }
 
+-(void)getCategoriesWithCampusId:(NSString *)campusId{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    //接口地址
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetCategoryUrl];
+    //传递参数存放的字典
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:campusId forKey:@"campusId"];
+    
+    //进行post请求
+    [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation,id responseObject) {
+        
+        NSArray *valueArray = [responseObject objectForKey:@"foodCategory"];
+        self.allCategories = [NSMutableArray arrayWithCapacity:0];
+        for(NSDictionary *valueDict in valueArray)
+        {
+            CategoryInfo *pi = [[CategoryInfo alloc]initWithDict:valueDict];
+            [self.allCategories addObject:pi];
+        }
+        
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
+        
+        NSLog(@"Error: %@", error);
+        
+    }];
+}
 #pragma mark - IBAction Methods
 - (void)noOpenButtonClicked
 {
     [[YFProgressHUD sharedProgressHUD] showWithMessage:@"该模块尚未开通，敬请期待..." customView:nil hideDelay:3.f];
 }
 
+-(void)OpenButtonClicked:(UIButton *)button
+{
+    for(CategoryInfo *ci in self.allCategories){
+        NSInteger serial = [ci.serial intValue];
+        if (button.tag == serial) {
+            [[NSNotificationCenter defaultCenter]postNotificationName:kButtonCategoryNotfication object:ci];
+        }
+    }
+}
 #pragma mark - UIView methods
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     [self requestForHomeModule];
+    [self getCategoriesWithCampusId:kCampusId];
 }
 
 #pragma mark - YFDownloaderDelegate Methods

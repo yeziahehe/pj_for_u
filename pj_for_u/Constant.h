@@ -104,6 +104,7 @@
 #define kConfirmDeliverTimeNotification     @"ConfirmDeliverTimeNotification"
 #define kCancelDeliverTimeNotification      @"CancelDeliverTimeNotification"
 #define kSuccessBuyNowNotification          @"SuccessBuyNowNotification"
+#define kButtonCategoryNotfication          @"ButtonCategoryNotfication"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
@@ -139,6 +140,7 @@
 #define kDeleteOrderUrl         @"order/deleteOrder.do"
 #define kSetOrderInvalidUrl     @"order/setOrderInvalid.do"
 #define kBuyNowUrl              @"order/purchaseImmediately.do"
+#define kModifyOrderStatusUrl   @"order/modifyOrderStatus.do"
 #define kDeleteSmallOrderUrl    @"order/deleteAllUserOrder.do"
 #define kFuzzyQueryGoodsUrl     @"service/selectFoods.do"
 

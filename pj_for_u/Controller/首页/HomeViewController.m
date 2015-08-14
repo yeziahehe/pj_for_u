@@ -13,6 +13,8 @@
 #import "HomeContainView.h"
 #import "HomeActivityTableView.h"
 #import "ProductViewController.h"
+#import "GeneralProductViewController.h"
+#import "CategoryInfo.h"
 
 #define kGetActivityImagesDownloaderKey  @"GetActivityImagesDownloaderKey"
 
@@ -77,6 +79,7 @@
                                                                 purpose:kGetActivityImagesDownloaderKey];
 }
 
+
 #pragma mark - NSNotification Methods
 - (void)campusNameNotification:(NSNotification *)notification
 {
@@ -91,6 +94,11 @@
     [self requestForImages];
 }
 
+-(void)homeButtonToProductWithNotification:(NSNotification *)notification{
+    GeneralProductViewController *gpv = [[GeneralProductViewController alloc]initWithNibName:@"GeneralProductViewController" bundle:nil];
+    gpv.categoryInfo = notification.object;
+    [self.navigationController pushViewController:gpv animated:YES];
+}
 #pragma mark - BaseViewController Methods
 - (void)extraItemTapped
 {
@@ -132,6 +140,7 @@
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(campusNameNotification:) name:kCampusNameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHomeNotification:) name:kRefreshHomeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(homeButtonToProductWithNotification:) name:kButtonCategoryNotfication object:nil];
 }
 
 - (void)dealloc

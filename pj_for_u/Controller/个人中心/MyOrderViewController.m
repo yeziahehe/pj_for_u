@@ -19,6 +19,7 @@
 #define kGetOrderInMineKey          @"GetOrderInMineKey"
 #define kDeleteOrderKey             @"DeleteOrderKey"
 #define kSetOrderInvalidKey         @"SetOrderInvalidKey"
+#define kModifyOrderStatusKey       @"ModifyOrderStatusKey"
 
 @interface MyOrderViewController ()
 
@@ -36,23 +37,17 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
-@property (strong, nonatomic) NSMutableArray *orderListArray;
-@property (strong, nonatomic) NSMutableArray *eachCountOfSmallOrders;
+@property (strong, nonatomic) NSMutableArray *orderListArray;       //大订单信息
+@property (strong, nonatomic) NSMutableArray *eachCountOfSmallOrders;       //保存每个大订单中小订单的个数
 
-@property (strong, nonatomic) IBOutlet UIView *noOrderView;
+@property (strong, nonatomic) IBOutlet UIView *noOrderView;     //随便逛逛view
 @property (strong, nonatomic) IBOutlet UIButton *goAroundButton;
+
+@property int recordLastStatus;     //保存当前显示在屏幕上的的订单状态
 
 @property (strong, nonatomic) NSString *lastestId;
 @property BOOL isRefreshHeader;
 @property int indexOfPage;
-
-@property int recordLastStatus;
-
-@property int waitForPaymentNum;
-@property int waitForConfirmNum;
-@property int distributingNum;
-@property int waitForEvaluationNum;
-@property int alreadyFinishedNum;
 
 @property NSInteger indexPathBuffer;
 
@@ -61,8 +56,47 @@
 @implementation MyOrderViewController
 
 #pragma mark - Private Methods
+//改变cell按钮的类型
+- (void)changeButtonTypeByStatus:(NSString *)status forTableViewCell:(MyOrderTableViewCell *)cell
+{
+    //通过status判断是什么状态，由此来确定每个按钮下应该显示的界面
+    cell.leftButton.hidden = NO;
+    if ([status isEqualToString:@"1"]) {
+        CALayer *layer = [cell.leftButton layer];
+        layer.borderColor = [[UIColor redColor] CGColor];
+        [cell.leftButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [cell.leftButton setTitle:@"立即付款" forState:UIControlStateNormal];
+        [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
+    }
+    if ([status isEqualToString:@"2"]) {
+        cell.leftButton.hidden = YES;
+        [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
+    }
+    if ([status isEqualToString:@"3"]) {
+        cell.leftButton.hidden = YES;
+        [cell.rightButton setTitle:@"确认收货" forState:UIControlStateNormal];;
+    }
+    if ([status isEqualToString:@"4"]) {
+        CALayer *layer = [cell.leftButton layer];
+        layer.borderColor = [[UIColor darkGrayColor] CGColor];
+        [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        
+        [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
+        [cell.rightButton setTitle:@"评价订单" forState:UIControlStateNormal];;
+    }
+    if ([status isEqualToString:@"5"]) {
+        CALayer *layer = [cell.leftButton layer];
+        layer.borderColor = [[UIColor darkGrayColor] CGColor];
+        [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        
+        [cell.leftButton setTitle:@"追加评论" forState:UIControlStateNormal];
+        [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];;
+    }
+    
+}
 
-- (void)loadInfoByRefreshFooter:(NSInteger)count
+//上拉加载，要传递value array的个数
+- (void)loadInfoByRefreshFooterWithValueCount:(NSInteger)count
 {
     //====================上拉加载==================
     UIView *postInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 34)];
@@ -100,6 +134,8 @@
     self.isRefreshHeader = NO;
 
 }
+
+//显示随便逛逛，包含判断是否要显示
 - (void)showNoOrderView
 {
     //如果没数据就显示随便逛逛页面
@@ -120,6 +156,7 @@
 
 }
 
+//重置角标
 - (void)resetBadgeNum
 {
     NSString *badgeNum = [NSString stringWithFormat:@"%lu", (unsigned long)self.orderListArray.count];
@@ -177,7 +214,8 @@
 
 }
 
-- (void)refreshFooter       //上拉加载
+//上拉加载
+- (void)refreshFooter
 {
     NSString *more = @"1";
     if (self.orderListArray.count != 0) {
@@ -187,7 +225,8 @@
     
 }
 
-- (void)refreshHeader       //下拉刷新
+//下拉刷新
+- (void)refreshHeader
 {
     self.isRefreshHeader = YES;
     self.indexOfPage = 1;
@@ -195,6 +234,25 @@
     [self requestForMyOrderByStatus:[NSString stringWithFormat:@"%d", self.recordLastStatus] page:@"1" limit:sizeofPage];
 }
 
+//请求修改订单状态
+- (void)requsetForModifyOrderStatus:(NSString *)status togetherId:(NSString *)togetherId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kModifyOrderStatusUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    
+    if (status && togetherId) {
+        [dict setObject:status forKey:@"status"];
+        [dict setObject:togetherId forKey:@"togetherId"];
+    }
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kModifyOrderStatusKey];
+}
+
+//请求我的订单信息，通过不同状态
 - (void)requestForMyOrderByStatus:(NSString *)status page:(NSString *)page limit:(NSString *)limit
 {
     [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中..."];
@@ -217,6 +275,7 @@
                                                                 purpose:kGetOrderInMineKey];
 }
 
+//请求删除订单
 - (void)requestForDeleteOrder:(NSString *)togetherId
 {
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kDeleteOrderUrl];
@@ -230,6 +289,7 @@
                                                                 purpose:kDeleteOrderKey];
 }
 
+//请求取消订单
 - (void)requestForSetOrderInvalid:(NSString *)togetherId
 {
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSetOrderInvalidUrl];
@@ -243,6 +303,7 @@
                                                                 purpose:kSetOrderInvalidKey];
 }
 
+//设置角标
 - (void)setBadgeViewWithView:(UIView *)parentView badgeNum:(NSString *)badgeNum
 {
 
@@ -254,13 +315,9 @@
     }
 }
 
+//为五个按钮添加角标
 - (void)addBadgeViewToButton
 {
-    self.waitForPaymentNum = [MemberDataManager sharedManager].mineInfo.waitPayOrder.intValue;
-    self.waitForConfirmNum = [MemberDataManager sharedManager].mineInfo.waitMakeSureOrder.intValue;
-    self.waitForEvaluationNum = [MemberDataManager sharedManager].mineInfo.waitCommentOrder .intValue;
-    self.alreadyFinishedNum = [MemberDataManager sharedManager].mineInfo.doneOrder.intValue;
-    
     //角标
     [self setBadgeViewWithView:self.waitForPayment badgeNum:[MemberDataManager sharedManager].mineInfo.waitPayOrder];
     [self setBadgeViewWithView:self.waitForConfirm badgeNum:[MemberDataManager sharedManager].mineInfo.waitMakeSureOrder];
@@ -352,8 +409,6 @@
 
 }
 
-
-#pragma mark - Initialize
 //=========给待收货一栏按钮添加点击事件=========
 - (void)addTargetToButton
 {
@@ -363,6 +418,8 @@
     [self.waitForEvaluation addTarget:self action:@selector(waitForEvaluationAction) forControlEvents:UIControlEventTouchUpInside];
     [self.alreadyFinished addTarget:self action:@selector(alreadyFinishedAction) forControlEvents:UIControlEventTouchUpInside];
 }
+
+#pragma mark - Initialize
 
 - (NSMutableArray *)orderListArray
 {
@@ -407,7 +464,7 @@
     NSString *togetherId = [self.orderListArray[indexPath.section] objectForKey:@"togetherId"];
     NSString *title = [dict objectForKey:@"title"];
 
-    
+    //cell各个按钮的不同功能，通过current title判断按钮类型
     if ([title isEqualToString:@"评价订单"]) {
         NSMutableArray *realSmallOrders = [[NSMutableArray alloc] initWithCapacity:10];
         for (NSDictionary *dict in smallOrders) {
@@ -425,11 +482,23 @@
     
     else if ([title isEqualToString:@"删除订单"]) {
         
-        self.indexPathBuffer = indexPath.section;
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除订单"
+                                                                       message:@"是否删除订单？"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    self.indexPathBuffer = indexPath.section;
+                                                    [self requestForDeleteOrder:togetherId];
+                                                    
+                                                }]];
+        [self presentViewController:alert animated:YES completion:nil];
+
         
-        [self requestForDeleteOrder:togetherId];
-        
-    }
+     }
     
     else if ([title isEqualToString:@"立即付款"]) {
         
@@ -485,7 +554,7 @@
     }
     
     else if ([title isEqualToString:@"确认收货"]) {
-        
+        [self requsetForModifyOrderStatus:@"4" togetherId:togetherId];
     }
 }
 
@@ -524,40 +593,7 @@
         
         NSString *status = [NSString stringWithFormat:@"%@", [orderInfoDictionary objectForKey:@"status"]];
         
-        //通过status判断是什么状态，由此来确定每个按钮下应该显示的界面
-        cell.leftButton.hidden = NO;
-        if ([status isEqualToString:@"1"]) {
-            CALayer *layer = [cell.leftButton layer];
-            layer.borderColor = [[UIColor redColor] CGColor];
-            [cell.leftButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-            [cell.leftButton setTitle:@"立即付款" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
-            cell.orderStatus.text = @"订单待付款";
-        }
-        if ([status isEqualToString:@"2"]) {
-            cell.leftButton.hidden = YES;
-            [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
-            cell.orderStatus.text = @"订单确认中";
-        }
-        if ([status isEqualToString:@"3"]) {
-            cell.leftButton.hidden = YES;
-            [cell.rightButton setTitle:@"确认收货" forState:UIControlStateNormal];
-            cell.orderStatus.text = @"订单配送中";
-        }
-        if ([status isEqualToString:@"4"]) {
-            CALayer *layer = [cell.leftButton layer];
-            layer.borderColor = [[UIColor darkGrayColor] CGColor];
-            [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            
-            [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"评价订单" forState:UIControlStateNormal];
-            cell.orderStatus.text = @"交易成功";
-        }
-        if ([status isEqualToString:@"5"]) {
-            cell.leftButton.hidden = YES;
-            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];
-            cell.orderStatus.text = @"交易完成";
-        }
+        [self changeButtonTypeByStatus:status forTableViewCell:cell];
     }
 
     return cell;
@@ -573,6 +609,7 @@
     return self.orderListArray.count;
 }
 
+//计算每个cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (self.eachCountOfSmallOrders.count > indexPath.section) {
@@ -676,8 +713,7 @@
 {
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSDictionary *dict = [str JSONValue];
-    if ([downloader.purpose isEqualToString:kGetOrderInMineKey])
-    {
+    if ([downloader.purpose isEqualToString:kGetOrderInMineKey]) {
         [self.tableView footerEndRefreshing];
         [self.tableView headerEndRefreshing];
 
@@ -707,7 +743,7 @@
             [self showNoOrderView];
             
             //上拉刷新
-            [self loadInfoByRefreshFooter:valueArray.count];
+            [self loadInfoByRefreshFooterWithValueCount:valueArray.count];
             
             //重置角标
             [self resetBadgeNum];
@@ -766,6 +802,22 @@
             }
             if(message.length == 0)
                 message = @"取消订单失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+    else if ([downloader.purpose isEqualToString:kModifyOrderStatusKey]) {
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"确认成功" hideDelay:2.f];
+            
+            [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
+            [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
+            
+            [self refreshHeader];
+        }
+        else
+        {
+            NSString *message = @"确认失败";
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }

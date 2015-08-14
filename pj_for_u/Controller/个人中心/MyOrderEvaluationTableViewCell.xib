@@ -221,7 +221,7 @@
                 <outletCollection property="buttonArray" destination="y37-AY-6aN" id="03G-hC-Dph"/>
                 <outletCollection property="buttonArray" destination="Vye-hs-DZM" id="bl1-zn-GjK"/>
             </connections>
-            <point key="canvasLocation" x="455.5" y="43"/>
+            <point key="canvasLocation" x="461.5" y="84"/>
         </tableViewCell>
     </objects>
     <resources>
