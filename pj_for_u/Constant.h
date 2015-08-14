@@ -141,4 +141,6 @@
 #define kSetOrderInvalidUrl     @"order/setOrderInvalid.do"
 #define kBuyNowUrl              @"order/purchaseImmediately.do"
 #define kModifyOrderStatusUrl   @"order/modifyOrderStatus.do"
+#define kDeleteSmallOrderUrl    @"order/deleteAllUserOrder.do"
+
 #endif
