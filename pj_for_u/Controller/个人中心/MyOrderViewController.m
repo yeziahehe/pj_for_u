@@ -13,8 +13,8 @@
 #import "ShoppingCar.h"
 #import "ConfirmOrderViewController.h"
 
-#define sizeofPage                  @"1"
-#define sizeofPageInt               1
+#define sizeofPage                  @"30"
+#define sizeofPageInt               30
 
 #define kGetOrderInMineKey          @"GetOrderInMineKey"
 #define kDeleteOrderKey             @"DeleteOrderKey"
@@ -61,6 +61,121 @@
 @implementation MyOrderViewController
 
 #pragma mark - Private Methods
+
+- (void)loadInfoByRefreshFooter:(NSInteger)count
+{
+    //====================上拉加载==================
+    UIView *postInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 34)];
+    UILabel *postInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 7, ScreenWidth, 20)];
+    postInfoLabel.textAlignment = NSTextAlignmentCenter;
+    postInfoLabel.font = [UIFont systemFontOfSize:12.0];
+    postInfoLabel.textColor = [UIColor darkGrayColor];
+    [postInfoView addSubview:postInfoLabel];
+    
+    
+    if (self.orderListArray.count == 0) {
+        self.tableView.footerHidden = YES;
+        self.tableView.hidden = YES;
+        CGRect frame = self.noOrderView.frame;
+        frame.origin.x = 0;
+        frame.origin.y = 94;
+        frame.size.width = ScreenWidth;
+        frame.size.height = ScreenHeight - 94;
+        self.noOrderView.frame = frame;
+        [self.view addSubview:self.noOrderView];
+        
+    } else {
+        self.tableView.hidden = NO;
+        [self.noOrderView removeFromSuperview];
+        if (count < sizeofPageInt) {
+            self.tableView.footerHidden = YES;
+        }
+        self.lastestId = [NSString stringWithFormat:@"%d", ++self.indexOfPage];
+        
+        [self.tableView reloadData];
+        
+    }
+    self.tableView.tableFooterView = postInfoView;
+    //==============================================
+    self.isRefreshHeader = NO;
+
+}
+- (void)showNoOrderView
+{
+    //如果没数据就显示随便逛逛页面
+    if (self.orderListArray.count == 0) {
+        self.tableView.hidden = YES;
+        CGRect frame = self.noOrderView.frame;
+        frame.origin.x = 0;
+        frame.origin.y = 94;
+        frame.size.width = ScreenWidth;
+        frame.size.height = ScreenHeight - 94;
+        self.noOrderView.frame = frame;
+        [self.view addSubview:self.noOrderView];
+    } else {
+        self.tableView.hidden = NO;
+        [self.tableView reloadData];
+        [self.noOrderView removeFromSuperview];
+    }
+
+}
+
+- (void)resetBadgeNum
+{
+    NSString *badgeNum = [NSString stringWithFormat:@"%lu", (unsigned long)self.orderListArray.count];
+    switch (self.recordLastStatus) {
+        case 1:
+            for (UIView *subView in self.waitForPayment.subviews) {
+                if ([subView isKindOfClass:[YFBadgeView class]]) {
+                    [subView removeFromSuperview];
+                }
+            }
+            
+            [self setBadgeViewWithView:self.waitForPayment badgeNum:badgeNum];
+            break;
+            
+        case 2:
+            for (UIView *subView in self.waitForConfirm.subviews) {
+                if ([subView isKindOfClass:[YFBadgeView class]]) {
+                    [subView removeFromSuperview];
+                }
+            }
+            
+            [self setBadgeViewWithView:self.waitForConfirm badgeNum:badgeNum];
+            break;
+        case 3:
+            for (UIView *subView in self.distributing.subviews) {
+                if ([subView isKindOfClass:[YFBadgeView class]]) {
+                    [subView removeFromSuperview];
+                }
+            }
+            
+            [self setBadgeViewWithView:self.distributing badgeNum:badgeNum];
+            break;
+            
+        case 4:
+            for (UIView *subView in self.waitForEvaluation.subviews) {
+                if ([subView isKindOfClass:[YFBadgeView class]]) {
+                    [subView removeFromSuperview];
+                }
+            }
+            
+            [self setBadgeViewWithView:self.waitForEvaluation badgeNum:badgeNum];
+            break;
+        case 5:
+            for (UIView *subView in self.alreadyFinished.subviews) {
+                if ([subView isKindOfClass:[YFBadgeView class]]) {
+                    [subView removeFromSuperview];
+                }
+            }
+            
+            [self setBadgeViewWithView:self.alreadyFinished badgeNum:badgeNum];
+            break;
+        default:
+            break;
+    }
+
+}
 
 - (void)refreshFooter       //上拉加载
 {
@@ -363,6 +478,8 @@
                                                 handler:^(UIAlertAction *action) {
                                                     self.indexPathBuffer = indexPath.section;
                                                     [self requestForSetOrderInvalid:togetherId];
+                                                    
+                                                    
                                                 }]];
         [self presentViewController:alert animated:YES completion:nil];
     }
@@ -511,6 +628,12 @@
     [self.tableView addFooterWithTarget:self action:@selector(refreshFooter)];
     
     self.recordLastStatus = 1;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(pushToMyOrderDetailViewController:)
                                                  name:kPushToMyOrderDetailNotification object:nil];
@@ -518,11 +641,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(cilckOrderButtonNotification:)
                                                  name:kCilckOrderButtonNotification object:nil];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
     
     //每次进入页面刷新数据
     switch (self.recordLastStatus) {
@@ -546,10 +664,11 @@
     }
 }
 
-- (void)dealloc
+- (void)viewWillDisappear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
+
 }
 
 #pragma mark - YFDownloaderDelegate Methods
@@ -583,58 +702,15 @@
                 NSNumber *smallOrderCount = [NSNumber numberWithInteger:smallOrders.count];
                 [self.eachCountOfSmallOrders addObject:smallOrderCount];
             }
-
-            //如果没数据就显示随便逛逛页面
-            if (self.orderListArray.count == 0) {
-                self.tableView.hidden = YES;
-                CGRect frame = self.noOrderView.frame;
-                frame.origin.x = 0;
-                frame.origin.y = 94;
-                frame.size.width = ScreenWidth;
-                frame.size.height = ScreenHeight - 94;
-                self.noOrderView.frame = frame;
-                [self.view addSubview:self.noOrderView];
-            } else {
-                self.tableView.hidden = NO;
-                [self.tableView reloadData];
-                [self.noOrderView removeFromSuperview];
-            }
-
             
-            //====================上拉加载==================
-            UIView *postInfoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 34)];
-            UILabel *postInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 7, ScreenWidth, 20)];
-            postInfoLabel.textAlignment = NSTextAlignmentCenter;
-            postInfoLabel.font = [UIFont systemFontOfSize:12.0];
-            postInfoLabel.textColor = [UIColor darkGrayColor];
-            [postInfoView addSubview:postInfoLabel];
+            //带判功能的显示随便逛逛
+            [self showNoOrderView];
             
- 
-            if (self.orderListArray.count == 0) {
-                self.tableView.footerHidden = YES;
-                self.tableView.hidden = YES;
-                CGRect frame = self.noOrderView.frame;
-                frame.origin.x = 0;
-                frame.origin.y = 94;
-                frame.size.width = ScreenWidth;
-                frame.size.height = ScreenHeight - 94;
-                self.noOrderView.frame = frame;
-                [self.view addSubview:self.noOrderView];
-
-            } else {
-                self.tableView.hidden = NO;
-                [self.noOrderView removeFromSuperview];
-                if (valueArray.count < sizeofPageInt) {
-                    self.tableView.footerHidden = YES;
-                }
-                self.lastestId = [NSString stringWithFormat:@"%d", ++self.indexOfPage];
-
-                [self.tableView reloadData];
-
-            }
-            self.tableView.tableFooterView = postInfoView;
-            //==============================================
-            self.isRefreshHeader = NO;
+            //上拉刷新
+            [self loadInfoByRefreshFooter:valueArray.count];
+            
+            //重置角标
+            [self resetBadgeNum];
         }
         else
         {
@@ -657,29 +733,6 @@
             [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
             
-            NSString *badgeNum = [NSString stringWithFormat:@"%lu", (unsigned long)self.orderListArray.count];
-            switch (self.recordLastStatus) {
-                case 4:
-                    for (UIView *subView in self.waitForEvaluation.subviews) {
-                        if ([subView isKindOfClass:[YFBadgeView class]]) {
-                            [subView removeFromSuperview];
-                        }
-                    }
-                    
-                    [self setBadgeViewWithView:self.waitForEvaluation badgeNum:badgeNum];
-                    break;
-                case 5:
-                    for (UIView *subView in self.alreadyFinished.subviews) {
-                        if ([subView isKindOfClass:[YFBadgeView class]]) {
-                            [subView removeFromSuperview];
-                        }
-                    }
-                    
-                    [self setBadgeViewWithView:self.alreadyFinished badgeNum:badgeNum];
-                    break;
-                default:
-                    break;
-            }
             [self refreshHeader];
 
         }
@@ -702,29 +755,7 @@
             
             [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
-            NSString *badgeNum = [NSString stringWithFormat:@"%lu", (unsigned long)self.orderListArray.count];
-            switch (self.recordLastStatus) {
-                case 1:
-                    for (UIView *subView in self.waitForPayment.subviews) {
-                        if ([subView isKindOfClass:[YFBadgeView class]]) {
-                            [subView removeFromSuperview];
-                        }
-                    }
-                    
-                    [self setBadgeViewWithView:self.waitForPayment badgeNum:badgeNum];
-                    break;
-                case 2:
-                    for (UIView *subView in self.waitForConfirm.subviews) {
-                        if ([subView isKindOfClass:[YFBadgeView class]]) {
-                            [subView removeFromSuperview];
-                        }
-                    }
-                    
-                    [self setBadgeViewWithView:self.waitForConfirm badgeNum:badgeNum];
-                    break;
-                default:
-                    break;
-            }
+            
             [self refreshHeader];
         }
         else
