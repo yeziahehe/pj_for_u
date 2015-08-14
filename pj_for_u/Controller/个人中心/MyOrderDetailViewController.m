@@ -38,6 +38,44 @@
 @implementation MyOrderDetailViewController
 
 #pragma mark - Private Method
+//改变cell按钮的类型
+- (void)changeButtonTypeByStatus:(NSString *)status forTableViewCell:(MyOrderTableViewCell *)cell
+{
+    //通过status判断是什么状态，由此来确定每个按钮下应该显示的界面
+    cell.leftButton.hidden = NO;
+    if ([status isEqualToString:@"1"]) {
+        CALayer *layer = [cell.leftButton layer];
+        layer.borderColor = [[UIColor redColor] CGColor];
+        [cell.leftButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [cell.leftButton setTitle:@"立即付款" forState:UIControlStateNormal];
+        [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
+    }
+    if ([status isEqualToString:@"2"]) {
+        cell.leftButton.hidden = YES;
+        [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
+    }
+    if ([status isEqualToString:@"3"]) {
+        cell.leftButton.hidden = YES;
+        [cell.rightButton setTitle:@"确认收货" forState:UIControlStateNormal];;
+    }
+    if ([status isEqualToString:@"4"]) {
+        CALayer *layer = [cell.leftButton layer];
+        layer.borderColor = [[UIColor darkGrayColor] CGColor];
+        [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        
+        [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
+        [cell.rightButton setTitle:@"评价订单" forState:UIControlStateNormal];;
+    }
+    if ([status isEqualToString:@"5"]) {
+        CALayer *layer = [cell.leftButton layer];
+        layer.borderColor = [[UIColor darkGrayColor] CGColor];
+        [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        
+        [cell.leftButton setTitle:@"追加评论" forState:UIControlStateNormal];
+        [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];;
+    }
+
+}
 
 - (void)requestForDeleteOrder:(NSString *)togetherId
 {
@@ -127,37 +165,28 @@
     }
     
     else if ([title isEqualToString:@"删除订单"]) {
-                
-        [self requestForDeleteOrder:self.togetherId];
-        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"删除订单"
+                                                                       message:@"是否删除订单？"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    [self requestForDeleteOrder:self.togetherId];
+                                                    
+                                                }]];
+        [self presentViewController:alert animated:YES completion:nil];
     }
     
     else if ([title isEqualToString:@"立即付款"]) {
         
         NSMutableArray *shoppingCar = [[NSMutableArray alloc] initWithCapacity:10];
         
-        int count = 0;
-        double price = 0.0;
-        double originPrice = 0.0;
-        NSString *realPriceType;
-        
         for (NSDictionary *dict in self.smallOrders) {
             ShoppingCar *car = [[ShoppingCar alloc] initWithDict:dict];
             [shoppingCar addObject:car];
-            
-            NSString *isDiscount = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isDiscount"]];
-            if ([isDiscount isEqualToString:@"1"]) {
-                realPriceType = @"discountPrice";
-            } else {
-                realPriceType = @"price";
-            }
-            int singleCount = [[dict objectForKey:@"orderCount"] intValue];
-            double singlePrice = [[dict objectForKey:realPriceType] doubleValue];
-            double singleOriginPrice = [[dict objectForKey:@"price"] doubleValue];
-            originPrice += singleCount * singleOriginPrice;
-            price += singleCount * singlePrice;
-            count += singleCount;
-            
         }
         
         ConfirmOrderViewController *coVC = [[ConfirmOrderViewController alloc] init];
@@ -223,39 +252,7 @@
         
         NSString *status = [NSString stringWithFormat:@"%@", [self.bigOrder objectForKey:@"status"]];
         
-        //通过status判断是什么状态，由此来确定每个按钮下应该显示的界面
-        cell.leftButton.hidden = NO;
-        if ([status isEqualToString:@"1"]) {
-            CALayer *layer = [cell.leftButton layer];
-            layer.borderColor = [[UIColor redColor] CGColor];
-            [cell.leftButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-            [cell.leftButton setTitle:@"立即付款" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
-        }
-        if ([status isEqualToString:@"2"]) {
-            cell.leftButton.hidden = YES;
-            [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
-        }
-        if ([status isEqualToString:@"3"]) {
-            cell.leftButton.hidden = YES;
-            [cell.rightButton setTitle:@"确认收货" forState:UIControlStateNormal];;
-        }
-        if ([status isEqualToString:@"4"]) {
-            CALayer *layer = [cell.leftButton layer];
-            layer.borderColor = [[UIColor darkGrayColor] CGColor];
-            [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            
-            [cell.leftButton setTitle:@"删除订单" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"评价订单" forState:UIControlStateNormal];;
-        }
-        if ([status isEqualToString:@"5"]) {
-            CALayer *layer = [cell.leftButton layer];
-            layer.borderColor = [[UIColor darkGrayColor] CGColor];
-            [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-            
-            [cell.leftButton setTitle:@"追加评论" forState:UIControlStateNormal];
-            [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];;
-        }
+        [self changeButtonTypeByStatus:status forTableViewCell:cell];
     }
 
     return cell;
@@ -266,13 +263,14 @@
     return 1;
 }
 
+//因为只有一个cell，计算tableview和cell的高度
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CGFloat height = 108.f + self.smallOrders.count * 70.f;
-    self.scrollView.contentSize = CGSizeMake(ScreenWidth, 82 + 89 + 30 + height);
+    self.scrollView.contentSize = CGSizeMake(ScreenWidth, 82 + 89 + 100 + height);
     CGRect frame = self.tableView.frame;
     frame.origin.y = 82 + 89;
-    frame.size.height = height + 8;
+    frame.size.height = height + 10;
     self.tableView.frame = frame;
     return height;
 }
