@@ -66,6 +66,7 @@
     [[self.goAroundButton layer] setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.view addSubview:self.noOrderView];
 }
+
 //下拉刷新方法
 - (void)dropDownRefresh
 {
@@ -74,12 +75,7 @@
     [self requestForShoppingCar:phone];
 }
 
-- (void)clearShoppingCar;
-{
-    self.shoppingCarArray = nil;
-}
-
-//添加订单总价
+//计算订单总价
 - (void)calculateTotalPrice
 {
     NSMutableArray *calculateArray = [[NSMutableArray alloc]init];
@@ -121,8 +117,6 @@
 - (void)loadSubViews
 {
     self.navigationItem.leftBarButtonItem = nil;
-    self.isChangedToSelectMode = NO;
-    self.deleteShoppingCarView.hidden = YES;
     [self.ShoppingCarTableView addHeaderWithTarget:self action:@selector(dropDownRefresh)];
     [self setRightNaviItemWithTitle:@"选择" imageName:nil];
 
@@ -131,6 +125,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
+    self.isChangedToSelectMode = YES;
+    [self rightItemTapped];
     if ([[MemberDataManager sharedManager] isLogin]) {
 //        if ([self.shoppingCarArray count] == 0) {
             //[self.noOrderView removeFromSuperview];
@@ -226,6 +222,7 @@
         confirmOrder.selectedArray = self.shoppingCarArray;
     }
     [self.navigationController pushViewController:confirmOrder animated:YES];
+    self.shoppingCarSelectedArray = nil;
 }
 
 #pragma mark - notification方法
@@ -256,7 +253,7 @@
     [self calculateTotalPrice];
     }
 }
-//移除darkgreyview
+//移除darkgreyview监听事件
 - (void)removeBackGrayViewNotification:(NSNotification *)notification
 {
     NSIndexPath *cellId = notification.object;
@@ -273,8 +270,6 @@
     cell.backGrayView.hidden = YES;
     [self calculateTotalPrice];
 }
-
-
 
 #pragma mark - UITableViewDataSoure methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -372,6 +367,7 @@
     }
 }
 
+//删除购物车请求
 - (void)requestForDelete:(NSString *)phone
                  orderId:(NSString *)orderId
 {
@@ -386,6 +382,8 @@
                                                                delegate:self
                                                                 purpose:kDeleteShoppingCarDownloaderKey];
 }
+
+//修改订单数量请求
 - (void)requestForEdit:(NSString *)orderId
         withOrderCount:(NSString *)orderCount
 {
@@ -403,6 +401,8 @@
                                                                delegate:self
                                                                 purpose:kEditShoppingCarDownloaderKey];
 }
+
+//请求购物车数据
 - (void)requestForShoppingCar:(NSString *)phone
 {
     [[YFProgressHUD sharedProgressHUD]startedNetWorkActivityWithText:@"加载中"];
@@ -427,13 +427,11 @@
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             [[YFProgressHUD sharedProgressHUD]stoppedNetWorkActivity];
-            self.shoppingTempArray = [[NSMutableArray alloc] initWithCapacity:0];
             NSArray *valueArray = [dict objectForKey:@"orderList"];
             for (NSDictionary *valueDict in valueArray) {
                 ShoppingCar *shoppingCar = [[ShoppingCar alloc] initWithDict:valueDict];
-                [self.shoppingTempArray addObject:shoppingCar];
+                [self.shoppingCarArray addObject:shoppingCar];
             }
-                self.shoppingCarArray = self.shoppingTempArray;
                 [self.ShoppingCarTableView headerEndRefreshing];
             if([self.shoppingCarArray count] == 0)
             {

@@ -15,7 +15,7 @@
 #define kGetDefaultAddressDownloaderKey     @"GetDefaultAddressDownloaderKey"
 #define kOneKeyOrderDownloaderKey           @"OneKeyOrderDownloaderKey"
 
-@interface ConfirmOrderViewController ()
+@interface ConfirmOrderViewController ()<UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutlet UIScrollView *contentView;
 @property (strong, nonatomic) IBOutlet UIView *addressView;
 @property (strong, nonatomic) IBOutlet UIView *payView;
@@ -31,6 +31,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *originPriceLabel;
 @property (strong, nonatomic) IBOutlet UILabel *moneySavedLabel;
 @property (strong, nonatomic) IBOutlet UITextView *descriptionTextView;
+@property (strong, nonatomic) IBOutlet UIButton *deliverButton;
 @property (strong, nonatomic) IBOutlet UILabel *deliverTimeLabel;
 @property (strong, nonatomic) UIView *background;
 @property (strong, nonatomic) NSString *defaultAddress;
@@ -163,9 +164,40 @@
     [self.contentView addGestureRecognizer:recognizer];
     
 }
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
+//若在此页面未付款，则删除该订单
+-(void)deleteOrder{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    //接口地址
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kDeleteSmallOrderUrl];
+    //传递参数存放的字典
+    NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
+    ShoppingCar *sc = [self.selectedArray objectAtIndex:0];
+    NSString *orderId = sc.orderId;
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:phoneId forKey:@"phoneId"];
+    [dict setObject:orderId forKey:@"orderId"];
+    
+    //进行post请求
+    [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation,id responseObject) {
+        
+        NSLog(@"未付款，删除成功");
+        
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
+        
+        NSLog(@"Error: %@", error);
+        
+    }];
+
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    if ([self.buyNowFlag isEqualToString:@"1"]) {
+        [self deleteOrder];
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
@@ -187,16 +219,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
+}
+
 #pragma mark - Keyboard Notification methords
 - (void)keyboardWillShow:(NSNotification *)notification
 {
-    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].size;
-    self.contentView.contentInset = UIEdgeInsetsMake(self.contentView.contentInset.top, self.contentView.contentInset.left, keyboardSize.height, self.contentView.contentInset.right);
+    self.deliverButton.enabled = NO;
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    self.contentView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
-    self.contentView.contentInset = UIEdgeInsetsMake(self.contentView.contentInset.top, self.contentView.contentInset.left, 0, self.contentView.contentInset.right);
+    self.deliverButton.enabled = YES;
+    self.contentView.contentInset = UIEdgeInsetsZero;
 }
 
 - (void)confirmDeliverTimeNotification:(NSNotification *)notification
