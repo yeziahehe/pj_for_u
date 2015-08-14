@@ -164,9 +164,40 @@
     [self.contentView addGestureRecognizer:recognizer];
     
 }
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
+//若在此页面未付款，则删除该订单
+-(void)deleteOrder{
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+    //接口地址
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kDeleteSmallOrderUrl];
+    //传递参数存放的字典
+    NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
+    ShoppingCar *sc = [self.selectedArray objectAtIndex:0];
+    NSString *orderId = sc.orderId;
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:phoneId forKey:@"phoneId"];
+    [dict setObject:orderId forKey:@"orderId"];
+    
+    //进行post请求
+    [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation,id responseObject) {
+        
+        NSLog(@"未付款，删除成功");
+        
+    }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
+        
+        NSLog(@"Error: %@", error);
+        
+    }];
+
 }
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:YES];
+    if ([self.buyNowFlag isEqualToString:@"1"]) {
+        [self deleteOrder];
+    }
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];

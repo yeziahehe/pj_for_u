@@ -142,6 +142,7 @@
     NSMutableArray *OrderArray = [[NSMutableArray alloc]initWithObjects:notification.object, nil];
     ConfirmOrderViewController *covc = [[ConfirmOrderViewController alloc]initWithNibName:@"ConfirmOrderViewController" bundle:nil];
     covc.selectedArray = OrderArray;
+    covc.buyNowFlag = @"1";
     [self.navigationController pushViewController:covc animated:YES];
 }
 #pragma mark - UIView Methods

@@ -10,5 +10,6 @@
 
 @interface ConfirmOrderViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic)NSMutableArray *selectedArray;
+@property(strong,nonatomic)NSString *buyNowFlag;
 
 @end
