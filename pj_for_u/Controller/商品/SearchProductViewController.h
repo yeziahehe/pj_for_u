@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SearchProductViewController : UIViewController
+@property(strong,nonatomic)NSString *searchContent;
 
 @end
