@@ -99,16 +99,16 @@
         for (int i = 0; i < [self.selectedArray count]; i++) {
             ShoppingCar *sc = [self.selectedArray objectAtIndex:i];
             if ([sc.isDiscount isEqualToString:@"1"]) {
-                self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.discountPrice floatValue]*[sc.orderCount intValue]];
+                self.totalPrice = [NSString stringWithFormat:@"%.1f",[self.totalPrice floatValue]+[sc.discountPrice floatValue]*[sc.orderCount intValue]];
             }
             else{
-                self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
+                self.totalPrice = [NSString stringWithFormat:@"%.1f",[self.totalPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
             }
-            self.originPrice = [NSString stringWithFormat:@"%.1f元",[self.originPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
+            self.originPrice = [NSString stringWithFormat:@"%.1f",[self.originPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
             self.moneySaved = [NSString stringWithFormat:@"(已节省%.1f元)",[self.originPrice floatValue]-[self.totalPrice floatValue]];
         }
-        self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%@",self.totalPrice];
-        self.originPriceLabel.text = self.originPrice;
+        self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%@元",self.totalPrice];
+    self.originPriceLabel.text =   [NSString stringWithFormat:@"%@元",self.originPrice];
         self.moneySavedLabel.text = self.moneySaved;
 }
 
@@ -330,10 +330,8 @@
 
 - (void)requestForPay
 {
-    NSString *amount = [NSString stringWithFormat:@"%.1lf",self.totalPrice.doubleValue];
-    NSString *pay = @"12.0";
-        long long amount1 = [[pay stringByReplacingOccurrencesOfString:@"." withString:@""] longLongValue];
-    NSString *amountStr = [NSString stringWithFormat:@"%lld", amount1];
+        long long amount = [[self.totalPrice stringByReplacingOccurrencesOfString:@"." withString:@""] longLongValue];
+    NSString *amountStr = [NSString stringWithFormat:@"%lld", amount];
     NSURL* url = [NSURL URLWithString:kUrl];
     NSMutableURLRequest * postRequest=[NSMutableURLRequest requestWithURL:url];
     
@@ -350,7 +348,6 @@
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [NSURLConnection sendAsynchronousRequest:postRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
                 NSString* charge = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"charge = %@", charge);
         dispatch_async(dispatch_get_main_queue(), ^{

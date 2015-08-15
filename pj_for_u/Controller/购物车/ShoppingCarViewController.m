@@ -125,14 +125,15 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-    self.isChangedToSelectMode = YES;
-    [self rightItemTapped];
+
     if ([[MemberDataManager sharedManager] isLogin]) {
 //        if ([self.shoppingCarArray count] == 0) {
             //[self.noOrderView removeFromSuperview];
             NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
             [self requestForShoppingCar:phone];
             [self.ShoppingCarTableView reloadData];
+            self.isChangedToSelectMode = YES;
+            [self rightItemTapped];
         //}
     }
     else

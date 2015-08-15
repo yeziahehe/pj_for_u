@@ -64,9 +64,10 @@
     [self.searchHistoryArray insertObject:self.searchBar.text atIndex:0];
     [self.userDefaults setObject:self.searchHistoryArray forKey:kSearchHistoryArray];
     [self.userDefaults synchronize];
-    [self dismissViewControllerAnimated:NO completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:kSearchButtonNotification object:self.searchBar.text];
-    }];
+//    [self dismissViewControllerAnimated:NO completion:^{
+//        [[NSNotificationCenter defaultCenter] postNotificationName:kSearchButtonNotification object:self.searchBar.text];
+//    }];
+    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
