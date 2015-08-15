@@ -14,8 +14,11 @@
 
 #define kGetDefaultAddressDownloaderKey     @"GetDefaultAddressDownloaderKey"
 #define kOneKeyOrderDownloaderKey           @"OneKeyOrderDownloaderKey"
+#define kUrlScheme      @"demoapp001" // 这个是你定义的 URL Scheme，支付宝、微信支付和测试模式需要。
+#define kUrl            @"http://218.244.151.190/demo/charge" // 你的服务端创建并返回 charge 的 URL 地址，此地址仅供测试用。
 
 @interface ConfirmOrderViewController ()<UIScrollViewDelegate>
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonArray;
 @property (strong, nonatomic) IBOutlet UIScrollView *contentView;
 @property (strong, nonatomic) IBOutlet UIView *addressView;
 @property (strong, nonatomic) IBOutlet UIView *payView;
@@ -41,9 +44,9 @@
 @property (strong, nonatomic) NSString *totalPrice;
 @property (strong, nonatomic) NSString *originPrice;
 @property (strong, nonatomic) NSString *moneySaved;
-
-
-
+@property (strong, nonatomic) NSString *channel;
+@property (strong, nonatomic) IBOutlet UIButton *aLiPayButton;
+@property BOOL select;
 
 @end
 
@@ -75,6 +78,18 @@
 {
     [self.descriptionTextView resignFirstResponder];
 }
+
+//改变单选按钮状态方法
+-(void)changeButtonState:(UIButton *)button buttons:(NSArray *)buttonArray
+{
+    for (UIButton* b in buttonArray)
+        
+    {
+        b.selected=NO;
+    }
+    button.selected=YES;
+}
+
 //添加订单总价
 - (void)calculateTotalPrice
 {
@@ -97,6 +112,7 @@
         self.moneySavedLabel.text = self.moneySaved;
 }
 
+//加载scrollView
 - (void)loadSubViews
 {
     [self calculateTotalPrice];
@@ -162,7 +178,11 @@
     [recognizer setNumberOfTapsRequired:1];
     [recognizer setNumberOfTouchesRequired:1];
     [self.contentView addGestureRecognizer:recognizer];
-    
+    self.aLiPayButton.selected = YES;
+    self.select = YES;
+    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
+    [[YFProgressHUD sharedProgressHUD]startedNetWorkActivityWithText:@"加载中"];
+    [self requestForDefaultAddress:phone];
 }
 //若在此页面未付款，则删除该订单
 -(void)deleteOrder{
@@ -188,7 +208,6 @@
         NSLog(@"Error: %@", error);
         
     }];
-
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
@@ -198,12 +217,6 @@
     }
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:YES];
-    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
-    [self requestForDefaultAddress:phone];
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadSubViews];
@@ -225,20 +238,22 @@
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
 
-#pragma mark - Keyboard Notification methords
+#pragma mark - Notification methords
 - (void)keyboardWillShow:(NSNotification *)notification
 {
     self.deliverButton.enabled = NO;
     CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    self.contentView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+    CGFloat originYY = self.calculateView.frame.origin.y;
+    [self.contentView setContentOffset:CGPointMake(0, originYY- (ScreenHeight - keyboardSize.height - self.calculateView.frame.size.height) + 10)];
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification
 {
     self.deliverButton.enabled = YES;
-    self.contentView.contentInset = UIEdgeInsetsZero;
+    CGFloat originYY = self.calculateView.frame.origin.y;
+    [self.contentView setContentOffset:CGPointMake(0,originYY + self.calculateView.frame.size.height - ScreenHeight + 10)];
 }
-
+//确认送达时间监听事件
 - (void)confirmDeliverTimeNotification:(NSNotification *)notification
 {
     NSString *deliverTime = notification.object;
@@ -252,6 +267,7 @@
         }
     }
 }
+//取消送达事件监听事件
 - (void)cancelDeliverTimeNotification:(NSNotification *)notification
 {
     for (UIView *subView in self.view.subviews) {
@@ -263,14 +279,29 @@
         }
     }
 }
-- (IBAction)alterAddress:(id)sender {
+
+#pragma mark - IBAction  methords
+//修改送货地址点击事件
+- (IBAction)alterAddress:(UIButton *)sender {
     AddressManageViewController *address = [[AddressManageViewController alloc]init];
     [self.navigationController pushViewController:address animated:YES];
 }
-- (IBAction)aLiPayButtonClicked:(id)sender {
+
+//单选按钮点击事件
+- (IBAction)buttonArrayClicked:(UIButton *)sender {
+    [self changeButtonState:sender buttons:self.buttonArray];
+    switch (sender.tag) {
+        case 1:
+            self.select = YES;
+            break;
+        case 2:
+            self.select = NO;
+        default:
+            break;
+    }
 }
-- (IBAction)wechatButtonClicked:(id)sender {
-}
+
+//支付点击事件
 - (IBAction)payButtonClicked:(id)sender {
     NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
     NSMutableString *orderId = [[NSMutableString alloc]initWithCapacity:0];
@@ -287,8 +318,55 @@
     }
     [self requestForOneKeyOrder:phone orderId:orderId rank:self.defaultRank reserveTime:self.deliverTimeLabel.text message:self.descriptionTextView.text];
     orderId = nil;
+    if (self.select) {
+        self.channel = @"alipay";
+    }
+    else
+    {
+        self.channel = @"wx";
+    }
+    [self requestForPay];
 }
 
+- (void)requestForPay
+{
+    NSString *amount = [NSString stringWithFormat:@"%.1lf",self.totalPrice.doubleValue];
+    NSString *pay = @"12.0";
+        long long amount1 = [[pay stringByReplacingOccurrencesOfString:@"." withString:@""] longLongValue];
+    NSString *amountStr = [NSString stringWithFormat:@"%lld", amount1];
+    NSURL* url = [NSURL URLWithString:kUrl];
+    NSMutableURLRequest * postRequest=[NSMutableURLRequest requestWithURL:url];
+    
+    NSDictionary* dict = @{
+                           @"channel" : self.channel,
+                           @"amount"  : amountStr
+                           };
+    NSData* data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *bodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    [postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
+    [postRequest setHTTPMethod:@"POST"];
+    [postRequest setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:postRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        NSHTTPURLResponse* httpResponse = (NSHTTPURLResponse*)response;
+                NSString* charge = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"charge = %@", charge);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [Pingpp createPayment:charge viewController:self appURLScheme:kUrlScheme withCompletion:^(NSString *result, PingppError *error) {
+                NSLog(@"completion block: %@", result);
+                if (error == nil) {
+                    NSLog(@"PingppError is nil");
+                } else {
+                    NSLog(@"PingppError: code=%lu msg=%@", (unsigned  long)error.code, [error getMsg]);
+                }
+            }];
+        });
+    }];
+  
+}
+//选择送达时间点击事件
 - (IBAction)selectButtonClicked:(id)sender {
     for (UIView *subView in self.view.subviews) {
         if ([subView isKindOfClass:[selectDeliverTimeView class]]) {
@@ -411,6 +489,7 @@
     {
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
+            [[YFProgressHUD sharedProgressHUD]stoppedNetWorkActivity];
             NSArray *valueArray = [dict objectForKey:@"receivers"];
             for (NSDictionary *valueDict in valueArray) {
                 NSString *lm = [NSString stringWithFormat:@"%@",[valueDict objectForKey:@"tag"]];
@@ -456,7 +535,6 @@
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
-
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message

@@ -15,6 +15,13 @@
 		0A54DA811B73311E00FCBAB0 /* icon_alipay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA7F1B73311E00FCBAB0 /* icon_alipay@2x.png */; };
 		0A54DA821B73311E00FCBAB0 /* icon_wechat@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A54DA801B73311E00FCBAB0 /* icon_wechat@2x.png */; };
 		0A72CE4D1B744D3E00222284 /* icon_rubbish@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0A72CE4C1B744D3E00222284 /* icon_rubbish@2x.png */; };
+		0A9E1A521B7DF05D00D4D7C7 /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A9E1A471B7DF05D00D4D7C7 /* AlipaySDK.bundle */; };
+		0A9E1A531B7DF05D00D4D7C7 /* AlipaySDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9E1A481B7DF05D00D4D7C7 /* AlipaySDK.framework */; };
+		0A9E1A541B7DF05D00D4D7C7 /* libpingpp+alipay.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9E1A491B7DF05D00D4D7C7 /* libpingpp+alipay.a */; };
+		0A9E1A551B7DF05D00D4D7C7 /* libpingpp+wx.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9E1A4B1B7DF05D00D4D7C7 /* libpingpp+wx.a */; };
+		0A9E1A561B7DF05D00D4D7C7 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9E1A4C1B7DF05D00D4D7C7 /* libWeChatSDK.a */; };
+		0A9E1A571B7DF05D00D4D7C7 /* libpingpp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A9E1A4F1B7DF05D00D4D7C7 /* libpingpp.a */; };
+		0A9E1A581B7DF05D00D4D7C7 /* Pingpp.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0A9E1A501B7DF05D00D4D7C7 /* Pingpp.bundle */; };
 		0ACABED11B65FFAB009B18E0 /* HomeActivityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */; };
 		0ACABED21B65FFAB009B18E0 /* HomeActivityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */; };
 		0ACABED41B67178D009B18E0 /* icon_user_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ACABED31B67178D009B18E0 /* icon_user_default@2x.png */; };
@@ -267,6 +274,16 @@
 		0A54DA7F1B73311E00FCBAB0 /* icon_alipay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_alipay@2x.png"; path = "Resource/icon_alipay@2x.png"; sourceTree = "<group>"; };
 		0A54DA801B73311E00FCBAB0 /* icon_wechat@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_wechat@2x.png"; path = "Resource/icon_wechat@2x.png"; sourceTree = "<group>"; };
 		0A72CE4C1B744D3E00222284 /* icon_rubbish@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_rubbish@2x.png"; path = "Resource/icon_rubbish@2x.png"; sourceTree = "<group>"; };
+		0A9E1A471B7DF05D00D4D7C7 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
+		0A9E1A481B7DF05D00D4D7C7 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
+		0A9E1A491B7DF05D00D4D7C7 /* libpingpp+alipay.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libpingpp+alipay.a"; sourceTree = "<group>"; };
+		0A9E1A4B1B7DF05D00D4D7C7 /* libpingpp+wx.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libpingpp+wx.a"; sourceTree = "<group>"; };
+		0A9E1A4C1B7DF05D00D4D7C7 /* libWeChatSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libWeChatSDK.a; sourceTree = "<group>"; };
+		0A9E1A4D1B7DF05D00D4D7C7 /* WXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApi.h; sourceTree = "<group>"; };
+		0A9E1A4E1B7DF05D00D4D7C7 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
+		0A9E1A4F1B7DF05D00D4D7C7 /* libpingpp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libpingpp.a; sourceTree = "<group>"; };
+		0A9E1A501B7DF05D00D4D7C7 /* Pingpp.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Pingpp.bundle; sourceTree = "<group>"; };
+		0A9E1A511B7DF05D00D4D7C7 /* Pingpp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pingpp.h; sourceTree = "<group>"; };
 		0ACABECE1B65FFAB009B18E0 /* HomeActivityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeActivityTableViewCell.h; path = "Controller/首页/HomeActivityTableViewCell.h"; sourceTree = "<group>"; };
 		0ACABECF1B65FFAB009B18E0 /* HomeActivityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeActivityTableViewCell.m; path = "Controller/首页/HomeActivityTableViewCell.m"; sourceTree = "<group>"; };
 		0ACABED01B65FFAB009B18E0 /* HomeActivityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HomeActivityTableViewCell.xib; path = "Controller/首页/HomeActivityTableViewCell.xib"; sourceTree = "<group>"; };
@@ -630,11 +647,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C25291B1B5E3FA300ADDEFB /* libz.1.2.5.dylib in Frameworks */,
+				0A9E1A531B7DF05D00D4D7C7 /* AlipaySDK.framework in Frameworks */,
 				2C2529191B5E3F8500ADDEFB /* CoreFoundation.framework in Frameworks */,
 				2C2529171B5E3F7400ADDEFB /* Foundation.framework in Frameworks */,
+				0A9E1A561B7DF05D00D4D7C7 /* libWeChatSDK.a in Frameworks */,
 				4A6C15961B60B4B700C9A9D2 /* SMS_SDK.framework in Frameworks */,
 				2C2529151B5E3F6400ADDEFB /* UIKit.framework in Frameworks */,
+				0A9E1A571B7DF05D00D4D7C7 /* libpingpp.a in Frameworks */,
+				0A9E1A541B7DF05D00D4D7C7 /* libpingpp+alipay.a in Frameworks */,
 				2C2529131B5E3F5400ADDEFB /* libicucore.dylib in Frameworks */,
+				0A9E1A551B7DF05D00D4D7C7 /* libpingpp+wx.a in Frameworks */,
 				2C2529111B5E3F1D00ADDEFB /* libz.dylib in Frameworks */,
 				2C25290F1B5E3EAB00ADDEFB /* CoreGraphics.framework in Frameworks */,
 				2C25290D1B5E3E9000ADDEFB /* MessageUI.framework in Frameworks */,
@@ -662,6 +684,47 @@
 				0AD63F031B79C0460072BEA1 /* selectDeliverTimeView.xib */,
 			);
 			name = "确认订单";
+			sourceTree = "<group>";
+		};
+		0A9E1A441B7DF05D00D4D7C7 /* ping++ */ = {
+			isa = PBXGroup;
+			children = (
+				0A9E1A451B7DF05D00D4D7C7 /* Channels */,
+				0A9E1A4F1B7DF05D00D4D7C7 /* libpingpp.a */,
+				0A9E1A501B7DF05D00D4D7C7 /* Pingpp.bundle */,
+				0A9E1A511B7DF05D00D4D7C7 /* Pingpp.h */,
+			);
+			path = "ping++";
+			sourceTree = "<group>";
+		};
+		0A9E1A451B7DF05D00D4D7C7 /* Channels */ = {
+			isa = PBXGroup;
+			children = (
+				0A9E1A461B7DF05D00D4D7C7 /* Alipay */,
+				0A9E1A4A1B7DF05D00D4D7C7 /* Wx */,
+			);
+			path = Channels;
+			sourceTree = "<group>";
+		};
+		0A9E1A461B7DF05D00D4D7C7 /* Alipay */ = {
+			isa = PBXGroup;
+			children = (
+				0A9E1A471B7DF05D00D4D7C7 /* AlipaySDK.bundle */,
+				0A9E1A481B7DF05D00D4D7C7 /* AlipaySDK.framework */,
+				0A9E1A491B7DF05D00D4D7C7 /* libpingpp+alipay.a */,
+			);
+			path = Alipay;
+			sourceTree = "<group>";
+		};
+		0A9E1A4A1B7DF05D00D4D7C7 /* Wx */ = {
+			isa = PBXGroup;
+			children = (
+				0A9E1A4B1B7DF05D00D4D7C7 /* libpingpp+wx.a */,
+				0A9E1A4C1B7DF05D00D4D7C7 /* libWeChatSDK.a */,
+				0A9E1A4D1B7DF05D00D4D7C7 /* WXApi.h */,
+				0A9E1A4E1B7DF05D00D4D7C7 /* WXApiObject.h */,
+			);
+			path = Wx;
 			sourceTree = "<group>";
 		};
 		0AFC070E1B6CADE6002BDB90 /* 购物车 */ = {
@@ -897,6 +960,7 @@
 		2C2528A81B5E39EF00ADDEFB /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				0A9E1A441B7DF05D00D4D7C7 /* ping++ */,
 				4A6C166D1B70BAC500C9A9D2 /* AFNetworking */,
 				4A6C16301B6F682200C9A9D2 /* SXNetworkTools.h */,
 				4A6C16311B6F682200C9A9D2 /* SXNetworkTools.m */,
@@ -1401,6 +1465,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CF607C71B5EC88C0022E8E7 /* icon_recommend@2x.png in Resources */,
+				0A9E1A581B7DF05D00D4D7C7 /* Pingpp.bundle in Resources */,
 				2C10D6AE1B60B1F7008C3DE0 /* icon_home@2x.png in Resources */,
 				0AFC07161B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib in Resources */,
 				2CF6076E1B5EA0EF0022E8E7 /* btn_category@2x.png in Resources */,
@@ -1480,6 +1545,7 @@
 				2CF607C41B5EC88C0022E8E7 /* icon_more@2x.png in Resources */,
 				4A6C15A31B65C84900C9A9D2 /* icon_addAdress@2x.png in Resources */,
 				2C2529091B5E3AA900ADDEFB /* YFProgressHUD.bundle in Resources */,
+				0A9E1A521B7DF05D00D4D7C7 /* AlipaySDK.bundle in Resources */,
 				2CF607C31B5EC88C0022E8E7 /* icon_house@2x.png in Resources */,
 				4A6C15A81B66143000C9A9D2 /* AddReciverViewController.xib in Resources */,
 				2C2528A51B5E38BB00ADDEFB /* ForgetPwdViewController.xib in Resources */,
@@ -1756,11 +1822,18 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd",
+					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Alipay",
 				);
 				GCC_PREFIX_HEADER = "pj_for_u/pj_for_u-Prefix.pch";
 				INFOPLIST_FILE = pj_for_u/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Alipay",
+					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Wx",
+					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1775,11 +1848,18 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd",
+					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Alipay",
 				);
 				GCC_PREFIX_HEADER = "pj_for_u/pj_for_u-Prefix.pch";
 				INFOPLIST_FILE = pj_for_u/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Alipay",
+					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Wx",
+					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

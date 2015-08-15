@@ -426,6 +426,7 @@
     {
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
+            self.shoppingCarArray = nil;
             [[YFProgressHUD sharedProgressHUD]stoppedNetWorkActivity];
             NSArray *valueArray = [dict objectForKey:@"orderList"];
             for (NSDictionary *valueDict in valueArray) {

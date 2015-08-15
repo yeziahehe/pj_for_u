@@ -142,5 +142,6 @@
 #define kBuyNowUrl              @"order/purchaseImmediately.do"
 #define kModifyOrderStatusUrl   @"order/modifyOrderStatus.do"
 #define kDeleteSmallOrderUrl    @"order/deleteAllUserOrder.do"
+#define kFuzzyQueryGoodsUrl     @"service/selectFoods.do"
 
 #endif
