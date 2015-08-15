@@ -28,7 +28,7 @@
     self.deliverButton.layer.masksToBounds = YES;
     self.deliverButton.layer.cornerRadius = 2.5f;
     
-    self.grade = 0;         //等级初始化为0，即星星个数
+    self.grade = 5;         //等级初始化为0，即星星个数
     self.isHiddenComment = 1;       //是否匿名初始化为匿名
 }
 
