@@ -15,6 +15,7 @@
 #define kGetOrderDetailKey         @"GetOrderDetailKey"
 #define kDeleteOrderKey             @"DeleteOrderKey"
 #define kSetOrderInvalidKey         @"SetOrderInvalidKey"
+#define kModifyOrderStatusKey       @"ModifyOrderStatusKey"
 
 @interface MyOrderDetailViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -75,6 +76,24 @@
         [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];;
     }
 
+}
+
+//请求修改订单状态
+- (void)requsetForModifyOrderStatus:(NSString *)status togetherId:(NSString *)togetherId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kModifyOrderStatusUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    
+    if (status && togetherId) {
+        [dict setObject:status forKey:@"status"];
+        [dict setObject:togetherId forKey:@"togetherId"];
+    }
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kModifyOrderStatusKey];
 }
 
 - (void)requestForDeleteOrder:(NSString *)togetherId
@@ -213,7 +232,20 @@
     }
     
     else if ([title isEqualToString:@"确认收货"]) {
-        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认收货"
+                                                                       message:@"是否确认？"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    [self requsetForModifyOrderStatus:@"4" togetherId:self.togetherId];
+                                                    
+                                                }]];
+        [self presentViewController:alert animated:YES completion:nil];
+
     }
 }
 
@@ -389,6 +421,20 @@
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
+    else if ([downloader.purpose isEqualToString:kModifyOrderStatusKey]) {
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"确认成功" hideDelay:2.f];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            NSString *message = @"确认失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
