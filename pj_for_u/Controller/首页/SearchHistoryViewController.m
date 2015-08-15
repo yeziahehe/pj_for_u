@@ -7,6 +7,7 @@
 //
 
 #import "SearchHistoryViewController.h"
+#import "SearchProductViewController.h"
 
 #define kSearchHistoryArray     @"SearchHistoryArray"
 
@@ -67,7 +68,9 @@
 //    [self dismissViewControllerAnimated:NO completion:^{
 //        [[NSNotificationCenter defaultCenter] postNotificationName:kSearchButtonNotification object:self.searchBar.text];
 //    }];
-    
+    SearchProductViewController *searchPro = [[SearchProductViewController alloc]init];
+    searchPro.searchContent = self.searchBar.text;
+    [self.navigationController pushViewController:searchPro animated:YES];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -118,31 +121,4 @@
     [self dismissViewControllerAnimated:NO completion:nil];
 }
 
-- (void)requestForSearch:(NSString *)page
-                   limit:(NSString *)limit
-                 foodTag:(NSString *)foodTag
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    //接口地址
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kFuzzyQueryGoodsUrl];
-    //传递参数存放的字典
-    NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:kCampusId forKey:@"campusId"];
-    [dict setObject:page forKey:@"page"];
-    [dict setObject:limit forKey:@"limit"];
-    [dict setObject:foodTag forKey:@"foodTag"];
-
-    //进行post请求
-    [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation,id responseObject) {
-        
-        NSLog(@"获取搜索商品成功");
-        
-    }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
-        
-        NSLog(@"Error: %@", error);
-        
-    }];
-
-}
 @end
