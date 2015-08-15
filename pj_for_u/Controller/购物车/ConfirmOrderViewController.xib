@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConfirmOrderViewController">
             <connections>
+                <outlet property="aLiPayButton" destination="K69-nD-4aV" id="0er-Nj-0AD"/>
                 <outlet property="addressLabel" destination="nBc-qa-fpZ" id="MVn-Xt-zAc"/>
                 <outlet property="addressView" destination="4mb-v4-G4V" id="y0z-qB-OIR"/>
                 <outlet property="calculateView" destination="ykN-vp-Pq2" id="DAJ-jt-1cZ"/>
@@ -23,6 +24,8 @@
                 <outlet property="selectGoodsTableView" destination="6Lv-tV-Qvp" id="4SS-SR-wme"/>
                 <outlet property="totalPriceLabel" destination="PvM-XE-Qjk" id="k49-WQ-vAL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="buttonArray" destination="K69-nD-4aV" id="N4L-A9-c9j"/>
+                <outletCollection property="buttonArray" destination="85X-OD-bel" id="Sz9-OD-2V3"/>
             </connections>
         </placeholder>
         <view contentMode="scaleToFill" id="RBB-7j-LbD">
@@ -47,22 +50,24 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K69-nD-4aV">
+                <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K69-nD-4aV">
                     <rect key="frame" x="-18" y="39" width="75" height="27"/>
-                    <state key="normal" image="icon_anonymous.png">
+                    <state key="normal" image="icon_notAnonymous.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="selected" image="icon_Anonymous.png"/>
                     <connections>
-                        <action selector="aLiPayButtonClicked:" destination="-1" eventType="touchUpInside" id="cBG-ub-8Rv"/>
+                        <action selector="buttonArrayClicked:" destination="-1" eventType="touchUpInside" id="1wN-RC-tC0"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85X-OD-bel">
+                <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="85X-OD-bel">
                     <rect key="frame" x="-18" y="73" width="75" height="27"/>
                     <state key="normal" image="icon_notAnonymous.png">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <state key="selected" image="icon_anonymous.png"/>
                     <connections>
-                        <action selector="wechatButtonClicked:" destination="-1" eventType="touchUpInside" id="Zfq-IQ-unG"/>
+                        <action selector="buttonArrayClicked:" destination="-1" eventType="touchUpInside" id="WzM-oO-BgL"/>
                     </connections>
                 </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_alipay.png" translatesAutoresizingMaskIntoConstraints="NO" id="0gc-8e-JHA">
@@ -363,6 +368,7 @@
         </view>
     </objects>
     <resources>
+        <image name="icon_Anonymous.png" width="74" height="27"/>
         <image name="icon_addre.png" width="8" height="11"/>
         <image name="icon_alipay.png" width="15" height="15"/>
         <image name="icon_anonymous.png" width="74" height="27"/>
