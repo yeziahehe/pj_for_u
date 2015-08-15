@@ -218,6 +218,8 @@
 		4A6C16B61B711ECD00C9A9D2 /* MyOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C16B41B711ECD00C9A9D2 /* MyOrderDetailViewController.xib */; };
 		4AB10F791B7DC959001D2AEF /* GeneralProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB10F771B7DC959001D2AEF /* GeneralProductViewController.m */; };
 		4AB10F7A1B7DC959001D2AEF /* GeneralProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB10F781B7DC959001D2AEF /* GeneralProductViewController.xib */; };
+		4AB10F7E1B7E0099001D2AEF /* SearchProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB10F7C1B7E0099001D2AEF /* SearchProductViewController.m */; };
+		4AB10F7F1B7E0099001D2AEF /* SearchProductViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB10F7D1B7E0099001D2AEF /* SearchProductViewController.xib */; };
 		4AB377D01B71AB3A0052168A /* ProCommentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB377CE1B71AB3A0052168A /* ProCommentTableViewCell.m */; };
 		4AB377D11B71AB3A0052168A /* ProCommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AB377CF1B71AB3A0052168A /* ProCommentTableViewCell.xib */; };
 		4AB377D41B71AE4E0052168A /* ProCommentDetail.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB377D31B71AE4E0052168A /* ProCommentDetail.m */; };
@@ -590,6 +592,9 @@
 		4AB10F761B7DC959001D2AEF /* GeneralProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneralProductViewController.h; path = "Controller/商品/GeneralProductViewController.h"; sourceTree = "<group>"; };
 		4AB10F771B7DC959001D2AEF /* GeneralProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneralProductViewController.m; path = "Controller/商品/GeneralProductViewController.m"; sourceTree = "<group>"; };
 		4AB10F781B7DC959001D2AEF /* GeneralProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GeneralProductViewController.xib; path = "Controller/商品/GeneralProductViewController.xib"; sourceTree = "<group>"; };
+		4AB10F7B1B7E0099001D2AEF /* SearchProductViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchProductViewController.h; path = "Controller/商品/SearchProductViewController.h"; sourceTree = "<group>"; };
+		4AB10F7C1B7E0099001D2AEF /* SearchProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchProductViewController.m; path = "Controller/商品/SearchProductViewController.m"; sourceTree = "<group>"; };
+		4AB10F7D1B7E0099001D2AEF /* SearchProductViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchProductViewController.xib; path = "Controller/商品/SearchProductViewController.xib"; sourceTree = "<group>"; };
 		4AB377CD1B71AB3A0052168A /* ProCommentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProCommentTableViewCell.h; path = "Controller/商品/ProCommentTableViewCell.h"; sourceTree = "<group>"; };
 		4AB377CE1B71AB3A0052168A /* ProCommentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProCommentTableViewCell.m; path = "Controller/商品/ProCommentTableViewCell.m"; sourceTree = "<group>"; };
 		4AB377CF1B71AB3A0052168A /* ProCommentTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProCommentTableViewCell.xib; path = "Controller/商品/ProCommentTableViewCell.xib"; sourceTree = "<group>"; };
@@ -747,6 +752,9 @@
 				4AB10F761B7DC959001D2AEF /* GeneralProductViewController.h */,
 				4AB10F771B7DC959001D2AEF /* GeneralProductViewController.m */,
 				4AB10F781B7DC959001D2AEF /* GeneralProductViewController.xib */,
+				4AB10F7B1B7E0099001D2AEF /* SearchProductViewController.h */,
+				4AB10F7C1B7E0099001D2AEF /* SearchProductViewController.m */,
+				4AB10F7D1B7E0099001D2AEF /* SearchProductViewController.xib */,
 				4A6C168F1B70C62000C9A9D2 /* 分类 */,
 				4A6C16901B70C63200C9A9D2 /* 商品详情 */,
 			);
@@ -1481,6 +1489,7 @@
 				6D8AD4001B60E2510099A0D8 /* IndividualSubViewController.xib in Resources */,
 				4A6C15851B5F877F00C9A9D2 /* UserInfoViewController.xib in Resources */,
 				4A6C15791B5F7D5300C9A9D2 /* icon_login_secret@2x.png in Resources */,
+				4AB10F7F1B7E0099001D2AEF /* SearchProductViewController.xib in Resources */,
 				4AB377D91B723D340052168A /* icon_addshoppingcarcircle@2x.png in Resources */,
 				0ACABED21B65FFAB009B18E0 /* HomeActivityTableViewCell.xib in Resources */,
 				4A6C169D1B70C93F00C9A9D2 /* ProInfoView.xib in Resources */,
@@ -1618,6 +1627,7 @@
 				2CF6077F1B5EA5DB0022E8E7 /* UITableView+YFAdditions.m in Sources */,
 				2C10D6BF1B60B970008C3DE0 /* SettingViewController.m in Sources */,
 				2C2528801B5E2C9D00ADDEFB /* BaseMenuViewController.m in Sources */,
+				4AB10F7E1B7E0099001D2AEF /* SearchProductViewController.m in Sources */,
 				2C2528821B5E2C9D00ADDEFB /* CustomNavigationController.m in Sources */,
 				4A6C16861B70BAC500C9A9D2 /* AFURLConnectionOperation.m in Sources */,
 				6D8AD3FF1B60E2510099A0D8 /* IndividualSubViewController.m in Sources */,

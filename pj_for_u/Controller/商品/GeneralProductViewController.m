@@ -85,6 +85,7 @@
     }];
 }
 
+
 #pragma mark - UIView Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -92,10 +93,12 @@
     UINib *nib = [UINib nibWithNibName:@"MainTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"MainTableViewCell"];
+    
     self.page = 2;
     [self.tableView addHeaderWithTarget:self action:@selector(loadData)];
     [self.tableView addFooterWithTarget:self action:@selector(loadMoreData)];
     [self.tableView headerBeginRefreshing];
+    
 }
 
 #pragma mark - UITableView Datasource
