@@ -554,7 +554,21 @@
     }
     
     else if ([title isEqualToString:@"确认收货"]) {
-        [self requsetForModifyOrderStatus:@"4" togetherId:togetherId];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认收货"
+                                                                       message:@"是否确认？"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:nil]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                  style:UIAlertActionStyleDefault
+                                                handler:^(UIAlertAction *action) {
+                                                    self.indexPathBuffer = indexPath.section;
+                                                    [self requsetForModifyOrderStatus:@"4" togetherId:togetherId];
+                                                    
+                                                }]];
+        [self presentViewController:alert animated:YES completion:nil];
+
     }
 }
 
