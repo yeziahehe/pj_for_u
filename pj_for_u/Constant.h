@@ -105,6 +105,7 @@
 #define kCancelDeliverTimeNotification      @"CancelDeliverTimeNotification"
 #define kSuccessBuyNowNotification          @"SuccessBuyNowNotification"
 #define kButtonCategoryNotfication          @"ButtonCategoryNotfication"
+#define kSearchJumbNotification             @"SearchJumbNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"

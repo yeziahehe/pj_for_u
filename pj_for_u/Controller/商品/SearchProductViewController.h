@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
 
-@interface SearchProductViewController : UIViewController
+@interface SearchProductViewController : BaseViewController
 @property(strong,nonatomic)NSString *searchContent;
 
 @end

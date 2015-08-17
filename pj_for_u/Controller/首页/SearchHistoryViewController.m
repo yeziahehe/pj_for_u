@@ -68,9 +68,9 @@
 //    [self dismissViewControllerAnimated:NO completion:^{
 //        [[NSNotificationCenter defaultCenter] postNotificationName:kSearchButtonNotification object:self.searchBar.text];
 //    }];
-    SearchProductViewController *searchPro = [[SearchProductViewController alloc]init];
-    searchPro.searchContent = self.searchBar.text;
-    [self.navigationController pushViewController:searchPro animated:YES];
+    NSString *searchContent = self.searchBar.text;
+    [[NSNotificationCenter defaultCenter]postNotificationName:kSearchJumbNotification object:searchContent];
+    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

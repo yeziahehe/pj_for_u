@@ -15,6 +15,7 @@
 #import "ProductViewController.h"
 #import "GeneralProductViewController.h"
 #import "CategoryInfo.h"
+#import "SearchProductViewController.h"
 
 #define kGetActivityImagesDownloaderKey  @"GetActivityImagesDownloaderKey"
 
@@ -99,6 +100,13 @@
     gpv.categoryInfo = notification.object;
     [self.navigationController pushViewController:gpv animated:YES];
 }
+
+-(void)searchJumbNotification:(NSNotification *)notification{
+    SearchProductViewController *spvc = [[SearchProductViewController alloc]initWithNibName:@"SearchProductViewController" bundle:nil];
+    spvc.searchContent = notification.object;
+    NSLog(@"shit %@",spvc.searchContent);
+    [self.navigationController pushViewController:spvc animated:YES];
+}
 #pragma mark - BaseViewController Methods
 - (void)extraItemTapped
 {
@@ -141,6 +149,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(campusNameNotification:) name:kCampusNameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHomeNotification:) name:kRefreshHomeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(homeButtonToProductWithNotification:) name:kButtonCategoryNotfication object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchJumbNotification:) name:kSearchJumbNotification object:nil];
+
 }
 
 - (void)dealloc
