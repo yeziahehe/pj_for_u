@@ -106,6 +106,8 @@
 #define kSuccessBuyNowNotification              @"SuccessBuyNowNotification"
 #define kButtonCategoryNotfication              @"ButtonCategoryNotfication"
 #define kRemoveChooseCategoryViewNotification   @"RemoveChooseCategoryViewNotification"
+#define kIsTimeToEndRefreshNotification         @"kIsTimeToEndRefreshNotification"
+#define kChooseAddressNoticfication             @"kChooseAddressNoticfication"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
@@ -145,5 +147,6 @@
 #define kDeleteSmallOrderUrl    @"order/deleteAllUserOrder.do"
 #define kSearchProductUrl       @"service/selectFoods.do"
 #define kFuzzyQueryGoodsUrl     @"service/selectFoods.do"
+#define kFeedbackUrl            @"user/feedbackMessage.do"
 
 #endif

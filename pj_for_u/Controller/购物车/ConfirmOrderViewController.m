@@ -11,6 +11,7 @@
 #import "ShoppingCar.h"
 #import "selectDeliverTimeView.h"
 #import "AddressManageViewController.h"
+#import "AddressChooseViewController.h"
 
 #define kGetDefaultAddressDownloaderKey     @"GetDefaultAddressDownloaderKey"
 #define kOneKeyOrderDownloaderKey           @"OneKeyOrderDownloaderKey"
@@ -225,6 +226,8 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(cancelDeliverTimeNotification:) name:kCancelDeliverTimeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadAddress:) name:kChooseAddressNoticfication object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -252,6 +255,13 @@
     self.deliverButton.enabled = YES;
     CGFloat originYY = self.calculateView.frame.origin.y;
     [self.contentView setContentOffset:CGPointMake(0,originYY + self.calculateView.frame.size.height - ScreenHeight + 10)];
+}
+- (void)reloadAddress:(NSNotification *)notification
+{
+    NSDictionary *dict = (NSDictionary *)notification.object;
+    self.nameLabel.text = [dict objectForKey:@"name"];
+    self.phoneLabel.text = [dict objectForKey:@"phone"];
+    self.addressLabel.text = [dict objectForKey:@"address"];
 }
 //确认送达时间监听事件
 - (void)confirmDeliverTimeNotification:(NSNotification *)notification
@@ -303,7 +313,7 @@
 #pragma mark - IBAction  methords
 //修改送货地址点击事件
 - (IBAction)alterAddress:(UIButton *)sender {
-    AddressManageViewController *address = [[AddressManageViewController alloc]init];
+    AddressChooseViewController *address = [[AddressChooseViewController alloc] init];
     [self.navigationController pushViewController:address animated:YES];
 }
 

@@ -24,9 +24,25 @@
 @property(strong,nonatomic)NSString *isLoaded;
 @property(strong,nonatomic)UIView *background;
 @property(strong,nonatomic)ChooseCategoryView *chooseCategoryView;
+
+@property (strong, nonatomic) ProCommentView *pcv;
+
+@property CGFloat orignHeight;
+@property BOOL isFirstTimeToRefresh;
 @end
 
 @implementation ProductDetailViewController
+
+- (void)refreshFooter
+{
+    [self.pcv loadDataWithType:@"2" foodId:self.foodId];
+}
+
+- (void)isTimeToEndRefreshNotification
+{
+    [self.contentScrollView footerEndRefreshing];
+}
+
 #pragma mark - 懒加载
 - (UIView *)background
 {
@@ -118,10 +134,10 @@
             rect.origin.y += 10.f;
         }
         else if ([productSubView isKindOfClass:[ProCommentView class]]){
-            ProCommentView *proCommentView = (ProCommentView *)productSubView;
+            self.pcv = (ProCommentView *)productSubView;
             rect.origin.y += 10.f;
-            proCommentView.proInfo = self.proInfo;
-            rect.size.height = proCommentView.tableView.contentSize.height;
+            self.pcv.proInfo = self.proInfo;
+            rect.size.height = self.pcv.tableView.contentSize.height;
         }
         productSubView.frame = rect;
         [self.contentScrollView addSubview:productSubView];
@@ -134,7 +150,12 @@
 
 -(void)heightForTableViewWithNotification:(NSNotification *)notification{
     CGFloat height = [notification.object doubleValue];
-    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, self.contentScrollView.contentSize.height + height)];
+    
+    if (self.isFirstTimeToRefresh) {
+        self.orignHeight = self.contentScrollView.contentSize.height;
+        self.isFirstTimeToRefresh = NO;
+    }
+    [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, self.orignHeight + height)];
 }
 
 -(void)buyNowWithNotification:(NSNotification *)notification{
@@ -158,10 +179,16 @@
     [self setNaviTitle:@"商品详情"];
     [self setRightNaviItemWithTitle:nil imageName:@"icon_shopcarright"];
     [self loadDataWithfoodId:self.foodId];
+    
+    self.isFirstTimeToRefresh = YES;
+    
+    [self.contentScrollView addFooterWithTarget:self action:@selector(refreshFooter)];
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessAddingToCarNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(buyNowWithNotification:) name:kSuccessBuyNowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(heightForTableViewWithNotification:) name:kHeightForTBVNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeChooseCategoryViewNotification) name:kRemoveChooseCategoryViewNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isTimeToEndRefreshNotification) name:kIsTimeToEndRefreshNotification object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -199,8 +226,10 @@
 }
 
 
--(void)rightItemTapped{
+-(void)rightItemTapped
+{
     self.tabBarController.selectedIndex = 1;
     [self.navigationController popToRootViewControllerAnimated:NO];
 }
+
 @end

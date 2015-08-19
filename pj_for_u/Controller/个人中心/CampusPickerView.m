@@ -125,11 +125,11 @@
         {
             self.locationModel = [self.cityArray objectAtIndex:row];
             self.schoolArray = [NSMutableArray arrayWithArray:self.locationModel.campuses];
-            if (self.schoolArray.count == 0) {
-                
-            } else {
+            
+            if (self.schoolArray.count > 0) {
                 self.campusModel = [self.schoolArray objectAtIndex:0];
             }
+            
             [[NSNotificationCenter defaultCenter]postNotificationName:kGetFirstCampusNameWithNotification object:self.campusModel];
             //更新第二个轮子并重置
             [self.campusPickerView reloadComponent:1];

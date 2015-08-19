@@ -79,7 +79,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-136.5" y="-22"/>
+            <point key="canvasLocation" x="-114.5" y="166"/>
         </view>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
@@ -99,7 +99,7 @@
                 <constraint firstAttribute="trailing" secondItem="bbW-ol-GKd" secondAttribute="trailing" id="sCy-IF-Vdt"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="120.5" y="-22"/>
+            <point key="canvasLocation" x="304.5" y="16"/>
         </view>
         <view contentMode="scaleToFill" id="yg7-nx-J9d">
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -122,11 +122,11 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="立即送达" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xg1-Yu-J3W">
-                    <rect key="frame" x="259" y="11" width="68" height="21"/>
+                    <rect key="frame" x="278" y="11" width="60" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="cEr-W5-HyX"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -147,7 +147,7 @@
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstItem="2Px-tz-eNo" firstAttribute="leading" secondItem="xg1-Yu-J3W" secondAttribute="trailing" constant="26" id="36u-Rs-A9g"/>
+                <constraint firstItem="2Px-tz-eNo" firstAttribute="leading" secondItem="xg1-Yu-J3W" secondAttribute="trailing" constant="15" id="36u-Rs-A9g"/>
                 <constraint firstItem="zFu-pp-URm" firstAttribute="top" secondItem="yg7-nx-J9d" secondAttribute="top" id="DLD-OP-SBG"/>
                 <constraint firstItem="xg1-Yu-J3W" firstAttribute="top" secondItem="yg7-nx-J9d" secondAttribute="top" constant="11" id="aC9-3h-rh0"/>
                 <constraint firstItem="2Px-tz-eNo" firstAttribute="top" secondItem="yg7-nx-J9d" secondAttribute="top" constant="18" id="cv8-ip-U2A"/>
@@ -158,7 +158,7 @@
                 <constraint firstAttribute="bottom" secondItem="zFu-pp-URm" secondAttribute="bottom" id="tyy-x4-Iuo"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-552.5" y="-151"/>
+            <point key="canvasLocation" x="-113.5" y="-272"/>
         </view>
         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="6Lv-tV-Qvp">
             <rect key="frame" x="0.0" y="0.0" width="375" height="560"/>
@@ -169,7 +169,7 @@
                 <outlet property="dataSource" destination="-1" id="MMA-eY-wjU"/>
                 <outlet property="delegate" destination="-1" id="9TX-MQ-xEq"/>
             </connections>
-            <point key="canvasLocation" x="792.5" y="-344"/>
+            <point key="canvasLocation" x="718.5" y="12"/>
         </tableView>
         <view contentMode="scaleToFill" id="4mb-v4-G4V">
             <rect key="frame" x="0.0" y="0.0" width="375" height="113"/>
@@ -188,23 +188,21 @@
                         <constraint firstAttribute="height" constant="22" id="oht-cI-E3L"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dVO-Om-CyH">
-                    <rect key="frame" x="40" y="7" width="124" height="40"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="dVO-Om-CyH" userLabel="name">
+                    <rect key="frame" x="40" y="27" width="100" height="0.0"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="124" id="5dc-3g-1tN"/>
-                        <constraint firstAttribute="height" constant="40" id="Mac-2B-T8Z"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="hHd-vV-vN1"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="22"/>
                     <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J8W-cK-VVd">
-                    <rect key="frame" x="172" y="15" width="165" height="23"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="J8W-cK-VVd" userLabel="phone">
+                    <rect key="frame" x="291" y="26" width="50" height="0.0"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="23" id="H2Q-UC-Qqj"/>
-                        <constraint firstAttribute="width" constant="165" id="Q42-g4-Xcn"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="UWr-pL-CkM"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="24"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="20"/>
                     <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -213,7 +211,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="42" id="QrC-Fl-FuI"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -239,23 +237,25 @@
                 <constraint firstItem="EyX-Sp-2CC" firstAttribute="leading" secondItem="4mb-v4-G4V" secondAttribute="leading" id="87g-Ca-ACm"/>
                 <constraint firstAttribute="bottom" secondItem="EyX-Sp-2CC" secondAttribute="bottom" id="8en-8s-QxQ"/>
                 <constraint firstItem="EyX-Sp-2CC" firstAttribute="top" secondItem="4mb-v4-G4V" secondAttribute="top" id="Byg-hD-vBE"/>
+                <constraint firstItem="yNb-DA-nsD" firstAttribute="centerY" secondItem="dVO-Om-CyH" secondAttribute="centerY" id="Etu-h9-QT9"/>
                 <constraint firstAttribute="trailing" secondItem="EyX-Sp-2CC" secondAttribute="trailing" id="FGO-6s-RdI"/>
-                <constraint firstItem="dVO-Om-CyH" firstAttribute="top" secondItem="4mb-v4-G4V" secondAttribute="top" constant="7" id="Hj2-ze-VyO"/>
                 <constraint firstItem="jFz-Mp-bf8" firstAttribute="leading" secondItem="4mb-v4-G4V" secondAttribute="leading" constant="9" id="KSa-th-uDb"/>
                 <constraint firstItem="nBc-qa-fpZ" firstAttribute="leading" secondItem="jFz-Mp-bf8" secondAttribute="trailing" constant="9" id="OlV-nK-pkw"/>
+                <constraint firstItem="SD7-4F-gHh" firstAttribute="leading" secondItem="J8W-cK-VVd" secondAttribute="trailing" constant="12" id="UDc-qg-XIe"/>
                 <constraint firstItem="yNb-DA-nsD" firstAttribute="top" secondItem="4mb-v4-G4V" secondAttribute="top" constant="16" id="V0T-tX-15E"/>
                 <constraint firstItem="SD7-4F-gHh" firstAttribute="top" secondItem="4mb-v4-G4V" secondAttribute="top" constant="21" id="VRW-IY-5BR"/>
-                <constraint firstItem="dVO-Om-CyH" firstAttribute="leading" secondItem="yNb-DA-nsD" secondAttribute="trailing" constant="12" id="WF7-3K-2JF"/>
                 <constraint firstAttribute="bottom" secondItem="nBc-qa-fpZ" secondAttribute="bottom" constant="2" id="Xob-tm-KCL"/>
+                <constraint firstItem="J8W-cK-VVd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dVO-Om-CyH" secondAttribute="trailing" constant="10" id="Zmh-PD-yoE"/>
                 <constraint firstAttribute="trailing" secondItem="nBc-qa-fpZ" secondAttribute="trailing" constant="8" id="ax3-g1-cyj"/>
-                <constraint firstItem="SD7-4F-gHh" firstAttribute="leading" secondItem="J8W-cK-VVd" secondAttribute="trailing" constant="16" id="dZK-GP-7my"/>
+                <constraint firstItem="J8W-cK-VVd" firstAttribute="centerY" secondItem="SD7-4F-gHh" secondAttribute="centerY" id="b11-Tz-FIT"/>
                 <constraint firstAttribute="trailing" secondItem="SD7-4F-gHh" secondAttribute="trailing" constant="14" id="e6M-TE-nVp"/>
                 <constraint firstItem="yNb-DA-nsD" firstAttribute="leading" secondItem="4mb-v4-G4V" secondAttribute="leading" constant="9" id="lVl-2g-YSl"/>
-                <constraint firstItem="J8W-cK-VVd" firstAttribute="top" secondItem="4mb-v4-G4V" secondAttribute="top" constant="15" id="qTV-iY-wZm"/>
+                <constraint firstItem="J8W-cK-VVd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="dVO-Om-CyH" secondAttribute="trailing" constant="10" id="wYr-Me-rYe"/>
                 <constraint firstAttribute="bottom" secondItem="jFz-Mp-bf8" secondAttribute="bottom" constant="12" id="xwO-lf-Fu2"/>
+                <constraint firstItem="dVO-Om-CyH" firstAttribute="leading" secondItem="yNb-DA-nsD" secondAttribute="trailing" constant="12" id="zgC-EI-oxJ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-136.5" y="132.5"/>
+            <point key="canvasLocation" x="-114.5" y="324.5"/>
         </view>
         <view contentMode="scaleToFill" id="ykN-vp-Pq2">
             <rect key="frame" x="0.0" y="0.0" width="375" height="82"/>
@@ -329,7 +329,7 @@
                 <constraint firstAttribute="centerX" secondItem="IyU-OT-ctP" secondAttribute="centerX" id="zb2-Y1-qxw"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-552.5" y="126"/>
+            <point key="canvasLocation" x="-114.5" y="5"/>
         </view>
         <view contentMode="scaleToFill" id="8S2-XK-BLw">
             <rect key="frame" x="0.0" y="0.0" width="375" height="72"/>
@@ -364,7 +364,7 @@
                 <constraint firstItem="sIJ-gZ-Q9o" firstAttribute="leading" secondItem="jOS-hC-eqZ" secondAttribute="trailing" id="fmo-Io-OQb"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-552.5" y="-22"/>
+            <point key="canvasLocation" x="-114.5" y="-143"/>
         </view>
     </objects>
     <resources>

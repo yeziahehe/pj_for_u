@@ -25,12 +25,12 @@
 #pragma mark - Private Methods
 
 
-//上拉加载
+//下拉刷新
 -(void)loadData{
     [self loadDataWithType:@"1"];
 }
 
-//下拉刷新
+//上拉加载
 -(void)loadMoreData{
     [self loadDataWithType:@"2"];
 }

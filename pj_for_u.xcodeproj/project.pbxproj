@@ -232,6 +232,12 @@
 		6D2044D71B842F4100386189 /* MyOrderInsideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2044D51B842F4100386189 /* MyOrderInsideTableViewCell.xib */; };
 		6D2044DB1B842F8D00386189 /* MyOrderDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2044D91B842F8D00386189 /* MyOrderDetailViewController.m */; };
 		6D2044DC1B842F8D00386189 /* MyOrderDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2044DA1B842F8D00386189 /* MyOrderDetailViewController.xib */; };
+		6D2044E01B8460A700386189 /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2044DE1B8460A700386189 /* FeedbackViewController.m */; };
+		6D2044E11B8460A700386189 /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2044DF1B8460A700386189 /* FeedbackViewController.xib */; };
+		6D2044E31B84631800386189 /* feedback_input_box.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D2044E21B84631800386189 /* feedback_input_box.png */; };
+		6D2044E51B8463A000386189 /* btn_full@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D2044E41B8463A000386189 /* btn_full@2x.png */; };
+		6D2044E91B84734F00386189 /* AddressChooseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D2044E71B84734F00386189 /* AddressChooseViewController.m */; };
+		6D2044EA1B84734F00386189 /* AddressChooseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2044E81B84734F00386189 /* AddressChooseViewController.xib */; };
 		6D3885FB1B70C3B000206E2A /* icon_evaluationStarLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3885F91B70C3B000206E2A /* icon_evaluationStarLight@2x.png */; };
 		6D3885FC1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3885FA1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png */; };
 		6D3885FF1B70C47200206E2A /* icon_anonymous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3885FD1B70C47200206E2A /* icon_anonymous@2x.png */; };
@@ -613,6 +619,14 @@
 		6D2044D81B842F8D00386189 /* MyOrderDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderDetailViewController.h; sourceTree = "<group>"; };
 		6D2044D91B842F8D00386189 /* MyOrderDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderDetailViewController.m; sourceTree = "<group>"; };
 		6D2044DA1B842F8D00386189 /* MyOrderDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyOrderDetailViewController.xib; sourceTree = "<group>"; };
+		6D2044DD1B8460A700386189 /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedbackViewController.h; path = "Controller/设置/FeedbackViewController.h"; sourceTree = "<group>"; };
+		6D2044DE1B8460A700386189 /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedbackViewController.m; path = "Controller/设置/FeedbackViewController.m"; sourceTree = "<group>"; };
+		6D2044DF1B8460A700386189 /* FeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FeedbackViewController.xib; path = "Controller/设置/FeedbackViewController.xib"; sourceTree = "<group>"; };
+		6D2044E21B84631800386189 /* feedback_input_box.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = feedback_input_box.png; path = Resource/feedback_input_box.png; sourceTree = "<group>"; };
+		6D2044E41B8463A000386189 /* btn_full@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "btn_full@2x.png"; path = "Resource/btn_full@2x.png"; sourceTree = "<group>"; };
+		6D2044E61B84734F00386189 /* AddressChooseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressChooseViewController.h; sourceTree = "<group>"; };
+		6D2044E71B84734F00386189 /* AddressChooseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressChooseViewController.m; sourceTree = "<group>"; };
+		6D2044E81B84734F00386189 /* AddressChooseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddressChooseViewController.xib; sourceTree = "<group>"; };
 		6D3885F91B70C3B000206E2A /* icon_evaluationStarLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_evaluationStarLight@2x.png"; path = "Resource/icon_evaluationStarLight@2x.png"; sourceTree = "<group>"; };
 		6D3885FA1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_evaluationStarNotLight@2x.png"; path = "Resource/icon_evaluationStarNotLight@2x.png"; sourceTree = "<group>"; };
 		6D3885FD1B70C47200206E2A /* icon_anonymous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_anonymous@2x.png"; path = "Resource/icon_anonymous@2x.png"; sourceTree = "<group>"; };
@@ -767,6 +781,9 @@
 				0A3B670A1B6203BC0067C709 /* SettingTableViewCell.h */,
 				0A3B670B1B6203BC0067C709 /* SettingTableViewCell.m */,
 				0A3B670C1B6203BC0067C709 /* SettingTableViewCell.xib */,
+				6D2044DD1B8460A700386189 /* FeedbackViewController.h */,
+				6D2044DE1B8460A700386189 /* FeedbackViewController.m */,
+				6D2044DF1B8460A700386189 /* FeedbackViewController.xib */,
 			);
 			name = "设置";
 			sourceTree = "<group>";
@@ -1298,6 +1315,8 @@
 		4AB377D51B723D270052168A /* 其他 */ = {
 			isa = PBXGroup;
 			children = (
+				6D2044E41B8463A000386189 /* btn_full@2x.png */,
+				6D2044E21B84631800386189 /* feedback_input_box.png */,
 				6D2044B81B842ACC00386189 /* icon_cutmoney@2x.png */,
 				4A1464F41B75F34600B9F058 /* icon_shopcarright@2x.png */,
 				4A1464F21B75F33000B9F058 /* icon_addshopcar@2x.png */,
@@ -1348,6 +1367,9 @@
 				4A6C15B41B671D1400C9A9D2 /* CampusPickerView.h */,
 				4A6C15B51B671D1400C9A9D2 /* CampusPickerView.m */,
 				4A6C15B71B67219F00C9A9D2 /* CampusPickerView.xib */,
+				6D2044E61B84734F00386189 /* AddressChooseViewController.h */,
+				6D2044E71B84734F00386189 /* AddressChooseViewController.m */,
+				6D2044E81B84734F00386189 /* AddressChooseViewController.xib */,
 			);
 			name = "地址管理";
 			sourceTree = "<group>";
@@ -1489,6 +1511,7 @@
 				4AB377D91B723D340052168A /* icon_addshoppingcarcircle@2x.png in Resources */,
 				0ACABED21B65FFAB009B18E0 /* HomeActivityTableViewCell.xib in Resources */,
 				2CF607C01B5EC88C0022E8E7 /* icon_breakfest@2x.png in Resources */,
+				6D2044E51B8463A000386189 /* btn_full@2x.png in Resources */,
 				2CF607971B5EBDA10022E8E7 /* line_ver_1px_left.png in Resources */,
 				4A1464F01B759B5900B9F058 /* icon_choose@2x.png in Resources */,
 				2C79539B1B613F4800511EB7 /* icon_userinfo@2x.png in Resources */,
@@ -1510,6 +1533,7 @@
 				0A72CE4D1B744D3E00222284 /* icon_rubbish@2x.png in Resources */,
 				6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */,
 				4A1464F31B75F33000B9F058 /* icon_addshopcar@2x.png in Resources */,
+				6D2044E31B84631800386189 /* feedback_input_box.png in Resources */,
 				2C2528991B5E38B100ADDEFB /* RegisterViewController.xib in Resources */,
 				6D2044DC1B842F8D00386189 /* MyOrderDetailViewController.xib in Resources */,
 				2CF607A51B5EC6B60022E8E7 /* HomeContainView.xib in Resources */,
@@ -1522,10 +1546,12 @@
 				2C25285B1B5E108A00ADDEFB /* Images.xcassets in Resources */,
 				0AE093081B60D2EC0095D639 /* AboutAppViewController.xib in Resources */,
 				2CF607B21B5EC7DD0022E8E7 /* icon_header_back@2x.png in Resources */,
+				6D2044E11B8460A700386189 /* FeedbackViewController.xib in Resources */,
 				0A54DA7E1B73261D00FCBAB0 /* icon_addre@2x.png in Resources */,
 				2C7953A31B61432500511EB7 /* bg_user_img@2x.png in Resources */,
 				2C79539A1B613F4800511EB7 /* icon_setting@2x.png in Resources */,
 				0A54DA821B73311E00FCBAB0 /* icon_wechat@2x.png in Resources */,
+				6D2044EA1B84734F00386189 /* AddressChooseViewController.xib in Resources */,
 				4A6C15931B60915500C9A9D2 /* icon_agree@2x.png in Resources */,
 				6D2044CD1B842EC200386189 /* MyOrderViewController.xib in Resources */,
 				0ACABED41B67178D009B18E0 /* icon_user_default@2x.png in Resources */,
@@ -1627,11 +1653,13 @@
 				2C2528821B5E2C9D00ADDEFB /* CustomNavigationController.m in Sources */,
 				4A6C16861B70BAC500C9A9D2 /* AFURLConnectionOperation.m in Sources */,
 				6D8AD3FF1B60E2510099A0D8 /* IndividualSubViewController.m in Sources */,
+				6D2044E01B8460A700386189 /* FeedbackViewController.m in Sources */,
 				2C25290A1B5E3AA900ADDEFB /* YFProgressHUD.m in Sources */,
 				2C2529051B5E3AA900ADDEFB /* YFDownloader.m in Sources */,
 				2C2529041B5E3AA900ADDEFB /* YFCommonMethods.m in Sources */,
 				6D2044B11B842A0A00386189 /* MainTableViewController.m in Sources */,
 				2CF6079B1B5EC5FE0022E8E7 /* HomeSubView.m in Sources */,
+				6D2044E91B84734F00386189 /* AddressChooseViewController.m in Sources */,
 				4A6C15B01B66247700C9A9D2 /* AddressInfo.m in Sources */,
 				6D2044C71B842C9700386189 /* ProCommentView.m in Sources */,
 				2C25289A1B5E38B100ADDEFB /* ResetPwdViewController.m in Sources */,

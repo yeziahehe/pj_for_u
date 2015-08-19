@@ -10,10 +10,9 @@
 #import "ProCommentTableViewCell.h"
 #import "ProCommentDetail.h"
 
-#define kLimit @"10"
+#define kLimit @"1"
 
 @interface ProCommentView ()
-@property NSInteger page;
 @property(strong,nonatomic)NSMutableArray *allCommentMArray;
 @end
 
@@ -57,12 +56,16 @@
         if ([type isEqualToString:@"1"]) {
             self.allCommentMArray = tempArray;
             [self.tableView reloadData];
+            //===== NOTIFICATION
+            [[NSNotificationCenter defaultCenter] postNotificationName:kIsTimeToEndRefreshNotification object:nil];
 
         }
         else if ([type isEqualToString:@"2"]){
-            [self.tableView footerEndRefreshing];
             [self.allCommentMArray addObjectsFromArray:tempArray];
             [self.tableView reloadData];
+            //===== NOTIFICATION
+            [[NSNotificationCenter defaultCenter] postNotificationName:kIsTimeToEndRefreshNotification object:nil];
+
         }
         NSLog(@"Success:%lu",(unsigned long)self.allCommentMArray.count);
     }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
@@ -87,7 +90,6 @@
 -(void)awakeFromNib{
     [super awakeFromNib];
 
-    
     self.page = 2;
     UINib *nib = [UINib nibWithNibName:@"ProCommentTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
@@ -138,8 +140,6 @@
         
         self.tableView.contentSize = buffer;
 
-        
-        
         NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height];
         [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
     }
