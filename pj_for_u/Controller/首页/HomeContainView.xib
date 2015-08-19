@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txz-DN-WtH" userLabel="Button1">
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="txz-DN-WtH" userLabel="Button1">
                     <rect key="frame" x="11" y="-2" width="74" height="74"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="txz-DN-WtH" secondAttribute="height" multiplier="1:1" id="HEX-QP-mS3"/>
@@ -20,7 +20,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zng-im-LPY">
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zng-im-LPY">
                     <rect key="frame" x="86" y="-2" width="74" height="74"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Zng-im-LPY" secondAttribute="height" multiplier="1:1" id="6Ed-3K-t77"/>
@@ -29,7 +29,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCh-gD-b5e">
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCh-gD-b5e">
                     <rect key="frame" x="161" y="-2" width="74" height="74"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="OCh-gD-b5e" secondAttribute="height" multiplier="1:1" id="zRj-ZX-4bf"/>
@@ -38,7 +38,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dae-ur-X8p" userLabel="Button2">
+                <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dae-ur-X8p" userLabel="Button2">
                     <rect key="frame" x="237" y="-2" width="74" height="74"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Dae-ur-X8p" secondAttribute="height" multiplier="1:1" id="cym-PY-4oc"/>
@@ -47,7 +47,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgF-Pa-Kou">
+                <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgF-Pa-Kou">
                     <rect key="frame" x="85" y="78" width="75" height="75"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="JgF-Pa-Kou" secondAttribute="height" multiplier="1:1" id="GK4-6A-PN0"/>
@@ -56,7 +56,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MyC-6K-5fs">
+                <button opaque="NO" tag="7" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MyC-6K-5fs">
                     <rect key="frame" x="161" y="78" width="75" height="75"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="MyC-6K-5fs" secondAttribute="height" multiplier="1:1" id="sQ0-9c-3z0"/>
@@ -65,7 +65,7 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jta-Ni-Uyo" userLabel="Button4">
+                <button opaque="NO" tag="8" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jta-Ni-Uyo" userLabel="Button4">
                     <rect key="frame" x="237" y="78" width="75" height="75"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="Jta-Ni-Uyo" secondAttribute="height" multiplier="1:1" id="wa8-ty-8bJ"/>
@@ -98,7 +98,7 @@
                         <constraint firstAttribute="width" constant="1" id="OfA-FD-5nN"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbO-AX-K8Z" userLabel="Button3">
+                <button opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hbO-AX-K8Z" userLabel="Button3">
                     <rect key="frame" x="10" y="78" width="75" height="75"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="hbO-AX-K8Z" secondAttribute="height" multiplier="1:1" id="a7l-90-ZGZ"/>

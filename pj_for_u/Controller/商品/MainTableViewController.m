@@ -17,19 +17,20 @@
 
 @interface MainTableViewController ()
 @property NSInteger page;
-
+@property (nonatomic, strong) IBOutlet UIView *sortTypeView;
 @end
 
 @implementation MainTableViewController
 
 #pragma mark - Private Methods
 
-//上拉加载
+
+//下拉刷新
 -(void)loadData{
     [self loadDataWithType:@"1"];
 }
 
-//下拉刷新
+//上拉加载
 -(void)loadMoreData{
     [self loadDataWithType:@"2"];
 }
@@ -60,31 +61,35 @@
     }
     
     //进行post请求
-    [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation,id responseObject) {
+    [manager POST:url
+       parameters:dict
+          success:^(AFHTTPRequestOperation *operation,id responseObject) {
         
-        NSArray *valueArray = [responseObject objectForKey:@"foods"];
-        NSMutableArray *tempArray = [[NSMutableArray alloc]initWithCapacity:0];
-        for(NSDictionary *valueDict in valueArray)
-        {
-            ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
-            [tempArray addObject:pi];
-        }
-        if ([type isEqualToString:@"1"]) {
-            [self.tableView headerEndRefreshing];
-            self.allProductionMArray = tempArray;
-            [self.tableView reloadData];
-        }
-        else if ([type isEqualToString:@"2"]){
-            [self.tableView footerEndRefreshing];
-            [self.allProductionMArray addObjectsFromArray:tempArray];
-            [self.tableView reloadData];
-        }
-        NSLog(@"Success:%lu",(unsigned long)self.allProductionMArray.count);
-         }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
+            NSArray *valueArray = [responseObject objectForKey:@"foods"];
+            NSMutableArray *tempArray = [[NSMutableArray alloc]initWithCapacity:0];
+            for(NSDictionary *valueDict in valueArray)
+            {
+                ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
+                [tempArray addObject:pi];
+            }
+            if ([type isEqualToString:@"1"]) {
+                [self.tableView headerEndRefreshing];
+                self.allProductionMArray = tempArray;
+                [self.tableView reloadData];
+            }
+            else if ([type isEqualToString:@"2"]){
+                [self.tableView footerEndRefreshing];
+                [self.allProductionMArray addObjectsFromArray:tempArray];
+                [self.tableView reloadData];
+            }
+            NSLog(@"Success:%lu",(unsigned long)self.allProductionMArray.count);
+          }
+     
+          failure:^(AFHTTPRequestOperation *operation,NSError *error) {
              
              NSLog(@"Error: %@", error);
              
-         }];
+          }];
 }
 
 #pragma mark - UIView Methods
@@ -103,9 +108,8 @@
 {
     [super viewWillAppear:animated];
 }
--(void)dealloc{
-    
-}
+
+
 
 #pragma mark - UITableView Datasource
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

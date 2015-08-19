@@ -62,16 +62,10 @@
 {
     switch (component) {
         case 0:
-
             return self.cityArray.count;
             
-            break;
-            
         case 1:
-        {
             return self.schoolArray.count;
-        }
-            break;
             
         default:
             break;
@@ -93,7 +87,6 @@
             UILabel *dateLabel = (UILabel *)view;
             dateLabel = [[UILabel alloc] init];
             dateLabel.font = [UIFont fontWithName:nil size:15];
-            [dateLabel setTextColor:kMainProjColor];
             [dateLabel setBackgroundColor:[UIColor clearColor]];
             
             self.locationModel = [self.cityArray objectAtIndex:row];
@@ -105,18 +98,20 @@
             
         case 1:
         {
-            UILabel *dateLabel = (UILabel *)view;
-            dateLabel = [[UILabel alloc] init];
+            UILabel *dateLabel = [[UILabel alloc] init];
             dateLabel.font = [UIFont fontWithName:nil size:15];
-            [dateLabel setTextColor:kMainProjColor];
             [dateLabel setBackgroundColor:[UIColor clearColor]];
             
-            self.campusModel = [self.schoolArray objectAtIndex:row];
-            [dateLabel setText:self.campusModel.campusName];
+            if (self.schoolArray.count == 0) {
+                [dateLabel setText:@"暂无数据"];
+            } else {
+                self.campusModel = [self.schoolArray objectAtIndex:row];
+                [dateLabel setText:self.campusModel.campusName];
+            }
+            
             dateLabel.textAlignment = NSTextAlignmentLeft;
             return dateLabel;
         }
-            
         default:
             break;
     }
@@ -130,7 +125,11 @@
         {
             self.locationModel = [self.cityArray objectAtIndex:row];
             self.schoolArray = [NSMutableArray arrayWithArray:self.locationModel.campuses];
-            self.campusModel = [self.schoolArray objectAtIndex:0];
+            
+            if (self.schoolArray.count > 0) {
+                self.campusModel = [self.schoolArray objectAtIndex:0];
+            }
+            
             [[NSNotificationCenter defaultCenter]postNotificationName:kGetFirstCampusNameWithNotification object:self.campusModel];
             //更新第二个轮子并重置
             [self.campusPickerView reloadComponent:1];

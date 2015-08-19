@@ -31,6 +31,9 @@
     self.rightButton.layer.masksToBounds = YES;
     self.rightButton.layer.cornerRadius = 2.5f;
     
+    self.leftButton.hidden = YES;
+    self.rightButton.hidden = YES;
+    
     //register cell
     UINib *nib = [UINib nibWithNibName:@"MyOrderInsideTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
@@ -71,7 +74,16 @@
     cell.image.cacheDir = kUserIconCacheDir;
     [cell.image aysnLoadImageWithUrl:[smallDictionary objectForKey:@"imageUrl"] placeHolder:@"icon_user_default.png"];
     cell.nameLabel.text = [smallDictionary objectForKey:@"name"];
-    cell.price.text = [NSString stringWithFormat:@"%@", [smallDictionary objectForKey:@"discountPrice"]];
+    
+    NSString *realPriceType;
+    NSString *isDiscount = [NSString stringWithFormat:@"%@", [smallDictionary objectForKey:@"isDiscount"]];
+    if ([isDiscount isEqualToString:@"1"]) {
+        realPriceType = @"discountPrice";
+    } else {
+        realPriceType = @"price";
+    }
+    
+    cell.price.text = [NSString stringWithFormat:@"%@", [smallDictionary objectForKey:realPriceType]];
     cell.orderConut.text = [NSString stringWithFormat:@"%@", [smallDictionary objectForKey:@"orderCount"]];
     cell.message.text = [NSString stringWithFormat:@"%@", [smallDictionary objectForKey:@"message"]];
     return cell;

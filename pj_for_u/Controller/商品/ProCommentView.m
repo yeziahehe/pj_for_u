@@ -10,10 +10,9 @@
 #import "ProCommentTableViewCell.h"
 #import "ProCommentDetail.h"
 
-#define kLimit @"10"
+#define kLimit @"1"
 
 @interface ProCommentView ()
-@property NSInteger page;
 @property(strong,nonatomic)NSMutableArray *allCommentMArray;
 @end
 
@@ -57,12 +56,16 @@
         if ([type isEqualToString:@"1"]) {
             self.allCommentMArray = tempArray;
             [self.tableView reloadData];
+            //===== NOTIFICATION
+            [[NSNotificationCenter defaultCenter] postNotificationName:kIsTimeToEndRefreshNotification object:nil];
 
         }
         else if ([type isEqualToString:@"2"]){
-            [self.tableView footerEndRefreshing];
             [self.allCommentMArray addObjectsFromArray:tempArray];
             [self.tableView reloadData];
+            //===== NOTIFICATION
+            [[NSNotificationCenter defaultCenter] postNotificationName:kIsTimeToEndRefreshNotification object:nil];
+
         }
         NSLog(@"Success:%lu",(unsigned long)self.allCommentMArray.count);
     }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
@@ -71,6 +74,7 @@
         
     }];
 }
+
 //下拉加载更多评论
 -(void)loadMoreComments{
     [self loadDataWithType:@"2" foodId:self.proInfo.foodId];
@@ -123,14 +127,19 @@
 }
 
 //实现高度自适应
--(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
-        NSLog(@"shit");
+
+        CGSize buffer = self.tableView.contentSize;
+        
         CGRect rect = self.tableView.frame;
+        rect.size.width = ScreenWidth;
         rect.size.height = self.tableView.contentSize.height;
         self.tableView.frame = rect;
         
+        self.tableView.contentSize = buffer;
+
         NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height];
         [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
     }

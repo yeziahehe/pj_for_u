@@ -56,7 +56,7 @@
                             <constraint firstAttribute="width" constant="23" id="TNW-EY-Z0M"/>
                             <constraint firstAttribute="height" constant="21" id="awv-b5-q9h"/>
                         </constraints>
-                        <state key="normal" title="2" image="icon_evaluationStarNotLight.png">
+                        <state key="normal" title="2" image="icon_evaluationStarLight.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -69,7 +69,7 @@
                             <constraint firstAttribute="height" constant="21" id="OBb-h3-Z7P"/>
                             <constraint firstAttribute="width" constant="23" id="jID-o5-y47"/>
                         </constraints>
-                        <state key="normal" title="3" image="icon_evaluationStarNotLight.png">
+                        <state key="normal" title="3" image="icon_evaluationStarLight.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -82,7 +82,7 @@
                             <constraint firstAttribute="height" constant="21" id="38x-Hv-qdW"/>
                             <constraint firstAttribute="width" constant="23" id="Mxo-0a-bBD"/>
                         </constraints>
-                        <state key="normal" title="4" image="icon_evaluationStarNotLight.png">
+                        <state key="normal" title="4" image="icon_evaluationStarLight.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -95,7 +95,7 @@
                             <constraint firstAttribute="height" constant="21" id="qyq-fp-dkg"/>
                             <constraint firstAttribute="width" constant="23" id="vFh-en-VKn"/>
                         </constraints>
-                        <state key="normal" title="5" image="icon_evaluationStarNotLight.png">
+                        <state key="normal" title="5" image="icon_evaluationStarLight.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -108,7 +108,7 @@
                             <constraint firstAttribute="height" constant="21" id="XkQ-nH-Atk"/>
                             <constraint firstAttribute="width" constant="23" id="fkC-RO-m4h"/>
                         </constraints>
-                        <state key="normal" title="1" image="icon_evaluationStarNotLight.png">
+                        <state key="normal" title="1" image="icon_evaluationStarLight.png">
                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                         </state>
                         <connections>
@@ -221,12 +221,12 @@
                 <outletCollection property="buttonArray" destination="y37-AY-6aN" id="03G-hC-Dph"/>
                 <outletCollection property="buttonArray" destination="Vye-hs-DZM" id="bl1-zn-GjK"/>
             </connections>
-            <point key="canvasLocation" x="455.5" y="43"/>
+            <point key="canvasLocation" x="461.5" y="84"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="icon_anonymous.png" width="74" height="27"/>
-        <image name="icon_evaluationStarNotLight.png" width="23" height="21"/>
+        <image name="icon_evaluationStarLight.png" width="23" height="21"/>
         <image name="line_hon_1px_down.png" width="640" height="2"/>
     </resources>
 </document>

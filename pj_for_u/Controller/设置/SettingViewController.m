@@ -11,6 +11,7 @@
 #import "AboutAppViewController.h"
 #import "ResetPwdViewController.h"
 #import "ForgetPwdViewController.h"
+#import "FeedbackViewController.h"
 
 #define kSettingMapFileName         @"SettingMap"
 
@@ -98,7 +99,7 @@
     {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    if ((indexPath.section == 2) && (indexPath.row == 1))
+    if ((indexPath.section == 2) && (indexPath.row == 0 || indexPath.row == 1))
     {
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
@@ -146,24 +147,24 @@
                                                         }]];
         [phonenumSheet addAction:[UIAlertAction actionWithTitle:@"拨打电话"
                                                           style:UIAlertActionStyleDefault
-                                                        handler:^(UIAlertAction *action) {
-                                                            //打电话
-                                                            UIAlertController *phonealert = [UIAlertController alertControllerWithTitle:nil
-                                                                                                                                message:@"11111"
-                                                                                                                         preferredStyle:UIAlertControllerStyleAlert];
-                                                            [phonealert addAction:[UIAlertAction actionWithTitle:@"取消"
-                                                                                                           style:UIAlertActionStyleDefault
-                                                                                                         handler:^(UIAlertAction *action) {
-                                                                                                             //什么都不做
-                                                                                                         }]];
-                                                            [phonealert addAction:[UIAlertAction actionWithTitle:@"拨打"
-                                                                                                           style:UIAlertActionStyleDefault
-                                                                                                         handler:^(UIAlertAction *action) {
-                                                                                                             NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",@"1111"]];
-                                                                                                             [[UIApplication sharedApplication] openURL:telURL];
-                                                                                                         }]];
-                                                            [self presentViewController:phonealert animated:YES completion:nil];
-                                                        }]];
+            handler:^(UIAlertAction *action) {
+                //打电话
+                UIAlertController *phonealert = [UIAlertController alertControllerWithTitle:nil
+                                                                                    message:@"11111"
+                                                                             preferredStyle:UIAlertControllerStyleAlert];
+                [phonealert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction *action) {
+                     //什么都不做
+                                                             }]];
+                [phonealert addAction:[UIAlertAction actionWithTitle:@"拨打"
+                                                               style:UIAlertActionStyleDefault
+                                                             handler:^(UIAlertAction *action) {
+                                                                 NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",@"1111"]];
+                                                                 [[UIApplication sharedApplication] openURL:telURL];
+                                                             }]];
+                [self presentViewController:phonealert animated:YES completion:nil];
+            }]];
         [self presentViewController:phonenumSheet animated:YES completion:nil];
     }
     else if ([titleString isEqualToString:@"关于我们"])
@@ -185,6 +186,16 @@
             ForgetPwdViewController *fpvc = [[ForgetPwdViewController alloc]initWithNibName:@"ForgetPwdViewController" bundle:nil];
             [self.navigationController pushViewController:fpvc animated:YES];
         }
+    }
+    else if ([titleString isEqualToString:@"意见反馈"])
+    {
+        if ([[MemberDataManager sharedManager] isLogin]) {
+            FeedbackViewController *fbvc = [[FeedbackViewController alloc] init];
+            [self.navigationController pushViewController:fbvc animated:YES];
+        } else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
+        }
+
     }
 }
 

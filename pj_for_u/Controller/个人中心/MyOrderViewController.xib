@@ -186,7 +186,7 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="-179.5" y="198.5"/>
+            <point key="canvasLocation" x="-337.5" y="169.5"/>
         </view>
         <view contentMode="scaleToFill" id="rib-Aj-fgf" userLabel="noOrderView">
             <rect key="frame" x="0.0" y="0.0" width="375" height="573"/>

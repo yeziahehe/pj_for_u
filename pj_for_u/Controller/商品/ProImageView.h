@@ -10,15 +10,9 @@
 #import "ProductionInfo.h"
 
 @interface ProImageView : ProductSubView
-@property (strong, nonatomic) IBOutlet YFAsynImageView *imageView;
-@property (strong, nonatomic) IBOutlet UILabel *nameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *gradeLabel;
-@property (strong, nonatomic) IBOutlet UILabel *saleNumLabel;
-@property (strong, nonatomic) IBOutlet UILabel *priceLabel;
-@property (strong, nonatomic) IBOutlet UILabel *oldPriceLabel;
-@property (strong, nonatomic) IBOutlet UILabel *discountLabel;
-@property (strong, nonatomic) IBOutlet UILabel *messageLabel;
+
 @property (strong,nonatomic)ProductionInfo *proInfo;
 @property (strong,nonatomic)NSString *foodId;
 @property(strong,nonatomic)NSString *imageUrl;
+
 @end

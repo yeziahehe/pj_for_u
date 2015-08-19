@@ -13,6 +13,9 @@
 @property (strong, nonatomic) IBOutlet UILabel *commentLabel;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic)ProductionInfo *proInfo;
+@property NSInteger page;
 
+- (void)loadDataWithType:(NSString *)type
+                  foodId:(NSString *)foodId;
 
 @end
