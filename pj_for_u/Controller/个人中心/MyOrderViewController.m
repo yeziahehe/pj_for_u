@@ -60,6 +60,7 @@
 - (void)changeButtonTypeByStatus:(NSString *)status forTableViewCell:(MyOrderTableViewCell *)cell
 {
     //通过status判断是什么状态，由此来确定每个按钮下应该显示的界面
+    cell.rightButton.hidden = NO;
     cell.leftButton.hidden = NO;
     if ([status isEqualToString:@"1"]) {
         CALayer *layer = [cell.leftButton layer];
@@ -71,6 +72,9 @@
     if ([status isEqualToString:@"2"]) {
         cell.leftButton.hidden = YES;
         [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
+        if ([[MemberDataManager sharedManager].loginMember.type isEqualToString:@"1"]) {
+            [cell.rightButton setTitle:@"确认配送" forState:UIControlStateNormal];
+        }
     }
     if ([status isEqualToString:@"3"]) {
         cell.leftButton.hidden = YES;
@@ -85,11 +89,7 @@
         [cell.rightButton setTitle:@"评价订单" forState:UIControlStateNormal];;
     }
     if ([status isEqualToString:@"5"]) {
-        CALayer *layer = [cell.leftButton layer];
-        layer.borderColor = [[UIColor darkGrayColor] CGColor];
-        [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        
-        [cell.leftButton setTitle:@"追加评论" forState:UIControlStateNormal];
+        cell.leftButton.hidden = YES;
         [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];;
     }
     
@@ -569,6 +569,11 @@
                                                 }]];
         [self presentViewController:alert animated:YES completion:nil];
 
+    }
+    
+    else if ([title isEqualToString:@"确认配送"]) {
+        self.indexPathBuffer = indexPath.section;
+        [self requsetForModifyOrderStatus:@"3" togetherId:togetherId];
     }
 }
 

@@ -14,4 +14,6 @@
 @property (strong, nonatomic) IBOutlet YFAsynImageView *productImage;
 @property(strong,nonatomic)ProductionInfo *proInfo;
 @property(strong,nonatomic)NSString *flag;
+@property (strong, nonatomic) IBOutlet UIView *smallBackground;
+
 @end

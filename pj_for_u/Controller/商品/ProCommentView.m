@@ -87,6 +87,7 @@
 -(void)awakeFromNib{
     [super awakeFromNib];
 
+    
     self.page = 2;
     UINib *nib = [UINib nibWithNibName:@"ProCommentTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
@@ -124,13 +125,20 @@
 }
 
 //实现高度自适应
--(void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if([indexPath row] == ((NSIndexPath*)[[tableView indexPathsForVisibleRows] lastObject]).row){
-        NSLog(@"shit");
+
+        CGSize buffer = self.tableView.contentSize;
+        
         CGRect rect = self.tableView.frame;
+        rect.size.width = ScreenWidth;
         rect.size.height = self.tableView.contentSize.height;
         self.tableView.frame = rect;
+        
+        self.tableView.contentSize = buffer;
+
+        
         
         NSString *height = [NSString stringWithFormat:@"%f",self.tableView.contentSize.height];
         [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];

@@ -258,24 +258,44 @@
 {
     NSString *deliverTime = notification.object;
     self.deliverTimeLabel.text = deliverTime;
-    for (UIView *subView in self.view.subviews) {
+    for (UIView *subView in self.navigationController.view.subviews) {
         if ([subView isKindOfClass:[selectDeliverTimeView class]])
         {
-            [subView removeFromSuperview];
-            [self.background removeFromSuperview];
-            self.background = nil;
+            
+            [UIView animateWithDuration:0.2
+                             animations:^{
+                                 
+                                 [subView setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, subView.frame.size.height)];
+                             }
+                             completion:^(BOOL finished){
+                                 if (finished) {
+                                     [subView removeFromSuperview];
+                                     [self.background removeFromSuperview];
+                                     self.background = nil;
+                                 }
+                             }];
+            
         }
     }
 }
 //取消送达事件监听事件
 - (void)cancelDeliverTimeNotification:(NSNotification *)notification
 {
-    for (UIView *subView in self.view.subviews) {
+    for (UIView *subView in self.navigationController.view.subviews) {
         if ([subView isKindOfClass:[selectDeliverTimeView class]])
         {
-            [subView removeFromSuperview];
-            [self.background removeFromSuperview];
-            self.background = nil;
+            [UIView animateWithDuration:0.2
+                             animations:^{
+                                 
+                                 [subView setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, subView.frame.size.height)];
+                             }
+                             completion:^(BOOL finished){
+                                 if (finished) {
+                                     [subView removeFromSuperview];
+                                     [self.background removeFromSuperview];
+                                     self.background = nil;
+                                 }
+                             }];
         }
     }
 }
@@ -371,14 +391,15 @@
         }
     }
     selectDeliverTimeView *ctc = [[[NSBundle mainBundle]loadNibNamed:@"selectDeliverTimeView" owner:self options:nil]lastObject];
+    
     CGRect rect = ctc.frame;
     rect.origin.y =  ScreenHeight-272.0f;
     rect.origin.x = 0.0f;
     rect.size.width = ScreenWidth;
     ctc.frame = rect;
     self.background.frame = CGRectMake(0, 0, ScreenWidth, ScreenHeight);
-    [self.view addSubview:self.background];
-    [self.view addSubview:ctc];
+    [self.navigationController.view addSubview:self.background];
+    [self.navigationController.view addSubview:ctc];
 }
 
 #pragma mark - UITableViewDataSoure methods

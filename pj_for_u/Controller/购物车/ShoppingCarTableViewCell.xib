@@ -66,7 +66,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="wU2-v3-hNr">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="wU2-v3-hNr">
                         <rect key="frame" x="176" y="113" width="50" height="2"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="Oxe-9z-xR7"/>

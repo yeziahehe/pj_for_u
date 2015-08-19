@@ -145,6 +145,12 @@
     covc.buyNowFlag = @"1";
     [self.navigationController pushViewController:covc animated:YES];
 }
+
+- (void)removeChooseCategoryViewNotification
+{
+    [self removeSubViews];
+}
+
 #pragma mark - UIView Methods
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -155,6 +161,7 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessAddingToCarNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(buyNowWithNotification:) name:kSuccessBuyNowNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(heightForTableViewWithNotification:) name:kHeightForTBVNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeChooseCategoryViewNotification) name:kRemoveChooseCategoryViewNotification object:nil];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -194,5 +201,6 @@
 
 -(void)rightItemTapped{
     self.tabBarController.selectedIndex = 1;
+    [self.navigationController popToRootViewControllerAnimated:NO];
 }
 @end

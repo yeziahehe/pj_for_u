@@ -10,20 +10,26 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="dGZ-gW-Utr">
-                    <rect key="frame" x="0.0" y="44" width="375" height="1"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="H2Z-Jt-cU4">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="H2Z-Jt-cU4">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="Bvw-8f-FU7"/>
+                    </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选择 分类" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFo-uY-t82">
-                    <rect key="frame" x="8" y="11" width="126" height="21"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="dGZ-gW-Utr">
+                    <rect key="frame" x="0.0" y="43" width="375" height="1"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="GNB-8E-LC3"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="选择 分类" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFo-uY-t82">
+                    <rect key="frame" x="8" y="11.5" width="73" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGM-u1-byw">
-                    <rect key="frame" x="8" y="0.0" width="367" height="44"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGM-u1-byw">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
                     <state key="normal">
                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -34,6 +40,20 @@
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="H2Z-Jt-cU4" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="CCR-3G-0jp"/>
+                <constraint firstItem="TGM-u1-byw" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="NxS-9t-fEJ"/>
+                <constraint firstAttribute="bottom" secondItem="dGZ-gW-Utr" secondAttribute="bottom" id="PNg-9z-9JN"/>
+                <constraint firstAttribute="trailing" secondItem="TGM-u1-byw" secondAttribute="trailing" id="QBu-Dy-zWs"/>
+                <constraint firstAttribute="centerY" secondItem="uFo-uY-t82" secondAttribute="centerY" id="Ryh-bv-JH8"/>
+                <constraint firstAttribute="bottom" secondItem="TGM-u1-byw" secondAttribute="bottom" id="YuW-uF-Y8W"/>
+                <constraint firstAttribute="trailing" secondItem="H2Z-Jt-cU4" secondAttribute="trailing" id="dKQ-He-eDB"/>
+                <constraint firstAttribute="trailing" secondItem="dGZ-gW-Utr" secondAttribute="trailing" id="lzf-hV-1Dv"/>
+                <constraint firstItem="uFo-uY-t82" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="mV5-96-wkX"/>
+                <constraint firstItem="H2Z-Jt-cU4" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="oHv-6l-Q29"/>
+                <constraint firstItem="TGM-u1-byw" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qRf-bj-EKP"/>
+                <constraint firstItem="dGZ-gW-Utr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="uiU-DS-AdT"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="340.5" y="390"/>
         </view>

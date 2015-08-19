@@ -77,26 +77,44 @@
         
     }];
 }
+
+- (void)removeSubViews
+{
+    [[NSNotificationCenter defaultCenter]postNotificationName:kRemoveChooseCategoryViewNotification object:nil];
+}
+
 //加入购物车成功发送通知
--(void)sendAddCarNotification{
+-(void)sendAddCarNotification
+{
     [[NSNotificationCenter defaultCenter]postNotificationName:kSuccessAddingToCarNotification object:nil];
 }
 //立即购买进入确认订单详情成功
--(void)sendBuyNowNotification{
+-(void)sendBuyNowNotification
+{
     [[NSNotificationCenter defaultCenter]postNotificationName:kSuccessBuyNowNotification object:self.shoppingCar];
 }
 #pragma mark - UIView Methods
--(void)awakeFromNib{
+-(void)awakeFromNib
+{
     [super awakeFromNib];
     [self loadFrameWork];
+    
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                                action:@selector(removeSubViews)];
+    singleTap.numberOfTapsRequired = 1;
+    [self.smallBackground addGestureRecognizer:singleTap];
+
 }
 
--(void)dealloc{
+-(void)dealloc
+{
     [[YFProgressHUD sharedProgressHUD]stoppedNetWorkActivity];
 }
 #pragma mark - IBAction Methods
 // -
-- (IBAction)reduceNumber:(id)sender {
+- (IBAction)reduceNumber:(id)sender
+{
     if (self.buyNumber == 1) {
         self.buyNumber = 1;
     }
@@ -107,22 +125,28 @@
 }
 
 // +
-- (IBAction)addNuber:(id)sender {
+- (IBAction)addNuber:(id)sender
+{
     self.buyNumber ++;
     self.numberLabel.text = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
 }
 
 //加入购物车
-- (IBAction)addToShoppingCar:(id)sender {
+- (IBAction)addToShoppingCar:(id)sender
+{
     NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
-    [self addShoppingCarBuyNowWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"1"];}
+    [self addShoppingCarBuyNowWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"1"];
+}
 
 //立即购买
-- (IBAction)buyNow:(id)sender {
+- (IBAction)buyNow:(id)sender
+{
     NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
-    [self addShoppingCarBuyNowWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"2"];}
+    [self addShoppingCarBuyNowWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"2"];
+}
 //商品详情完成按钮
-- (IBAction)doneButton:(id)sender {
+- (IBAction)doneButton:(id)sender
+{
     NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
     if ([self.flag isEqualToString:@"1"]) {
         //加入购物车

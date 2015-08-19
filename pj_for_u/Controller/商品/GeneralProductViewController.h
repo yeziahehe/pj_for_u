@@ -13,5 +13,6 @@
 @interface GeneralProductViewController : BaseViewController
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic)CategoryInfo *categoryInfo;
+@property (strong, nonatomic) NSString *foodTag;
 
 @end

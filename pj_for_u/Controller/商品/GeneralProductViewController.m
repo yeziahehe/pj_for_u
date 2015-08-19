@@ -17,10 +17,32 @@
 @property(strong,nonatomic)NSMutableArray *allProductionMArray;
 @property NSInteger page;
 
+@property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *sortButton;
+@property NSInteger sortId;
+
 @end
 
 @implementation GeneralProductViewController
 #pragma mark - Private Methods
+
+- (IBAction)selectSortButton:(UIButton *)sender
+{
+    self.sortId = sender.tag;
+    [self loadSortButtonWithId:self.sortId];
+    [self.tableView headerBeginRefreshing];
+}
+
+- (void)loadSortButtonWithId:(NSInteger)sortId
+{
+    for (int i = 0; i < self.sortButton.count; i++) {
+        UIButton *button = self.sortButton[i];
+        if (i == sortId) {
+            button.selected = YES;
+        } else {
+            button.selected = NO;
+        }
+    }
+}
 
 //上拉加载
 -(void)loadData{
@@ -42,10 +64,21 @@
     //接口地址
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetCategoryFoodUrl];
     //传递参数存放的字典
+    NSString *sortId = [NSString stringWithFormat:@"%ld", self.sortId];
+    
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:kCampusId forKey:@"campusId"];
-    [dict setObject:self.categoryInfo.categoryId forKey:@"categoryId"];
     [dict setObject:kLimit forKey:@"limit"];
+    [dict setObject:sortId forKey:@"sortId"];
+    
+    if (self.categoryInfo != nil) {
+        [dict setObject:self.categoryInfo.categoryId forKey:@"categoryId"];
+    }
+
+    if (self.foodTag != nil) {
+        [dict setObject:self.foodTag forKey:@"foodTag"];
+        [self setNaviTitle:@"搜索结果"];
+    }
     
     if([type isEqualToString:@"1"]){
         [dict setObject:@"1" forKey:@"page"];
@@ -93,6 +126,9 @@
     UINib *nib = [UINib nibWithNibName:@"MainTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"MainTableViewCell"];
+    
+    self.sortId = 0;
+    [self loadSortButtonWithId:self.sortId];
     
     self.page = 2;
     [self.tableView addHeaderWithTarget:self action:@selector(loadData)];

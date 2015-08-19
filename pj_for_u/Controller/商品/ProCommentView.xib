@@ -10,7 +10,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CYb-D9-iq5">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYb-D9-iq5">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商品评论(23条)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v88-tf-h3i">
@@ -19,11 +19,20 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="bBo-3Q-yMu">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="bBo-3Q-yMu">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="MkR-1J-Ndi"/>
+                            </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="bBo-3Q-yMu" firstAttribute="top" secondItem="CYb-D9-iq5" secondAttribute="top" id="JzE-mE-C56"/>
+                        <constraint firstItem="bBo-3Q-yMu" firstAttribute="leading" secondItem="CYb-D9-iq5" secondAttribute="leading" id="K9V-8d-bVG"/>
+                        <constraint firstAttribute="trailing" secondItem="bBo-3Q-yMu" secondAttribute="trailing" id="S5M-tF-Kid"/>
+                        <constraint firstAttribute="height" constant="44" id="TKR-Kh-iGP"/>
+                    </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="JO8-k5-Wiy">
                     <rect key="frame" x="0.0" y="44" width="375" height="623"/>
@@ -35,6 +44,11 @@
                 </tableView>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="CYb-D9-iq5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="35i-P1-rBb"/>
+                <constraint firstAttribute="trailing" secondItem="CYb-D9-iq5" secondAttribute="trailing" id="PD1-fv-1Vp"/>
+                <constraint firstItem="CYb-D9-iq5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oKd-xc-m3Y"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="commentLabel" destination="v88-tf-h3i" id="7dw-T3-m8Q"/>

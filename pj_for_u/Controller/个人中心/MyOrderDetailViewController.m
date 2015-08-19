@@ -43,6 +43,7 @@
 - (void)changeButtonTypeByStatus:(NSString *)status forTableViewCell:(MyOrderTableViewCell *)cell
 {
     //通过status判断是什么状态，由此来确定每个按钮下应该显示的界面
+    cell.rightButton.hidden = NO;
     cell.leftButton.hidden = NO;
     if ([status isEqualToString:@"1"]) {
         CALayer *layer = [cell.leftButton layer];
@@ -68,11 +69,7 @@
         [cell.rightButton setTitle:@"评价订单" forState:UIControlStateNormal];;
     }
     if ([status isEqualToString:@"5"]) {
-        CALayer *layer = [cell.leftButton layer];
-        layer.borderColor = [[UIColor darkGrayColor] CGColor];
-        [cell.leftButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        
-        [cell.leftButton setTitle:@"追加评论" forState:UIControlStateNormal];
+        cell.leftButton.hidden = YES;
         [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];;
     }
 

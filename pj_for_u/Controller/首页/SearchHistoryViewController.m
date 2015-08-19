@@ -7,7 +7,6 @@
 //
 
 #import "SearchHistoryViewController.h"
-#import "SearchProductViewController.h"
 
 #define kSearchHistoryArray     @"SearchHistoryArray"
 
@@ -65,12 +64,9 @@
     [self.searchHistoryArray insertObject:self.searchBar.text atIndex:0];
     [self.userDefaults setObject:self.searchHistoryArray forKey:kSearchHistoryArray];
     [self.userDefaults synchronize];
-//    [self dismissViewControllerAnimated:NO completion:^{
-//        [[NSNotificationCenter defaultCenter] postNotificationName:kSearchButtonNotification object:self.searchBar.text];
-//    }];
-    NSString *searchContent = self.searchBar.text;
-    [[NSNotificationCenter defaultCenter]postNotificationName:kSearchJumbNotification object:searchContent];
-    
+    [self dismissViewControllerAnimated:NO completion:^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:kSearchButtonNotification object:self.searchBar.text];
+    }];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

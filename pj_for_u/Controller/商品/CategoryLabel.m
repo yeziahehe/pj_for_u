@@ -15,7 +15,6 @@
     if (self=[super initWithFrame:frame]) {
         self.textAlignment = NSTextAlignmentCenter;
         self.font = [UIFont fontWithName:@"HYQiHei" size:5];
-        
         self.scale = 0.0;
     }
     return self;
