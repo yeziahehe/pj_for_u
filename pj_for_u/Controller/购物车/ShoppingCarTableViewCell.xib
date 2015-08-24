@@ -208,7 +208,7 @@
                 <outlet property="preferential" destination="Eu0-PR-TaT" id="ydg-x9-3i7"/>
                 <outlet property="secondLabel" destination="2mS-9x-aYs" id="ha3-P8-jQg"/>
             </connections>
-            <point key="canvasLocation" x="68.5" y="117"/>
+            <point key="canvasLocation" x="97.5" y="198"/>
         </tableViewCell>
     </objects>
     <resources>

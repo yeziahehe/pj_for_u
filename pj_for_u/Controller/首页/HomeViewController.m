@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSMutableArray *subViewArray;
 @property (nonatomic, strong) NSMutableArray *imageUrlArray;
 
+@property (nonatomic, strong) ImageContainView *imageContainView;
 @end
 
 @implementation HomeViewController
@@ -31,6 +32,7 @@
 #pragma mark - Private Methods
 - (void)loadSubViews
 {
+
     for (UIView *subView in self.contentScrollView.subviews)
     {
         if ([subView isKindOfClass:[HomeSubView class]]) {
@@ -50,7 +52,15 @@
         rect.size.width = ScreenWidth;
         rect.origin.y = originY;
         rect.origin.x = 0.0f;
-        if ([homeSubView isKindOfClass:[HomeContainView class]]) {
+        if ([homeSubView isKindOfClass:[ImageContainView class]]) {
+            self.imageContainView = (ImageContainView *)homeSubView;
+            [self.contentScrollView addSubview:self.imageContainView];
+            self.imageContainView.frame = rect;
+            originY = rect.origin.y + rect.size.height;
+            
+            continue;
+        }
+        else if ([homeSubView isKindOfClass:[HomeContainView class]]) {
             //让HomeContainView width等于height的两倍，达到xib自动布局的效果
             rect.size.height = ScreenWidth / 2.0;
         }
@@ -143,7 +153,7 @@
     [self setLeftNaviItemWithTitle:nil imageName:@"btn_category.png"];
     [self setRightNaviItemWithTitle:nil imageName:@"btn_search.png"];
     self.imageUrlArray = [NSMutableArray arrayWithCapacity:0];
-    [self loadSubViews];
+//    [self loadSubViews];
     [self requestForImages];
     [self.contentScrollView addHeaderWithTarget:self action:@selector(refreshHomeNotification:) dateKey:@"HomeViewController"];
     
@@ -151,6 +161,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHomeNotification:) name:kRefreshHomeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(homeButtonToProductWithNotification:) name:kButtonCategoryNotfication object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchButtonNotification:) name:kSearchButtonNotification object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    
 }
 
 - (void)dealloc
@@ -172,7 +189,7 @@
             for (NSDictionary *valueDict in valueArray) {
                 NSString *lm = [valueDict objectForKey:@"homeImage"];
                 if(lm){
-                [self.imageUrlArray addObject:lm];
+                    [self.imageUrlArray addObject:lm];
                 }
             }
             [self.contentScrollView headerEndRefreshing];

@@ -72,6 +72,7 @@
     if ([status isEqualToString:@"2"]) {
         cell.leftButton.hidden = YES;
         [cell.rightButton setTitle:@"取消订单" forState:UIControlStateNormal];
+        //markkkkkkkkkk
         if ([[MemberDataManager sharedManager].loginMember.type isEqualToString:@"1"]) {
             [cell.rightButton setTitle:@"确认配送" forState:UIControlStateNormal];
         }
@@ -553,6 +554,7 @@
         [self presentViewController:alert animated:YES completion:nil];
     }
     
+    //markkkkkkkkkkk
     else if ([title isEqualToString:@"确认收货"]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确认收货"
                                                                        message:@"是否确认？"

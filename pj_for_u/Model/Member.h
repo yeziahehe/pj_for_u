@@ -19,7 +19,7 @@
 @interface Member : BaseModel
 @property (nonatomic, copy) NSString *phone;
 @property (nonatomic, copy) NSString *password;
-@property (nonatomic, copy) NSString *type;//0 1 2 代表``` 
+@property (nonatomic, copy) NSString *type;//  0：大经理  1：派送员  2：普通用户
 
 + (instancetype)memberWithDict:(NSDictionary *)dict;
 @end

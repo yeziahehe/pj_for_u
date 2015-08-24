@@ -19,6 +19,7 @@
                 <outlet property="moneySavedLabel" destination="yPt-9x-8dP" id="OhB-cI-cYA"/>
                 <outlet property="nameLabel" destination="dVO-Om-CyH" id="zVi-c1-DQB"/>
                 <outlet property="originPriceLabel" destination="IyU-OT-ctP" id="XwI-dm-5q0"/>
+                <outlet property="payButton" destination="jxx-ee-a0l" id="Wir-RO-Wii"/>
                 <outlet property="payView" destination="RBB-7j-LbD" id="9nz-SF-7u3"/>
                 <outlet property="phoneLabel" destination="J8W-cK-VVd" id="UVe-p7-1Me"/>
                 <outlet property="selectGoodsTableView" destination="6Lv-tV-Qvp" id="4SS-SR-wme"/>

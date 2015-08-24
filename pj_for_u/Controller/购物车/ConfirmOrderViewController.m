@@ -49,9 +49,32 @@
 @property (strong, nonatomic) IBOutlet UIButton *aLiPayButton;
 @property BOOL select;
 
+@property (strong, nonatomic) IBOutlet UIButton *payButton;
+@property (strong, nonatomic) UIButton *noAddressView;
+
 @end
 
 @implementation ConfirmOrderViewController
+
+- (UIButton *)noAddressView
+{
+    if (!_noAddressView) {
+        _noAddressView = [[UIButton alloc] initWithFrame:self.addressView.frame];
+        
+        _noAddressView.backgroundColor = [UIColor whiteColor];
+        
+        [_noAddressView addTarget:self action:@selector(alterAddress:) forControlEvents:UIControlEventTouchUpInside];
+        
+
+        [_noAddressView setTitle:@"暂无收货地址，点我添加" forState:UIControlStateNormal];
+        [_noAddressView setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        
+        [self.contentView addSubview:_noAddressView];
+        
+    }
+    return _noAddressView;
+
+}
 
 #pragma mark - 键盘隐藏的一系列方法
 //==========================================================
@@ -211,6 +234,12 @@
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+}
+
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:YES];
     if ([self.buyNowFlag isEqualToString:@"1"]) {
@@ -258,10 +287,21 @@
 }
 - (void)reloadAddress:(NSNotification *)notification
 {
-    NSDictionary *dict = (NSDictionary *)notification.object;
-    self.nameLabel.text = [dict objectForKey:@"name"];
-    self.phoneLabel.text = [dict objectForKey:@"phone"];
-    self.addressLabel.text = [dict objectForKey:@"address"];
+    if (notification.object) {
+        NSDictionary *dict = (NSDictionary *)notification.object;
+        self.nameLabel.text = [dict objectForKey:@"name"];
+        self.phoneLabel.text = [dict objectForKey:@"phone"];
+        self.addressLabel.text = [dict objectForKey:@"address"];
+        
+        self.noAddressView.hidden = YES;
+        self.payButton.enabled  = YES;
+
+    } else {
+        self.noAddressView.hidden = NO;
+        self.payButton.enabled  = NO;
+
+    }
+
 }
 //确认送达时间监听事件
 - (void)confirmDeliverTimeNotification:(NSNotification *)notification
@@ -528,9 +568,17 @@
                     self.defaultRank = [valueDict objectForKey:@"rank"];
                 }
             }
-            self.nameLabel.text = self.defaultReceiver;
-            self.phoneLabel.text = self.defaultRecPhone;
-            self.addressLabel.text = self.defaultAddress;
+            if (self.defaultReceiver) {
+                self.noAddressView.hidden = YES;
+                self.nameLabel.text = self.defaultReceiver;
+                self.phoneLabel.text = self.defaultRecPhone;
+                self.addressLabel.text = self.defaultAddress;
+                self.payButton.enabled = YES;
+            } else {
+                self.noAddressView.hidden = NO;
+                self.payButton.enabled  = NO;
+                
+            }
         }
         else
         {

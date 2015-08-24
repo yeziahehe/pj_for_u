@@ -150,5 +150,7 @@
 #define kSearchProductUrl       @"service/selectFoods.do"
 #define kFuzzyQueryGoodsUrl     @"service/selectFoods.do"
 #define kFeedbackUrl            @"user/feedbackMessage.do"
+#define kSuperAdminGetOrderUrl  @"order/superAdminGetOrder.do"
+#define kGetDeliverAdminUrl     @"user/getDeliverAdmin.do"
 
 #endif
