@@ -120,8 +120,8 @@
                         //验证成功后的改密码操作
                         [MemberDataManager sharedManager].loginMember.password = self.phoneTextField.text;
                         //重置密码
-                        [[MemberDataManager sharedManager] resetPwdWithPhone:self.phoneTextField.text newPassword:self.pwdTextField.text];
-
+                        [[MemberDataManager sharedManager] forgetPwdWithPhone:self.phoneTextField.text
+                                                                  newPassword:self.pwdTextField.text];
                     }
                     else if(0 == state)
                     {
@@ -132,7 +132,7 @@
 }
 
 #pragma mark - Notification Methods
-- (void)resetPwdResponseNotification:(NSNotification *)notification
+- (void)forgetPwdResponseNotification:(NSNotification *)notification
 {
     if(notification.object)
     {
@@ -168,7 +168,7 @@
     self.identifyButton.enabled = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPwdResponseNotification:) name:kResetPwdResponseNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forgetPwdResponseNotification:) name:kForgetPwdResponseNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     

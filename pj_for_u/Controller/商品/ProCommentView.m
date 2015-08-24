@@ -10,7 +10,7 @@
 #import "ProCommentTableViewCell.h"
 #import "ProCommentDetail.h"
 
-#define kLimit @"1"
+#define kLimit @"5"
 
 @interface ProCommentView ()
 @property(strong,nonatomic)NSMutableArray *allCommentMArray;

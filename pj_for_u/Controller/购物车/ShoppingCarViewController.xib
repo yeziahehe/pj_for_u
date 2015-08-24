@@ -169,7 +169,7 @@
                 <constraint firstItem="qp5-DK-roV" firstAttribute="top" secondItem="IGJ-fS-aXH" secondAttribute="bottom" id="m5F-Eg-MVv"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="284.5" y="355"/>
+            <point key="canvasLocation" x="187.5" y="328"/>
         </view>
         <view contentMode="scaleToFill" id="xIn-7Y-4bt">
             <rect key="frame" x="0.0" y="0.0" width="375" height="568"/>

@@ -8,11 +8,12 @@
 
 #import "ProductSubView.h"
 #import "ProductionInfo.h"
+#import "YFCycleScrollView.h"
 
-@interface ProImageView : ProductSubView
 
-@property (strong,nonatomic)ProductionInfo *proInfo;
-@property (strong,nonatomic)NSString *foodId;
-@property(strong,nonatomic)NSString *imageUrl;
+@interface ProImageView : ProductSubView <UIScrollViewDelegate>
+@property (strong, nonatomic) IBOutlet UILabel *preferential;
 
+@property (strong, nonatomic) ProductionInfo *proInfo;
+@property (strong, nonatomic) NSString *foodId;
 @end

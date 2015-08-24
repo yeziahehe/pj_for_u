@@ -121,10 +121,10 @@
         rect.origin.x = 0;
         if ([productSubView isKindOfClass:[ProImageView class]]) {
             ProImageView *proImageView = (ProImageView *)productSubView;
-            proImageView.imageUrl = self.proInfo.imgUrl;
+            
             proImageView.proInfo = self.proInfo;
             rect.size.width = ScreenWidth;
-            rect.size.height = ScreenWidth + 101.f;
+            rect.size.height = proImageView.frame.size.height;
             rect.origin.y += 64.f;
         }
         else if ([productSubView isKindOfClass:[ProInfoView class]]) {

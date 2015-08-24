@@ -20,6 +20,10 @@
 @property (strong, nonatomic) IBOutlet UIImageView *discountLine;
 @property int amount;
 @property (strong, nonatomic) NSIndexPath *shoppingId;
+
+@property (strong, nonatomic) IBOutlet UIImageView *cutImageView;
+@property (strong, nonatomic) IBOutlet UILabel *preferential;
+
 @property (strong, nonatomic) UIView *backGrayView;
 @property BOOL isSelected;
 

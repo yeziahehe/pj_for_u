@@ -49,7 +49,7 @@
                 <outlet property="cycleScrollView" destination="aUw-L6-ybF" id="18Q-H1-2bd"/>
                 <outlet property="pageControl" destination="H9w-QZ-dqp" id="HbS-Cf-PGG"/>
             </connections>
-            <point key="canvasLocation" x="220" y="133"/>
+            <point key="canvasLocation" x="32" y="111"/>
         </view>
     </objects>
     <resources>

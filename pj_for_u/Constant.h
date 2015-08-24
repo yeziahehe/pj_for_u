@@ -106,8 +106,9 @@
 #define kSuccessBuyNowNotification              @"SuccessBuyNowNotification"
 #define kButtonCategoryNotfication              @"ButtonCategoryNotfication"
 #define kRemoveChooseCategoryViewNotification   @"RemoveChooseCategoryViewNotification"
-#define kIsTimeToEndRefreshNotification         @"kIsTimeToEndRefreshNotification"
-#define kChooseAddressNoticfication             @"kChooseAddressNoticfication"
+#define kIsTimeToEndRefreshNotification         @"IsTimeToEndRefreshNotification"
+#define kChooseAddressNoticfication             @"ChooseAddressNoticfication"
+#define kForgetPwdResponseNotification          @"ForgetPwdResponseNotification"
 
 //Url values
 #define kServerAddress          @"http://120.26.76.252:8080/foryou/"
@@ -122,7 +123,8 @@
 #define kGetActivityImageUrl    @"service/getHomeFood.do"
 #define kCheckUserExistUrl      @"user/checkUserIsExist.do"
 #define kRegisterUrl            @"user/registerIn.do"
-#define kResetPwdUrl            @"user/resetPassword.do"
+#define kResetPwdUrl            @"user/changePassword.do"
+#define kForgetPwdUrl           @"user/resetPassword.do"
 #define kIndividualInfoUrl      @"user/mineInfo.do"
 #define kGetModuleTypeUrl       @"service/getHomeCategoryInfo.do"
 #define kSaveIndividualInfo     @"user/updateUserInfo.do"

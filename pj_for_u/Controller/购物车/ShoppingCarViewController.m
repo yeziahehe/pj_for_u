@@ -303,7 +303,7 @@
         cell = [nibs lastObject];
     }
     cell.shoppingId = indexPath;
-        self.shoppingCarInfo = [self.shoppingCarArray objectAtIndex:indexPath.section];
+    self.shoppingCarInfo = [self.shoppingCarArray objectAtIndex:indexPath.section];
     if (self.shoppingCarInfo) {
         cell.mainLabel.text = self.shoppingCarInfo.name;
         NSString *imageUrl = self.shoppingCarInfo.imageUrl;

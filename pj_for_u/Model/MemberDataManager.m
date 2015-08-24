@@ -92,7 +92,9 @@
                                                                 purpose:kRegisterDownloaderKey];
 }
 
-- (void)resetPwdWithPhone:(NSString *)phone newPassword:(NSString *)newPassword
+- (void)resetPwdWithPhone:(NSString *)phone
+              newPassword:(NSString *)newPassword
+              oldPassword:(NSString *)oldPassword
 {
     if (nil == phone)
         phone = @"";
@@ -102,11 +104,32 @@
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:phone forKey:@"phone"];
     [dict setObject:newPassword forKey:@"newPassword"];
+    [dict setObject:oldPassword forKey:@"oldPassword"];
+    
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict
                                                             contentType:@"application/x-www-form-urlencoded"
                                                                delegate:self
                                                                 purpose:kResetPwdDownloaderKey];
+}
+
+- (void)forgetPwdWithPhone:(NSString *)phone
+              newPassword:(NSString *)newPassword
+{
+    if (nil == phone)
+        phone = @"";
+    if (nil == newPassword)
+        newPassword = @"";
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kForgetPwdUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:phone forKey:@"phone"];
+    [dict setObject:newPassword forKey:@"newPassword"];
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kForgetPwdDownloaderKey];
 }
 
 - (void)requestForIndividualInfoWithPhone:(NSString *)phone
@@ -116,6 +139,7 @@
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kIndividualInfoUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:phone forKey:@"phone"];
+    
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict
                                                             contentType:@"application/x-www-form-urlencoded"
@@ -217,6 +241,24 @@
             if(message.length == 0)
                 message = @"注册失败";
             [[NSNotificationCenter defaultCenter] postNotificationName:kRegisterResponseNotification object:message];
+        }
+    }
+    else if ([downloader.purpose isEqualToString:kForgetPwdDownloaderKey])
+    {
+        NSDictionary *dict = [str JSONValue];
+        if ([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode]) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:kForgetPwdResponseNotification object:nil];
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"重设密码失败";
+            [[NSNotificationCenter defaultCenter] postNotificationName:kForgetPwdResponseNotification object:message];
         }
     }
     else if ([downloader.purpose isEqualToString:kResetPwdDownloaderKey])

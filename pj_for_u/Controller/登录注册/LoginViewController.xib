@@ -27,12 +27,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1A-GR-mId">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="420"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_login.png" translatesAutoresizingMaskIntoConstraints="NO" id="lsh-lQ-Fey">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="186"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" secondItem="lsh-lQ-Fey" secondAttribute="height" multiplier="125:62" id="ykr-AL-K6V"/>
-                                    </constraints>
-                                </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtP-42-y6F">
                                     <rect key="frame" x="10" y="335" width="355" height="45"/>
                                     <constraints>
@@ -170,6 +164,12 @@
                                         <action selector="showForUAbout:" destination="-1" eventType="touchUpInside" id="3dN-Wi-hbL"/>
                                     </connections>
                                 </button>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_login.png" translatesAutoresizingMaskIntoConstraints="NO" id="lsh-lQ-Fey">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="186"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="lsh-lQ-Fey" secondAttribute="height" multiplier="125:62" id="ykr-AL-K6V"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>

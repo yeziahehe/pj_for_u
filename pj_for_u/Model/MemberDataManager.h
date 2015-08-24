@@ -19,7 +19,7 @@
 #define kCheckUserExistDownloaderKey    @"CheckUserExistDownloaderKey"
 #define kResetPwdDownloaderKey          @"ResetPwdDownloaderKey"
 #define kIndividualInfoDownloaderKey    @"IndividualInfoDownloaderKey"
-
+#define kForgetPwdDownloaderKey         @"FoegetPwdDownloaderKey"
 
 #define kLoginResponseNotification              @"LoginResponseNotification"
 #define kRegisterResponseNotification           @"RegisterResponseNotification"
@@ -29,6 +29,7 @@
 
 @property (nonatomic, strong) Member *loginMember;
 @property (nonatomic, strong) IndividualInfo *mineInfo;
+@property (nonatomic, copy) NSArray *preferential;
 
 + (MemberDataManager *)sharedManager;
 /**
@@ -68,13 +69,23 @@
 - (void)registerWithPhone:(NSString *)phone
                  password:(NSString *)password
                  nickName:(NSString *)nickName;
+
 /**
  * 通过手机号找回密码
  *
  * @param phone       手机号
  * @param newPassword 新密码
  */
-- (void)resetPwdWithPhone:(NSString *)phone newPassword:(NSString *)newPassword;
+- (void)forgetPwdWithPhone:(NSString *)phone newPassword:(NSString *)newPassword;
+
+/**
+ * 通过手机号重置密码
+ *
+ * @param phone       手机号
+ * @param newPassword 新密码
+ * @param oldPassword 旧密码
+ */
+- (void)resetPwdWithPhone:(NSString *)phone newPassword:(NSString *)newPassword oldPassword:(NSString *)oldPassword;
 /**
  *  获取个人信息
  *

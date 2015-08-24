@@ -62,6 +62,7 @@
 - (void)dealloc
 {
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
+    [self resignAllField];
 }
 
 #pragma mark - Keyboard Notification methords

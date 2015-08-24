@@ -100,6 +100,7 @@
     RegisterViewController *rvc = [[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
     [self.navigationController pushViewController:rvc animated:YES];
 }
+
 #pragma mark - UIViewController Methods
 - (void)viewWillAppear:(BOOL)animated
 {

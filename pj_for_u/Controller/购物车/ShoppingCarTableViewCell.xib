@@ -30,7 +30,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="设计师原创，纯手工打造。" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2mS-9x-aYs">
-                        <rect key="frame" x="126" y="62" width="234" height="21"/>
+                        <rect key="frame" x="126" y="53" width="234" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="6iH-zB-eTg"/>
                         </constraints>
@@ -49,7 +49,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="79.5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pc8-QE-9NJ">
-                        <rect key="frame" x="137" y="104" width="36" height="22"/>
+                        <rect key="frame" x="137" y="104" width="35.5" height="22"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="22" id="GzJ-A5-F6x"/>
                         </constraints>
@@ -58,7 +58,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="原价：89" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPe-9Q-VTJ">
-                        <rect key="frame" x="178" y="107" width="50" height="17"/>
+                        <rect key="frame" x="177" y="107" width="50" height="17"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="17" id="OMN-XF-gq9"/>
                         </constraints>
@@ -67,13 +67,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="wU2-v3-hNr">
-                        <rect key="frame" x="176" y="113" width="50" height="2"/>
+                        <rect key="frame" x="175" y="113" width="50" height="2"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="50" id="Oxe-9z-xR7"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkt-sB-7VR">
-                        <rect key="frame" x="286" y="99" width="81" height="28"/>
+                        <rect key="frame" x="286" y="101.5" width="81" height="28"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FF3-ZH-7nU">
                                 <rect key="frame" x="27" y="6" width="27" height="18"/>
@@ -144,6 +144,28 @@
                             <constraint firstItem="rAa-7f-huK" firstAttribute="top" secondItem="Mkt-sB-7VR" secondAttribute="top" id="zc7-P6-5Xa"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_cutmoney.png" translatesAutoresizingMaskIntoConstraints="NO" id="aoe-Zm-IZo">
+                        <rect key="frame" x="126" y="80" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="IcL-RV-MDg"/>
+                            <constraint firstAttribute="width" constant="16" id="r8E-6t-Hux"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="满减优惠" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="Eu0-PR-TaT">
+                        <rect key="frame" x="147" y="82" width="228" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="225" id="00R-mC-IVO"/>
+                            <constraint firstAttribute="height" constant="12" id="2TP-Br-NI2"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="00R-mC-IVO"/>
+                            </mask>
+                        </variation>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="2mS-9x-aYs" firstAttribute="leading" secondItem="OZO-FX-UBQ" secondAttribute="trailing" constant="8" id="01S-z3-66w"/>
@@ -155,16 +177,21 @@
                     <constraint firstAttribute="trailing" secondItem="dbw-Kj-7BL" secondAttribute="trailing" constant="15" id="HpW-Kw-DsV"/>
                     <constraint firstItem="dbw-Kj-7BL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="KRQ-sX-NzZ"/>
                     <constraint firstItem="wcs-v3-xvv" firstAttribute="leading" secondItem="OZO-FX-UBQ" secondAttribute="trailing" constant="3" id="KyI-VA-MxU"/>
+                    <constraint firstItem="Eu0-PR-TaT" firstAttribute="leading" secondItem="aoe-Zm-IZo" secondAttribute="trailing" constant="5" id="OWh-9d-Gdy"/>
+                    <constraint firstItem="aoe-Zm-IZo" firstAttribute="leading" secondItem="OZO-FX-UBQ" secondAttribute="trailing" constant="8" id="Ql8-qm-xtB"/>
                     <constraint firstItem="vPe-9Q-VTJ" firstAttribute="leading" secondItem="Pc8-QE-9NJ" secondAttribute="trailing" constant="5" id="ReM-wF-1hH"/>
-                    <constraint firstAttribute="bottom" secondItem="Mkt-sB-7VR" secondAttribute="bottom" constant="12" id="S4J-i2-Jjv"/>
-                    <constraint firstItem="2mS-9x-aYs" firstAttribute="top" secondItem="dbw-Kj-7BL" secondAttribute="bottom" constant="11" id="WhO-fB-jIt"/>
+                    <constraint firstAttribute="bottom" secondItem="Mkt-sB-7VR" secondAttribute="bottom" constant="10" id="S4J-i2-Jjv"/>
+                    <constraint firstItem="2mS-9x-aYs" firstAttribute="top" secondItem="dbw-Kj-7BL" secondAttribute="bottom" constant="2" id="WhO-fB-jIt"/>
                     <constraint firstItem="Pc8-QE-9NJ" firstAttribute="leading" secondItem="wcs-v3-xvv" secondAttribute="trailing" constant="2" id="Xwq-bs-4tF"/>
                     <constraint firstItem="OZO-FX-UBQ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="YV8-wV-cgg"/>
+                    <constraint firstAttribute="trailing" secondItem="Eu0-PR-TaT" secondAttribute="trailing" id="d8x-JE-V2w"/>
                     <constraint firstAttribute="bottom" secondItem="OZO-FX-UBQ" secondAttribute="bottom" constant="15" id="dzr-YA-KYb"/>
                     <constraint firstAttribute="bottom" secondItem="vPe-9Q-VTJ" secondAttribute="bottom" constant="15" id="fEG-ty-KT8"/>
                     <constraint firstItem="dbw-Kj-7BL" firstAttribute="leading" secondItem="OZO-FX-UBQ" secondAttribute="trailing" constant="8" id="gyW-39-l3a"/>
+                    <constraint firstItem="aoe-Zm-IZo" firstAttribute="top" secondItem="2mS-9x-aYs" secondAttribute="bottom" constant="6" id="hNE-jw-k2e"/>
                     <constraint firstAttribute="bottom" secondItem="Pc8-QE-9NJ" secondAttribute="bottom" constant="13" id="jM8-Kf-zxr"/>
                     <constraint firstAttribute="trailing" secondItem="2mS-9x-aYs" secondAttribute="trailing" constant="15" id="lPe-IO-lpH"/>
+                    <constraint firstItem="Eu0-PR-TaT" firstAttribute="centerY" secondItem="aoe-Zm-IZo" secondAttribute="centerY" id="yJr-57-VCn"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -172,17 +199,20 @@
                 <outlet property="PlusButton" destination="Ll3-LD-jvx" id="3tw-In-SPE"/>
                 <outlet property="YFImageView" destination="OZO-FX-UBQ" id="kdg-QL-t4B"/>
                 <outlet property="amountView" destination="Mkt-sB-7VR" id="6Zj-c7-Iy7"/>
+                <outlet property="cutImageView" destination="aoe-Zm-IZo" id="OaH-8k-Lmg"/>
                 <outlet property="discountLine" destination="wU2-v3-hNr" id="C5a-es-bxc"/>
                 <outlet property="discountPrice" destination="Pc8-QE-9NJ" id="H2T-vQ-6Hh"/>
                 <outlet property="mainLabel" destination="dbw-Kj-7BL" id="SiW-tF-l8D"/>
                 <outlet property="orderCount" destination="FF3-ZH-7nU" id="7TF-sr-UAz"/>
                 <outlet property="originPrice" destination="vPe-9Q-VTJ" id="Kk8-wP-ukW"/>
+                <outlet property="preferential" destination="Eu0-PR-TaT" id="ydg-x9-3i7"/>
                 <outlet property="secondLabel" destination="2mS-9x-aYs" id="ha3-P8-jQg"/>
             </connections>
-            <point key="canvasLocation" x="284.5" y="333"/>
+            <point key="canvasLocation" x="68.5" y="117"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="icon_cutmoney.png" width="15" height="15"/>
         <image name="line_hon_1px_down.png" width="640" height="2"/>
         <image name="line_ver_1px_left.png" width="2" height="149"/>
     </resources>
