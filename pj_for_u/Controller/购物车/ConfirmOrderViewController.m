@@ -52,9 +52,19 @@
 @property (strong, nonatomic) IBOutlet UIButton *payButton;
 @property (strong, nonatomic) UIButton *noAddressView;
 
+@property BOOL isNotTrueTime;
+@property (strong, nonatomic) NSMutableArray *timeArray;
 @end
 
 @implementation ConfirmOrderViewController
+
+- (NSMutableArray *)timeArray
+{
+    if (!_timeArray) {
+        _timeArray = [[NSMutableArray alloc] initWithCapacity:15];
+    }
+    return _timeArray;
+}
 
 - (UIButton *)noAddressView
 {
@@ -257,6 +267,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadAddress:) name:kChooseAddressNoticfication object:nil];
     
+    [[MemberDataManager sharedManager] getHomeCateGoryInfo];
+
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDeliverView:) name:kGetHomeInfoNotification object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -301,8 +315,58 @@
         self.payButton.enabled  = NO;
 
     }
+}
+
+- (void)reloadDeliverView:(NSNotification *)notification
+{
+
+    if (notification.object) {
+        [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:notification.object hideDelay:2.f];
+    } else {
+        NSDictionary *dict = [MemberDataManager sharedManager].homeInfo;
+
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        NSDate *nowDate = [NSDate dateWithTimeIntervalSinceNow:0];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        NSString *nowString = [dateFormatter stringFromDate:nowDate];
+        NSString *openTime = [NSString stringWithFormat:@"%@ %@", nowString, [dict objectForKey:@"openTime"]];
+        NSString *closeTime = [NSString stringWithFormat:@"%@ %@", nowString, [dict objectForKey:@"closeTime"]];
+        
+        [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+
+        NSDate *openDate = [dateFormatter dateFromString:openTime];
+        NSDate *closeDate = [dateFormatter dateFromString:closeTime];
+
+
+        if ([nowDate compare:closeDate] == NSOrderedDescending) {
+            //不是营业时间
+            self.isNotTrueTime = YES;
+        } else {
+            self.isNotTrueTime = NO;
+            NSDate *tempDate = [nowDate compare:openDate] == NSOrderedDescending?[NSDate dateWithTimeIntervalSinceNow:3600]:closeDate;
+            [dateFormatter setDateFormat:@"HH:mm"];
+            NSInteger interval = 60*60;
+            
+            if ([nowDate compare:openDate] != NSOrderedAscending) {
+                [self.timeArray addObject:@"立即送达"];
+            }
+            
+            while ([tempDate compare:closeDate] != NSOrderedDescending) {
+                NSString *time = [dateFormatter stringFromDate:tempDate];
+                [self.timeArray addObject:time];
+                tempDate = [NSDate dateWithTimeInterval:interval sinceDate:tempDate];
+                if ([tempDate compare:closeDate] == NSOrderedDescending) {
+                    time = [dateFormatter stringFromDate:closeDate];
+                    [self.timeArray addObject:time];
+                    break;
+                }
+            }
+        }
+        
+    }
 
 }
+
 //确认送达时间监听事件
 - (void)confirmDeliverTimeNotification:(NSNotification *)notification
 {
@@ -311,7 +375,6 @@
     for (UIView *subView in self.navigationController.view.subviews) {
         if ([subView isKindOfClass:[selectDeliverTimeView class]])
         {
-            
             [UIView animateWithDuration:0.2
                              animations:^{
                                  
@@ -373,6 +436,12 @@
 
 //支付点击事件
 - (IBAction)payButtonClicked:(id)sender {
+    
+    if (self.isNotTrueTime) {
+        [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"不是营业时间" hideDelay:2.f];
+        return;
+    }
+    
     NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
     NSMutableString *orderId = [[NSMutableString alloc]initWithCapacity:0];
     if (self.selectedArray) {
@@ -440,8 +509,16 @@
             [subView removeFromSuperview];
         }
     }
-    selectDeliverTimeView *ctc = [[[NSBundle mainBundle]loadNibNamed:@"selectDeliverTimeView" owner:self options:nil]lastObject];
     
+    if (self.isNotTrueTime) {
+        [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"不是营业时间" hideDelay:2.f];
+        return;
+    }
+    
+    selectDeliverTimeView *ctc = [[[NSBundle mainBundle]loadNibNamed:@"selectDeliverTimeView" owner:self options:nil] lastObject];
+    
+    //~~~~~~
+    ctc.timeArray = self.timeArray;
     CGRect rect = ctc.frame;
     rect.origin.y =  ScreenHeight-272.0f;
     rect.origin.x = 0.0f;
@@ -568,6 +645,7 @@
                     self.defaultRank = [valueDict objectForKey:@"rank"];
                 }
             }
+            
             if (self.defaultReceiver) {
                 self.noAddressView.hidden = YES;
                 self.nameLabel.text = self.defaultReceiver;
@@ -577,7 +655,6 @@
             } else {
                 self.noAddressView.hidden = NO;
                 self.payButton.enabled  = NO;
-                
             }
         }
         else

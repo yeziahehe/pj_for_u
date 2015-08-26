@@ -147,6 +147,18 @@
                                                                 purpose:kIndividualInfoDownloaderKey];
 }
 
+- (void)getHomeCateGoryInfo
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetModuleTypeUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:kCampusId forKey:@"campusId"];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kGetModuleTypeUrl];
+    
+}
 
 #pragma mark - Singleton methods
 - (id)init
@@ -299,6 +311,27 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:kUserInfoResponseNotification object:message];
         }
     }
+    else if ([downloader.purpose isEqualToString:kGetModuleTypeUrl])
+    {
+        NSDictionary *dict = [str JSONValue];
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            self.homeInfo = [dict objectForKey:@"campus"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kGetHomeInfoNotification object:nil];
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"信息失败";
+            [[NSNotificationCenter defaultCenter] postNotificationName:kGetHomeInfoNotification object:message];
+        }
+    }
+
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message

@@ -13,31 +13,58 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGj-HA-wi9">
-                        <rect key="frame" x="8" y="35" width="28" height="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="手机:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oGj-HA-wi9">
+                        <rect key="frame" x="15" y="35" width="32.5" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="昵称" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kBc-hp-OVM">
-                        <rect key="frame" x="8" y="8" width="28" height="17"/>
+                        <rect key="frame" x="15" y="8" width="28" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88888888888888" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Do9-ds-Fl5" userLabel="phone">
+                        <rect key="frame" x="52" y="35" width="112" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="112" id="0AZ-vv-pED"/>
+                            <constraint firstAttribute="height" constant="17" id="JMc-Zb-Xug"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yuv-xj-CBa" userLabel="phoneButton">
+                        <rect key="frame" x="52.5" y="25" width="150" height="27"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="phoneButtonAction" destination="KGk-i7-Jjw" eventType="touchUpInside" id="txg-jC-o56"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="oGj-HA-wi9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="FQf-FI-3Te"/>
-                    <constraint firstItem="kBc-hp-OVM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="cAo-5J-nUq"/>
+                    <constraint firstItem="Yuv-xj-CBa" firstAttribute="bottom" secondItem="Do9-ds-Fl5" secondAttribute="bottom" id="2sP-hd-ZlY"/>
+                    <constraint firstItem="oGj-HA-wi9" firstAttribute="bottom" secondItem="Do9-ds-Fl5" secondAttribute="bottom" id="4yG-3s-FBk"/>
+                    <constraint firstItem="Yuv-xj-CBa" firstAttribute="top" secondItem="Do9-ds-Fl5" secondAttribute="top" constant="-10" id="6a5-cW-OSj"/>
+                    <constraint firstItem="oGj-HA-wi9" firstAttribute="top" secondItem="Do9-ds-Fl5" secondAttribute="top" id="8CG-dR-oBk"/>
+                    <constraint firstItem="oGj-HA-wi9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="FQf-FI-3Te"/>
+                    <constraint firstItem="kBc-hp-OVM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="cAo-5J-nUq"/>
+                    <constraint firstItem="Yuv-xj-CBa" firstAttribute="trailing" secondItem="Do9-ds-Fl5" secondAttribute="trailing" constant="38.5" id="hK0-AR-9KE"/>
                     <constraint firstItem="kBc-hp-OVM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="hk4-l0-lWh"/>
+                    <constraint firstItem="Yuv-xj-CBa" firstAttribute="leading" secondItem="Do9-ds-Fl5" secondAttribute="leading" id="iWL-sI-oN0"/>
                     <constraint firstAttribute="bottom" secondItem="oGj-HA-wi9" secondAttribute="bottom" constant="8" id="qIo-sJ-Toz"/>
+                    <constraint firstItem="Do9-ds-Fl5" firstAttribute="leading" secondItem="oGj-HA-wi9" secondAttribute="trailing" constant="5" id="ykI-AW-cPk"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="nickname" destination="kBc-hp-OVM" id="xZt-a3-Rt2"/>
-                <outlet property="phone" destination="oGj-HA-wi9" id="TSr-Kz-lDT"/>
+                <outlet property="phone" destination="Do9-ds-Fl5" id="A5m-S8-0UQ"/>
             </connections>
-            <point key="canvasLocation" x="482.5" y="199.5"/>
+            <point key="canvasLocation" x="614.5" y="270.5"/>
         </tableViewCell>
     </objects>
 </document>

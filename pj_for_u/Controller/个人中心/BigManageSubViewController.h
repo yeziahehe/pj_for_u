@@ -10,4 +10,6 @@
 
 @interface BigManageSubViewController : BaseViewController
 
+@property (strong, nonatomic) NSString *togetherId;
+
 @end

@@ -1,19 +1,14 @@
 //
-//  BigManageSubTableViewCell.m
+//  CourierSubTableViewCell.m
 //  pj_for_u
 //
-//  Created by MiY on 15/8/24.
+//  Created by MiY on 15/8/25.
 //  Copyright (c) 2015年 叶帆. All rights reserved.
 //
 
-#import "BigManageSubTableViewCell.h"
+#import "CourierSubTableViewCell.h"
 
-@implementation BigManageSubTableViewCell
-
-- (IBAction)phoneButtonAction
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:kCallAdminPhoneNotification object:self.phone.text];
-}
+@implementation CourierSubTableViewCell
 
 - (void)awakeFromNib {
     // Initialization code

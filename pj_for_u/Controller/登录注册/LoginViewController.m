@@ -62,7 +62,8 @@
     self.ifchecked = !self.ifchecked;
 }
 
-- (IBAction)showForUAbout:(id)sender {
+- (IBAction)showForUAbout:(id)sender
+{
     //点击 《For 优用户服务协议》
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"Mickeyabout" ofType:@"html"];
 //    YFWebViewController *yfwvc = [[YFWebViewController alloc] init];

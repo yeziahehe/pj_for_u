@@ -10,6 +10,7 @@
 #import "BigManageSubTableViewCell.h"
 
 #define kGetDeliverAdminKey             @"GetDeliverAdminKey"
+#define kSetDeliverAdminKey             @"kSetDeliverAdminKey"
 
 @interface BigManageSubViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
@@ -18,6 +19,23 @@
 @end
 
 @implementation BigManageSubViewController
+
+
+
+- (void)setDeliverAdminWithAdminPhone:(NSString *)adminPhone
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSetDeliverAdminUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    
+    [dict setObject:self.togetherId forKey:@"togetherId"];
+    [dict setObject:adminPhone forKey:@"adminPhone"];
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kSetDeliverAdminKey];
+}
 
 
 - (void)requestForDeliverAdmin
@@ -36,6 +54,25 @@
                                                                 purpose:kGetDeliverAdminKey];
 }
 
+- (void)callAdminPhone:(NSNotification *)notification
+{
+    NSString *phone = (NSString *)notification.object;
+    UIAlertController *phonealert = [UIAlertController alertControllerWithTitle:nil
+                                                                        message:phone
+                                                                 preferredStyle:UIAlertControllerStyleAlert];
+    [phonealert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                   style:UIAlertActionStyleDefault
+                                                 handler:^(UIAlertAction *action) {
+                                                     //
+                                                 }]];
+    [phonealert addAction:[UIAlertAction actionWithTitle:@"拨打"
+                                                   style:UIAlertActionStyleDefault
+                                                 handler:^(UIAlertAction *action) {
+                                                     NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phone]];
+                                                     [[UIApplication sharedApplication] openURL:telURL];
+                                                 }]];
+    [self presentViewController:phonealert animated:YES completion:nil];
+}
 
 #pragma mark - UITableViewDataSource Methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -46,7 +83,7 @@
     NSDictionary *dict = self.cellArray[indexPath.row];
     
     cell.nickname.text = [NSString stringWithFormat:@"昵称:%@", [dict objectForKey:@"nickname"]];
-    cell.phone.text = [NSString stringWithFormat:@"手机:%@", [dict objectForKey:@"phone"]];
+    cell.phone.text = [NSString stringWithFormat:@"%@", [dict objectForKey:@"phone"]];
     
     return cell;
 }
@@ -75,6 +112,8 @@
     BigManageSubTableViewCell *cell = (BigManageSubTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    [self setDeliverAdminWithAdminPhone:cell.phone.text];
+    
 }
 
 
@@ -89,6 +128,8 @@
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"BigManageSubTableViewCell"];
     //=============
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(callAdminPhone:) name:kCallAdminPhoneNotification object:nil];
     
     [self requestForDeliverAdmin];
 }
@@ -127,6 +168,26 @@
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
+    else if ([downloader.purpose isEqualToString:kSetDeliverAdminKey])
+    {
+        NSString *message = [dict objectForKey:kMessageKey];
+
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            if ([message isKindOfClass:[NSNull class]])
+                message = @"";
+            if(message.length == 0)
+                message = @"信息获取失败";
+            
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message

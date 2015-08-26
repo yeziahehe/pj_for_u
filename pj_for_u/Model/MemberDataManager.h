@@ -29,6 +29,7 @@
 
 @property (nonatomic, strong) Member *loginMember;
 @property (nonatomic, strong) IndividualInfo *mineInfo;
+@property (nonatomic, strong) NSMutableDictionary *homeInfo;        //存放营业时间和客服电话
 @property (nonatomic, copy) NSArray *preferential;
 
 + (MemberDataManager *)sharedManager;
@@ -92,4 +93,11 @@
  *  @param phone 手机号
  */
 - (void)requestForIndividualInfoWithPhone:(NSString *)phone;
+
+/**
+ *  获取主页的八个模块的信息
+ *
+ */
+
+- (void)getHomeCateGoryInfo;
 @end

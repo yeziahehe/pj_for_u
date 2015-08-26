@@ -19,9 +19,17 @@
 @property (strong, nonatomic) IBOutlet UIButton *isNotSelectedButton;
 @property (strong, nonatomic) IBOutlet UIButton *isSelectedButton;
 
+@property int recordStatus;
+
 @end
 
 @implementation BigManageViewController
+
+- (void)refreshHeader
+{
+    NSString *status = [NSString stringWithFormat:@"%d", self.recordStatus];
+    [self requestForBigManagesOrder:status];
+}
 
 
 - (void)requestForBigManagesOrder:(NSString *)isSelected
@@ -47,7 +55,9 @@
     
     self.isNotSelectedButton.backgroundColor = [UIColor whiteColor];
     
-    [self requestForBigManagesOrder:@"1"];
+    self.recordStatus = 1;
+    
+    [self requestSelectedAction];
 }
 
 - (void)isNotSelectedAction
@@ -55,8 +65,15 @@
     self.isNotSelectedButton.backgroundColor = [UIColor orangeColor];
     
     self.isSelectedButton.backgroundColor = [UIColor whiteColor];
+    
+    self.recordStatus = 0;
+    
+    [self requestSelectedAction];
+}
 
-    [self requestForBigManagesOrder:@"0"];
+- (void)requestSelectedAction
+{
+    [self requestForBigManagesOrder:[NSString stringWithFormat:@"%d", self.recordStatus]];
 }
 
 - (void)addTargetToButton
@@ -75,7 +92,7 @@
     if (self.orderList) {
         NSDictionary *dict = self.orderList[indexPath.row];
         cell.togetherDate.text = [NSString stringWithFormat:@"日期:%@", [dict objectForKey:@"togetherDate"]];
-        cell.togetherId.text = [NSString stringWithFormat:@"订单号:%@", [dict objectForKey:@"togetherId"]];
+        cell.togetherId.text = [NSString stringWithFormat:@"%@", [dict objectForKey:@"togetherId"]];
         cell.address.text = [NSString stringWithFormat:@"地址:%@", [dict objectForKey:@"address"]];
         cell.price.text = [NSString stringWithFormat:@"价格:%@", [dict objectForKey:@"price"]];
         cell.reserveTime.text = [NSString stringWithFormat:@"%@", [dict objectForKey:@"reserveTime"]];
@@ -101,7 +118,12 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    BigManageTableViewCell *cell = (BigManageTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    
     BigManageSubViewController *bmsvc = [[BigManageSubViewController alloc] init];
+    
+    bmsvc.togetherId = cell.togetherId.text;
+    
     [self.navigationController pushViewController:bmsvc animated:YES];
     
 }
@@ -121,7 +143,18 @@
 
     [self addTargetToButton];
     
-    [self isNotSelectedAction];
+    self.recordStatus = 0;
+    self.isNotSelectedButton.backgroundColor = [UIColor orangeColor];
+    self.isSelectedButton.backgroundColor = [UIColor whiteColor];
+    
+    [self.tableView addHeaderWithTarget:self action:@selector(refreshHeader)];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self requestSelectedAction];
 }
 
 - (void)didReceiveMemoryWarning
@@ -137,10 +170,12 @@
     
     if ([downloader.purpose isEqualToString:kSuperAdminGetOrderKey])
     {
+        [self.tableView headerEndRefreshing];
+
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-
+ 
             self.orderList = [dict objectForKey:@"orderList"];
             
             [self.tableView reloadData];

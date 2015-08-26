@@ -418,20 +418,6 @@
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
-    else if ([downloader.purpose isEqualToString:kModifyOrderStatusKey]) {
-        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
-        {
-            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"确认成功" hideDelay:2.f];
-            
-            [self.navigationController popViewControllerAnimated:YES];
-        }
-        else
-        {
-            NSString *message = @"确认失败";
-            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
-        }
-    }
-
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message

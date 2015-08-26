@@ -93,7 +93,6 @@
         cell.leftButton.hidden = YES;
         [cell.rightButton setTitle:@"删除订单" forState:UIControlStateNormal];;
     }
-    
 }
 
 //上拉加载，要传递value array的个数
@@ -376,7 +375,6 @@
     self.waitForConfirmView.backgroundColor = [UIColor redColor];
     self.recordLastStatus = 2;
     [self refreshHeader];
-
 }
 
 - (void)distributingAction
@@ -387,7 +385,6 @@
     self.distributingView.backgroundColor = [UIColor redColor];
     self.recordLastStatus = 3;
     [self refreshHeader];
-
 }
 
 - (void)waitForEvaluationAction
@@ -785,8 +782,6 @@
         NSString *message = [dict objectForKey:kMessageKey];
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
-            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
-            
             [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
             
@@ -808,7 +803,6 @@
         NSString *message = [dict objectForKey:kMessageKey];
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
-            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
             
             [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
@@ -829,8 +823,6 @@
     else if ([downloader.purpose isEqualToString:kModifyOrderStatusKey]) {
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
-            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"确认成功" hideDelay:2.f];
-            
             [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
             

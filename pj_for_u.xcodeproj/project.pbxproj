@@ -262,6 +262,12 @@
 		6D6A8D231B8AFAB00027D4C4 /* BigManageSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D211B8AFAB00027D4C4 /* BigManageSubViewController.xib */; };
 		6D6A8D271B8B13BF0027D4C4 /* BigManageSubTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A8D251B8B13BF0027D4C4 /* BigManageSubTableViewCell.m */; };
 		6D6A8D281B8B13BF0027D4C4 /* BigManageSubTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D261B8B13BF0027D4C4 /* BigManageSubTableViewCell.xib */; };
+		6D6A8D2C1B8C13E30027D4C4 /* CourierViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A8D2A1B8C13E30027D4C4 /* CourierViewController.m */; };
+		6D6A8D2D1B8C13E30027D4C4 /* CourierViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D2B1B8C13E30027D4C4 /* CourierViewController.xib */; };
+		6D6A8D311B8C14FE0027D4C4 /* CourierTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A8D2F1B8C14FE0027D4C4 /* CourierTableViewCell.m */; };
+		6D6A8D321B8C14FE0027D4C4 /* CourierTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D301B8C14FE0027D4C4 /* CourierTableViewCell.xib */; };
+		6D6A8D361B8C28C70027D4C4 /* CourierSubTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A8D341B8C28C70027D4C4 /* CourierSubTableViewCell.m */; };
+		6D6A8D371B8C28C70027D4C4 /* CourierSubTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D351B8C28C70027D4C4 /* CourierSubTableViewCell.xib */; };
 		6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E81B65F4C700257256 /* empty_choice@3x.png */; };
 		6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E91B65F4C700257256 /* full_choice@2x.png */; };
 		6D7716EE1B65F4C700257256 /* full_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716EA1B65F4C700257256 /* full_choice@3x.png */; };
@@ -675,6 +681,15 @@
 		6D6A8D241B8B13BF0027D4C4 /* BigManageSubTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigManageSubTableViewCell.h; sourceTree = "<group>"; };
 		6D6A8D251B8B13BF0027D4C4 /* BigManageSubTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigManageSubTableViewCell.m; sourceTree = "<group>"; };
 		6D6A8D261B8B13BF0027D4C4 /* BigManageSubTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BigManageSubTableViewCell.xib; sourceTree = "<group>"; };
+		6D6A8D291B8C13E30027D4C4 /* CourierViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierViewController.h; sourceTree = "<group>"; };
+		6D6A8D2A1B8C13E30027D4C4 /* CourierViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourierViewController.m; sourceTree = "<group>"; };
+		6D6A8D2B1B8C13E30027D4C4 /* CourierViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourierViewController.xib; sourceTree = "<group>"; };
+		6D6A8D2E1B8C14FE0027D4C4 /* CourierTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierTableViewCell.h; sourceTree = "<group>"; };
+		6D6A8D2F1B8C14FE0027D4C4 /* CourierTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourierTableViewCell.m; sourceTree = "<group>"; };
+		6D6A8D301B8C14FE0027D4C4 /* CourierTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourierTableViewCell.xib; sourceTree = "<group>"; };
+		6D6A8D331B8C28C70027D4C4 /* CourierSubTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierSubTableViewCell.h; sourceTree = "<group>"; };
+		6D6A8D341B8C28C70027D4C4 /* CourierSubTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourierSubTableViewCell.m; sourceTree = "<group>"; };
+		6D6A8D351B8C28C70027D4C4 /* CourierSubTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourierSubTableViewCell.xib; sourceTree = "<group>"; };
 		6D7716E71B65F4C700257256 /* empty_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@2x.png"; path = "Resource/empty_choice@2x.png"; sourceTree = "<group>"; };
 		6D7716E81B65F4C700257256 /* empty_choice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@3x.png"; path = "Resource/empty_choice@3x.png"; sourceTree = "<group>"; };
 		6D7716E91B65F4C700257256 /* full_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "full_choice@2x.png"; path = "Resource/full_choice@2x.png"; sourceTree = "<group>"; };
@@ -1413,6 +1428,15 @@
 		6D6A8D121B8ACF360027D4C4 /* 派送员 */ = {
 			isa = PBXGroup;
 			children = (
+				6D6A8D291B8C13E30027D4C4 /* CourierViewController.h */,
+				6D6A8D2A1B8C13E30027D4C4 /* CourierViewController.m */,
+				6D6A8D2B1B8C13E30027D4C4 /* CourierViewController.xib */,
+				6D6A8D2E1B8C14FE0027D4C4 /* CourierTableViewCell.h */,
+				6D6A8D2F1B8C14FE0027D4C4 /* CourierTableViewCell.m */,
+				6D6A8D301B8C14FE0027D4C4 /* CourierTableViewCell.xib */,
+				6D6A8D331B8C28C70027D4C4 /* CourierSubTableViewCell.h */,
+				6D6A8D341B8C28C70027D4C4 /* CourierSubTableViewCell.m */,
+				6D6A8D351B8C28C70027D4C4 /* CourierSubTableViewCell.xib */,
 			);
 			name = "派送员";
 			sourceTree = "<group>";
@@ -1590,6 +1614,7 @@
 				2CF6076E1B5EA0EF0022E8E7 /* btn_category@2x.png in Resources */,
 				2CF607981B5EBDA10022E8E7 /* line_ver_1px_right.png in Resources */,
 				6D2044C81B842C9700386189 /* ProCommentView.xib in Resources */,
+				6D6A8D321B8C14FE0027D4C4 /* CourierTableViewCell.xib in Resources */,
 				2C2528841B5E2C9D00ADDEFB /* RootTabBarViewController.xib in Resources */,
 				2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */,
 				6D8AD3F41B60BD250099A0D8 /* AddressManageViewController.xib in Resources */,
@@ -1632,6 +1657,7 @@
 				2C7953901B61321B00511EB7 /* home_image_default@2x.png in Resources */,
 				0A72CE4D1B744D3E00222284 /* icon_rubbish@2x.png in Resources */,
 				6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */,
+				6D6A8D2D1B8C13E30027D4C4 /* CourierViewController.xib in Resources */,
 				4A1464F31B75F33000B9F058 /* icon_addshopcar@2x.png in Resources */,
 				6D2044E31B84631800386189 /* feedback_input_box.png in Resources */,
 				2C2528991B5E38B100ADDEFB /* RegisterViewController.xib in Resources */,
@@ -1670,6 +1696,7 @@
 				0A3B670E1B6203BC0067C709 /* SettingTableViewCell.xib in Resources */,
 				6D6A8D071B8AAEAF0027D4C4 /* guidepage_1_568h@2x.png in Resources */,
 				0A54DA811B73311E00FCBAB0 /* icon_alipay@2x.png in Resources */,
+				6D6A8D371B8C28C70027D4C4 /* CourierSubTableViewCell.xib in Resources */,
 				6D938E8B1B745A3400AB9895 /* icon_trade_success.png in Resources */,
 				6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */,
 				2CF607C41B5EC88C0022E8E7 /* icon_more@2x.png in Resources */,
@@ -1738,6 +1765,7 @@
 				4A6C16321B6F682200C9A9D2 /* SXNetworkTools.m in Sources */,
 				2C2528FF1B5E3AA900ADDEFB /* UIImage+YFAdditions.m in Sources */,
 				2CF607831B5EA8F60022E8E7 /* SchoolSelectTableView.m in Sources */,
+				6D6A8D311B8C14FE0027D4C4 /* CourierTableViewCell.m in Sources */,
 				6D2044B61B842A6D00386189 /* ProImageView.m in Sources */,
 				2CF607801B5EA5DB0022E8E7 /* UITableViewCell+YFAdditions.m in Sources */,
 				2C2528D31B5E39EF00ADDEFB /* UIScrollView+MJExtension.m in Sources */,
@@ -1755,6 +1783,7 @@
 				2C2528D21B5E39EF00ADDEFB /* MJRefreshHeaderView.m in Sources */,
 				6D8AF6871B7C3EEA00B1BFBF /* YFBadgeView.m in Sources */,
 				4A6C16821B70BAC500C9A9D2 /* AFHTTPRequestOperationManager.m in Sources */,
+				6D6A8D361B8C28C70027D4C4 /* CourierSubTableViewCell.m in Sources */,
 				6D6A8D271B8B13BF0027D4C4 /* BigManageSubTableViewCell.m in Sources */,
 				2CF6077F1B5EA5DB0022E8E7 /* UITableView+YFAdditions.m in Sources */,
 				6D2044CC1B842EC200386189 /* MyOrderViewController.m in Sources */,
@@ -1808,6 +1837,7 @@
 				4A6C16211B6B93AB00C9A9D2 /* CategoryLabel.m in Sources */,
 				0AFC07151B6CAE46002BDB90 /* ShoppingCarTableViewCell.m in Sources */,
 				4A6C16811B70BAC500C9A9D2 /* AFHTTPRequestOperation.m in Sources */,
+				6D6A8D2C1B8C13E30027D4C4 /* CourierViewController.m in Sources */,
 				2C2528891B5E2E1E00ADDEFB /* LoginViewController.m in Sources */,
 				6D8AD3EC1B6097C70099A0D8 /* IndividualViewController.m in Sources */,
 				2C2529001B5E3AA900ADDEFB /* UIImage+YFUtilities.m in Sources */,

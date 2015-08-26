@@ -202,24 +202,21 @@
                         <constraint firstAttribute="centerX" secondItem="FjA-OB-BiX" secondAttribute="centerX" multiplier="3:1" constant="13.5" id="yCd-J6-jlH"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZI-tF-QpV">
-                    <rect key="frame" x="187.5" y="366" width="187.5" height="40"/>
-                    <color key="backgroundColor" red="0.36288357987183772" green="0.74372421320142923" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="40" id="2RA-9I-7xB"/>
-                    </constraints>
-                    <state key="normal" title="大经理">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDf-jx-8e6">
+                    <rect key="frame" x="0.0" y="366" width="375" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.5907416367494851" blue="0.26010971425091711" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="派送员">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDf-jx-8e6">
-                    <rect key="frame" x="0.0" y="366" width="187.5" height="40"/>
-                    <color key="backgroundColor" red="1" green="0.5907416367494851" blue="0.26010971425091711" alpha="1" colorSpace="calibratedRGB"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bZI-tF-QpV">
+                    <rect key="frame" x="0.0" y="366" width="375" height="40"/>
+                    <color key="backgroundColor" red="0.36288357987183772" green="0.74372421320142923" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="Ehc-Qh-coE"/>
+                        <constraint firstAttribute="height" constant="40" id="jdv-bY-ceN"/>
                     </constraints>
-                    <state key="normal" title="派送员">
+                    <state key="normal" title="大经理">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
@@ -228,17 +225,18 @@
             <color key="backgroundColor" red="0.97953344666946585" green="0.97829060216019625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="HVX-oj-Oh5" firstAttribute="top" secondItem="g4a-vI-sVW" secondAttribute="bottom" id="4g1-Al-N1e"/>
-                <constraint firstItem="BDf-jx-8e6" firstAttribute="top" secondItem="HVX-oj-Oh5" secondAttribute="bottom" id="9rD-If-cSE"/>
-                <constraint firstAttribute="trailing" secondItem="bZI-tF-QpV" secondAttribute="trailing" id="GYR-E3-yJP"/>
+                <constraint firstItem="bZI-tF-QpV" firstAttribute="bottom" secondItem="BDf-jx-8e6" secondAttribute="bottom" id="7ST-X9-LgN"/>
+                <constraint firstItem="bZI-tF-QpV" firstAttribute="top" secondItem="HVX-oj-Oh5" secondAttribute="bottom" id="Cbw-yd-QDs"/>
+                <constraint firstItem="bZI-tF-QpV" firstAttribute="top" secondItem="BDf-jx-8e6" secondAttribute="top" id="FUk-sl-cbG"/>
                 <constraint firstItem="HVX-oj-Oh5" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="J6y-O3-h7e"/>
                 <constraint firstAttribute="trailing" secondItem="g4a-vI-sVW" secondAttribute="trailing" id="LXh-75-8wM"/>
-                <constraint firstItem="BDf-jx-8e6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="LxW-Ja-53J"/>
                 <constraint firstAttribute="trailing" secondItem="HVX-oj-Oh5" secondAttribute="trailing" id="RJm-za-0Aa"/>
+                <constraint firstAttribute="trailing" secondItem="bZI-tF-QpV" secondAttribute="trailing" id="SVF-tA-rQ6"/>
                 <constraint firstItem="g4a-vI-sVW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="V6R-to-Pcx"/>
-                <constraint firstItem="bZI-tF-QpV" firstAttribute="leading" secondItem="BDf-jx-8e6" secondAttribute="trailing" id="Yg5-al-598"/>
-                <constraint firstItem="bZI-tF-QpV" firstAttribute="top" secondItem="HVX-oj-Oh5" secondAttribute="bottom" id="hnb-ja-ejU"/>
+                <constraint firstItem="bZI-tF-QpV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="eXe-3z-n3y"/>
                 <constraint firstItem="g4a-vI-sVW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="hxX-kQ-2Bf"/>
-                <constraint firstItem="bZI-tF-QpV" firstAttribute="width" secondItem="BDf-jx-8e6" secondAttribute="width" id="n1f-2Y-Cgd"/>
+                <constraint firstItem="bZI-tF-QpV" firstAttribute="trailing" secondItem="BDf-jx-8e6" secondAttribute="trailing" id="meK-NN-KXF"/>
+                <constraint firstItem="bZI-tF-QpV" firstAttribute="leading" secondItem="BDf-jx-8e6" secondAttribute="leading" id="pQr-jF-X5Z"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

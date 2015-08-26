@@ -69,6 +69,8 @@
     [super viewDidLoad];
     [self setNaviTitle:@"设置"];
     [self loadSubViews];
+    [[MemberDataManager sharedManager] getHomeCateGoryInfo];
+
 }
 
 #pragma mark - UITableViewDataSource methods
@@ -140,7 +142,8 @@
     }
     else if ([titleString isEqualToString:@"联系客服"])
     {
-        UIAlertController *phonenumSheet = [UIAlertController alertControllerWithTitle:@"1111111" message:@"这是一个电话号码，您要对它：" preferredStyle:UIAlertControllerStyleActionSheet];
+        NSString *phoneId = [[MemberDataManager sharedManager].homeInfo objectForKey:@"customService"];
+        UIAlertController *phonenumSheet = [UIAlertController alertControllerWithTitle:phoneId message:@"这是一个电话号码，您要对它：" preferredStyle:UIAlertControllerStyleActionSheet];
         [phonenumSheet addAction:[UIAlertAction actionWithTitle:@"取消"
                                                           style:UIAlertActionStyleCancel
                                                         handler:^(UIAlertAction *action) {

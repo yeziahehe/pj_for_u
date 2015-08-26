@@ -23,8 +23,8 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单号" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECR-7E-fdr">
-                        <rect key="frame" x="8" y="54" width="39" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单号:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ECR-7E-fdr">
+                        <rect key="frame" x="8" y="54" width="43" height="15"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="KRT-jb-VNZ"/>
                         </constraints>
@@ -32,7 +32,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="7" translatesAutoresizingMaskIntoConstraints="NO" id="ZIk-zW-gUA">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZIk-zW-gUA">
                         <rect key="frame" x="8" y="77" width="326" height="32.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -65,20 +65,29 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7O7-2v-7j8" userLabel="togetherId">
+                        <rect key="frame" x="56" y="54" width="0.0" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="ZIk-zW-gUA" secondAttribute="trailing" constant="8" id="0U0-Ig-dBc"/>
                     <constraint firstItem="RPJ-F7-Hw5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="1gz-va-5b1"/>
                     <constraint firstItem="LQF-Q5-pWj" firstAttribute="top" secondItem="LGd-dN-ZXf" secondAttribute="bottom" constant="8" id="891-IT-ctm"/>
+                    <constraint firstItem="7O7-2v-7j8" firstAttribute="leading" secondItem="ECR-7E-fdr" secondAttribute="trailing" constant="5" id="MDZ-Fe-inr"/>
                     <constraint firstAttribute="bottom" secondItem="ZIk-zW-gUA" secondAttribute="bottom" constant="8" id="Mna-Wa-6Wd"/>
                     <constraint firstAttribute="centerX" secondItem="LQF-Q5-pWj" secondAttribute="leading" id="MvN-SN-MGj"/>
                     <constraint firstItem="RPJ-F7-Hw5" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Qlf-Rz-OGB"/>
                     <constraint firstAttribute="centerX" secondItem="LGd-dN-ZXf" secondAttribute="leading" id="RAj-2h-APv"/>
                     <constraint firstItem="ECR-7E-fdr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="f0T-qa-ewc"/>
                     <constraint firstItem="ZIk-zW-gUA" firstAttribute="top" secondItem="ECR-7E-fdr" secondAttribute="bottom" constant="8" id="muZ-gd-sHF"/>
+                    <constraint firstItem="7O7-2v-7j8" firstAttribute="top" secondItem="ECR-7E-fdr" secondAttribute="top" id="sz9-ja-vFV"/>
                     <constraint firstItem="ECR-7E-fdr" firstAttribute="top" secondItem="qcJ-tl-vQu" secondAttribute="bottom" constant="8" id="uvv-Zg-qF7"/>
                     <constraint firstItem="LGd-dN-ZXf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="9" id="vo8-lP-YQJ"/>
                     <constraint firstItem="qcJ-tl-vQu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="x2l-al-0tj"/>
+                    <constraint firstItem="7O7-2v-7j8" firstAttribute="bottom" secondItem="ECR-7E-fdr" secondAttribute="bottom" id="x9N-2U-R3T"/>
                     <constraint firstItem="ZIk-zW-gUA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="yQs-rn-T9X"/>
                     <constraint firstItem="qcJ-tl-vQu" firstAttribute="top" secondItem="RPJ-F7-Hw5" secondAttribute="bottom" constant="8" id="zlZ-hH-5jo"/>
                 </constraints>
@@ -89,7 +98,7 @@
                 <outlet property="price" destination="qcJ-tl-vQu" id="kbV-We-gfY"/>
                 <outlet property="reserveTime" destination="LQF-Q5-pWj" id="noP-I5-dxK"/>
                 <outlet property="togetherDate" destination="RPJ-F7-Hw5" id="ECL-at-zrM"/>
-                <outlet property="togetherId" destination="ECR-7E-fdr" id="oiq-2L-dku"/>
+                <outlet property="togetherId" destination="7O7-2v-7j8" id="tNJ-sV-gMw"/>
             </connections>
             <point key="canvasLocation" x="353.5" y="237"/>
         </tableViewCell>
