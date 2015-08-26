@@ -19,10 +19,10 @@
 #define kGetActivityImagesDownloaderKey  @"GetActivityImagesDownloaderKey"
 
 @interface HomeViewController ()
+
 @property (nonatomic, strong) NSMutableArray *subViewArray;
 @property (nonatomic, strong) NSMutableArray *imageUrlArray;
 
-@property (nonatomic, strong) ImageContainView *imageContainView;
 @end
 
 @implementation HomeViewController
@@ -53,12 +53,13 @@
         rect.origin.y = originY;
         rect.origin.x = 0.0f;
         if ([homeSubView isKindOfClass:[ImageContainView class]]) {
-            self.imageContainView = (ImageContainView *)homeSubView;
-            [self.contentScrollView addSubview:self.imageContainView];
-            self.imageContainView.frame = rect;
-            originY = rect.origin.y + rect.size.height;
-            
-            continue;
+
+//            self.imageContainView = (ImageContainView *)homeSubView;
+//            [self.contentScrollView addSubview:self.imageContainView];
+//            self.imageContainView.frame = rect;
+//            originY = rect.origin.y + rect.size.height;
+//            
+//            continue;
         }
         else if ([homeSubView isKindOfClass:[HomeContainView class]]) {
             //让HomeContainView width等于height的两倍，达到xib自动布局的效果
