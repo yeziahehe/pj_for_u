@@ -91,7 +91,7 @@
         NSDictionary *valueDict = [responseObject objectForKey:@"food"];
         self.proInfo = [[ProductionInfo alloc]initWithDict:valueDict];
         [self loadSubViews];
-        [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
+        [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中"];
 
     }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
         
@@ -124,7 +124,7 @@
             
             proImageView.proInfo = self.proInfo;
             rect.size.width = ScreenWidth;
-            rect.size.height = proImageView.frame.size.height;
+            rect.size.height = ScreenWidth + 125.0;
             rect.origin.y += 64.f;
         }
         else if ([productSubView isKindOfClass:[ProInfoView class]]) {
@@ -194,7 +194,7 @@
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:YES];
     if (![self.isLoaded isEqualToString:@"1"]) {
-        [[YFProgressHUD sharedProgressHUD]startedNetWorkActivityWithText:@"加载中"];
+        [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中"];
     }
 }
 -(void)dealloc{

@@ -23,6 +23,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *messageLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *lineImage;
 @property (strong, nonatomic) IBOutlet UIImageView *cutImageView;
+@property (strong, nonatomic) IBOutlet UILabel *preferential;
 
 @end
 
@@ -47,7 +48,7 @@
         [asynImgView aysnLoadImageWithUrl:images[i] placeHolder:@"home_image_default.png"];
         
         //设置frame
-        CGRect rect = CGRectMake(i * ScreenWidth, 0, ScreenWidth, self.scrollView.frame.size.height);
+        CGRect rect = CGRectMake(i * ScreenWidth, 0, ScreenWidth, ScreenWidth);
         asynImgView.frame = rect;
         asynImgView.contentMode = UIViewContentModeScaleToFill;
         
@@ -106,7 +107,21 @@
         self.cutImageView.hidden = YES;
     }
     
-    
+    if ([proInfo.isFullDiscount isEqualToString:@"1"]) {
+        self.cutImageView.hidden = NO;
+        self.preferential.hidden = NO;
+
+        NSMutableString *preferentialString = [[NSMutableString alloc] initWithCapacity:30];
+        for (NSDictionary *dict in [MemberDataManager sharedManager].preferentials) {
+            NSString *full = [NSString stringWithFormat:@"%@", [dict objectForKey:@"needNumber"]];
+            NSString *cut = [NSString stringWithFormat:@"%@", [dict objectForKey:@"discountNum"]];
+            [preferentialString appendString:[NSString stringWithFormat:@"满%@减%@;", full, cut]];
+        }
+        self.preferential.text = preferentialString;
+    } else {
+        self.cutImageView.hidden = YES;
+        self.preferential.hidden = YES;
+    }
     
     if (!proInfo.grade) {
         self.gradeLabel.text = proInfo.grade;
@@ -118,6 +133,8 @@
 
     [self loadWithImages:images];
 
+    
+    
 }
 
 @end

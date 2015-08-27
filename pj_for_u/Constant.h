@@ -112,6 +112,7 @@
 #define kCallAdminPhoneNotification             @"CallAdminPhoneNotification"
 #define kAdminChangeOrderStatusNotification     @"AdminChangeOrderStatusNotification"
 #define kGetHomeInfoNotification                @"GetHomeInfoNotification"
+#define kGetPreferentialsNotification           @"GetPreferentialsNotification"
 
 //Url values
 #define kServerAddress                  @"http://120.26.76.252:8080/foryou/"
@@ -157,5 +158,6 @@
 #define kGetDeliverAdminUrl             @"user/getDeliverAdmin.do"
 #define kSetDeliverAdminUrl             @"order/setDeliverAdmin.do"
 #define kDeliverAdminGetOrderUrl        @"order/DeliverAdminGetOrder.do"
+#define kGetPreferentialsUrl            @"order/getPreferentials.do"
 
 #endif

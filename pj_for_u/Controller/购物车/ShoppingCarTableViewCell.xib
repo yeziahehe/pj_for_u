@@ -67,9 +67,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="wU2-v3-hNr">
-                        <rect key="frame" x="175" y="113" width="50" height="2"/>
+                        <rect key="frame" x="175" y="113" width="55" height="2"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="Oxe-9z-xR7"/>
+                            <constraint firstAttribute="width" constant="55" id="Oxe-9z-xR7"/>
+                            <constraint firstAttribute="height" constant="2" id="kfc-cz-l2W"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkt-sB-7VR">
@@ -208,7 +209,7 @@
                 <outlet property="preferential" destination="Eu0-PR-TaT" id="ydg-x9-3i7"/>
                 <outlet property="secondLabel" destination="2mS-9x-aYs" id="ha3-P8-jQg"/>
             </connections>
-            <point key="canvasLocation" x="97.5" y="198"/>
+            <point key="canvasLocation" x="13.5" y="196"/>
         </tableViewCell>
     </objects>
     <resources>

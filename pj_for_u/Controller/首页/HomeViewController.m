@@ -158,6 +158,8 @@
     [self requestForImages];
     [self.contentScrollView addHeaderWithTarget:self action:@selector(refreshHomeNotification:) dateKey:@"HomeViewController"];
     
+    [[MemberDataManager sharedManager] getPreferentialsInfo];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(campusNameNotification:) name:kCampusNameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHomeNotification:) name:kRefreshHomeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(homeButtonToProductWithNotification:) name:kButtonCategoryNotfication object:nil];

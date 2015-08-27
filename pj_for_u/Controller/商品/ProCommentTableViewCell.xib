@@ -100,8 +100,8 @@
                             <constraint firstAttribute="width" constant="15" id="Up0-qo-FCj"/>
                         </constraints>
                     </imageView>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="ApL-rC-MGT">
-                        <rect key="frame" x="0.0" y="110" width="375" height="1"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="ApL-rC-MGT">
+                        <rect key="frame" x="0.0" y="109" width="375" height="1"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="4Q8-Go-U9N"/>
                         </constraints>
@@ -111,7 +111,7 @@
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Hsq-H3-qeB" secondAttribute="trailing" constant="8" id="1di-yc-6sX"/>
                     <constraint firstItem="Mca-Mz-qQa" firstAttribute="leading" secondItem="XHn-aY-Xnm" secondAttribute="trailing" constant="4" id="3po-M7-UIc"/>
-                    <constraint firstAttribute="bottom" secondItem="ApL-rC-MGT" secondAttribute="bottom" constant="1.5" id="6Qj-xt-xA6"/>
+                    <constraint firstAttribute="bottom" secondItem="ApL-rC-MGT" secondAttribute="bottom" id="6Qj-xt-xA6"/>
                     <constraint firstItem="j8h-1K-kEd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="7G6-Xw-aMa"/>
                     <constraint firstItem="Cj2-ru-5GW" firstAttribute="leading" secondItem="Mca-Mz-qQa" secondAttribute="trailing" constant="4" id="8qP-st-FdW"/>
                     <constraint firstItem="Cj2-ru-5GW" firstAttribute="leading" secondItem="Mca-Mz-qQa" secondAttribute="trailing" constant="4" id="9Zq-Ti-uOd"/>

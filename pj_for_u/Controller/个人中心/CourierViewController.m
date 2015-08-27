@@ -57,7 +57,7 @@
 
 - (void)requestForCourier
 {
-    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中..."];
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中..."];
     
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kDeliverAdminGetOrderUrl];
     NSMutableDictionary *dict = kCommonParamsDict;

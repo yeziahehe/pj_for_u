@@ -255,7 +255,7 @@
 //请求我的订单信息，通过不同状态
 - (void)requestForMyOrderByStatus:(NSString *)status page:(NSString *)page limit:(NSString *)limit
 {
-    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中..."];
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中..."];
     
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kGetOrderInMine];
     NSMutableDictionary *dict = kCommonParamsDict;
@@ -589,25 +589,14 @@
         cell.smallOrders = smallOrders;
         [cell.tableView reloadData];
         
-        //后台不给。。。手动计算个数和总价
+        //后台不给。。。手动计算个数
         int count = 0;
-        double price = 0.0;
-        NSString *realPriceType;
         for (NSDictionary *dict in smallOrders) {
-            NSString *isDiscount = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isDiscount"]];
-            if ([isDiscount isEqualToString:@"1"]) {
-                realPriceType = @"discountPrice";
-            } else {
-                realPriceType = @"price";
-            }
-            int singleCount = [[dict objectForKey:@"orderCount"] intValue];
-            double singlePrice = [[dict objectForKey:realPriceType] doubleValue];
-            price += singleCount * singlePrice;
-            count += singleCount;
+            count += [[dict objectForKey:@"orderCount"] intValue];
         }
         cell.itsIndexPath = indexPath;
         cell.totalConut.text = [NSString stringWithFormat:@"共%d件商品", count];
-        cell.totalPrice.text = [NSString stringWithFormat:@"￥%.1lf", price];
+        cell.totalPrice.text = [NSString stringWithFormat:@"￥%@", [orderInfoDictionary objectForKey:@"totalPrice"]];
         
         NSString *status = [NSString stringWithFormat:@"%@", [orderInfoDictionary objectForKey:@"status"]];
         

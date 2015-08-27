@@ -34,7 +34,7 @@
 
 - (void)requestForBigManagesOrder:(NSString *)isSelected
 {
-    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中..."];
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中..."];
     
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSuperAdminGetOrderUrl];
     NSMutableDictionary *dict = kCommonParamsDict;

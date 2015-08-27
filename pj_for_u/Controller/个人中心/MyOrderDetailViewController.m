@@ -121,7 +121,7 @@
 
 - (void)requestForMyOrderDetailByTogetherId:(NSString *)togetherId
 {
-    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中..."];
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中..."];
     
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kGetOrderDetailUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
@@ -260,23 +260,13 @@
         
         //后台不给。。。手动计算个数和总价
         int count = 0;
-        double price = 0.0;
-        NSString *realPriceType;
         for (NSDictionary *dict in self.smallOrders) {
-            NSString *isDiscount = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isDiscount"]];
-            if ([isDiscount isEqualToString:@"1"]) {
-                realPriceType = @"discountPrice";
-            } else {
-                realPriceType = @"price";
-            }
-            int singleCount = [[dict objectForKey:@"orderCount"] intValue];
-            double singlePrice = [[dict objectForKey:realPriceType] doubleValue];
-            price += singleCount * singlePrice;
-            count += singleCount;
+            count += [[dict objectForKey:@"orderCount"] intValue];
         }
         cell.itsIndexPath = indexPath;
         cell.totalConut.text = [NSString stringWithFormat:@"共%d件商品", count];
-        cell.totalPrice.text = [NSString stringWithFormat:@"￥%.1lf", price];
+        cell.totalPrice.text = [NSString stringWithFormat:@"￥%@", [self.bigOrder objectForKey:@"totalPrice"]];
+
         cell.canBeSelected = NO;
         
         NSString *status = [NSString stringWithFormat:@"%@", [self.bigOrder objectForKey:@"status"]];

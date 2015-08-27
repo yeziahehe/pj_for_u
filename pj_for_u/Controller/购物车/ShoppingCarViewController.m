@@ -78,6 +78,7 @@
 //计算订单总价
 - (void)calculateTotalPrice
 {
+    
     NSMutableArray *calculateArray = [[NSMutableArray alloc]init];
     if (!self.isChangedToSelectMode) {
         calculateArray = self.shoppingCarArray;
@@ -91,24 +92,52 @@
             self.moneySavedLabel.text =@"(已节省0.0元)";
         }
     }
+    
     if ([calculateArray count] != 0) {
-    self.totalPrice = nil;
-    self.originPrice = nil;
-    self.disCount = nil;
-    for (int i = 0; i < calculateArray.count; i++) {
-        ShoppingCar *sc = [calculateArray objectAtIndex:i];
-        if ([sc.isDiscount isEqualToString:@"1"]) {
-            self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.discountPrice floatValue]*[sc.orderCount intValue]];
+        self.totalPrice = nil;
+        self.originPrice = nil;
+        self.disCount = nil;
+        
+        double price = 0.0;         //总价
+        double singlePrice = 0.0;   //单价
+        double cutMoneny = 0.0;     //省
+        double cutFullPrice = 0.0;      //满
+        double discountNum = 0.0;   //减
+        for (ShoppingCar *sc in calculateArray) {
+            
+            if ([sc.isDiscount isEqualToString:@"1"]) {
+                singlePrice = sc.discountPrice.doubleValue * sc.orderCount.intValue;
+                double orignPrice = sc.price.doubleValue * sc.orderCount.intValue;
+                cutMoneny += orignPrice - singlePrice;
+                
+            } else if ([sc.isDiscount isEqualToString:@"0"]) {
+                singlePrice = sc.price.doubleValue * sc.orderCount.intValue;
+            }
+            price += singlePrice;
+
+            
+            if ([sc.isFullDiscount isEqualToString:@"1"]) {
+                cutFullPrice += singlePrice;
+                for (NSDictionary *dict in [MemberDataManager sharedManager].preferentials) {
+                    double full = [NSString stringWithFormat:@"%@", [dict objectForKey:@"needNumber"]].doubleValue;
+                    double cut = [NSString stringWithFormat:@"%@", [dict objectForKey:@"discountNum"]].doubleValue;
+                    if (cutFullPrice >= full) {
+                        discountNum = cut;
+                        break;
+                    }
+                }
+                
+            }
         }
-        else{
-            self.totalPrice = [NSString stringWithFormat:@"%.1f元",[self.totalPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
-        }
-        self.originPrice = [NSString stringWithFormat:@"%.1f元",[self.originPrice floatValue]+[sc.price floatValue]*[sc.orderCount intValue]];
-        self.disCount = [NSString stringWithFormat:@"(已节省%.1f元)",[self.originPrice floatValue]-[self.totalPrice floatValue]];
-    }
-    self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%@",self.totalPrice];
-    self.discountPrice.text = self.originPrice;
-    self.moneySavedLabel.text = self.disCount;
+        price -= discountNum;
+        cutMoneny += discountNum;
+        
+        self.totalPrice = [NSString stringWithFormat:@"%.1f元", price];
+        self.originPrice = [NSString stringWithFormat:@"%.1f元", price + cutMoneny];
+        self.disCount = [NSString stringWithFormat:@"(已节省%.1f元)", cutMoneny];
+        self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%@", self.totalPrice];
+        self.discountPrice.text = self.originPrice;
+        self.moneySavedLabel.text = self.disCount;
     }
 }
 
@@ -124,7 +153,11 @@
 //视图出现前调用,依据是否登录判断显示界面
 - (void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
+    [super viewWillAppear:animated];
+
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(plusShoppingAmountNotification:) name:kPlusShoppingAmountNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(minusShoppingAmountNotification:) name:kMinusShoppingAmountNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeBackGrayViewNotification:) name:kRemoveBackGrayViewNotification object:nil];
 
     if ([[MemberDataManager sharedManager] isLogin]) {
 //        if ([self.shoppingCarArray count] == 0) {
@@ -141,13 +174,19 @@
         [self noGoodsExistView];
     }
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadSubViews];
     [self noGoodsExistView];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(plusShoppingAmountNotification:) name:kPlusShoppingAmountNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(minusShoppingAmountNotification:) name:kMinusShoppingAmountNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeBackGrayViewNotification:) name:kRemoveBackGrayViewNotification object:nil];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[YFProgressHUD sharedProgressHUD]stoppedNetWorkActivity];
+
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -157,9 +196,10 @@
 
 - (void)dealloc
 {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
+
 #pragma mark - UIViewController methods
 - (void)rightItemTapped
 {
@@ -248,10 +288,10 @@
         [[YFProgressHUD sharedProgressHUD] showWithMessage:@"已减少到最小数量" customView:nil hideDelay:2.f];
     }
     else{
-    sc.orderCount = [NSString stringWithFormat:@"%d",[sc.orderCount intValue]-1];
-    [self.ShoppingCarTableView reloadData];
-    [self requestForEdit:sc.orderId withOrderCount:sc.orderCount];
-    [self calculateTotalPrice];
+        sc.orderCount = [NSString stringWithFormat:@"%d",[sc.orderCount intValue]-1];
+        [self.ShoppingCarTableView reloadData];
+        [self requestForEdit:sc.orderId withOrderCount:sc.orderCount];
+        [self calculateTotalPrice];
     }
 }
 //移除darkgreyview监听事件
@@ -319,6 +359,22 @@
             cell.originPrice.hidden = YES;
             cell.discountLine.hidden = YES;
         }
+        
+        if ([self.shoppingCarInfo.isFullDiscount isEqualToString:@"1"]) {
+            cell.preferential.hidden = NO;
+            cell.cutImageView.hidden = NO;
+            NSMutableString *preferentialString = [[NSMutableString alloc] initWithCapacity:30];
+            for (NSDictionary *dict in [MemberDataManager sharedManager].preferentials) {
+                NSString *full = [NSString stringWithFormat:@"%@", [dict objectForKey:@"needNumber"]];
+                NSString *cut = [NSString stringWithFormat:@"%@", [dict objectForKey:@"discountNum"]];
+                [preferentialString appendString:[NSString stringWithFormat:@"满%@减%@;", full, cut]];
+            }
+            cell.preferential.text = preferentialString;
+        } else {
+            cell.preferential.hidden = YES;
+            cell.cutImageView.hidden = YES;
+        }
+        
         cell.amount = [self.shoppingCarInfo.orderCount intValue];
         cell.orderCount.text = [NSString stringWithFormat:@"%d",cell.amount];
     }
@@ -406,7 +462,7 @@
 //请求购物车数据
 - (void)requestForShoppingCar:(NSString *)phone
 {
-    [[YFProgressHUD sharedProgressHUD]startedNetWorkActivityWithText:@"加载中"];
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中"];
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetShoppingCarUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:phone forKey:@"phoneId"];

@@ -30,7 +30,7 @@
 @property (nonatomic, strong) Member *loginMember;
 @property (nonatomic, strong) IndividualInfo *mineInfo;
 @property (nonatomic, strong) NSMutableDictionary *homeInfo;        //存放营业时间和客服电话
-@property (nonatomic, copy) NSArray *preferential;
+@property (nonatomic, copy) NSArray *preferentials;
 
 + (MemberDataManager *)sharedManager;
 /**
@@ -100,4 +100,11 @@
  */
 
 - (void)getHomeCateGoryInfo;
+
+/**
+ *  获取满减信息
+ *
+ */
+- (void)getPreferentialsInfo;
+
 @end

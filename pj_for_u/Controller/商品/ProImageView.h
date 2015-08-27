@@ -12,7 +12,6 @@
 
 
 @interface ProImageView : ProductSubView <UIScrollViewDelegate>
-@property (strong, nonatomic) IBOutlet UILabel *preferential;
 
 @property (strong, nonatomic) ProductionInfo *proInfo;
 @property (strong, nonatomic) NSString *foodId;

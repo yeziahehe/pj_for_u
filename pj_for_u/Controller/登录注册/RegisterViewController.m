@@ -111,7 +111,7 @@
                     if (1 == state) {
                         //验证成功后的注册操作
                         [MemberDataManager sharedManager].loginMember.password = self.passwordTextField.text;
-                        [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"注册中..."];
+                        [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"注册中..."];
                         [[MemberDataManager sharedManager] registerWithPhone:[MemberDataManager sharedManager].loginMember.phone
                                                                     password:[MemberDataManager sharedManager].loginMember.password
                                                                     nickName:self.nickNameTextField.text];

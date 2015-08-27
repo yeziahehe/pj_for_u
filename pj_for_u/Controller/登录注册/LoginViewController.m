@@ -39,7 +39,7 @@
     else {
         [MemberDataManager sharedManager].loginMember.phone = self.usernameTextField.text;
         [MemberDataManager sharedManager].loginMember.password = self.passwordTextField.text;
-        [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"登录中..."];
+        [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"登录中..."];
         [[MemberDataManager sharedManager] loginWithAccountName:self.usernameTextField.text password:self.passwordTextField.text];
     }
 }
