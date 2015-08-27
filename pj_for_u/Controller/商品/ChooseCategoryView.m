@@ -134,27 +134,47 @@
 //加入购物车
 - (IBAction)addToShoppingCar:(id)sender
 {
-    NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
-    [self addShoppingCarBuyNowWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"1"];
+    if ([[MemberDataManager sharedManager] isLogin]) {
+        //我的订单页面
+        NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
+        [self addShoppingCarBuyNowWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"1"];
+    } else {
+        [self sendAddCarNotification];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
+    }
+
 }
 
 //立即购买
 - (IBAction)buyNow:(id)sender
 {
-    NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
-    [self addShoppingCarBuyNowWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"2"];
+    if ([[MemberDataManager sharedManager] isLogin]) {
+        NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
+        [self addShoppingCarBuyNowWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"2"];
+    } else {
+        [self sendAddCarNotification];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
+    }
+
 }
 //商品详情完成按钮
 - (IBAction)doneButton:(id)sender
 {
-    NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
-    if ([self.flag isEqualToString:@"1"]) {
-        //加入购物车
-        [self addShoppingCarBuyNowWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"1"];
-    }else{
-        //立即购买
-        [self addShoppingCarBuyNowWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"2"];
+    if ([[MemberDataManager sharedManager] isLogin]) {
+        NSString *foodCount = [NSString stringWithFormat:@"%ld",(long)self.buyNumber];
+        if ([self.flag isEqualToString:@"1"]) {
+            //加入购物车
+            [self addShoppingCarBuyNowWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"1"];
+        }else{
+            //立即购买
+            [self addShoppingCarBuyNowWithfoodId:self.proInfo.foodId foodCount:foodCount type:@"2"];
+        }
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
     }
+
 }
 #pragma mark - Set Methods
 -(void)setProInfo:(ProductionInfo *)proInfo{
