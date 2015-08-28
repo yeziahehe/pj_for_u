@@ -153,7 +153,7 @@
             handler:^(UIAlertAction *action) {
                 //打电话
                 UIAlertController *phonealert = [UIAlertController alertControllerWithTitle:nil
-                                                                                    message:@"11111"
+                                                                                    message:phoneId
                                                                              preferredStyle:UIAlertControllerStyleAlert];
                 [phonealert addAction:[UIAlertAction actionWithTitle:@"取消"
                                                                style:UIAlertActionStyleDefault

@@ -229,6 +229,7 @@
 {
     [self.view endEditing:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
 

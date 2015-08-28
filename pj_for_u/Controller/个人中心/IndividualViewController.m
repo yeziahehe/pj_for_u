@@ -121,7 +121,8 @@
 }
 
 #pragma mark - UIViewController Methods
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self loadSubView];
@@ -132,6 +133,7 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
 

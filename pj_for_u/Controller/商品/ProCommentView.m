@@ -48,11 +48,11 @@
         
         NSArray *valueArray = [responseObject objectForKey:@"foodComments"];
         NSMutableArray *tempArray = [[NSMutableArray alloc]initWithCapacity:0];
-        for(NSDictionary *valueDict in valueArray)
-        {
+        for(NSDictionary *valueDict in valueArray) {
             ProCommentDetail *pcd = [[ProCommentDetail alloc]initWithDict:valueDict];
             [tempArray addObject:pcd];
         }
+        
         if ([type isEqualToString:@"1"]) {
             self.allCommentMArray = tempArray;
             [self.tableView reloadData];
@@ -65,10 +65,9 @@
             [self.tableView reloadData];
             //===== NOTIFICATION
             [[NSNotificationCenter defaultCenter] postNotificationName:kIsTimeToEndRefreshNotification object:nil];
-
         }
         NSLog(@"Success:%lu",(unsigned long)self.allCommentMArray.count);
-    }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
+    } failure:^(AFHTTPRequestOperation *operation,NSError *error) {
         
         NSLog(@"Error: %@", error);
         
@@ -76,24 +75,30 @@
 }
 
 //下拉加载更多评论
--(void)loadMoreComments{
+-(void)loadMoreComments
+{
     [self loadDataWithType:@"2" foodId:self.proInfo.foodId];
 }
+
 //获取商品评论model后进行请求并加载
--(void)setProInfo:(ProductionInfo *)proInfo{
+-(void)setProInfo:(ProductionInfo *)proInfo
+{
     _proInfo = proInfo;
-    NSLog(@"当前食品的ID：%@",proInfo.foodId);
     [self loadDataWithType:@"1" foodId:proInfo.foodId];
     self.commentLabel.text = [NSString stringWithFormat:@"商品评价(%@)",proInfo.commentNumber];
 }
+
 #pragma mark - UIView Methosd
--(void)awakeFromNib{
+-(void)awakeFromNib
+{
     [super awakeFromNib];
 
     self.page = 2;
+    
     UINib *nib = [UINib nibWithNibName:@"ProCommentTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"ProCommentTableViewCell"];
+    
     [self.tableView addFooterWithTarget:self action:@selector(loadMoreComments)];
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -144,4 +149,5 @@
         [[NSNotificationCenter defaultCenter]postNotificationName:kHeightForTBVNotification object:height];
     }
 }
+
 @end

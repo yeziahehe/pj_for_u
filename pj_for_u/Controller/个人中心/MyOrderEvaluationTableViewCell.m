@@ -20,7 +20,8 @@
 
 @implementation MyOrderEvaluationTableViewCell
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     //发表评价按钮红色边框
     CALayer *layer = [self.deliverButton layer];
     layer.borderColor = [[UIColor redColor] CGColor];
@@ -32,7 +33,8 @@
     self.isHiddenComment = 1;       //是否匿名初始化为匿名
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated
+{
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state

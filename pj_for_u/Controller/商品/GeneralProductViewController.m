@@ -23,41 +23,10 @@
 @end
 
 @implementation GeneralProductViewController
-#pragma mark - Private Methods
-
-- (IBAction)selectSortButton:(UIButton *)sender
-{
-    self.sortId = sender.tag;
-    [self loadSortButtonWithId:self.sortId];
-    [self.tableView headerBeginRefreshing];
-}
-
-- (void)loadSortButtonWithId:(NSInteger)sortId
-{
-    for (int i = 0; i < self.sortButton.count; i++) {
-        UIButton *button = self.sortButton[i];
-        if (i == sortId) {
-            button.selected = YES;
-        } else {
-            button.selected = NO;
-        }
-    }
-}
-
-//上拉加载
--(void)loadData{
-    [self loadDataWithType:@"1"];
-}
-
-//下拉刷新
--(void)loadMoreData{
-    [self loadDataWithType:@"2"];
-}
-
+#pragma mark - Request Network
 //加载，刷新的公用方法
 - (void)loadDataWithType:(NSString *)type
 {
-    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -74,17 +43,16 @@
     if (self.categoryInfo != nil) {
         [dict setObject:self.categoryInfo.categoryId forKey:@"categoryId"];
     }
-
+    
     if (self.foodTag != nil) {
         [dict setObject:self.foodTag forKey:@"foodTag"];
         [self setNaviTitle:@"搜索结果"];
     }
     
-    if([type isEqualToString:@"1"]){
+    if([type isEqualToString:@"1"]) {
         [dict setObject:@"1" forKey:@"page"];
         self.page =2;
-    }
-    else if([type isEqualToString:@"2"]){
+    } else if([type isEqualToString:@"2"]) {
         NSString *pageString = [NSString stringWithFormat:@"%ld",(long)self.page];
         [dict setObject:pageString forKey:@"page"];
         self.page ++;
@@ -112,17 +80,50 @@
         }
         NSLog(@"有多少商品:%lu",(unsigned long)self.allProductionMArray.count);
     }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
-        
         NSLog(@"Error: %@", error);
-        
     }];
 }
 
+#pragma mark - Private Methods
 
-#pragma mark - UIView Methods
-- (void)viewDidLoad {
+- (IBAction)selectSortButton:(UIButton *)sender
+{
+    self.sortId = sender.tag;
+    [self loadSortButtonWithId:self.sortId];
+    [self.tableView headerBeginRefreshing];
+}
+
+- (void)loadSortButtonWithId:(NSInteger)sortId
+{
+    for (int i = 0; i < self.sortButton.count; i++) {
+        UIButton *button = self.sortButton[i];
+        if (i == sortId) {
+            button.selected = YES;
+        } else {
+            button.selected = NO;
+        }
+    }
+}
+
+//上拉加载
+-(void)loadData
+{
+    [self loadDataWithType:@"1"];
+}
+
+//下拉刷新
+-(void)loadMoreData
+{
+    [self loadDataWithType:@"2"];
+}
+
+
+#pragma mark - ViewController Lifecycle
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self setNaviTitle:self.categoryInfo.category];
+    
     UINib *nib = [UINib nibWithNibName:@"MainTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"MainTableViewCell"];
@@ -171,4 +172,5 @@
     pdvc.foodId = foodId;
     [self.navigationController pushViewController:pdvc animated:YES];
 }
+
 @end

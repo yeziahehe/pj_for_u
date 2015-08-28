@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailViewController">
             <connections>
+                <outlet property="addToShoppingCarButton" destination="9rJ-in-Fsr" id="LSB-LN-Zew"/>
+                <outlet property="buyRightNowButton" destination="n6Z-Gk-7yI" id="zgf-kC-klC"/>
                 <outlet property="contentScrollView" destination="sAG-NC-iCB" id="fFh-I3-7iG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

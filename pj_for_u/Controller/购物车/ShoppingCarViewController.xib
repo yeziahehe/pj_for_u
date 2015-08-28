@@ -9,11 +9,13 @@
             <connections>
                 <outlet property="CalculateView" destination="qp5-DK-roV" id="G1O-u1-QC4"/>
                 <outlet property="ShoppingCarTableView" destination="IGJ-fS-aXH" id="13E-bC-fQK"/>
+                <outlet property="deleteButton" destination="CGB-5a-mZD" id="lHh-1g-mcx"/>
                 <outlet property="deleteShoppingCarView" destination="xkD-gH-Qn0" id="iAN-cB-iwY"/>
                 <outlet property="discountPrice" destination="7jT-bv-okA" id="dEM-DW-fbt"/>
                 <outlet property="goAroundButton" destination="Zps-fL-rNg" id="a5Y-Jw-H1j"/>
                 <outlet property="moneySavedLabel" destination="ehx-nQ-mQf" id="EgR-j7-byv"/>
                 <outlet property="noOrderView" destination="xIn-7Y-4bt" id="3Cr-84-Tc4"/>
+                <outlet property="payButton" destination="s1E-0F-NlH" id="qmk-wO-RZ2"/>
                 <outlet property="totalPriceLabel" destination="qs9-xL-qdb" id="BKT-Nw-t5y"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

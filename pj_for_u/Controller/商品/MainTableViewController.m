@@ -23,8 +23,6 @@
 @implementation MainTableViewController
 
 #pragma mark - Private Methods
-
-
 //下拉刷新
 -(void)loadData{
     [self loadDataWithType:@"1"];
@@ -92,12 +90,15 @@
           }];
 }
 
-#pragma mark - UIView Methods
-- (void)viewDidLoad {
+#pragma mark - ViewController Lifecycle
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    
     UINib *nib = [UINib nibWithNibName:@"MainTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"MainTableViewCell"];
+    
     self.page = 2;
     [self.tableView addHeaderWithTarget:self action:@selector(loadData)];
     [self.tableView addFooterWithTarget:self action:@selector(loadMoreData)];
@@ -108,7 +109,6 @@
 {
     [super viewWillAppear:animated];
 }
-
 
 
 #pragma mark - UITableView Datasource

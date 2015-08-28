@@ -69,6 +69,7 @@
     CGPoint offset = CGPointMake(offsetX, offsetY);
     [self.bigScrollView setContentOffset:offset animated:YES];
 }
+
 - (void)loadSubViews
 {
     [self addController];
@@ -102,12 +103,11 @@
         CategoryInfo *pi = [[CategoryInfo alloc]initWithDict:valueDict];
         [self.allCategories addObject:pi];
     }
-    NSLog(@"%@",self.allCategories);
     //接受完分类信息，开始加载页面
     [self loadSubViews];
 }
 
-#pragma mark - UIView Methods
+#pragma mark - ViewController Lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];

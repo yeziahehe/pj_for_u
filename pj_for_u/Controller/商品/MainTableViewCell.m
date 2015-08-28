@@ -10,11 +10,14 @@
 
 @implementation MainTableViewCell
 
-- (void)awakeFromNib {
-  
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+
 }
 
--(void)setPi:(ProductionInfo *)pi{
+-(void)setPi:(ProductionInfo *)pi
+{
     _pi = pi;
     
     if ( [self.pi.isDiscount isEqualToString:@"1"]) {

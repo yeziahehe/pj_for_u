@@ -28,60 +28,8 @@
 @end
 
 @implementation ProImageView
-
-- (void)loadWithImages:(NSArray *)images
+-(void)setProInfo:(ProductionInfo *)proInfo
 {
-    self.pageControl.numberOfPages = images.count;
-    self.pageControl.currentPage = 0;
-    
-    if (images.count <= 1) {
-        self.scrollView.scrollEnabled = NO;
-    }
-    else {
-        self.scrollView.scrollEnabled = YES;
-    }
-
-    
-    for (int i = 0; i < images.count; i++) {
-        YFAsynImageView *asynImgView = [[YFAsynImageView alloc] init];
-        asynImgView.cacheDir = kImageCacheDir;
-        [asynImgView aysnLoadImageWithUrl:images[i] placeHolder:@"home_image_default.png"];
-        
-        //设置frame
-        CGRect rect = CGRectMake(i * ScreenWidth, 0, ScreenWidth, ScreenWidth);
-        asynImgView.frame = rect;
-        asynImgView.contentMode = UIViewContentModeScaleToFill;
-        
-        [self.scrollView addSubview:asynImgView];
-    }
-    
-    [self.scrollView setContentSize:CGSizeMake(ScreenWidth * images.count, 0)];
-    
-
-}
-
-#pragma mark - UIScrollViewDelegate methods
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-    NSInteger page = floor((scrollView.contentOffset.x - scrollView.frame.size.width / 2) / scrollView.frame.size.width) + 1;
-    
-    self.pageControl.currentPage = page;
-    [self.scrollView setContentOffset:CGPointMake(page * self.scrollView.frame.size.width, 0) animated:YES];
-
-}
-
-
-
--(void)awakeFromNib
-{
-    [super awakeFromNib];
-    
-    self.scrollView.delegate = self;
-
-}
-
--(void)setProInfo:(ProductionInfo *)proInfo{
     _proInfo = proInfo;
     self.nameLabel.text = proInfo.name;
     self.messageLabel.text = proInfo.message;
@@ -97,7 +45,7 @@
         self.priceLabel.text = [NSString stringWithFormat:@"￥: %.1f",[proInfo.discountPrice doubleValue]];
         self.discountLabel.text = [NSString stringWithFormat:@"( 省%.1f元 )",discountPrice];
         self.oldPriceLabel.text = [NSString stringWithFormat:@"%@",proInfo.price];
-
+        
     } else {
         self.priceLabel.text = [NSString stringWithFormat:@"￥: %.1f",[proInfo.price doubleValue]];
         
@@ -110,7 +58,7 @@
     if ([proInfo.isFullDiscount isEqualToString:@"1"]) {
         self.cutImageView.hidden = NO;
         self.preferential.hidden = NO;
-
+        
         NSMutableString *preferentialString = [[NSMutableString alloc] initWithCapacity:30];
         for (NSDictionary *dict in [MemberDataManager sharedManager].preferentials) {
             NSString *full = [NSString stringWithFormat:@"%@", [dict objectForKey:@"needNumber"]];
@@ -130,11 +78,57 @@
     NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:10];
     [images addObject:proInfo.imgUrl];
     [images addObjectsFromArray:[proInfo.info componentsSeparatedByString:@","]];
-
-    [self loadWithImages:images];
-
     
+    [self loadWithImages:images];
     
 }
+
+- (void)loadWithImages:(NSArray *)images
+{
+    self.pageControl.numberOfPages = images.count;
+    self.pageControl.currentPage = 0;
+    
+    if (images.count <= 1) {
+        self.scrollView.scrollEnabled = NO;
+    }
+    else {
+        self.scrollView.scrollEnabled = YES;
+    }
+
+    for (int i = 0; i < images.count; i++) {
+        YFAsynImageView *asynImgView = [[YFAsynImageView alloc] init];
+        asynImgView.cacheDir = kImageCacheDir;
+        [asynImgView aysnLoadImageWithUrl:images[i] placeHolder:@"home_image_default.png"];
+        
+        //设置frame
+        CGRect rect = CGRectMake(i * ScreenWidth, 0, ScreenWidth, ScreenWidth);
+        asynImgView.frame = rect;
+        asynImgView.contentMode = UIViewContentModeScaleToFill;
+        
+        [self.scrollView addSubview:asynImgView];
+    }
+    
+    [self.scrollView setContentSize:CGSizeMake(ScreenWidth * images.count, 0)];
+    
+
+}
+
+#pragma mark - UIScrollViewDelegate methods
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    NSInteger page = floor((scrollView.contentOffset.x - scrollView.frame.size.width / 2) / scrollView.frame.size.width) + 1;
+    
+    self.pageControl.currentPage = page;
+    [self.scrollView setContentOffset:CGPointMake(page * self.scrollView.frame.size.width, 0) animated:YES];
+
+}
+
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    self.scrollView.delegate = self;
+}
+
 
 @end

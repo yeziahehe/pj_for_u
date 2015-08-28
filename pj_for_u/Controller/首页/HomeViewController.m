@@ -54,12 +54,6 @@
         rect.origin.x = 0.0f;
         if ([homeSubView isKindOfClass:[ImageContainView class]]) {
 
-//            self.imageContainView = (ImageContainView *)homeSubView;
-//            [self.contentScrollView addSubview:self.imageContainView];
-//            self.imageContainView.frame = rect;
-//            originY = rect.origin.y + rect.size.height;
-//            
-//            continue;
         }
         else if ([homeSubView isKindOfClass:[HomeContainView class]]) {
             //让HomeContainView width等于height的两倍，达到xib自动布局的效果
@@ -90,13 +84,12 @@
                                                                 purpose:kGetActivityImagesDownloaderKey];
 }
 
-
 #pragma mark - NSNotification Methods
 - (void)campusNameNotification:(NSNotification *)notification
 {
     if (notification.object)
         [self setNaviTitle:[NSString stringWithFormat:@"%@ > ",notification.object]];
-    [self loadSubViews];
+    [self refreshHomeNotification:nil];
 }
 
 - (void)refreshHomeNotification:(NSNotification *)notification
@@ -119,6 +112,7 @@
     [self.navigationController pushViewController:gpv animated:NO];
     
 }
+
 #pragma mark - BaseViewController Methods
 - (void)extraItemTapped
 {
@@ -169,8 +163,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    
 }
 
 - (void)dealloc
@@ -191,7 +183,7 @@
             NSArray *valueArray = [dict objectForKey:@"food"];
             for (NSDictionary *valueDict in valueArray) {
                 NSString *lm = [valueDict objectForKey:@"homeImage"];
-                if(lm){
+                if(lm) {
                     [self.imageUrlArray addObject:lm];
                 }
             }

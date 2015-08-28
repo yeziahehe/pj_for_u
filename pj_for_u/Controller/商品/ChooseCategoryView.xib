@@ -265,7 +265,7 @@
                 <outlet property="productImage" destination="Qon-UB-whc" id="6Nu-wO-kJt"/>
                 <outlet property="smallBackground" destination="7Fr-Ui-cG9" id="Twk-pI-O7y"/>
             </connections>
-            <point key="canvasLocation" x="-73.5" y="147"/>
+            <point key="canvasLocation" x="32.5" y="91"/>
         </view>
     </objects>
     <resources>

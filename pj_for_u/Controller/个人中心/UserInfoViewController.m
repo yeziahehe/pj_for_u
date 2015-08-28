@@ -203,7 +203,6 @@
             self.bigManageButton.hidden = YES;
         }
     }
-    
 }
 
 - (void)courierAction

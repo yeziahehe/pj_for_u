@@ -23,6 +23,18 @@
     self.pageControl.numberOfPages = images.count;
     self.pageControl.currentPage = 0;
     
+    if (images.count == 0) {
+        YFAsynImageView *asynImgView = [[YFAsynImageView alloc] init];
+        asynImgView.cacheDir = kImageCacheDir;
+        [asynImgView aysnLoadImageWithUrl:nil placeHolder:@"home_image_default.png"];
+        CGRect rect = CGRectMake(0, 0, ScreenWidth, self.scrollView.frame.size.height);
+        asynImgView.frame = rect;
+        asynImgView.contentMode = UIViewContentModeScaleToFill;
+        
+        [self.scrollView addSubview:asynImgView];
+        return;
+    }
+    
     if (images.count <= 1) {
         self.scrollView.scrollEnabled = NO;
     }

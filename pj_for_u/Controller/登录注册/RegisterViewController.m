@@ -14,7 +14,7 @@
 #define kResendTimeCount 60
 
 @interface RegisterViewController ()
-@property (strong, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (strong, nonatomic) UILabel *phoneLabel;
 @property (nonatomic, assign) NSInteger resendSecond;
 @property (nonatomic, strong) NSTimer *resendTimer;
 @end
@@ -119,6 +119,7 @@
                     else if(0 == state)
                     {
                         [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"验证码填写错误" hideDelay:2.f];
+                        self.resendSecond = 0;
                     }
                 }];
     }

@@ -33,8 +33,6 @@
     }
     
     [self.tableView reloadData];
-
-
 }
 
 - (void)rightItemTapped
@@ -77,13 +75,11 @@
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:kChooseAddressNoticfication object:nil];
 
-
 }
 
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
 }
 
 #pragma mark - UITableViewDataSource Methods
