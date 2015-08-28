@@ -644,7 +644,8 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:YES];
-    
+    [self.view endEditing:YES];
+
     [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
     
     if ([self.buyNowFlag isEqualToString:@"1"]) {
