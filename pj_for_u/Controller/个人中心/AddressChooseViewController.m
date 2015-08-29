@@ -96,6 +96,8 @@
     cell.name.text = address.name;
     cell.phoneNum.text = address.phone;
     cell.address.text = address.address;
+    cell.rank = address.rank;
+    cell.campusId = address.campusId;
     cell.accessoryType = UITableViewCellAccessoryNone;
     if ([address.tag isEqualToString: @"0"])
     {

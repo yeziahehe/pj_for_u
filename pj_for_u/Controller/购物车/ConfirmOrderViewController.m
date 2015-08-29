@@ -118,9 +118,10 @@
     [dict setObject:self.myMessage forKey:@"message"];
     [dict setObject:self.myPayWay forKey:@"payWay"];
     [dict setObject:self.myTotalPrice forKey:@"totalPrice"];
-    [dict setObject:self.myPreferentialId forKey:@"preferentialId"];
     
-    
+    if (self.myPreferentialId) {
+        [dict setObject:self.myPreferentialId forKey:@"preferentialId"];
+    }
     
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict
@@ -287,11 +288,20 @@
 
         if ([sc.isFullDiscount isEqualToString:@"1"]) {
             cutFullPrice += singlePrice;
-            for (NSDictionary *dict in [MemberDataManager sharedManager].preferentials) {
-                self.myPreferentialId = [NSString stringWithFormat:@"%@", [dict objectForKey:@"preferentialId"]];
+            NSArray *realPreferentials;
+            
+            if (self.isBeSentFromMyOrder == 1) {
+                realPreferentials = self.preferentials;
+            } else {
+                realPreferentials = [MemberDataManager sharedManager].preferentials;
+            }
+            
+            for (NSDictionary *dict in realPreferentials) {
                 double full = [NSString stringWithFormat:@"%@", [dict objectForKey:@"needNumber"]].doubleValue;
                 double cut = [NSString stringWithFormat:@"%@", [dict objectForKey:@"discountNum"]].doubleValue;
                 if (cutFullPrice >= full) {
+                    self.myPreferentialId = [NSString stringWithFormat:@"%@", [dict objectForKey:@"preferentialId"]];
+                    
                     discountNum = cut;
                     break;
                 }
@@ -417,6 +427,19 @@
         return;
     }
     
+    if (self.isBeSentFromMyOrder == 1) {
+        if (![self.myOrderCampusId isEqualToString:self.myCampusId]) {
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"不在配送范围" hideDelay:2.f];
+            return;
+        }
+    } else {
+        if (![self.myCampusId isEqualToString:kCampusId]) {
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"不在配送范围" hideDelay:2.f];
+            return;
+        }
+    }
+
+    
     self.myOrderId = [[NSMutableString alloc] initWithCapacity:0];
     if (self.selectedArray) {
         for (int i = 0;i < [self.selectedArray count];i++) {
@@ -527,7 +550,6 @@
         self.phoneLabel.text = [dict objectForKey:@"phone"];
         self.addressLabel.text = [dict objectForKey:@"address"];
         
-        self.myPhoneId = self.phoneLabel.text;
         self.myRank = [dict objectForKey:@"rank"];
         self.myCampusId = [dict objectForKey:@"campusId"];
         
@@ -640,7 +662,9 @@
     
     [self loadSubViews];
     self.myPhoneId = [MemberDataManager sharedManager].loginMember.phone;
+    self.myReserveTime = self.deliverTimeLabel.text;
 
+    
     // Do any additional setup after loading the view from its nib.
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(confirmDeliverTimeNotification:) name:kConfirmDeliverTimeNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(cancelDeliverTimeNotification:) name:kCancelDeliverTimeNotification object:nil];
@@ -732,7 +756,14 @@
             cell.preferential.hidden = NO;
             cell.cutImageView.hidden = NO;
             NSMutableString *preferentialString = [[NSMutableString alloc] initWithCapacity:30];
-            for (NSDictionary *dict in [MemberDataManager sharedManager].preferentials) {
+            
+            NSArray *realPreferentials;
+            if (self.isBeSentFromMyOrder == 1) {
+                realPreferentials = self.preferentials;
+            } else {
+                realPreferentials = [MemberDataManager sharedManager].preferentials;
+            }
+            for (NSDictionary *dict in realPreferentials) {
                 NSString *full = [NSString stringWithFormat:@"%@", [dict objectForKey:@"needNumber"]];
                 NSString *cut = [NSString stringWithFormat:@"%@", [dict objectForKey:@"discountNum"]];
                 [preferentialString appendString:[NSString stringWithFormat:@"满%@减%@;", full, cut]];

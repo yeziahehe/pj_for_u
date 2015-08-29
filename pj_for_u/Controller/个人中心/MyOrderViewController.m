@@ -51,9 +51,97 @@
 
 @property NSInteger indexPathBuffer;
 
+@property (strong, nonatomic) NSString *orderCampusId;
+@property (strong, nonatomic) NSArray *preferentials;
+@property (strong, nonatomic) NSMutableArray *shoppingCar;
+
 @end
 
 @implementation MyOrderViewController
+
+#pragma mark NetWork Methods
+- (void)getPreferentialsInfoWithCampusId:(NSString *)campusId
+{
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中"];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetPreferentialsUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:campusId forKey:@"campusId"];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kGetPreferentialsUrl];
+    
+}
+
+//请求修改订单状态
+- (void)requsetForModifyOrderStatus:(NSString *)status togetherId:(NSString *)togetherId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kModifyOrderStatusUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    
+    if (status && togetherId) {
+        [dict setObject:status forKey:@"status"];
+        [dict setObject:togetherId forKey:@"togetherId"];
+    }
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kModifyOrderStatusKey];
+}
+
+//请求我的订单信息，通过不同状态
+- (void)requestForMyOrderByStatus:(NSString *)status page:(NSString *)page limit:(NSString *)limit
+{
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中..."];
+    
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kGetOrderInMine];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:[MemberDataManager sharedManager].loginMember.phone forKey:@"phoneId"];
+    if (status) {
+        [dict setObject:status forKey:@"status"];
+    }
+    if (page && limit) {
+        [dict setObject:page forKey:@"page"];
+        [dict setObject:limit forKey:@"limit"];
+    }
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kGetOrderInMineKey];
+}
+
+//请求删除订单
+- (void)requestForDeleteOrder:(NSString *)togetherId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kDeleteOrderUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:togetherId forKey:@"togetherId"];
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kDeleteOrderKey];
+}
+
+//请求取消订单
+- (void)requestForSetOrderInvalid:(NSString *)togetherId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSetOrderInvalidUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:togetherId forKey:@"togetherId"];
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kSetOrderInvalidKey];
+}
 
 #pragma mark - Private Methods
 //改变cell按钮的类型
@@ -234,74 +322,6 @@
     [self requestForMyOrderByStatus:[NSString stringWithFormat:@"%d", self.recordLastStatus] page:@"1" limit:sizeofPage];
 }
 
-//请求修改订单状态
-- (void)requsetForModifyOrderStatus:(NSString *)status togetherId:(NSString *)togetherId
-{
-    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kModifyOrderStatusUrl];
-    NSMutableDictionary *dict = kCommonParamsDict;
-    
-    if (status && togetherId) {
-        [dict setObject:status forKey:@"status"];
-        [dict setObject:togetherId forKey:@"togetherId"];
-    }
-    
-    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
-                                                             postParams:dict
-                                                            contentType:@"application/x-www-form-urlencoded"
-                                                               delegate:self
-                                                                purpose:kModifyOrderStatusKey];
-}
-
-//请求我的订单信息，通过不同状态
-- (void)requestForMyOrderByStatus:(NSString *)status page:(NSString *)page limit:(NSString *)limit
-{
-    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中..."];
-    
-    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kGetOrderInMine];
-    NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:[MemberDataManager sharedManager].loginMember.phone forKey:@"phoneId"];
-    if (status) {
-        [dict setObject:status forKey:@"status"];
-    }
-    if (page && limit) {
-        [dict setObject:page forKey:@"page"];
-        [dict setObject:limit forKey:@"limit"];
-    }
-    
-    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
-                                                             postParams:dict
-                                                            contentType:@"application/x-www-form-urlencoded"
-                                                               delegate:self
-                                                                purpose:kGetOrderInMineKey];
-}
-
-//请求删除订单
-- (void)requestForDeleteOrder:(NSString *)togetherId
-{
-    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kDeleteOrderUrl];
-    NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:togetherId forKey:@"togetherId"];
-    
-    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
-                                                             postParams:dict
-                                                            contentType:@"application/x-www-form-urlencoded"
-                                                               delegate:self
-                                                                purpose:kDeleteOrderKey];
-}
-
-//请求取消订单
-- (void)requestForSetOrderInvalid:(NSString *)togetherId
-{
-    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSetOrderInvalidUrl];
-    NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:togetherId forKey:@"togetherId"];
-    
-    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
-                                                             postParams:dict
-                                                            contentType:@"application/x-www-form-urlencoded"
-                                                               delegate:self
-                                                                purpose:kSetOrderInvalidKey];
-}
 
 //设置角标
 - (void)setBadgeViewWithView:(UIView *)parentView badgeNum:(NSString *)badgeNum
@@ -419,6 +439,14 @@
 
 #pragma mark - Initialize
 
+- (NSMutableArray *)shoppingCar
+{
+    if (!_shoppingCar) {
+        _shoppingCar = [[NSMutableArray alloc] initWithCapacity:10];
+    }
+    return _shoppingCar;
+}
+
 - (NSMutableArray *)orderListArray
 {
     if (!_orderListArray) {
@@ -500,37 +528,16 @@
     
     else if ([title isEqualToString:@"立即付款"]) {
         
-        NSMutableArray *shoppingCar = [[NSMutableArray alloc] initWithCapacity:10];
-        
-        int count = 0;
-        double price = 0.0;
-        double originPrice = 0.0;
-        NSString *realPriceType;
-        
+        int i = 0;
         for (NSDictionary *dict in smallOrders) {
-            ShoppingCar *car = [[ShoppingCar alloc] initWithDict:dict];
-            [shoppingCar addObject:car];
-            
-            NSString *isDiscount = [NSString stringWithFormat:@"%@", [dict objectForKey:@"isDiscount"]];
-            if ([isDiscount isEqualToString:@"1"]) {
-                realPriceType = @"discountPrice";
-            } else {
-                realPriceType = @"price";
+            if (i == 0) {
+                self.orderCampusId = [NSString stringWithFormat:@"%@", [dict objectForKey:@"campusId"]];
+                [self getPreferentialsInfoWithCampusId:self.orderCampusId];
+                i++;
             }
-            int singleCount = [[dict objectForKey:@"orderCount"] intValue];
-            double singlePrice = [[dict objectForKey:realPriceType] doubleValue];
-            double singleOriginPrice = [[dict objectForKey:@"price"] doubleValue];
-            originPrice += singleCount * singleOriginPrice;
-            price += singleCount * singlePrice;
-            count += singleCount;
-
+            ShoppingCar *car = [[ShoppingCar alloc] initWithDict:dict];
+            [self.shoppingCar addObject:car];
         }
-
-        ConfirmOrderViewController *coVC = [[ConfirmOrderViewController alloc] init];
-
-        coVC.selectedArray = shoppingCar;
-        
-        [self.navigationController pushViewController:coVC animated:YES];        
     }
     
     else if ([title isEqualToString:@"取消订单"]) {
@@ -824,6 +831,29 @@
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
+    else if ([downloader.purpose isEqualToString:kGetPreferentialsUrl]) {
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
+
+            self.preferentials = [dict objectForKey:@"preferential"];
+            ConfirmOrderViewController *covc = [[ConfirmOrderViewController alloc] init];
+            
+            covc.preferentials = self.preferentials;
+            covc.selectedArray = self.shoppingCar;
+            covc.isBeSentFromMyOrder = 1;
+            covc.myOrderCampusId = self.orderCampusId;
+            
+            [self.navigationController pushViewController:covc animated:YES];
+
+        }
+        else
+        {
+            NSString *message = @"获取满减信息失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message

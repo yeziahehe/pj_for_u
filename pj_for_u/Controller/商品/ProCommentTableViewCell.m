@@ -21,13 +21,19 @@
 {
     _pcd = pcd;
     
-    self.nickNameLabel.text = pcd.nickName;
+    self.userImage.cacheDir = kUserIconCacheDir;
+    if ([pcd.isHidden isEqualToString:@"1"]) {
+        self.nickNameLabel.text = @"匿名用户";
+        [self.userImage aysnLoadImageWithUrl:nil placeHolder:@"icon_user_default.png"];
+    } else {
+        self.nickNameLabel.text = pcd.nickName;
+        [self.userImage aysnLoadImageWithUrl:pcd.imgUrl placeHolder:@"icon_user_default.png"];
+    }
+    
     self.gradeLabel.text = [NSString stringWithFormat:@"%@分",pcd.grade];
     self.timeLabel.text = pcd.date;
     self.saleNumber.text = [NSString stringWithFormat:@"销量：%@",pcd.orderCount];
     self.commentLabel.text = pcd.comment;
-    self.userImage.cacheDir = kUserIconCacheDir;
-    [self.userImage aysnLoadImageWithUrl:pcd.imgUrl placeHolder:@"icon_user_default.png"];
     
     if ([pcd.grade intValue]) {
         [self lightStars];

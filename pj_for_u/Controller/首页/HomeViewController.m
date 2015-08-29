@@ -15,6 +15,7 @@
 #import "ProductViewController.h"
 #import "GeneralProductViewController.h"
 #import "CategoryInfo.h"
+#import "ProductDetailViewController.h"
 
 #define kGetActivityImagesDownloaderKey  @"GetActivityImagesDownloaderKey"
 
@@ -61,8 +62,14 @@
         }
         else if ([homeSubView isKindOfClass:[HomeActivityTableView class]]) {
             HomeActivityTableView *hat = (HomeActivityTableView *)homeSubView;
-            if (self.imageUrlArray.count > 0)
+            if (self.imageUrlArray.count > 0) {
                 [hat reloadWithActivityImages:self.imageUrlArray];
+                hat.pushToProductDetail = ^(NSString *foodId) {
+                    ProductDetailViewController *pdvc = [[ProductDetailViewController alloc] init];
+                    pdvc.foodId = foodId;
+                    [self.navigationController pushViewController:pdvc animated:YES];
+                };
+            }
             rect.size.height = hat.activityTableview.contentSize.height;
         }
         homeSubView.frame = rect;
@@ -180,13 +187,8 @@
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             self.imageUrlArray = [NSMutableArray arrayWithCapacity:0];
-            NSArray *valueArray = [dict objectForKey:@"food"];
-            for (NSDictionary *valueDict in valueArray) {
-                NSString *lm = [valueDict objectForKey:@"homeImage"];
-                if(lm) {
-                    [self.imageUrlArray addObject:lm];
-                }
-            }
+            self.imageUrlArray = [dict objectForKey:@"food"];
+
             [self.contentScrollView headerEndRefreshing];
             [self loadSubViews];
         }

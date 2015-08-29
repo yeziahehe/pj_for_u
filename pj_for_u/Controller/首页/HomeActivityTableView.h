@@ -10,6 +10,7 @@
 
 @interface HomeActivityTableView : HomeSubView<UITableViewDelegate,UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *activityTableview;
+@property (nonatomic, copy) void (^pushToProductDetail)(NSString *foodId);
 
 - (void)reloadWithActivityImages:(NSMutableArray *)activityImagesArray;
 

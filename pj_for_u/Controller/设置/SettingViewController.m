@@ -163,7 +163,7 @@
                 [phonealert addAction:[UIAlertAction actionWithTitle:@"拨打"
                                                                style:UIAlertActionStyleDefault
                                                              handler:^(UIAlertAction *action) {
-                                                                 NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",@"1111"]];
+                                                                 NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",phoneId]];
                                                                  [[UIApplication sharedApplication] openURL:telURL];
                                                              }]];
                 [self presentViewController:phonealert animated:YES completion:nil];

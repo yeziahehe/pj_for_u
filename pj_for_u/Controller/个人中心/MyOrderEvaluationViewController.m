@@ -18,7 +18,6 @@
 
 @property (strong, nonatomic) NSString *comment;
 
-
 @property (strong, nonatomic) NSString *defaultText;
 @property BOOL isFirstTime;
 
@@ -83,7 +82,7 @@
     }
     [dict setObject:kCampusId forKey:@"campusId"];
     [dict setObject:[MemberDataManager sharedManager].loginMember.phone forKey:@"phoneId"];
-    if (self.textView.text != nil && ![self.textView.text isEqualToString:@""]) {
+    if (self.textView.text != nil && ![self.textView.text isEqualToString:@""] && ![self.textView.text isEqualToString:self.defaultText]) {
         [dict setObject:self.textView.text forKey:@"comment"];
     }
     [dict setObject:foodId forKey:@"foodId"];
