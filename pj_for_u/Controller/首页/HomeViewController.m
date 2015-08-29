@@ -70,6 +70,8 @@
         originY = rect.origin.y + rect.size.height;
     }
     [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, originY)];
+    [[MemberDataManager sharedManager] getPreferentialsInfo];
+
 }
 
 - (void)requestForImages
@@ -151,8 +153,6 @@
 //    [self loadSubViews];
     [self requestForImages];
     [self.contentScrollView addHeaderWithTarget:self action:@selector(refreshHomeNotification:) dateKey:@"HomeViewController"];
-    
-    [[MemberDataManager sharedManager] getPreferentialsInfo];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(campusNameNotification:) name:kCampusNameNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHomeNotification:) name:kRefreshHomeNotification object:nil];

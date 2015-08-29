@@ -55,6 +55,17 @@
 @property (strong, nonatomic) NSMutableArray *timeArray;
 
 @property (strong, nonatomic) NSMutableDictionary *indexPathBuffer;
+
+//上面几个属性真的是不想看了，下面是立即支付所需要用到的属性，有所重复
+@property (strong, nonatomic) NSString *myPhoneId;      //手机号Id（required）
+@property (strong, nonatomic) NSMutableString *myOrderId;       //订单号，多条以逗号隔开（required)
+@property (strong, nonatomic) NSString *myRank;     //用户收货人标识（required）
+@property (strong, nonatomic) NSString *myReserveTime;      //预约时间,默认立即送达
+@property (strong, nonatomic) NSString *myMessage;      //备注
+@property (strong, nonatomic) NSString *myPayWay;       //付款方式（required)0：未选择 1：支付宝 2：微信支付
+@property (strong, nonatomic) NSString *myTotalPrice;       //应付总价（required）
+@property (strong, nonatomic) NSString *myPreferentialId;       //满减种类
+@property (strong, nonatomic) NSString *myCampusId;     //地址校区
 @end
 
 @implementation ConfirmOrderViewController
@@ -96,21 +107,20 @@
 //payWay                付款方式（required)0：未选择 1：支付宝 2：微信支付
 //totalPrice            应付总价（required）
 //preferentialId        满减种类
-- (void)requestForOneKeyOrder:(NSString *)phoneId
-                      orderId:(NSString *)orderId
-                         rank:(NSString *)rank
-                  reserveTime:(NSString *)reserveTime
-                      message:(NSString *)message
+- (void)requestForOneKeyOrder
 {
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kOneKeyOrderUrl];
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kOneKeyOrderUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:phoneId forKey:@"phoneId"];
-    [dict setObject:orderId forKey:@"orderId"];
-    [dict setObject:rank forKey:@"rank"];
-    [dict setObject:reserveTime forKey:@"reserveTime"];
-    [dict setObject:message forKey:@"message"];
-    [dict setObject:[NSString stringWithFormat:@"%d", self.select] forKey:@"payWay"];
-    [dict setObject:self.totalPrice forKey:@"totalPrice"];
+    [dict setObject:self.myPhoneId forKey:@"phoneId"];
+    [dict setObject:self.myOrderId forKey:@"orderId"];
+    [dict setObject:self.myRank forKey:@"rank"];
+    [dict setObject:self.myReserveTime forKey:@"reserveTime"];
+    [dict setObject:self.myMessage forKey:@"message"];
+    [dict setObject:self.myPayWay forKey:@"payWay"];
+    [dict setObject:self.myTotalPrice forKey:@"totalPrice"];
+    [dict setObject:self.myPreferentialId forKey:@"preferentialId"];
+    
+    
     
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict
@@ -264,21 +274,21 @@
     double cutMoneny = 0.0;     //省
     double cutFullPrice = 0.0;      //满
     double discountNum = 0.0;   //减
+    
     for (ShoppingCar *sc in self.selectedArray) {
-        
         if ([sc.isDiscount isEqualToString:@"1"]) {
             singlePrice = sc.discountPrice.doubleValue * sc.orderCount.intValue;
             double orignPrice = sc.price.doubleValue * sc.orderCount.intValue;
             cutMoneny += orignPrice - singlePrice;
-            
         } else if ([sc.isDiscount isEqualToString:@"0"]) {
             singlePrice = sc.price.doubleValue * sc.orderCount.intValue;
         }
         price += singlePrice;
-        
+
         if ([sc.isFullDiscount isEqualToString:@"1"]) {
             cutFullPrice += singlePrice;
             for (NSDictionary *dict in [MemberDataManager sharedManager].preferentials) {
+                self.myPreferentialId = [NSString stringWithFormat:@"%@", [dict objectForKey:@"preferentialId"]];
                 double full = [NSString stringWithFormat:@"%@", [dict objectForKey:@"needNumber"]].doubleValue;
                 double cut = [NSString stringWithFormat:@"%@", [dict objectForKey:@"discountNum"]].doubleValue;
                 if (cutFullPrice >= full) {
@@ -291,6 +301,7 @@
     price -= discountNum;
     cutMoneny += discountNum;
     
+    self.myTotalPrice = [NSString stringWithFormat:@"%.1f", price];
     self.totalPrice = [NSString stringWithFormat:@"%.1f", price];
     self.totalPriceLabel.text =  [NSString stringWithFormat:@"合计:%.1f元", price];
     self.originPriceLabel.text = [NSString stringWithFormat:@"%.1f元", price + cutMoneny];
@@ -365,6 +376,7 @@
     [self.contentView addGestureRecognizer:recognizer];
     self.aLiPayButton.selected = YES;
     self.select = 1;
+    self.myPayWay = [NSString stringWithFormat:@"%d", self.select];
     NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
     [self requestForDefaultAddress:phone];
 }
@@ -384,9 +396,13 @@
     switch (sender.tag) {
         case 1:
             self.select = 1;
+            self.myPayWay = [NSString stringWithFormat:@"%d", self.select];
+
             break;
         case 2:
             self.select = 2;
+            self.myPayWay = [NSString stringWithFormat:@"%d", self.select];
+
         default:
             break;
     }
@@ -401,22 +417,23 @@
         return;
     }
     
-    NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
-    NSMutableString *orderId = [[NSMutableString alloc]initWithCapacity:0];
+    self.myOrderId = [[NSMutableString alloc] initWithCapacity:0];
     if (self.selectedArray) {
         for (int i = 0;i < [self.selectedArray count];i++) {
             ShoppingCar *sc = [self.selectedArray objectAtIndex:i];
             if (i == 0) {
-                [orderId appendFormat:@"%@",sc.orderId];
+                [self.myOrderId appendFormat:@"%@", sc.orderId];
             }
             else{
-                [orderId appendFormat:@",%@",sc.orderId];
+                [self.myOrderId appendFormat:@",%@", sc.orderId];
             }
         }
     }
     
-    [self requestForOneKeyOrder:phone orderId:orderId rank:self.defaultRank reserveTime:self.deliverTimeLabel.text message:self.descriptionTextView.text];
-    orderId = nil;
+    self.myMessage = self.descriptionTextView.text;
+    
+    [self requestForOneKeyOrder];
+
     //    if (self.select == 1) {
     //        self.channel = @"alipay";
     //    }
@@ -510,6 +527,10 @@
         self.phoneLabel.text = [dict objectForKey:@"phone"];
         self.addressLabel.text = [dict objectForKey:@"address"];
         
+        self.myPhoneId = self.phoneLabel.text;
+        self.myRank = [dict objectForKey:@"rank"];
+        self.myCampusId = [dict objectForKey:@"campusId"];
+        
         self.noAddressView.hidden = YES;
         self.payButton.enabled  = YES;
         
@@ -544,7 +565,7 @@
             self.isNotTrueTime = YES;
         } else {
             self.isNotTrueTime = NO;
-            NSDate *tempDate = [nowDate compare:openDate] == NSOrderedDescending?[NSDate dateWithTimeIntervalSinceNow:3600]:closeDate;
+            NSDate *tempDate = [nowDate compare:openDate] == NSOrderedDescending?[NSDate dateWithTimeIntervalSinceNow:3600]:openDate;
             [dateFormatter setDateFormat:@"HH:mm"];
             NSInteger interval = 60*60;
             
@@ -571,6 +592,7 @@
 {
     NSString *deliverTime = notification.object;
     self.deliverTimeLabel.text = deliverTime;
+    self.myReserveTime = deliverTime;
     for (UIView *subView in self.navigationController.view.subviews) {
         if ([subView isKindOfClass:[selectDeliverTimeView class]]) {
             [UIView animateWithDuration:0.2
@@ -585,7 +607,6 @@
                          self.background = nil;
                      }
                  }];
-            
         }
     }
 }
@@ -618,6 +639,8 @@
     [self setNaviTitle:@"确认订单"];
     
     [self loadSubViews];
+    self.myPhoneId = [MemberDataManager sharedManager].loginMember.phone;
+
     // Do any additional setup after loading the view from its nib.
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(confirmDeliverTimeNotification:) name:kConfirmDeliverTimeNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(cancelDeliverTimeNotification:) name:kCancelDeliverTimeNotification object:nil];
@@ -762,6 +785,7 @@
                     self.defaultRecPhone = [valueDict objectForKey:@"phone"];
                     self.defaultAddress = [valueDict objectForKey:@"address"];
                     self.defaultRank = [valueDict objectForKey:@"rank"];
+                    self.myRank = [valueDict objectForKey:@"rank"];
                 }
             }
             
@@ -794,19 +818,14 @@
         {
             //成功
             
-            
             [Pingpp createPayment:[dict objectForKey:@"charge"]
                    viewController:self
                      appURLScheme:kUrlScheme
                    withCompletion:^(NSString *result, PingppError *error) {
                        if ([result isEqualToString:@"success"]) {
                            // 支付成功
-                           
-                           
                        } else {
                            // 支付失败或取消
-                           
-                           
 
                            NSLog(@"Error: code=%lu msg=%@", error.code, [error getMsg]);
                        }
@@ -854,7 +873,6 @@
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
-
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message

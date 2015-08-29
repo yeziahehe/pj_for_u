@@ -68,6 +68,8 @@
             [dict setObject:cell.name.text forKey:@"name"];
             [dict setObject:cell.phoneNum.text forKey:@"phone"];
             [dict setObject:cell.address.text forKey:@"address"];
+            [dict setObject:cell.rank forKey:@"rank"];
+            [dict setObject:cell.campusId forKey:@"campusId"];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:kChooseAddressNoticfication object:dict];
             return;

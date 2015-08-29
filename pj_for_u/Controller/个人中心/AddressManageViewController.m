@@ -106,6 +106,8 @@
     cell.name.text = address.name;
     cell.phoneNum.text = address.phone;
     cell.address.text = address.address;
+    cell.rank = address.rank;
+    cell.campusId = address.campusId;
     if ([address.tag isEqualToString: @"0"])
     {
 //        UIColor *color = [UIColor colorWithRed:230.f/255 green:235.f/255 blue:236.f/255 alpha:1.f];
