@@ -64,7 +64,6 @@
     
     //进行post请求
     [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation,id responseObject) {
-        [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
         if ([type isEqualToString:@"1"]) {
             [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"加入购物车成功" hideDelay:2.f];
             [self sendAddCarNotification];
@@ -111,10 +110,6 @@
     
 }
 
--(void)dealloc
-{
-    [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-}
 
 #pragma mark - IBAction Methods
 // -

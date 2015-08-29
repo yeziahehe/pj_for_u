@@ -56,8 +56,9 @@
         lbl1.userInteractionEnabled = YES;
         [self.smallScrollView addSubview:lbl1];
         [lbl1 addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(lblClick:)]];
+        self.smallScrollView.contentSize = CGSizeMake(90 * (i+1) , 0);
+
     }
-    self.smallScrollView.contentSize = CGSizeMake(90 * 10 , 0);
 }
 
 /** 标题栏label的点击事件 */
