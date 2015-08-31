@@ -230,7 +230,6 @@
         self.lastestId = [NSString stringWithFormat:@"%d", ++self.indexOfPage];
         
         [self.tableView reloadData];
-        
     }
     self.tableView.tableFooterView = postInfoView;
     //==============================================

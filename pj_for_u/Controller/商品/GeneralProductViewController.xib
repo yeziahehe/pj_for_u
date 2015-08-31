@@ -6,6 +6,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GeneralProductViewController">
             <connections>
+                <outlet property="goAroundButton" destination="ohj-9L-cw5" id="21x-wa-CUv"/>
+                <outlet property="noOrderView" destination="kZo-Xg-gnz" id="SvU-XE-PL6"/>
                 <outlet property="tableView" destination="dKd-qV-uUa" id="WbH-Iu-jVG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="sortButton" destination="s6y-cn-Aqv" id="hCa-wv-N5e"/>
@@ -131,10 +133,72 @@
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
-            <point key="canvasLocation" x="4.5" y="419.5"/>
+            <point key="canvasLocation" x="-159.5" y="346.5"/>
+        </view>
+        <view contentMode="scaleToFill" id="kZo-Xg-gnz" userLabel="noOrderView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="573"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_shoppingcar_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="70f-fW-dUh">
+                    <rect key="frame" x="134" y="94" width="107" height="107"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="107" id="c7d-Zo-Cdr"/>
+                        <constraint firstAttribute="width" constant="107" id="gAE-gK-LbA"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂时还没有相关商品" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEr-nu-iBU">
+                    <rect key="frame" x="111" y="216" width="153" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="AmI-Y3-W4u"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="17"/>
+                    <color key="textColor" red="0.094894255050000001" green="0.094894255050000001" blue="0.094894255050000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="去看看有哪些想买的" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RHR-Mg-FEM">
+                    <rect key="frame" x="128" y="240" width="118" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="118" id="NhU-Cl-WBE"/>
+                        <constraint firstAttribute="height" constant="21" id="yTb-hx-n08"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                    <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ohj-9L-cw5">
+                    <rect key="frame" x="150" y="269" width="74" height="26"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="74" id="QP1-xI-v3l"/>
+                        <constraint firstAttribute="height" constant="26" id="Sxw-mh-x4m"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="16"/>
+                    <state key="normal" title="随便逛逛">
+                        <color key="titleColor" red="0.31717566289999999" green="0.31717566289999999" blue="0.31717566289999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="goAround" destination="-1" eventType="touchUpInside" id="fQi-Gb-exi"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="RHR-Mg-FEM" secondAttribute="centerX" id="2Og-9b-eWp"/>
+                <constraint firstAttribute="centerX" secondItem="70f-fW-dUh" secondAttribute="centerX" id="5Hc-t8-GZU"/>
+                <constraint firstItem="70f-fW-dUh" firstAttribute="top" secondItem="kZo-Xg-gnz" secondAttribute="top" constant="94" id="DOi-Jz-Lf1"/>
+                <constraint firstItem="RHR-Mg-FEM" firstAttribute="top" secondItem="jEr-nu-iBU" secondAttribute="bottom" constant="3" id="M8c-AG-0t4"/>
+                <constraint firstAttribute="centerX" secondItem="ohj-9L-cw5" secondAttribute="centerX" id="Rmd-s1-AB3"/>
+                <constraint firstItem="ohj-9L-cw5" firstAttribute="top" secondItem="RHR-Mg-FEM" secondAttribute="bottom" constant="8" id="Wsw-di-ge1"/>
+                <constraint firstItem="jEr-nu-iBU" firstAttribute="top" secondItem="70f-fW-dUh" secondAttribute="bottom" constant="15" id="eNf-6F-qtz"/>
+                <constraint firstAttribute="centerX" secondItem="jEr-nu-iBU" secondAttribute="centerX" id="g2J-dr-z15"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="310.5" y="280.5"/>
         </view>
     </objects>
     <resources>
+        <image name="icon_shoppingcar_default.png" width="106" height="107"/>
         <image name="line_hon_1px_down.png" width="640" height="2"/>
         <image name="line_ver_1px_left.png" width="2" height="149"/>
         <image name="line_ver_1px_right.png" width="2" height="149"/>

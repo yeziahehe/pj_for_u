@@ -20,6 +20,8 @@
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *sortButton;
 @property NSInteger sortId;
 
+@property (strong, nonatomic) IBOutlet UIView *noOrderView;
+@property (strong, nonatomic) IBOutlet UIButton *goAroundButton;
 @end
 
 @implementation GeneralProductViewController
@@ -85,13 +87,44 @@
             [self.allProductionMArray addObjectsFromArray:tempArray];
             [self.tableView reloadData];
         }
-        NSLog(@"有多少商品:%lu",(unsigned long)self.allProductionMArray.count);
+        [self showNoOrderView];
+        
     }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
         NSLog(@"Error: %@", error);
     }];
 }
 
 #pragma mark - Private Methods
+
+- (IBAction)goAround
+{
+    self.tabBarController.selectedIndex = 0;
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (void)showNoOrderView
+{
+    CALayer *layer = [self.goAroundButton layer];
+    layer.borderColor = [[UIColor darkGrayColor] CGColor];
+    layer.borderWidth = 1.f;
+    self.goAroundButton.layer.masksToBounds = YES;
+    self.goAroundButton.layer.cornerRadius = 2.5f;
+    
+    if (self.allProductionMArray.count == 0) {
+        self.tableView.hidden = YES;
+        CGRect frame = self.noOrderView.frame;
+        frame.origin.x = 0;
+        frame.origin.y = 94;
+        frame.size.width = ScreenWidth;
+        frame.size.height = ScreenHeight - 94;
+        self.noOrderView.frame = frame;
+        [self.view addSubview:self.noOrderView];
+    } else {
+        self.tableView.hidden = NO;
+        [self.tableView reloadData];
+        [self.noOrderView removeFromSuperview];
+    }
+}
 
 - (IBAction)selectSortButton:(UIButton *)sender
 {
