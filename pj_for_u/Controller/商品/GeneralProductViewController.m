@@ -51,7 +51,7 @@
     
     if([type isEqualToString:@"1"]) {
         [dict setObject:@"1" forKey:@"page"];
-        self.page =2;
+        self.page = 2;
     } else if([type isEqualToString:@"2"]) {
         NSString *pageString = [NSString stringWithFormat:@"%ld",(long)self.page];
         [dict setObject:pageString forKey:@"page"];
@@ -68,6 +68,13 @@
             ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
             [tempArray addObject:pi];
         }
+        
+        if (tempArray.count <= kLimit.intValue) {
+            self.tableView.footerHidden = YES;
+        } else {
+            self.tableView.footerHidden = NO;
+        }
+        
         if ([type isEqualToString:@"1"]) {
             [self.tableView headerEndRefreshing];
             self.allProductionMArray = tempArray;

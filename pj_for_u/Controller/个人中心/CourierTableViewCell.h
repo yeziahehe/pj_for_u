@@ -25,4 +25,5 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 
+@property (copy, nonatomic) void (^callUsersPhone)();
 @end

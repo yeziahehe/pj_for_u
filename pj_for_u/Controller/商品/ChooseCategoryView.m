@@ -47,9 +47,8 @@
     if ([type isEqualToString:@"1"]) {
         url = [NSString stringWithFormat:@"%@%@",kServerAddress,kAddToShoppingCarUrl];
         [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"正在加入购物车"];
-
     }
-    else{
+    else {
         url = [NSString stringWithFormat:@"%@%@",kServerAddress,kBuyNowUrl];
         [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中"];
     }
@@ -68,7 +67,7 @@
             [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"加入购物车成功" hideDelay:2.f];
             [self sendAddCarNotification];
         }
-        else{
+        else {
             NSDictionary *valueDict = [responseObject objectForKey:@"order"];
             self.shoppingCar = [[ShoppingCar alloc]initWithDict:valueDict];
             [self sendBuyNowNotification];

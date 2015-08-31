@@ -53,6 +53,7 @@
 
 @property (strong, nonatomic) NSString *orderCampusId;
 @property (strong, nonatomic) NSArray *preferentials;
+@property (strong, nonatomic) NSDictionary *homeInfo;
 @property (strong, nonatomic) NSMutableArray *shoppingCar;
 
 @end
@@ -60,6 +61,20 @@
 @implementation MyOrderViewController
 
 #pragma mark NetWork Methods
+- (void)getHomeCateGoryInfoWithCampusId:(NSString *)campusId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kGetModuleTypeUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:campusId forKey:@"campusId"];
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kGetModuleTypeUrl];
+    
+}
+
+
 - (void)getPreferentialsInfoWithCampusId:(NSString *)campusId
 {
     [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中"];
@@ -713,6 +728,12 @@
         default:
             break;
     }
+    
+    self.orderCampusId = nil;
+    self.preferentials = nil;
+    self.homeInfo = nil;
+    self.shoppingCar = nil;
+    
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -757,7 +778,7 @@
             //带判功能的显示随便逛逛
             [self showNoOrderView];
             
-            //上拉刷新
+            //上拉加载
             [self loadInfoByRefreshFooterWithValueCount:valueArray.count];
             
             //重置角标
@@ -834,22 +855,36 @@
     else if ([downloader.purpose isEqualToString:kGetPreferentialsUrl]) {
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
-            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-
             self.preferentials = [dict objectForKey:@"preferential"];
+            [self getHomeCateGoryInfoWithCampusId:self.orderCampusId];
+            
+        }
+        else
+        {
+            NSString *message = @"获取满减信息失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+    else if ([downloader.purpose isEqualToString:kGetModuleTypeUrl]) {
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
+            
+            self.homeInfo = [dict objectForKey:@"campus"];
+            
             ConfirmOrderViewController *covc = [[ConfirmOrderViewController alloc] init];
             
             covc.preferentials = self.preferentials;
+            covc.homeInfo = self.homeInfo;
             covc.selectedArray = self.shoppingCar;
             covc.isBeSentFromMyOrder = 1;
             covc.myOrderCampusId = self.orderCampusId;
             
             [self.navigationController pushViewController:covc animated:YES];
-
         }
         else
         {
-            NSString *message = @"获取满减信息失败";
+            NSString *message = @"获取营业时间失败";
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }

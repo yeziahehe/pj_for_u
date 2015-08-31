@@ -100,7 +100,7 @@
                 <outlet property="togetherDate" destination="RPJ-F7-Hw5" id="ECL-at-zrM"/>
                 <outlet property="togetherId" destination="7O7-2v-7j8" id="tNJ-sV-gMw"/>
             </connections>
-            <point key="canvasLocation" x="353.5" y="237"/>
+            <point key="canvasLocation" x="297.5" y="217"/>
         </tableViewCell>
     </objects>
 </document>

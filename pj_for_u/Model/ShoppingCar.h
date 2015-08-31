@@ -42,6 +42,7 @@
 @property (nonatomic, copy) NSString *foodId;//商品id
 @property (nonatomic, copy) NSString *isFullDiscount;//是否满减优惠
 
+
 - (id)initWithDict:(NSDictionary *)dict;
 + (instancetype)shoppingCarWithDict:(NSDictionary *)dict;
 @end

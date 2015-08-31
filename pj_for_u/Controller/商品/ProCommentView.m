@@ -53,6 +53,12 @@
             [tempArray addObject:pcd];
         }
         
+        if (tempArray.count <= kLimit.intValue) {
+            self.tableView.footerHidden = YES;
+        } else {
+            self.tableView.footerHidden = NO;
+        }
+        
         if ([type isEqualToString:@"1"]) {
             self.allCommentMArray = tempArray;
             [self.tableView reloadData];

@@ -139,16 +139,32 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EHc-QV-1h0">
-                        <rect key="frame" x="57.5" y="84.5" width="0.0" height="0.0"/>
+                        <rect key="frame" x="57" y="84" width="0.0" height="0.0"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZEq-N8-pxB" userLabel="phoneButton">
+                        <rect key="frame" x="167" y="23.5" width="160" height="30"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="DXL-Cu-hCo"/>
+                            <constraint firstAttribute="width" constant="160" id="lpk-TM-QwN"/>
+                        </constraints>
+                        <state key="normal">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="callUserPhone" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Q2T-vC-KWo"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="GN3-36-Txr" firstAttribute="leading" secondItem="ZEq-N8-pxB" secondAttribute="leading" id="17M-9r-HwN"/>
                     <constraint firstItem="akT-sR-OH1" firstAttribute="top" secondItem="Ywu-LW-F2J" secondAttribute="bottom" constant="8" id="1dW-Mp-Dwm"/>
                     <constraint firstItem="Ywu-LW-F2J" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="2nx-re-D1W"/>
                     <constraint firstAttribute="bottom" secondItem="Ghf-Ii-K71" secondAttribute="bottom" constant="8" id="3Lh-6x-8UQ"/>
+                    <constraint firstItem="GN3-36-Txr" firstAttribute="centerY" secondItem="ZEq-N8-pxB" secondAttribute="centerY" id="3Y5-ak-4TU"/>
                     <constraint firstItem="LkW-pf-gfq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="4hk-yC-GAH"/>
                     <constraint firstItem="Ywu-LW-F2J" firstAttribute="top" secondItem="5cf-WP-ab9" secondAttribute="bottom" constant="6" id="7F0-ij-Q4h"/>
                     <constraint firstItem="Vuh-Lt-YMi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Chl-tf-j0b"/>

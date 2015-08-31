@@ -50,7 +50,7 @@
     
     if([type isEqualToString:@"1"]){
         [dict setObject:@"1" forKey:@"page"];
-        self.page =2;
+        self.page = 2;
     }
     else if([type isEqualToString:@"2"]){
         NSString *pageString = [NSString stringWithFormat:@"%ld",(long)self.page];
@@ -63,24 +63,31 @@
        parameters:dict
           success:^(AFHTTPRequestOperation *operation,id responseObject) {
         
-            NSArray *valueArray = [responseObject objectForKey:@"foods"];
-            NSMutableArray *tempArray = [[NSMutableArray alloc]initWithCapacity:0];
-            for(NSDictionary *valueDict in valueArray)
-            {
-                ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
-                [tempArray addObject:pi];
-            }
-            if ([type isEqualToString:@"1"]) {
-                [self.tableView headerEndRefreshing];
-                self.allProductionMArray = tempArray;
-                [self.tableView reloadData];
-            }
-            else if ([type isEqualToString:@"2"]){
-                [self.tableView footerEndRefreshing];
-                [self.allProductionMArray addObjectsFromArray:tempArray];
-                [self.tableView reloadData];
-            }
-            NSLog(@"Success:%lu",(unsigned long)self.allProductionMArray.count);
+              NSArray *valueArray = [responseObject objectForKey:@"foods"];
+              NSMutableArray *tempArray = [[NSMutableArray alloc]initWithCapacity:0];
+              for(NSDictionary *valueDict in valueArray)
+              {
+                  ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
+                  [tempArray addObject:pi];
+              }
+              
+              if (tempArray.count <= kLimit.intValue) {
+                  self.tableView.footerHidden = YES;
+              } else {
+                  self.tableView.footerHidden = NO;
+              }
+
+              if ([type isEqualToString:@"1"]) {
+                  [self.tableView headerEndRefreshing];
+
+                  self.allProductionMArray = tempArray;
+                  [self.tableView reloadData];
+              }
+              else if ([type isEqualToString:@"2"]){
+                  [self.tableView footerEndRefreshing];
+                  [self.allProductionMArray addObjectsFromArray:tempArray];
+                  [self.tableView reloadData];
+              }
           }
      
           failure:^(AFHTTPRequestOperation *operation,NSError *error) {
