@@ -17,12 +17,45 @@
 
 @interface MainTableViewController ()
 @property NSInteger page;
-@property (nonatomic, strong) IBOutlet UIView *sortTypeView;
+
+@property (nonatomic, strong) IBOutlet UIView *noOrderView;
+@property (strong, nonatomic) IBOutlet UIButton *goAroundButton;
 @end
 
 @implementation MainTableViewController
 
 #pragma mark - Private Methods
+
+- (IBAction)goAround
+{
+    self.tabBarController.selectedIndex = 0;
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
+- (void)showNoOrderView
+{
+    CALayer *layer = [self.goAroundButton layer];
+    layer.borderColor = [[UIColor darkGrayColor] CGColor];
+    layer.borderWidth = 1.f;
+    self.goAroundButton.layer.masksToBounds = YES;
+    self.goAroundButton.layer.cornerRadius = 2.5f;
+    
+    if (self.allProductionMArray.count == 0) {
+        self.tableView.hidden = YES;
+        CGRect frame = self.noOrderView.frame;
+        frame.origin.x = 0;
+        frame.origin.y = 0;
+        frame.size.width = ScreenWidth;
+        frame.size.height = ScreenHeight - 94;
+        self.noOrderView.frame = frame;
+        [self.view addSubview:self.noOrderView];
+    } else {
+        self.tableView.hidden = NO;
+        [self.tableView reloadData];
+        [self.noOrderView removeFromSuperview];
+    }
+}
+
 //下拉刷新
 -(void)loadData{
     [self loadDataWithType:@"1"];
@@ -36,7 +69,6 @@
 //加载，刷新的公用方法
 - (void)loadDataWithType:(NSString *)type
 {
-    
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
@@ -50,7 +82,7 @@
     
     if([type isEqualToString:@"1"]){
         [dict setObject:@"1" forKey:@"page"];
-        self.page =2;
+        self.page = 2;
     }
     else if([type isEqualToString:@"2"]){
         NSString *pageString = [NSString stringWithFormat:@"%ld",(long)self.page];
@@ -63,24 +95,32 @@
        parameters:dict
           success:^(AFHTTPRequestOperation *operation,id responseObject) {
         
-            NSArray *valueArray = [responseObject objectForKey:@"foods"];
-            NSMutableArray *tempArray = [[NSMutableArray alloc]initWithCapacity:0];
-            for(NSDictionary *valueDict in valueArray)
-            {
-                ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
-                [tempArray addObject:pi];
-            }
-            if ([type isEqualToString:@"1"]) {
-                [self.tableView headerEndRefreshing];
-                self.allProductionMArray = tempArray;
-                [self.tableView reloadData];
-            }
-            else if ([type isEqualToString:@"2"]){
-                [self.tableView footerEndRefreshing];
-                [self.allProductionMArray addObjectsFromArray:tempArray];
-                [self.tableView reloadData];
-            }
-            NSLog(@"Success:%lu",(unsigned long)self.allProductionMArray.count);
+              NSArray *valueArray = [responseObject objectForKey:@"foods"];
+              NSMutableArray *tempArray = [[NSMutableArray alloc]initWithCapacity:0];
+              for(NSDictionary *valueDict in valueArray)
+              {
+                  ProductionInfo *pi = [[ProductionInfo alloc]initWithDict:valueDict];
+                  [tempArray addObject:pi];
+              }
+              
+              if (tempArray.count <= kLimit.intValue) {
+                  self.tableView.footerHidden = YES;
+              } else {
+                  self.tableView.footerHidden = NO;
+              }
+
+              if ([type isEqualToString:@"1"]) {
+                  [self.tableView headerEndRefreshing];
+
+                  self.allProductionMArray = tempArray;
+                  [self.tableView reloadData];
+              }
+              else if ([type isEqualToString:@"2"]){
+                  [self.tableView footerEndRefreshing];
+                  [self.allProductionMArray addObjectsFromArray:tempArray];
+                  [self.tableView reloadData];
+              }
+              [self showNoOrderView];
           }
      
           failure:^(AFHTTPRequestOperation *operation,NSError *error) {

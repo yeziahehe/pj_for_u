@@ -17,6 +17,11 @@
 
 @implementation CourierTableViewCell
 
+- (IBAction)callUserPhone
+{
+    self.callUsersPhone();
+}
+
 - (IBAction)changeOrderStatus
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:3];

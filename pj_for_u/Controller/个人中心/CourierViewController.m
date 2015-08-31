@@ -135,6 +135,23 @@
     cell.orderList = [dict objectForKey:@"orderList"];
     cell.itsIndexPath = indexPath;
     
+    cell.callUsersPhone = ^() {
+        UIAlertController *phonealert = [UIAlertController alertControllerWithTitle:nil
+                                                                            message:[dict objectForKey:@"customePhone"]
+                                                                     preferredStyle:UIAlertControllerStyleAlert];
+        [phonealert addAction:[UIAlertAction actionWithTitle:@"取消"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:nil]];
+        [phonealert addAction:[UIAlertAction actionWithTitle:@"拨打"
+                                                       style:UIAlertActionStyleDefault
+                                                     handler:^(UIAlertAction *action) {
+                                                         NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel:%@",[dict objectForKey:@"customePhone"]]];
+                                                         [[UIApplication sharedApplication] openURL:telURL];
+                                                     }]];
+        [self presentViewController:phonealert animated:YES completion:nil];
+
+    };
+    
     [cell.tableView reloadData];
 
     return cell;

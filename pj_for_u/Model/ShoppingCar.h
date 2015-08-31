@@ -41,6 +41,7 @@
 @property (nonatomic, copy) NSString *foodCount;//商品余量
 @property (nonatomic, copy) NSString *foodId;//商品id
 @property (nonatomic, copy) NSString *isFullDiscount;//是否满减优惠
+@property (nonatomic, copy) NSString *message;//商品描述
 
 - (id)initWithDict:(NSDictionary *)dict;
 + (instancetype)shoppingCarWithDict:(NSDictionary *)dict;

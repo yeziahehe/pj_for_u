@@ -561,13 +561,16 @@
         self.payButton.enabled  = NO;
     }
 }
+- (void)reloadDeliverViewWithNotification:(NSNotification *)notification
+{
+    [self reloadDeliverView:notification dictionary:[MemberDataManager sharedManager].homeInfo];
+}
 
-- (void)reloadDeliverView:(NSNotification *)notification
+- (void)reloadDeliverView:(NSNotification *)notification dictionary:(NSDictionary *)dict
 {
     if (notification.object) {
         [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:notification.object hideDelay:2.f];
     } else {
-        NSDictionary *dict = [MemberDataManager sharedManager].homeInfo;
         
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         NSDate *nowDate = [NSDate dateWithTimeIntervalSinceNow:0];
@@ -675,9 +678,13 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(plusShoppingAmountNotification:) name:kPlusShoppingAmountNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(minusShoppingAmountNotification:) name:kMinusShoppingAmountNotification object:nil];
     
-    [[MemberDataManager sharedManager] getHomeCateGoryInfo];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDeliverView:) name:kGetHomeInfoNotification object:nil];
+    if (self.isBeSentFromMyOrder != 1) {
+        [[MemberDataManager sharedManager] getHomeCateGoryInfo];
+        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDeliverViewWithNotification:) name:kGetHomeInfoNotification object:nil];
+    } else {
+        [self reloadDeliverView:nil dictionary:self.homeInfo];
+    }
     
     [self.payButton setEnabled:NO];
     
@@ -773,7 +780,8 @@
             cell.preferential.hidden = YES;
             cell.cutImageView.hidden = YES;
         }
-
+        
+        cell.secondLabel.text = self.shoppingCarInfo.message;
         cell.amount = [self.shoppingCarInfo.orderCount intValue];
         cell.orderCount.text = [NSString stringWithFormat:@"%d",cell.amount];
     }
