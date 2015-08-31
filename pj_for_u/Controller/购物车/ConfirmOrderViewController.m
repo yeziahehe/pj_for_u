@@ -780,7 +780,8 @@
             cell.preferential.hidden = YES;
             cell.cutImageView.hidden = YES;
         }
-
+        
+        cell.secondLabel.text = self.shoppingCarInfo.message;
         cell.amount = [self.shoppingCarInfo.orderCount intValue];
         cell.orderCount.text = [NSString stringWithFormat:@"%d",cell.amount];
     }
