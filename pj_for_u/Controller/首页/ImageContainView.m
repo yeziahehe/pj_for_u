@@ -16,56 +16,73 @@
 @end
 
 @implementation ImageContainView
-@synthesize cycleScrollView,pageControl;
-@synthesize productAdArray;
 
 #pragma mark - Private methods
-- (void)reloadWithProductAds:(NSMutableArray *)productAds
+- (void)loadWithImages:(NSArray *)images
 {
-    self.productAdArray = productAds;
-    self.pageControl.numberOfPages = productAds.count;
+    self.pageControl.numberOfPages = images.count;
     self.pageControl.currentPage = 0;
     
-    NSMutableArray *images = [NSMutableArray array];
-    for(NSString *productAd in productAds)
-    {
-        [images addObject:productAd];
+    if (images.count == 0) {
+        YFAsynImageView *asynImgView = [[YFAsynImageView alloc] init];
+        asynImgView.cacheDir = kImageCacheDir;
+        [asynImgView aysnLoadImageWithUrl:nil placeHolder:@"home_image_default.png"];
+        CGRect rect = CGRectMake(0, 0, ScreenWidth, self.scrollView.frame.size.height);
+        asynImgView.frame = rect;
+        asynImgView.contentMode = UIViewContentModeScaleToFill;
+        
+        [self.scrollView addSubview:asynImgView];
+        return;
     }
     
-    [self.cycleScrollView reloadWithImages:images placeHolder:@"home_image_default.png" cacheDir:kImageCacheDir];
-    
-    if (self.pageControl.numberOfPages == 1) {
-        self.cycleScrollView.scrollEnabled = NO;
+    if (images.count <= 1) {
+        self.scrollView.scrollEnabled = NO;
     }
     else {
-        self.cycleScrollView.scrollEnabled = YES;
+        self.scrollView.scrollEnabled = YES;
         self.scrollTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
     }
+    
+    NSMutableArray *realImages = [[NSMutableArray alloc] initWithCapacity:10];
+    [realImages addObject:[images lastObject]];
+    [realImages addObjectsFromArray:images];
+    [realImages addObject:[images firstObject]];
+    
+    for (int i = 0; i < realImages.count; i++) {
+        YFAsynImageView *asynImgView = [[YFAsynImageView alloc] init];
+        asynImgView.cacheDir = kImageCacheDir;
+        [asynImgView aysnLoadImageWithUrl:realImages[i] placeHolder:@"home_image_default.png"];
+        
+        //设置frame
+        CGRect rect = CGRectMake(i * ScreenWidth, 0, ScreenWidth, self.scrollView.frame.size.height);
+        asynImgView.frame = rect;
+        asynImgView.contentMode = UIViewContentModeScaleToFill;
+        
+        [self.scrollView addSubview:asynImgView];
+    }
+    
+    [self.scrollView setContentSize:CGSizeMake(ScreenWidth * realImages.count, 0)];
+    [self.scrollView setContentOffset:CGPointMake(ScreenWidth, 0) animated:NO];
 }
 
 - (void)onTimer
 {
-    //添加收尾各一张图实现循环滑动
-    NSInteger papersCount = [self.productAdArray count]+2;
-    //设置pagecontrol
-    if (self.cycleScrollView.contentOffset.x/self.cycleScrollView.frame.size.width >= papersCount-2) {
+    NSInteger currentPage = self.pageControl.currentPage;
+    CGPoint point = self.scrollView.contentOffset;
+    
+    if (currentPage == 0) {
+        [self.scrollView setContentOffset:CGPointMake(ScreenWidth, point.y)];
+        point = self.scrollView.contentOffset;
+    }
+    
+    if (currentPage == self.pageControl.numberOfPages - 1) {
         self.pageControl.currentPage = 0;
+        [self.scrollView setContentOffset:CGPointMake(point.x + ScreenWidth, point.y) animated:YES];
     } else {
-        self.pageControl.currentPage = self.cycleScrollView.contentOffset.x/self.cycleScrollView.frame.size.width;
+        self.pageControl.currentPage++;
+        [self.scrollView setContentOffset:CGPointMake(point.x + ScreenWidth, point.y) animated:YES];
     }
-    //设置自动滑动
-    if (self.cycleScrollView.contentOffset.x == 0)
-    {
-        [self.cycleScrollView scrollRectToVisible:CGRectMake(self.cycleScrollView.frame.size.width * papersCount ,0,self.cycleScrollView.frame.size.width, self.cycleScrollView.frame.size.height) animated:NO];
-    }
-    else if (self.cycleScrollView.contentOffset.x == (self.cycleScrollView.frame.size.width * (papersCount-1)))
-    {
-        [self.cycleScrollView scrollRectToVisible:CGRectMake(self.cycleScrollView.frame.size.width , 0, self.cycleScrollView.frame.size.width, self.cycleScrollView.frame.size.height) animated:NO];
-    }
-    else
-    {
-        [self.cycleScrollView setContentOffset:CGPointMake(self.cycleScrollView.contentOffset.x + self.cycleScrollView.frame.size.width, self.cycleScrollView.contentOffset.y) animated:YES];
-    }
+    
 }
 
 - (void)requestForImages
@@ -80,39 +97,43 @@
                                                                 purpose:kGetImagesDownloaderKey];
 }
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.scrollTimer invalidate];
+    self.scrollTimer = nil;
+}
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    self.scrollTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+    
+    CGPoint point = self.scrollView.contentOffset;
+    
+    NSInteger page = ((NSInteger)(point.x / ScreenWidth) + 2) % self.imageUrlArray.count;
+    
+    self.pageControl.currentPage = page;
+    
+    if (page == self.imageUrlArray.count - 1) {
+        [self.scrollView setContentOffset:CGPointMake(ScreenWidth * self.imageUrlArray.count, 0)];
+    }
+    if (point.x == ScreenWidth * self.imageUrlArray.count) {
+        [self.scrollView setContentOffset:CGPointMake(0, 0)];
+    }
+}
 
 #pragma mark - UIView methods
 - (void)awakeFromNib
 {
     [super awakeFromNib];
     [self requestForImages];
-    self.cycleScrollView.cycleDelegate = self;
-    self.cycleScrollView.delegate = self.cycleScrollView.cycleDelegate;
+    self.scrollView.delegate = self;
 }
 
 #pragma mark - RYCycleScrollViewDelegate methods
 - (void)didCycleScrollViewTappedWithIndex:(NSInteger)index
 {
     //点击事件
-}
-
-- (void)scrollViewDidEndDecelerating:(YFCycleScrollView *)scrollView
-{
-    NSInteger page = floor((scrollView.contentOffset.x - scrollView.frame.size.width / 2) / scrollView.frame.size.width) + 1;
-    if(page == 0)
-    {
-        [scrollView setContentOffset:CGPointMake((scrollView.cycleArray.count-2)*scrollView.frame.size.width, 0)];
-        self.pageControl.currentPage = scrollView.cycleArray.count-3;
-    }
-    else if(page == scrollView.cycleArray.count-1)
-    {
-        [scrollView setContentOffset:CGPointMake(scrollView.frame.size.width, 0)];
-        self.pageControl.currentPage = 0;
-    }
-    else
-    {
-        self.pageControl.currentPage = page-1;
-    }
 }
 
 #pragma mark - YFDownloaderDelegate Methods
@@ -125,13 +146,13 @@
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
-             self.imageUrlArray = [NSMutableArray arrayWithCapacity:0];
+            self.imageUrlArray = [NSMutableArray arrayWithCapacity:0];
             NSArray *valueArray = [dict objectForKey:@"newsList"];
             for (NSDictionary *valueDict in valueArray) {
                 NSString *lm = [valueDict objectForKey:@"imgUrl"];
                 [self.imageUrlArray addObject:lm];
             }
-            [self reloadWithProductAds:self.imageUrlArray];
+            [self loadWithImages:self.imageUrlArray];
         }
         else
         {

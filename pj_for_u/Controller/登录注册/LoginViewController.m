@@ -28,8 +28,21 @@
         return nil;
 }
 
+#pragma mark - Keyboard Notification methords
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    self.scrollView.contentInset = UIEdgeInsetsZero;
+}
+
 #pragma mark - IBAction Methods
-- (IBAction)loginButtonClicked:(id)sender {
+- (IBAction)loginButtonClicked:(id)sender
+{
     [self resignAllField];
     
     NSString *checkString = [self checkFieldValid];
@@ -39,18 +52,19 @@
     else {
         [MemberDataManager sharedManager].loginMember.phone = self.usernameTextField.text;
         [MemberDataManager sharedManager].loginMember.password = self.passwordTextField.text;
-        [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"登录中..."];
+        [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"登录中..."];
         [[MemberDataManager sharedManager] loginWithAccountName:self.usernameTextField.text password:self.passwordTextField.text];
     }
 }
 
-
-- (IBAction)forgetPasswordButtonClicked:(id)sender {
+- (IBAction)forgetPasswordButtonClicked:(id)sender
+{
     ForgetPwdViewController *fpvc = [[ForgetPwdViewController alloc]initWithNibName:@"ForgetPwdViewController" bundle:nil];
     [self.navigationController pushViewController:fpvc animated:YES];
 }
 
-- (IBAction)checkBoxButtonClicked:(id)sender {
+- (IBAction)checkBoxButtonClicked:(id)sender
+{
     if (self.ifchecked) {
         [self.checkBoxButton setImage:[UIImage imageNamed:@"icon_disagree.png"] forState:UIControlStateNormal];
         self.loginButton.enabled = NO;
@@ -62,7 +76,8 @@
     self.ifchecked = !self.ifchecked;
 }
 
-- (IBAction)showForUAbout:(id)sender {
+- (IBAction)showForUAbout:(id)sender
+{
     //点击 《For 优用户服务协议》
 //    NSString *path = [[NSBundle mainBundle] pathForResource:@"Mickeyabout" ofType:@"html"];
 //    YFWebViewController *yfwvc = [[YFWebViewController alloc] init];
@@ -70,6 +85,7 @@
 //    yfwvc.htmlPath = path;
 //    [self.navigationController pushViewController:yfwvc animated:YES];
 }
+
 #pragma mark - Notification methods
 - (void)loginRespnseWithNotification:(NSNotification *)notification
 {
@@ -100,7 +116,9 @@
     RegisterViewController *rvc = [[RegisterViewController alloc]initWithNibName:@"RegisterViewController" bundle:nil];
     [self.navigationController pushViewController:rvc animated:YES];
 }
-#pragma mark - UIViewController Methods
+
+
+#pragma mark - UIViewController Lifecycle
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
@@ -116,7 +134,8 @@
     [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self setNaviTitle:@"登录"];
@@ -139,6 +158,7 @@
     [self resignAllField];
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:[MemberDataManager sharedManager] purpose:kLoginDownloaderKey];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
 }
 
 #pragma mark - UITextFieldDelegate methods
@@ -167,16 +187,5 @@
     return YES;
 }
 
-#pragma mark - Keyboard Notification methords
-- (void)keyboardWillShow:(NSNotification *)notification
-{
-    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
-}
-
-- (void)keyboardWillHide:(NSNotification *)notification
-{
-    self.scrollView.contentInset = UIEdgeInsetsZero;
-}
 
 @end

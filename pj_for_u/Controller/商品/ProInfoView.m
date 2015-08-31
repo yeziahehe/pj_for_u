@@ -30,39 +30,29 @@
     return _background;
 }
 
--(void)removeSubViews{
+-(void)removeSubViews
+{
     if (self.chooseCategoryView) {
         CGFloat height = self.chooseCategoryView.frame.size.height;
         [UIView animateWithDuration:0.2
-                         animations:^{
-                             
-                             [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, height)];
-                         }
-                         completion:^(BOOL finished){
-                             if (finished) {
-                                 [self.chooseCategoryView removeFromSuperview];
-                                 self.chooseCategoryView = nil;
-                             }
-                         }];
+             animations:^{
+                 
+                 [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, height)];
+             }
+             completion:^(BOOL finished){
+                 if (finished) {
+                     [self.chooseCategoryView removeFromSuperview];
+                     self.chooseCategoryView = nil;
+                 }
+             }];
         [self.background removeFromSuperview];
 
     }
 }
-#pragma mark - UIView Methods
--(void)awakeFromNib{
-    [super awakeFromNib];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessAddingToCarNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessBuyNowNotification object:nil];
-    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kRemoveChooseCategoryViewNotification object:nil];
 
-    
-}
-
--(void)dealloc{
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
-}
 #pragma mark - IBAction Methods
-- (IBAction)showChooseDetail:(id)sender {
+- (IBAction)showChooseDetail:(id)sender
+{
     self.chooseCategoryView = [[[NSBundle mainBundle]loadNibNamed:@"ChooseCategoryView" owner:self options:nil]lastObject];
     //传递参数
     self.chooseCategoryView.doneButton.hidden = YES;
@@ -74,11 +64,28 @@
     [UIView animateWithDuration:0.2 animations:^{
         [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight - height, ScreenWidth, height)];
     }];
-
+    
 }
 
 #pragma mark - Set Methods
--(void)setProInfo:(ProductionInfo *)proInfo{
+-(void)setProInfo:(ProductionInfo *)proInfo
+{
     _proInfo = proInfo;
 }
+
+#pragma mark - UIView Methods
+-(void)awakeFromNib
+{
+    [super awakeFromNib];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessAddingToCarNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kSuccessBuyNowNotification object:nil];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeSubViews) name:kRemoveChooseCategoryViewNotification object:nil];
+}
+
+-(void)dealloc
+{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+
 @end

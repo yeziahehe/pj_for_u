@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BigManageViewController">
+            <connections>
+                <outlet property="isNotSelectedButton" destination="3tW-rx-Pb1" id="whX-ma-b8C"/>
+                <outlet property="isSelectedButton" destination="wMx-ge-K3G" id="3iA-ea-xVo"/>
+                <outlet property="tableView" destination="4TF-xt-bPR" id="I6S-Nr-8hh"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yI-MU-Qtv">
+                    <rect key="frame" x="0.0" y="64" width="375" height="30"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3tW-rx-Pb1">
+                            <rect key="frame" x="0.0" y="0.0" width="187.5" height="30"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="未分配">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" title="未分配">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wMx-ge-K3G">
+                            <rect key="frame" x="187" y="0.0" width="187.5" height="30"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="已分配">
+                                <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="selected" title="已分配">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="3tW-rx-Pb1" firstAttribute="width" secondItem="wMx-ge-K3G" secondAttribute="width" id="Flu-3a-r6J"/>
+                        <constraint firstItem="3tW-rx-Pb1" firstAttribute="leading" secondItem="9yI-MU-Qtv" secondAttribute="leading" id="JS9-7h-hnk"/>
+                        <constraint firstItem="wMx-ge-K3G" firstAttribute="top" secondItem="9yI-MU-Qtv" secondAttribute="top" id="al8-9j-Mkw"/>
+                        <constraint firstItem="3tW-rx-Pb1" firstAttribute="top" secondItem="9yI-MU-Qtv" secondAttribute="top" id="cWI-vG-87D"/>
+                        <constraint firstAttribute="bottom" secondItem="wMx-ge-K3G" secondAttribute="bottom" id="dIg-sP-rsO"/>
+                        <constraint firstItem="3tW-rx-Pb1" firstAttribute="height" secondItem="wMx-ge-K3G" secondAttribute="height" id="gvj-0b-TjN"/>
+                        <constraint firstAttribute="bottom" secondItem="3tW-rx-Pb1" secondAttribute="bottom" id="pdi-Ar-XdU"/>
+                        <constraint firstItem="wMx-ge-K3G" firstAttribute="leading" secondItem="3tW-rx-Pb1" secondAttribute="trailing" id="sCL-KP-eyQ"/>
+                        <constraint firstAttribute="trailing" secondItem="wMx-ge-K3G" secondAttribute="trailing" id="saC-FV-Mmb"/>
+                        <constraint firstAttribute="height" constant="30" id="w0y-YA-Rhc"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="4TF-xt-bPR">
+                    <rect key="frame" x="0.0" y="94" width="375" height="573"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="573" id="ulR-SB-Y5u"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Vdh-lJ-VxS"/>
+                        <outlet property="delegate" destination="-1" id="wBB-IM-KIs"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="9yI-MU-Qtv" firstAttribute="trailing" secondItem="4TF-xt-bPR" secondAttribute="trailing" id="49U-8L-npQ"/>
+                <constraint firstItem="4TF-xt-bPR" firstAttribute="leading" secondItem="9yI-MU-Qtv" secondAttribute="leading" id="MLD-BP-jNs"/>
+                <constraint firstItem="9yI-MU-Qtv" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="R4H-fB-rkK"/>
+                <constraint firstAttribute="trailing" secondItem="4TF-xt-bPR" secondAttribute="trailing" id="VU8-ru-Jmk"/>
+                <constraint firstAttribute="bottom" secondItem="4TF-xt-bPR" secondAttribute="bottom" id="gcc-pM-MZB"/>
+                <constraint firstItem="4TF-xt-bPR" firstAttribute="top" secondItem="9yI-MU-Qtv" secondAttribute="bottom" id="vXX-n6-PiM"/>
+                <constraint firstItem="9yI-MU-Qtv" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="wS1-CS-sPG"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="64.5" y="142.5"/>
+        </view>
+    </objects>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

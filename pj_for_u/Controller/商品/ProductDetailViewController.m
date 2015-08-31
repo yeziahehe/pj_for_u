@@ -21,7 +21,6 @@
 @property(strong,nonatomic)ProductionInfo *proInfo;
 @property (nonatomic, strong) NSMutableArray *subViewArray;
 @property(strong,nonatomic)NSArray *productInfoArray;
-@property(strong,nonatomic)NSString *isLoaded;
 @property(strong,nonatomic)UIView *background;
 @property(strong,nonatomic)ChooseCategoryView *chooseCategoryView;
 
@@ -29,6 +28,10 @@
 
 @property CGFloat orignHeight;
 @property BOOL isFirstTimeToRefresh;
+
+@property (strong, nonatomic) IBOutlet UIButton *addToShoppingCarButton;
+@property (strong, nonatomic) IBOutlet UIButton *buyRightNowButton;
+
 @end
 
 @implementation ProductDetailViewController
@@ -57,7 +60,8 @@
     return _background;
 }
 
--(void)removeSubViews{
+-(void)removeSubViews
+{
     CGFloat height = self.chooseCategoryView.frame.size.height;
     [UIView animateWithDuration:0.2
                      animations:^{
@@ -71,8 +75,8 @@
                          }
                      }];
     [self.background removeFromSuperview];
-    NSLog(@"移除subview成功");
 }
+
 #pragma mark - Private Methods
 - (void)loadDataWithfoodId:(NSString *)foodId
 {
@@ -91,16 +95,18 @@
         NSDictionary *valueDict = [responseObject objectForKey:@"food"];
         self.proInfo = [[ProductionInfo alloc]initWithDict:valueDict];
         [self loadSubViews];
-        [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
+        [self.addToShoppingCarButton setEnabled:YES];
+        [self.buyRightNowButton setEnabled:YES];
 
     }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
         
         NSLog(@"Error: %@", error);
-        
+
     }];
 }
 
--(void)loadSubViews{
+-(void)loadSubViews
+{
     for (UIView *subView in self.contentScrollView.subviews)
     {
         if ([subView isKindOfClass:[ProductSubView class]]) {
@@ -121,10 +127,10 @@
         rect.origin.x = 0;
         if ([productSubView isKindOfClass:[ProImageView class]]) {
             ProImageView *proImageView = (ProImageView *)productSubView;
-            proImageView.imageUrl = self.proInfo.imgUrl;
+            
             proImageView.proInfo = self.proInfo;
             rect.size.width = ScreenWidth;
-            rect.size.height = ScreenWidth + 101.f;
+            rect.size.height = ScreenWidth + 125.0;
             rect.origin.y += 64.f;
         }
         else if ([productSubView isKindOfClass:[ProInfoView class]]) {
@@ -143,12 +149,11 @@
         [self.contentScrollView addSubview:productSubView];
         originY = rect.origin.y + rect.size.height;
     }
-    self.isLoaded = @"1";
     [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, originY + 44.f)];
-    [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
 }
 
--(void)heightForTableViewWithNotification:(NSNotification *)notification{
+-(void)heightForTableViewWithNotification:(NSNotification *)notification
+{
     CGFloat height = [notification.object doubleValue];
     
     if (self.isFirstTimeToRefresh) {
@@ -158,7 +163,8 @@
     [self.contentScrollView setContentSize:CGSizeMake(ScreenWidth, self.orignHeight + height)];
 }
 
--(void)buyNowWithNotification:(NSNotification *)notification{
+-(void)buyNowWithNotification:(NSNotification *)notification
+{
     [self removeSubViews];
     NSMutableArray *OrderArray = [[NSMutableArray alloc]initWithObjects:notification.object, nil];
     ConfirmOrderViewController *covc = [[ConfirmOrderViewController alloc]initWithNibName:@"ConfirmOrderViewController" bundle:nil];
@@ -172,12 +178,49 @@
     [self removeSubViews];
 }
 
-#pragma mark - UIView Methods
-- (void)viewDidLoad {
+#pragma mark - IBAction Methods
+- (IBAction)addShoppingCarAndBuyNow:(UIButton *)sender
+{
+    if (![MemberDataManager sharedManager].loginMember.phone) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
+    } else {
+        self.chooseCategoryView = [[[NSBundle mainBundle]loadNibNamed:@"ChooseCategoryView" owner:self options:nil]lastObject];
+        //传递参数
+        self.chooseCategoryView.proInfo = self.proInfo;
+        if (sender.tag == 1) {
+            self.chooseCategoryView.flag = @"1";
+        }
+        else{
+            self.chooseCategoryView.flag = @"2";
+        }
+        CGFloat height = self.chooseCategoryView.frame.size.height;
+        [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, height)];
+        [self.view addSubview:self.background];
+        [self.view addSubview:self.chooseCategoryView];
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight - height, ScreenWidth, height)];
+        }];
+    }
+}
+
+-(void)rightItemTapped
+{
+    self.tabBarController.selectedIndex = 1;
+    [self.navigationController popToRootViewControllerAnimated:NO];
+}
+
+#pragma mark - ViewController Lifecycle
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self setNaviTitle:@"商品详情"];
     [self setRightNaviItemWithTitle:nil imageName:@"icon_shopcarright"];
+    
+    [self.addToShoppingCarButton setEnabled:NO];
+    [self.buyRightNowButton setEnabled:NO];
+
     [self loadDataWithfoodId:self.foodId];
     
     self.isFirstTimeToRefresh = YES;
@@ -191,45 +234,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(isTimeToEndRefreshNotification) name:kIsTimeToEndRefreshNotification object:nil];
 }
 
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:YES];
-    if (![self.isLoaded isEqualToString:@"1"]) {
-        [[YFProgressHUD sharedProgressHUD]startedNetWorkActivityWithText:@"加载中"];
-    }
 }
--(void)dealloc{
+
+-(void)dealloc
+{
     [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
-#pragma mark - IBAction Methods
-- (IBAction)addShoppingCarAndBuyNow:(UIButton *)sender {
-    if (![MemberDataManager sharedManager].loginMember.phone) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
-    }else{
-    self.chooseCategoryView = [[[NSBundle mainBundle]loadNibNamed:@"ChooseCategoryView" owner:self options:nil]lastObject];
-    //传递参数
-    self.chooseCategoryView.proInfo = self.proInfo;
-    if (sender.tag == 1) {
-        self.chooseCategoryView.flag = @"1";
-    }
-    else{
-        self.chooseCategoryView.flag = @"2";
-    }
-    CGFloat height = self.chooseCategoryView.frame.size.height;
-    [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight, ScreenWidth, height)];
-    [self.view addSubview:self.background];
-    [self.view addSubview:self.chooseCategoryView];
-    [UIView animateWithDuration:0.2 animations:^{
-        [self.chooseCategoryView setFrame:CGRectMake(0, ScreenHeight - height, ScreenWidth, height)];
-    }];
-    }
-}
-
-
--(void)rightItemTapped
-{
-    self.tabBarController.selectedIndex = 1;
-    [self.navigationController popToRootViewControllerAnimated:NO];
-}
 
 @end

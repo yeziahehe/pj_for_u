@@ -9,7 +9,12 @@
 #import "BaseViewController.h"
 
 @interface ConfirmOrderViewController : BaseViewController<UITableViewDataSource,UITableViewDelegate>
+
 @property (strong, nonatomic)NSMutableArray *selectedArray;
 @property(strong,nonatomic)NSString *buyNowFlag;
+
+@property int isBeSentFromMyOrder;      //1是，非1不是
+@property (strong, nonatomic) NSString *myOrderCampusId;
+@property (strong, nonatomic) NSArray *preferentials;
 
 @end

@@ -48,6 +48,7 @@
 @property (nonatomic, copy) NSString *modifyTime;
 @property (nonatomic, copy) NSString *foodFlag;
 @property (nonatomic, copy) NSString *primeCost;
+@property (nonatomic, copy) NSString *isFullDiscount;
 
 
 @end

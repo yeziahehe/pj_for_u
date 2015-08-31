@@ -242,6 +242,32 @@
 		6D3885FC1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3885FA1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png */; };
 		6D3885FF1B70C47200206E2A /* icon_anonymous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D3885FD1B70C47200206E2A /* icon_anonymous@2x.png */; };
 		6D6A43C81B71E8E20029620E /* icon_notAnonymous@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A43C71B71E8E20029620E /* icon_notAnonymous@2x.png */; };
+		6D6A8D061B8AAEAF0027D4C4 /* guidepage_1_480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8CFA1B8AAEAF0027D4C4 /* guidepage_1_480h@2x.png */; };
+		6D6A8D071B8AAEAF0027D4C4 /* guidepage_1_568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8CFB1B8AAEAF0027D4C4 /* guidepage_1_568h@2x.png */; };
+		6D6A8D081B8AAEAF0027D4C4 /* guidepage_1_667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8CFC1B8AAEAF0027D4C4 /* guidepage_1_667h@2x.png */; };
+		6D6A8D091B8AAEAF0027D4C4 /* guidepage_1_736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8CFD1B8AAEAF0027D4C4 /* guidepage_1_736h@3x.png */; };
+		6D6A8D0A1B8AAEAF0027D4C4 /* guidepage_2_480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8CFE1B8AAEAF0027D4C4 /* guidepage_2_480h@2x.png */; };
+		6D6A8D0B1B8AAEAF0027D4C4 /* guidepage_2_568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8CFF1B8AAEAF0027D4C4 /* guidepage_2_568h@2x.png */; };
+		6D6A8D0C1B8AAEAF0027D4C4 /* guidepage_2_667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D001B8AAEAF0027D4C4 /* guidepage_2_667h@2x.png */; };
+		6D6A8D0D1B8AAEAF0027D4C4 /* guidepage_2_736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D011B8AAEAF0027D4C4 /* guidepage_2_736h@3x.png */; };
+		6D6A8D0E1B8AAEAF0027D4C4 /* guidepage_3_480h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D021B8AAEAF0027D4C4 /* guidepage_3_480h@2x.png */; };
+		6D6A8D0F1B8AAEAF0027D4C4 /* guidepage_3_568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D031B8AAEAF0027D4C4 /* guidepage_3_568h@2x.png */; };
+		6D6A8D101B8AAEAF0027D4C4 /* guidepage_3_667h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D041B8AAEAF0027D4C4 /* guidepage_3_667h@2x.png */; };
+		6D6A8D111B8AAEAF0027D4C4 /* guidepage_3_736h@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D051B8AAEAF0027D4C4 /* guidepage_3_736h@3x.png */; };
+		6D6A8D171B8AD0C90027D4C4 /* BigManageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A8D151B8AD0C90027D4C4 /* BigManageViewController.m */; };
+		6D6A8D181B8AD0C90027D4C4 /* BigManageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D161B8AD0C90027D4C4 /* BigManageViewController.xib */; };
+		6D6A8D1C1B8AD11C0027D4C4 /* BigManageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A8D1A1B8AD11C0027D4C4 /* BigManageTableViewCell.m */; };
+		6D6A8D1D1B8AD11C0027D4C4 /* BigManageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D1B1B8AD11C0027D4C4 /* BigManageTableViewCell.xib */; };
+		6D6A8D221B8AFAB00027D4C4 /* BigManageSubViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A8D201B8AFAB00027D4C4 /* BigManageSubViewController.m */; };
+		6D6A8D231B8AFAB00027D4C4 /* BigManageSubViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D211B8AFAB00027D4C4 /* BigManageSubViewController.xib */; };
+		6D6A8D271B8B13BF0027D4C4 /* BigManageSubTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A8D251B8B13BF0027D4C4 /* BigManageSubTableViewCell.m */; };
+		6D6A8D281B8B13BF0027D4C4 /* BigManageSubTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D261B8B13BF0027D4C4 /* BigManageSubTableViewCell.xib */; };
+		6D6A8D2C1B8C13E30027D4C4 /* CourierViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A8D2A1B8C13E30027D4C4 /* CourierViewController.m */; };
+		6D6A8D2D1B8C13E30027D4C4 /* CourierViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D2B1B8C13E30027D4C4 /* CourierViewController.xib */; };
+		6D6A8D311B8C14FE0027D4C4 /* CourierTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A8D2F1B8C14FE0027D4C4 /* CourierTableViewCell.m */; };
+		6D6A8D321B8C14FE0027D4C4 /* CourierTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D301B8C14FE0027D4C4 /* CourierTableViewCell.xib */; };
+		6D6A8D361B8C28C70027D4C4 /* CourierSubTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D6A8D341B8C28C70027D4C4 /* CourierSubTableViewCell.m */; };
+		6D6A8D371B8C28C70027D4C4 /* CourierSubTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D6A8D351B8C28C70027D4C4 /* CourierSubTableViewCell.xib */; };
 		6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E81B65F4C700257256 /* empty_choice@3x.png */; };
 		6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716E91B65F4C700257256 /* full_choice@2x.png */; };
 		6D7716EE1B65F4C700257256 /* full_choice@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7716EA1B65F4C700257256 /* full_choice@3x.png */; };
@@ -631,6 +657,39 @@
 		6D3885FA1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_evaluationStarNotLight@2x.png"; path = "Resource/icon_evaluationStarNotLight@2x.png"; sourceTree = "<group>"; };
 		6D3885FD1B70C47200206E2A /* icon_anonymous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_anonymous@2x.png"; path = "Resource/icon_anonymous@2x.png"; sourceTree = "<group>"; };
 		6D6A43C71B71E8E20029620E /* icon_notAnonymous@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_notAnonymous@2x.png"; path = "Resource/icon_notAnonymous@2x.png"; sourceTree = "<group>"; };
+		6D6A8CFA1B8AAEAF0027D4C4 /* guidepage_1_480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guidepage_1_480h@2x.png"; path = "Resource/guidepage_1_480h@2x.png"; sourceTree = "<group>"; };
+		6D6A8CFB1B8AAEAF0027D4C4 /* guidepage_1_568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guidepage_1_568h@2x.png"; path = "Resource/guidepage_1_568h@2x.png"; sourceTree = "<group>"; };
+		6D6A8CFC1B8AAEAF0027D4C4 /* guidepage_1_667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guidepage_1_667h@2x.png"; path = "Resource/guidepage_1_667h@2x.png"; sourceTree = "<group>"; };
+		6D6A8CFD1B8AAEAF0027D4C4 /* guidepage_1_736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guidepage_1_736h@3x.png"; path = "Resource/guidepage_1_736h@3x.png"; sourceTree = "<group>"; };
+		6D6A8CFE1B8AAEAF0027D4C4 /* guidepage_2_480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guidepage_2_480h@2x.png"; path = "Resource/guidepage_2_480h@2x.png"; sourceTree = "<group>"; };
+		6D6A8CFF1B8AAEAF0027D4C4 /* guidepage_2_568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guidepage_2_568h@2x.png"; path = "Resource/guidepage_2_568h@2x.png"; sourceTree = "<group>"; };
+		6D6A8D001B8AAEAF0027D4C4 /* guidepage_2_667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guidepage_2_667h@2x.png"; path = "Resource/guidepage_2_667h@2x.png"; sourceTree = "<group>"; };
+		6D6A8D011B8AAEAF0027D4C4 /* guidepage_2_736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guidepage_2_736h@3x.png"; path = "Resource/guidepage_2_736h@3x.png"; sourceTree = "<group>"; };
+		6D6A8D021B8AAEAF0027D4C4 /* guidepage_3_480h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guidepage_3_480h@2x.png"; path = "Resource/guidepage_3_480h@2x.png"; sourceTree = "<group>"; };
+		6D6A8D031B8AAEAF0027D4C4 /* guidepage_3_568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guidepage_3_568h@2x.png"; path = "Resource/guidepage_3_568h@2x.png"; sourceTree = "<group>"; };
+		6D6A8D041B8AAEAF0027D4C4 /* guidepage_3_667h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guidepage_3_667h@2x.png"; path = "Resource/guidepage_3_667h@2x.png"; sourceTree = "<group>"; };
+		6D6A8D051B8AAEAF0027D4C4 /* guidepage_3_736h@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "guidepage_3_736h@3x.png"; path = "Resource/guidepage_3_736h@3x.png"; sourceTree = "<group>"; };
+		6D6A8D141B8AD0C90027D4C4 /* BigManageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigManageViewController.h; sourceTree = "<group>"; };
+		6D6A8D151B8AD0C90027D4C4 /* BigManageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigManageViewController.m; sourceTree = "<group>"; };
+		6D6A8D161B8AD0C90027D4C4 /* BigManageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BigManageViewController.xib; sourceTree = "<group>"; };
+		6D6A8D191B8AD11C0027D4C4 /* BigManageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigManageTableViewCell.h; sourceTree = "<group>"; };
+		6D6A8D1A1B8AD11C0027D4C4 /* BigManageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigManageTableViewCell.m; sourceTree = "<group>"; };
+		6D6A8D1B1B8AD11C0027D4C4 /* BigManageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BigManageTableViewCell.xib; sourceTree = "<group>"; };
+		6D6A8D1F1B8AFAB00027D4C4 /* BigManageSubViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigManageSubViewController.h; sourceTree = "<group>"; };
+		6D6A8D201B8AFAB00027D4C4 /* BigManageSubViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigManageSubViewController.m; sourceTree = "<group>"; };
+		6D6A8D211B8AFAB00027D4C4 /* BigManageSubViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BigManageSubViewController.xib; sourceTree = "<group>"; };
+		6D6A8D241B8B13BF0027D4C4 /* BigManageSubTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BigManageSubTableViewCell.h; sourceTree = "<group>"; };
+		6D6A8D251B8B13BF0027D4C4 /* BigManageSubTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BigManageSubTableViewCell.m; sourceTree = "<group>"; };
+		6D6A8D261B8B13BF0027D4C4 /* BigManageSubTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BigManageSubTableViewCell.xib; sourceTree = "<group>"; };
+		6D6A8D291B8C13E30027D4C4 /* CourierViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierViewController.h; sourceTree = "<group>"; };
+		6D6A8D2A1B8C13E30027D4C4 /* CourierViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourierViewController.m; sourceTree = "<group>"; };
+		6D6A8D2B1B8C13E30027D4C4 /* CourierViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourierViewController.xib; sourceTree = "<group>"; };
+		6D6A8D2E1B8C14FE0027D4C4 /* CourierTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierTableViewCell.h; sourceTree = "<group>"; };
+		6D6A8D2F1B8C14FE0027D4C4 /* CourierTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourierTableViewCell.m; sourceTree = "<group>"; };
+		6D6A8D301B8C14FE0027D4C4 /* CourierTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourierTableViewCell.xib; sourceTree = "<group>"; };
+		6D6A8D331B8C28C70027D4C4 /* CourierSubTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourierSubTableViewCell.h; sourceTree = "<group>"; };
+		6D6A8D341B8C28C70027D4C4 /* CourierSubTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CourierSubTableViewCell.m; sourceTree = "<group>"; };
+		6D6A8D351B8C28C70027D4C4 /* CourierSubTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CourierSubTableViewCell.xib; sourceTree = "<group>"; };
 		6D7716E71B65F4C700257256 /* empty_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@2x.png"; path = "Resource/empty_choice@2x.png"; sourceTree = "<group>"; };
 		6D7716E81B65F4C700257256 /* empty_choice@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "empty_choice@3x.png"; path = "Resource/empty_choice@3x.png"; sourceTree = "<group>"; };
 		6D7716E91B65F4C700257256 /* full_choice@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "full_choice@2x.png"; path = "Resource/full_choice@2x.png"; sourceTree = "<group>"; };
@@ -1142,6 +1201,18 @@
 		2CF607581B5E772B0022E8E7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				6D6A8CFA1B8AAEAF0027D4C4 /* guidepage_1_480h@2x.png */,
+				6D6A8CFB1B8AAEAF0027D4C4 /* guidepage_1_568h@2x.png */,
+				6D6A8CFC1B8AAEAF0027D4C4 /* guidepage_1_667h@2x.png */,
+				6D6A8CFD1B8AAEAF0027D4C4 /* guidepage_1_736h@3x.png */,
+				6D6A8CFE1B8AAEAF0027D4C4 /* guidepage_2_480h@2x.png */,
+				6D6A8CFF1B8AAEAF0027D4C4 /* guidepage_2_568h@2x.png */,
+				6D6A8D001B8AAEAF0027D4C4 /* guidepage_2_667h@2x.png */,
+				6D6A8D011B8AAEAF0027D4C4 /* guidepage_2_736h@3x.png */,
+				6D6A8D021B8AAEAF0027D4C4 /* guidepage_3_480h@2x.png */,
+				6D6A8D031B8AAEAF0027D4C4 /* guidepage_3_568h@2x.png */,
+				6D6A8D041B8AAEAF0027D4C4 /* guidepage_3_667h@2x.png */,
+				6D6A8D051B8AAEAF0027D4C4 /* guidepage_3_736h@3x.png */,
 				4AB377D51B723D270052168A /* 其他 */,
 				2C7953931B613EC000511EB7 /* 个人中心 */,
 				2CF6075C1B5E91EB0022E8E7 /* header */,
@@ -1236,6 +1307,8 @@
 				6D8AD3E51B608D080099A0D8 /* 地址管理 */,
 				6D8AD3E61B608D100099A0D8 /* 我的订单 */,
 				6D8AD3E71B608D1A0099A0D8 /* 个人信息 */,
+				6D6A8D121B8ACF360027D4C4 /* 派送员 */,
+				6D6A8D131B8ACF470027D4C4 /* 大经理 */,
 			);
 			name = "个人中心";
 			path = "Controller/个人中心";
@@ -1350,6 +1423,49 @@
 				6D2044DA1B842F8D00386189 /* MyOrderDetailViewController.xib */,
 			);
 			name = "订单详情";
+			sourceTree = "<group>";
+		};
+		6D6A8D121B8ACF360027D4C4 /* 派送员 */ = {
+			isa = PBXGroup;
+			children = (
+				6D6A8D291B8C13E30027D4C4 /* CourierViewController.h */,
+				6D6A8D2A1B8C13E30027D4C4 /* CourierViewController.m */,
+				6D6A8D2B1B8C13E30027D4C4 /* CourierViewController.xib */,
+				6D6A8D2E1B8C14FE0027D4C4 /* CourierTableViewCell.h */,
+				6D6A8D2F1B8C14FE0027D4C4 /* CourierTableViewCell.m */,
+				6D6A8D301B8C14FE0027D4C4 /* CourierTableViewCell.xib */,
+				6D6A8D331B8C28C70027D4C4 /* CourierSubTableViewCell.h */,
+				6D6A8D341B8C28C70027D4C4 /* CourierSubTableViewCell.m */,
+				6D6A8D351B8C28C70027D4C4 /* CourierSubTableViewCell.xib */,
+			);
+			name = "派送员";
+			sourceTree = "<group>";
+		};
+		6D6A8D131B8ACF470027D4C4 /* 大经理 */ = {
+			isa = PBXGroup;
+			children = (
+				6D6A8D141B8AD0C90027D4C4 /* BigManageViewController.h */,
+				6D6A8D151B8AD0C90027D4C4 /* BigManageViewController.m */,
+				6D6A8D161B8AD0C90027D4C4 /* BigManageViewController.xib */,
+				6D6A8D191B8AD11C0027D4C4 /* BigManageTableViewCell.h */,
+				6D6A8D1A1B8AD11C0027D4C4 /* BigManageTableViewCell.m */,
+				6D6A8D1B1B8AD11C0027D4C4 /* BigManageTableViewCell.xib */,
+				6D6A8D1E1B8AFA840027D4C4 /* 大经理子页面 */,
+			);
+			name = "大经理";
+			sourceTree = "<group>";
+		};
+		6D6A8D1E1B8AFA840027D4C4 /* 大经理子页面 */ = {
+			isa = PBXGroup;
+			children = (
+				6D6A8D1F1B8AFAB00027D4C4 /* BigManageSubViewController.h */,
+				6D6A8D201B8AFAB00027D4C4 /* BigManageSubViewController.m */,
+				6D6A8D211B8AFAB00027D4C4 /* BigManageSubViewController.xib */,
+				6D6A8D241B8B13BF0027D4C4 /* BigManageSubTableViewCell.h */,
+				6D6A8D251B8B13BF0027D4C4 /* BigManageSubTableViewCell.m */,
+				6D6A8D261B8B13BF0027D4C4 /* BigManageSubTableViewCell.xib */,
+			);
+			name = "大经理子页面";
 			sourceTree = "<group>";
 		};
 		6D8AD3E51B608D080099A0D8 /* 地址管理 */ = {
@@ -1494,9 +1610,11 @@
 				6D2044D21B842F2800386189 /* MyOrderTableViewCell.xib in Resources */,
 				2C10D6AE1B60B1F7008C3DE0 /* icon_home@2x.png in Resources */,
 				0AFC07161B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib in Resources */,
+				6D6A8D111B8AAEAF0027D4C4 /* guidepage_3_736h@3x.png in Resources */,
 				2CF6076E1B5EA0EF0022E8E7 /* btn_category@2x.png in Resources */,
 				2CF607981B5EBDA10022E8E7 /* line_ver_1px_right.png in Resources */,
 				6D2044C81B842C9700386189 /* ProCommentView.xib in Resources */,
+				6D6A8D321B8C14FE0027D4C4 /* CourierTableViewCell.xib in Resources */,
 				2C2528841B5E2C9D00ADDEFB /* RootTabBarViewController.xib in Resources */,
 				2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */,
 				6D8AD3F41B60BD250099A0D8 /* AddressManageViewController.xib in Resources */,
@@ -1507,36 +1625,45 @@
 				2CF6077A1B5EA3FF0022E8E7 /* CitySelectTableView.xib in Resources */,
 				6D8AD4001B60E2510099A0D8 /* IndividualSubViewController.xib in Resources */,
 				4A6C15851B5F877F00C9A9D2 /* UserInfoViewController.xib in Resources */,
+				6D6A8D0A1B8AAEAF0027D4C4 /* guidepage_2_480h@2x.png in Resources */,
 				4A6C15791B5F7D5300C9A9D2 /* icon_login_secret@2x.png in Resources */,
 				4AB377D91B723D340052168A /* icon_addshoppingcarcircle@2x.png in Resources */,
 				0ACABED21B65FFAB009B18E0 /* HomeActivityTableViewCell.xib in Resources */,
+				6D6A8D1D1B8AD11C0027D4C4 /* BigManageTableViewCell.xib in Resources */,
 				2CF607C01B5EC88C0022E8E7 /* icon_breakfest@2x.png in Resources */,
 				6D2044E51B8463A000386189 /* btn_full@2x.png in Resources */,
+				6D6A8D0D1B8AAEAF0027D4C4 /* guidepage_2_736h@3x.png in Resources */,
 				2CF607971B5EBDA10022E8E7 /* line_ver_1px_left.png in Resources */,
 				4A1464F01B759B5900B9F058 /* icon_choose@2x.png in Resources */,
+				6D6A8D0C1B8AAEAF0027D4C4 /* guidepage_2_667h@2x.png in Resources */,
 				2C79539B1B613F4800511EB7 /* icon_userinfo@2x.png in Resources */,
 				0AFC07181B6CAE46002BDB90 /* ShoppingCarViewController.xib in Resources */,
 				2CF607871B5EABA60022E8E7 /* bg_select_city@2x.png in Resources */,
 				6D3885FC1B70C3B000206E2A /* icon_evaluationStarNotLight@2x.png in Resources */,
 				4AB377D11B71AB3A0052168A /* ProCommentTableViewCell.xib in Resources */,
 				2C10D6BA1B60B7F2008C3DE0 /* ProductViewController.xib in Resources */,
+				6D6A8D0E1B8AAEAF0027D4C4 /* guidepage_3_480h@2x.png in Resources */,
 				2CF607951B5EBDA10022E8E7 /* line_hon_1px_down.png in Resources */,
 				2CF6076A1B5E9D270022E8E7 /* icon_header_back@2x.png in Resources */,
+				6D6A8D081B8AAEAF0027D4C4 /* guidepage_1_667h@2x.png in Resources */,
 				2C10D6C31B60C30D008C3DE0 /* SettingMap.plist in Resources */,
 				2C10D6B21B60B551008C3DE0 /* icon_home_selected@2x.png in Resources */,
 				2C79539D1B61402D00511EB7 /* bg_user_module@2x.png in Resources */,
 				2C7953921B6134B400511EB7 /* icon_new@2x.png in Resources */,
 				0A54DA7C1B7322EC00FCBAB0 /* icon_received_address@2x.png in Resources */,
 				4A1464F51B75F34600B9F058 /* icon_shopcarright@2x.png in Resources */,
+				6D6A8D281B8B13BF0027D4C4 /* BigManageSubTableViewCell.xib in Resources */,
 				2C10D6C01B60B970008C3DE0 /* SettingViewController.xib in Resources */,
 				2C7953901B61321B00511EB7 /* home_image_default@2x.png in Resources */,
 				0A72CE4D1B744D3E00222284 /* icon_rubbish@2x.png in Resources */,
 				6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */,
+				6D6A8D2D1B8C13E30027D4C4 /* CourierViewController.xib in Resources */,
 				4A1464F31B75F33000B9F058 /* icon_addshopcar@2x.png in Resources */,
 				6D2044E31B84631800386189 /* feedback_input_box.png in Resources */,
 				2C2528991B5E38B100ADDEFB /* RegisterViewController.xib in Resources */,
 				6D2044DC1B842F8D00386189 /* MyOrderDetailViewController.xib in Resources */,
 				2CF607A51B5EC6B60022E8E7 /* HomeContainView.xib in Resources */,
+				6D6A8D061B8AAEAF0027D4C4 /* guidepage_1_480h@2x.png in Resources */,
 				2CF607961B5EBDA10022E8E7 /* line_hon_1px_up.png in Resources */,
 				4A6C157C1B5F808D00C9A9D2 /* btn_login@2x.png in Resources */,
 				2C7953991B613F4800511EB7 /* icon_order@2x.png in Resources */,
@@ -1544,12 +1671,14 @@
 				6D2044C31B842C2000386189 /* ChooseCategoryView.xib in Resources */,
 				2C10D6AD1B60B1F7008C3DE0 /* icon_home_user@2x.png in Resources */,
 				2C25285B1B5E108A00ADDEFB /* Images.xcassets in Resources */,
+				6D6A8D0B1B8AAEAF0027D4C4 /* guidepage_2_568h@2x.png in Resources */,
 				0AE093081B60D2EC0095D639 /* AboutAppViewController.xib in Resources */,
 				2CF607B21B5EC7DD0022E8E7 /* icon_header_back@2x.png in Resources */,
 				6D2044E11B8460A700386189 /* FeedbackViewController.xib in Resources */,
 				0A54DA7E1B73261D00FCBAB0 /* icon_addre@2x.png in Resources */,
 				2C7953A31B61432500511EB7 /* bg_user_img@2x.png in Resources */,
 				2C79539A1B613F4800511EB7 /* icon_setting@2x.png in Resources */,
+				6D6A8D091B8AAEAF0027D4C4 /* guidepage_1_736h@3x.png in Resources */,
 				0A54DA821B73311E00FCBAB0 /* icon_wechat@2x.png in Resources */,
 				6D2044EA1B84734F00386189 /* AddressChooseViewController.xib in Resources */,
 				4A6C15931B60915500C9A9D2 /* icon_agree@2x.png in Resources */,
@@ -1565,7 +1694,9 @@
 				2C25288A1B5E2E1E00ADDEFB /* LoginViewController.xib in Resources */,
 				4A6C15941B60915500C9A9D2 /* icon_disagree@2x.png in Resources */,
 				0A3B670E1B6203BC0067C709 /* SettingTableViewCell.xib in Resources */,
+				6D6A8D071B8AAEAF0027D4C4 /* guidepage_1_568h@2x.png in Resources */,
 				0A54DA811B73311E00FCBAB0 /* icon_alipay@2x.png in Resources */,
+				6D6A8D371B8C28C70027D4C4 /* CourierSubTableViewCell.xib in Resources */,
 				6D938E8B1B745A3400AB9895 /* icon_trade_success.png in Resources */,
 				6D7716EC1B65F4C700257256 /* empty_choice@3x.png in Resources */,
 				2CF607C41B5EC88C0022E8E7 /* icon_more@2x.png in Resources */,
@@ -1574,15 +1705,18 @@
 				0A9E1A521B7DF05D00D4D7C7 /* AlipaySDK.bundle in Resources */,
 				2CF607C31B5EC88C0022E8E7 /* icon_house@2x.png in Resources */,
 				4A6C15A81B66143000C9A9D2 /* AddReciverViewController.xib in Resources */,
+				6D6A8D101B8AAEAF0027D4C4 /* guidepage_3_667h@2x.png in Resources */,
 				6D2044B91B842ACC00386189 /* icon_cutmoney@2x.png in Resources */,
 				2C2528A51B5E38BB00ADDEFB /* ForgetPwdViewController.xib in Resources */,
 				4A6C15781B5F7D5300C9A9D2 /* icon_login_phone@2x.png in Resources */,
+				6D6A8D0F1B8AAEAF0027D4C4 /* guidepage_3_568h@2x.png in Resources */,
 				6D3885FF1B70C47200206E2A /* icon_anonymous@2x.png in Resources */,
 				6D8AD3ED1B6097C70099A0D8 /* IndividualViewController.xib in Resources */,
 				6D2044B21B842A0A00386189 /* MainTableViewController.xib in Resources */,
 				2CF607A01B5EC6460022E8E7 /* ImageContainView.xib in Resources */,
 				6D2044D71B842F4100386189 /* MyOrderInsideTableViewCell.xib in Resources */,
 				2C10D6B41B60B551008C3DE0 /* icon_home_user_selected@2x.png in Resources */,
+				6D6A8D181B8AD0C90027D4C4 /* BigManageViewController.xib in Resources */,
 				0ACABED61B671DEE009B18E0 /* icon_yanzheng@2x.png in Resources */,
 				2CF607681B5E9D100022E8E7 /* SearchHistoryViewController.xib in Resources */,
 				2C7953A11B61414200511EB7 /* icon_header_back_light@2x.png in Resources */,
@@ -1601,6 +1735,7 @@
 				0A3B67121B622F5A0067C709 /* aboutImage.png in Resources */,
 				6D2044B71B842A6D00386189 /* ProImageView.xib in Resources */,
 				4A6C15B81B67219F00C9A9D2 /* CampusPickerView.xib in Resources */,
+				6D6A8D231B8AFAB00027D4C4 /* BigManageSubViewController.xib in Resources */,
 				6D2044BE1B842BE300386189 /* ProInfoView.xib in Resources */,
 				2CF607C21B5EC88C0022E8E7 /* icon_fruit@2x.png in Resources */,
 				2CF607521B5E4E390022E8E7 /* StartViewController.xib in Resources */,
@@ -1630,6 +1765,7 @@
 				4A6C16321B6F682200C9A9D2 /* SXNetworkTools.m in Sources */,
 				2C2528FF1B5E3AA900ADDEFB /* UIImage+YFAdditions.m in Sources */,
 				2CF607831B5EA8F60022E8E7 /* SchoolSelectTableView.m in Sources */,
+				6D6A8D311B8C14FE0027D4C4 /* CourierTableViewCell.m in Sources */,
 				6D2044B61B842A6D00386189 /* ProImageView.m in Sources */,
 				2CF607801B5EA5DB0022E8E7 /* UITableViewCell+YFAdditions.m in Sources */,
 				2C2528D31B5E39EF00ADDEFB /* UIScrollView+MJExtension.m in Sources */,
@@ -1640,12 +1776,15 @@
 				2CF607901B5EB6360022E8E7 /* CampusMoel.m in Sources */,
 				2C2528D11B5E39EF00ADDEFB /* MJRefreshFooterView.m in Sources */,
 				2CF6078A1B5EB4770022E8E7 /* LocationModel.m in Sources */,
+				6D6A8D171B8AD0C90027D4C4 /* BigManageViewController.m in Sources */,
 				2CF607A31B5EC6A50022E8E7 /* HomeContainView.m in Sources */,
 				0AE742501B708CA8005A91CF /* ShoppingCar.m in Sources */,
 				2CF607511B5E4E390022E8E7 /* StartViewController.m in Sources */,
 				2C2528D21B5E39EF00ADDEFB /* MJRefreshHeaderView.m in Sources */,
 				6D8AF6871B7C3EEA00B1BFBF /* YFBadgeView.m in Sources */,
 				4A6C16821B70BAC500C9A9D2 /* AFHTTPRequestOperationManager.m in Sources */,
+				6D6A8D361B8C28C70027D4C4 /* CourierSubTableViewCell.m in Sources */,
+				6D6A8D271B8B13BF0027D4C4 /* BigManageSubTableViewCell.m in Sources */,
 				2CF6077F1B5EA5DB0022E8E7 /* UITableView+YFAdditions.m in Sources */,
 				6D2044CC1B842EC200386189 /* MyOrderViewController.m in Sources */,
 				2C10D6BF1B60B970008C3DE0 /* SettingViewController.m in Sources */,
@@ -1698,6 +1837,7 @@
 				4A6C16211B6B93AB00C9A9D2 /* CategoryLabel.m in Sources */,
 				0AFC07151B6CAE46002BDB90 /* ShoppingCarTableViewCell.m in Sources */,
 				4A6C16811B70BAC500C9A9D2 /* AFHTTPRequestOperation.m in Sources */,
+				6D6A8D2C1B8C13E30027D4C4 /* CourierViewController.m in Sources */,
 				2C2528891B5E2E1E00ADDEFB /* LoginViewController.m in Sources */,
 				6D8AD3EC1B6097C70099A0D8 /* IndividualViewController.m in Sources */,
 				2C2529001B5E3AA900ADDEFB /* UIImage+YFUtilities.m in Sources */,
@@ -1711,10 +1851,12 @@
 				4A6C16851B70BAC500C9A9D2 /* AFSecurityPolicy.m in Sources */,
 				4A6C162C1B6BC2B300C9A9D2 /* ProductDataManager.m in Sources */,
 				2C2528CE1B5E39EF00ADDEFB /* MBProgressHUD.m in Sources */,
+				6D6A8D1C1B8AD11C0027D4C4 /* BigManageTableViewCell.m in Sources */,
 				4A6C156F1B5F724C00C9A9D2 /* MemberDataManager.m in Sources */,
 				2CF6078D1B5EB5BB0022E8E7 /* BaseModel.m in Sources */,
 				6D8AD3F81B60C2AF0099A0D8 /* IndividualTableViewCell.m in Sources */,
 				6D2044D61B842F4100386189 /* MyOrderInsideTableViewCell.m in Sources */,
+				6D6A8D221B8AFAB00027D4C4 /* BigManageSubViewController.m in Sources */,
 				4A6C16B01B711E7C00C9A9D2 /* MyOrderEvaluationViewController.m in Sources */,
 				2C2529081B5E3AA900ADDEFB /* YFMediaPicker.m in Sources */,
 				2C2528D71B5E39EF00ADDEFB /* NSObject+SBJSON.m in Sources */,
@@ -1849,6 +1991,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1866,6 +2009,7 @@
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Wx",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1875,6 +2019,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1892,6 +2037,7 @@
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Wx",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++",
 				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

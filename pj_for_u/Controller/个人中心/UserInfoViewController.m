@@ -12,6 +12,9 @@
 #import "AddressManageViewController.h"
 #import "MyOrderViewController.h"
 
+#import "BigManageViewController.h"
+#import "CourierViewController.h"
+
 @interface UserInfoViewController ()
 @property (strong, nonatomic) IBOutlet YFAsynImageView *headPhoto;
 @property (strong, nonatomic) IBOutlet YFAsynImageView *headBackPhoto;
@@ -19,6 +22,10 @@
 @property (strong, nonatomic) IndividualInfo *individualInfo;
 @property (strong, nonatomic) UIVisualEffectView *effectView;
 @property (strong, nonatomic) UIImage *previousImage;
+
+@property (strong, nonatomic) IBOutlet UIButton *courierButton;     //派送员
+@property (strong, nonatomic) IBOutlet UIButton *bigManageButton;     //大经理
+
 @end
 
 @implementation UserInfoViewController
@@ -172,9 +179,44 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    self.courierButton.hidden = YES;
+    self.bigManageButton.hidden = YES;
+
+    
     if ([[MemberDataManager sharedManager] isLogin]) {
         [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+        
+        if ([[MemberDataManager sharedManager].loginMember.type isEqualToString:@"0"]) {
+            
+            self.bigManageButton.hidden = NO;
+            [self.bigManageButton addTarget:self action:@selector(bigManageAction) forControlEvents:UIControlEventTouchUpInside];
+            
+        } else if ([[MemberDataManager sharedManager].loginMember.type isEqualToString:@"1"]) {
+            
+            self.courierButton.hidden = NO;
+            [self.courierButton addTarget:self action:@selector(courierAction) forControlEvents:UIControlEventTouchUpInside];
+
+        }
+        else {
+            self.courierButton.hidden = YES;
+            self.bigManageButton.hidden = YES;
+        }
     }
+}
+
+- (void)courierAction
+{
+    CourierViewController *cvc = [[CourierViewController alloc] init];
+    [self.navigationController pushViewController:cvc animated:YES];
+}
+
+
+- (void)bigManageAction
+{
+    BigManageViewController *bmvc = [[BigManageViewController alloc] init];
+    [self.navigationController pushViewController:bmvc animated:YES];
+    
 }
 
 - (void)dealloc

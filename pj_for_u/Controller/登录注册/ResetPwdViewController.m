@@ -38,7 +38,9 @@
     else
     {
         //重置密码
-        [[MemberDataManager sharedManager] resetPwdWithPhone:[MemberDataManager sharedManager].loginMember.phone newPassword:self.pwdTextField.text];
+        [[MemberDataManager sharedManager] resetPwdWithPhone:[MemberDataManager sharedManager].loginMember.phone
+                                                 newPassword:self.pwdTextField.text
+                                                 oldPassword:self.oldPwdTextField.text];
     }
 }
 

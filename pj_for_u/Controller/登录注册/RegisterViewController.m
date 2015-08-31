@@ -14,7 +14,7 @@
 #define kResendTimeCount 60
 
 @interface RegisterViewController ()
-@property (strong, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (strong, nonatomic) UILabel *phoneLabel;
 @property (nonatomic, assign) NSInteger resendSecond;
 @property (nonatomic, strong) NSTimer *resendTimer;
 @end
@@ -111,7 +111,7 @@
                     if (1 == state) {
                         //验证成功后的注册操作
                         [MemberDataManager sharedManager].loginMember.password = self.passwordTextField.text;
-                        [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"注册中..."];
+                        [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"注册中..."];
                         [[MemberDataManager sharedManager] registerWithPhone:[MemberDataManager sharedManager].loginMember.phone
                                                                     password:[MemberDataManager sharedManager].loginMember.password
                                                                     nickName:self.nickNameTextField.text];
@@ -119,6 +119,7 @@
                     else if(0 == state)
                     {
                         [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"验证码填写错误" hideDelay:2.f];
+                        self.resendSecond = 0;
                     }
                 }];
     }

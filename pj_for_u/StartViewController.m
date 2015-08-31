@@ -41,6 +41,7 @@
         [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:kIsWelcomeShown];
         [[NSUserDefaults standardUserDefaults] synchronize];
         [[NSNotificationCenter defaultCenter] postNotificationName:kShowPannelViewNotification object:@"fromGuide"];
+        
     }
 }
 
@@ -53,29 +54,29 @@
     if(IsDevicePhone6P)
     {
         //self.startImageView.image = [UIImage imageNamed:@"v2ex_736h@2x.png"];
-        //self.guideArray = [NSArray arrayWithObjects:@"guidepage_1_736h@3x.png", @"guidepage_2_736h@3x.png",@"guidepage_3_736h@3x.png",@"guidepage_4_736h@3x.png", nil];
+        self.guideArray = [NSArray arrayWithObjects:@"guidepage_1_736h@3x.png", @"guidepage_2_736h@3x.png",@"guidepage_3_736h@3x.png", nil];
     }
     else if (IsDevicePhone6)
     {
         //self.startImageView.image = [UIImage imageNamed:@"v2ex_667h@2x.png"];
-        //self.guideArray = [NSArray arrayWithObjects:@"guidepage_1_667h@2x.png", @"guidepage_2_667h@2x.png",@"guidepage_3_667h@2x.png",@"guidepage_4_667h@2x.png",nil];
+        self.guideArray = [NSArray arrayWithObjects:@"guidepage_1_667h@2x.png", @"guidepage_2_667h@2x.png",@"guidepage_3_667h@2x.png",nil];
     }
     else if (IsDevicePhone5)
     {
         //self.startImageView.image = [UIImage imageNamed:@"v2ex_568h@2x.png"];
-        //self.guideArray = [NSArray arrayWithObjects:@"guidepage_1_568h@2x.png", @"guidepage_2_568h@2x.png",@"guidepage_3_568h@2x.png",@"guidepage_4_568h@2x.png",nil];
+        self.guideArray = [NSArray arrayWithObjects:@"guidepage_1_568h@2x.png", @"guidepage_2_568h@2x.png",@"guidepage_3_568h@2x.png",nil];
     }
     else
     {
         //self.startImageView.image = [UIImage imageNamed:@"v2ex_480h@2x.png"];
-        //self.guideArray = [NSArray arrayWithObjects:@"guidepage_1_480h@2x.png", @"guidepage_2_480h@2x.png",@"guidepage_3_480h@2x.png",@"guidepage_4_480h@2x.png",nil];
+        self.guideArray = [NSArray arrayWithObjects:@"guidepage_1_480h@2x.png", @"guidepage_2_480h@2x.png",@"guidepage_3_480h@2x.png",nil];
     }
     
     if([[[NSUserDefaults standardUserDefaults] objectForKey:kIsWelcomeShown] isEqualToString:@"1"])
     {
-//        self.startScrollView.hidden = YES;
-//        self.pageControl.hidden = YES;
-//        [self performSelector:@selector(showPannel) withObject:nil];
+        self.startScrollView.hidden = YES;
+        self.pageControl.hidden = YES;
+        [self performSelector:@selector(showPannel) withObject:nil];
     }
     else
     {
@@ -83,29 +84,26 @@
         [[NSUserDefaults standardUserDefaults] setObject:@"1" forKey:kLocationInfoKey];
         [[NSUserDefaults standardUserDefaults] setObject:@"苏州大学独墅湖校区" forKey:kCampusNameKey];
         [[NSUserDefaults standardUserDefaults] synchronize];
-//        self.startScrollView.hidden = NO;
-//        self.pageControl.hidden = NO;
-//        [self performSelector:@selector(showGuide) withObject:nil];
-//        NSInteger index = 0;
-//        for(NSString *imgName in self.guideArray)
-//        {
-//            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(index*ScreenWidth, 0, ScreenWidth, ScreenHeight)];
-//            imgView.image = [UIImage imageNamed:imgName];
-//            //imgView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
-//            [self.startScrollView addSubview:imgView];
-//            index++;
-//        }
-//        [self.startScrollView setContentSize:CGSizeMake(ScreenWidth*self.guideArray.count, 0)];
-//        
-//        UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeWithGesture:)];
-//        swipeGesture.direction = UISwipeGestureRecognizerDirectionLeft;
-//        swipeGesture.delegate = self;
-//        [self.view addGestureRecognizer:swipeGesture];
+        self.startScrollView.hidden = NO;
+        self.pageControl.hidden = NO;
+        [self performSelector:@selector(showGuide) withObject:nil];
+        NSInteger index = 0;
+        for(NSString *imgName in self.guideArray)
+        {
+            UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(index*ScreenWidth, 0, ScreenWidth, ScreenHeight)];
+            imgView.image = [UIImage imageNamed:imgName];
+            //imgView.autoresizingMask = UIViewAutoresizingFlexibleHeight;
+            [self.startScrollView addSubview:imgView];
+            index++;
+        }
+        [self.startScrollView setContentSize:CGSizeMake(ScreenWidth*self.guideArray.count, 0)];
+        
+        UISwipeGestureRecognizer *swipeGesture = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeWithGesture:)];
+        swipeGesture.direction = UISwipeGestureRecognizerDirectionLeft;
+        swipeGesture.delegate = self;
+        [self.view addGestureRecognizer:swipeGesture];
     }
     
-    self.startScrollView.hidden = YES;
-    self.pageControl.hidden = YES;
-    [self performSelector:@selector(showPannel) withObject:nil];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
@@ -122,6 +120,13 @@
 {
     NSInteger page = floor((scrollView.contentOffset.x - ScreenWidth / 2) / ScreenWidth) + 1;
     self.pageControl.currentPage = page;
+    
+    if (page == 2) {
+        UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(ScreenWidth * 2, ScreenHeight / 2, ScreenWidth, ScreenHeight / 2)];
+        button.backgroundColor = [UIColor clearColor];
+        [self.startScrollView addSubview:button];
+        [button addTarget:self action:@selector(swipeWithGesture:) forControlEvents:UIControlEventTouchUpInside];
+    }
 }
 
 #pragma mark - Status bar methods

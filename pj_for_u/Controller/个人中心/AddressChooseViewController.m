@@ -25,21 +25,14 @@
 {
     NSArray *valueArray = notification.object;
     
-    if (valueArray.count == 0) {
-        //
+    self.allAddressArray = [NSMutableArray arrayWithCapacity:0];
+    for (NSDictionary *valueDict in valueArray)
+    {
+        AddressInfo *hmm = [[AddressInfo alloc] initWithDict:valueDict];
+        [self.allAddressArray addObject:hmm];
     }
-    else {
-        self.allAddressArray = [NSMutableArray arrayWithCapacity:0];
-        for (NSDictionary *valueDict in valueArray)
-        {
-            AddressInfo *hmm = [[AddressInfo alloc]initWithDict:valueDict];
-            [self.allAddressArray addObject:hmm];
-        }
-        //如果没有收货地址
-        
-        
-        [self.tableView reloadData];
-    }
+    
+    [self.tableView reloadData];
 }
 
 - (void)rightItemTapped
@@ -65,10 +58,30 @@
 
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    for (int i = 0; i < self.allAddressArray.count; i++) {
+        NSIndexPath *indexPathTemp = [NSIndexPath indexPathForRow:i inSection:0];
+        AddressManageTableViewCell *cell = (AddressManageTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPathTemp];
+        if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:10];
+            [dict setObject:cell.name.text forKey:@"name"];
+            [dict setObject:cell.phoneNum.text forKey:@"phone"];
+            [dict setObject:cell.address.text forKey:@"address"];
+            [dict setObject:cell.rank forKey:@"rank"];
+            [dict setObject:cell.campusId forKey:@"campusId"];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kChooseAddressNoticfication object:dict];
+            return;
+        }
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kChooseAddressNoticfication object:nil];
+
+}
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-
 }
 
 #pragma mark - UITableViewDataSource Methods
@@ -83,6 +96,8 @@
     cell.name.text = address.name;
     cell.phoneNum.text = address.phone;
     cell.address.text = address.address;
+    cell.rank = address.rank;
+    cell.campusId = address.campusId;
     cell.accessoryType = UITableViewCellAccessoryNone;
     if ([address.tag isEqualToString: @"0"])
     {
@@ -118,12 +133,6 @@
     
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
-    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:10];
-    [dict setObject:cell.name.text forKey:@"name"];
-    [dict setObject:cell.phoneNum.text forKey:@"phone"];
-    [dict setObject:cell.address.text forKey:@"address"];
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:kChooseAddressNoticfication object:dict];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

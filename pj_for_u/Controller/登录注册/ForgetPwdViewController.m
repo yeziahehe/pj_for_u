@@ -18,7 +18,7 @@
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, assign) NSInteger resendSecond;
 @property (nonatomic, strong) NSTimer *resendTimer;
-@property (strong, nonatomic) IBOutlet UILabel *phoneLabel;
+@property (strong, nonatomic) UILabel *phoneLabel;
 
 @end
 
@@ -120,19 +120,20 @@
                         //验证成功后的改密码操作
                         [MemberDataManager sharedManager].loginMember.password = self.phoneTextField.text;
                         //重置密码
-                        [[MemberDataManager sharedManager] resetPwdWithPhone:self.phoneTextField.text newPassword:self.pwdTextField.text];
-
+                        [[MemberDataManager sharedManager] forgetPwdWithPhone:self.phoneTextField.text
+                                                                  newPassword:self.pwdTextField.text];
                     }
                     else if(0 == state)
                     {
                         [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"验证码填写错误" hideDelay:2.f];
+                        self.resendSecond = 0;
                     }
                 }];
     }
 }
 
 #pragma mark - Notification Methods
-- (void)resetPwdResponseNotification:(NSNotification *)notification
+- (void)forgetPwdResponseNotification:(NSNotification *)notification
 {
     if(notification.object)
     {
@@ -168,7 +169,7 @@
     self.identifyButton.enabled = NO;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resetPwdResponseNotification:) name:kResetPwdResponseNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(forgetPwdResponseNotification:) name:kForgetPwdResponseNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     

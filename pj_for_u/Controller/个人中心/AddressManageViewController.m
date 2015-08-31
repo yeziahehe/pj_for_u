@@ -41,18 +41,17 @@
 - (void)getAddressWithNotification:(NSNotification *)notification{
     NSArray *valueArray = notification.object;
     self.allAddressArray = [NSMutableArray arrayWithCapacity:0];
-    for (NSDictionary *valueDict in valueArray)
-    {
+    for (NSDictionary *valueDict in valueArray) {
         AddressInfo *hmm = [[AddressInfo alloc]initWithDict:valueDict];
         [self.allAddressArray addObject:hmm];
     }
     //如果只有一个收货地址，做设置默认地址处理
-    if(self.allAddressArray.count != 0){
+    if(self.allAddressArray.count != 0) {
         AddressInfo *firstAddress = [self.allAddressArray objectAtIndex:0];
         NSString *rank = firstAddress.rank;
-        [[AddressDataManager sharedManager]requestToSetDefaultAddressWithPhontId:self.phoneId
-                                                                            rank:rank];
+        [[AddressDataManager sharedManager] requestToSetDefaultAddressWithPhontId:self.phoneId rank:rank];
     }
+    
     CGFloat height = 160 + self.allAddressArray.count * 60;
     [self.scrollView setContentSize:CGSizeMake(ScreenWidth, height)];
     [self.tableView reloadData];
@@ -84,6 +83,7 @@
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
+    [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
 }
 
 #pragma mark - IBAction Methods
@@ -106,6 +106,8 @@
     cell.name.text = address.name;
     cell.phoneNum.text = address.phone;
     cell.address.text = address.address;
+    cell.rank = address.rank;
+    cell.campusId = address.campusId;
     if ([address.tag isEqualToString: @"0"])
     {
 //        UIColor *color = [UIColor colorWithRed:230.f/255 green:235.f/255 blue:236.f/255 alpha:1.f];

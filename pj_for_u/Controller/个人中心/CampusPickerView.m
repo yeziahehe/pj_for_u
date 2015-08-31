@@ -24,15 +24,18 @@
 #pragma mark - Private Methods
 - (void)requestForLocationInfo
 {
+    [self.doneButton setEnabled:NO];
+    
     [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载校区信息"];
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kLocationUrl];
+    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress, kLocationUrl];
     [[YFDownloaderManager sharedManager] requestDataByGetWithURLString:url
                                                               delegate:self
                                                                purpose:kGetLocationDownloaderKey];
 }
 
 #pragma mark - UIView Methods
--(void)awakeFromNib{
+-(void)awakeFromNib
+{
     [super awakeFromNib];
     self.campusPickerView.delegate = self;
     self.campusPickerView.dataSource = self;
@@ -116,8 +119,8 @@
             break;
     }
     return nil;
-    
 }
+
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
     switch (component) {
@@ -141,17 +144,16 @@
         {
             [[NSNotificationCenter defaultCenter]postNotificationName:kGetCampusNameWithNotification object:self.campusModel];
         }
-            
     }
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
-
 {
     return 35.0;
 }
 
--(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
+-(CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
+{
     switch (component) {
         case 0:
             return 150.f;
@@ -163,6 +165,7 @@
     }
     return 0;
 }
+
 #pragma mark - YFDownloaderDelegate Methods
 - (void)downloader:(YFDownloader *)downloader completeWithNSData:(NSData *)data
 {
@@ -185,6 +188,7 @@
                 [self.campusPickerView reloadAllComponents];
                 [[NSNotificationCenter defaultCenter]postNotificationName:kGetFirstCampusNameWithNotification object:cm];
             }
+            [self.doneButton setEnabled:YES];
         }
         else
         {

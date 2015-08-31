@@ -10,5 +10,6 @@
 
 @interface HomeActivityTableViewCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet YFAsynImageView *activityImageView;
+@property (strong, nonatomic) NSString *foodId;
 
 @end

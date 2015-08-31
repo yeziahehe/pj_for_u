@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -11,50 +10,33 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="home_image_default.png" translatesAutoresizingMaskIntoConstraints="NO" id="hw9-XP-4yI">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
-                </imageView>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUw-L6-ybF" customClass="YFCycleScrollView">
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUw-L6-ybF">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="160"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="width" secondItem="aUw-L6-ybF" secondAttribute="height" multiplier="2:1" id="MGj-HF-2jj"/>
-                    </constraints>
                 </scrollView>
-                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H9w-QZ-dqp">
-                    <rect key="frame" x="0.0" y="132" width="320" height="37"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="37" id="c6G-m1-2ro"/>
-                    </constraints>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="DwJ-wl-Eh5">
+                    <rect key="frame" x="140" y="123" width="39" height="37"/>
                     <color key="pageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="currentPageIndicatorTintColor" red="0.14117647059999999" green="0.91372549020000005" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                 </pageControl>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="aUw-L6-ybF" secondAttribute="trailing" id="4j8-K9-TUm"/>
-                <constraint firstItem="aUw-L6-ybF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9fy-RU-EpW"/>
-                <constraint firstAttribute="bottom" secondItem="aUw-L6-ybF" secondAttribute="bottom" id="DaP-AX-GR1"/>
-                <constraint firstAttribute="bottom" secondItem="H9w-QZ-dqp" secondAttribute="bottom" constant="-9" id="MD5-0a-fWP"/>
-                <constraint firstItem="hw9-XP-4yI" firstAttribute="top" secondItem="aUw-L6-ybF" secondAttribute="top" id="Onh-uG-9ya"/>
-                <constraint firstItem="hw9-XP-4yI" firstAttribute="bottom" secondItem="aUw-L6-ybF" secondAttribute="bottom" id="Sxq-8r-jnn"/>
-                <constraint firstItem="aUw-L6-ybF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cxT-nb-oL1"/>
-                <constraint firstItem="hw9-XP-4yI" firstAttribute="leading" secondItem="aUw-L6-ybF" secondAttribute="leading" id="fha-bg-xMq"/>
-                <constraint firstItem="H9w-QZ-dqp" firstAttribute="trailing" secondItem="aUw-L6-ybF" secondAttribute="trailing" id="myk-9o-LV4"/>
-                <constraint firstItem="H9w-QZ-dqp" firstAttribute="leading" secondItem="aUw-L6-ybF" secondAttribute="leading" id="qX5-qj-1EM"/>
-                <constraint firstItem="hw9-XP-4yI" firstAttribute="trailing" secondItem="aUw-L6-ybF" secondAttribute="trailing" id="zmD-D1-8Ul"/>
+                <constraint firstAttribute="trailing" secondItem="aUw-L6-ybF" secondAttribute="trailing" id="6Ls-fl-zHL"/>
+                <constraint firstAttribute="bottom" secondItem="DwJ-wl-Eh5" secondAttribute="bottom" id="LKn-Y5-Mol"/>
+                <constraint firstAttribute="centerX" secondItem="DwJ-wl-Eh5" secondAttribute="centerX" id="ShI-5A-Bar"/>
+                <constraint firstItem="aUw-L6-ybF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="dVo-cB-wB9"/>
+                <constraint firstAttribute="bottom" secondItem="aUw-L6-ybF" secondAttribute="bottom" id="fuZ-5j-CmC"/>
+                <constraint firstItem="aUw-L6-ybF" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="ozJ-F6-KU8"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="cycleScrollView" destination="aUw-L6-ybF" id="18Q-H1-2bd"/>
-                <outlet property="pageControl" destination="H9w-QZ-dqp" id="HbS-Cf-PGG"/>
+                <outlet property="pageControl" destination="DwJ-wl-Eh5" id="vRa-C9-fVb"/>
+                <outlet property="scrollView" destination="aUw-L6-ybF" id="ocS-np-bOn"/>
             </connections>
-            <point key="canvasLocation" x="220" y="133"/>
+            <point key="canvasLocation" x="32" y="111"/>
         </view>
     </objects>
-    <resources>
-        <image name="home_image_default.png" width="375" height="185"/>
-    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

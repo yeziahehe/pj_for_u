@@ -11,29 +11,38 @@
 @implementation ProCommentTableViewCell
 
 #pragma mark - UIView Methods
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [super awakeFromNib];
-    
 }
 
 #pragma mark - Set Methods
--(void)setPcd:(ProCommentDetail *)pcd{
+-(void)setPcd:(ProCommentDetail *)pcd
+{
     _pcd = pcd;
     
-    self.nickNameLabel.text = pcd.nickName;
+    self.userImage.cacheDir = kUserIconCacheDir;
+    if ([pcd.isHidden isEqualToString:@"1"]) {
+        self.nickNameLabel.text = @"匿名用户";
+        [self.userImage aysnLoadImageWithUrl:nil placeHolder:@"icon_user_default.png"];
+    } else {
+        self.nickNameLabel.text = pcd.nickName;
+        [self.userImage aysnLoadImageWithUrl:pcd.imgUrl placeHolder:@"icon_user_default.png"];
+    }
+    
     self.gradeLabel.text = [NSString stringWithFormat:@"%@分",pcd.grade];
     self.timeLabel.text = pcd.date;
     self.saleNumber.text = [NSString stringWithFormat:@"销量：%@",pcd.orderCount];
     self.commentLabel.text = pcd.comment;
-    self.userImage.cacheDir = kUserIconCacheDir;
-    [self.userImage aysnLoadImageWithUrl:pcd.imgUrl placeHolder:@"icon_user_default.png"];
+    
     if ([pcd.grade intValue]) {
         [self lightStars];
     }
 }
 
 #pragma mark - Private Methods
--(void)lightStars{
+-(void)lightStars
+{
     NSInteger grade = [self.pcd.grade intValue];
     if (grade > 4) {
         [self.starView5 setImage:[UIImage imageNamed:@"icon_evaluationStarLight.png"]];
@@ -51,4 +60,5 @@
         [self.starView1 setImage:[UIImage imageNamed:@"icon_evaluationStarLight.png"]];
     }
 }
+
 @end

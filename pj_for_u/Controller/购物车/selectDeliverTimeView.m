@@ -9,20 +9,25 @@
 #import "selectDeliverTimeView.h"
 @interface selectDeliverTimeView()
 @property (strong, nonatomic) IBOutlet UIPickerView *selectTimePicker;
-@property (strong, nonatomic) NSMutableArray *timeArray;
 @property (strong, nonatomic) NSString *deliverTime;
 @end
 @implementation selectDeliverTimeView
 
+//- (void)setTimeArray:(NSMutableArray *)timeArray
+//{
+//    self.timeArray = timeArray;
+//    [self.selectTimePicker reloadAllComponents];
+//}
+
 - (void)awakeFromNib
 {
-    self.timeArray = [[NSMutableArray alloc]initWithObjects:@"立即送达",@"19:56",@"20:16",@"20:55",nil];
     self.selectTimePicker.delegate = self;
     self.selectTimePicker.dataSource = self;
     self.selectTimePicker.showsSelectionIndicator = YES;
     [self showInView:self.superview];
-    
+    self.deliverTime = @"立即送达";
 }
+
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -38,24 +43,39 @@
     [UIView animateWithDuration:0.2 animations:^{
         self.frame = CGRectMake(0, view.frame.size.height - self.frame.size.height, self.frame.size.width, self.frame.size.height);
     }];
+    [self.selectTimePicker reloadAllComponents];
 }
 
-- (IBAction)confirmButtonClicked:(id)sender {
+- (IBAction)confirmButtonClicked:(id)sender
+{
     [[NSNotificationCenter defaultCenter]postNotificationName:kConfirmDeliverTimeNotification object:self.deliverTime];
 }
-- (IBAction)cancelButtonClicked:(id)sender {
+
+- (IBAction)cancelButtonClicked:(id)sender
+{
     [[NSNotificationCenter defaultCenter]postNotificationName:kCancelDeliverTimeNotification object:nil];
 }
 
--(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
     return 1;
 }
--(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+
+-(NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
     return [self.timeArray count];
 }
--(NSString*) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    self.deliverTime = [self.timeArray objectAtIndex:row];
+
+-(NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
     return [self.timeArray objectAtIndex:row];
+}
+
+- (void)pickerView:(UIPickerView *)pickerView
+      didSelectRow:(NSInteger)row
+       inComponent:(NSInteger)component
+{
+    self.deliverTime = [self.timeArray objectAtIndex:row];
 }
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component

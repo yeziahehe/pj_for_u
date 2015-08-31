@@ -24,12 +24,19 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增收货地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6h2-4I-9d5">
                                     <rect key="frame" x="45" y="18" width="96" height="19.5"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="19.5" id="VN4-nJ-ici"/>
+                                    </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" red="0.91764705879999997" green="0.2901960784" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_addAdress.png" translatesAutoresizingMaskIntoConstraints="NO" id="w1D-dU-kJD">
                                     <rect key="frame" x="15" y="16" width="22" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="22" id="7r7-NT-0Jv"/>
+                                        <constraint firstAttribute="height" constant="22" id="qfi-iy-UNh"/>
+                                    </constraints>
                                 </imageView>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B1j-NQ-RYL">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="54"/>
@@ -47,13 +54,13 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="B1j-NQ-RYL" secondAttribute="bottom" id="1FV-If-Sjd"/>
-                                <constraint firstItem="6h2-4I-9d5" firstAttribute="leading" secondItem="w1D-dU-kJD" secondAttribute="trailing" constant="8" id="9r3-z7-2s1"/>
-                                <constraint firstItem="w1D-dU-kJD" firstAttribute="leading" secondItem="MFz-7M-4NT" secondAttribute="leading" constant="15" id="FSl-ti-i0N"/>
-                                <constraint firstItem="6h2-4I-9d5" firstAttribute="centerY" secondItem="w1D-dU-kJD" secondAttribute="centerY" id="HzA-1h-0wl"/>
+                                <constraint firstItem="w1D-dU-kJD" firstAttribute="leading" secondItem="MFz-7M-4NT" secondAttribute="leading" constant="15" id="JlE-tV-jY3"/>
                                 <constraint firstItem="B1j-NQ-RYL" firstAttribute="leading" secondItem="MFz-7M-4NT" secondAttribute="leading" id="LuS-ue-lr0"/>
                                 <constraint firstItem="B1j-NQ-RYL" firstAttribute="top" secondItem="MFz-7M-4NT" secondAttribute="top" id="Pma-az-dDY"/>
+                                <constraint firstItem="6h2-4I-9d5" firstAttribute="centerY" secondItem="w1D-dU-kJD" secondAttribute="centerY" id="ZY0-ob-FbV"/>
+                                <constraint firstItem="6h2-4I-9d5" firstAttribute="leading" secondItem="w1D-dU-kJD" secondAttribute="trailing" constant="8" id="cWh-je-KJx"/>
                                 <constraint firstAttribute="trailing" secondItem="B1j-NQ-RYL" secondAttribute="trailing" id="tbw-fQ-h86"/>
-                                <constraint firstAttribute="centerY" secondItem="w1D-dU-kJD" secondAttribute="centerY" id="vxz-5G-hSY"/>
+                                <constraint firstAttribute="centerY" secondItem="w1D-dU-kJD" secondAttribute="centerY" id="xl9-nA-AZV"/>
                                 <constraint firstAttribute="height" constant="54" id="zw9-qA-dTM"/>
                             </constraints>
                         </view>

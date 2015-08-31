@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 
-@interface AddReciverViewController : BaseViewController
+@interface AddReciverViewController : BaseViewController <UITextFieldDelegate>
 @property(strong,nonatomic)NSString *NavTitle;
 @property(strong,nonatomic)NSString *reciverName;
 @property(strong,nonatomic)NSString *reciverPhone;

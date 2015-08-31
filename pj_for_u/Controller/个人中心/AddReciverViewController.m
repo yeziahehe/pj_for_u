@@ -54,14 +54,18 @@
         return nil;
 }
 
--(void)cancelButton{
+-(void)cancelButton
+{
     [self removeSubViews];
 }
--(void)doneButton{
+-(void)doneButton
+{
     self.campusTextField.text = self.campusModel.campusName;
     [self removeSubViews];
 }
--(void)removeSubViews{
+
+-(void)removeSubViews
+{
     CGFloat height = self.campusPickerView.frame.size.height;
     [UIView animateWithDuration:0.2
                      animations:^{
@@ -116,10 +120,10 @@
         else
         {
             [[AddressDataManager sharedManager] requestToAddReciverWithPhoneId:phoneId
-                                            name:self.nameTextField.text
-                                           phone:self.phoneTextField.text
-                                         address:self.detailTextField.text
-                                        campusId:self.campusModel.campusId];
+                                                                          name:self.nameTextField.text
+                                                                         phone:self.phoneTextField.text
+                                                                       address:self.detailTextField.text
+                                                                      campusId:self.campusModel.campusId];
         }
     }
 }
@@ -127,7 +131,7 @@
 #pragma mark - Notification Methods
 - (void)textFieldChange:(NSNotification *)notification
 {
-    if ((self.nameTextField.text.length != 0)||(self.phoneTextField.text.length == 11)||(self.campusTextField.text.length != 0)||(self.detailTextField.text.length != 0)) {
+    if ((self.nameTextField.text.length != 0) || (self.phoneTextField.text.length == 11) || (self.campusTextField.text.length != 0) || (self.detailTextField.text.length != 0)) {
         self.setDefaultAddressButton.enabled = YES;
     }
     else{
@@ -176,6 +180,7 @@
 
 - (void)viewDidDisappear:(BOOL)animated
 {
+    [super viewDidDisappear:animated];
     [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
 }
 
@@ -187,7 +192,8 @@
 }
 
 #pragma mark - IBAction Methods
-- (IBAction)showCampusPickerView:(id)sender {
+- (IBAction)showCampusPickerView:(id)sender
+{
     [self resignAllField];
     self.campusPickerView = [[[NSBundle mainBundle]loadNibNamed:@"CampusPickerView" owner:self options:nil]lastObject];
     CGFloat height = self.campusPickerView.frame.size.height;
@@ -206,43 +212,30 @@
     
 }
 
-- (IBAction)setDefaultAddress:(id)sender {
+- (IBAction)setDefaultAddress:(id)sender
+{
     NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
     //设置默认地址
     if ([self.tagNew isEqualToString:@"0"]) {
-        [[YFProgressHUD sharedProgressHUD]showWithMessage:@"请先保存该收货地址" customView:nil hideDelay:2.f];
+        [[YFProgressHUD sharedProgressHUD] showWithMessage:@"请先保存该收货地址" customView:nil hideDelay:2.f];
     }
     else
     {
-        if (([self.reciverPhone isEqualToString: self.phoneTextField.text])&([self.reciverName isEqualToString:self.nameTextField.text])&([self.addressDetail isEqualToString:self.detailTextField.text])&([self.reciverCampusName isEqualToString:self.campusTextField.text])) {
+        if (([self.reciverPhone isEqualToString:self.phoneTextField.text])&([self.reciverName isEqualToString:self.nameTextField.text])&([self.addressDetail isEqualToString:self.detailTextField.text])&([self.reciverCampusName isEqualToString:self.campusTextField.text])) {
             [[AddressDataManager sharedManager] requestToSetDefaultAddressWithPhontId:phoneId
-                                                   rank:self.reciverRank];
+                                                                                 rank:self.reciverRank];
         }
         else
         {
-            [[YFProgressHUD sharedProgressHUD]showWithMessage:@"请先保存该收货地址" customView:nil hideDelay:2.f];
-
+            [[YFProgressHUD sharedProgressHUD] showWithMessage:@"请先保存该收货地址" customView:nil hideDelay:2.f];
         }
     }
 }
+
 #pragma mark - UITextFieldDelegate methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if(textField == self.nameTextField)
-    {
-        [self.nameTextField resignFirstResponder];
-        [self.phoneTextField becomeFirstResponder];
-    }
-    else if(textField == self.phoneTextField)
-    {
-        [self.phoneTextField resignFirstResponder];
-        [self.detailTextField becomeFirstResponder];
-    }
-    else if(textField == self.detailTextField)
-    {
-        [self.detailTextField resignFirstResponder];
-    }
-       return YES;
+    return YES;
 }
 
 @end

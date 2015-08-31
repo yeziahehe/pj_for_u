@@ -10,4 +10,6 @@
 
 @interface selectDeliverTimeView : UIView<UIPickerViewDataSource,UIPickerViewDelegate>
 
+@property (strong, nonatomic) NSMutableArray *timeArray;
+
 @end

@@ -60,7 +60,7 @@
             rect.size.width = self.frame.size.width;
             rect.origin.x = index*self.frame.size.width;
             asynImgView.frame = rect;
-            asynImgView.contentMode = UIViewContentModeScaleAspectFill;
+            asynImgView.contentMode = UIViewContentModeScaleToFill;
             //加载图片
             asynImgView.cacheDir = cacheDir;
             [asynImgView aysnLoadImageWithUrl:str placeHolder:placeHolder];

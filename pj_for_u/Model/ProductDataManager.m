@@ -17,7 +17,7 @@
 //请求分类信息
 - (void)requestForAddressWithCampusId:(NSString *)campusId
 {
-    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中"];
     if (nil == campusId) {
         campusId = @"";
     }
@@ -37,7 +37,7 @@
                                 page:(NSString *)page
                                limit:(NSString *)limit
 {
-    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中"];
     if (nil == campusId) {
         campusId = @"";
     }

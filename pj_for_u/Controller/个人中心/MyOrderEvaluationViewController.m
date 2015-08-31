@@ -18,7 +18,6 @@
 
 @property (strong, nonatomic) NSString *comment;
 
-
 @property (strong, nonatomic) NSString *defaultText;
 @property BOOL isFirstTime;
 
@@ -83,7 +82,9 @@
     }
     [dict setObject:kCampusId forKey:@"campusId"];
     [dict setObject:[MemberDataManager sharedManager].loginMember.phone forKey:@"phoneId"];
-    [dict setObject:self.comment forKey:@"comment"];
+    if (self.textView.text != nil && ![self.textView.text isEqualToString:@""] && ![self.textView.text isEqualToString:self.defaultText]) {
+        [dict setObject:self.textView.text forKey:@"comment"];
+    }
     [dict setObject:foodId forKey:@"foodId"];
     [dict setObject:orderId forKey:@"orderId"];
     
@@ -229,6 +230,7 @@
 {
     [self.view endEditing:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
 
@@ -241,10 +243,11 @@
 
     if ([downloader.purpose isEqualToString:kCreatOrderComment])
     {
-        
+        NSString *message = [dict objectForKey:kMessageKey];
+
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
-            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"评论成功" hideDelay:2.f];
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
             
             [self.smallOrders removeObjectAtIndex:self.indexPath.section];
             [self.tableView reloadData];
@@ -254,7 +257,6 @@
         }
         else
         {
-            NSString *message = [dict objectForKey:kMessageKey];
             if ([message isKindOfClass:[NSNull class]])
             {
                 message = @"";
