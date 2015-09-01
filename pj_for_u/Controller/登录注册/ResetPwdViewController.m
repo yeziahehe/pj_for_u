@@ -7,6 +7,7 @@
 //
 
 #import "ResetPwdViewController.h"
+#import "LoginViewController.h"
 
 @interface ResetPwdViewController ()
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -55,8 +56,14 @@
     else
     {
         //重置密码成功
+        [[MemberDataManager sharedManager] logout];
+        
         [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"重置密码成功，请登录" hideDelay:2.f];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:kUserChangeNotification object:nil];
+        [self.tabBarController setSelectedIndex:2];
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
     }
 }
 

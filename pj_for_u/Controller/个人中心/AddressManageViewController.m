@@ -25,7 +25,7 @@
 @implementation AddressManageViewController
 
 #pragma mark - Priavte Methods
-- (void)loadSubView{
+- (void)loadSubView {
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [UIView new];

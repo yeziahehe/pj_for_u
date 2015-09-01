@@ -128,6 +128,7 @@
 
 - (void)dealloc
 {
+    [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
@@ -191,7 +192,6 @@
         CategoryLabel *labelRight = self.smallScrollView.subviews[rightIndex];
         labelRight.scale = scaleRight;
     }
-    
 }
 
 @end

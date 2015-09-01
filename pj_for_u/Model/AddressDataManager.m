@@ -14,7 +14,6 @@
 //请求用户的收货地址
 - (void)requestForAddressWithPhoneId:(NSString *)phoneId
 {
-    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
     if (nil == phoneId) {
         phoneId = @"";
     }

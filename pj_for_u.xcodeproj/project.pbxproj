@@ -285,6 +285,12 @@
 		6D8AF68C1B7CE14A00B1BFBF /* ConfirmOrderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D8AF68A1B7CE14A00B1BFBF /* ConfirmOrderViewController.xib */; };
 		6D938E891B74593700AB9895 /* icon_order_headimage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D938E881B74593700AB9895 /* icon_order_headimage@2x.png */; };
 		6D938E8B1B745A3400AB9895 /* icon_trade_success.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D938E8A1B745A3400AB9895 /* icon_trade_success.png */; };
+		6DA84D221B955D6C003D6E74 /* PushConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6DA84D211B955D6C003D6E74 /* PushConfig.plist */; };
+		6DA84D271B955F9B003D6E74 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA84D1F1B955D34003D6E74 /* Security.framework */; };
+		6DA84D281B955F9F003D6E74 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA84D1D1B955D23003D6E74 /* SystemConfiguration.framework */; };
+		6DA84D291B955FA4003D6E74 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA84D1B1B955D15003D6E74 /* CoreTelephony.framework */; };
+		6DA84D2A1B955FA9003D6E74 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA84D191B955D00003D6E74 /* CFNetwork.framework */; };
+		6DF2286B1B957CA100B5A6F8 /* libPushSDK-1.8.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF2286A1B957CA100B5A6F8 /* libPushSDK-1.8.5.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -714,6 +720,13 @@
 		6D8AF68A1B7CE14A00B1BFBF /* ConfirmOrderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ConfirmOrderViewController.xib; path = "Controller/购物车/ConfirmOrderViewController.xib"; sourceTree = "<group>"; };
 		6D938E881B74593700AB9895 /* icon_order_headimage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_order_headimage@2x.png"; path = "Resource/icon_order_headimage@2x.png"; sourceTree = "<group>"; };
 		6D938E8A1B745A3400AB9895 /* icon_trade_success.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_trade_success.png; path = Resource/icon_trade_success.png; sourceTree = "<group>"; };
+		6DA84D191B955D00003D6E74 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		6DA84D1B1B955D15003D6E74 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		6DA84D1D1B955D23003D6E74 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		6DA84D1F1B955D34003D6E74 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		6DA84D211B955D6C003D6E74 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		6DF228691B957CA100B5A6F8 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
+		6DF2286A1B957CA100B5A6F8 /* libPushSDK-1.8.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.5.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -721,10 +734,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DA84D271B955F9B003D6E74 /* Security.framework in Frameworks */,
+				6DA84D281B955F9F003D6E74 /* SystemConfiguration.framework in Frameworks */,
+				6DA84D291B955FA4003D6E74 /* CoreTelephony.framework in Frameworks */,
+				6DA84D2A1B955FA9003D6E74 /* CFNetwork.framework in Frameworks */,
 				2C25291B1B5E3FA300ADDEFB /* libz.1.2.5.dylib in Frameworks */,
 				0A9E1A531B7DF05D00D4D7C7 /* AlipaySDK.framework in Frameworks */,
 				2C2529191B5E3F8500ADDEFB /* CoreFoundation.framework in Frameworks */,
 				2C2529171B5E3F7400ADDEFB /* Foundation.framework in Frameworks */,
+				6DF2286B1B957CA100B5A6F8 /* libPushSDK-1.8.5.a in Frameworks */,
 				0A9E1A561B7DF05D00D4D7C7 /* libWeChatSDK.a in Frameworks */,
 				4A6C15961B60B4B700C9A9D2 /* SMS_SDK.framework in Frameworks */,
 				2C2529151B5E3F6400ADDEFB /* UIKit.framework in Frameworks */,
@@ -852,6 +870,7 @@
 			children = (
 				2C10D6C21B60C30D008C3DE0 /* SettingMap.plist */,
 				6D8AD3FA1B60C6290099A0D8 /* IndividualInfoMap.plist */,
+				6DA84D211B955D6C003D6E74 /* PushConfig.plist */,
 			);
 			path = Files;
 			sourceTree = "<group>";
@@ -1038,7 +1057,12 @@
 		2C2528A81B5E39EF00ADDEFB /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				6DA84D1F1B955D34003D6E74 /* Security.framework */,
+				6DA84D1D1B955D23003D6E74 /* SystemConfiguration.framework */,
+				6DA84D1B1B955D15003D6E74 /* CoreTelephony.framework */,
+				6DA84D191B955D00003D6E74 /* CFNetwork.framework */,
 				0A9E1A441B7DF05D00D4D7C7 /* ping++ */,
+				6DF228681B957CA100B5A6F8 /* lib */,
 				4A6C166D1B70BAC500C9A9D2 /* AFNetworking */,
 				4A6C16301B6F682200C9A9D2 /* SXNetworkTools.h */,
 				4A6C16311B6F682200C9A9D2 /* SXNetworkTools.m */,
@@ -1524,6 +1548,15 @@
 			name = "个人信息";
 			sourceTree = "<group>";
 		};
+		6DF228681B957CA100B5A6F8 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				6DF228691B957CA100B5A6F8 /* APService.h */,
+				6DF2286A1B957CA100B5A6F8 /* libPushSDK-1.8.5.a */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1649,6 +1682,7 @@
 				2C10D6C31B60C30D008C3DE0 /* SettingMap.plist in Resources */,
 				2C10D6B21B60B551008C3DE0 /* icon_home_selected@2x.png in Resources */,
 				2C79539D1B61402D00511EB7 /* bg_user_module@2x.png in Resources */,
+				6DA84D221B955D6C003D6E74 /* PushConfig.plist in Resources */,
 				2C7953921B6134B400511EB7 /* icon_new@2x.png in Resources */,
 				0A54DA7C1B7322EC00FCBAB0 /* icon_received_address@2x.png in Resources */,
 				4A1464F51B75F34600B9F058 /* icon_shopcarright@2x.png in Resources */,
@@ -1992,7 +2026,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2008,10 +2042,11 @@
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Alipay",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Wx",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++",
+					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/lib",
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "94bf0132-0015-4d28-a33e-ae042249d86b";
 			};
 			name = Debug;
 		};
@@ -2020,7 +2055,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2036,10 +2071,11 @@
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Alipay",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Wx",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++",
+					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/lib",
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "94bf0132-0015-4d28-a33e-ae042249d86b";
 			};
 			name = Release;
 		};

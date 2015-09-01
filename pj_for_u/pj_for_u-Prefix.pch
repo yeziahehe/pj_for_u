@@ -26,5 +26,5 @@
     #import "AFHTTPRequestOperationManager.h"
     #import "AFHTTPSessionManager.h"
     #import "Pingpp.h"
-
+    #import "APService.h"    
 #endif
