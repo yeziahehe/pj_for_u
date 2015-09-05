@@ -13,8 +13,8 @@
 #import "ShoppingCar.h"
 #import "ConfirmOrderViewController.h"
 
-#define sizeofPage                  @"30"
-#define sizeofPageInt               30
+#define sizeofPage                  @"10"
+#define sizeofPageInt               10
 
 #define kGetOrderInMineKey          @"GetOrderInMineKey"
 #define kDeleteOrderKey             @"DeleteOrderKey"
@@ -110,8 +110,6 @@
 //请求我的订单信息，通过不同状态
 - (void)requestForMyOrderByStatus:(NSString *)status page:(NSString *)page limit:(NSString *)limit
 {
-    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中..."];
-    
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kGetOrderInMine];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:[MemberDataManager sharedManager].loginMember.phone forKey:@"phoneId"];
@@ -258,10 +256,43 @@
 
 }
 
+- (void)resetMineInfoNum
+{
+    int num;
+    switch (self.recordLastStatus) {
+        case 1:
+            num = [MemberDataManager sharedManager].mineInfo.waitPayOrder.intValue;
+            [MemberDataManager sharedManager].mineInfo.waitPayOrder = [NSString stringWithFormat:@"%d", --num];
+            break;
+            
+        case 2:
+            num = [MemberDataManager sharedManager].mineInfo.waitMakeSureOrder.intValue;
+            [MemberDataManager sharedManager].mineInfo.waitMakeSureOrder = [NSString stringWithFormat:@"%d", --num];
+            break;
+        case 3:
+            num = [MemberDataManager sharedManager].mineInfo.distribution.intValue;
+            [MemberDataManager sharedManager].mineInfo.distribution = [NSString stringWithFormat:@"%d", --num];
+            
+            break;
+            
+        case 4:
+            num = [MemberDataManager sharedManager].mineInfo.waitCommentOrder.intValue;
+            [MemberDataManager sharedManager].mineInfo.waitCommentOrder = [NSString stringWithFormat:@"%d", --num];
+            
+            break;
+        case 5:
+            num = [MemberDataManager sharedManager].mineInfo.doneOrder.intValue;
+            [MemberDataManager sharedManager].mineInfo.doneOrder = [NSString stringWithFormat:@"%d", --num];
+            
+            break;
+        default:
+            break;
+    }
+}
+
 //重置角标
 - (void)resetBadgeNum
 {
-    NSString *badgeNum = [NSString stringWithFormat:@"%lu", (unsigned long)self.orderListArray.count];
     switch (self.recordLastStatus) {
         case 1:
             for (UIView *subView in self.waitForPayment.subviews) {
@@ -270,7 +301,7 @@
                 }
             }
             
-            [self setBadgeViewWithView:self.waitForPayment badgeNum:badgeNum];
+            [self setBadgeViewWithView:self.waitForPayment badgeNum:[MemberDataManager sharedManager].mineInfo.waitPayOrder];
             break;
             
         case 2:
@@ -280,7 +311,7 @@
                 }
             }
             
-            [self setBadgeViewWithView:self.waitForConfirm badgeNum:badgeNum];
+            [self setBadgeViewWithView:self.waitForConfirm badgeNum:[MemberDataManager sharedManager].mineInfo.waitMakeSureOrder];
             break;
         case 3:
             for (UIView *subView in self.distributing.subviews) {
@@ -289,7 +320,7 @@
                 }
             }
             
-            [self setBadgeViewWithView:self.distributing badgeNum:badgeNum];
+            [self setBadgeViewWithView:self.distributing badgeNum:[MemberDataManager sharedManager].mineInfo.distribution];
             break;
             
         case 4:
@@ -299,7 +330,7 @@
                 }
             }
             
-            [self setBadgeViewWithView:self.waitForEvaluation badgeNum:badgeNum];
+            [self setBadgeViewWithView:self.waitForEvaluation badgeNum:[MemberDataManager sharedManager].mineInfo.waitCommentOrder];
             break;
         case 5:
             for (UIView *subView in self.alreadyFinished.subviews) {
@@ -308,7 +339,7 @@
                 }
             }
             
-            [self setBadgeViewWithView:self.alreadyFinished badgeNum:badgeNum];
+            [self setBadgeViewWithView:self.alreadyFinished badgeNum:[MemberDataManager sharedManager].mineInfo.doneOrder];
             break;
         default:
             break;
@@ -398,8 +429,7 @@
     [self.waitForPayment setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForPaymentView.backgroundColor = [UIColor redColor];
     self.recordLastStatus = 1;
-    [self refreshHeader];
-
+    [self.tableView headerBeginRefreshing];
 }
 
 - (void)waitForConfirmAction
@@ -408,7 +438,7 @@
     [self.waitForConfirm setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForConfirmView.backgroundColor = [UIColor redColor];
     self.recordLastStatus = 2;
-    [self refreshHeader];
+    [self.tableView headerBeginRefreshing];
 }
 
 - (void)distributingAction
@@ -418,7 +448,7 @@
     [self.distributing setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.distributingView.backgroundColor = [UIColor redColor];
     self.recordLastStatus = 3;
-    [self refreshHeader];
+    [self.tableView headerBeginRefreshing];
 }
 
 - (void)waitForEvaluationAction
@@ -427,7 +457,7 @@
     [self.waitForEvaluation setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.waitForEvaluationView.backgroundColor = [UIColor redColor];
     self.recordLastStatus = 4;
-    [self refreshHeader];
+    [self.tableView headerBeginRefreshing];
 
 }
 
@@ -437,7 +467,7 @@
     [self.alreadyFinished setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     self.alreadyFinishedView.backgroundColor = [UIColor redColor];
     self.recordLastStatus = 5;
-    [self refreshHeader];
+    [self.tableView headerBeginRefreshing];
 
 }
 
@@ -595,6 +625,10 @@
         self.indexPathBuffer = indexPath.section;
         [self requsetForModifyOrderStatus:@"3" togetherId:togetherId];
     }
+    
+    else {
+        
+    }
 }
 
 
@@ -691,7 +725,8 @@
     
     [self.tableView addHeaderWithTarget:self action:@selector(refreshHeader)];
     [self.tableView addFooterWithTarget:self action:@selector(refreshFooter)];
-    
+    [self.tableView setHeaderRefreshingText:@"加载中..."];
+
     self.recordLastStatus = 1;
 }
 
@@ -780,8 +815,6 @@
             //上拉加载
             [self loadInfoByRefreshFooterWithValueCount:valueArray.count];
             
-            //重置角标
-            [self resetBadgeNum];
         }
         else
         {
@@ -801,8 +834,9 @@
         {
             [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
-            
-            [self refreshHeader];
+            [self resetMineInfoNum];
+            [self resetBadgeNum];
+            [self.tableView reloadData];
 
         }
         else
@@ -823,8 +857,10 @@
             
             [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
-            
-            [self refreshHeader];
+            [self resetMineInfoNum];
+            [self resetBadgeNum];
+            [self.tableView reloadData];
+
         }
         else
         {
