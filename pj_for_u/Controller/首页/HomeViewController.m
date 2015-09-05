@@ -98,12 +98,11 @@
 {
     if (notification.object)
         [self setNaviTitle:[NSString stringWithFormat:@"%@ > ",notification.object]];
-    [self refreshHomeNotification:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kRefreshHomeNotification object:nil];
 }
 
 - (void)refreshHomeNotification:(NSNotification *)notification
 {
-    [self loadSubViews];
     [self requestForImages];
 }
 
@@ -167,9 +166,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(searchButtonNotification:) name:kSearchButtonNotification object:nil];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
+    [self.navigationController.navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = nil;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    self.navigationController.navigationBar.barTintColor = kMainProjColor;//导航条的颜色
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//左侧返回按钮，文字的颜色
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 }
 
 - (void)dealloc
