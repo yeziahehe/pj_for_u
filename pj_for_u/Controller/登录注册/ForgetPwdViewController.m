@@ -36,7 +36,7 @@
 
 - (NSString *)checkPasswordValid
 {
-    if (self.phoneTextField.text.length <11)
+    if (self.phoneTextField.text.length != 11)
         return @"请输入正确的手机号";
     else if(self.identifyCodeTextField.text.length == 0)
         return @"请输入验证码";
@@ -118,7 +118,7 @@
                 [SMS_SDK commitVerifyCode:self.identifyCodeTextField.text result:^(enum SMS_ResponseState state) {
                     if (1 == state) {
                         //验证成功后的改密码操作
-                        [MemberDataManager sharedManager].loginMember.password = self.phoneTextField.text;
+//                        [MemberDataManager sharedManager].loginMember.password = self.phoneTextField.text;
                         //重置密码
                         [[MemberDataManager sharedManager] forgetPwdWithPhone:self.phoneTextField.text
                                                                   newPassword:self.pwdTextField.text];
@@ -143,8 +143,10 @@
     else
     {
         //重置密码成功
-        [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"重置密码成功，请重新登录" hideDelay:2.f];
-        [self.navigationController popToRootViewControllerAnimated:YES];
+        [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"重置密码成功，请登录" hideDelay:2.f];
+        [self.tabBarController setSelectedIndex:2];
+        [self.navigationController popToRootViewControllerAnimated:NO];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
     }
 }
 
@@ -196,11 +198,13 @@
 
 - (void)textFieldChange:(NSNotification *)notification
 {
-    if (self.phoneTextField.text.length != 0) {
-        self.identifyButton.enabled = YES;
-    }
-    else{
-        self.identifyButton.enabled = NO;
+    if ([notification.object isEqual:self.phoneTextField]) {
+        if (self.phoneTextField.text.length != 0) {
+            self.identifyButton.enabled = YES;
+        }
+        else{
+            self.identifyButton.enabled = NO;
+        }
     }
 }
 

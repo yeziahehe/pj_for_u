@@ -119,8 +119,52 @@
     {
         //[self dealNotificationWithLaunchOptions:launchOptions];
     }
+    
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+        //可以添加自定义categories
+        [APService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                       UIUserNotificationTypeSound |
+                                                       UIUserNotificationTypeAlert)
+                                           categories:nil];
+    }
+    
+    // Required
+    [APService setupWithOption:launchOptions];
+    
     return YES;
 }
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    
+    // Prepare the Device Token for Registration (remove spaces and < >)
+    NSString *devToken = [[[[deviceToken description]stringByReplacingOccurrencesOfString:@"<"withString:@""]stringByReplacingOccurrencesOfString:@">" withString:@""]stringByReplacingOccurrencesOfString: @" " withString: @""];
+    
+    NSLog(@"device token: %@",devToken);
+    if(devToken.length > 0)
+    {
+        [[NSUserDefaults standardUserDefaults] setObject:devToken forKey:kDeviceTokenKey];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    if ([[MemberDataManager sharedManager] isLogin]) {
+        [APService registerDeviceToken:deviceToken];
+        [APService setTags:[NSSet setWithObject:[MemberDataManager sharedManager].loginMember.type] alias:[MemberDataManager sharedManager].loginMember.phone callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+    }
+}
+
+-(void)tagsAliasCallback:(int)iResCode
+                    tags:(NSSet *)tags
+                   alias:(NSString *)alias
+{
+    NSLog(@"rescode: %d, \ntags: %@, \nalias: %@\n", iResCode, tags , alias);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    
+    // Required
+    [APService handleRemoteNotification:userInfo];
+}
+
 
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url

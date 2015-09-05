@@ -34,7 +34,7 @@
 
 - (NSString *)checkPasswordValid
 {
-    if (self.phoneNumTextField.text.length <11)
+    if (self.phoneNumTextField.text.length != 11)
         return @"请输入正确的手机号";
     else if(self.identifyCodeTextField.text.length == 0)
         return @"请输入验证码";
@@ -51,13 +51,13 @@
 - (void)getVerifyCode
 {
     //验证码获取
-    [SMS_SDK getVerificationCodeBySMSWithPhone:[MemberDataManager sharedManager].loginMember.phone zone:@"86" result:^(SMS_SDKError *error){
+    [SMS_SDK getVerificationCodeBySMSWithPhone:self.phoneNumTextField.text zone:@"86" result:^(SMS_SDKError *error){
         if (error == nil) {
             self.phoneLabel.attributedText = [self codeStatusLabel:@"验证码已发往%@，请稍等"];
         }
         else{
             self.phoneLabel.text = @"验证码发送失败，请稍后重试";
-            [[YFProgressHUD sharedProgressHUD]showFailureViewWithMessage:@"验证码发送失败，请稍后重试" hideDelay:2.f];
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"验证码发送失败，请稍后重试" hideDelay:2.f];
         }
     }];
 }
@@ -92,36 +92,36 @@
     self.identifyButton.enabled = NO;
     self.resendSecond = kResendTimeCount;
     self.resendTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(resendTimerChange) userInfo:nil repeats:YES];
-    [[YFProgressHUD sharedProgressHUD]showWithMessage:@"验证码发送中，请稍等……" customView:nil hideDelay:2.f];
+    [[YFProgressHUD sharedProgressHUD] showWithMessage:@"验证码发送中，请稍等……" customView:nil hideDelay:2.f];
     [self getVerifyCode];
 }
 
 #pragma mark - IBAction Methods
-- (IBAction)registButtonClicked:(id)sender {
+- (IBAction)registButtonClicked:(id)sender
+{
     [self resignAllFirstResponders];
     NSString *validPassword = [self checkPasswordValid];
     if(validPassword)
     {
-        [[YFProgressHUD sharedProgressHUD]showWithMessage:validPassword customView:nil hideDelay:2.f];
+        [[YFProgressHUD sharedProgressHUD] showWithMessage:validPassword customView:nil hideDelay:2.f];
     }
     else
     {
-       // 提交验证码
-                [SMS_SDK commitVerifyCode:self.identifyCodeTextField.text result:^(enum SMS_ResponseState state) {
-                    if (1 == state) {
-                        //验证成功后的注册操作
-                        [MemberDataManager sharedManager].loginMember.password = self.passwordTextField.text;
-                        [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"注册中..."];
-                        [[MemberDataManager sharedManager] registerWithPhone:[MemberDataManager sharedManager].loginMember.phone
-                                                                    password:[MemberDataManager sharedManager].loginMember.password
-                                                                    nickName:self.nickNameTextField.text];
-                    }
-                    else if(0 == state)
-                    {
-                        [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"验证码填写错误" hideDelay:2.f];
-                        self.resendSecond = 0;
-                    }
-                }];
+        // 提交验证码
+        [SMS_SDK commitVerifyCode:self.identifyCodeTextField.text result:^(enum SMS_ResponseState state) {
+            if (1 == state) {
+                //验证成功后的注册操作
+                [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"注册中..."];
+                [[MemberDataManager sharedManager] registerWithPhone:self.phoneNumTextField.text
+                                                            password:self.passwordTextField.text
+                                                            nickName:self.nickNameTextField.text];
+            }
+            else if (0 == state)
+            {
+                [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"验证码填写错误" hideDelay:2.f];
+                self.resendSecond = 0;
+            }
+        }];
     }
 
 }
@@ -149,7 +149,6 @@
     }
     else
     {
-        [MemberDataManager sharedManager].loginMember.phone = self.phoneNumTextField.text;
         [self initViewController];
         
     }
@@ -165,7 +164,7 @@
     else
     {
         //注册成功
-        [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"您已注册成功，请重新登录" hideDelay:2.f];
+        [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:@"您已注册成功，请登录" hideDelay:2.f];
         [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -223,14 +222,15 @@
 
 - (void)textFieldChange:(NSNotification *)notification
 {
-    if (self.phoneNumTextField.text.length != 0) {
-        self.identifyButton.enabled = YES;
-    }
-    else{
-        self.identifyButton.enabled = NO;
+    if ([notification.object isEqual:self.phoneNumTextField]) {
+        if (self.phoneNumTextField.text.length == 11) {
+            self.identifyButton.enabled = YES;
+        }
+        else {
+            self.identifyButton.enabled = NO;
+        }
     }
 }
-
 
 - (void)resignAllFirstResponders
 {

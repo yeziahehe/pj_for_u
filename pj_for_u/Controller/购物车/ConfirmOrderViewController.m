@@ -598,16 +598,19 @@
                 [self.timeArray addObject:@"立即送达"];
             }
             
-            while ([tempDate compare:closeDate] != NSOrderedDescending) {
-                NSString *time = [dateFormatter stringFromDate:tempDate];
-                [self.timeArray addObject:time];
-                tempDate = [NSDate dateWithTimeInterval:interval sinceDate:tempDate];
-                if ([tempDate compare:closeDate] == NSOrderedDescending) {
-                    time = [dateFormatter stringFromDate:closeDate];
+            if (!(openDate == nil || closeDate == nil)) {
+                while ([tempDate compare:closeDate] != NSOrderedDescending) {
+                    NSString *time = [dateFormatter stringFromDate:tempDate];
                     [self.timeArray addObject:time];
-                    break;
+                    tempDate = [NSDate dateWithTimeInterval:interval sinceDate:tempDate];
+                    if ([tempDate compare:closeDate] == NSOrderedDescending) {
+                        time = [dateFormatter stringFromDate:closeDate];
+                        [self.timeArray addObject:time];
+                        break;
+                    }
                 }
             }
+
         }
     }
 }
