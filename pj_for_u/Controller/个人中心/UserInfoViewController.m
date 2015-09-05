@@ -166,6 +166,16 @@
 }
 
 #pragma mark - UIViewController Methods
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//左侧返回按钮，文字的颜色
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
