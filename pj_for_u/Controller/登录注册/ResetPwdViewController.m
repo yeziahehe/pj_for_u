@@ -68,19 +68,6 @@
 }
 
 #pragma mark - UIViewController Methods
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    //在该方法中设置contentsize大小
-    [super viewDidAppear:YES];
-    CGFloat contentHeight = self.commitButton.frame.origin.y+self.commitButton.frame.size.height+20.f;
-    [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNaviTitle:@"重置密码"];
@@ -95,6 +82,18 @@
     UITapGestureRecognizer *tapGesuture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignAllField)];
     [self.scrollView addGestureRecognizer:tapGesuture];
 
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    //在该方法中设置contentsize大小
+    [super viewDidAppear:YES];
+    CGFloat contentHeight = self.commitButton.frame.origin.y+self.commitButton.frame.size.height+20.f;
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.view endEditing:YES];
 }
 
 - (void)dealloc
