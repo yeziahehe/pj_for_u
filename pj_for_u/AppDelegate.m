@@ -61,6 +61,7 @@
 - (void)clearNotifications
 {
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+    [APService resetBadge];
 }
 
 /**
