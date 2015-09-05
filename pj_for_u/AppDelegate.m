@@ -178,6 +178,7 @@
                    // 支付成功
                } else {
                    // 支付失败或取消
+                   
                    NSLog(@"Error: code=%lu msg=%@", error.code, [error getMsg]);
                }
            }];

@@ -784,6 +784,7 @@
                     self.defaultAddress = [valueDict objectForKey:@"address"];
                     self.defaultRank = [valueDict objectForKey:@"rank"];
                     self.myRank = [valueDict objectForKey:@"rank"];
+                    self.myCampusId = [NSString stringWithFormat:@"%@", [valueDict objectForKey:@"campusId"]];
                 }
             }
             
