@@ -15,7 +15,7 @@
 
 #define kGetDefaultAddressDownloaderKey     @"GetDefaultAddressDownloaderKey"
 #define kOneKeyOrderDownloaderKey           @"OneKeyOrderDownloaderKey"
-#define kUrlScheme      @"demoapp001" // 这个是你定义的 URL Scheme，支付宝、微信支付和测试模式需要。
+#define kUrlScheme      @"foru1234567890" // 这个是你定义的 URL Scheme，支付宝、微信支付和测试模式需要。
 #define kUrl            @"http://218.244.151.190/demo/charge" // 你的服务端创建并返回 charge 的 URL 地址，此地址仅供测试用。
 
 @interface ConfirmOrderViewController ()<UIScrollViewDelegate>
@@ -206,42 +206,6 @@
     }
     
     return _background;
-}
-
-- (void)requestForPay
-{
-    long long amount = [[self.totalPrice stringByReplacingOccurrencesOfString:@"." withString:@""] longLongValue];
-    NSString *amountStr = [NSString stringWithFormat:@"%lld", amount];
-    NSURL* url = [NSURL URLWithString:kUrl];
-    NSMutableURLRequest * postRequest=[NSMutableURLRequest requestWithURL:url];
-    
-    NSDictionary* dict = @{
-                           @"channel" : self.channel,
-                           @"amount"  : amountStr
-                           };
-    NSData* data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *bodyData = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    [postRequest setHTTPBody:[NSData dataWithBytes:[bodyData UTF8String] length:strlen([bodyData UTF8String])]];
-    [postRequest setHTTPMethod:@"POST"];
-    [postRequest setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    [NSURLConnection sendAsynchronousRequest:postRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-        NSString* charge = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"charge = %@", charge);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [Pingpp createPayment:charge viewController:self appURLScheme:kUrlScheme withCompletion:^(NSString *result, PingppError *error) {
-                NSLog(@"completion block: %@", result);
-                if (error == nil) {
-                    NSLog(@"PingppError is nil");
-                } else {
-                    NSLog(@"PingppError: code=%lu msg=%@", (unsigned  long)error.code, [error getMsg]);
-                }
-            }];
-        });
-    }];
-    
 }
 
 //去除键盘和背景
@@ -457,14 +421,6 @@
     
     [self requestForOneKeyOrder];
 
-    //    if (self.select == 1) {
-    //        self.channel = @"alipay";
-    //    }
-    //    else
-    //    {
-    //        self.channel = @"wx";
-    //    }
-    //    [self requestForPay];
 }
 
 //选择送达时间点击事件
@@ -705,9 +661,6 @@
 
     [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
     
-    if ([self.buyNowFlag isEqualToString:@"1"]) {
-        [self deleteOrder];
-    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -718,6 +671,9 @@
 
 - (void)dealloc
 {
+    if ([self.buyNowFlag isEqualToString:@"1"]) {
+        [self deleteOrder];
+    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
@@ -828,6 +784,7 @@
                     self.defaultAddress = [valueDict objectForKey:@"address"];
                     self.defaultRank = [valueDict objectForKey:@"rank"];
                     self.myRank = [valueDict objectForKey:@"rank"];
+                    self.myCampusId = [NSString stringWithFormat:@"%@", [valueDict objectForKey:@"campusId"]];
                 }
             }
             

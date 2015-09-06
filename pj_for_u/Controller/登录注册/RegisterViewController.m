@@ -170,12 +170,6 @@
 }
 
 #pragma mark - UIViewController Methods
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:YES];
     //在该方法中设置contentsize大小
@@ -198,6 +192,11 @@
     //加入点击空白区域隐藏键盘处理
     UITapGestureRecognizer *tapGesuture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignAllFirstResponders)];
     [self.scrollView addGestureRecognizer:tapGesuture];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.view endEditing:YES];
 }
 
 - (void)dealloc

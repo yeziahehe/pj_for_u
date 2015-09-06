@@ -151,20 +151,6 @@
 }
 
 #pragma mark - UIViewController Methods
-- (void)viewDidDisappear:(BOOL)animated
-{
-    [self resignAllField];
-    [super viewDidDisappear:animated];
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    //在该方法中设置contentsize大小
-    [super viewDidAppear:YES];
-    CGFloat contentHeight = self.resetPwdButton.frame.origin.y+self.resetPwdButton.frame.size.height+20.f;
-    [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNaviTitle:@"忘记密码"];
@@ -178,6 +164,18 @@
     //加入点击空白区域隐藏键盘处理
     UITapGestureRecognizer *tapGesuture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignAllField)];
     [self.scrollView addGestureRecognizer:tapGesuture];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+    //在该方法中设置contentsize大小
+    [super viewDidAppear:YES];
+    CGFloat contentHeight = self.resetPwdButton.frame.origin.y+self.resetPwdButton.frame.size.height+20.f;
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.view endEditing:YES];
 }
 
 - (void)dealloc

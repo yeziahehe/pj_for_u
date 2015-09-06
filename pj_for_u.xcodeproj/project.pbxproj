@@ -290,6 +290,8 @@
 		6DA84D281B955F9F003D6E74 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA84D1D1B955D23003D6E74 /* SystemConfiguration.framework */; };
 		6DA84D291B955FA4003D6E74 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA84D1B1B955D15003D6E74 /* CoreTelephony.framework */; };
 		6DA84D2A1B955FA9003D6E74 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA84D191B955D00003D6E74 /* CFNetwork.framework */; };
+		6DB463C51B9A99E00053D20A /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB463C41B9A99DF0053D20A /* libc++.dylib */; };
+		6DB463C71B9A9A000053D20A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB463C61B9A9A000053D20A /* libsqlite3.0.dylib */; };
 		6DF2286B1B957CA100B5A6F8 /* libPushSDK-1.8.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF2286A1B957CA100B5A6F8 /* libPushSDK-1.8.5.a */; };
 /* End PBXBuildFile section */
 
@@ -725,6 +727,8 @@
 		6DA84D1D1B955D23003D6E74 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		6DA84D1F1B955D34003D6E74 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6DA84D211B955D6C003D6E74 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
+		6DB463C41B9A99DF0053D20A /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		6DB463C61B9A9A000053D20A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		6DF228691B957CA100B5A6F8 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		6DF2286A1B957CA100B5A6F8 /* libPushSDK-1.8.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.5.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -734,6 +738,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6DB463C71B9A9A000053D20A /* libsqlite3.0.dylib in Frameworks */,
+				6DB463C51B9A99E00053D20A /* libc++.dylib in Frameworks */,
 				6DA84D271B955F9B003D6E74 /* Security.framework in Frameworks */,
 				6DA84D281B955F9F003D6E74 /* SystemConfiguration.framework in Frameworks */,
 				6DA84D291B955FA4003D6E74 /* CoreTelephony.framework in Frameworks */,
@@ -1057,6 +1063,8 @@
 		2C2528A81B5E39EF00ADDEFB /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				6DB463C61B9A9A000053D20A /* libsqlite3.0.dylib */,
+				6DB463C41B9A99DF0053D20A /* libc++.dylib */,
 				6DA84D1F1B955D34003D6E74 /* Security.framework */,
 				6DA84D1D1B955D23003D6E74 /* SystemConfiguration.framework */,
 				6DA84D1B1B955D15003D6E74 /* CoreTelephony.framework */,
@@ -2044,7 +2052,7 @@
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/lib",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -2073,7 +2081,7 @@
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/lib",
 				);
-				OTHER_LDFLAGS = "";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
