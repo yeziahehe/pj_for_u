@@ -12,11 +12,11 @@
 #import "selectDeliverTimeView.h"
 #import "AddressManageViewController.h"
 #import "AddressChooseViewController.h"
+#import "PaySuccessViewController.h"
 
 #define kGetDefaultAddressDownloaderKey     @"GetDefaultAddressDownloaderKey"
 #define kOneKeyOrderDownloaderKey           @"OneKeyOrderDownloaderKey"
 #define kUrlScheme      @"foru1234567890" // 这个是你定义的 URL Scheme，支付宝、微信支付和测试模式需要。
-#define kUrl            @"http://218.244.151.190/demo/charge" // 你的服务端创建并返回 charge 的 URL 地址，此地址仅供测试用。
 
 @interface ConfirmOrderViewController ()<UIScrollViewDelegate>
 @property (strong, nonatomic) IBOutletCollection(UIButton) NSArray *buttonArray;
@@ -66,6 +66,8 @@
 @property (strong, nonatomic) NSString *myTotalPrice;       //应付总价（required）
 @property (strong, nonatomic) NSString *myPreferentialId;       //满减种类
 @property (strong, nonatomic) NSString *myCampusId;     //地址校区
+
+@property (strong, nonatomic) NSMutableDictionary *orderForPaySuccessVC;
 @end
 
 @implementation ConfirmOrderViewController
@@ -123,6 +125,10 @@
         [dict setObject:self.myPreferentialId forKey:@"preferentialId"];
     }
     
+    [self.orderForPaySuccessVC setObject:self.phoneLabel.text forKey:@"phone"];
+    [self.orderForPaySuccessVC setObject:self.nameLabel.text forKey:@"name"];
+    [self.orderForPaySuccessVC setObject:self.addressLabel.text forKey:@"address"];
+
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict
                                                             contentType:@"application/x-www-form-urlencoded"
@@ -208,6 +214,13 @@
     return _background;
 }
 
+- (NSMutableDictionary *)orderForPaySuccessVC
+{
+    if (!_orderForPaySuccessVC) {
+        _orderForPaySuccessVC = [[NSMutableDictionary alloc] initWithCapacity:5];
+    }
+    return _orderForPaySuccessVC;
+}
 //去除键盘和背景
 - (void)removeFirstResponder
 {
@@ -402,21 +415,22 @@
             return;
         }
     }
-
     
+    int count = 0;
     self.myOrderId = [[NSMutableString alloc] initWithCapacity:0];
     if (self.selectedArray) {
         for (int i = 0;i < [self.selectedArray count];i++) {
             ShoppingCar *sc = [self.selectedArray objectAtIndex:i];
+            count += sc.orderCount.intValue;
             if (i == 0) {
                 [self.myOrderId appendFormat:@"%@", sc.orderId];
             }
-            else{
+            else {
                 [self.myOrderId appendFormat:@",%@", sc.orderId];
             }
         }
     }
-    
+    [self.orderForPaySuccessVC setObject:[NSString stringWithFormat:@"%d", count] forKey:@"count"];
     self.myMessage = self.descriptionTextView.text;
     
     [self requestForOneKeyOrder];
@@ -616,6 +630,17 @@
     }
 }
 
+- (void)handlePayReturn:(NSNotification *)notification
+{
+    if (notification.object) {     //成功
+        PaySuccessViewController *psvc = [[PaySuccessViewController alloc] init];
+        psvc.order = self.orderForPaySuccessVC;
+        [self.navigationController pushViewController:psvc animated:NO];
+    } else {        //失败
+        [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"支付失败！" hideDelay:2.0];
+    }
+}
+
 #pragma mark - ViewController Lifecycle
 - (void)viewDidLoad
 {
@@ -636,10 +661,10 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(plusShoppingAmountNotification:) name:kPlusShoppingAmountNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(minusShoppingAmountNotification:) name:kMinusShoppingAmountNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handlePayReturn:) name:kPayReturnNotification object:nil];
     
     if (self.isBeSentFromMyOrder != 1) {
         [[MemberDataManager sharedManager] getHomeCateGoryInfo];
-        
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reloadDeliverViewWithNotification:) name:kGetHomeInfoNotification object:nil];
     } else {
         [self reloadDeliverView:nil dictionary:self.homeInfo];
@@ -816,16 +841,21 @@
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             //成功
-            
+            [self.orderForPaySuccessVC setObject:[dict objectForKey:@"totalPrice"] forKey:@"price"];
+            [self.orderForPaySuccessVC setObject:[[dict objectForKey:@"charge"] objectForKey:@"orderNo"] forKey:@"togetherId"];
+
             [Pingpp createPayment:[dict objectForKey:@"charge"]
                    viewController:self
                      appURLScheme:kUrlScheme
                    withCompletion:^(NSString *result, PingppError *error) {
                        if ([result isEqualToString:@"success"]) {
                            // 支付成功
+                           PaySuccessViewController *psvc = [[PaySuccessViewController alloc] init];
+                           psvc.order = self.orderForPaySuccessVC;
+                           [self.navigationController pushViewController:psvc animated:NO];
                        } else {
                            // 支付失败或取消
-
+                           [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"支付失败！" hideDelay:2.0];
                            NSLog(@"Error: code=%lu msg=%@", error.code, [error getMsg]);
                        }
                    }];

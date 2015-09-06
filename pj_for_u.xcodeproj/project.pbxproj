@@ -292,6 +292,9 @@
 		6DA84D2A1B955FA9003D6E74 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DA84D191B955D00003D6E74 /* CFNetwork.framework */; };
 		6DB463C51B9A99E00053D20A /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB463C41B9A99DF0053D20A /* libc++.dylib */; };
 		6DB463C71B9A9A000053D20A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DB463C61B9A9A000053D20A /* libsqlite3.0.dylib */; };
+		6DBC545D1B9B31F2000206D4 /* PaySuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBC545B1B9B31F2000206D4 /* PaySuccessViewController.m */; };
+		6DBC545E1B9B31F2000206D4 /* PaySuccessViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBC545C1B9B31F2000206D4 /* PaySuccessViewController.xib */; };
+		6DBC54601B9B32CE000206D4 /* icon_paysuccess@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DBC545F1B9B32CE000206D4 /* icon_paysuccess@2x.png */; };
 		6DF2286B1B957CA100B5A6F8 /* libPushSDK-1.8.5.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DF2286A1B957CA100B5A6F8 /* libPushSDK-1.8.5.a */; };
 /* End PBXBuildFile section */
 
@@ -729,6 +732,10 @@
 		6DA84D211B955D6C003D6E74 /* PushConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = PushConfig.plist; sourceTree = "<group>"; };
 		6DB463C41B9A99DF0053D20A /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 		6DB463C61B9A9A000053D20A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		6DBC545A1B9B31F2000206D4 /* PaySuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PaySuccessViewController.h; path = "Controller/购物车/PaySuccessViewController.h"; sourceTree = "<group>"; };
+		6DBC545B1B9B31F2000206D4 /* PaySuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PaySuccessViewController.m; path = "Controller/购物车/PaySuccessViewController.m"; sourceTree = "<group>"; };
+		6DBC545C1B9B31F2000206D4 /* PaySuccessViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PaySuccessViewController.xib; path = "Controller/购物车/PaySuccessViewController.xib"; sourceTree = "<group>"; };
+		6DBC545F1B9B32CE000206D4 /* icon_paysuccess@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_paysuccess@2x.png"; path = "Resource/icon_paysuccess@2x.png"; sourceTree = "<group>"; };
 		6DF228691B957CA100B5A6F8 /* APService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APService.h; sourceTree = "<group>"; };
 		6DF2286A1B957CA100B5A6F8 /* libPushSDK-1.8.5.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libPushSDK-1.8.5.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -781,6 +788,7 @@
 				0AD63F001B79C01E0072BEA1 /* selectDeliverTimeView.h */,
 				0AD63F011B79C01E0072BEA1 /* selectDeliverTimeView.m */,
 				0AD63F031B79C0460072BEA1 /* selectDeliverTimeView.xib */,
+				6DBC54591B9B318F000206D4 /* 支付成功 */,
 			);
 			name = "确认订单";
 			sourceTree = "<group>";
@@ -1233,6 +1241,7 @@
 		2CF607581B5E772B0022E8E7 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				6DBC545F1B9B32CE000206D4 /* icon_paysuccess@2x.png */,
 				6D6A8CFA1B8AAEAF0027D4C4 /* guidepage_1_480h@2x.png */,
 				6D6A8CFB1B8AAEAF0027D4C4 /* guidepage_1_568h@2x.png */,
 				6D6A8CFC1B8AAEAF0027D4C4 /* guidepage_1_667h@2x.png */,
@@ -1556,6 +1565,16 @@
 			name = "个人信息";
 			sourceTree = "<group>";
 		};
+		6DBC54591B9B318F000206D4 /* 支付成功 */ = {
+			isa = PBXGroup;
+			children = (
+				6DBC545A1B9B31F2000206D4 /* PaySuccessViewController.h */,
+				6DBC545B1B9B31F2000206D4 /* PaySuccessViewController.m */,
+				6DBC545C1B9B31F2000206D4 /* PaySuccessViewController.xib */,
+			);
+			name = "支付成功";
+			sourceTree = "<group>";
+		};
 		6DF228681B957CA100B5A6F8 /* lib */ = {
 			isa = PBXGroup;
 			children = (
@@ -1652,6 +1671,7 @@
 				2C10D6AE1B60B1F7008C3DE0 /* icon_home@2x.png in Resources */,
 				0AFC07161B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib in Resources */,
 				6D6A8D111B8AAEAF0027D4C4 /* guidepage_3_736h@3x.png in Resources */,
+				6DBC54601B9B32CE000206D4 /* icon_paysuccess@2x.png in Resources */,
 				2CF6076E1B5EA0EF0022E8E7 /* btn_category@2x.png in Resources */,
 				2CF607981B5EBDA10022E8E7 /* line_ver_1px_right.png in Resources */,
 				6D2044C81B842C9700386189 /* ProCommentView.xib in Resources */,
@@ -1700,6 +1720,7 @@
 				0A72CE4D1B744D3E00222284 /* icon_rubbish@2x.png in Resources */,
 				6D7716ED1B65F4C700257256 /* full_choice@2x.png in Resources */,
 				6D6A8D2D1B8C13E30027D4C4 /* CourierViewController.xib in Resources */,
+				6DBC545E1B9B31F2000206D4 /* PaySuccessViewController.xib in Resources */,
 				4A1464F31B75F33000B9F058 /* icon_addshopcar@2x.png in Resources */,
 				6D2044E31B84631800386189 /* feedback_input_box.png in Resources */,
 				2C2528991B5E38B100ADDEFB /* RegisterViewController.xib in Resources */,
@@ -1867,6 +1888,7 @@
 				6D2044A71B84290D00386189 /* GeneralProductViewController.m in Sources */,
 				2C2529011B5E3AA900ADDEFB /* UIView+YFUtilities.m in Sources */,
 				2C2528D61B5E39EF00ADDEFB /* Reachability.m in Sources */,
+				6DBC545D1B9B31F2000206D4 /* PaySuccessViewController.m in Sources */,
 				4A6C16891B70BAC500C9A9D2 /* AFURLSessionManager.m in Sources */,
 				2CF607781B5EA3E60022E8E7 /* CitySelectTableView.m in Sources */,
 				2C2529031B5E3AA900ADDEFB /* YFAsynImageView.m in Sources */,

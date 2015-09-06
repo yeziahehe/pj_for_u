@@ -8,6 +8,7 @@
 
 #import "MyOrderEvaluationViewController.h"
 #import "MyOrderEvaluationTableViewCell.h"
+#import "MyOrderViewController.h"
 
 #define kCreatOrderComment      @"CreatOrderComment"
 
@@ -24,6 +25,8 @@
 @property (strong, nonatomic) UITextView *textView;
 
 @property CGFloat keyboardHeight;
+
+@property BOOL isReadyToRefresh;
 @end
 
 @implementation MyOrderEvaluationViewController
@@ -88,6 +91,7 @@
     [dict setObject:foodId forKey:@"foodId"];
     [dict setObject:orderId forKey:@"orderId"];
     
+    self.isReadyToRefresh = YES;
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kCreatOrderCommentUrl];
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict
@@ -218,12 +222,24 @@
     [super viewDidLoad];
     [self setNaviTitle:@"评价订单"];
     self.isFirstTime = YES;
+    self.isReadyToRefresh = NO;
     self.tableView.delegate = self;
     
     [self addTapGestureToRemoveKeyboard];
     [self registerForKeyboardNotifications];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deliverComment:) name:kDeliverCommentNotification object:nil];
     
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[MyOrderViewController class]]) {
+            MyOrderViewController *movc = (MyOrderViewController *)vc;
+            movc.isReadyToRefresh = self.isReadyToRefresh;
+        }
+    }
 }
 
 - (void)dealloc
@@ -240,7 +256,6 @@
 {
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     NSDictionary *dict = [str JSONValue];
-
     if ([downloader.purpose isEqualToString:kCreatOrderComment])
     {
         NSString *message = [dict objectForKey:kMessageKey];

@@ -11,5 +11,6 @@
 @interface MyOrderEvaluationViewController : BaseViewController <UITextViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *smallOrders;
+@property (strong, nonatomic) NSIndexPath *myIndexPath;
 
 @end

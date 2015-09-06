@@ -11,5 +11,6 @@
 @interface MyOrderDetailViewController : BaseViewController
 
 @property (strong, nonatomic) NSString *togetherId;
+@property (strong, nonatomic) NSIndexPath *indexPath;
 
 @end

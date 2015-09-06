@@ -10,6 +10,6 @@
 
 @interface MyOrderViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
-
+@property BOOL isReadyToRefresh;
 
 @end

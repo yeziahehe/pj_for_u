@@ -176,9 +176,10 @@
            withCompletion:^(NSString *result, PingppError *error) {
                if ([result isEqualToString:@"success"]) {
                    // 支付成功
+                   [[NSNotificationCenter defaultCenter] postNotificationName:kPayReturnNotification object:@"success"];
                } else {
                    // 支付失败或取消
-                   
+                   [[NSNotificationCenter defaultCenter] postNotificationName:kPayReturnNotification object:nil];
                    NSLog(@"Error: code=%lu msg=%@", error.code, [error getMsg]);
                }
            }];

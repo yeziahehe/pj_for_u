@@ -11,6 +11,7 @@
 #import "ShoppingCar.h"
 #import "ConfirmOrderViewController.h"
 #import "MyOrderEvaluationViewController.h"
+#import "MyOrderViewController.h"
 
 #define kGetOrderDetailKey         @"GetOrderDetailKey"
 #define kDeleteOrderKey             @"DeleteOrderKey"
@@ -33,6 +34,8 @@
 @property (strong, nonatomic) IBOutlet UILabel *name;
 @property (strong, nonatomic) IBOutlet UILabel *address;
 @property (strong, nonatomic) IBOutlet UILabel *phone;
+
+@property BOOL isReadyToRefresh;
 
 @end
 
@@ -78,6 +81,7 @@
 //请求修改订单状态
 - (void)requsetForModifyOrderStatus:(NSString *)status togetherId:(NSString *)togetherId
 {
+    self.isReadyToRefresh = YES;
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kModifyOrderStatusUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
     
@@ -95,6 +99,7 @@
 
 - (void)requestForDeleteOrder:(NSString *)togetherId
 {
+    self.isReadyToRefresh = YES;
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kDeleteOrderUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:togetherId forKey:@"togetherId"];
@@ -108,6 +113,7 @@
 
 - (void)requestForSetOrderInvalid:(NSString *)togetherId
 {
+    self.isReadyToRefresh = YES;
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kSetOrderInvalidUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:togetherId forKey:@"togetherId"];
@@ -197,7 +203,7 @@
     }
     
     else if ([title isEqualToString:@"立即付款"]) {
-        
+        self.isReadyToRefresh = YES;
         NSMutableArray *shoppingCar = [[NSMutableArray alloc] initWithCapacity:10];
         
         for (NSDictionary *dict in self.smallOrders) {
@@ -318,19 +324,32 @@
 {
     [super viewDidLoad];
     [self setNaviTitle:@"订单详情"];
-    
+    self.isReadyToRefresh = NO;
     //register cell
     UINib *nib = [UINib nibWithNibName:@"MyOrderTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
          forCellReuseIdentifier:@"MyOrderTableViewCell"];
     //=============
-
-    [self requestForMyOrderDetailByTogetherId:self.togetherId];
+    
+    if (self.togetherId) {
+        [self requestForMyOrderDetailByTogetherId:self.togetherId];
+    }
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(cilckOrderButtonNotification:)
                                                  name:kCilckOrderButtonNotification object:nil];
 
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[MyOrderViewController class]]) {
+            MyOrderViewController *movc = (MyOrderViewController *)vc;
+            movc.isReadyToRefresh = self.isReadyToRefresh;
+        }
+    }
 }
 
 - (void)dealloc
@@ -395,6 +414,7 @@
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
+            
             
             [self.navigationController popViewControllerAnimated:YES];
         }

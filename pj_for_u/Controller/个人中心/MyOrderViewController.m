@@ -256,97 +256,6 @@
 
 }
 
-- (void)resetMineInfoNum
-{
-    int num;
-    switch (self.recordLastStatus) {
-        case 1:
-            num = [MemberDataManager sharedManager].mineInfo.waitPayOrder.intValue;
-            [MemberDataManager sharedManager].mineInfo.waitPayOrder = [NSString stringWithFormat:@"%d", --num];
-            break;
-            
-        case 2:
-            num = [MemberDataManager sharedManager].mineInfo.waitMakeSureOrder.intValue;
-            [MemberDataManager sharedManager].mineInfo.waitMakeSureOrder = [NSString stringWithFormat:@"%d", --num];
-            break;
-        case 3:
-            num = [MemberDataManager sharedManager].mineInfo.distribution.intValue;
-            [MemberDataManager sharedManager].mineInfo.distribution = [NSString stringWithFormat:@"%d", --num];
-            
-            break;
-            
-        case 4:
-            num = [MemberDataManager sharedManager].mineInfo.waitCommentOrder.intValue;
-            [MemberDataManager sharedManager].mineInfo.waitCommentOrder = [NSString stringWithFormat:@"%d", --num];
-            
-            break;
-        case 5:
-            num = [MemberDataManager sharedManager].mineInfo.doneOrder.intValue;
-            [MemberDataManager sharedManager].mineInfo.doneOrder = [NSString stringWithFormat:@"%d", --num];
-            
-            break;
-        default:
-            break;
-    }
-}
-
-//重置角标
-- (void)resetBadgeNum
-{
-    switch (self.recordLastStatus) {
-        case 1:
-            for (UIView *subView in self.waitForPayment.subviews) {
-                if ([subView isKindOfClass:[YFBadgeView class]]) {
-                    [subView removeFromSuperview];
-                }
-            }
-            
-            [self setBadgeViewWithView:self.waitForPayment badgeNum:[MemberDataManager sharedManager].mineInfo.waitPayOrder];
-            break;
-            
-        case 2:
-            for (UIView *subView in self.waitForConfirm.subviews) {
-                if ([subView isKindOfClass:[YFBadgeView class]]) {
-                    [subView removeFromSuperview];
-                }
-            }
-            
-            [self setBadgeViewWithView:self.waitForConfirm badgeNum:[MemberDataManager sharedManager].mineInfo.waitMakeSureOrder];
-            break;
-        case 3:
-            for (UIView *subView in self.distributing.subviews) {
-                if ([subView isKindOfClass:[YFBadgeView class]]) {
-                    [subView removeFromSuperview];
-                }
-            }
-            
-            [self setBadgeViewWithView:self.distributing badgeNum:[MemberDataManager sharedManager].mineInfo.distribution];
-            break;
-            
-        case 4:
-            for (UIView *subView in self.waitForEvaluation.subviews) {
-                if ([subView isKindOfClass:[YFBadgeView class]]) {
-                    [subView removeFromSuperview];
-                }
-            }
-            
-            [self setBadgeViewWithView:self.waitForEvaluation badgeNum:[MemberDataManager sharedManager].mineInfo.waitCommentOrder];
-            break;
-        case 5:
-            for (UIView *subView in self.alreadyFinished.subviews) {
-                if ([subView isKindOfClass:[YFBadgeView class]]) {
-                    [subView removeFromSuperview];
-                }
-            }
-            
-            [self setBadgeViewWithView:self.alreadyFinished badgeNum:[MemberDataManager sharedManager].mineInfo.doneOrder];
-            break;
-        default:
-            break;
-    }
-
-}
-
 //上拉加载
 - (void)refreshFooter
 {
@@ -388,9 +297,7 @@
     [self setBadgeViewWithView:self.waitForConfirm badgeNum:[MemberDataManager sharedManager].mineInfo.waitMakeSureOrder];
     [self setBadgeViewWithView:self.distributing badgeNum:[MemberDataManager sharedManager].mineInfo.distribution];
     [self setBadgeViewWithView:self.waitForEvaluation badgeNum:[MemberDataManager sharedManager].mineInfo.waitCommentOrder];
-    [self setBadgeViewWithView:self.alreadyFinished badgeNum:[MemberDataManager sharedManager].mineInfo.doneOrder];
-
-    
+    [self setBadgeViewWithView:self.alreadyFinished badgeNum:[MemberDataManager sharedManager].mineInfo.doneOrder];    
 }
 
 
@@ -520,6 +427,7 @@
     
     MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
     myOrderDetailViewController.togetherId = togetherId;
+    myOrderDetailViewController.indexPath = indexPath;
     
     [self.navigationController pushViewController:myOrderDetailViewController animated:YES];
 
@@ -545,6 +453,7 @@
         }
         MyOrderEvaluationViewController *myOrderEvaluationViewController = [[MyOrderEvaluationViewController alloc] init];
         myOrderEvaluationViewController.smallOrders = realSmallOrders;
+        myOrderEvaluationViewController.myIndexPath = indexPath;
         
         [self.navigationController pushViewController:myOrderEvaluationViewController animated:YES];
         
@@ -631,6 +540,12 @@
     }
 }
 
+- (void)updateBadge:(NSNotification *)notification
+{
+    if (nil == notification.object) {
+        [self addBadgeViewToButton];
+    }
+}
 
 #pragma mark - UITableViewDataSource Methods
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -706,7 +621,7 @@
     
     self.indexOfPage = 1;
     self.isRefreshHeader = NO;
-    
+    self.isReadyToRefresh = YES;
     //register cell
     UINib *nib = [UINib nibWithNibName:@"MyOrderTableViewCell" bundle:nil];
     [self.tableView registerNib:nib
@@ -742,25 +657,33 @@
                                              selector:@selector(cilckOrderButtonNotification:)
                                                  name:kCilckOrderButtonNotification object:nil];
     
-    //每次进入页面刷新数据
-    switch (self.recordLastStatus) {
-        case 1:
-            [self waitForPaymentAction];
-            break;
-        case 2:
-            [self waitForConfirmAction];
-            break;
-        case 3:
-            [self distributingAction];
-            break;
-        case 4:
-            [self waitForEvaluationAction];
-            break;
-        case 5:
-            [self alreadyFinishedAction];
-            break;
-        default:
-            break;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(updateBadge:)
+                                                 name:kUserInfoResponseNotification
+                                               object:nil];
+    
+    if (self.isReadyToRefresh) {
+        //每次进入页面刷新数据
+        switch (self.recordLastStatus) {
+            case 1:
+                [self waitForPaymentAction];
+                break;
+            case 2:
+                [self waitForConfirmAction];
+                break;
+            case 3:
+                [self distributingAction];
+                break;
+            case 4:
+                [self waitForEvaluationAction];
+                break;
+            case 5:
+                [self alreadyFinishedAction];
+                break;
+            default:
+                break;
+        }
+        self.isReadyToRefresh = NO;
     }
     
     self.orderCampusId = nil;
@@ -834,8 +757,9 @@
         {
             [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
-            [self resetMineInfoNum];
-            [self resetBadgeNum];
+            
+            [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+
             [self.tableView reloadData];
 
         }
@@ -857,8 +781,9 @@
             
             [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
-            [self resetMineInfoNum];
-            [self resetBadgeNum];
+            
+            [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+
             [self.tableView reloadData];
 
         }
