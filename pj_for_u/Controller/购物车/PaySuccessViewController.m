@@ -33,7 +33,9 @@
     self.nameLabel.text = [self.order objectForKey:@"name"];
     self.addressLabel.text = [self.order objectForKey:@"address"];
     self.phoneLabel.text = [self.order objectForKey:@"phone"];
-    self.priceLabel.text = [self.order objectForKey:@"price"];
+    NSString *price = [self.order objectForKey:@"price"];
+    double realPrice = price.doubleValue;
+    self.priceLabel.text = [NSString stringWithFormat:@"￥%.1lf", realPrice];
     self.goodNumLabel.text = [NSString stringWithFormat:@"共%@件商品", [self.order objectForKey:@"count"]];
 }
 
