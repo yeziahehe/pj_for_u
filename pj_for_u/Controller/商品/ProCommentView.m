@@ -53,10 +53,8 @@
             [tempArray addObject:pcd];
         }
         
-        if (tempArray.count <= kLimit.intValue) {
-            self.tableView.footerHidden = YES;
-        } else {
-            self.tableView.footerHidden = NO;
+        if (tempArray.count < kLimit.intValue) {
+            self.removeFooter();
         }
         
         if ([type isEqualToString:@"1"]) {

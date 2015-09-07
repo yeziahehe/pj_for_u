@@ -15,6 +15,8 @@
 @property (strong,nonatomic)ProductionInfo *proInfo;
 @property NSInteger page;
 
+@property (nonatomic, copy) void (^removeFooter)();
+
 - (void)loadDataWithType:(NSString *)type
                   foodId:(NSString *)foodId;
 

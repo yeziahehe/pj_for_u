@@ -144,6 +144,11 @@
             rect.origin.y += 10.f;
             self.pcv.proInfo = self.proInfo;
             rect.size.height = self.pcv.tableView.contentSize.height;
+            
+            __weak UIScrollView *weakScrollView = self.contentScrollView;
+            self.pcv.removeFooter = ^{
+                [weakScrollView removeFooter];
+            };
         }
         productSubView.frame = rect;
         [self.contentScrollView addSubview:productSubView];
