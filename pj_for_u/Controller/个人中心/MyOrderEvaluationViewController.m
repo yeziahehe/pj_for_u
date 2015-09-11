@@ -188,7 +188,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -246,7 +245,6 @@
 {
     [self.view endEditing:YES];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
 
@@ -262,11 +260,13 @@
 
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
-            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:1.5];
             
             [self.smallOrders removeObjectAtIndex:self.indexPath.section];
             [self.tableView reloadData];
             if (self.smallOrders.count == 0) {
+                [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+
                 [self.navigationController popViewControllerAnimated:YES];
             }
         }
@@ -278,7 +278,7 @@
             }
             if(message.length == 0)
                 message = @"评价订单失败";
-            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:1.5];
         }
         
     }
@@ -287,7 +287,7 @@
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
 {
     NSLog(@"%@",message);
-    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:2.f];
+    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:1.5];
 }
 
 

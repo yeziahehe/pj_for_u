@@ -117,7 +117,6 @@
     return 60.f;
 }
 
-
 #pragma mark - UITableViewDelegate Methods
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -133,6 +132,7 @@
     
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
     
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

@@ -355,7 +355,6 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
 
@@ -387,15 +386,17 @@
             }
             if(message.length == 0)
                 message = @"信息获取失败";
-            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:1.5];
         }
     }
     else if ([downloader.purpose isEqualToString:kDeleteOrderKey]) {
         NSString *message = [dict objectForKey:kMessageKey];
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
-            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:1.5];
             
+            [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+
             [self.navigationController popViewControllerAnimated:YES];
         }
         else
@@ -406,16 +407,17 @@
             }
             if(message.length == 0)
                 message = @"订单删除失败";
-            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:1.5];
         }
     }
     else if ([downloader.purpose isEqualToString:kSetOrderInvalidKey]) {
         NSString *message = [dict objectForKey:kMessageKey];
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
-            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:2.f];
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:1.5];
             
-            
+            [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+
             [self.navigationController popViewControllerAnimated:YES];
         }
         else
@@ -426,7 +428,7 @@
             }
             if(message.length == 0)
                 message = @"取消订单失败";
-            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:1.5];
         }
     }
 }
@@ -434,7 +436,7 @@
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message
 {
     NSLog(@"%@",message);
-    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:2.f];
+    [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:kNetWorkErrorString hideDelay:1.5];
 }
 
 @end

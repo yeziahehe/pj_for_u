@@ -292,6 +292,19 @@
 //为五个按钮添加角标
 - (void)addBadgeViewToButton
 {
+    NSMutableArray *buttonSubViews = [[NSMutableArray alloc] initWithArray:self.waitForPayment.subviews];
+    [buttonSubViews addObjectsFromArray:self.waitForConfirm.subviews];
+    [buttonSubViews addObjectsFromArray:self.distributing.subviews];
+    [buttonSubViews addObjectsFromArray:self.waitForEvaluation.subviews];
+    [buttonSubViews addObjectsFromArray:self.alreadyFinished.subviews];
+    
+    for (__weak UIView *view in buttonSubViews) {
+        if ([view isKindOfClass:[YFBadgeView class]]) {
+            [view removeFromSuperview];
+            view = nil;
+        }
+    }
+
     //角标
     [self setBadgeViewWithView:self.waitForPayment badgeNum:[MemberDataManager sharedManager].mineInfo.waitPayOrder];
     [self setBadgeViewWithView:self.waitForConfirm badgeNum:[MemberDataManager sharedManager].mineInfo.waitMakeSureOrder];
@@ -628,7 +641,6 @@
          forCellReuseIdentifier:@"MyOrderTableViewCell"];
     //=============
     
-    [self addBadgeViewToButton];
     [self addTargetToButton];
     
     //随便逛逛按钮增加圆角边框
@@ -661,9 +673,9 @@
                                              selector:@selector(updateBadge:)
                                                  name:kUserInfoResponseNotification
                                                object:nil];
-    
     if (self.isReadyToRefresh) {
         //每次进入页面刷新数据
+        [self addBadgeViewToButton];
         switch (self.recordLastStatus) {
             case 1:
                 [self waitForPaymentAction];
@@ -759,7 +771,8 @@
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
             
             [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
-
+            
+            [self showNoOrderView];
             [self.tableView reloadData];
 
         }
@@ -783,7 +796,8 @@
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
             
             [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
-
+            
+            [self showNoOrderView];
             [self.tableView reloadData];
 
         }
@@ -804,7 +818,10 @@
             [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
             [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
             
-            [self refreshHeader];
+            [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+            
+            [self showNoOrderView];
+            [self.tableView reloadData];
         }
         else
         {
