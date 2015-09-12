@@ -132,10 +132,36 @@
     if(validString)
     {
         [[YFProgressHUD sharedProgressHUD] showWithMessage:validString customView:nil hideDelay:2.f];
-    }
-    else
-    {
-        [[MemberDataManager sharedManager] checkUserExistWithPhone:self.phoneNumTextField.text];
+    }else{
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
+        //接口地址
+        NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kCheckUserExistUrl];
+        //传递参数存放的字典
+        NSString *phone = self.phoneNumTextField.text;
+        NSMutableDictionary *dict = kCommonParamsDict;
+        [dict setObject:phone forKey:@"phone"];
+        //进行post请求
+        [manager POST:url
+           parameters:dict
+              success:^(AFHTTPRequestOperation *operation,id responseObject) {
+                  
+                  NSString *status = [responseObject objectForKey:@"status"];
+                  if ([status isEqualToString:@"success"]) {
+                      self.identifyButton.enabled = NO;
+                      self.resendSecond = kResendTimeCount;
+                      self.resendTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(resendTimerChange) userInfo:nil repeats:YES];
+                      [[YFProgressHUD sharedProgressHUD]showWithMessage:@"验证码发送中，请稍等……" customView:nil hideDelay:2.f];
+                      [self getVerifyCode];
+                  }else{
+                      [[YFProgressHUD sharedProgressHUD] showWithMessage:@"该账号已被注册，请登录" customView:nil hideDelay:2.f];
+                  }
+              }
+              failure:^(AFHTTPRequestOperation *operation,NSError *error) {
+                  
+                  NSLog(@"Error: %@", error);
+                  
+              }];
     }
 }
 
