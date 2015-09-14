@@ -179,7 +179,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.97953344666946585" green="0.97829060216019625" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.94509803921568625" green="0.94901960784313721" blue="0.95686274509803915" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="euN-D4-NEd" firstAttribute="centerY" secondItem="11O-ZB-DIP" secondAttribute="centerY" id="1aB-s5-X5c"/>
                         <constraint firstAttribute="trailing" secondItem="euN-D4-NEd" secondAttribute="trailing" id="EdT-NO-sQE"/>
