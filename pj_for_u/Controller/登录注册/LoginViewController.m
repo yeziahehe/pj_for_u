@@ -79,11 +79,11 @@
 - (IBAction)showForUAbout:(id)sender
 {
     //点击 《For 优用户服务协议》
-//    NSString *path = [[NSBundle mainBundle] pathForResource:@"Mickeyabout" ofType:@"html"];
-//    YFWebViewController *yfwvc = [[YFWebViewController alloc] init];
-//    yfwvc.htmlTitle = @"服务条款";
-//    yfwvc.htmlPath = path;
-//    [self.navigationController pushViewController:yfwvc animated:YES];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"Foruabout" ofType:@"html"];
+    YFWebViewController *yfwvc = [[YFWebViewController alloc] init];
+    yfwvc.htmlTitle = @"服务条款";
+    yfwvc.htmlPath = path;
+    [self.navigationController pushViewController:yfwvc animated:YES];
 }
 
 #pragma mark - Notification methods

@@ -53,6 +53,7 @@
 #import "YFCycleScrollView.h"
 #import "NSTimer+Addition.h"
 #import "YFBadgeView.h"
+#import "YFWebViewController.h"
 
 #endif
 
