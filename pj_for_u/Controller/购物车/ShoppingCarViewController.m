@@ -442,6 +442,9 @@
         [self.shoppingCarSelectedArray removeObject:sc];
         cell.backGrayView.hidden = NO;
         [self calculateTotalPrice];
+        if ([self.shoppingCarSelectedArray count] == 0) {
+            self.deleteShoppingCarView.hidden = YES;
+        }
     } else {
         ProductDetailViewController *detail = [[ProductDetailViewController alloc]init];
         self.shoppingCarInfo = [self.shoppingCarArray objectAtIndex:indexPath.section];
