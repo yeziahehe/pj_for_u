@@ -23,7 +23,7 @@
 - (void)logout
 {
     //清空用户信息
-    self.loginMember.phone = nil;
+    //self.loginMember.phone = nil;
     self.loginMember.password = nil;
     self.loginMember.type = nil;
     [self saveLoginMemberData];
