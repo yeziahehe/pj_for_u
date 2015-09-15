@@ -17,5 +17,6 @@
 @property (strong, nonatomic) NSString *myOrderCampusId;
 @property (strong, nonatomic) NSArray *preferentials;
 @property (strong, nonatomic) NSDictionary *homeInfo;
+@property (strong, nonatomic) NSString *myTogetherId;
 
 @end
