@@ -73,6 +73,20 @@
 @implementation ConfirmOrderViewController
 
 #pragma mark - Request Network
+- (void)requestForMyOrderDetailByTogetherId:(NSString *)togetherId
+{
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kGetOrderDetailUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    
+    [dict setObject:togetherId forKey:@"togetherId"];
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kGetOrderDetailUrl];
+}
+
 - (void)requestForEdit:(NSString *)orderId withOrderCount:(NSString *)orderCount
 {
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kEditShoppingCarUrl];
@@ -365,7 +379,11 @@
     self.select = 1;
     self.myPayWay = [NSString stringWithFormat:@"%d", self.select];
     NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
-    [self requestForDefaultAddress:phone];
+    if (self.isBeSentFromMyOrder == 1) {
+        [self requestForMyOrderDetailByTogetherId:self.myTogetherId];
+    } else {
+        [self requestForDefaultAddress:phone];
+    }
 }
 
 #pragma mark - IBAction  methords
@@ -531,6 +549,7 @@
         self.payButton.enabled  = NO;
     }
 }
+
 - (void)reloadDeliverViewWithNotification:(NSNotification *)notification
 {
     [self reloadDeliverView:notification dictionary:[MemberDataManager sharedManager].homeInfo];
@@ -823,6 +842,9 @@
                 self.noAddressView.hidden = NO;
                 [self.payButton setEnabled:NO];
             }
+            
+            
+            
         }
         else
         {
@@ -902,6 +924,44 @@
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
+    else if ([downloader.purpose isEqualToString:kGetOrderDetailUrl])
+    {
+        
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            NSDictionary *receiver = [[dict objectForKey:@"BigOrder"] objectForKey:@"receiver"];
+            self.defaultReceiver = [receiver objectForKey:@"name"];
+            self.defaultRecPhone = [receiver objectForKey:@"phone"];
+            self.defaultAddress = [receiver objectForKey:@"address"];
+            self.defaultRank = [receiver objectForKey:@"rank"];
+            self.myRank = [receiver objectForKey:@"rank"];
+            self.myCampusId = [NSString stringWithFormat:@"%@", [receiver objectForKey:@"campusId"]];
+            
+            if (self.defaultReceiver) {
+                self.noAddressView.hidden = YES;
+                self.nameLabel.text = self.defaultReceiver;
+                self.phoneLabel.text = self.defaultRecPhone;
+                self.addressLabel.text = self.defaultAddress;
+                [self.payButton setEnabled:YES];
+            } else {
+                self.noAddressView.hidden = NO;
+                [self.payButton setEnabled:NO];
+            }
+
+        }
+        else
+        {
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"信息获取失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:1.5];
+        }
+    }
+
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message

@@ -211,11 +211,16 @@
             [shoppingCar addObject:car];
         }
         
-        ConfirmOrderViewController *coVC = [[ConfirmOrderViewController alloc] init];
+        ConfirmOrderViewController *covc = [[ConfirmOrderViewController alloc] init];
         
-        coVC.selectedArray = shoppingCar;
-        
-        [self.navigationController pushViewController:coVC animated:YES];
+        covc.selectedArray = shoppingCar;
+        covc.preferentials = self.preferentials;
+        covc.homeInfo = self.homeInfo;
+        covc.isBeSentFromMyOrder = 1;
+        covc.myOrderCampusId = self.orderCampusId;
+        covc.myTogetherId = self.togetherId;
+
+        [self.navigationController pushViewController:covc animated:YES];
     }
     
     else if ([title isEqualToString:@"取消订单"]) {

@@ -55,7 +55,7 @@
 @property (strong, nonatomic) NSArray *preferentials;
 @property (strong, nonatomic) NSDictionary *homeInfo;
 @property (strong, nonatomic) NSMutableArray *shoppingCar;
-
+@property (strong, nonatomic) NSString *myTogetherId;
 @end
 
 @implementation MyOrderViewController
@@ -441,6 +441,9 @@
     MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
     myOrderDetailViewController.togetherId = togetherId;
     myOrderDetailViewController.indexPath = indexPath;
+    myOrderDetailViewController.preferentials = self.preferentials;
+    myOrderDetailViewController.orderCampusId = self.orderCampusId;
+    myOrderDetailViewController.homeInfo = self.homeInfo;
     
     [self.navigationController pushViewController:myOrderDetailViewController animated:YES];
 
@@ -501,6 +504,7 @@
                 [self getPreferentialsInfoWithCampusId:self.orderCampusId];
                 i++;
             }
+            self.myTogetherId = togetherId;
             ShoppingCar *car = [[ShoppingCar alloc] initWithDict:dict];
             [self.shoppingCar addObject:car];
         }
@@ -856,6 +860,7 @@
             covc.selectedArray = self.shoppingCar;
             covc.isBeSentFromMyOrder = 1;
             covc.myOrderCampusId = self.orderCampusId;
+            covc.myTogetherId = self.myTogetherId;
             
             [self.navigationController pushViewController:covc animated:YES];
         }

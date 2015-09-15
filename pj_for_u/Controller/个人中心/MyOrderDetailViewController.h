@@ -13,4 +13,8 @@
 @property (strong, nonatomic) NSString *togetherId;
 @property (strong, nonatomic) NSIndexPath *indexPath;
 
+@property (strong, nonatomic) NSArray *preferentials;
+@property (strong, nonatomic) NSString *orderCampusId;
+@property (strong, nonatomic) NSDictionary *homeInfo;
+
 @end
