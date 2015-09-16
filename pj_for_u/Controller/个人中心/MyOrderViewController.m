@@ -872,7 +872,14 @@
         }
         else
         {
-            NSString *message = @"确认失败";
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0) {
+                message = @"确认失败";
+            }
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
@@ -885,7 +892,14 @@
         }
         else
         {
-            NSString *message = @"获取满减信息失败";
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0) {
+                message = @"获取满减信息失败";
+            }
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
@@ -909,7 +923,14 @@
         }
         else
         {
-            NSString *message = @"获取营业时间失败";
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0) {
+                message = @"获取营业时间失败";
+            }
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
