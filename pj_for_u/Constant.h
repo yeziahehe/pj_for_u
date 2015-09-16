@@ -161,5 +161,6 @@
 #define kSetDeliverAdminUrl             @"order/setDeliverAdmin.do"
 #define kDeliverAdminGetOrderUrl        @"order/DeliverAdminGetOrder.do"
 #define kGetPreferentialsUrl            @"order/getPreferentials.do"
+#define kCancelOrderWithRefundUrl       @"order/cancelOrderWithRefund.do"
 
 #endif

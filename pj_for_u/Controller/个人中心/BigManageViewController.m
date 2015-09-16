@@ -91,12 +91,22 @@
                                                                  forIndexPath:indexPath];
     if (self.orderList) {
         NSDictionary *dict = self.orderList[indexPath.row];
+        
         cell.togetherDate.text = [NSString stringWithFormat:@"日期:%@", [dict objectForKey:@"togetherDate"]];
         cell.togetherId.text = [NSString stringWithFormat:@"%@", [dict objectForKey:@"togetherId"]];
-        cell.address.text = [NSString stringWithFormat:@"地址:%@", [dict objectForKey:@"address"]];
+        if ([dict objectForKey:@"address"]) {
+            cell.address.text = [NSString stringWithFormat:@"地址:%@", [dict objectForKey:@"address"]];
+        } else {
+            cell.address.text = @"地址:暂无";
+
+        }
         cell.price.text = [NSString stringWithFormat:@"价格:%@", [dict objectForKey:@"price"]];
         cell.reserveTime.text = [NSString stringWithFormat:@"%@", [dict objectForKey:@"reserveTime"]];
-        cell.adminName.text = [NSString stringWithFormat:@"配送员:%@", [dict objectForKey:@"adminName"]];
+        if ([dict objectForKey:@"adminName"]) {
+            cell.adminName.text = [NSString stringWithFormat:@"配送员:%@", [dict objectForKey:@"adminName"]];
+        } else {
+            cell.adminName.text = @"配送员:暂无";
+        }
 
     }
     

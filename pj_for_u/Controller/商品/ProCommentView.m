@@ -52,6 +52,9 @@
             ProCommentDetail *pcd = [[ProCommentDetail alloc]initWithDict:valueDict];
             [tempArray addObject:pcd];
         }
+        if (tempArray.count == 0){
+            self.commentLabel.text = @"暂无评论";
+        }
         
         if (tempArray.count < kLimit.intValue) {
             self.removeFooter();

@@ -185,6 +185,21 @@
     ProductionInfo *pi = [self.allProductionMArray objectAtIndex:indexPath.row];
     cell.pi = pi;
     
+    if ([pi.isFullDiscount isEqualToString:@"1"]) {
+        cell.preferential.hidden = NO;
+        cell.cutImageView.hidden = NO;
+        NSMutableString *preferentialString = [[NSMutableString alloc] initWithCapacity:30];
+        for (NSDictionary *dict in [MemberDataManager sharedManager].preferentials) {
+            NSString *full = [NSString stringWithFormat:@"%@", [dict objectForKey:@"needNumber"]];
+            NSString *cut = [NSString stringWithFormat:@"%@", [dict objectForKey:@"discountNum"]];
+            [preferentialString appendString:[NSString stringWithFormat:@"满%@减%@;", full, cut]];
+        }
+        cell.preferential.text = preferentialString;
+    } else {
+        cell.preferential.hidden = YES;
+        cell.cutImageView.hidden = YES;
+    }
+
     return cell;
 }
 

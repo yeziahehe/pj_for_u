@@ -47,7 +47,11 @@
     
     cell.orderCount.text = [NSString stringWithFormat:@"×%@", [dict objectForKey:@"orderCount"]];
     cell.foodName.text = [NSString stringWithFormat:@"%@", [dict objectForKey:@"foodName"]];
-    cell.specialName.text = [NSString stringWithFormat:@"%@", [dict objectForKey:@"specialName"]];
+    if ([dict objectForKey:@"specialName"]) {
+        cell.specialName.text = [NSString stringWithFormat:@"%@", [dict objectForKey:@"specialName"]];
+    } else {
+        cell.specialName.text = @"暂无";
+    }
     
     return cell;
 }

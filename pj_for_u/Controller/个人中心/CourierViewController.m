@@ -129,8 +129,18 @@
     cell.togetherId.text = [NSString stringWithFormat:@"%@", [dict objectForKey:@"togetherId"]];
     cell.nickName.text = [NSString stringWithFormat:@"昵称:%@", [dict objectForKey:@"nickName"]];
     cell.totalPrice.text = [NSString stringWithFormat:@"总价:%@", [dict objectForKey:@"totalPrice"]];
-    cell.reserveTime.text = [NSString stringWithFormat:@"%@", [dict objectForKey:@"reserveTime"]];
-    cell.message.text = [NSString stringWithFormat:@"备注:%@", [dict objectForKey:@"message"]];
+    
+    if ([dict objectForKey:@"reserveTime"]) {
+        cell.reserveTime.text = [NSString stringWithFormat:@"%@", [dict objectForKey:@"reserveTime"]];
+    } else {
+        cell.reserveTime.text = @"暂无";
+    }
+    
+    if ([dict objectForKey:@"message"]) {
+        cell.message.text = [NSString stringWithFormat:@"备注:%@", [dict objectForKey:@"message"]];
+    } else {
+        cell.message.text = @"备注:暂无";
+    }
     
     cell.orderList = [dict objectForKey:@"orderList"];
     cell.itsIndexPath = indexPath;

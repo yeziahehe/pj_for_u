@@ -19,4 +19,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *discountImageView;
 @property (strong, nonatomic) ProductionInfo *pi;
 
+@property (weak, nonatomic) IBOutlet UIImageView *cutImageView;
+@property (strong, nonatomic) IBOutlet UILabel *preferential;
+
 @end

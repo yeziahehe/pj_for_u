@@ -101,11 +101,12 @@
         }
         else
         {
+            NSString *allAddress = [NSString stringWithFormat:@"%@%@",self.reciverCampusName,self.detailTextField.text];
             //保存地址的请求
             [[AddressDataManager sharedManager] requestForChangeAddressWithPhoneId:phoneId
                                                 rank:self.reciverRank
                                                 name:self.nameTextField.text
-                                             address:self.detailTextField.text
+                                             address:allAddress
                                                phone:self.phoneTextField.text
                                             campusId:self.reciverCampusId];
         }
@@ -114,6 +115,7 @@
     else
     {
         NSString *validPassword = [self checkPasswordValid];
+        NSString *allAddress = [NSString stringWithFormat:@"%@%@",self.campusModel.campusName,self.detailTextField.text];
         if(validPassword)
         {
             [[YFProgressHUD sharedProgressHUD]showWithMessage:validPassword customView:nil hideDelay:2.f];
@@ -123,7 +125,7 @@
             [[AddressDataManager sharedManager] requestToAddReciverWithPhoneId:phoneId
                                                                           name:self.nameTextField.text
                                                                          phone:self.phoneTextField.text
-                                                                       address:self.detailTextField.text
+                                                                       address:allAddress
                                                                       campusId:self.campusModel.campusId];
         }
     }
