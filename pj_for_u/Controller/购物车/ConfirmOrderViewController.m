@@ -715,9 +715,9 @@
 
 - (void)dealloc
 {
-    if ([self.buyNowFlag isEqualToString:@"1"]) {
-        [self deleteOrder];
-    }
+//    if ([self.buyNowFlag isEqualToString:@"1"]) {
+//        [self deleteOrder];
+//    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
@@ -947,7 +947,6 @@
                 self.noAddressView.hidden = NO;
                 [self.payButton setEnabled:NO];
             }
-
         }
         else
         {
