@@ -60,23 +60,7 @@
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-    for (int i = 0; i < self.allAddressArray.count; i++) {
-        NSIndexPath *indexPathTemp = [NSIndexPath indexPathForRow:i inSection:0];
-        AddressManageTableViewCell *cell = (AddressManageTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPathTemp];
-        if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
-            NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:10];
-            [dict setObject:cell.name.text forKey:@"name"];
-            [dict setObject:cell.phoneNum.text forKey:@"phone"];
-            [dict setObject:cell.address.text forKey:@"address"];
-            [dict setObject:cell.rank forKey:@"rank"];
-            [dict setObject:cell.campusId forKey:@"campusId"];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:kChooseAddressNoticfication object:dict];
-            return;
-        }
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:kChooseAddressNoticfication object:nil];
-
+    
 }
 
 - (void)dealloc
@@ -131,8 +115,24 @@
     AddressManageTableViewCell *cell = (AddressManageTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     
     cell.accessoryType = UITableViewCellAccessoryCheckmark;
-    
     [self.navigationController popViewControllerAnimated:YES];
+    //修改收货地址
+    for (int i = 0; i < self.allAddressArray.count; i++) {
+        NSIndexPath *indexPathTemp = [NSIndexPath indexPathForRow:i inSection:0];
+        AddressManageTableViewCell *cell = (AddressManageTableViewCell *)[self.tableView cellForRowAtIndexPath:indexPathTemp];
+        if (cell.accessoryType == UITableViewCellAccessoryCheckmark) {
+            NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithCapacity:10];
+            [dict setObject:cell.name.text forKey:@"name"];
+            [dict setObject:cell.phoneNum.text forKey:@"phone"];
+            [dict setObject:cell.address.text forKey:@"address"];
+            [dict setObject:cell.rank forKey:@"rank"];
+            [dict setObject:cell.campusId forKey:@"campusId"];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kChooseAddressNoticfication object:dict];
+            return;
+        }
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:kChooseAddressNoticfication object:nil];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
