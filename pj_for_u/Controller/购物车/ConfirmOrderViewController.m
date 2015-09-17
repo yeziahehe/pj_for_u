@@ -46,6 +46,7 @@
 
 @property (strong, nonatomic) NSString *channel;
 @property (strong, nonatomic) IBOutlet UIButton *aLiPayButton;
+@property (strong, nonatomic) IBOutlet UIButton *wechatButton;
 @property int select;      //1是支付宝，2是微信
 
 @property (strong, nonatomic) IBOutlet UIButton *payButton;
