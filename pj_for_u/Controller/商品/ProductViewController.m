@@ -79,7 +79,6 @@
     self.bigScrollView.contentSize = CGSizeMake(contentX, 0);
     self.bigScrollView.pagingEnabled = YES;
     
-    self.automaticallyAdjustsScrollViewInsets = NO;
     self.smallScrollView.showsHorizontalScrollIndicator = NO;
     self.bigScrollView.showsHorizontalScrollIndicator = NO;
     self.smallScrollView.showsVerticalScrollIndicator = NO;
@@ -112,6 +111,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     [self setNaviTitle:@"分类"];
     [self loadCategoryArray];
 
