@@ -15,6 +15,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *discountPrice;
 @property (strong, nonatomic) IBOutlet UILabel *oldPrice;
 @property (strong, nonatomic) IBOutlet UILabel *midPrice;
+@property (strong, nonatomic) IBOutlet UIImageView *lineImage;
 @property (strong, nonatomic) ShoppingCar *shoppingCar;
 @property NSInteger buyNumber;
 
@@ -182,9 +183,21 @@
     _proInfo = proInfo;
     self.productImage.cacheDir = kUserIconCacheDir;
     [self.productImage aysnLoadImageWithUrl:proInfo.imgUrl placeHolder:@"icon_user_default.png"];
-    self.discountPrice.text = [NSString stringWithFormat:@"%.1f元",[proInfo.discountPrice doubleValue]];
-    self.oldPrice.text = proInfo.price;
     CGFloat discountPrice = [proInfo.price doubleValue] - [proInfo.discountPrice doubleValue];
-    self.midPrice.text = [NSString stringWithFormat:@"( 省%.1f元 )",discountPrice];
+
+    if ([proInfo.isDiscount isEqualToString:@"1"]) {
+        self.oldPrice.hidden = NO;
+        self.discountPrice.hidden = NO;
+        self.lineImage.hidden = NO;
+        
+        self.discountPrice.text = [NSString stringWithFormat:@"￥: %.1f",[proInfo.discountPrice doubleValue]];
+        self.midPrice.text = [NSString stringWithFormat:@"( 省%.1f元 )",discountPrice];
+        self.oldPrice.text = [NSString stringWithFormat:@"%@",proInfo.price];
+    }else{
+        self.discountPrice.text = [NSString stringWithFormat:@"￥: %.1f",[proInfo.price doubleValue]];
+        self.lineImage.hidden = YES;
+        self.oldPrice.hidden = YES;
+        self.midPrice.hidden = YES;
+    }
 }
 @end
