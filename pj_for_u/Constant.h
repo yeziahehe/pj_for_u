@@ -26,7 +26,7 @@
 #define RootDirectory_Constant_h
 
 //apple api
-#define kAppAppleId         @"980883989"
+#define kAppAppleId         @"1037938173"
 #define kAppRateUrl         @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@"
 #define kAppDownloadUrl     @"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=%@&mt=8"
 
@@ -161,5 +161,6 @@
 #define kSetDeliverAdminUrl             @"order/setDeliverAdmin.do"
 #define kDeliverAdminGetOrderUrl        @"order/DeliverAdminGetOrder.do"
 #define kGetPreferentialsUrl            @"order/getPreferentials.do"
+#define kCancelOrderWithRefundUrl       @"order/cancelOrderWithRefund.do"
 
 #endif

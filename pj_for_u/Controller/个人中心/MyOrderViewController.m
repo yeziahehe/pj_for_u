@@ -55,7 +55,7 @@
 @property (strong, nonatomic) NSArray *preferentials;
 @property (strong, nonatomic) NSDictionary *homeInfo;
 @property (strong, nonatomic) NSMutableArray *shoppingCar;
-
+@property (strong, nonatomic) NSString *myTogetherId;
 @end
 
 @implementation MyOrderViewController
@@ -155,6 +155,22 @@
                                                                delegate:self
                                                                 purpose:kSetOrderInvalidKey];
 }
+
+- (void)cancelOrderWithRefund:(NSString *)togetherId
+{
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"取消订单中..."];
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kCancelOrderWithRefundUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:togetherId forKey:@"togetherId"];
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kCancelOrderWithRefundUrl];
+
+}
+
 
 #pragma mark - Private Methods
 //改变cell按钮的类型
@@ -441,6 +457,9 @@
     MyOrderDetailViewController *myOrderDetailViewController = [[MyOrderDetailViewController alloc] init];
     myOrderDetailViewController.togetherId = togetherId;
     myOrderDetailViewController.indexPath = indexPath;
+    myOrderDetailViewController.preferentials = self.preferentials;
+    myOrderDetailViewController.orderCampusId = self.orderCampusId;
+    myOrderDetailViewController.homeInfo = self.homeInfo;
     
     [self.navigationController pushViewController:myOrderDetailViewController animated:YES];
 
@@ -501,6 +520,7 @@
                 [self getPreferentialsInfoWithCampusId:self.orderCampusId];
                 i++;
             }
+            self.myTogetherId = togetherId;
             ShoppingCar *car = [[ShoppingCar alloc] initWithDict:dict];
             [self.shoppingCar addObject:car];
         }
@@ -517,7 +537,11 @@
                                                   style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action) {
                                                     self.indexPathBuffer = indexPath.section;
-                                                    [self requestForSetOrderInvalid:togetherId];
+                                                    if (self.recordLastStatus == 1) {
+                                                        [self requestForSetOrderInvalid:togetherId];
+                                                    } else if (self.recordLastStatus == 2) {
+                                                        [self cancelOrderWithRefund:togetherId];
+                                                    }
                                                     
                                                     
                                                 }]];
@@ -812,6 +836,29 @@
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
+    else if ([downloader.purpose isEqualToString:kCancelOrderWithRefundUrl]) {
+        NSString *message = [dict objectForKey:kMessageKey];
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [self.orderListArray removeObjectAtIndex:self.indexPathBuffer];
+            [self.eachCountOfSmallOrders removeObjectAtIndex:self.indexPathBuffer];
+            
+            [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+            
+            [self showNoOrderView];
+            [self.tableView reloadData];
+        }
+        else
+        {
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"取消订单失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
     else if ([downloader.purpose isEqualToString:kModifyOrderStatusKey]) {
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
@@ -825,7 +872,14 @@
         }
         else
         {
-            NSString *message = @"确认失败";
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0) {
+                message = @"确认失败";
+            }
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
@@ -838,7 +892,14 @@
         }
         else
         {
-            NSString *message = @"获取满减信息失败";
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0) {
+                message = @"获取满减信息失败";
+            }
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }
@@ -856,12 +917,20 @@
             covc.selectedArray = self.shoppingCar;
             covc.isBeSentFromMyOrder = 1;
             covc.myOrderCampusId = self.orderCampusId;
+            covc.myTogetherId = self.myTogetherId;
             
             [self.navigationController pushViewController:covc animated:YES];
         }
         else
         {
-            NSString *message = @"获取营业时间失败";
+            NSString *message = [dict objectForKey:kMessageKey];
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0) {
+                message = @"获取营业时间失败";
+            }
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
         }
     }

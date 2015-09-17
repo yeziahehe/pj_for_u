@@ -125,6 +125,21 @@
                                                                 purpose:kSetOrderInvalidKey];
 }
 
+- (void)cancelOrderWithRefund:(NSString *)togetherId
+{
+    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"取消订单中..."];
+    NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kCancelOrderWithRefundUrl];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [dict setObject:togetherId forKey:@"togetherId"];
+    
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kCancelOrderWithRefundUrl];
+    
+}
+
 - (void)requestForMyOrderDetailByTogetherId:(NSString *)togetherId
 {
     [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载中..."];
@@ -211,11 +226,16 @@
             [shoppingCar addObject:car];
         }
         
-        ConfirmOrderViewController *coVC = [[ConfirmOrderViewController alloc] init];
+        ConfirmOrderViewController *covc = [[ConfirmOrderViewController alloc] init];
         
-        coVC.selectedArray = shoppingCar;
-        
-        [self.navigationController pushViewController:coVC animated:YES];
+        covc.selectedArray = shoppingCar;
+        covc.preferentials = self.preferentials;
+        covc.homeInfo = self.homeInfo;
+        covc.isBeSentFromMyOrder = 1;
+        covc.myOrderCampusId = self.orderCampusId;
+        covc.myTogetherId = self.togetherId;
+
+        [self.navigationController pushViewController:covc animated:YES];
     }
     
     else if ([title isEqualToString:@"取消订单"]) {
@@ -228,7 +248,12 @@
         [alert addAction:[UIAlertAction actionWithTitle:@"确定"
                                                   style:UIAlertActionStyleDefault
                                                 handler:^(UIAlertAction *action) {
-                                                    [self requestForSetOrderInvalid:self.togetherId];
+                                                    int status = [[self.bigOrder objectForKey:@"status"] intValue];
+                                                    if (status == 1) {
+                                                        [self requestForSetOrderInvalid:self.togetherId];
+                                                    } else if (status == 2) {
+                                                        [self cancelOrderWithRefund:self.togetherId];
+                                                    }
                                                     
                                                 }]];
         [self presentViewController:alert animated:YES completion:nil];
@@ -431,6 +456,28 @@
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:1.5];
         }
     }
+    else if ([downloader.purpose isEqualToString:kCancelOrderWithRefundUrl]) {
+        NSString *message = [dict objectForKey:kMessageKey];
+        if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
+        {
+            [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:1.5];
+            
+            [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+        }
+        else
+        {
+            if ([message isKindOfClass:[NSNull class]])
+            {
+                message = @"";
+            }
+            if(message.length == 0)
+                message = @"取消订单失败";
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+        }
+    }
+
 }
 
 - (void)downloader:(YFDownloader *)downloader didFinishWithError:(NSString *)message

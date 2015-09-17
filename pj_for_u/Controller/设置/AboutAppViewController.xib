@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
@@ -21,24 +21,50 @@
                     </constraints>
                 </imageView>
                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="characterWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lnn-pc-nlU">
-                    <rect key="frame" x="10" y="259" width="300" height="93.5"/>
+                    <rect key="frame" x="10" y="259" width="300" height="101"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <string key="text">For优是由苏州英爵伟信息科技服务有限公司于2015年创建，致力于打造最优校园生活平台。紧跟潮流，运行互联网技术为大学生提供更优质便捷的生活，用户至上。
-“为你 为更好的生活”，是我们始终奉行的服务理念。</string>
-                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+“为你  为更好的生活”，是我们始终奉行的服务理念。</string>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright ©2015" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QJX-LQ-4NF">
+                    <rect key="frame" x="10" y="485" width="300" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="gNj-HD-ZD1"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="苏州市英爵伟信息科技服务有限公司" textAlignment="center" lineBreakMode="characterWrap" numberOfLines="10" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOT-hO-edm">
+                    <rect key="frame" x="10" y="513" width="300" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="x4M-tc-7If"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstItem="kOT-hO-edm" firstAttribute="top" secondItem="QJX-LQ-4NF" secondAttribute="bottom" constant="8" id="0CC-bc-XP7"/>
                 <constraint firstAttribute="trailing" secondItem="FXz-kL-qBu" secondAttribute="trailing" id="5zc-db-ave"/>
                 <constraint firstAttribute="centerX" secondItem="lnn-pc-nlU" secondAttribute="centerX" id="6zH-Vt-9T7"/>
                 <constraint firstItem="FXz-kL-qBu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="BvU-VC-RrO"/>
+                <constraint firstItem="kOT-hO-edm" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="Hnk-cs-OmO"/>
                 <constraint firstItem="FXz-kL-qBu" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="KN1-eb-aaT"/>
                 <constraint firstItem="lnn-pc-nlU" firstAttribute="top" secondItem="FXz-kL-qBu" secondAttribute="bottom" constant="10" id="OfQ-aK-Icd"/>
+                <constraint firstAttribute="trailing" secondItem="kOT-hO-edm" secondAttribute="trailing" constant="10" id="RJt-MU-D42"/>
+                <constraint firstAttribute="trailing" secondItem="QJX-LQ-4NF" secondAttribute="trailing" constant="10" id="Rzf-MG-Rnv"/>
                 <constraint firstItem="lnn-pc-nlU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="grb-b4-Htk"/>
                 <constraint firstAttribute="trailing" secondItem="lnn-pc-nlU" secondAttribute="trailing" constant="10" id="vKs-mR-XbE"/>
+                <constraint firstAttribute="bottom" secondItem="kOT-hO-edm" secondAttribute="bottom" constant="35" id="vUC-Xe-7SB"/>
+                <constraint firstItem="QJX-LQ-4NF" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="w5Z-g2-AC1"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
             <point key="canvasLocation" x="305" y="340"/>

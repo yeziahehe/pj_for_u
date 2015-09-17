@@ -11,6 +11,7 @@
 #import "CampusMoel.h"
 
 @interface AddReciverViewController ()
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong,nonatomic)UIView *background;
 @property (strong,nonatomic)CampusPickerView *campusPickerView;
 @property (strong,nonatomic)CampusMoel *campusModel;
@@ -100,11 +101,12 @@
         }
         else
         {
+            NSString *allAddress = [NSString stringWithFormat:@"%@%@",self.reciverCampusName,self.detailTextField.text];
             //保存地址的请求
             [[AddressDataManager sharedManager] requestForChangeAddressWithPhoneId:phoneId
                                                 rank:self.reciverRank
                                                 name:self.nameTextField.text
-                                             address:self.detailTextField.text
+                                             address:allAddress
                                                phone:self.phoneTextField.text
                                             campusId:self.reciverCampusId];
         }
@@ -113,6 +115,7 @@
     else
     {
         NSString *validPassword = [self checkPasswordValid];
+        NSString *allAddress = [NSString stringWithFormat:@"%@%@",self.campusModel.campusName,self.detailTextField.text];
         if(validPassword)
         {
             [[YFProgressHUD sharedProgressHUD]showWithMessage:validPassword customView:nil hideDelay:2.f];
@@ -122,7 +125,7 @@
             [[AddressDataManager sharedManager] requestToAddReciverWithPhoneId:phoneId
                                                                           name:self.nameTextField.text
                                                                          phone:self.phoneTextField.text
-                                                                       address:self.detailTextField.text
+                                                                       address:allAddress
                                                                       campusId:self.campusModel.campusId];
         }
     }
@@ -163,19 +166,31 @@
 }
 
 #pragma mark - UIView Methods
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
+    //在该方法中设置contentsize大小
+    [super viewDidAppear:YES];
+    CGFloat contentHeight = 212;;
+    [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setNaviTitle:self.NavTitle];
     [self setRightNaviItemWithTitle:@"保存" imageName:nil];
     [self loadData];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldChange:) name:UITextFieldTextDidChangeNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCampusNameWithNotification:) name:kGetCampusNameWithNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getCampusNameWithNotification:) name:kGetFirstCampusNameWithNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(saveAddressWithNotification:) name:kSaveAddressNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(addNewAddressWithNotification:) name:kAddAddressNotification object:nil];
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(setDefaultAddressWithNotificaton:) name:kSetDefaultAddressNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
     UITapGestureRecognizer *tapGesuture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignAllField)];
-    [self.view addGestureRecognizer:tapGesuture];
+    [self.scrollView addGestureRecognizer:tapGesuture];
 }
 
 - (void)viewDidDisappear:(BOOL)animated
@@ -236,6 +251,17 @@
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     return YES;
+}
+#pragma mark - Keyboard Notification methords
+- (void)keyboardWillShow:(NSNotification *)notification
+{
+    CGSize keyboardSize = [[[notification userInfo] objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, keyboardSize.height, 0);
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification
+{
+    self.scrollView.contentInset = UIEdgeInsetsZero;
 }
 
 @end

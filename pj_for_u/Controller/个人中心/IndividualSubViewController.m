@@ -45,7 +45,17 @@
 #pragma mark - BaseViewController Methods
 - (void)rightItemTapped
 {
-    [self requestUpdateUserInfo];
+    if ([[self.userInfoDetailDict objectForKey:@"valuename"] isEqualToString:@"昵称"]) {
+        if (self.textField.text.length > 8) {
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"昵称不能超过8位" hideDelay:2.f];
+        }
+        else {
+            [self requestUpdateUserInfo];
+        }
+    }
+    else {
+        [self requestUpdateUserInfo];
+    }
 }
 
 #pragma mark - UIViewController Methods
