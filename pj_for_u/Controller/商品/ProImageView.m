@@ -31,6 +31,7 @@
 -(void)setProInfo:(ProductionInfo *)proInfo
 {
     _proInfo = proInfo;
+    NSLog(@"shit %@",proInfo.grade);
     self.nameLabel.text = proInfo.name;
     self.messageLabel.text = proInfo.message;
     self.saleNumLabel.text = [NSString stringWithFormat:@"销量：%@",proInfo.saleNumber];
@@ -71,8 +72,10 @@
         self.preferential.hidden = YES;
     }
     
-    if (!proInfo.grade) {
-        self.gradeLabel.text = proInfo.grade;
+    if (![proInfo.grade isEqualToString:@"0"]) {
+        self.gradeLabel.text = [NSString stringWithFormat:@"%.1f分",[proInfo.grade doubleValue]];
+    }else{
+        self.gradeLabel.text = @"暂无评分";
     }
     
     NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:10];

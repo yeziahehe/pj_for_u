@@ -36,11 +36,11 @@
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4.3分" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6v1-9i-Ift">
-                            <rect key="frame" x="325" y="11" width="41" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无评分" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6v1-9i-Ift">
+                            <rect key="frame" x="294" y="11" width="72" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="16Y-rS-UzE"/>
-                                <constraint firstAttribute="width" constant="41" id="RO0-xP-l9R"/>
+                                <constraint firstAttribute="width" constant="72" id="RO0-xP-l9R"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.98431372549999996" green="0.28627450980000002" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -108,8 +108,8 @@
                                 <constraint firstAttribute="width" constant="16" id="bUV-Pt-pCg"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="满减优惠" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="oZz-py-RU4">
-                            <rect key="frame" x="37" y="101" width="48" height="15"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="满减优惠" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="oZz-py-RU4">
+                            <rect key="frame" x="37" y="102" width="48" height="15"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -182,7 +182,7 @@
                 <outlet property="saleNumLabel" destination="D2y-0z-eGK" id="bmx-FI-nbp"/>
                 <outlet property="scrollView" destination="2Oz-do-UwW" id="poq-vr-dut"/>
             </connections>
-            <point key="canvasLocation" x="-138.5" y="45"/>
+            <point key="canvasLocation" x="-279.5" y="10"/>
         </view>
     </objects>
     <resources>
