@@ -107,7 +107,7 @@
     for (int i = 0; i < images.count; i++) {
         YFAsynImageView *asynImgView = [[YFAsynImageView alloc] init];
         asynImgView.cacheDir = kImageCacheDir;
-        [asynImgView aysnLoadImageWithUrl:images[i] placeHolder:@"home_image_default.png"];
+        [asynImgView aysnLoadImageWithUrl:images[i] placeHolder:@"home_image_default_square.png"];
         
         //设置frame
         CGRect rect = CGRectMake(i * ScreenWidth, 0, ScreenWidth, ScreenWidth);
