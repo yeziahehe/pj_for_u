@@ -105,7 +105,7 @@
     AddressInfo *address = [self.allAddressArray objectAtIndex:indexPath.row];
     cell.name.text = address.name;
     cell.phoneNum.text = address.phone;
-    cell.address.text = address.address;
+    cell.address.text = [NSString stringWithFormat:@"%@%@",address.campusName,address.address];
     cell.rank = address.rank;
     cell.campusId = address.campusId;
     if ([address.tag isEqualToString: @"0"])

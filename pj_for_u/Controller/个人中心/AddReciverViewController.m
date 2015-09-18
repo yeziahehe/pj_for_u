@@ -101,12 +101,11 @@
         }
         else
         {
-            NSString *allAddress = [NSString stringWithFormat:@"%@%@",self.reciverCampusName,self.detailTextField.text];
             //保存地址的请求
             [[AddressDataManager sharedManager] requestForChangeAddressWithPhoneId:phoneId
                                                 rank:self.reciverRank
                                                 name:self.nameTextField.text
-                                             address:allAddress
+                                             address:self.detailTextField.text
                                                phone:self.phoneTextField.text
                                             campusId:self.reciverCampusId];
         }
