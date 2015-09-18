@@ -130,7 +130,7 @@
 {
     //在该方法中设置contentsize大小
     [super viewDidAppear:YES];
-    CGFloat contentHeight = self.loginButton.frame.origin.y+self.loginButton.frame.size.height+10.f;
+    CGFloat contentHeight = self.loginButton.frame.origin.y+self.loginButton.frame.size.height+50.f;
     [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];
 }
 
@@ -149,7 +149,7 @@
     //加入点击空白区域隐藏键盘处理
     UITapGestureRecognizer *tapGesuture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(resignAllField)];
     [self.scrollView addGestureRecognizer:tapGesuture];
-    CGFloat contentHeight = self.loginButton.frame.origin.y+self.loginButton.frame.size.height+10.f;
+    CGFloat contentHeight = self.loginButton.frame.origin.y+self.loginButton.frame.size.height+50.f;
     [self.scrollView setContentSize:CGSizeMake(self.scrollView.frame.size.width, contentHeight)];
 }
 
