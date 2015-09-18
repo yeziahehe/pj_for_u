@@ -54,8 +54,9 @@
         }
         if (tempArray.count == 0){
             self.commentLabel.text = @"暂无评论";
+        }else{
+            self.commentLabel.text = [NSString stringWithFormat:@"商品评价(%lu)",(unsigned long)tempArray.count];
         }
-        
         if (tempArray.count < kLimit.intValue) {
             self.removeFooter();
         }
@@ -73,7 +74,6 @@
             //===== NOTIFICATION
             [[NSNotificationCenter defaultCenter] postNotificationName:kIsTimeToEndRefreshNotification object:nil];
         }
-        NSLog(@"Success:%lu",(unsigned long)self.allCommentMArray.count);
     } failure:^(AFHTTPRequestOperation *operation,NSError *error) {
         
         NSLog(@"Error: %@", error);
@@ -92,7 +92,6 @@
 {
     _proInfo = proInfo;
     [self loadDataWithType:@"1" foodId:proInfo.foodId];
-    self.commentLabel.text = [NSString stringWithFormat:@"商品评价(%@)",proInfo.commentNumber];
 }
 
 #pragma mark - UIView Methosd

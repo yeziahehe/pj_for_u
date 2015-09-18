@@ -105,6 +105,7 @@
 		2C2529171B5E3F7400ADDEFB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2529161B5E3F7400ADDEFB /* Foundation.framework */; };
 		2C2529191B5E3F8500ADDEFB /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C2529181B5E3F8500ADDEFB /* CoreFoundation.framework */; };
 		2C25291B1B5E3FA300ADDEFB /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C25291A1B5E3FA300ADDEFB /* libz.1.2.5.dylib */; };
+		2C422A1C1BABECDA008C47F8 /* home_image_default_square@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C422A1B1BABECDA008C47F8 /* home_image_default_square@2x.png */; };
 		2C5C08451B6342CC0004286C /* HomeModuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C08441B6342CC0004286C /* HomeModuleModel.m */; };
 		2C5C08481B63433D0004286C /* FirstClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C08471B63433D0004286C /* FirstClassModel.m */; };
 		2C7953901B61321B00511EB7 /* home_image_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C79538F1B61321B00511EB7 /* home_image_default@2x.png */; };
@@ -473,6 +474,7 @@
 		2C2529161B5E3F7400ADDEFB /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		2C2529181B5E3F8500ADDEFB /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		2C25291A1B5E3FA300ADDEFB /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		2C422A1B1BABECDA008C47F8 /* home_image_default_square@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home_image_default_square@2x.png"; sourceTree = "<group>"; };
 		2C5C08431B6342CC0004286C /* HomeModuleModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeModuleModel.h; path = Model/HomeModuleModel.h; sourceTree = "<group>"; };
 		2C5C08441B6342CC0004286C /* HomeModuleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeModuleModel.m; path = Model/HomeModuleModel.m; sourceTree = "<group>"; };
 		2C5C08461B63433D0004286C /* FirstClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstClassModel.h; path = Model/FirstClassModel.h; sourceTree = "<group>"; };
@@ -1345,6 +1347,7 @@
 		4A6C157A1B5F7D5800C9A9D2 /* 登录注册 */ = {
 			isa = PBXGroup;
 			children = (
+				2C422A1B1BABECDA008C47F8 /* home_image_default_square@2x.png */,
 				0AE742511B70A4D7005A91CF /* icon_shoppingcar_default@2x.png */,
 				4A6C15911B60915500C9A9D2 /* icon_agree@2x.png */,
 				4A6C15921B60915500C9A9D2 /* icon_disagree@2x.png */,
@@ -1698,6 +1701,7 @@
 				2C2528841B5E2C9D00ADDEFB /* RootTabBarViewController.xib in Resources */,
 				2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */,
 				6D8AD3F41B60BD250099A0D8 /* AddressManageViewController.xib in Resources */,
+				2C422A1C1BABECDA008C47F8 /* home_image_default_square@2x.png in Resources */,
 				6D8AF68C1B7CE14A00B1BFBF /* ConfirmOrderViewController.xib in Resources */,
 				2CF607851B5EA9150022E8E7 /* SchoolSelectTableView.xib in Resources */,
 				2CF607661B5E9D100022E8E7 /* LocationViewController.xib in Resources */,

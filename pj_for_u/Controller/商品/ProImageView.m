@@ -31,7 +31,6 @@
 -(void)setProInfo:(ProductionInfo *)proInfo
 {
     _proInfo = proInfo;
-    NSLog(@"shit %@",proInfo.grade);
     self.nameLabel.text = proInfo.name;
     self.messageLabel.text = proInfo.message;
     self.saleNumLabel.text = [NSString stringWithFormat:@"销量：%@",proInfo.saleNumber];
@@ -107,12 +106,14 @@
     for (int i = 0; i < images.count; i++) {
         YFAsynImageView *asynImgView = [[YFAsynImageView alloc] init];
         asynImgView.cacheDir = kImageCacheDir;
-        [asynImgView aysnLoadImageWithUrl:images[i] placeHolder:@"home_image_default.png"];
+        [asynImgView aysnLoadImageWithUrl:images[i] placeHolder:@"home_image_default_square.png"];
         
         //设置frame
         CGRect rect = CGRectMake(i * ScreenWidth, 0, ScreenWidth, ScreenWidth);
         asynImgView.frame = rect;
-        asynImgView.contentMode = UIViewContentModeScaleToFill;
+        asynImgView.originalFrame = rect;
+       // asynImgView.contentMode = UIViewContentModeScaleToFill;
+        asynImgView.shouldResize = YES;
         
         [self.scrollView addSubview:asynImgView];
     }
