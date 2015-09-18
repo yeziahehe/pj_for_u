@@ -176,6 +176,8 @@
     self.togetherIdLabel.text = [self.bigOrder objectForKey:@"togetherId"];
     self.totalPrice.text = [NSString stringWithFormat:@"￥%.1lf", [[self.bigOrder objectForKey:@"totalPrice"] doubleValue]];
     self.name.text = [self.receiver objectForKey:@"name"];
+    NSString *address =[[self.receiver objectForKey:@"address"] stringByReplacingOccurrencesOfString:[self.receiver objectForKey:@"address"] withString:@""];
+    self.address.text = address;
     self.address.text = [self.receiver objectForKey:@"address"];
     self.phone.text = [self.receiver objectForKey:@"phone"];
 }
@@ -400,6 +402,7 @@
             self.smallOrders = [bigOrder objectForKey:@"orders"];
             self.receiver = [bigOrder objectForKey:@"receiver"];
             [self loadOrderInfo];
+            NSLog(@"shit %@",self.receiver);
             [self.tableView reloadData];
         }
         else

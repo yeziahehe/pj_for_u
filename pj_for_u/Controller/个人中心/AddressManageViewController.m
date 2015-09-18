@@ -110,8 +110,6 @@
     cell.campusId = address.campusId;
     if ([address.tag isEqualToString: @"0"])
     {
-//        UIColor *color = [UIColor colorWithRed:230.f/255 green:235.f/255 blue:236.f/255 alpha:1.f];
-//        cell.backgroundColor = color;
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     }
     return cell;
@@ -154,7 +152,7 @@
     avc.tagNew = @"1";
     avc.reciverName = address.name;
     avc.reciverPhone = address.phone;
-    avc.addressDetail = address.address;
+    avc.addressDetail = [address.address stringByReplacingOccurrencesOfString:address.campusName withString:@""];;
     avc.reciverRank = address.rank;
     avc.reciverCampusId = address.campusId;
     avc.reciverCampusName = address.campusName;
