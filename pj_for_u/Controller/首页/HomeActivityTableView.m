@@ -47,6 +47,8 @@
     NSString *imgUrl = [[self.imageUrlArray objectAtIndex:indexPath.row] objectForKey:@"homeImage"];
     cell.activityImageView.cacheDir = kUserIconCacheDir;
     [cell.activityImageView aysnLoadImageWithUrl:imgUrl placeHolder:@"home_image_default.png"];
+    cell.activityImageView.originalFrame = cell.activityImageView.frame;
+    cell.activityImageView.shouldResize = YES;
     
     cell.foodId = [[self.imageUrlArray objectAtIndex:indexPath.row] objectForKey:@"foodId"];
     return cell;
