@@ -538,7 +538,6 @@
         self.nameLabel.text = [dict objectForKey:@"name"];
         self.phoneLabel.text = [dict objectForKey:@"phone"];
         self.addressLabel.text = [dict objectForKey:@"address"];
-        
         self.myRank = [dict objectForKey:@"rank"];
         self.myCampusId = [dict objectForKey:@"campusId"];
         
@@ -826,7 +825,8 @@
                 if ([lm isEqualToString:@"0"]) {
                     self.defaultReceiver = [valueDict objectForKey:@"name"];
                     self.defaultRecPhone = [valueDict objectForKey:@"phone"];
-                    self.defaultAddress = [valueDict objectForKey:@"address"];
+                    NSString *school = [valueDict objectForKey:@"campusName"];
+                    self.defaultAddress = [NSString stringWithFormat:@"%@%@",school,[valueDict objectForKey:@"address"]];
                     self.defaultRank = [valueDict objectForKey:@"rank"];
                     self.myRank = [valueDict objectForKey:@"rank"];
                     self.myCampusId = [NSString stringWithFormat:@"%@", [valueDict objectForKey:@"campusId"]];

@@ -127,7 +127,7 @@
 
 - (void)cancelOrderWithRefund:(NSString *)togetherId
 {
-    [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"取消订单中..."];
+    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"取消订单中..."];
     NSString *url = [NSString stringWithFormat:@"%@%@", kServerAddress, kCancelOrderWithRefundUrl];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:togetherId forKey:@"togetherId"];
@@ -464,7 +464,7 @@
         if([[dict objectForKey:kCodeKey] isEqualToString:kSuccessCode])
         {
             [[YFProgressHUD sharedProgressHUD] showSuccessViewWithMessage:message hideDelay:1.5];
-            
+            [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
             [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
             
             [self.navigationController popViewControllerAnimated:YES];
