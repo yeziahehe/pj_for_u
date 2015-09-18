@@ -80,6 +80,8 @@
 #pragma mark - Private Methods
 - (void)loadDataWithfoodId:(NSString *)foodId
 {
+    [[YFProgressHUD sharedProgressHUD] startedNetWorkActivityWithText:@"加载中"];
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     //接口地址
@@ -98,6 +100,7 @@
         [self.addToShoppingCarButton setEnabled:YES];
         [self.buyRightNowButton setEnabled:YES];
 
+        [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
     }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
         
         NSLog(@"Error: %@", error);
