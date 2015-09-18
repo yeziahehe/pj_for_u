@@ -73,7 +73,6 @@
             //===== NOTIFICATION
             [[NSNotificationCenter defaultCenter] postNotificationName:kIsTimeToEndRefreshNotification object:nil];
         }
-        NSLog(@"Success:%lu",(unsigned long)self.allCommentMArray.count);
     } failure:^(AFHTTPRequestOperation *operation,NSError *error) {
         
         NSLog(@"Error: %@", error);
