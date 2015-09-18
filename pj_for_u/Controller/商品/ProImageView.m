@@ -31,7 +31,6 @@
 -(void)setProInfo:(ProductionInfo *)proInfo
 {
     _proInfo = proInfo;
-    NSLog(@"shit %@",proInfo.grade);
     self.nameLabel.text = proInfo.name;
     self.messageLabel.text = proInfo.message;
     self.saleNumLabel.text = [NSString stringWithFormat:@"销量：%@",proInfo.saleNumber];
