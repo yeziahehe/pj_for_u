@@ -81,6 +81,12 @@
     NSMutableArray *images = [[NSMutableArray alloc] initWithCapacity:10];
     [images addObject:proInfo.imgUrl];
     [images addObjectsFromArray:[proInfo.info componentsSeparatedByString:@","]];
+    NSArray *tempArray = [images copy];
+    for (NSString *imageUrl in tempArray) {
+        if ([imageUrl isEqualToString:@""]) {
+            [images removeObject:imageUrl];
+        }
+    }
     
     [self loadWithImages:images];
     
