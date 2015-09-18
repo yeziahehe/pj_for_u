@@ -13,8 +13,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYb-D9-iq5">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商品评论(23条)" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v88-tf-h3i">
-                            <rect key="frame" x="8" y="11" width="113" height="21"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商品评论" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v88-tf-h3i">
+                            <rect key="frame" x="8" y="11" width="90" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -54,7 +54,7 @@
                 <outlet property="commentLabel" destination="v88-tf-h3i" id="7dw-T3-m8Q"/>
                 <outlet property="tableView" destination="JO8-k5-Wiy" id="bI2-wm-DRv"/>
             </connections>
-            <point key="canvasLocation" x="181.5" y="212.5"/>
+            <point key="canvasLocation" x="240.5" y="192.5"/>
         </view>
     </objects>
     <resources>

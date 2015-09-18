@@ -22,8 +22,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MFz-7M-4NT">
                             <rect key="frame" x="0.0" y="78" width="375" height="54"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="新增收货地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6h2-4I-9d5">
-                                    <rect key="frame" x="45" y="18" width="96" height="19.5"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="新增收货地址" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6h2-4I-9d5">
+                                    <rect key="frame" x="45" y="18" width="96" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="19.5" id="VN4-nJ-ici"/>
                                     </constraints>
