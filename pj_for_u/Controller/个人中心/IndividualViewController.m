@@ -202,7 +202,7 @@
     UIImage *originalImage = [UIImage imageWithData:mediaPicker.fileData];
 //    CGSize userIconSize = [UIImage equalScaleSizeForMaxSize:CGSizeMake(640.f, 640.f) actualSize:originalImage.size];
 //    UIImage *userIconImage = [originalImage imageByScalingProportionallyToSize:userIconSize];
-    UIImage *userIconImage = [originalImage squareImageFromImage:originalImage scaledToSize:320.f];
+    UIImage *userIconImage = [originalImage squareImageFromImage:originalImage scaledToSize:120.f];
     
     NSString *userIconDir = [DOCUMENTS_FOLDER stringByAppendingPathComponent:kUserIconCacheDir];
     NSString *userIconPath = [NSString stringWithFormat:@"%@/%@",userIconDir,mediaPicker.fileName];
