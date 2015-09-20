@@ -165,8 +165,6 @@
 {
     self.navigationItem.leftBarButtonItem = nil;
     [self.ShoppingCarTableView addHeaderWithTarget:self action:@selector(dropDownRefresh)];
-    [self setRightNaviItemWithTitle:@"选择" imageName:nil];
-
 }
 
 #pragma mark - IBAction methods
@@ -282,14 +280,15 @@
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(removeBackGrayViewNotification:) name:kRemoveBackGrayViewNotification object:nil];
     
     if ([[MemberDataManager sharedManager] isLogin]) {
-        //        if ([self.shoppingCarArray count] == 0) {
-        //[self.noOrderView removeFromSuperview];
         NSString *phone = [MemberDataManager sharedManager].loginMember.phone;
         [self requestForShoppingCar:phone];
         [self.ShoppingCarTableView reloadData];
-        self.isChangedToSelectMode = YES;
-        [self rightItemTapped];
-        //}
+        [self.backGrayView removeFromSuperview];
+        self.isChangedToSelectMode = NO;
+        self.shoppingCarSelectedArray = nil;
+        self.deleteShoppingCarView.hidden = YES;
+        [self.ShoppingCarTableView reloadData];
+        [self calculateTotalPrice];
     }
     else
     {
