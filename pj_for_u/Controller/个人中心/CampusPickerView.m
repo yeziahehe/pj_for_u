@@ -28,9 +28,12 @@
     
     [[YFProgressHUD sharedProgressHUD] showActivityViewWithMessage:@"加载校区信息"];
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress, kLocationUrl];
-    [[YFDownloaderManager sharedManager] requestDataByGetWithURLString:url
-                                                              delegate:self
-                                                               purpose:kGetLocationDownloaderKey];
+    NSMutableDictionary *dict = kCommonParamsDict;
+    [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
+                                                             postParams:dict
+                                                            contentType:@"application/x-www-form-urlencoded"
+                                                               delegate:self
+                                                                purpose:kGetLocationDownloaderKey];
 }
 
 #pragma mark - UIView Methods
