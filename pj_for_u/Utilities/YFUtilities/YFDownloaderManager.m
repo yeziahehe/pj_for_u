@@ -188,6 +188,7 @@
                               delegate:(id<YFDownloaderDelegate>)receiver
                                purpose:(NSString *)purpose
 {
+    [params setObject:[NSString signStringBySortFromParamDict:params] forKey:@"sign"];
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlStr]];
     [request setHTTPMethod:@"POST"];
     [request setValue:contentType forHTTPHeaderField:@"Content-Type"];

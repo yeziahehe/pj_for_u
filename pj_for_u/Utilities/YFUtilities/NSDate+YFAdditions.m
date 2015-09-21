@@ -13,7 +13,7 @@
 + (NSString *)unixTimestampToString:(NSString *)unixTimestamp
 {
     NSDate *date = [NSDate dateWithTimeIntervalSince1970:[unixTimestamp doubleValue]];
-    return [self dateToStringByFormat:@"yyyy-MM-dd HH:mm:ss" date:date];
+    return [self dateToStringByFormat:@"yyyy-MM-dd HH:mm:ss.fff" date:date];
 }
 
 + (NSDate *)dateFromStringByFormat:(NSString *)format string:(NSString *)string

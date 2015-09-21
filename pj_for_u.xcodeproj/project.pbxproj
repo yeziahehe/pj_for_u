@@ -108,6 +108,8 @@
 		2C422A1C1BABECDA008C47F8 /* home_image_default_square@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C422A1B1BABECDA008C47F8 /* home_image_default_square@2x.png */; };
 		2C5C08451B6342CC0004286C /* HomeModuleModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C08441B6342CC0004286C /* HomeModuleModel.m */; };
 		2C5C08481B63433D0004286C /* FirstClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C5C08471B63433D0004286C /* FirstClassModel.m */; };
+		2C6BA4C91BAFD36200DF6BC3 /* NSString+YFMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6BA4C81BAFD36200DF6BC3 /* NSString+YFMD5.m */; };
+		2C6BA4CC1BAFD93D00DF6BC3 /* NSString+Foru.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C6BA4CB1BAFD93D00DF6BC3 /* NSString+Foru.m */; };
 		2C7953901B61321B00511EB7 /* home_image_default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C79538F1B61321B00511EB7 /* home_image_default@2x.png */; };
 		2C7953921B6134B400511EB7 /* icon_new@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7953911B6134B400511EB7 /* icon_new@2x.png */; };
 		2C7953981B613F4800511EB7 /* icon_address@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7953941B613F4800511EB7 /* icon_address@2x.png */; };
@@ -479,6 +481,10 @@
 		2C5C08441B6342CC0004286C /* HomeModuleModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeModuleModel.m; path = Model/HomeModuleModel.m; sourceTree = "<group>"; };
 		2C5C08461B63433D0004286C /* FirstClassModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstClassModel.h; path = Model/FirstClassModel.h; sourceTree = "<group>"; };
 		2C5C08471B63433D0004286C /* FirstClassModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstClassModel.m; path = Model/FirstClassModel.m; sourceTree = "<group>"; };
+		2C6BA4C71BAFD36200DF6BC3 /* NSString+YFMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+YFMD5.h"; path = "Utilities/YFUtilities/NSString+YFMD5.h"; sourceTree = "<group>"; };
+		2C6BA4C81BAFD36200DF6BC3 /* NSString+YFMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+YFMD5.m"; path = "Utilities/YFUtilities/NSString+YFMD5.m"; sourceTree = "<group>"; };
+		2C6BA4CA1BAFD93D00DF6BC3 /* NSString+Foru.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Foru.h"; path = "Utilities/YFUtilities/NSString+Foru.h"; sourceTree = "<group>"; };
+		2C6BA4CB1BAFD93D00DF6BC3 /* NSString+Foru.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Foru.m"; path = "Utilities/YFUtilities/NSString+Foru.m"; sourceTree = "<group>"; };
 		2C79538F1B61321B00511EB7 /* home_image_default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home_image_default@2x.png"; path = "Resource/home_image_default@2x.png"; sourceTree = "<group>"; };
 		2C7953911B6134B400511EB7 /* icon_new@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_new@2x.png"; path = "Resource/icon_new@2x.png"; sourceTree = "<group>"; };
 		2C7953941B613F4800511EB7 /* icon_address@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_address@2x.png"; path = "Resource/icon_address@2x.png"; sourceTree = "<group>"; };
@@ -851,12 +857,12 @@
 		0AFC070E1B6CADE6002BDB90 /* 购物车 */ = {
 			isa = PBXGroup;
 			children = (
-				0AFC070F1B6CAE46002BDB90 /* ShoppingCarTableViewCell.h */,
-				0AFC07101B6CAE46002BDB90 /* ShoppingCarTableViewCell.m */,
-				0AFC07111B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib */,
 				0AFC07121B6CAE46002BDB90 /* ShoppingCarViewController.h */,
 				0AFC07131B6CAE46002BDB90 /* ShoppingCarViewController.m */,
 				0AFC07141B6CAE46002BDB90 /* ShoppingCarViewController.xib */,
+				0AFC070F1B6CAE46002BDB90 /* ShoppingCarTableViewCell.h */,
+				0AFC07101B6CAE46002BDB90 /* ShoppingCarTableViewCell.m */,
+				0AFC07111B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib */,
 				0A54DA6D1B73119900FCBAB0 /* 确认订单 */,
 			);
 			name = "购物车";
@@ -1224,6 +1230,10 @@
 				2C2528FC1B5E3AA900ADDEFB /* YFUtils.h */,
 				6D8AF6851B7C3EEA00B1BFBF /* YFBadgeView.h */,
 				6D8AF6861B7C3EEA00B1BFBF /* YFBadgeView.m */,
+				2C6BA4C71BAFD36200DF6BC3 /* NSString+YFMD5.h */,
+				2C6BA4C81BAFD36200DF6BC3 /* NSString+YFMD5.m */,
+				2C6BA4CA1BAFD93D00DF6BC3 /* NSString+Foru.h */,
+				2C6BA4CB1BAFD93D00DF6BC3 /* NSString+Foru.m */,
 			);
 			name = YFUtilities;
 			sourceTree = "<group>";
@@ -1893,6 +1903,7 @@
 				6D2044C71B842C9700386189 /* ProCommentView.m in Sources */,
 				2C25289A1B5E38B100ADDEFB /* ResetPwdViewController.m in Sources */,
 				2C2528FD1B5E3AA900ADDEFB /* NSDate+YFAdditions.m in Sources */,
+				2C6BA4CC1BAFD93D00DF6BC3 /* NSString+Foru.m in Sources */,
 				2C2528DA1B5E39EF00ADDEFB /* SBJsonBase.m in Sources */,
 				6D8AD3F31B60BD250099A0D8 /* AddressManageViewController.m in Sources */,
 				4A6C16251B6BBD1700C9A9D2 /* MainTableViewCell.m in Sources */,
@@ -1933,6 +1944,7 @@
 				2C2528891B5E2E1E00ADDEFB /* LoginViewController.m in Sources */,
 				6D8AD3EC1B6097C70099A0D8 /* IndividualViewController.m in Sources */,
 				2C2529001B5E3AA900ADDEFB /* UIImage+YFUtilities.m in Sources */,
+				2C6BA4C91BAFD36200DF6BC3 /* NSString+YFMD5.m in Sources */,
 				2C2528531B5E108900ADDEFB /* AppDelegate.m in Sources */,
 				4A6C16871B70BAC500C9A9D2 /* AFURLRequestSerialization.m in Sources */,
 				2C2528DB1B5E39EF00ADDEFB /* SBJsonParser.m in Sources */,

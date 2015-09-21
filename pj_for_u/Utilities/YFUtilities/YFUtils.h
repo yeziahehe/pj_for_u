@@ -54,6 +54,8 @@
 #import "NSTimer+Addition.h"
 #import "YFBadgeView.h"
 #import "YFWebViewController.h"
+#import "NSString+YFMD5.h"
+#import "NSString+Foru.h"
 
 #endif
 

@@ -44,14 +44,16 @@
 #define kLightTextColor     [UIColor colorWithRed:155.f/255 green:155.f/255 blue:155.f/255 alpha:1.0f]
 #define DOCUMENTS_FOLDER    [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/"]
 #define kDeviceTokenKey     @"DeviceTokenKey"
-/* @param _date 当前时间，格式20150614074102
- * @param _sign 签名 md5(密钥+_date+fun+id)
+/* @param timeStemp 当前时间，linux时间戳
+ * @param sign      签名 md5(参数字典顺序排序)
+ * @param secret    密钥 2fbf3345716d7ae1840bc11aa09e0b19
  * 为了方便测试签名
  */
-#define kTimestamp          [NSDate dateToStringByFormat:@"yyyyMMddHHmmss" date:[NSDate date]]
-#define kCommonParamsDict   [NSMutableDictionary dictionaryWithObjectsAndKeys:kTimestamp, @"_date", @"1235", @"_sign", nil]
+#define kTimestamp          [NSString stringWithFormat:@"%.f",[[NSDate date] timeIntervalSince1970] * 1000]
+#define kCommonParamsDict   [NSMutableDictionary dictionaryWithObjectsAndKeys:kTimestamp, @"timestamp", kSecret, @"secret", nil]
 #define kCampusId           [[NSUserDefaults standardUserDefaults] objectForKey:kLocationInfoKey]
 
+#define kSecret             @"2fbf3345716d7ae1840bc11aa09e0b19"
 #define kNetWorkErrorString @"当前网络不给力"
 #define kIsWelcomeShown     @"IsWelcomeShown"
 #define kLocationInfoKey    @"LocationInfoKey"
