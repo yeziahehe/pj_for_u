@@ -106,9 +106,8 @@
     NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kUploadUserImage];
     NSMutableDictionary *dict = kCommonParamsDict;
     [dict setObject:[MemberDataManager sharedManager].loginMember.phone forKey:@"phoneId"];
-    NSString *imageBase64String = [YFCommonMethods base64StringFromData:imageFile length:0];
-    imageBase64String = (__bridge NSString *) CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)imageBase64String, NULL, CFSTR(":/?#[]@!$&’()*+,;="), kCFStringEncodingUTF8);
-    [dict setObject:imageBase64String forKey:@"image"];
+    [dict setObject:[YFCommonMethods base64StringFromData:imageFile length:0] forKey:@"image"];
+    [dict setObject:@"56846a8a2fee49d14901d39cc48b8b2a" forKey:@"server"];
     [[YFDownloaderManager sharedManager] requestDataByPostWithURLString:url
                                                              postParams:dict
                                                             contentType:@"application/x-www-form-urlencoded"
