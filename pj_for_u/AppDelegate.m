@@ -139,14 +139,10 @@
 {
     
     // Prepare the Device Token for Registration (remove spaces and < >)
-    NSString *devToken = [[[[deviceToken description]stringByReplacingOccurrencesOfString:@"<"withString:@""]stringByReplacingOccurrencesOfString:@">" withString:@""]stringByReplacingOccurrencesOfString: @" " withString: @""];
+
+    [[NSUserDefaults standardUserDefaults] setObject:deviceToken forKey:kDeviceTokenKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     
-    NSLog(@"device token: %@",devToken);
-    if(devToken.length > 0)
-    {
-        [[NSUserDefaults standardUserDefaults] setObject:devToken forKey:kDeviceTokenKey];
-        [[NSUserDefaults standardUserDefaults] synchronize];
-    }
     if ([[MemberDataManager sharedManager] isLogin]) {
         [APService registerDeviceToken:deviceToken];
         [APService setTags:[NSSet setWithObject:[MemberDataManager sharedManager].loginMember.type] alias:[MemberDataManager sharedManager].loginMember.phone callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
