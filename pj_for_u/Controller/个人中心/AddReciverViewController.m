@@ -115,17 +115,17 @@
     else
     {
         NSString *validPassword = [self checkPasswordValid];
-        NSString *allAddress = [NSString stringWithFormat:@"%@%@",self.campusModel.campusName,self.detailTextField.text];
         if(validPassword)
         {
             [[YFProgressHUD sharedProgressHUD]showWithMessage:validPassword customView:nil hideDelay:2.f];
         }
         else
         {
+            NSLog(@"shit %@",self.campusModel.campusName);
             [[AddressDataManager sharedManager] requestToAddReciverWithPhoneId:phoneId
                                                                           name:self.nameTextField.text
                                                                          phone:self.phoneTextField.text
-                                                                       address:allAddress
+                                                                       address:self.detailTextField.text
                                                                       campusId:self.campusModel.campusId];
         }
     }
@@ -167,7 +167,6 @@
 
 #pragma mark - UIView Methods
 - (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
     //在该方法中设置contentsize大小
     [super viewDidAppear:YES];
     CGFloat contentHeight = 212;;
