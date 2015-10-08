@@ -36,6 +36,7 @@
 		0AFC07161B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFC07111B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib */; };
 		0AFC07171B6CAE46002BDB90 /* ShoppingCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC07131B6CAE46002BDB90 /* ShoppingCarViewController.m */; };
 		0AFC07181B6CAE46002BDB90 /* ShoppingCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFC07141B6CAE46002BDB90 /* ShoppingCarViewController.xib */; };
+		2C0A48EF1BC664AF00B90CA2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0A48ED1BC664AF00B90CA2 /* libMobClickLibrary.a */; settings = {ASSET_TAGS = (); }; };
 		2C10D6A81B609335008C3DE0 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */; };
 		2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6A91B60B1F7008C3DE0 /* icon_home_shopping@2x.png */; };
 		2C10D6AD1B60B1F7008C3DE0 /* icon_home_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6AA1B60B1F7008C3DE0 /* icon_home_user@2x.png */; };
@@ -356,6 +357,8 @@
 		0AFC07121B6CAE46002BDB90 /* ShoppingCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingCarViewController.h; path = "Controller/购物车/ShoppingCarViewController.h"; sourceTree = "<group>"; };
 		0AFC07131B6CAE46002BDB90 /* ShoppingCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingCarViewController.m; path = "Controller/购物车/ShoppingCarViewController.m"; sourceTree = "<group>"; };
 		0AFC07141B6CAE46002BDB90 /* ShoppingCarViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShoppingCarViewController.xib; path = "Controller/购物车/ShoppingCarViewController.xib"; sourceTree = "<group>"; };
+		2C0A48ED1BC664AF00B90CA2 /* libMobClickLibrary.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libMobClickLibrary.a; sourceTree = "<group>"; };
+		2C0A48EE1BC664AF00B90CA2 /* MobClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MobClick.h; sourceTree = "<group>"; };
 		2C10D6A61B609335008C3DE0 /* NSTimer+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSTimer+Addition.h"; path = "Utilities/YFUtilities/NSTimer+Addition.h"; sourceTree = "<group>"; };
 		2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSTimer+Addition.m"; path = "Utilities/YFUtilities/NSTimer+Addition.m"; sourceTree = "<group>"; };
 		2C10D6A91B60B1F7008C3DE0 /* icon_home_shopping@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_home_shopping@2x.png"; path = "Resource/icon_home_shopping@2x.png"; sourceTree = "<group>"; };
@@ -774,6 +777,7 @@
 				2C25291B1B5E3FA300ADDEFB /* libz.1.2.5.dylib in Frameworks */,
 				0A9E1A531B7DF05D00D4D7C7 /* AlipaySDK.framework in Frameworks */,
 				2C2529191B5E3F8500ADDEFB /* CoreFoundation.framework in Frameworks */,
+				2C0A48EF1BC664AF00B90CA2 /* libMobClickLibrary.a in Frameworks */,
 				2C2529171B5E3F7400ADDEFB /* Foundation.framework in Frameworks */,
 				6DF2286B1B957CA100B5A6F8 /* libPushSDK-1.8.5.a in Frameworks */,
 				0A9E1A561B7DF05D00D4D7C7 /* libWeChatSDK.a in Frameworks */,
@@ -866,6 +870,15 @@
 				0A54DA6D1B73119900FCBAB0 /* 确认订单 */,
 			);
 			name = "购物车";
+			sourceTree = "<group>";
+		};
+		2C0A48EC1BC664AF00B90CA2 /* UMeng */ = {
+			isa = PBXGroup;
+			children = (
+				2C0A48ED1BC664AF00B90CA2 /* libMobClickLibrary.a */,
+				2C0A48EE1BC664AF00B90CA2 /* MobClick.h */,
+			);
+			path = UMeng;
 			sourceTree = "<group>";
 		};
 		2C10D6B51B60B7E1008C3DE0 /* 商品 */ = {
@@ -1093,6 +1106,7 @@
 		2C2528A81B5E39EF00ADDEFB /* 3rd */ = {
 			isa = PBXGroup;
 			children = (
+				2C0A48EC1BC664AF00B90CA2 /* UMeng */,
 				6DB463C61B9A9A000053D20A /* libsqlite3.0.dylib */,
 				6DB463C41B9A99DF0053D20A /* libc++.dylib */,
 				6DA84D1F1B955D34003D6E74 /* Security.framework */,
@@ -2114,6 +2128,7 @@
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Wx",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/lib",
+					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/UMeng",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2144,6 +2159,7 @@
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++/Channels/Wx",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/ping++",
 					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/lib",
+					"$(PROJECT_DIR)/pj_for_u/Utilities/3rd/UMeng",
 				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

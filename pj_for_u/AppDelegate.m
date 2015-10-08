@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <SMS_SDK/SMS_SDK.h>
+#import "MobClick.h"
 
 @interface AppDelegate ()
 
@@ -106,6 +107,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:) name:kReachabilityChangedNotification object:nil];
     //添加SMS应用
     [self connectShareSDK];
+    //添加友盟
+    [self connectUMeng];
     //检测网络状态
     [self notifyNetworkStatus];
     //清空通知数据
@@ -216,6 +219,12 @@
     //配置SMS
     //http://dashboard.mob.com/Sms/#/
     [SMS_SDK registerApp:@"91a73af59ad4" withSecret:@"e51fd9362953bfce350cd2b832e0e138"];
+}
+
+- (void)connectUMeng {
+    [MobClick startWithAppkey:@"56162cd0e0f55ae812003372" reportPolicy:BATCH channelId:@"iOS"];
+    NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    [MobClick setAppVersion:version];
 }
 
 @end
