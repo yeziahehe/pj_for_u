@@ -151,33 +151,6 @@
                                                                 purpose:kOneKeyOrderDownloaderKey];
 }
 
-//若在此页面未付款，则删除该订单
--(void)deleteOrder
-{
-    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
-    //接口地址
-    NSString *url = [NSString stringWithFormat:@"%@%@",kServerAddress,kDeleteSmallOrderUrl];
-    //传递参数存放的字典
-    NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
-    ShoppingCar *sc = [self.selectedArray objectAtIndex:0];
-    NSString *orderId = sc.orderId;
-    NSMutableDictionary *dict = kCommonParamsDict;
-    [dict setObject:phoneId forKey:@"phoneId"];
-    [dict setObject:orderId forKey:@"orderId"];
-    
-    //进行post请求
-    [manager POST:url parameters:dict success:^(AFHTTPRequestOperation *operation,id responseObject) {
-        
-        NSLog(@"未付款，删除成功");
-        
-    }failure:^(AFHTTPRequestOperation *operation,NSError *error) {
-        
-        NSLog(@"Error: %@", error);
-        
-    }];
-}
-
 #pragma mark - Private Method AND Initialize
 - (NSMutableDictionary *)indexPathBuffer
 {
@@ -417,13 +390,13 @@
 //支付点击事件
 - (IBAction)payButtonClicked:(id)sender
 {
-    
-    if (self.isNotTrueTime) {
+    if (self.noAddressView.hidden == NO) {
+        [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"请先设置默认地址" hideDelay:2.f];
+        return;
+    }else if (self.isNotTrueTime) {
         [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"不是营业时间" hideDelay:2.f];
         return;
-    }
-    
-    if (self.isBeSentFromMyOrder == 1) {
+    }else if (self.isBeSentFromMyOrder == 1) {
         if (![self.myOrderCampusId isEqualToString:self.myCampusId]) {
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"不在配送范围" hideDelay:2.f];
             return;
@@ -542,11 +515,11 @@
         self.myCampusId = [dict objectForKey:@"campusId"];
         
         self.noAddressView.hidden = YES;
-        self.payButton.enabled  = YES;
+//        self.payButton.enabled  = YES;
         
     } else {
         self.noAddressView.hidden = NO;
-        self.payButton.enabled  = NO;
+//        self.payButton.enabled  = NO;
     }
 }
 
@@ -689,7 +662,7 @@
         [self reloadDeliverView:nil dictionary:self.homeInfo];
     }
     
-    [self.payButton setEnabled:NO];
+//    [self.payButton setEnabled:NO];
     
 }
 
@@ -715,9 +688,6 @@
 
 - (void)dealloc
 {
-//    if ([self.buyNowFlag isEqualToString:@"1"]) {
-//        [self deleteOrder];
-//    }
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
 }
@@ -838,10 +808,10 @@
                 self.nameLabel.text = self.defaultReceiver;
                 self.phoneLabel.text = self.defaultRecPhone;
                 self.addressLabel.text = self.defaultAddress;
-                [self.payButton setEnabled:YES];
+//                [self.payButton setEnabled:YES];
             } else {
                 self.noAddressView.hidden = NO;
-                [self.payButton setEnabled:NO];
+//                [self.payButton setEnabled:NO];
             }
             
             
@@ -943,10 +913,10 @@
                 self.nameLabel.text = self.defaultReceiver;
                 self.phoneLabel.text = self.defaultRecPhone;
                 self.addressLabel.text = self.defaultAddress;
-                [self.payButton setEnabled:YES];
+//                [self.payButton setEnabled:YES];
             } else {
                 self.noAddressView.hidden = NO;
-                [self.payButton setEnabled:NO];
+//                [self.payButton setEnabled:NO];
             }
         }
         else
