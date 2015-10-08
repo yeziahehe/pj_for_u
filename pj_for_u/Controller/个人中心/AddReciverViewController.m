@@ -59,9 +59,10 @@
 {
     [self removeSubViews];
 }
--(void)doneButton
+-(void)saveDoneButton
 {
     self.campusTextField.text = self.campusModel.campusName;
+    self.reciverCampusId = self.campusModel.campusId;
     [self removeSubViews];
 }
 
@@ -221,7 +222,7 @@
                                action:@selector(cancelButton)
                      forControlEvents:UIControlEventTouchUpInside];
     [self.campusPickerView.doneButton addTarget:self
-                             action:@selector(doneButton)
+                             action:@selector(saveDoneButton)
                    forControlEvents:UIControlEventTouchUpInside];
     
 }
