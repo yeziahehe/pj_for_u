@@ -36,7 +36,7 @@
 		0AFC07161B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFC07111B6CAE46002BDB90 /* ShoppingCarTableViewCell.xib */; };
 		0AFC07171B6CAE46002BDB90 /* ShoppingCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AFC07131B6CAE46002BDB90 /* ShoppingCarViewController.m */; };
 		0AFC07181B6CAE46002BDB90 /* ShoppingCarViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0AFC07141B6CAE46002BDB90 /* ShoppingCarViewController.xib */; };
-		2C0A48EF1BC664AF00B90CA2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0A48ED1BC664AF00B90CA2 /* libMobClickLibrary.a */; settings = {ASSET_TAGS = (); }; };
+		2C0A48EF1BC664AF00B90CA2 /* libMobClickLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C0A48ED1BC664AF00B90CA2 /* libMobClickLibrary.a */; };
 		2C10D6A81B609335008C3DE0 /* NSTimer+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C10D6A71B609335008C3DE0 /* NSTimer+Addition.m */; };
 		2C10D6AC1B60B1F7008C3DE0 /* icon_home_shopping@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6A91B60B1F7008C3DE0 /* icon_home_shopping@2x.png */; };
 		2C10D6AD1B60B1F7008C3DE0 /* icon_home_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C10D6AA1B60B1F7008C3DE0 /* icon_home_user@2x.png */; };

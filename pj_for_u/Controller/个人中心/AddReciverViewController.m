@@ -95,6 +95,9 @@
     self.reciverCampusName = self.campusTextField.text;
     if ([self.tagNew isEqualToString: @"1"]) {
         //保存修改后的收货地址
+        //去掉搜索内容中的空格
+        NSString *textName = [self.detailTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        self.detailTextField.text = textName;
         NSString *validPassword = [self checkPasswordValid];
         if(validPassword)
         {

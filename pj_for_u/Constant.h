@@ -120,6 +120,7 @@
 
 //Url values
 #define kServerAddress                  @"http://121.40.31.41:7777/foryou/"
+//#define kServerAddress                  @"http://192.168.21.100:8080/foryou/"
 #define kLocationUrl                    @"campus/getCampusAndCity.do"
 #define kLoginUrl                       @"user/toLogin.do"
 #define kGetMainImageUrl                @"news/getMainImage.do"

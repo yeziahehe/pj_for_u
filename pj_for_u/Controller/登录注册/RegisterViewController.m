@@ -53,10 +53,8 @@
     //验证码获取
     [SMS_SDK getVerificationCodeBySMSWithPhone:self.phoneNumTextField.text zone:@"86" result:^(SMS_SDKError *error){
         if (error == nil) {
-            self.phoneLabel.attributedText = [self codeStatusLabel:@"验证码已发往%@，请稍等"];
         }
         else{
-            self.phoneLabel.text = @"验证码发送失败，请稍后重试";
             [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"验证码发送失败，请稍后重试" hideDelay:2.f];
         }
     }];
@@ -92,7 +90,6 @@
     self.identifyButton.enabled = NO;
     self.resendSecond = kResendTimeCount;
     self.resendTimer = [NSTimer scheduledTimerWithTimeInterval:1.f target:self selector:@selector(resendTimerChange) userInfo:nil repeats:YES];
-    [[YFProgressHUD sharedProgressHUD] showWithMessage:@"验证码发送中，请稍等……" customView:nil hideDelay:2.f];
     [self getVerifyCode];
 }
 
@@ -197,7 +194,6 @@
 
 #pragma mark - UIViewController Methods
 - (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
     //在该方法中设置contentsize大小
     [super viewDidAppear:YES];
     CGFloat contentHeight = self.registButton.frame.origin.y+self.registButton.frame.size.height+20.f;
@@ -241,7 +237,6 @@
         [self.rePasswordTextField becomeFirstResponder];
     else if(textField == self.rePasswordTextField)
         [self registButtonClicked:nil];
-    
     return YES;
 }
 
