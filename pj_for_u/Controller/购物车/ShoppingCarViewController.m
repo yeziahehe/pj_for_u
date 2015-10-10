@@ -304,12 +304,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)dealloc
 {
     [[YFDownloaderManager sharedManager] cancelDownloaderWithDelegate:self purpose:nil];
@@ -335,7 +329,7 @@
         [self.ShoppingCarTableView reloadData];
         self.backGrayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 120.f)];
         self.backGrayView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.5];
-        [self.CalculateView addSubview:self.backGrayView];
+//        [self.CalculateView addSubview:self.backGrayView];
         self.deleteShoppingCarView.hidden = NO;
     }
 }
