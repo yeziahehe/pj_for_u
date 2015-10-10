@@ -254,6 +254,10 @@
         [self.CalculateView addSubview:self.moneySavedLabel];
     }
     [self.shoppingCarSelectedArray addObject:sc];
+    NSLog(@"选择后，选择的数量为： %lu",(unsigned long)self.shoppingCarSelectedArray.count);
+    if ([self.shoppingCarSelectedArray count] > 0) {
+        self.backGrayView.hidden = YES;
+    }
     cell.isSelected = YES;
     cell.backGrayView.hidden = YES;
     [self calculateTotalPrice];
@@ -329,7 +333,7 @@
         [self.ShoppingCarTableView reloadData];
         self.backGrayView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, ScreenWidth, 120.f)];
         self.backGrayView.backgroundColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.5];
-//        [self.CalculateView addSubview:self.backGrayView];
+        [self.CalculateView addSubview:self.backGrayView];
         self.deleteShoppingCarView.hidden = NO;
     }
 }
@@ -435,8 +439,13 @@
         [self.shoppingCarSelectedArray removeObject:sc];
         cell.backGrayView.hidden = NO;
         [self calculateTotalPrice];
+        NSLog(@"移除后，物品的数量为：%lu",(unsigned long)self.shoppingCarSelectedArray.count);
         if ([self.shoppingCarSelectedArray count] == 0) {
             self.deleteShoppingCarView.hidden = YES;
+            self.backGrayView.hidden = NO;
+        }
+        if ([self.shoppingCarSelectedArray count] > 0) {
+            self.backGrayView.hidden = YES;
         }
     } else {
         ProductDetailViewController *detail = [[ProductDetailViewController alloc]init];
