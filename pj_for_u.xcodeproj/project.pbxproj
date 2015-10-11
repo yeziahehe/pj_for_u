@@ -120,6 +120,7 @@
 		2C79539D1B61402D00511EB7 /* bg_user_module@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C79539C1B61402D00511EB7 /* bg_user_module@2x.png */; };
 		2C7953A11B61414200511EB7 /* icon_header_back_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7953A01B61414200511EB7 /* icon_header_back_light@2x.png */; };
 		2C7953A31B61432500511EB7 /* bg_user_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7953A21B61432500511EB7 /* bg_user_img@2x.png */; };
+		2C8013471BCAAD4900151E90 /* YFPhotoBrower.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8013461BCAAD4900151E90 /* YFPhotoBrower.m */; settings = {ASSET_TAGS = (); }; };
 		2C93219C1BA6A2B200833021 /* YFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C93219A1BA6A2B200833021 /* YFWebViewController.m */; };
 		2C93219D1BA6A2B200833021 /* YFWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C93219B1BA6A2B200833021 /* YFWebViewController.xib */; };
 		2C9321A01BA6A30900833021 /* Foruabout.html in Resources */ = {isa = PBXBuildFile; fileRef = 2C93219E1BA6A30900833021 /* Foruabout.html */; };
@@ -497,6 +498,8 @@
 		2C79539C1B61402D00511EB7 /* bg_user_module@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg_user_module@2x.png"; path = "Resource/bg_user_module@2x.png"; sourceTree = "<group>"; };
 		2C7953A01B61414200511EB7 /* icon_header_back_light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon_header_back_light@2x.png"; path = "Resource/icon_header_back_light@2x.png"; sourceTree = "<group>"; };
 		2C7953A21B61432500511EB7 /* bg_user_img@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bg_user_img@2x.png"; path = "Resource/bg_user_img@2x.png"; sourceTree = "<group>"; };
+		2C8013451BCAAD4900151E90 /* YFPhotoBrower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YFPhotoBrower.h; path = Utilities/YFUtilities/YFPhotoBrower.h; sourceTree = "<group>"; };
+		2C8013461BCAAD4900151E90 /* YFPhotoBrower.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YFPhotoBrower.m; path = Utilities/YFUtilities/YFPhotoBrower.m; sourceTree = "<group>"; };
 		2C9321991BA6A2B200833021 /* YFWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YFWebViewController.h; path = Utilities/YFUtilities/YFWebViewController.h; sourceTree = "<group>"; };
 		2C93219A1BA6A2B200833021 /* YFWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YFWebViewController.m; path = Utilities/YFUtilities/YFWebViewController.m; sourceTree = "<group>"; };
 		2C93219B1BA6A2B200833021 /* YFWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YFWebViewController.xib; path = Utilities/YFUtilities/YFWebViewController.xib; sourceTree = "<group>"; };
@@ -1248,6 +1251,8 @@
 				2C6BA4C81BAFD36200DF6BC3 /* NSString+YFMD5.m */,
 				2C6BA4CA1BAFD93D00DF6BC3 /* NSString+Foru.h */,
 				2C6BA4CB1BAFD93D00DF6BC3 /* NSString+Foru.m */,
+				2C8013451BCAAD4900151E90 /* YFPhotoBrower.h */,
+				2C8013461BCAAD4900151E90 /* YFPhotoBrower.m */,
 			);
 			name = YFUtilities;
 			sourceTree = "<group>";
@@ -1972,6 +1977,7 @@
 				6D6A8D1C1B8AD11C0027D4C4 /* BigManageTableViewCell.m in Sources */,
 				4A6C156F1B5F724C00C9A9D2 /* MemberDataManager.m in Sources */,
 				2CF6078D1B5EB5BB0022E8E7 /* BaseModel.m in Sources */,
+				2C8013471BCAAD4900151E90 /* YFPhotoBrower.m in Sources */,
 				6D8AD3F81B60C2AF0099A0D8 /* IndividualTableViewCell.m in Sources */,
 				6D2044D61B842F4100386189 /* MyOrderInsideTableViewCell.m in Sources */,
 				6D6A8D221B8AFAB00027D4C4 /* BigManageSubViewController.m in Sources */,

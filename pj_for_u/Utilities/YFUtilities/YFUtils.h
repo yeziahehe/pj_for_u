@@ -56,6 +56,7 @@
 #import "YFWebViewController.h"
 #import "NSString+YFMD5.h"
 #import "NSString+Foru.h"
+#import "YFPhotoBrower.h"
 
 #endif
 

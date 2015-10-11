@@ -45,14 +45,17 @@
 
 - (void)loadSubViews
 {
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(magnifyImage)];
     if ([[MemberDataManager sharedManager] isLogin])
     {
         self.nameLabel.text = self.individualInfo.userInfo.nickname;
         if (![self.individualInfo.userInfo.imgUrl isEqualToString:@""]) {
             if (self.previousImage != nil) {
                 [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolderImage:self.previousImage];
+                [self.headPhoto addGestureRecognizer:tap];
             } else {
                 [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
+                [self.headPhoto addGestureRecognizer:tap];
             }
             // 毛玻璃效果，仅适用于ios8 and later
             //删除了部分代码，写到了懒加载里面
@@ -68,12 +71,14 @@
             [self.headPhoto setImage:[UIImage imageNamed:@"icon_user_default"]];
             [self.headBackPhoto setImage:[UIImage imageNamed:@"bg_user_img"]];
             [self.effectView removeFromSuperview];
+            [self.headPhoto removeGestureRecognizer:tap];
         }
     } else {
         self.nameLabel.text = @"点击登录";
         [self.headPhoto setImage:[UIImage imageNamed:@"icon_user_default"]];
         [self.headBackPhoto setImage:[UIImage imageNamed:@"bg_user_img"]];
         [self.effectView removeFromSuperview];
+        [self.headPhoto removeGestureRecognizer:tap];
     }
 }
 
@@ -84,6 +89,10 @@
     layer.borderWidth = 2.7f;
     self.headPhoto.layer.masksToBounds = YES;
     self.headPhoto.layer.cornerRadius = (self.headPhoto.bounds.size.width) / 2.f;
+}
+
+- (void)magnifyImage {
+    [YFPhotoBrower showImage:self.headPhoto];
 }
 
 #pragma mark - IBAction Methods
