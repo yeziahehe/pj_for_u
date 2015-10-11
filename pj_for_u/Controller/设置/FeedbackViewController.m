@@ -22,11 +22,14 @@
 {
     if(feedbackTextView.text.length < 1)
         return @"请输入您的宝贵意见";
+    else if (feedbackTextView.text.length > 127)
+        return @"请输入127个字数以内的意见反馈";
     return nil;
 }
 
 #pragma mark - IBAction Methods
 - (IBAction)commitFeedbackButtonClicked:(id)sender {
+    NSLog(@"shit %@",self.feedbackTextView.text);
     [self.feedbackTextView resignFirstResponder];
     NSString *validString = [self checkFieldValid];
     if(validString)
@@ -110,7 +113,7 @@
             }
             if(message.length == 0)
                 message = @"提交失败";
-            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:message hideDelay:2.f];
+            [[YFProgressHUD sharedProgressHUD] showFailureViewWithMessage:@"请输入正确的字符" hideDelay:2.f];
         }
     }
 }

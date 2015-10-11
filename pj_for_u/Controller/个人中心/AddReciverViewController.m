@@ -93,8 +93,17 @@
     [self resignAllField];
     NSString *phoneId = [MemberDataManager sharedManager].loginMember.phone;
     self.reciverCampusName = self.campusTextField.text;
+
+    //去掉搜索内容中的空格
+    NSString *textAddress = [self.detailTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.detailTextField.text = textAddress;
+    NSString *textName = [self.nameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.nameTextField.text = textName;
+    NSString *textPhone = [self.phoneTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.phoneTextField.text = textPhone;
     if ([self.tagNew isEqualToString: @"1"]) {
         //保存修改后的收货地址
+
         NSString *validPassword = [self checkPasswordValid];
         if(validPassword)
         {

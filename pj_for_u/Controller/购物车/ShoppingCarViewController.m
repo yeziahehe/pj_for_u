@@ -254,6 +254,10 @@
         [self.CalculateView addSubview:self.moneySavedLabel];
     }
     [self.shoppingCarSelectedArray addObject:sc];
+    NSLog(@"选择后，选择的数量为： %lu",(unsigned long)self.shoppingCarSelectedArray.count);
+    if ([self.shoppingCarSelectedArray count] > 0) {
+        self.backGrayView.hidden = YES;
+    }
     cell.isSelected = YES;
     cell.backGrayView.hidden = YES;
     [self calculateTotalPrice];
@@ -302,12 +306,6 @@
     [[YFProgressHUD sharedProgressHUD] stoppedNetWorkActivity];
     
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)dealloc
@@ -441,8 +439,13 @@
         [self.shoppingCarSelectedArray removeObject:sc];
         cell.backGrayView.hidden = NO;
         [self calculateTotalPrice];
+        NSLog(@"移除后，物品的数量为：%lu",(unsigned long)self.shoppingCarSelectedArray.count);
         if ([self.shoppingCarSelectedArray count] == 0) {
             self.deleteShoppingCarView.hidden = YES;
+            self.backGrayView.hidden = NO;
+        }
+        if ([self.shoppingCarSelectedArray count] > 0) {
+            self.backGrayView.hidden = YES;
         }
     } else {
         ProductDetailViewController *detail = [[ProductDetailViewController alloc]init];
