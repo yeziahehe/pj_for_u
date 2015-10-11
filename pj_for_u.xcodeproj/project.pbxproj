@@ -120,7 +120,7 @@
 		2C79539D1B61402D00511EB7 /* bg_user_module@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C79539C1B61402D00511EB7 /* bg_user_module@2x.png */; };
 		2C7953A11B61414200511EB7 /* icon_header_back_light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7953A01B61414200511EB7 /* icon_header_back_light@2x.png */; };
 		2C7953A31B61432500511EB7 /* bg_user_img@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2C7953A21B61432500511EB7 /* bg_user_img@2x.png */; };
-		2C8013471BCAAD4900151E90 /* YFPhotoBrower.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8013461BCAAD4900151E90 /* YFPhotoBrower.m */; settings = {ASSET_TAGS = (); }; };
+		2C8013471BCAAD4900151E90 /* YFPhotoBrower.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8013461BCAAD4900151E90 /* YFPhotoBrower.m */; };
 		2C93219C1BA6A2B200833021 /* YFWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C93219A1BA6A2B200833021 /* YFWebViewController.m */; };
 		2C93219D1BA6A2B200833021 /* YFWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2C93219B1BA6A2B200833021 /* YFWebViewController.xib */; };
 		2C9321A01BA6A30900833021 /* Foruabout.html in Resources */ = {isa = PBXBuildFile; fileRef = 2C93219E1BA6A30900833021 /* Foruabout.html */; };

@@ -187,6 +187,8 @@
     [self requestForDelete:phone orderId:orderId];
     orderId = nil;
     self.shoppingCarSelectedArray = nil;
+    self.backGrayView.hidden = NO;
+    self.deleteShoppingCarView.hidden = YES;
 }
 
 //随便逛逛按钮点击事件
