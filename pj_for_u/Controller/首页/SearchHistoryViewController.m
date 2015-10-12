@@ -57,16 +57,32 @@
     [self.searchHistoryTableView reloadData];
 }
 
+- (NSString *)checkFieldValid
+{
+    NSString *searchText = [self.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.searchBar.text = searchText;
+    if(searchBar.text.length < 1)
+        return @"请输入正确的搜索内容";
+    else
+        return nil;
+}
+
 #pragma mark - UISearchBar Delegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    [self.searchHistoryArray removeObject:self.searchBar.text];
-    [self.searchHistoryArray insertObject:self.searchBar.text atIndex:0];
-    [self.userDefaults setObject:self.searchHistoryArray forKey:kSearchHistoryArray];
-    [self.userDefaults synchronize];
-    [self dismissViewControllerAnimated:NO completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:kSearchButtonNotification object:self.searchBar.text];
-    }];
+    NSString *checkString = [self checkFieldValid];
+    if (checkString) {
+        [[YFProgressHUD sharedProgressHUD] showWithMessage:checkString customView:nil hideDelay:2.f];
+    }
+    else{
+        [self.searchHistoryArray removeObject:self.searchBar.text];
+        [self.searchHistoryArray insertObject:self.searchBar.text atIndex:0];
+        [self.userDefaults setObject:self.searchHistoryArray forKey:kSearchHistoryArray];
+        [self.userDefaults synchronize];
+        [self dismissViewControllerAnimated:NO completion:^{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kSearchButtonNotification object:self.searchBar.text];
+        }];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
