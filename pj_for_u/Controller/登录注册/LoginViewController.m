@@ -20,6 +20,8 @@
 #pragma mark - Private methods
 - (NSString *)checkFieldValid
 {
+    NSString *nameText = [self.usernameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.usernameTextField.text = nameText;
     if(usernameTextField.text.length < 1)
         return @"请输入用户名";
     else if(passwordTextField.text.length < 1)

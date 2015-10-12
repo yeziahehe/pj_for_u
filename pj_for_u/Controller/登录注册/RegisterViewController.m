@@ -34,6 +34,12 @@
 
 - (NSString *)checkPasswordValid
 {
+    NSString *phoneText = [self.phoneNumTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.phoneNumTextField.text = phoneText;
+    NSString *identifyText = [self.identifyCodeTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.identifyCodeTextField.text = identifyText;
+    NSString *nickNameText = [self.nickNameTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    self.nickNameTextField.text = nickNameText;
     if (self.phoneNumTextField.text.length != 11)
         return @"请输入正确的手机号";
     else if(self.identifyCodeTextField.text.length == 0)
