@@ -58,8 +58,6 @@
                 [self.headPhoto addGestureRecognizer:tap];
             }
             // 毛玻璃效果，仅适用于ios8 and later
-            //删除了部分代码，写到了懒加载里面
-            //先remove再加载，为了避免重复覆盖
             [self.headBackPhoto addSubview:self.effectView];
             if (self.previousImage != nil) {
                 [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolderImage:self.previousImage];
