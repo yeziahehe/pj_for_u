@@ -50,10 +50,30 @@
     if (![[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl isEqualToString:@""]) {
         self.headPhoto.cacheDir = kUserIconCacheDir;
         UIImage *loadimage =[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl]]];
+        self.headPhoto.image = loadimage;
+
+        [self.headBackPhoto addSubview:self.effectView];
+        self.headBackPhoto.cacheDir = kUserIconCacheDir;
+        self.headBackPhoto.image = loadimage;
+    } else {
+        [self.headPhoto setImage:[UIImage imageNamed:@"icon_user_default"]];
+        [self.headBackPhoto setImage:[UIImage imageNamed:@"bg_user_img"]];
+        [self.effectView removeFromSuperview];
+    }
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"IndividualInfoMap" ofType:@"plist"];
+    self.userInfoArray = [NSMutableArray arrayWithContentsOfFile:path];
+    [self.tableView reloadData];
+}
+
+- (void)viewDidLoadSubView {
+    [self addImageBorder];
+    self.nameLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.nickname;
+    if (![[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl isEqualToString:@""]) {
+        self.headPhoto.cacheDir = kUserIconCacheDir;
         if (self.previousImage != nil) {
-            self.headPhoto.image = loadimage;
+            [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolderImage:self.previousImage];
         } else {
-            self.headPhoto.image = loadimage;
+            [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
         }
         // 毛玻璃效果，仅适用于ios8 and later
         //删除了部分代码，写到了懒加载里面
@@ -61,9 +81,9 @@
         [self.headBackPhoto addSubview:self.effectView];
         self.headBackPhoto.cacheDir = kUserIconCacheDir;
         if (self.previousImage != nil) {
-            self.headBackPhoto.image = loadimage;
+           [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolderImage:self.previousImage];
         } else {
-            self.headBackPhoto.image = loadimage;
+            [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
         }
     } else {
         [self.headPhoto setImage:[UIImage imageNamed:@"icon_user_default"]];
@@ -137,7 +157,7 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self loadSubView];
+    [self viewDidLoadSubView];
     [self setLeftNaviItemWithTitle:nil imageName:@"icon_header_back_light.png"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshAccountWithNotification:) name:kRefreshAccoutNotification object:nil];
 }
