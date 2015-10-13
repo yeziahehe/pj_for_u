@@ -130,6 +130,8 @@
     if ([[MemberDataManager sharedManager] isLogin]) {
         //个人信息页面
         IndividualViewController *individualViewController = [[IndividualViewController alloc] init];
+        individualViewController.photoImage = self.headPhoto.image;
+        individualViewController.backPhotoImage = self.headBackPhoto.image;
         [self.navigationController pushViewController:individualViewController animated:YES];
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:kShowLoginViewNotification object:nil];
@@ -189,8 +191,16 @@
     
     self.courierButton.hidden = YES;
     self.bigManageButton.hidden = YES;
+}
 
-    
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:YES];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    self.navigationController.navigationBar.shadowImage = [UIImage new];
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
+    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//左侧返回按钮，文字的颜色
+    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
     if ([[MemberDataManager sharedManager] isLogin]) {
         [[MemberDataManager sharedManager] requestForIndividualInfoWithPhone:[MemberDataManager sharedManager].loginMember.phone];
         
@@ -203,23 +213,13 @@
             
             self.courierButton.hidden = NO;
             [self.courierButton addTarget:self action:@selector(courierAction) forControlEvents:UIControlEventTouchUpInside];
-
+            
         }
         else {
             self.courierButton.hidden = YES;
             self.bigManageButton.hidden = YES;
         }
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:YES];
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    self.navigationController.navigationBar.shadowImage = [UIImage new];
-    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor]};
-    self.navigationController.navigationBar.tintColor = [UIColor whiteColor];//左侧返回按钮，文字的颜色
-    self.navigationController.navigationBar.barStyle = UIStatusBarStyleLightContent;
 }
 
 - (void)courierAction

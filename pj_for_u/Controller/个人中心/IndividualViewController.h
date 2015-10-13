@@ -11,4 +11,7 @@
 
 @interface IndividualViewController : BaseViewController <UIActionSheetDelegate,YFMediaPickerDelegate>
 
+@property (nonatomic, strong) UIImage *photoImage;
+@property (nonatomic, strong) UIImage *backPhotoImage;
+
 @end

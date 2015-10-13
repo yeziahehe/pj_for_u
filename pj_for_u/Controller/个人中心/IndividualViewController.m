@@ -48,12 +48,10 @@
     [self addImageBorder];
     self.nameLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.nickname;
     if (![[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl isEqualToString:@""]) {
-        self.headPhoto.cacheDir = kUserIconCacheDir;
         UIImage *loadimage =[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl]]];
         self.headPhoto.image = loadimage;
 
         [self.headBackPhoto addSubview:self.effectView];
-        self.headBackPhoto.cacheDir = kUserIconCacheDir;
         self.headBackPhoto.image = loadimage;
     } else {
         [self.headPhoto setImage:[UIImage imageNamed:@"icon_user_default"]];
@@ -69,22 +67,9 @@
     [self addImageBorder];
     self.nameLabel.text = [MemberDataManager sharedManager].mineInfo.userInfo.nickname;
     if (![[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl isEqualToString:@""]) {
-        self.headPhoto.cacheDir = kUserIconCacheDir;
-        if (self.previousImage != nil) {
-            [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolderImage:self.previousImage];
-        } else {
-            [self.headPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"icon_user_default.png"];
-        }
-        // 毛玻璃效果，仅适用于ios8 and later
-        //删除了部分代码，写到了懒加载里面
-        //先remove再加载，为了避免重复覆盖
+        self.headPhoto.image = self.photoImage;
         [self.headBackPhoto addSubview:self.effectView];
-        self.headBackPhoto.cacheDir = kUserIconCacheDir;
-        if (self.previousImage != nil) {
-           [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolderImage:self.previousImage];
-        } else {
-            [self.headBackPhoto aysnLoadImageWithUrl:[MemberDataManager sharedManager].mineInfo.userInfo.imgUrl placeHolder:@"bg_user_img.png"];
-        }
+        self.headBackPhoto.image = self.backPhotoImage;
     } else {
         [self.headPhoto setImage:[UIImage imageNamed:@"icon_user_default"]];
         [self.headBackPhoto setImage:[UIImage imageNamed:@"bg_user_img"]];
