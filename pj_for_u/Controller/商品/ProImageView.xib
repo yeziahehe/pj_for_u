@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
@@ -13,6 +14,7 @@
             <subviews>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Oz-do-UwW">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="375"/>
+                    <animations/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="2Oz-do-UwW" secondAttribute="height" multiplier="1:1" id="mFL-qy-9Fe"/>
@@ -20,6 +22,7 @@
                 </scrollView>
                 <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="eT1-bI-vGB">
                     <rect key="frame" x="168" y="338" width="39" height="37"/>
+                    <animations/>
                     <color key="pageIndicatorTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <color key="currentPageIndicatorTintColor" red="0.14117647059999999" green="0.91372549020000005" blue="0.76078431369999999" alpha="1" colorSpace="calibratedRGB"/>
                 </pageControl>
@@ -28,6 +31,7 @@
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="明屋木瓜牛奶" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vc6-JF-vhl">
                             <rect key="frame" x="8" y="11" width="243" height="21"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="243" id="gMc-hU-Ck6"/>
                                 <constraint firstAttribute="height" constant="21" id="xms-b0-x5Z"/>
@@ -38,6 +42,7 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无评分" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6v1-9i-Ift">
                             <rect key="frame" x="294" y="11" width="72" height="21"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="16Y-rS-UzE"/>
                                 <constraint firstAttribute="width" constant="72" id="RO0-xP-l9R"/>
@@ -48,6 +53,7 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="销量：1234" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D2y-0z-eGK">
                             <rect key="frame" x="294" y="34" width="70" height="21"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="3fN-kh-UFD"/>
                                 <constraint firstAttribute="width" constant="70" id="jL5-fu-zuf"/>
@@ -56,14 +62,16 @@
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O0r-qA-31X">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="￥100" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O0r-qA-31X">
                             <rect key="frame" x="8" y="64" width="64" height="29"/>
+                            <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                             <color key="textColor" red="0.98431372549999996" green="0.28627450980000002" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="纯手工打造，安全无污染" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="3Mm-zj-YJz">
                             <rect key="frame" x="8" y="34" width="154" height="21"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="XxZ-76-mqM"/>
                             </constraints>
@@ -73,6 +81,7 @@
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="zBU-H6-kWn">
                             <rect key="frame" x="0.0" y="124" width="375" height="1"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="qC7-90-xHp"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="y6P-Fq-H6Y"/>
@@ -80,6 +89,7 @@
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34m-dz-iJO">
                             <rect key="frame" x="85" y="72" width="34" height="18"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="34" id="KSi-9S-kUs"/>
                                 <constraint firstAttribute="height" constant="18" id="eDw-N6-R1O"/>
@@ -90,12 +100,14 @@
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="( 省5元 )" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6M-FM-awk">
                             <rect key="frame" x="131" y="70" width="56" height="18"/>
+                            <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.98431372549999996" green="0.28627450980000002" blue="0.054901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="5ue-yz-TEh">
                             <rect key="frame" x="85" y="80" width="34" height="2"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="2" id="97d-Wp-KQP"/>
                                 <constraint firstAttribute="width" constant="34" id="vhX-eM-kQP"/>
@@ -103,6 +115,7 @@
                         </imageView>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_cutmoney.png" translatesAutoresizingMaskIntoConstraints="NO" id="pHe-TZ-40U">
                             <rect key="frame" x="13" y="100" width="16" height="16"/>
+                            <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="16" id="V2O-LH-45c"/>
                                 <constraint firstAttribute="width" constant="16" id="bUV-Pt-pCg"/>
@@ -110,11 +123,13 @@
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="满减优惠" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="oZz-py-RU4">
                             <rect key="frame" x="37" y="102" width="48" height="15"/>
+                            <animations/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
+                    <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="zBU-H6-kWn" secondAttribute="trailing" id="0SE-kU-NWy"/>
@@ -147,11 +162,13 @@
                 </view>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line_hon_1px_down.png" translatesAutoresizingMaskIntoConstraints="NO" id="Pt0-jS-7vz">
                     <rect key="frame" x="0.0" y="374" width="375" height="1"/>
+                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="1zz-V0-GIw"/>
                     </constraints>
                 </imageView>
             </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="2Oz-do-UwW" secondAttribute="trailing" id="5PQ-Ej-mGT"/>
@@ -189,9 +206,4 @@
         <image name="icon_cutmoney.png" width="15" height="15"/>
         <image name="line_hon_1px_down.png" width="640" height="2"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

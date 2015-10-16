@@ -111,9 +111,7 @@
         //设置frame
         CGRect rect = CGRectMake(i * ScreenWidth, 0, ScreenWidth, ScreenWidth);
         asynImgView.frame = rect;
-        asynImgView.originalFrame = rect;
-       // asynImgView.contentMode = UIViewContentModeScaleToFill;
-        asynImgView.shouldResize = YES;
+        asynImgView.contentMode = UIViewContentModeScaleToFill;
         
         [self.scrollView addSubview:asynImgView];
     }
